@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<theme-head-only-path-config xmlns="http://www.intra-mart.jp/theme/theme-head-with-container-path-config">	
+	<path>/skf/Skf2010Sc001/init</path>
+	<path>/skf/Skf2010Sc010/init</path>
+	<path>/skf/Skf2010Sc009/init</path>
+</theme-head-only-path-config>	

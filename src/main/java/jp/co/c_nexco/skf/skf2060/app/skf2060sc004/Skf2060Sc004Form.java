@@ -1,0 +1,16 @@
+package jp.co.c_nexco.skf.skf2060.app.skf2060sc004;
+
+import jp.co.c_nexco.nfw.webcore.app.BaseForm;
+
+import java.util.*;
+
+import lombok.EqualsAndHashCode;
+
+@lombok.Data
+@EqualsAndHashCode(callSuper = true)
+public class Skf2060Sc004Form extends BaseForm {
+	
+	private static final long serialVersionUID = 5285848663756806913L;
+
+
+}

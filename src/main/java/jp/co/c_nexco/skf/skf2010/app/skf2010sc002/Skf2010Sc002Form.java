@@ -1,0 +1,57 @@
+/*
+ * Copyright(c) 2020 NEXCO Systems company limited All rights reserved.
+ */
+package jp.co.c_nexco.skf.skf2010.app.skf2010sc002;
+
+import java.util.List;
+import java.util.Map;
+import jp.co.c_nexco.skf.skf2010.app.skf2010common.Skf2010NyukyoCommonForm;
+import lombok.EqualsAndHashCode;
+
+/**
+ * 申請内容確認同期処理Form Skf2010Sc002Form
+ * 
+ * @author NEXCOシステムズ
+ *
+ */
+@lombok.Data
+@EqualsAndHashCode(callSuper = true)
+public class Skf2010Sc002Form extends Skf2010NyukyoCommonForm {
+
+	private static final long serialVersionUID = 5285848663756806913L;
+
+	/**
+	 * 表示フラグ
+	 */
+	// 提示ボタン表示フラグ
+	private String presenBtnViewFlg;
+	// 申請ボタン表示フラグ
+	private String ApplyBtnViewFlg;
+	// コメント表示フラグ
+	private String commentViewFlag;
+
+	/**
+	 * 画面表示
+	 */
+	// 申請状況
+	private String applStatusText;
+
+	/**
+	 * 添付ファイル
+	 */
+	private List<Map<String, Object>> attachedFileList;
+
+	// 添付資料番号
+	private String attachedNo;
+
+	/** 画面表示用 **/
+	private int displayLevel; // 表示レベル（１～３）
+	// アコーディオン初期表示用フラグ
+	private String level1Open;
+	private String level2Open;
+	private String level3Open;
+	private String level4Open;
+
+	private String prePageId;
+
+}
