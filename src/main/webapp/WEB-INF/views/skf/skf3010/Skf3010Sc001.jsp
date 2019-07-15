@@ -10,164 +10,119 @@
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
 
 <%-- コンテンツエリア --%>
-<style type="text/css">
-
-</style>
-
-<!-- コンテンツエリア:モックのまま -->
-
-		<!-- 以下ツールバー -->
-		<div class="imui-toolbar-wrap">
-			<div class="imui-toolbar-inner">
-				<!-- ツールバー左側 -->
-				<ul class="imui-list-toolbar">
-					<!-- 戻る -->
-					<li>
-						<a class="imui-toolbar-icon" title="戻る" tabindex="23" onclick="back1()" href="javascript:void(0);">
-							<span class="im-ui-icon-common-16-back"></span>
-						</a>
-					</li>
-
-				</ul>
-				<!-- ツールバー右側 -->
-				<ul class="imui-list-box-toolbar-utility">
-					<li>
-						<a onclick="back()" class="imui-toolbar-icon" tabindex="16">
-							<span class="im-ui-icon-common-16-home"></span>
-							社宅TOP
-						</a>
-					</li>
-					<li>
-						<a class="imui-toolbar-icon" title="最新情報"  tabindex="26">
-							<span class="im-ui-icon-common-16-refresh" onclick="refresh()"></span>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
+<style type="text/css"></style>
 		<script type="text/javascript">
-			/**
-			* 一つ前の画面へ戻る
-			*/
 			function back1() {
-				showConfirm(W_GFK_0002, function() {
-					history.back()
-				});
+		var url="skf/Skf1010Sc001/init?SKF1010_SC001&tokenCheck=0"
+		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？");
 			}
 
-			/**
-			* メニュー画面へ遷移する。
-			*/
-			function back() {
-				showConfirm(W_GFK_0007, function() {
-					$.StandardPost("../common/top.html");
-				});
+	// リストテーブルの利用区分の文字色変更
+	function onCellAttr(rowId,val,rawObject,cm,rdata){
+		var style;
+		switch (val) {
+			case '使用中':
+				style = 'style="color:blue;"';
+				break;
+			case '解約済':
+			case '廃止':
+			default:
+				style = 'style="color:red;"';
+				break;
+		}
+		 return style;
 			}
 		</script>
-
-<!-- 		<div class="alertDiv imui-box-warning" style="padding: 15px;margin-top: 10px;text-align:left;" id="errMainDiv"> -->
-<!-- 			<div class="alert-errorIcon alert" style="margin:0;padding:0;margin-right:10px;"> -->
-<!-- 			</div>  -->
-<!-- 		</div> -->
-
 		<!-- コンテンツエリア -->
-		<div class="imui-form-container-wide" width="1350px" style="width: 100%; min-width:1300px;max-width: 1350px;">
-			<div class="imui-form-container-wide"  style="width:1280px;">
+<div class="imui-form-container-wide" >
+	<div class="imui-form-container-wide"  style="width:95%;">
 				<div class="imui-chapter-title"><h2>検索条件</h2></div>
-				<form id="form" class="target_form mt-10" action="" method="POST">
-					<table class="imui-form-search-condition">
+		<nfwui:Form id="form" name="form" modelAttribute="form">
+			<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC001 %>" />
+			<nfwui:Table use="search">
 						<tbody>
 							<tr>
-								<th style="width: 5%;">
-									<label>管理会社</label>
+						<th style="width: 5%;white-space:nowrap">
+							<!-- 管理会社 -->
+							<nfwui:LabelBox id="lblManegeCompany" code="<%=MessageIdConstant.SKF3010_SC001_LBL_MANAGE_COMPANY %>" />
 								</th>
 								<td style="width: 7%;">
-									<select style="width:185px;">
-										<option value="0"></option>
-										<option value="1">NEXCO中日本</option>
-										<option value="2">NEXCO東日本</option>
-										<option value="4">NEXCO西日本</option>
-										<option value="5">高速道路総合研究所</option>
-										<option value="6">外部機関</option>
-									</select>
+							<imui:select id="selectedCompanyCd" name="selectedCompanyCd" 
+							width="185" list="${form.manageCompanyList}" tabindex="1" />
 								</td>
-								<th style="width: 5%;">
-									<label>社宅区分</label>
+						<th style="width: 5%;white-space:nowrap">
+							<!-- 社宅区分 -->
+							<nfwui:LabelBox id="lblShatakuKbn" code="<%=MessageIdConstant.SKF3010_SC001_LBL_SHATAKU_KBN %>" />
 								</th>
 								<td style="width: 5%;">
-									<select style="width:128px;">
-										<option value="0"></option>
-										<option value="1">保有</option>
-										<option value="2">借上</option>
-										<option value="3">区分所有</option>
-										<option value="4">一棟借上</option>
-									</select>
+							<imui:select id="shatakuKbn" name="shatakuKbn" 
+							width="128" list="${form.shatakuKbnList}" tabindex="3" />
 								</td>
-								<th style="width: 5%;">
-									<label>空き部屋</label>
+						<th style="width: 5%;white-space:nowrap">
+							<!-- 空き部屋 -->
+							<nfwui:LabelBox id="lblEmptyRoom" code="<%=MessageIdConstant.SKF3010_SC001_LBL_EMPTY_ROOM %>" />
 								</th>
 								<td style="width: 3%;">
-									<select style="width:74px;">
-										<option value="0"></option>
-										<option value="1">なし</option>
-										<option value="2">あり</option>
-									</select>
+							<imui:select id="emptyRoom" name="emptyRoom" 
+							width="74" list="${form.emptyRoomList}" tabindex="5" />
 								</td>
-								<th style="width: 7%;">
-									<label>社宅名</label>
+						<th style="width: 7%;white-space:nowrap">
+							<!-- 社宅名 -->
+							<nfwui:LabelBox id="lblShatakuName" code="<%=MessageIdConstant.SKF3010_SC001_LBL_SHATAKU_NAME %>" />
 								</th>
 								<td style="width: 10%;">
-									<input style="width:260px;" type="text" value="" placeholder="例　社宅名">
+						    <imui:textbox id="shatakuName" name="shatakuName" style="width:260px;" value="${form.shatakuName}" placeholder="例　社宅名" tabindex="7" />
 								</td>
 							</tr>
 							<tr>
 								<th>
-									<label>管理機関</label>
+							<!-- 管理機関 -->
+							<nfwui:LabelBox id="lblManageAgency" code="<%=MessageIdConstant.SKF3010_SC001_LBL_MANAGE_AGENCY %>" />
 								</th>
 								<td>
-									<select style="width:185px;"><br />
-										<option value="0"></option>
-										<option value="1">本社</option>
-										<option value="2">支社①</option>
-										<option value="3">支社②</option>
-										<option value="4">支社③</option>
-										<option value="5">支社④</option>
-									</select>
+							<!-- 管理機関表示フラグ判定 -->
+							<c:if test="${form.agencyDispFlg == 'true'}">
+								<imui:select id="agencyCd" name="agencyCd" 
+								width="185" list="${form.manageAgencyList}" tabindex="2" />
+							</c:if>
+							<c:if test="${form.agencyDispFlg == 'false'}">
+								<imui:select id="agencyCd" name="agencyCd" 
+								width="185" list="${form.manageAgencyList}" tabindex="2" disabled/>
+							</c:if>
 								</td>
 								<th>
-									<label>利用区分</label>
+							<!-- 利用区分 -->
+							<nfwui:LabelBox id="lblUseKbn" code="<%=MessageIdConstant.SKF3010_SC001_LBL_USE_KBN %>" />
 								</th>
 								<td>
-									<select style="width:128px;">
-										<option value="1">使用中</option>
-										<option value="2">廃止</option>
-										<option value="3">解約済</option>
-									</select>
+							<imui:select id="useKbn" name="useKbn" 
+							width="128" list="${form.useKbnList}" tabindex="4" />
 								</td>
-								<th>
-									<label>空き駐車場</label>
+						<th style="white-space:nowrap">
+							<!-- 空き駐車場 -->
+							<nfwui:LabelBox id="lblEmptyParking" code="<%=MessageIdConstant.SKF3010_SC001_LBL_EMPTY_PARKING %>" />
 								</th>
 								<td>
-									<select style="width:74px;">
-										<option value="0"></option>
-										<option value="1">なし</option>
-										<option value="2">あり</option>
-									</select>
+							<imui:select id="emptyParking" name="emptyParking" 
+							width="74" list="${form.emptyParkingList}" tabindex="6" />
 								</td>
-								<th>
-									<label>社宅所在地</label>
+						<th style="white-space:nowrap">
+							<!-- 社宅住所 -->
+							<nfwui:LabelBox id="lblShatakuAddress" code="<%=MessageIdConstant.SKF3010_SC001_LBL_SHATAKU_ADDRESS %>" />
 								</th>
 								<td>
-									<input style="width:260px;" type="text" value="" placeholder="例　愛知県名古屋市中区錦2-18-19">
+						    <imui:textbox id="shatakuAddress" name="shatakuAddress" style="width:260px;" value="${form.shatakuAddress}" placeholder="例　愛知県名古屋市中区錦2-18-19" tabindex="8" />
 								</td>
 							</tr>
 						</tbody>
-					</table>
-				</form>
+			</nfwui:Table>
+		</nfwui:Form>
 				<div class="align-L">	
-					<input type="button" value="検索" class="imui-small-button" >
+			<nfwui:Button id="search" name="search" code="<%=MessageIdConstant.SKF3010_SC001_BTN_SEARCH %>" cssClass="imui-small-button" 
+				url="skf/Skf3010Sc001/search" formId="form" tabindex="9" />
 				</div>
 				<script type="text/javascript">
   (function($){
@@ -177,443 +132,243 @@
 				
 			</div>
 			<!-- 明細＆細目未満 -->
-			<div class="imui-form-container"  style="width:1280px;">
+	<div class="imui-form-container-wide"  style="width:95%;">
 				<!-- 明細部 -->
-				<form id="sampleList1">
+		<nfwui:Form id="listTableForm" name="listTableForm" modelAttribute="form">
+			<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC001 %>" />
+			<!-- 検索キー  -->
+			<!-- 会社コード -->
+			<input type = "hidden" name="hdnSelectedCompanyCd" id="hdnSelectedCompanyCd" value="${form.hdnSelectedCompanyCd}" />
+			<!-- 機関コード -->
+			<input type = "hidden" name="hdnAgencyCd" id="hdnAgencyCd" value="${form.hdnAgencyCd}" />
+			<!-- 空き部屋 -->
+			<input type = "hidden" name="hdnEmptyRoom" id="hdnEmptyRoom" value="${form.hdnEmptyRoom}" />
+			<!-- 利用区分 -->
+			<input type = "hidden" name="hdnUseKbn" id="hdnUseKbn" value="${form.hdnUseKbn}" />
+			<!-- 空き駐車場 -->
+			<input type = "hidden" name="hdnEmptyParking" id="hdnEmptyParking" value="${form.hdnEmptyParking}" />
+			<!-- 社宅住所 -->
+			<input type = "hidden" name="hdnShatakuAddress" id="hdnShatakuAddress" value="${form.hdnShatakuAddress}" />
+			<input type="hidden" name="hdnShatakuKbn" id="hdnShatakuKbn" value="" />
+			<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="" />
+			<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="" />
+			<input type="hidden" name="hdnAreaKbn" id="hdnAreaKbn" value="" />
+			<input type="hidden" name="hdnEmptyRoomCount" id="hdnEmptyRoomCount" value="" />
+			<input type="hidden" name="hdnEmptyParkingCount" id="hdnEmptyParkingCount" value="" />
+			
+			<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc001/init"/>
 					<div class="imui-chapter-title"><h2>検索結果一覧</h2></div>
 					<script type="text/javascript">
 					  (function($){
-						    $.imui.util.loadCSS("ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
+				$.imui.util.loadCSS("../../ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
 						  })(jQuery);
 					</script>
 
-					<table name="imui-8eqlrzst4hv6std" id="sampleListTable1"></table>
-
-					<div id="sampleListTable1-pager"></div>
+			<imui:listTable id="mainList" process="jssp" autoEncode="true" autoWidth="true" rowNumbers="true"
+				autoResize="true" onCellSelect="onCellSelect"
+				multiSelect="false" data="${form.listTableData }"
+				style="max-height: 800px" >
+				<pager rowNum="${form.listTableMaxRowCount }" />
+				<cols sortable="false">
+					<col name="companyName" caption="管理会社" width="115" sortable="false" align="left" />
+					<col name="agencyName" caption="管理機関" width="100" sortable="false" align="left" />
+					<col name="shtakuKbn" caption="社宅区分" width="100" sortable="false" align="center" />
+					<col name="useKbn" caption="利用区分" width="100" sortable="false" align="center" onCellAttr="onCellAttr" />
+					<col name="shatakuName" caption="社宅名" width="175" sortable="false" align="left" />
+					<col name="shatakuAddress" caption="社宅所在地" width="343" sortable="false" align="left" />
+					<col name="structureKbn" caption="構造" width="50" sortable="false" align="center" />
+					<col name="aging" caption="経年" width="50" sortable="false" align="center" />
+					<col name="emptyRoomCount" caption="空き部屋数" width="125" sortable="false" align="right" />
+					<col name="emptyParkingCount" caption="空き駐車場数" width="150" sortable="false" align="right" />
+					<col name="col11" caption="基本" width="50" sortable="false" align="center" >
+						<showIcon iconClass="im-ui-icon-common-16-update" align="center" />
+					</col>
+					<col name="col12" caption="部屋" width="50" sortable="false" align="center" >
+						<showIcon iconClass="im-ui-icon-common-16-settings" />
+					</col>
+					<col name="hdnShatakuKbn" caption="対象行の社宅区分" hidden="true" />
+					<col name="hdnShatakuKanriNo" caption="対象行の社宅管理番号" hidden="true" />
+					<col name="hdnShatakuName" caption="対象行の社宅名" hidden="true" />
+					<col name="hdnAreaKbn" caption="対象行の地域区分" hidden="true" />
+					<col name="hdnEmptyRoomCount" caption="対象行の空き部屋数" hidden="true" />
+					<col name="hdnEmptyParkingCount" caption="対象行の空き駐車場数" hidden="true" />
+				</cols>
+			</imui:listTable>
 
 					<script type="text/javascript">
-						(function() {
-							function imuiListTable() {
-								var grid = jQuery('#sampleListTable1');
-								var parameter = {
-									"multiselect":false,
-									"pager":"#sampleListTable1-pager",
-									"colNames":[
-										"",
-										"管理会社",				
-										"管理機関",							
-										"社宅区分",						
-										"利用区分",				
-										"社宅名",						
-										"社宅所在地",			
-										"構造",				
-										"経年",						
-										"空き<br/>部屋数",					
-										"空き<br/>駐車場数",						
-										"基本",					
-										"部屋",					
-									],
-									"datatype":"local",
-									"errorCell":function(xhr) { imuiShowErrorMessage($(xhr.responseText).find('dt').text()); },
-									"rowNum":1000,
-									"width":"1280",
-									"shrinkToFit":"true",
-									"cellsubmit":"clientArray",
-									"loadonce":true,
-									"colModel":[
-										{"hidden":true,"name":"id","key":true}
-										,{"name":"kanri_kaisya","width":"115","align":"left"}<!-- 管理会社 -->
-										,{"name":"kanri_kikan","width":"100","align":"left"}<!-- 管理機関 -->
-										,{"name":"syataku_kubun","width":"60","align":"center"}<!-- 社宅区分 -->
-										,{"name":"riyou_kubun","width":"60","align":"center"}<!-- 利用区分 -->
-										,{"name":"syataku_mei","width":"175","align":"left"}<!-- 社宅名 -->
-										,{"name":"syataku_syozaiti","width":"343","align":"left"}<!-- 社宅所在地 -->
-										,{"name":"kouzou","width":"40","align":"center"}<!-- 構造 -->
-										,{"name":"keinen","width":"40","align":"right"}<!-- 経年 -->
-										,{"name":"aki_heyasuu","width":"50","align":"right"}<!-- 空き部屋数 -->
-										,{"name":"aki_tyuusyajousuu","width":"60","align":"right"}<!-- 空き駐車場数 -->
-										,{"name":"kihon","width":"65","align":"center"}<!-- メンテ -->
-										,{"name":"heya","width":"65","align":"center"}<!-- ナンス -->
-									],
-									"rownumbers":true,
-									"height":"400"
-								};
-								parameter.data = [
-									{
-										"id":1,
-										"kanri_kaisya":"NEXCO西日本",
-										"kanri_kikan":"中国支社",
-										"syataku_kubun":"保有",
-										"riyou_kubun":"<font style='color:blue'>使用中",
-										"syataku_mei":"高陽寮",
-										"syataku_syozaiti":"広島県広島市安佐北区亀崎3-6-12",
-										"kouzou":"鉄筋",
-										"keinen":"10年",
-										"aki_heyasuu":"1室",
-										"aki_tyuusyajousuu":"1台",
-										"kihon":" <input type='button' title='基本' value='基本' class='imui-small-button' onclick=\"location.href='../../skf/Skf3010_Sc002/init'\">",
-										"heya":" <input type='button' title='部屋' value='部屋' class='imui-small-button' onclick=\"location.href='../../skf/Skf3010_Sc004/init'\">"
-									},{
-										"id":2,
-										"kanri_kaisya":"NEXCO東日本",
-										"kanri_kikan":"関東支社",
-										"syataku_kubun":"保有",
-										"riyou_kubun":"<font style='color:blue'>使用中",
-										"syataku_mei":"ｱﾝﾌﾞﾗｯｾ新検見川",
-										"syataku_syozaiti":"千葉県千葉市花見川区花園2-9-8",
-										"kouzou":"鉄筋",
-										"keinen":"10年",
-										"aki_heyasuu":"1室",
-										"aki_tyuusyajousuu":"1台",
-										"kihon":" <input type='button' title='基本' value='基本' class='imui-small-button' onclick=\"location.href='../../skf/Skf3010_Sc002/init'\">",
-										"heya":" <input type='button' title='部屋' value='部屋' class='imui-small-button' onclick=\"location.href='../../skf/Skf3010_Sc004/init'\">"
-									},{
-										"id":3,
-										"kanri_kaisya":"NEXCO中日本",
-										"kanri_kikan":"金沢支社",
-										"syataku_kubun":"保有",
-										"riyou_kubun":"<font style='color:blue'>使用中",
-										"syataku_mei":"泉ｹ丘寮",
-										"syataku_syozaiti":"石川県金沢市泉が丘2-6-25",
-										"kouzou":"鉄筋",
-										"keinen":"10年",
-										"aki_heyasuu":"1室",
-										"aki_tyuusyajousuu":"1台",
-										"kihon":" <input type='button' title='基本' value='基本' class='imui-small-button' onclick=\"location.href='../../skf/Skf3010_Sc002/init'\">",
-										"heya":" <input type='button' title='部屋' value='部屋' class='imui-small-button' onclick=\"location.href='../../skf/Skf3010_Sc004/init'\">"
-									},{
-										"id":4,
-										"kanri_kaisya":"NEXCO中日本",
-										"kanri_kikan":"本社",
-										"syataku_kubun":"借上",
-										"riyou_kubun":"<font style='color:blue'>使用中",
-										"syataku_mei":"AREX丸の内",
-										"syataku_syozaiti":"愛知県名古屋市中区丸の内2-12-8",
-										"kouzou":"鉄筋",
-										"keinen":"10年",
-										"aki_heyasuu":"1室",
-										"aki_tyuusyajousuu":"1台",
-										"kihon":" <input type='button' title='基本' value='基本' class='imui-small-button' onclick=\"location.href='../../skf/Skf3010_Sc006/init'\">",
-										"heya":""
-									},{
-										"id":5,
-										"kanri_kaisya":"NEXCO中日本",
-										"kanri_kikan":"本社",
-										"syataku_kubun":"借上",
-										"riyou_kubun":"<font style='color:blue'>使用中",
-										"syataku_mei":"AXIS桜通内山",
-										"syataku_syozaiti":"愛知県名古屋市千種区内山1-19-28",
-										"kouzou":"鉄筋",
-										"keinen":"10年",
-										"aki_heyasuu":"1室",
-										"aki_tyuusyajousuu":"1台",
-										"kihon":" <input type='button' title='基本' value='基本' class='imui-small-button' onclick=\"location.href='../../skf/Skf3010_Sc006/init'\">",
-										"heya":""
-									},{
-										"id":6,
-										"kanri_kaisya":"NEXCO中日本",
-										"kanri_kikan":"本社",
-										"syataku_kubun":"借上",
-										"riyou_kubun":"<font style='color:blue'>使用中",
-										"syataku_mei":"REGALO覚王山",
-										"syataku_syozaiti":"愛知県名古屋市千種区向陽町3-20-1",
-										"kouzou":"鉄筋",
-										"keinen":"10年",
-										"aki_heyasuu":"1室",
-										"aki_tyuusyajousuu":"1台",
-										"kihon":" <input type='button' title='基本' value='基本' class='imui-small-button' onclick=\"location.href='../../skf/Skf3010_Sc006/init'\">",
-										"heya":""
-									},{
-										"id":7,
-										"kanri_kaisya":"NEXCO中日本",
-										"kanri_kikan":"本社",
-										"syataku_kubun":"借上",
-										"riyou_kubun":"<font style='color:blue'>使用中",
-										"syataku_mei":"鶴舞ｶﾞｰﾃﾞﾝｺｰﾄ",
-										"syataku_syozaiti":"愛知県名古屋市中区千代田3-15-7",
-										"kouzou":"鉄筋",
-										"keinen":"10年",
-										"aki_heyasuu":"1室",
-										"aki_tyuusyajousuu":"1台",
-										"kihon":" <input type='button' title='基本' value='基本' class='imui-small-button' onclick=\"location.href='../../skf/Skf3010_Sc006/init'\">",
-										"heya":""
-									},{
-										"id":8,
-										"kanri_kaisya":"高速道路総合研究所",
-										"kanri_kikan":"高速道路総合研究所",
-										"syataku_kubun":"借上",
-										"riyou_kubun":"<font style='color:blue'>使用中",
-										"syataku_mei":"ﾙ･ｿﾚｲﾕ",
-										"syataku_syozaiti":"神奈川県相模原市中央区上溝7",
-										"kouzou":"木造",
-										"keinen":"10年",
-										"aki_heyasuu":"1室",
-										"aki_tyuusyajousuu":"1台",
-										"kihon":" <input type='button' title='基本' value='基本' class='imui-small-button' onclick=\"location.href='../../skf/Skf3010_Sc006/init'\">",
-										"heya":""
-									},{
-										"id":9,
-										"kanri_kaisya":"NEXCO中日本",
-										"kanri_kikan":"東京支社",
-										"syataku_kubun":"借上",
-										"riyou_kubun":"<font style='color:blue'>使用中",
-										"syataku_mei":"ｼｬﾝﾌﾟﾚﾝﾊｲﾂつくし野Ⅱ",
-										"syataku_syozaiti":"東京都町田市南つくし野1-3-32",
-										"kouzou":"木造",
-										"keinen":"10年",
-										"aki_heyasuu":"1室",
-										"aki_tyuusyajousuu":"1台",
-										"kihon":" <input type='button' title='基本' value='基本' class='imui-small-button' onclick=\"location.href='../../skf/Skf3010_Sc006/init'\">",
-										"heya":""
-									},{
-										"id":10,
-										"kanri_kaisya":"NEXCO中日本",
-										"kanri_kikan":"東京支社",
-										"syataku_kubun":"借上",
-										"riyou_kubun":"<font style='color:blue'>使用中",
-										"syataku_mei":"ｻﾝ・ﾄﾞﾏｰﾆ",
-										"syataku_syozaiti":"静岡県静岡市清水区八坂東2-11-25",
-										"kouzou":"木造",
-										"keinen":"10年",
-										"aki_heyasuu":"1室",
-										"aki_tyuusyajousuu":"1台",
-										"kihon":" <input type='button' title='基本' value='基本' class='imui-small-button' onclick=\"location.href='../../skf/Skf3010_Sc006/init'\">",
-										"heya":""
-									},{
-										"id":11,
-										"kanri_kaisya":"NEXCO中日本",
-										"kanri_kikan":"東京支社",
-										"syataku_kubun":"借上",
-										"riyou_kubun":"<font style='color:blue'>使用中",
-										"syataku_mei":"ｻﾝ・ﾄﾞﾏｰﾆ",
-										"syataku_syozaiti":"静岡県静岡市清水区八坂東2-11-25",
-										"kouzou":"木造",
-										"keinen":"10年",
-										"aki_heyasuu":"1室",
-										"aki_tyuusyajousuu":"1台",
-										"kihon":" <input type='button' title='基本' value='基本' class='imui-small-button' onclick=\"location.href='../../skf/Skf3010_Sc006/init'\">",
-										"heya":""
-									},{
-										"id":12,
-										"kanri_kaisya":"NEXCO中日本",
-										"kanri_kikan":"東京支社",
-										"syataku_kubun":"借上",
-										"riyou_kubun":"<font style='color:blue'>使用中",
-										"syataku_mei":"ｻﾝ・ﾄﾞﾏｰﾆ",
-										"syataku_syozaiti":"静岡県静岡市清水区八坂東2-11-25",
-										"kouzou":"木造",
-										"keinen":"10年",
-										"aki_heyasuu":"1室",
-										"aki_tyuusyajousuu":"1台",
-										"kihon":" <input type='button' title='基本' value='基本' class='imui-small-button' onclick=\"location.href='../../skf/Skf3010_Sc006/init'\">",
-										"heya":""
-									},{
-										"id":13,
-										"kanri_kaisya":"NEXCO中日本",
-										"kanri_kikan":"東京支社",
-										"syataku_kubun":"借上",
-										"riyou_kubun":"<font style='color:blue'>使用中",
-										"syataku_mei":"ｻﾝ・ﾄﾞﾏｰﾆ",
-										"syataku_syozaiti":"静岡県静岡市清水区八坂東2-11-25",
-										"kouzou":"木造",
-										"keinen":"10年",
-										"aki_heyasuu":"1室",
-										"aki_tyuusyajousuu":"1台",
-										"kihon":" <input type='button' title='基本' value='基本' class='imui-small-button' onclick=\"location.href='../../skf/Skf3010_Sc006/init'\">",
-										"heya":""
-									},{
-										"id":14,
-										"kanri_kaisya":"NEXCO中日本",
-										"kanri_kikan":"東京支社",
-										"syataku_kubun":"借上",
-										"riyou_kubun":"<font style='color:blue'>使用中",
-										"syataku_mei":"ｻﾝ・ﾄﾞﾏｰﾆ",
-										"syataku_syozaiti":"静岡県静岡市清水区八坂東2-11-25",
-										"kouzou":"木造",
-										"keinen":"10年",
-										"aki_heyasuu":"1室",
-										"aki_tyuusyajousuu":"1台",
-										"kihon":" <input type='button' title='基本' value='基本' class='imui-small-button' onclick=\"location.href='../../skf/Skf3010_Sc006/init'\">",
-										"heya":""
-									},{
-										"id":15,
-										"kanri_kaisya":"NEXCO中日本",
-										"kanri_kikan":"東京支社",
-										"syataku_kubun":"借上",
-										"riyou_kubun":"<font style='color:blue'>使用中",
-										"syataku_mei":"ｻﾝ・ﾄﾞﾏｰﾆ",
-										"syataku_syozaiti":"静岡県静岡市清水区八坂東2-11-25",
-										"kouzou":"木造",
-										"keinen":"10年",
-										"aki_heyasuu":"1室",
-										"aki_tyuusyajousuu":"1台",
-										"kihon":" <input type='button' title='基本' value='基本' class='imui-small-button' onclick=\"location.href='../../skf/Skf3010_Sc006/init'\">",
-										"heya":""
-									},{
-										"id":16,
-										"kanri_kaisya":"NEXCO中日本",
-										"kanri_kikan":"東京支社",
-										"syataku_kubun":"借上",
-										"riyou_kubun":"<font style='color:blue'>使用中",
-										"syataku_mei":"ｻﾝ・ﾄﾞﾏｰﾆ",
-										"syataku_syozaiti":"静岡県静岡市清水区八坂東2-11-25",
-										"kouzou":"木造",
-										"keinen":"10年",
-										"aki_heyasuu":"1室",
-										"aki_tyuusyajousuu":"1台",
-										"kihon":" <input type='button' title='基本' value='基本' class='imui-small-button' onclick=\"location.href='../../skf/Skf3010_Sc006/init'\">",
-										"heya":""
-									},{
-										"id":17,
-										"kanri_kaisya":"NEXCO中日本",
-										"kanri_kikan":"東京支社",
-										"syataku_kubun":"借上",
-										"riyou_kubun":"<font style='color:blue'>使用中",
-										"syataku_mei":"ｻﾝ・ﾄﾞﾏｰﾆ",
-										"syataku_syozaiti":"静岡県静岡市清水区八坂東2-11-25",
-										"kouzou":"木造",
-										"keinen":"10年",
-										"aki_heyasuu":"1室",
-										"aki_tyuusyajousuu":"1台",
-										"kihon":" <input type='button' title='基本' value='基本' class='imui-small-button' onclick=\"location.href='../../skf/Skf3010_Sc006/init'\">",
-										"heya":""
-									},{
-										"id":18,
-										"kanri_kaisya":"NEXCO中日本",
-										"kanri_kikan":"東京支社",
-										"syataku_kubun":"借上",
-										"riyou_kubun":"<font style='color:blue'>使用中",
-										"syataku_mei":"ｻﾝ・ﾄﾞﾏｰﾆ",
-										"syataku_syozaiti":"静岡県静岡市清水区八坂東2-11-25",
-										"kouzou":"木造",
-										"keinen":"10年",
-										"aki_heyasuu":"1室",
-										"aki_tyuusyajousuu":"1台",
-										"kihon":" <input type='button' title='基本' value='基本' class='imui-small-button' onclick=\"location.href='../../skf/Skf3010_Sc006/init'\">",
-										"heya":""
-									},{
-										"id":19,
-										"kanri_kaisya":"NEXCO中日本",
-										"kanri_kikan":"東京支社",
-										"syataku_kubun":"借上",
-										"riyou_kubun":"<font style='color:blue'>使用中",
-										"syataku_mei":"ｻﾝ・ﾄﾞﾏｰﾆ",
-										"syataku_syozaiti":"静岡県静岡市清水区八坂東2-11-25",
-										"kouzou":"木造",
-										"keinen":"10年",
-										"aki_heyasuu":"1室",
-										"aki_tyuusyajousuu":"1台",
-										"kihon":" <input type='button' title='基本' value='基本' class='imui-small-button' onclick=\"location.href='../../skf/Skf3010_Sc006/init'\">",
-										"heya":""
-									},{
-										"id":20,
-										"kanri_kaisya":"NEXCO中日本",
-										"kanri_kikan":"東京支社",
-										"syataku_kubun":"借上",
-										"riyou_kubun":"<font style='color:blue'>使用中",
-										"syataku_mei":"ｻﾝ・ﾄﾞﾏｰﾆ",
-										"syataku_syozaiti":"静岡県静岡市清水区八坂東2-11-25",
-										"kouzou":"木造",
-										"keinen":"10年",
-										"aki_heyasuu":"1室",
-										"aki_tyuusyajousuu":"1台",
-										"kihon":" <input type='button' title='基本' value='基本' class='imui-small-button' onclick=\"location.href='../../skf/Skf3010_Sc006/init'\">",
-										"heya":""
-									}
-								];
+				(function($) {
+					onCellSelect = function(rowId,iCol,cellcontent,e) {
+						// リストテーブル情報取得
+						var grid = $("#mainList");
+						// 行番号から選択した行の情報を取得
+						var row = grid.getRowData(rowId);
+						// 社宅区分
+						var shatakuKbn = row.hdnShatakuKbn;
+						// 社宅管理番号
+						var shatakuKanriNo = row.hdnShatakuKanriNo;
+						// 社宅名
+						var shatakuName = row.hdnShatakuName;
+						// 地域区分
+						var areaKbn = row.hdnAreaKbn;
+						// 空き部屋数
+						var emptyRoomCount = row.hdnEmptyRoomCount;
+						// 空き駐車場数
+						var emptyParkingCount = row.hdnEmptyParkingCount;
+						// URL
+						var url = "skf/Skf3010Sc001/init";
 
-								grid.jqGrid(parameter);
+						// 社宅区分
+						$("#hdnShatakuKbn").val(shatakuKbn);
+						// 社宅管理番号
+						$("#hdnShatakuKanriNo").val(shatakuKanriNo);
+						// 社宅名
+						$("#hdnShatakuName").val(shatakuName);
+						// 地域区分
+						$("#hdnAreaKbn").val(areaKbn);
+						// 空き部屋数
+						$("#hdnEmptyRoomCount").val(emptyRoomCount);
+						// 空き駐車場数
+						$("#hdnEmptyParkingCount").val(emptyParkingCount);
 
-//								// ヘッダ結合
-//								grid.jqGrid('setGroupHeaders', {
-//									useColSpanStyle: true,
-//									groupHeaders:[
-//										{startColumnName: 'kihon', numberOfColumns: 2,  titleText: 'メンテナンス'},
-//									]
-//								});
-
-// as
-//									// 1行づつ網掛け挑戦
-//									jQuery('#sampleListTable1').jqGrid({
-//										loadComplete: function () {
-//											var rowIDs = jQuery('#sampleListTable1').getDataIDs(); 
-//											$.each(rowIDs, function (i, item) {
-//												if (i % 2 == 0) {
-//													$('#'+item).removeClass('ui-widget-content');
-//													$('#'+item).addClass('testcss');
-//												}
-//											});
-//										},
-//									});
-//									jQuery('#sampleListTable1').jqGrid({
-//										gridComplete: function () {
-//											$('tbody > tr:even', this).addClass('ui-row-even');
-//										}
-//									});
-// ae
-
-								grid.jqGrid('navGrid','#sampleListTable1-pager',{
-									edit: false,
-									add: false,
-									del: false,
-									search: false,
+ 						// クリックアイコン判定
+ 				    	if ($(cellcontent).hasClass('im-ui-icon-common-16-update')) {
+ 				    		/** 基本 */
+ 				    		// 社宅区分判定
+ 				    		if (shatakuKbn != "2") {
+ 				    			// 保有社宅登録画面へ
+ 	 				    		url = "skf/Skf3010Sc002/init"; 				    			
+ 				    		} else {
+ 				    			// 借上げ社宅登録画面へ
+ 				    			url = "skf/Skf3010Sc006/init";
+ 				    		}
+ 	 				    	$("#listTableForm").attr("action", url);
+ 		 				    $("#listTableForm").submit();
+ 				    	} else if ($(cellcontent).hasClass('im-ui-icon-common-16-settings')) {
+ 				    		/** 部屋 */
+ 				    		url = "skf/Skf3010Sc004/init";
+ 	 				    	$("#listTableForm").attr("action", url);
+ 		 				    $("#listTableForm").submit();
+ 				    	}
+					}
+					$("#selectedCompanyCd").bind('change', function() {
+						var map = new Object();
+						map['selectedCompanyCd'] = $("#selectedCompanyCd").val();
+						map['agencyCd'] = "";
+						// ドロップダウンチェンジイベント
+						nfw.common.doAjaxAction("skf/Skf3010Sc001/ChangeDropDownAsync",map,true,function(data) {
+								$("#selectedCompanyCd").imuiSelect('replace', data.manageCompanyList);
+								$("#agencyCd").imuiSelect('replace', data.manageAgencyList);
+								// 外部機関判定
+								if ($("#selectedCompanyCd").val()!='ZZZZ') {
+									$("#agencyCd").prop('disabled', false);
+								} else {
+									$("#agencyCd").prop('disabled', true);
+								}
+							});
 								});
 
-								var gboxGridId     = 'gbox_sampleListTable1';
-								var gboxGrid       = jQuery('#' + gboxGridId);
-								var parentWidthOld = Number.MIN_VALUE;
+					$("span .im-ui-icon-common-16-update").mouseover(function(e) {
+						$(this).css("cursor","pointer");
+					}).mouseleave(
+						function(e) {
+							$(this).css("cursor","default");
 							}
+					);
 
-							(function($) {
+				    // 画面表示時に定義される処理
 								$(document).ready(function() {
-									imuiListTable();
+					    // 「契約情報出力」ボタン押下時のイベント
+					    preCopyEvent = function () {							
+					        // リストテーブル情報取得
+					        var grid = $("#mainList");
+//							var ids = grid.getGridParam("selarrrow"); // ←複数行
+							// 行番号取得
+							var id = null;
+							id = grid.getGridParam("selrow"); // ←1行
+							// 選択行が無い場合
+							if( id == null )
+							{
+								nfw.common.showReserveMessage("warning", "<%= MessageIdConstant.W_SKF_3003 %>");
+								return false;
+							}
+							// 行データ取得
+							var row = grid.getRowData(id);
+							// 社宅区分取得
+							var shatakuKbn = row.hdnShatakuKbn;
+ 				    		// 社宅区分判定
+ 				    		if (shatakuKbn != "2") {
+								nfw.common.showReserveMessage("warning", "<%= MessageIdConstant.W_SKF_3002 %>");
+								return false;
+ 				    		}
+					
+							// $("#submitApplNo").val(submitStr); // ←　フォーム変数設定
+							
+							return true;
+					    }
 								});
 							})(jQuery);
-
-						})();
 					</script>
-					<style type="text/css">  
-						<!--
-							/* ヘッダテキスト中央寄せ */
-							.ui-jqgrid .ui-jqgrid-htable th div {
-								display:table-cell;
-							    height: 32px;
-								text-align:center;
-								vertical-align:middle;
-							}
-							/** 1行間隔で網掛け挑戦
-							.testcss {
-								border: 1px solid #a6c9e2;
-								background-color: #e6e6fa ;
-								color: #222222;
-							}
-
-							.ui-row-even {
-								background-color: #e6e6fa ;
-							}
-							*/
-
-							/* データ行の改行許容 */
-							#sampleListTable1 tr td{
-								white-space:normal;
-							}
-						-->
-					</style>
-				</form>
+		</nfwui:Form>
 			</div>
 			<br />
 			<div class="align-R">
-<!-- 				<input style="width:150px;" id="" type="button" value="契約情報出力" class="imui-medium-button"  onclick="location.href=''"/> -->
-<!-- 				<input style="width:150px;" id="" type="button" value="新規（借上）" class="imui-medium-button"  onclick="location.href='../../skf/Skf3010_Sc006/init'"/> -->
-<!-- 				<input style="width:150px;" id="" type="button" value="複写（借上）" class="imui-medium-button"  onclick="location.href='../../skf/Skf3010_Sc006/init'"/> -->
-<!-- 				<input style="width:150px;" id="" type="button" value="新規（一棟）" class="imui-medium-button" onclick="location.href='../../skf/Skf3010_Sc002/init'"/> -->
-<!-- 				<input style="width:150px;" id="" type="button" value="新規（保有・区分）" class="imui-medium-button" onclick="location.href='../../skf/Skf3010_Sc002/init'"/> -->
-<input style="width:150px;" id="" type="button" value="契約情報出力" class="imui-medium-button"  onclick="location.href=''"/>
-					<input style="width:150px;" id="" type="button" value="新規（借上）" class="imui-medium-button"  onclick="location.href='../../skf/Skf3010_Sc006/init'"/>
-					<input style="width:150px;" id="" type="button" value="複写（借上）" class="imui-medium-button"  onclick="location.href='../../skf/Skf3010_Sc006/init'"/>
-					<input style="width:150px;" id="" type="button" value="新規（一棟）" class="imui-medium-button" onclick="location.href='../../skf/Skf3010_Sc002/init'"/>
-					<input style="width:150px;" id="" type="button" value="新規（保有・区分）" class="imui-medium-button" onclick="location.href='../../skf/Skf3010_Sc002/init'"/>
-			</div>
+		<nfwui:Form id="csvForm" name="csvForm" >
+			<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC001 %>" />
+			<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc001/init"/>
+			<input type="hidden" name="hdnShatakuKbn" id="hdnShatakuKbn" value="" />
+			<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="" />
+			<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="" />
+			<input type="hidden" name="hdnAreaKbn" id="hdnAreaKbn" value="" />
+			<input type="hidden" name="hdnEmptyRoomCount" id="hdnEmptyRoomCount" value="" />
+			<input type="hidden" name="hdnEmptyParkingCount" id="hdnEmptyParkingCount" value="" />
+		</nfwui:Form>
+		<nfwui:Form id="newRentalForm" name="newRentalForm" >
+			<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC001 %>" />
+			<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc001/init"/>
+			<input type="hidden" name="hdnShatakuKbn" id="hdnShatakuKbn" value="" />
+			<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="" />
+			<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="" />
+			<input type="hidden" name="hdnAreaKbn" id="hdnAreaKbn" value="" />
+			<input type="hidden" name="hdnEmptyRoomCount" id="hdnEmptyRoomCount" value="" />
+			<input type="hidden" name="hdnEmptyParkingCount" id="hdnEmptyParkingCount" value="" />
+		</nfwui:Form>
+		<nfwui:Form id="copyForm" name="copyForm" >
+			<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC001 %>" />
+			<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc001/init"/>
+			<input type="hidden" name="hdnShatakuKbn" id="hdnShatakuKbn" value="${form.hdnShatakuKbn}" />
+			<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="${form.hdnShatakuKanriNo}" />
+			<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="${form.hdnShatakuName}" />
+			<input type="hidden" name="hdnAreaKbn" id="hdnAreaKbn" value="${form.hdnAreaKbn}" />
+			<input type="hidden" name="hdnEmptyRoomCount" id="hdnEmptyRoomCount" value="${form.hdnEmptyRoomCount}" />
+			<input type="hidden" name="hdnEmptyParkingCount" id="hdnEmptyParkingCount" value="${form.hdnEmptyParkingCount}" />
+		</nfwui:Form>
+		<nfwui:Form id="newIttoForm" name="newIttoForm" >
+			<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC001 %>" />
+			<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc001/init"/>
+			<input type="hidden" name="hdnShatakuKbn" id="hdnShatakuKbn" value="${form.hdnShatakuKbn}" />
+			<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="" />
+			<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="" />
+			<input type="hidden" name="hdnAreaKbn" id="hdnAreaKbn" value="" />
+			<input type="hidden" name="hdnEmptyRoomCount" id="hdnEmptyRoomCount" value="" />
+			<input type="hidden" name="hdnEmptyParkingCount" id="hdnEmptyParkingCount" value="" />
+		</nfwui:Form>
+		<nfwui:Form id="newHoyuForm" name="newHoyuForm" >
+			<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC001 %>" />
+			<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc001/init"/>
+			<input type="hidden" name="hdnShatakuKbn" id="hdnShatakuKbn" value="${form.hdnShatakuKbn}" />
+			<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="" />
+			<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="" />
+			<input type="hidden" name="hdnAreaKbn" id="hdnAreaKbn" value="" />
+			<input type="hidden" name="hdnEmptyRoomCount" id="hdnEmptyRoomCount" value="" />
+			<input type="hidden" name="hdnEmptyParkingCount" id="hdnEmptyParkingCount" value="" />
+		</nfwui:Form>
+		<nfwui:ConfirmButton id="csv" name="csv" formId="csvForm" value="契約情報出力" cssClass="imui-medium-button" 
+		title="<%= MessageIdConstant.SKF3010_SC001_BTN_OUTPUT_CONTRACT %>" message="<%= MessageIdConstant.I_SKF_3078 %>" 
+		url="skf/Skf3010Sc001/init" tabindex="10"/>
+		<nfwui:Button id="newRental" value="新規（借上）" cssClass="imui-medium-button" url="skf/Skf3010Sc006/init" formId="newRentalForm"  tabindex="11"/>
+		<nfwui:Button id="copy" value="複写（借上）" cssClass="imui-medium-button" url="skf/Skf3010Sc006/init" formId="copyForm"  tabindex="12" preOnclick="preCopyEvent()"/>
+		<nfwui:Button id="newItto" value="新規（一棟）" cssClass="imui-medium-button" url="skf/Skf3010Sc002/init" formId="newIttoForm"  tabindex="13"/>
+		<nfwui:Button id="newHoyu" value="新規（保有・区分）" cssClass="imui-medium-button" url="skf/Skf3010Sc002/init" formId="newHoyuForm"  tabindex="14"/>
 		</div>
 	</div>
 	<!-- コンテンツエリア　ここまで -->

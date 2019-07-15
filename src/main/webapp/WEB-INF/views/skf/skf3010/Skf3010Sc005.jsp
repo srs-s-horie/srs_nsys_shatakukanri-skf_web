@@ -10,99 +10,63 @@
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
 
 <%-- コンテンツエリア --%>
 <style type="text/css">
 
 </style>
-
-<!-- コンテンツエリア:モックのまま -->
-<!-- 以下ツールバー -->
-		<div class="imui-toolbar-wrap">
-			<div class="imui-toolbar-inner">
-				<!-- ツールバー左側 -->
-				<ul class="imui-list-toolbar">
-					<!-- 戻る -->
-					<li>
-						<a class="imui-toolbar-icon" title="戻る" tabindex="20" onclick="back1()" href="javascript:void(0);">
-							<span class="im-ui-icon-common-16-back"></span>
-						</a>
-					</li>
-				</ul>
-				<!-- ツールバー右側 -->
-				<ul class="imui-list-box-toolbar-utility">
-					<li>
-						<a onclick="back()" class="imui-toolbar-icon" tabindex="16">
-							<span class="im-ui-icon-common-16-home"></span>
-							社宅TOP
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
 		<script type="text/javascript">
-			/**
-			* 一つ前の画面へ戻る
-			*/
 			function back1() {
-				showConfirm(W_GFK_0002, function() {
-					history.back()
-				});
+	var url="skf/Skf3010Sc004/init?SKF3010_SC004&tokenCheck=0"
+	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
 			}
 
-			/**
-			* メニュー画面へ遷移する。
-			*/
-			function back() {
-				showConfirm(W_GFK_0007, function() {
-					$.StandardPost("../common/top.html");
-				});
 			}
 		</script>
-
-		<div class="alertDiv imui-box-warning" style="padding: 15px;margin-top: 10px;text-align:left;" id="errMainDiv">
-			<div class="alert-errorIcon alert" style="margin:0;padding:0;margin-right:10px;">
-			</div> 
-		</div>
-
 		<!-- コンテンツエリア -->
-		<div class="imui-form-container-wide" width="1350px" style="width: 100%; min-width:1300px;max-width: 1350px;">
-			<table class="imui-form-search-condition">
+		<div class="imui-form-container-wide" style="width: 95%;">
+			<nfwui:Table use="search">
 				<tbody>
 					<tr>
 						<th style="width: 4%;height:24px">
-							<label style="width:80px;">社宅名</label>
+<!-- 							<label style="width:80px;">社宅名</label> -->
+							<nfwui:LabelBox id="lblShatakuName" code="<%=MessageIdConstant.SKF3010_SC004_SHATAKU_NAME %>" />					
 						</th>
 						<td style="width: 10%;">
-							すすかけ台３
+							<label>${form.shatakuName}<label>
 						</td>
 						<th style="width: 5%;">
-							<label style="width:100px">地域区分</label>
+<!-- 									<label>地域区分</label> -->
+							<nfwui:LabelBox id="lblAreaKbn" code="<%=MessageIdConstant.SKF3010_SC004_AREA_KBN %>" />
 						</th>
 						<td style="width: 4%;">
-							甲
+							<label>${form.areaKbn}<label>
 						</td>
 						<th style="width: 5%;">
-							<label style="width:100px">社宅区分</label>
+<!-- 							<label>社宅区分</label> -->
+							<nfwui:LabelBox id="lblShatakuKbn" code="<%=MessageIdConstant.SKF3010_SC004_SHATAKU_KBN %>" />
 						</th>
 						<td style="width: 4%;">
-							保有
+							<label>${form.shatakuKbn}<label>
 						</td>
 						<th style="width: 6%;">
-							<label style="width:110px">空き部屋数</label>
+<!-- 									<label>空き部屋数</label> -->
+									<nfwui:LabelBox id="lblEmptyRoomCount" code="<%=MessageIdConstant.SKF3010_SC004_EMPTY_ROOM_COUNT %>" />
 						</th>
 						<td style="width: 4%;">
-							2/3
+							<label>${form.emptyRoomCount}<label>
 						</td>
 						<th style="width: 7%;">
-							<label style="width:120px">空き駐車場数</label>
+<!-- 									<label>空き駐車場数</label> -->
+									<nfwui:LabelBox id="lblEmptyParkingCount" code="<%=MessageIdConstant.SKF3010_SC004_EMPTY_PARKING_COUNT %>" />
 						</th>
 						<td style="width: 4%;">
-							5/6
+							<label>${form.emptyParkingCount}<label>
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</nfwui:Table>
 			<div id="tabs">
 				<ul>
 					<li><a href="#room_info">部屋情報</a></li>
@@ -422,7 +386,7 @@
 			</div>
 			<br />
 			<div class="align-L float-L">	
-				<input style="width:150px;" type="button" value="前の画面へ" class="imui-medium-button" onclick="back1()"/>
+				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()"  />
 			</div>
 			<div class="align-R">
 				<input style="width:150px;" type="button" value="登録" class="imui-medium-button" />

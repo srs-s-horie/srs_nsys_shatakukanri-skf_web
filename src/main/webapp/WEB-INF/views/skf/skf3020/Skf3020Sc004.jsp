@@ -10,152 +10,128 @@
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
 
 <%-- コンテンツエリア --%>
 <style type="text/css">
 
 </style>
-
-<!-- コンテンツエリア:モックのまま -->
-<!-- 以下ツールバー -->
-		<div class="imui-toolbar-wrap">
-			<div class="imui-toolbar-inner">
-				<!-- ツールバー左側 -->
-				<ul class="imui-list-toolbar">
-					<!-- 戻る -->
-					<li>
-						<a class="imui-toolbar-icon" title="戻る" tabindex="23" onclick="back1()" href="javascript:void(0);">
-							<span class="im-ui-icon-common-16-back"></span>
-						</a>
-					</li>
-
-				</ul>
-				<!-- ツールバー右側 -->
-				<ul class="imui-list-box-toolbar-utility">
-					<li>
-						<a onclick="back()" class="imui-toolbar-icon" tabindex="16">
-							<span class="im-ui-icon-common-16-home"></span>
-							社宅TOP
-						</a>
-					</li>
-					<li>
-						<a class="imui-toolbar-icon" title="最新情報"  tabindex="26">
-							<span class="im-ui-icon-common-16-refresh" onclick="refresh()"></span>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<script type="text/javascript">
-			/**
-			* 一つ前の画面へ戻る
-			*/
-			function back1() {
-				showConfirm(W_GFK_0002, function() {
-					history.back()
-				});
-			}
-
-			/**
-			* メニュー画面へ遷移する。
-			*/
-			function back() {
-				showConfirm(W_GFK_0007, function() {
-					$.StandardPost("../common/top.html");
-				});
-			}
-		</script>
-
-<!-- 		<div class="alertDiv imui-box-warning" style="padding: 15px;margin-top: 10px;text-align:left;" id="errMainDiv"> -->
-<!-- 			<div class="alert-errorIcon alert" style="margin:0;padding:0;margin-right:10px;"> -->
-<!-- 			</div>  -->
-<!-- 		</div> -->
-
 		<!-- コンテンツエリア -->
-		<div class="imui-form-container-wide" width="1350px" style="width: 100%; min-width:1300px;max-width: 1350px;">
-			<div class="imui-form-container-wide"  style="width:1280px;">
+		<div class="imui-form-container-wide" >
+			<div class="imui-form-container-wide"  style="width:95%;">
 				<div class="imui-chapter-title"><h2>検索条件</h2></div>
-				<table class="imui-form-search-condition">
+				<nfwui:Form id="form" name="form" modelAttribute="form">
+				<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3020_SC004 %>" />
+					<nfwui:Table use="search">
 					<tbody>
 						<tr>
-							<th>
-								<label style="width:60px;">社員番号</label>
+							<th style="width: 15%;">
+<!-- 								<label style="width:60px;">社員番号</label> -->
+								<nfwui:LabelBox id="lblShainNo" code="<%=MessageIdConstant.SKF3020_SC004_SHAIN_NUMBER %>" />
 							</th>
 							<td>
-								<input class="ime-off" style="width:175px;" type="text" placeholder="例　00123456（半角）"/>
+<!-- 								<input class="ime-off" style="width:175px;" type="text" placeholder="例　00123456（半角）"/> -->
+								<imui:textbox id="txtShainNo" name="shainNo" style="ime-mode: disabled;width:175px;" placeholder="例　00123456（半角）" value="${form.shainNo}" tabindex="1"/>         
 							</td>
-							<th>
-								<label style="width:80px;">入居・退居</label>
+							<th style="width: 15%;">
+<!-- 								<label style="width:80px;">入居・退居</label> -->
+								<nfwui:LabelBox id="lblNyukyoTaikyo" code="<%=MessageIdConstant.SKF3020_SC004_NYUKYO_TAIKYO %>" />
+							
+							</th>
+							<td style="width: 20%;">
+                             <nfwui:CheckBox id="chkNyukyo" name="chkNyukyo"
+                                       	value="1" label="入居" tabindex="3"/>&nbsp;
+                             <nfwui:CheckBox id="chkTaikyo" name="taikyo"
+                                     	value="1" label="退去" tabindex="4"/>&nbsp;
+                             <nfwui:CheckBox id="chkHenko" name="henko"
+                                     	value="1" label="変更" tabindex="5"/>
+<!-- 								<input id="id_check_nyukyo" type="checkbox" > -->
+<!-- 									<label for="id_check_nyukyo">入居</label> -->
+<!-- 								</input> -->
+<!-- 								&nbsp; -->
+<!-- 								<input id="id_check_taikyo" type="checkbox" > -->
+<!-- 									<label for="id_check_taikyo">退居</label> -->
+<!-- 								</input> -->
+<!-- 								&nbsp; -->
+<!-- 								<input id="id_check_change" type="checkbox" > -->
+<!-- 									<label for="id_check_change">変更</label> -->
+<!-- 								</input> -->
+							</td>
+							<th style="width: 10%;">
+<!-- 								<label style="width:60px;">新所属</label> -->
+								<nfwui:LabelBox id="lblShinShozoku" code="<%=MessageIdConstant.SKF3020_SC004_SHIN_SHOZOKU %>" />
+							
 							</th>
 							<td>
-								<input id="id_check_nyukyo" type="checkbox" >
-									<label for="id_check_nyukyo">入居</label>
-								</input>
-								&nbsp;
-								<input id="id_check_taikyo" type="checkbox" >
-									<label for="id_check_taikyo">退居</label>
-								</input>
-								&nbsp;
-								<input id="id_check_change" type="checkbox" >
-									<label for="id_check_change">変更</label>
-								</input>
+<!-- 								<input style="width:175px;" type="text" placeholder="例 名古屋支社" /> -->
+								<imui:textbox id="txtShinShozoku" name="shinShozoku" style="width:175px;" placeholder="例 名古屋支社" value="${form.shinShozoku}" tabindex="7"/>
 							</td>
-							<th>
-								<label style="width:60px;">新所属</label>
+							<th style="width: 20%;">
+<!-- 								<label style="width:110px;">入退居予定作成区分</label> -->
+								<nfwui:LabelBox id="lblNyutaikyoYoteiSakuseiKubun" code="<%=MessageIdConstant.SKF3020_SC004_YOTEI_SAKUSEI %>" />
 							</th>
-							<td>
-								<input style="width:175px;" type="text" placeholder="例 名古屋支社" />
+							<td style="width: 10%;">
+<!-- 								<select style="width:80px;"> -->
+<!-- 									<option value="0"></option> -->
+<!-- 									<option value="1">未作成</option> -->
+<!-- 									<option value="2">作成済</option> -->
+<!-- 								</select> -->
+								<imui:select id="nyutaikyoYoteiSakuseiKubun" name="nyutaikyoYoteiSakuseiKubun" 
+									width="80" list="${form.yoteiSakuseiList}" tabindex="9" />
 							</td>
-							<th>
-								<label style="width:110px;">入退居予定作成区分</label>
-							</th>
-							<td>
-								<select style="width:80px;">
-									<option value="0"></option>
-									<option value="1">未作成</option>
-									<option value="2">作成済</option>
-								</select>
-							</td>
+							
 						</tr>
 						<tr>
-							<th>
-								<label>社員氏名</label>
+							<th style="width: 10%;">
+<!-- 								<label>社員氏名</label> -->
+								<nfwui:LabelBox id="lblShainMei" code="<%=MessageIdConstant.SKF3020_SC004_SHAIN_NAME %>" />
 							</th>
 							<td>
-								<input style="width:175px;" type="text" placeholder="例　中日本　太郎"/>
+<!-- 								<input style="width:175px;" type="text" placeholder="例　中日本　太郎"/> -->
+								<imui:textbox id="txtShainMei" name="shainName" style="width:175px;" placeholder="例　中日本　太郎" value="${form.shainName}" tabindex="2"/>
 							</td>
-							<th>
-								<label>現社宅</label>
+							<th style="width: 10%;">
+<!-- 								<label>現社宅</label> -->
+								<nfwui:LabelBox id="lblGenShataku" code="<%=MessageIdConstant.SKF3020_SC004_GEN_SHATAKU %>" />
 							</th>
 							<td>
-								<select style="width:150px;">
-									<option value="0"></option>
-									<option value="1">未入居</option>
-									<option value="2">入居中</option>
-								</select>
+<!-- 								<select style="width:150px;"> -->
+<!-- 									<option value="0"></option> -->
+<!-- 									<option value="1">未入居</option> -->
+<!-- 									<option value="2">入居中</option> -->
+<!-- 								</select> -->
+								<imui:select id="genShatakuKubun" name="genShatakuKubun" 
+									width="80" list="${form.genShatakuKubunList}" tabindex="6" />
 							</td>
-							<th>
-								<label>現所属</label>
+							<th style="width: 10%;">
+<!-- 								<label>現所属</label> -->
+								<nfwui:LabelBox id="lblGenShozoku" code="<%=MessageIdConstant.SKF3020_SC004_GEN_SHOZOKU %>" />
 							</th>
 							<td>
-								<input style="width:175px;" type="text" placeholder="例 名古屋支社" />
+<!-- 								<input style="width:175px;" type="text" placeholder="例 名古屋支社" /> -->
+								<imui:textbox id="txtGenShozoku" name="genShozoku" style="width:175px;" placeholder="例 名古屋支社" value="${form.genShozoku}" tabindex="8" />			
 							</td>
-							<th>
-								<label>備考</label>
+							<th style="width: 20%;">
+<!-- 								<label>備考</label> -->
+								<nfwui:LabelBox id="lblBiko" code="<%=MessageIdConstant.SKF3020_SC004_BIKO %>" />
 							</th>
 							<td colspan="2">
-								<input style="width:310px;" type="text" />
+<!-- 								<input style="width:310px;" type="text" /> -->
+								<imui:textbox id="txtBiko" name="biko" style="width:310px;" value="${form.biko}" tabindex="10" />
 							</td>
 						</tr>
 					</tbody>
-				</table>
+					</nfwui:Table>
+				</nfwui:Form>
 				<div class="align-L">	
-					<input type="button" value="検索" class="imui-small-button" >
+					<nfwui:Button id="search" name="search" code="<%=MessageIdConstant.SKF3020_SC004_BUTTON_SEARCH %>" cssClass="imui-small-button" 
+						url="skf/Skf3020Sc004/search" formId="form" tabindex="10" />
 				</div>
 			</div>
 			<!-- 明細＆細目未満 -->
-			<div class="imui-form-container-wide"  style="width:1280px;">
+			<div class="imui-form-container-wide"  style="width:95%;">
 				<!-- 明細部 -->
+				
 				<form id="sampleList1">
 					<div class="imui-chapter-title" ><h2>検索結果一覧</h2></div>
 					<script type="text/javascript">
