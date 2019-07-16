@@ -10,6 +10,7 @@
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 
 <link rel="stylesheet" type="text/css" href="styles/skf/theme.css" />
+<%@ page import="jp.co.c_nexco.skf.skf2020.app.skf2020sc003.Skf2020Sc003Form" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
 
@@ -699,6 +700,8 @@
                                 </tr>
                             </tbody>
                         </table>
+<%  Skf2020Sc003Form form = (Skf2020Sc003Form)request.getAttribute("form"); %>
+<imart:condition validity="<%= String.valueOf(form.isBihinVisible()) %>" >
                         <table class="imui-form-search-condition-blue">
                         <colgroup span="1" style= "width:140px;">
                         <colgroup span="1" style= "width:140px;">
@@ -801,6 +804,7 @@
                                 </tr>
                             </tbody>
                         </table>
+</imart:condition>
                         </div>
                         
                         <div class="imui-form-container-wide" >
