@@ -49,9 +49,9 @@
 	   				value="前の画面へ" cssClass="imui-medium-button" url="skf/Skf1010Sc001/init" />  
 			</div>    
 			<div class="align-R">
-				<nfwui:Button id="Transfer" value="申請書類を作成" 
+				<nfwui:Button id="transfer1" value="申請書類を作成" 
 				cssClass="imui-medium-button" cssStyle="width:150px;"
-				url="skf/Skf2010Sc007/Transfer" formID="form" />
+				url="skf/Skf2010Sc007/transfer" formID="form" />
 				<input type="hidden" name="prePageId" id="prePageId" value="Skf2010Sc007" />    
 	  		</div>
   		</table>

@@ -86,7 +86,7 @@
 											<nfwui:LabelBox id="lblHeadTel" code="<%= MessageIdConstant.SKF2020_SC002_TEL %>" />
 										</th>
 										<td colspan="3">
-											<imui:textbox id="tel" name="tel" value="${f:h(form.tel)}" class="${form.telErr}" style="width: 50%;" placeholder="例　84-3549（半角）" />
+											<imui:textbox id="tel" name="tel" value="${f:h(form.tel)}" style="width: 50%;" placeholder="例　84-3549（半角）" />
 										</td>
 									</tr>			
 									<!-- 申請者情報 -->
@@ -134,7 +134,7 @@
 										<th colspan="3">
 											<nfwui:LabelBox id="lblHeadAskedShataku" code="<%= MessageIdConstant.SKF2020_SC002_ASKED_SHATAKU %>" />
 										</th>
-										<td colspan="3" class="${form.taiyoHituyoErr}">         
+										<td colspan="3">         
 											<nfwui:RadioButtonGroup id="taiyoHituyo" dynamicMaskList="taiyoHituyoDynam">
 												<nfwui:RadioButton name="taiyoHituyo" id="rdoHitsuyo" label="必要とする" 
 													value="<%= CodeConstant.ASKED_SHATAKU_HITSUYO %>" checked="${form.rdoHitsuyoChecked}"/>
@@ -188,7 +188,7 @@
 											<nfwui:LabelBox id="lblHeadNewAgency" code="<%= MessageIdConstant.SKF2020_SC002_NEW_AGENCY %>" />
 										</th>
 										<td colspan="3" class="${form.newAgencyErr}">
-											<imui:select id="agencyCd" name="agencyCd" list="${form.ddlAgencyList}" class="${form.newAgencyErr}" disabled="true" width="50%" />
+											<imui:select id="agencyCd" name="agencyCd" list="${form.ddlAgencyList}"  disabled="true" width="50%" />
 											<div>
 												<imui:textbox id="newAgency" name="newAgency" value="${f:h(form.newAgency)}" style="width: 50%;" placeholder="例 〇〇会社"  disabled="true"/>
 											</div>
@@ -1581,71 +1581,7 @@
 
 		//入力チェック非同期処理呼び出し
 		nfw.common.doAjaxAction("skf/Skf2020Sc002/checkAsync",map,true,function(data) {
-			//エラーがある場合は、該当箇所のclassをエラー用に置き換える（該当箇所が赤くなる）
-			document.getElementById('tel').className = data.telErr; //TEL
-			document.getElementById('taiyoHituyo').className = data.taiyoHituyoErr; //社宅を必要としますか？
-			document.getElementById('hitsuyoRiyu').className = data.hitsuyoRiyuErr; //社宅を必要とする理由
-			document.getElementById('fuhitsuyoRiyu').className = data.fuhitsuyoRiyuErr; //社宅を必要としない理由
-			
-			document.getElementById('agencyCd').className = data.newAgencyErr; //新所属 機関
-			document.getElementById('newAffiliation1Other').className = data.otherAffiliation1Err; //新所属 部等 その他
-			document.getElementById('newAffiliation1Other').className = data.otherAffiliation2Err; //新所属 室チームまたは課 その他
-						
-			document.getElementById('hitsuyoShataku').className = data.hitsuyoShatakuErr; //必要社宅
-			document.getElementById('dokyoRelation1').className = data.dokyoRelation1Err; //続柄1
-			document.getElementById('dokyoName1').className = data.dokyoName1Err; //名前1
-			document.getElementById('dokyoAge1').className = data.dokyoAge1Err; //年齢1
-			document.getElementById('dokyoRelation2').className = data.dokyoRelation2Err; //続柄2
-			document.getElementById('dokyoName2').className = data.dokyoName2Err; //名前2
-			document.getElementById('dokyoAge2').className = data.dokyoAge2Err; //年齢2
-			document.getElementById('dokyoRelation3').className = data.dokyoRelation3Err; //続柄3
-			document.getElementById('dokyoName3').className = data.dokyoName3Err; //名前3
-			document.getElementById('dokyoAge3').className = data.dokyoAge3Err; //年齢3
-			document.getElementById('dokyoRelation4').className = data.dokyoRelation4Err; //続柄4
-			document.getElementById('dokyoName4').className = data.dokyoName4Err; //名前4
-			document.getElementById('dokyoAge4').className = data.dokyoAge4Err; //年齢4
-			document.getElementById('dokyoRelation5').className = data.dokyoRelation5Err; //続柄5
-			document.getElementById('dokyoName5').className = data.dokyoName5Err; //名前5
-			document.getElementById('dokyoAge5').className = data.dokyoAge5Err; //年齢5
-			document.getElementById('dokyoRelation6').className = data.dokyoRelation6Err; //続柄6
-			document.getElementById('dokyoName6').className = data.dokyoName6Err; //名前6
-			document.getElementById('dokyoAge6').className = data.dokyoAge6Err; //年齢6	
-			
-			document.getElementById('nyukyoYoteiDate').className = data.nyukyoYoteiDateErr; //入居希望日（予定日）
-			
-			document.getElementById('parkingUmu').className = data.parkingUmuErr; //自動車の保管場所
-			document.getElementById('carNoInputFlg').className = data.carNoInputFlgErr; //自動車の保有
-			document.getElementById('carName').className = data.carNameErr; //自動車の車名
-			document.getElementById('carNo').className = data.carNoErr; //自動車の登録番号
-			document.getElementById('carExpirationDate').className = data.carExpirationDateErr; //車検の有効期間満了日
-			document.getElementById('carUser').className = data.carUserErr; //車の使用者
-			document.getElementById('parkingUseDate').className = data.parkingUseDateErr; //車検の使用開始日
-			
-			document.getElementById('carNoInputFlg2').className = data.carNoInputFlg2Err; //自動車の保管場所2
-			document.getElementById('carName2').className = data.carName2Err; //自動車の車名2
-			document.getElementById('carNo2').className = data.carNo2Err; //自動車の登録番号2
-			document.getElementById('carExpirationDate2').className = data.carExpirationDate2Err; //車検の有効期間満了日2
-			document.getElementById('carUser2').className = data.carUser2Err; //車の使用者2
-			document.getElementById('parkingUseDate2').className = data.parkingUseDate2Err; //車検の使用開始日2
-			
-			document.getElementById('nowShatakuName').className = data.nowShatakuNameErr; //保有社宅名
-			document.getElementById('taikyoYotei').className = data.taikyoYoteiErr; //退居予定
-			document.getElementById('taikyoYoteiDate').className = data.taikyoYoteiDateErr; //退居予定日 
-			document.getElementById('shatakuJyotai').className = data.shatakuJyotaiErr; //社宅の状態
-			document.getElementById('taikyoRiyuKbn').className = data.ddlTaikyoRiyuKbnListErr; //退居理由
-			document.getElementById('taikyoRiyu').className = data.taikyoRiyuErr;
-			document.getElementById('taikyogoRenrakuSaki').className = data.taikyogoRenrakuSakiErr; //退居後の連絡先 
-			
-			document.getElementById('sessionDay').className = data.sessionDayErr; //返却希望日
-			document.getElementById('sessionTime').className = data.sessionTimeErr; 
-			document.getElementById('renrakuSaki').className = data.renrakuSakiErr; //連絡先
-			
-			//エラーフラグ取得
-			var result = data.updateErrorFlg;
-			if(result=="1"){
-				//エラーがある場合は処理中止
-				return;
-			}else{
+		
 				//エラーが無い場合
 		    	var form = "form"; //受け渡すformId
 		    	var url = "skf/Skf2020Sc002/Confirm"; //遷移先サービス
@@ -1657,8 +1593,7 @@
 				}else if(dialogue=="no"){
 					//退居予定日と返却希望立会日の確認ダイアログが不要な場合
 					nfw.common.submitForm(form,url,"check1");
-				}			
-			}			
+				}						
 		});
     }
 
