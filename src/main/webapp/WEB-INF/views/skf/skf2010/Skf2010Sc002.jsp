@@ -6,11 +6,10 @@
 <%@ taglib prefix="imui" uri="http://www.intra-mart.co.jp/taglib/imui" %>
 <%@ taglib prefix="imart" uri="http://www.intra-mart.co.jp/taglib/core/standard" %>
 <%@ taglib prefix="workflow" uri="http://www.intra-mart.co.jp/taglib/imw/workflow" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
-
+<%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
-
+<%@ page import="jp.co.c_nexco.skf.skf2010.app.skf2010sc002.Skf2010Sc002Form" %>
 <!-- コンテンツエリア -->
 <div class="imui-form-container-wide" width="1350px" style="width: 100%; max-width: 1350px;">
 	<!-- 状況、資料ヘッダ -->
@@ -38,7 +37,7 @@
 	</div>
 
 	<!-- アコーディオンエリア -->
-	<c:if test="${form.displayLevel == 2}">
+	<imart:decision case="${form.displayLevel}" value="<%= CodeConstant.VIEW_LEVEL_2 %>">
 		<!-- 貸与社宅などのご案内 -->
 			<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
 				<nfwui:Accordion id="taiyoAnnaiView" >
@@ -55,9 +54,9 @@
 					</nfwui:AccordionItem>
 				</nfwui:Accordion>
 			</div>
-	</c:if>
+	</imart:decision>
 	<!-- 入居希望等調書 -->
-	<c:if test="${form.displayLevel == 1 or form.displayLevel == 2}">
+	<imart:condition validity="${form.displayLevel} <= CodeConstant.VIEW_LEVEL_2" >
 		<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
 			<nfwui:Accordion id="nyukyoChoshoTsuchiView" >
 				<nfwui:AccordionItem id="nyukyoChoshoTsuchiItem" code="<%= MessageIdConstant.SKF2010_SC002_NYUKYO_CHOSHO %>" defaultOpen="${form.level1Open }">
@@ -65,9 +64,9 @@
 				</nfwui:AccordionItem>
 			</nfwui:Accordion>
 		</div>
-	</c:if>
+	</imart:condition>
 	<!-- Todo 退居届-->
-	<c:if test="${form.displayLevel == 3}">
+	<imart:decision case="${form.displayLevel}" value="<%= CodeConstant.VIEW_LEVEL_3 %>">
 		<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
 			<nfwui:Accordion id="taikyoView" >
 				<nfwui:AccordionItem id="taikyoItem" code="<%= MessageIdConstant.SKF2010_SC002_TAIKYO %>" defaultOpen="${form.level3Open }">
@@ -75,7 +74,7 @@
 				</nfwui:AccordionItem>
 			</nfwui:Accordion>
 		</div>
-	</c:if>
+	</imart:decision>
 	
 	<nfwui:Form id="form" name="form"  modelAttribute="form" encType="multipart/form-data">
 		<!-- コメント欄 -->
@@ -84,7 +83,7 @@
    				<h2>コメント</h2>
 			</div>
 			<!-- 承認者から申請者へ-->
-			<c:if test="${form.displayLevel == 2}">
+			<imart:decision case="${form.commentDisplayLevel}" value="<%= CodeConstant.COMMENT_DISPLAY_LEVEL_2 %>">
 				<table class="imui-form-search-condition">
 					<tr　style="width: 100%; max-width: 1000px;text-align:center;">
 						<th style="width: 200px; max-width: 200px;">
@@ -95,9 +94,9 @@
 						</td>
 					</tr>
 				</table>
-			</c:if>
+			</imart:decision>
 			<!-- 申請者から承認者へ-->
-			<c:if test="${form.displayLevel == 1 or form.displayLevel == 3}">
+			<imart:decision case="${form.commentDisplayLevel}" value="<%= CodeConstant.COMMENT_DISPLAY_LEVEL_1 %>">
 				<table class="imui-form-search-condition">
 					<tr  style="width: 100%; max-width: 1000px;text-align:center;">
 						<th style="width: 200px; max-width: 200px;">
@@ -108,7 +107,7 @@
 						</td>
 					</tr>
 				</table>
-			</c:if>
+			</imart:decision>
 		</div>
 		<br>
 		<nfwui:Hidden id="applNo" name="applNo" />
@@ -124,43 +123,43 @@
 				<!-- 左側 -->
 				<div class="align-L float-L">
 					<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()"  />
-					<c:if test="${form.displayLevel == 1 or form.displayLevel == 2}">
+					<imart:condition validity="${form.displayLevel} <= CodeConstant.VIEW_LEVEL_2" >
 						<input name="doDelRow1" id="doDelRow1" type="button" value="社宅入居希望等調書PDF出力" class="imui-medium-button" onclick="" />
-					</c:if>
-					<c:if test="${form.displayLevel == 2}">
+					</imart:condition>
+					<imart:decision case="${form.displayLevel}" value="<%= CodeConstant.VIEW_LEVEL_2 %>">
 						<input name="doDelRow1" id="doDelRow1" type="button" value="貸与（予定）社宅等のご案内PDF出力" class="imui-medium-button" onclick="" />
-					</c:if>
-					<c:if test="${form.displayLevel == 3}">
+					</imart:decision>
+					<imart:decision case="${form.displayLevel}" value="<%= CodeConstant.VIEW_LEVEL_3 %>">
 						<input name="doDelRow1" id="doDelRow1" type="button" value="退居（自動車の保管場所変換）届PDF出力ボタン" class="imui-medium-button" onclick="" />
-					</c:if>
-					<c:if test="${form.commentViewFlag == 'true'}">
+					</imart:decision>
+					<imart:condition validity="${form.commentViewFlag}" >
 						<br>
 						<nfwui:PopupButton id="commentPop" value="コメント表示" 
 							cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
 							modalMode="false" popupWidth="1350" popupHeight="550"
 							parameter="applNo:applNo"
 							screenUrl="skf/Skf2010Sc010/init" use="popup" />
-					</c:if>
+					</imart:condition>
 				</div>
 			</td>
 			<!-- 右側 -->
 			<td class="vertical-top" style="vertical-align:top">
 				<div class="align-R">
 					<!-- 提示ボタン -->
-					<c:if test="${form.presenBtnViewFlg == 'true'}">
+					<imart:condition validity="${form.presenBtnViewFlg}" >
 						<nfwui:Button id="PresenBtn" name="PresenBtn"
 							value="提示" cssClass="imui-medium-button" cssStyle="width: 150px" 
 							title="<%= MessageIdConstant.SKF2010_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2011 %>"
 							url="skf/Skf2010Sc002/Presentation" formId="form" removePatterns="LV1"
 							remove="${form.presenBtnViewFlg }" />
-					</c:if>
+					</imart:condition>
 					<!--　申請ボタン -->
-					<c:if test="${form.applyBtnViewFlg == 'true'}">
+					<imart:condition validity="${form.applyBtnViewFlg}" >
 						<nfwui:ConfirmButton id="ApplyBtn" name="ApplyBtn" value="申請"
 							cssClass="imui-medium-button" cssStyle="width: 150px" 
 							title="<%= MessageIdConstant.SKF2010_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2003 %>"
 							url="skf/Skf2010Sc002/Apply" formId="form" removePatterns="LV2" />
-					</c:if>
+					</imart:condition>
 				</div>
 			</td>
 		</tr>
@@ -175,9 +174,7 @@
 <%-- コンテンツエリア javascript--%>
 <script type="text/javascript">
 function back1() {
-	alert("iruyo");
 	var prePageId = $("#prePageId").val();
-	alert(prePageId);
 	var url = "";
 	//前の画面のＵＲＬ判定
 		if(prePageId=="Skf2020Sc002"){
@@ -192,6 +189,8 @@ function back1() {
 		}
 		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
 	}
+
+
 
 (function($) {
 	$(document).ready(function(){
