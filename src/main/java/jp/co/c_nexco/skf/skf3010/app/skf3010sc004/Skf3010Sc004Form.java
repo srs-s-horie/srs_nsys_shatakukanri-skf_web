@@ -85,5 +85,19 @@ public class Skf3010Sc004Form extends BaseForm {
 
 	// 更新フラグ
 	private String updateFlag;
+	
+	/** 社宅一覧画面連携用 */
+    // 対象行の社宅区分
+    private String hdnRowShatakuKbn;
+    // 対象行の社宅管理番号
+    private String hdnRowShatakuKanriNo;
+    // 対象行の社宅名
+    private String hdnRowShatakuName;
+    // 対象行の地域区分
+    private String hdnRowAreaKbn;
+    // 対象行の空き部屋数
+    private String hdnRowEmptyRoomCount;
+    // 対象行の空き駐車場数
+    private String hdnRowEmptyParkingCount;
 
 }

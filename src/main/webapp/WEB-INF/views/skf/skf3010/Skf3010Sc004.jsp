@@ -16,11 +16,11 @@
 <style type="text/css">
 
 </style>
-		<script type="text/javascript">
-			function back1() {
+<script type="text/javascript">
+function back1() {
 	var url="skf/Skf3010Sc001/init?SKF3010_SC001&tokenCheck=0"
 	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？");
-			}
+}
 
 // リストテーブルの貸与区分の文字色変更
 function onCellAttr(rowId,val,rawObject,cm,rdata){
@@ -37,8 +37,8 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
     break;
 	  }
     return style;
-			}
-		</script>
+}
+</script>
 		<!-- コンテンツエリア -->
 		<div class="imui-form-container-wide" >
 			<div class="imui-form-container-wide"  style="width:95%;">
@@ -175,28 +175,6 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 								}
 								
 									}
-
-// 							$("#agencyCd").bind('change', function() {
-// 								var map = new Object();
-// 								map['selectedCompanyCd'] = $("#selectedCompanyCd").val();
-// 								map['agencyCd'] = $("#agencyCd").val();
-
-// 								nfw.common.doAjaxAction("skf/Skf3090Sc004/ChangeDropDownAsync",map,true,function(data) {
-// 									$("#affiliation1Cd").imuiSelect('replace', data.affiliation1List);
-// 									$("#affiliation2Cd").imuiSelect('replace', data.affiliation2List);
-// 								});
-//											});
-							
-// 							$("#affiliation1Cd").bind('change', function() {
-// 								var map = new Object();
-// 								map['selectedCompanyCd'] = $("#selectedCompanyCd").val();
-// 								map['agencyCd'] = $("#agencyCd").val();
-// 								map['affiliation1Cd'] = $("#affiliation1Cd").val();
-								
-// 								nfw.common.doAjaxAction("skf/Skf3090Sc004/ChangeDropDownAsync",map,true,function(data) {
-// 									$("#affiliation2Cd").imuiSelect('replace', data.affiliation2List);
-//									});
-//									});
 
 							$("span .im-ui-icon-common-16-update").mouseover(
 									function(e) {
