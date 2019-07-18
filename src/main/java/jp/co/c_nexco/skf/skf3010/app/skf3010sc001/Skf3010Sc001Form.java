@@ -18,26 +18,28 @@ public class Skf3010Sc001Form extends BaseForm {
 	private List<Map<String, Object>> listTableData;
 	private String listTableMaxRowCount;
 	/** 検索キー */
-	// 会社コード
+	// 会社コード(検索キー)
 	private String selectedCompanyCd;
-	// 機関コード
+	// 機関コード(検索キー)
 	private String agencyCd;
-	// 社宅区分
-	private String shatakuKbn;
-	// 空き部屋
-	private String emptyRoom;
-	// 利用区分
-	private String useKbn;
-	// 空き駐車場
-	private String emptyParking;
-	// 社宅名
+	// 社宅区分コード(検索キー)
+	private String shatakuKbnCd;
+	// 空き部屋コード(検索キー)
+	private String emptyRoomCd;
+	// 利用区分コード(検索キー)
+	private String useKbnCd;
+	// 空き駐車場コード(検索キー)
+	private String emptyParkingCd;
+	// 社宅名(検索キー)
 	private String shatakuName;
-	// 社宅住所
+	// 社宅住所(検索キー)
 	private String shatakuAddress;
-	// 外部機関表示フラグ
+	
+	/** 表示/非表示フラグ */
+	// 外部機関表示フラグ(検索キー)
 	private Boolean agencyDispFlg;
 	
-	/** ドロップダウン */
+	/** ドロップダウンリスト */
 	// 管理会社リスト
 	private List<Map<String, Object>> manageCompanyList;
 	// 管理機関リスト
@@ -53,34 +55,40 @@ public class Skf3010Sc001Form extends BaseForm {
 	
 	/** 画面連携用 */
     // 対象行の社宅区分
-    private String hdnShatakuKbn;
+    private String hdnRowShatakuKbn;
     // 対象行の社宅管理番号
-    private String hdnShatakuKanriNo;
+    private String hdnRowShatakuKanriNo;
     // 対象行の社宅名
-    private String hdnShatakuName;
+    private String hdnRowShatakuName;
     // 対象行の地域区分
-    private String hdnAreaKbn;
+    private String hdnRowAreaKbn;
     // 対象行の空き部屋数
-    private String hdnEmptyRoomCount;
+    private String hdnRowEmptyRoomCount;
     // 対象行の空き駐車場数
-    private String hdnEmptyParkingCount;
+    private String hdnRowEmptyParkingCount;
+    
+    /** hdn検索キー */
+	// 管理会社コード(検索キー)
+	private String hdnSelectedCompanyCd;
+	// 管理機関コード(検索キー)
+	private String hdnAgencyCd;
+	// 社宅区分コード(検索キー)
+	private String hdnShatakuKbnCd;
+	// 利用区分コード(検索キー)
+	private String hdnUseKbnCd;
+    // 空き部屋コード(検索キー)
+    private String hdnEmptyRoomCd;
+	// 空き駐車場コード(検索キー)
+	private String hdnEmptyParkingCd;
+    // 社宅名(検索キー)
+    private String hdnShatakuName;
+	// 社宅住所(検索キー)
+	private String hdnShatakuAddress;
+	
+	/** 画面表示用 */
 	// 会社名
 	private String companyName;
 	// 管理会社名
 	private String agencyName;
-    
-    /** hdn検索キー */
-	// 会社コード
-	private String hdnSelectedCompanyCd;
-	// 機関コード
-	private String hdnAgencyCd;
-	// 空き部屋
-	private String hdnEmptyRoom;
-	// 利用区分
-	private String hdnUseKbn;
-	// 空き駐車場
-	private String hdnEmptyParking;
-	// 社宅住所
-	private String hdnShatakuAddress;
 
 }
