@@ -101,7 +101,7 @@
 							<imui:select id="useKbnCd" name="useKbnCd" 
 							width="128" list="${form.useKbnList}" tabindex="4" />
 						</td>
-						<th style="white-space:nowrap">
+						<th>
 							<!-- 空き駐車場 -->
 							<nfwui:LabelBox id="lblEmptyParking" code="<%=MessageIdConstant.SKF3010_SC001_LBL_EMPTY_PARKING %>" />
 						</th>
@@ -109,7 +109,7 @@
 							<imui:select id="emptyParkingCd" name="emptyParkingCd" 
 							width="74" list="${form.emptyParkingList}" tabindex="6" />
 						</td>
-						<th style="white-space:nowrap">
+						<th>
 							<!-- 社宅住所 -->
 							<nfwui:LabelBox id="lblShatakuAddress" code="<%=MessageIdConstant.SKF3010_SC001_LBL_SHATAKU_ADDRESS %>" />
 						</th>
