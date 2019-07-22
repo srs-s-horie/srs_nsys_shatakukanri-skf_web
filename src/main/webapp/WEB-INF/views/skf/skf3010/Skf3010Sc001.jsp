@@ -291,40 +291,6 @@
 					    	switch (mode) {
 					    		// 契約情報出力
 						    	case 0:
-/**
-// 検索キーをパラメータに設定
-						    		// 管理会社選択値設定
-									$('#form2 [name=hdnSelectedCompanyCd]').val($("#hdnSelectedCompanyCd").val());
-						    		// 管理機関選択値設定
-									$('#form2 [name=hdnAgencyCd]').val($("#hdnAgencyCd").val());
-						    		// 社宅区分選択値設定
-									$('#form2 [name=hdnShatakuKbn]').val($("#hdnShatakuKbn").val());
-						    		// 利用区分選択値設定
-									$('#form2 [name=hdnUseKbn]').val($("#hdnUseKbn").val());
-						    		// 空き部屋選択値設定
-									$('#form2 [name=hdnEmptyRoom]').val($("#hdnEmptyRoom").val());
-						    		// 空き駐車場選択値設定
-									$('#form2 [name=hdnEmptyParking]').val($("#hdnEmptyParking").val());
-						    		// 社宅名設定
-									$('#form2 [name=hdnShatakuName]').val($("#hdnShatakuName").val());
-						    		// 社宅住所設定
-									$('#form2 [name=hdnShatakuAddress]').val($("#hdnShatakuAddress").val());
-*/
-// 選択行をパラメータに追加
-/**
-									// <!-- 選択行:社宅区分 -->
-									$('#form2 [name=hdnRowShatakuKbn]').val($("#hdnRowShatakuKbn").val());
-									// <!-- 選択行:社宅管理番号 -->
-									$('#form2 [name=hdnRowShatakuKanriNo]').val($("#hdnRowShatakuKanriNo").val());
-									// <!-- 選択行:社宅名 -->
-									$('#form2 [name=hdnRowShatakuName]').val($("#hdnRowShatakuName").val());
-									// <!-- 選択行:地域区分 -->
-									$('#form2 [name=hdnRowAreaKbn]').val($("#hdnRowAreaKbn").val());
-									// <!-- 選択行:空き部屋数 -->
-									$('#form2 [name=hdnRowEmptyRoomCount]').val($("#hdnRowEmptyRoomCount").val());
-									// <!-- 選択行:空き駐車場数 -->
-									$('#form2 [name=hdnRowEmptyParkingCount]').val($("#hdnRowEmptyParkingCount").val());
-*/
 									dialogTitle = "確認";
 									dialogMessage = "契約情報を出力します。よろしいですか？";
 						    		url = "skf/Skf3010Sc001/outContract";
@@ -343,36 +309,34 @@
 						    	case 2:
 						    		// 社宅区分に「借上」を指定
 									$('#form2 [name=hdnShatakuKbn]').val($("2").val());
-						    		// 保有社宅登録画面
+						    		// 借上社宅登録画面
 						    		url = "skf/Skf3010Sc006/init";
 		 	 				    	$("#form2").attr("action", url);
 		 		 				    $("#form2").submit();
 									break;
 						    	// 複写(借上)
-						    	case 3:					    	
-							        // リストテーブル情報取得
+						    	case 3:
+/**
+						    		// リストテーブル情報取得
 							        grid = $("#mainList");
 		//							var ids = grid.getGridParam("selarrrow"); // ←複数行
 									// 行番号取得
 									id = grid.getGridParam("selrow"); // ←1行
-									// 選択行が無い場合
-									if( id == null )
+									// 選択行がある場合
+									if( id != null )
 									{
-										// nfw.common.showReserveMessage("warning", "<%= MessageIdConstant.W_SKF_3003 %>");
-										nfw.common.showReserveMessage("warning", "複写元の借上社宅を選択してください。");
-										break;
+										// 行データ取得
+										row = grid.getRowData(id);
+										// 社宅区分取得
+										shatakuKbn = row.hdnShatakuKbn;
+			 				    		// 社宅区分判定
+			 				    		if (shatakuKbn != "2") {
+											// nfw.common.showReserveMessage("warning", "<%= MessageIdConstant.W_SKF_3002 %>");
+											nfw.common.showReserveMessage("warning", "社宅区分が「借上」ではないため複写できません。");
+											break;
+			 				    		}
 									}
-									// 行データ取得
-									row = grid.getRowData(id);
-									// 社宅区分取得
-									shatakuKbn = row.hdnShatakuKbn;
-									
-		 				    		// 社宅区分判定
-		 				    		if (shatakuKbn != "2") {
-										// nfw.common.showReserveMessage("warning", "<%= MessageIdConstant.W_SKF_3002 %>");
-										nfw.common.showReserveMessage("warning", "社宅区分が「借上」ではないため複写できません。");
-										break;
-		 				    		}
+*/
 		 				    		/** パラメータ設定 */
 									// 選択行:社宅区分
 									$('#form2 [name=hdnRowShatakuKbn]').val($("#hdnRowShatakuKbn").val());
@@ -386,8 +350,8 @@
 									$('#form2 [name=hdnRowEmptyRoomCount]').val($("#hdnRowEmptyRoomCount").val());
 									// 選択行:空き駐車場数
 									$('#form2 [name=hdnRowEmptyParkingCount]').val($("#hdnRowEmptyParkingCount").val());
-						    		// 借上社宅登録画面
-						    		url = "skf/Skf3010Sc006/init";
+						    		// 社宅一覧の借上(複写)ボタン処理
+						    		url = "skf/Skf3010Sc001/rentalCopyCheck";
 		 	 				    	$("#form2").attr("action", url);
 		 		 				    $("#form2").submit();
 									break;
