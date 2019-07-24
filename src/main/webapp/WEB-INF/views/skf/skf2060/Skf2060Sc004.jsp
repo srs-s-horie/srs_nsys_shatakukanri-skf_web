@@ -16,59 +16,9 @@
 
 </style>
 
-<!-- コンテンツエリア:モックのまま -->
-<!-- 以下ツールバー -->
-<div class="imui-toolbar-wrap">
-    <div class="imui-toolbar-inner">
-        <!-- ツールバー左側 -->
-        <ul class="imui-list-toolbar">
-            <!-- 戻る -->
-            <li><a class="imui-toolbar-icon" title="戻る" tabindex="23"
-                onclick="back1()" href="javascript:void(0);"><span
-                    class="im-ui-icon-common-16-back"></span></a></li>
-                    
-        </ul>
-        <!-- ツールバー右側 -->
-        <ul class="imui-list-box-toolbar-utility">
-                					<li>
-						<a onclick="back()" class="imui-toolbar-icon" tabindex="16">
-							<span class="im-ui-icon-common-16-home"></span>
-							社宅TOP
-						</a>
-					</li>
-            <li><a class="imui-toolbar-icon" title="最新情報"  tabindex="22"><span
-                    class="im-ui-icon-common-16-refresh"
-                    onclick="refresh()"></span></a></li>
-        </ul>
-    </div>
-</div>
-<script type="text/javascript">
-    /**
-     * 一つ前の画面へ戻る
-     */
-    function back1() {
-        showConfirm(W_GFK_0002, function() {
-            history.back()
-        });
-    }
-
-			/**
-			* メニュー画面へ遷移する。
-			*/
-			function back() {
-				showConfirm(W_GFK_0007, function() {
-					$.StandardPost("../common/top.html");
-				});
-			}
-</script>
-
-<!-- <div class="alertDiv imui-box-warning" style="padding: 15px;margin-top: 10px;text-align:left;" id="errMainDiv"> -->
-<!-- <div class="alert-errorIcon alert" style="margin:0;padding:0;margin-right:10px;"> -->
-<!-- </div>  -->
-<!-- </div> -->
-
 <!-- コンテンツエリア -->
 <div class="imui-form-container-wide" width="1350px" style="width: 100%; max-width: 1350px;">
+<nfwui:Form id="form" name="form" modelAttribute="form">
 <table align="center">
     <tr>
         <td>
@@ -76,84 +26,88 @@
                 <table class="imui-form-search-condition" width="100%" style="border: none;" >
                     <td class="imui-form-container-wide" style="width: 650p; border: none;background-color: #fdfdff;" >
                      <div class="imui-form-container-wide" style="width: 650px;height:300px;">
-                       <div class="imui-chapter-title" style="margin-bottom: 1px;" >
-                            <h2>検索条件</h2>
-                        </div>
-                            <form id="form" class="target_form mt-10" action="" method="POST">
-                                <table class="imui-form-search-condition">
-                                    <tr>
-                                        <th style="width: 120px;">
-                                            <label>提示日</label>
-                                        </th>
-                                        <td colspan="2">
-                                            <input type="text" name="cal001" id="cal001" value="9999/99/99"/>&nbsp;～&nbsp;&nbsp;<input type="text" name="cal002" id="cal002" value="9999/99/99"/>
-                                        </td>
-                                    </tr>
-                    
-                                    <tr>
-                                        <th style="width: 120px;">
-                                            <label>提示対象者名<div class="align-R float-R"><input class="imui-small-button check" type="button" value="支援"></div></input></label>
-                                            
-                                        </th>
-                                        <td style="width: 180px;" colspan="2">
-                                        <input placeholder="例 中日本　一郎"></input>
-                                        </td>
-                                    </tr>   
+                       <nfwui:Title id="searchTitle" code="<%= MessageIdConstant.SKF2060_SC004_SEARCH_TITLE %>" titleLevel="2" />
+                            <table class="imui-form-search-condition">
+                                <tr>
+                                    <th style="width: 120px;">
+                                        <nfwui:LabelBox id="candidateDate" code="<%= MessageIdConstant.SKF2060_SC004_CANDIDATE_DATE %>" />
+                                    </th>
+                                    <td colspan="2">
+                                        <imui:textbox  type="text" name="candidateDateFrom" id="candidateDateFrom" value="${form.candidateDateFrom}"/>
+                                        &nbsp;～&nbsp;&nbsp;
+                                        <imui:textbox  type="text" name="candidateDateTo" id="candidateDateTo" value="${form.candidateDateTo}"/>
+                                    </td>
+                                </tr>
+                                <im:calendar floatable="true" altField="#candidateDateFrom" />
+                                <im:calendar floatable="true" altField="#candidateDateTo" />
+                                <tr>
+                                    <th style="width: 120px;">
+                                        <nfwui:LabelBox id="candidatePersonName" code="<%= MessageIdConstant.SKF2060_SC004_CANDIDATE_PERSON_NAME %>" style="float:left" />
+                                        &nbsp;&nbsp;
+                                        <nfwui:PopupButton id="support" name="support" value="支援"
+                                            cssClass="imui-small-button" use="popup"
+                                            screenUrl="skf/Skf2010Sc001/init"
+                                            popupWidth="650" popupHeight="700"
+                                            modalMode="false" />
+                                    </th>
+                                    <td style="width: 180px;" colspan="2">
+                                    <input name="candidatePersonName" id="candidatePersonName" placeholder="例 中日本　一郎"
+                                        value="${form.candidatePersonName}"></input>
+                                    </td>
+                                </tr>   
 
-                                    <tr>
-                                        <th style="width: 120px;">
-                                            <label>借上社宅名</label>
-                                            
-                                        </th>
-                                        <td style="width: 180px;" colspan="2">
-                                        <input placeholder="例 厚木宿舎"></input>
-                                        </td>
-                                    </tr>   
+                                <tr>
+                                    <th style="width: 120px;">
+                                        <nfwui:LabelBox id="shatakuName" code="<%= MessageIdConstant.SKF2060_SC004_SHATAKU_NAME %>" />
+                                    </th>
+                                    <td style="width: 180px;" colspan="2">
+                                    <input name="shatakuName" id="shatakuName" placeholder="例 厚木宿舎"
+                                        value="${form.shatakuName}"></input>
+                                    </td>
+                                </tr>   
 
-                                    <tr>
-                                        <th style="width: 120px;">
-                                            <label>社宅所在地</label>
-                                            
-                                        </th>
-                                        <td style="width: 180px;" colspan="2">
-                                        <input placeholder="例 神奈川県厚木市恩名"></input>
-                                        </td>
-                                    </tr>   
+                                <tr>
+                                    <th style="width: 120px;">
+                                        <nfwui:LabelBox id="shatakuAddressName" code="<%= MessageIdConstant.SKF2060_SC004_SHATAKU_ADDRESS_NAME %>"/>
+                                    </th>
+                                    <td style="width: 180px;" colspan="2">
+                                    <input name="shatakuAddressName" id="shatakuAddressName" placeholder="例 神奈川県厚木市恩名"></input>
+                                    </td>
+                                </tr>   
 
-                                    <tr>
-                                        <th style="width: 120px;"　rowspan="2">
-                                            <label>提示状況&nbsp;&nbsp;
-                                            </label>
-
-                                            
-                                        </th>
-                                        <td style="width: 180px;" colspan="2">
-                                            <table>
-                                                <tr style="height: 25px;">
-                                                    <td>
-                                                        <INPUT checked type="checkbox">確認依頼&nbsp;&nbsp;
-                                                    </td>
-                                                    <td>
-                                                        <INPUT checked type="checkbox">選択済&nbsp;&nbsp;
-                                                    </td>
-                                                    <td>
-                                                        <INPUT checked type="checkbox">選択しない&nbsp;&nbsp;
-                                                    </td>
-                                                    <td>
-                                                        <INPUT type="checkbox">完了
-                                                    </td>
-
-                                                </tr>
-                                        
-                                            </table>
-                                        </td>
-                                    </tr>   
-                                </table>
-                            </form>
-        
-        
+                                <tr>
+                                    <th style="width: 120px;"　rowspan="2">
+                                        <nfwui:LabelBox id="candidateStatus" code="<%= MessageIdConstant.SKF2060_SC004_CANDIDATE_STATUS %>" />
+                                    </th>
+                                    <td style="width: 180px;" colspan="2">
+                                        <nfwui:CheckBoxGroupTag id="candidateStatus">
+                                        <table>
+                                            <tr style="height: 25px;">
+                                                <td>
+                                                    <nfwui:CheckBox id="candidateStatus01" name="candidateStatus"
+                                                        value="01" label="確認依頼" />
+                                                </td>
+                                                <td>
+                                                    <nfwui:CheckBox id="candidateStatus02" name="candidateStatus"
+                                                        value="02" label="選択済" />
+                                                </td>
+                                                <td>
+                                                    <nfwui:CheckBox id="candidateStatus03" name="candidateStatus"
+                                                        value="03" label="選択しない" />
+                                                </td>
+                                                <td>
+                                                    <nfwui:CheckBox id="candidateStatus04" name="candidateStatus"
+                                                        value="04" label="完了" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        </nfwui:CheckBoxGroupTag>
+                                    </td>
+                                </tr>   
+                            </table>
                          <div class="align-L">	
-                             <input tabindex="19" name="imui-8euruuk15dn9qtq" id="submit0" type="button" value="検索" class="imui-medium-button" >
+                             <nfwui:Button id="search" name="search" value="検索" cssClass="imui-small-button" 
+                                 url="skf/Skf2060Sc004/init" formId="form" tabindex="8" />
                          </div>
                          </div>
                          
@@ -271,6 +225,7 @@
 
             </td>
 </table>
+
 </div>
 
 </div>
@@ -286,10 +241,37 @@
 
 <!-- テーブル一覧箇所 -->
 <div class="imui-form-container" width="1300px" style="width: 100%; max-width: 1300px;">
+                <nfwui:CheckBoxGroupTag id="completeChkVal">
+                <nfwui:CheckBoxGroupTag id="reminderChkVal">
+                    <imui:listTable id="mainList" process="jssp" autoEncode="false" autoWidth="true" rowNumbers="true"
+                        autoResize="true" onCellSelect="onCellSelect"
+                        multiSelect="false" data="${form.listTableData }"
+                        style="max-height: 800px" >
+                        <pager rowNum="${form.listTableMaxRowCount }" />
+                        <cols sortable="false">
+                        <col name="col1" caption="完了" width="30" sortable="false" align="center" />
+                        <col name="col2" caption="督促" width="50" sortable="false" align="center" />
+                        <col name="col3" caption="提示状況" width="60" sortable="false" />
+                        <col name="col4" caption="提示日" width="65" sortable="false" />
+                        <col name="col5" caption="社員番号" width="60" sortable="false" />
+                        <col name="col6" caption="提示対象者" width="120" sortable="false" />
+                        <col name="col7" caption="借上社宅名" width="255" sortable="false" />
+                        <col name="col8" caption="社宅所在地" width="300" sortable="false" />
+                        <col name="col9" caption="備考" width="125" sortable="false" />
+                        <col name="col10" caption="再提示" width="75" sortable="false" align="center" />
+                        <col name="col11" caption="確認" width="75" sortable="false" align="center" >
+                        </col>
+                        </cols>
+                    </imui:listTable>
+                </nfwui:CheckBoxGroupTag>
+                </nfwui:CheckBoxGroupTag>
+
 <!-- 明細＆細目未満 -->
   <!-- 明細部 -->
   <form id="sampleList1">
-    <div class="imui-chapter-title" width="1300px" style="width:1300px; max-width:1300px;"><h2>検索結果一覧</h2></div>
+    <div class="imui-chapter-title" width="1300px" style="width:1300px; max-width:1300px;">
+<%--         <nfwui:Title id="searchTitle" code="<%= MessageIdConstant.SKF2060_SC004_SEARCH_RESULT %>" titleLevel="2" /> --%>
+    </div>
         <script type="text/javascript">
   (function($){
     $.imui.util.loadCSS("ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
@@ -302,98 +284,9 @@
 
 <script type="text/javascript">
   (function() {
-    function imuiListTable() {
-
-      var grid = jQuery('#sampleListTable1');
-										var parameter = {
-											"multiselect":false,
-											"pager":"#sampleListTable1-pager",
-											"colNames":[
-												"",
-												"完了",
-												"督促 ",
-												"提示状況",
-												"提示日",
-												"社員番号",
-												"提示対象者",
-												"借上社宅名",
-												"社宅所在地",
-												"備考",
-												"再提示",
-												"確認",
-											],
-											"datatype":"local",
-											"errorCell":function(xhr) { imuiShowErrorMessage($(xhr.responseText).find('dt').text()); },
-											"rowNum":10,
-											"width":"1300",
-											"shrinkToFit":"false",
-											"cellsubmit":"clientArray",
-											"loadonce":true,
-											"colModel":[
-{"hidden":true,"name":"id","key":true}
-,{"name":"A001","width":"030","align":"center"}<!-- 完了 -->
-,{"name":"A012","width":"050","align":"center"}<!-- 督促 -->
-,{"name":"A002","width":"060","align":"center"}<!-- 提示状況 -->
-,{"name":"A003","width":"065","align":"center"}<!-- 提示日 -->
-,{"name":"A004","width":"060","align":"center"}<!-- 社員番号 -->
-,{"name":"A005","width":"120","align":"left"}  <!-- 申提示対象者 -->
-,{"name":"A006","width":"255","align":"left"}<!-- 借上社宅名 -->
-,{"name":"A007","width":"300","align":"left"}<!-- 社宅所在地 -->
-,{"name":"A008","width":"125","align":"left"}<!-- 備考 -->
-,{"name":"A010","width":"075","align":"center"}<!-- 再提示 -->
-,{"name":"A011","width":"075","align":"center"}<!-- 確認 -->
-											],
-											"rownumbers":true,
-											"height":"232"
-										};
-										parameter.data = [
-											{
-"A001":"<INPUT type='checkbox'>",
-"A012":"<INPUT type='checkbox'>",
-"A002":"<font style='color:blue'>選択済</font>",
-"A003":"2018/11/14",
-"A004":"01707424",
-"A005":"中日本 0001",
-"A006":"みずほ台1",
-"A007":"東京都〇〇市△△△",
-"A008":"××××××××",
-"A010":"<a hidden>再提示</a><input type='button' value='再提示' class='imui-small-button' onclick=\"location.href='../../skf/Skf2060_Sc001/init'\">",
-"A011":"<a hidden>確認</a><input type='button' value='確認' class='imui-small-button' onclick=\"location.href='../../skf/Skf2060_Sc003/init'\">",
-												"id":1
-											},
-											{
-"A001":"<INPUT type='checkbox'>",
-"A012":"<INPUT type='checkbox'>",
-"A002":"<font style='color:blue'>確認依頼</font>",
-"A003":"2018/11/14",
-"A004":"01112233",
-"A005":"中日本 0002",
-"A006":"",
-"A007":"",
-"A008":"",
-"A010":"",
-"A011":"<a hidden>確認</a><input type='button' value='確認' class='imui-small-button' onclick=\"location.href='../../skf/Skf2060_Sc003/init'\">",
-												"id":2
-											}
-										];
-
-      grid.jqGrid(parameter);
-
-      grid.jqGrid('navGrid','#sampleListTable1-pager',{
-        edit: false,
-        add: false,
-        del: false,
-        search: false
-      });
-
-      var gboxGridId     = 'gbox_sampleListTable1';
-      var gboxGrid       = jQuery('#' + gboxGridId);
-      var parentWidthOld = Number.MIN_VALUE;
-    }
 
     (function($) {
       $(document).ready(function() {
-        imuiListTable();
 
       });
     })(jQuery);
@@ -414,7 +307,8 @@
  <br><br>
 
 </table>
-
+<!-- NFWUIフォーム終了位置 -->
+</nfwui:Form>
 <div class="align-R">
      <!-- <input class="imui-medium-button check" type="button" value="CSV出力" style="width:150px;"  > -->
 </div> 
