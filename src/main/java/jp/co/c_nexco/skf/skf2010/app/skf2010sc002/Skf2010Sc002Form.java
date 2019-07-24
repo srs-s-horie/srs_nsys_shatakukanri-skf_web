@@ -52,6 +52,9 @@ public class Skf2010Sc002Form extends Skf2010NyukyoCommonForm {
 	private String level3Open;
 	private String level4Open;
 
+	// コメント表示レベル
+	private int commentDisplayLevel;
+
 	private String prePageId;
 
 }
