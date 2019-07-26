@@ -125,12 +125,6 @@
 											<nfwui:LabelBox id="lblHeadAskedShataku" code="<%= MessageIdConstant.SKF2020_SC002_ASKED_SHATAKU %>" />
 										</th>
 										<td colspan="3">         
-											<nfwui:RadioButtonGroup id="test" tabindex="2">
-												<nfwui:RadioButton name="test" id="rdo1" label="test1" tabindex="10"/>
-												<nfwui:RadioButton name="test" id="rdo2" label="test2" tabindex="10"/>	
-											</nfwui:RadioButtonGroup>
-										</td>
-										<td colspan="3">         
 											<nfwui:RadioButtonGroup id="taiyoHituyo" dynamicMaskList="taiyoHituyoDynam" tabindex="2">
 												<nfwui:RadioButton name="taiyoHituyo" id="rdoHitsuyo" label="必要とする" tabindex="2"
 													value="<%= CodeConstant.ASKED_SHATAKU_HITSUYO %>" checked="${form.rdoHitsuyoChecked}"/>
