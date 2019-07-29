@@ -37,7 +37,7 @@
 	</div>
 
 	<!-- アコーディオンエリア -->
-	<imart:decision case="${form.displayLevel}" value="<%= CodeConstant.VIEW_LEVEL_2 %>">
+	<imart:condition validity="${form.level2}" >
 		<!-- 貸与社宅などのご案内 -->
 			<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
 				<nfwui:Accordion id="taiyoAnnaiView" >
@@ -54,9 +54,9 @@
 					</nfwui:AccordionItem>
 				</nfwui:Accordion>
 			</div>
-	</imart:decision>
+	</imart:condition>
 	<!-- 入居希望等調書 -->
-	<imart:condition validity="${form.displayLevel} <= CodeConstant.VIEW_LEVEL_2" >
+	<imart:condition validity="${form.level1}">
 		<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
 			<nfwui:Accordion id="nyukyoChoshoTsuchiView" >
 				<nfwui:AccordionItem id="nyukyoChoshoTsuchiItem" code="<%= MessageIdConstant.SKF2010_SC002_NYUKYO_CHOSHO %>" defaultOpen="${form.level1Open }">
@@ -66,7 +66,7 @@
 		</div>
 	</imart:condition>
 	<!-- Todo 退居届-->
-	<imart:decision case="${form.displayLevel}" value="<%= CodeConstant.VIEW_LEVEL_3 %>">
+	<imart:condition validity="${form.level3}">
 		<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
 			<nfwui:Accordion id="taikyoView" >
 				<nfwui:AccordionItem id="taikyoItem" code="<%= MessageIdConstant.SKF2010_SC002_TAIKYO %>" defaultOpen="${form.level3Open }">
@@ -74,7 +74,7 @@
 				</nfwui:AccordionItem>
 			</nfwui:Accordion>
 		</div>
-	</imart:decision>
+	</imart:condition>
 	
 	<nfwui:Form id="form" name="form"  modelAttribute="form" encType="multipart/form-data">
 		<!-- コメント欄 -->
@@ -123,15 +123,15 @@
 				<!-- 左側 -->
 				<div class="align-L float-L">
 					<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()"  />
-					<imart:condition validity="${form.displayLevel} <= CodeConstant.VIEW_LEVEL_2" >
+					<imart:condition validity="${form.level1}">
 						<input name="doDelRow1" id="doDelRow1" type="button" value="社宅入居希望等調書PDF出力" class="imui-medium-button" onclick="" />
 					</imart:condition>
-					<imart:decision case="${form.displayLevel}" value="<%= CodeConstant.VIEW_LEVEL_2 %>">
+					<imart:condition validity="${form.level2}">
 						<input name="doDelRow1" id="doDelRow1" type="button" value="貸与（予定）社宅等のご案内PDF出力" class="imui-medium-button" onclick="" />
-					</imart:decision>
-					<imart:decision case="${form.displayLevel}" value="<%= CodeConstant.VIEW_LEVEL_3 %>">
+					</imart:condition>
+					<imart:condition validity="${form.level3}">
 						<input name="doDelRow1" id="doDelRow1" type="button" value="退居（自動車の保管場所変換）届PDF出力ボタン" class="imui-medium-button" onclick="" />
-					</imart:decision>
+					</imart:condition>
 					<imart:condition validity="${form.commentViewFlag}" >
 						<br>
 						<nfwui:PopupButton id="commentPop" value="コメント表示" 
