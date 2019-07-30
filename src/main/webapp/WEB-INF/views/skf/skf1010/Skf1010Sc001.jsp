@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+﻿<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%-- 共通JSP --%>
 <%@ include file="/WEB-INF/views/nfw/framework/common/CommonWithOutGrid.jsp" %>
@@ -12,9 +12,6 @@
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
 
-<imart:decision case="${form.alterLoginFlg}" value="<%= CodeConstant.LOGIN %>">
-  <link href="styles/skf/AlterLoginTheme.css" rel="stylesheet" type="text/css">
-</imart:decision>
 <%-- コンテンツエリア --%>
 <style type="text/css">
 
@@ -88,11 +85,15 @@
             </div>
         </div>
     </div>
+    <!--                                   JavaScriptエラーなのでコメントアウト
     <script type="text/javascript">
         jQuery(function () {jQuery("#confirm_dialog").imuiDialog({"buttons":[{"name":"imui-8euqak4j4tsbttq","text":"はい","id":"imui-8euqak4j4tsbstq","click":button_ok},{"name":"imui-8euqak4j4tsbvtq","text":"いいえ","id":"imui-8euqak4j4tsbutq","click":button_ng}],"autoOpen":false,"show":{"effect":"fade"},"title":"確認","modal":true});});
     </script>
+    -->
+    
 
     <!-- アラートダイアログ表示用（モック作成時は特に変更する必要なし） -->
+    <!-- 
     <div name="imui-8euqak4j4tsbwtq" id="alert_dialog" style="display: none;">
         <span class="im-ui-icon-common-32-tick imui-icon-float-left"></span>
         <span style="width:30px;"></span>
@@ -101,6 +102,8 @@
     <script type="text/javascript">
         jQuery(function () {jQuery("#alert_dialog").imuiDialog({"buttons":[{"name":"imui-8euqak4j4tsbytq","text":"確認","id":"imui-8euqak4j4tsbxtq","click":button_alert}],"autoOpen":false,"show":{"effect":"fade"},"modal":true});});
     </script>
+    -->
+    
 
     <!-- ワーニングダイアログ表示用（モック作成時は特に変更する必要なし） -->
 <!--     <div name="imui-8euqak4j5tsbztq" id="warning_dialog" style="display: none;"> -->
@@ -127,6 +130,8 @@
     <!-- コンテンツエリア -->
     
 <div class="imui-form-container-wide" width="1350px" style="width: 100%; max-width: 1350px;">
+<!-- 代行ログイン時のみ表示されるメッセージ -->
+<jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
 
 <table class="imui-form-search-condition" width="1100px">
             <td style="width: 50%; border: none;;background-color: #fdfdff;">
@@ -141,7 +146,7 @@
 
                     <tr>
                         <th width="20%">
-                            <a href="http://localhost:8080/imart/skf/Skf2010_Sc007/init" class="imui-accent" style="margin-left: 8px">社宅入居希望等調書</a>
+                            <a href="http://localhost:8080/imart/skf/Skf2010Sc007/init" class="imui-accent" style="margin-left: 8px">社宅入居希望等調書</a>
                         </th>
                         <td width="30%">
                             <font>社宅・寮に入居したい場合に作成する申請書類です。(※併せて退居が発生する場合、退居届も自動で作成されます。)</font>
@@ -180,6 +185,7 @@
         </table>
 </div>
 
+<div name="daikoHide">
 <div class="imui-form-container-wide" style="width: 650px; max-width: 650px;">
        <!-- 社宅窓口 -->
         <div class='imui-chapter-title' style='margin-bottom: 0px;'>
@@ -340,6 +346,7 @@
         </table>
         
         </div>
+        </div>
         <div class="imui-form-container-wide" style="width: 650px; max-width: 650px;">
 
        <!-- 管理者 --><!-- 次の内容はIM共通機能利用で、不要になるかも　操作ログメンテナンス、代行ログイン、お知らせ管理画面、メニューメンテナンス、機能権限マスタメンテナンス-->
@@ -352,14 +359,14 @@
                     <tr>
 
                         <th width="20%">
-                            <a href="../S0020/S0020_DaikouLogin.html" class="imui-accent" style="margin-left: 8px">代行ログイン</a>
+                            <a href="http://localhost:8080/imart/skf/Skf2010Sc008/init" class="imui-accent" style="margin-left: 8px">代行ログイン</a>
                         </th>
                         <td width="30%">
                             <font >代行ログインを行います。<br>　　　</font>
                         </td>
                     </tr>
                     
-                    <tr>
+                    <tr name="daikoHide">
                         <th width="20%">
                             <a href="../S9110/S9110_OshiraseMasterMaintenance.html" class="imui-accent" style="margin-left: 8px">お知らせマスタメンテナンス</a>
                         </th>
@@ -368,7 +375,7 @@
                         </td>
                     </tr>
 
-                    <tr>
+                    <tr name="daikoHide">
                       <th width="20%">
                           <a href="../S9004/S9004_UserMasterIchiran.html" class="imui-accent" style="margin-left: 8px">従業員マスタメンテナンス</a>
                       </th>
@@ -377,7 +384,7 @@
                       </td>
                     </tr>
                     
-                    <tr>
+                    <tr name="daikoHide">
                       <th width="20%">
                           <a href="../S9006/S9006_SohikiMasterIchiran.html" class="imui-accent" style="margin-left: 8px">組織マスタメンテナンス</a>
                       </th>
@@ -396,7 +403,7 @@
                     </tr>
                     -->
                     
-                    <tr>
+                    <tr name="daikoHide">
                       <th width="20%">
                             <a href="../S9001/S9001_GenbutsuShikyukagakuMasterIchiran.html" class="imui-accent" style="margin-left: 8px">現物支給価額マスタメンテナンス</a>
                         </th>
@@ -405,7 +412,7 @@
                       </td>
                     </tr>
                     
-                    <tr>
+                    <tr name="daikoHide">
                         <th width="20%">
                             <a href="../S9003/S9003_JigyoRyouikiMasrerTouroku_before.html" class="imui-accent" style="margin-left: 8px">事業領域マスタメンテナンス</a>                        
                         </th>
@@ -450,6 +457,7 @@
 
 
             <!-- 未処理情報 -->
+            <div name="daikoHide">
                 <div class="imui-form-container-wide" width="100%" style="width: 100%; max-width: 600px;">
                     <table>
                         <div class="imui-chapter-title" style="margin-bottom: 10px;"><h2>未処理情報</h2></div>
@@ -904,7 +912,9 @@
                                             </tbody>
                                         </table>
                 </div>  
+             </div>
             <!-- 個人に関するお知らせ -->
+            <div name="daikoHide">
                 <div class="imui-form-container-wide" width="100%" style="width: 100%; max-width:600px;">
                     <table >
                         <div class="imui-chapter-title" style="margin-bottom: 10px;">
@@ -927,9 +937,11 @@
 
                         </div>
                     </table>
-                </div>  
+                </div> 
+             </div> 
 
               <!-- システムに関するお知らせ -->
+              <div name="daikoHide">
                 <div class="imui-form-container-wide" width="100%" style="width: 100%; max-width: 600px;">
                     <table >
                         <div class="imui-chapter-title" style="margin-bottom: 10px;">
@@ -958,6 +970,7 @@
                         </div>
                       </table>
                 </div>
+             </div>
 
                                     </td>
                                 </tr>
@@ -966,7 +979,6 @@
             </td>
             
 </table>
-
     </div>
     
     
