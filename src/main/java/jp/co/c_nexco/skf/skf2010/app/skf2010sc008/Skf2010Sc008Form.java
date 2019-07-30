@@ -1,8 +1,7 @@
 package jp.co.c_nexco.skf.skf2010.app.skf2010sc008;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import java.util.Map;
 import jp.co.c_nexco.nfw.webcore.app.BaseForm;
-import jp.co.c_nexco.nfw.webcore.validator.Numeric;
 import lombok.EqualsAndHashCode;
 
 @lombok.Data
@@ -11,12 +10,7 @@ public class Skf2010Sc008Form extends BaseForm {
 
 	private static final long serialVersionUID = 5285848663756806913L;
 
-	// 代行ログインフラグ
-	private String alterLoginFlg;
-
 	// 社員番号
-	@NotEmpty
-	@Numeric
 	private String shainNo;
 	// 社員氏名
 	private String shainName;

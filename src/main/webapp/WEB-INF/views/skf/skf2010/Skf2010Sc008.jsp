@@ -14,9 +14,7 @@
 
 <% // 代行ログイン時CSS読み込み箇所ここから  %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
-<imart:decision case="${form.alterLoginFlg}" value="<%= CodeConstant.LOGIN %>">
-  <link href="styles/skf/AlterLoginTheme.css" rel="stylesheet" type="text/css">
-</imart:decision>
+
 <% // 代行ログイン時CSS読み込み箇所ここまで %>
 
 <%-- コンテンツエリア --%>
@@ -33,16 +31,28 @@
     // 画面表示時に定義される処理
     $(document).ready(function(){
         // TODO 画面状態によって、初期表示時に各領域の表示/非表示を切り替える
-        // 代行ログインしていない場合
-        $("#Skf2010Sc008_1").show();
-        $("#Skf2010Sc008_2").hide();
-        $("#loginButton").hide();
-        $("#logoutButton").hide();
-        // 代行ログイン済みである場合
+        //代行ログイン後初期表示
+        if($("#alterLoginFlg").val() == "1"){
+        	$("#Skf2010Sc008_1").hide();
+            $("#Skf2010Sc008_2").show();
+            $("#loginButton").hide();
+            $("#alterLoginMessage").hide();
+        } 
+        //代行ログイン前かつ社員選択後
+        else if($("#hdnShainName").val() != ""){
+        	$("#Skf2010Sc008_1").hide();
+            $("#Skf2010Sc008_2").show();
+            $("#logoutButton").hide();
+        }
+        //代行ログイン前かつ初期表示
+        else{
+        	$("#Skf2010Sc008_1").show();
+            $("#Skf2010Sc008_2").hide();
+        }
     });
   
     // 社員選択支援ポップアップ コールバック関数
-    function shainInfoCallback(param){
+    shainInfoCallback = function(param){
         if( param != null && typeof param == 'object' && param.shainNo != null){
             $("#shainNo").val(param.shainNo);
         }
@@ -54,20 +64,25 @@
 
     <!-- コンテンツエリア -->
     <div class="imui-form-container-wide" width="1350px" style="width: 100%; max-width: 1350px;">
+    <!-- 代行ログイン時のみ表示されるメッセージ -->
+	<jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
       <nfwui:Form id="form" name="form" modelAttribute="form" encType="multipart/form-data">
-        
+        <input type="hidden" name="hdnShainName" id="hdnShainName" value="${form.shainName}"  />
         <table class="imui-form-search-condition">
             <tbody>
                 <tr>
                     <td style="width: 70%; border: none;background-color: #fdfdff;">
                         <!-- 左側の入力域の部分 -->
                         <% //社員選択画面_表示領域 %>
-                        <div class="imui-form-container-wide" id="Skf2010Sc008_1" >
-                        <table class="imui-form-search-condition">
+                        <div id="Skf2010Sc008_1" >
+                        <div class="imui-form-container-wide">
+                        <table class="imui-form-search-condition" >
 
                             <tbody>
                                 <tr>
-                                    <th colspan="2" style="width: 30%;">
+                                    <th colspan="2" style="width: 30%;" >
+                                    &nbsp;&nbsp;
+                                    <nobr>
                                         <nfwui:LabelBox id="applName" code="<%= MessageIdConstant.SKF2010_SC008_SHAIN_NO %>" style="float:left" />
                                             &nbsp;&nbsp;
                                             <nfwui:PopupButton id="support" name="support" value="支援"
@@ -75,27 +90,32 @@
                                             screenUrl="skf/Skf2010Sc001/init"
                                             popupWidth="650" popupHeight="700"
                                             modalMode="false" />
+                                    </nobr>
                                     </th>
                                     <td style="width:120px;">
-                                        <input style="width:120px;" id="shainNo" type="text" value="${f:h(form.shainNo)}">
+                                        <!-- <input style="width:120px;" id="shainNo" name="shainNo" type="text" value="${f:h(form.shainNo)}">-->
+                                        <imui:textbox style="width:120px;" id="shainNo" name="shainNo" value="${f:h(form.shainNo)}" />
                                     </td>
                                     <td style="border:none;">
-                                        <nfwui:Button id="select" formId="form" value="選択する" cssClass="imui-small-button" url="skf/Skf2010Sc008/Select" />
+                                        <nfwui:Button id="select" name="select" formId="form" value="選択する" cssClass="imui-small-button" url="skf/Skf2010Sc008/Select" />
+                                       <!-- <nfwui:Button id="login" name="login" formId="form" value="テストログイン" cssClass="imui-small-button" url="skf/Skf2010Sc008/Login" />
+                                        <nfwui:Button id="logout" name="logout" formId="form" value="テストログアウト" cssClass="imui-small-button" url="skf/Skf2010Sc008/Logout" /> -->
                                     </td>
                                 </tr>
 
                             </tbody>
                         </table>
                         </div>
+                        </div>
                         
                         <% //代行ログイン対象社員情報確認画面_表示領域※ %>
-                        <div id="Skf2010Sc008_2" >
+                        <div id="Skf2010Sc008_2">
+                        <div class="imui-form-container-wide">
                         <table class="imui-form-search-condition">
                             <tbody>
                               <div class="imui-chapter-title">
                                   <h2>代行対象社員</h2>
                               </div>
-                              <div>
                                   <tbody>
                                       <tr>
                                           <th style="width:130px;">
@@ -143,15 +163,19 @@
                         </table>
                         <% //ログイン後画面表示領域 %>
                         <div class="align-L" id="loginButton" >
-                            <nfwui:Button id="login" formId="form" value="代行ログイン" cssClass="imui-small-button" url="skf/Skf2010Sc008/Login" />
-                            <nfwui:Button id="cancel" formId="form" value="キャンセル" cssClass="imui-small-button" url="skf/Skf2010Sc008/Init" />
+                        	<nfwui:ConfirmButton id="login" value="代行ログイン" 
+							 formId="form"
+							 cssClass="imui-small-button" title="<%=MessageIdConstant.SKF2010_SC008_CONFIRM_TITLE %>" message="<%=MessageIdConstant.I_SKF_2059 %>"
+							 url="skf/Skf2010Sc008/Login" />
+                            <nfwui:Button id="cancel" formId="form" value="キャンセル" cssClass="imui-small-button" url="skf/Skf2010Sc008/Cancel" />
                         </div>
                         <% //ログイン後画面表示領域 %>
                         <div class="align-L" id="logoutButton">   
                             <nfwui:Button id="logout" formId="form" value="代行ログアウト" cssClass="imui-small-button" url="skf/Skf2010Sc008/Logout" />
                         </div>
                         </div>
-                    </td>
+                        </div>
+                        </td>
                     
                     <td style="width: 30%; border: none;background-color: #fdfdff;">
                       <table >
