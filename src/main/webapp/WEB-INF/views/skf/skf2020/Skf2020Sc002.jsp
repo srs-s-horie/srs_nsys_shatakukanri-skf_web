@@ -592,7 +592,7 @@
 											</th>
 											<td colspan="3">
 												<imui:textArea id="tokushuJijo" name="tokushuJijo" class="${form.tokushuJijoErr}"
-												 value="${f:h(form.tokushuJijo)}" disabled="true" tabindex="46" />
+												 value="${f:h(form.tokushuJijo)}" tabindex="46" />
 											</td>
 										</tr>                            	
 									<!-- 現保有社宅 -->   
@@ -1309,7 +1309,7 @@
 			<!-- 左エリア -->
 			<div class="btnLeft">
  				<!-- 入力内容をクリア -->
-				<nfwui:ConfirmButton cssStyle="width:150px;" id="clearButton" formId="form" value="入力内容をクリア" 
+				<nfwui:ConfirmButton cssStyle="width:150px;" id="clearBtn" formId="form" value="入力内容をクリア" 
 					cssClass="imui-medium-button" title="<%= MessageIdConstant.SKF2020_SC002_CONFIRM_TITLE %>" 
 					message="<%= MessageIdConstant.I_SKF_2004 %>" 
 					url="skf/Skf2020Sc002/Clear"/>	
@@ -1320,7 +1320,7 @@
 				<nfwui:Button cssStyle="width:150px;" id="download" name="download" value="申請要件を確認" 
 					formID="form" cssClass="imui-medium-button" url="skf/Skf2020Sc002/Download" />   	 
 				<!-- 一時保存 -->
-				<nfwui:Button cssStyle="width:150px;" id="saveButton" formId="form" value="一時保存"
+				<nfwui:Button cssStyle="width:150px;" id="saveBtn" formId="form" value="一時保存"
 					cssClass="imui-medium-button" disabled="${form.btnSaveDisabeld}"
 					url="skf/Skf2020Sc002/Save"/>
  			</div>
@@ -1342,11 +1342,13 @@
  			<!-- 右エリア -->
  			<div id="dCheck1" class="btnRight">
  				<!-- 申請内容を確認 -->
- 				  <imui:button id="check1" value="申請内容を確認" class="imui-medium-button" style="width: 150px" onclick="checkConfrirm('no')" /> 
+ 				  <imui:button id="checkBtn" value="申請内容を確認" class="imui-medium-button" 
+ 				  	style="width: 150px" onclick="checkConfrirm('no')"  disabled="${form.btnCheckDisabled}"/> 
  			</div>
  			<div id="dCheck2" class="btnRight">
  				 <!-- 申請内容を確認 -->
- 				  <imui:button id="check1" value="申請内容を確認" class="imui-medium-button" style="width: 150px" onclick="checkConfrirm('yes')" />
+ 				  <imui:button id="checkBtn" value="申請内容を確認" class="imui-medium-button" 
+ 				  	style="width: 150px" onclick="checkConfrirm('yes')" disabled="${form.btnCheckDisabled}"/>
  			</div>
  		</tr>	
  	</table>
@@ -1648,7 +1650,7 @@
 					skf.common.confirmPopup("返却立会希望日が退居予定日以降で入力されています。申請してもよろしいですか？", "申請書類を作成する確認", form ,url, "OK", "CANCEL",this);			
 				}else if(dialogue=="no"){
 					//退居予定日と返却希望立会日の確認ダイアログが不要な場合
-					nfw.common.submitForm(form,url,"check1");
+					nfw.common.submitForm(form,url,"checkBtn");
 				}						
 		});
     }
