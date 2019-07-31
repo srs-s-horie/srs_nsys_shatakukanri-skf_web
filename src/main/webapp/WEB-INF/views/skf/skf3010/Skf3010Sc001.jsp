@@ -14,11 +14,11 @@
 
 <%-- コンテンツエリア --%>
 <style type="text/css"></style>
-		<script type="text/javascript">
-			function back1() {
+<script type="text/javascript">
+	function back1() {
 		var url="skf/Skf1010Sc001/init?SKF1010_SC001&tokenCheck=0"
 		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？");
-			}
+	}
 
 	// リストテーブルの利用区分の文字色変更
 	function onCellAttr(rowId,val,rawObject,cm,rdata){
@@ -33,56 +33,56 @@
 				style = 'style="color:red;"';
 				break;
 		}
-		 return style;
-			}
-		</script>
-		<!-- コンテンツエリア -->
+		return style;
+	}
+</script>
+<!-- コンテンツエリア -->
 <div class="imui-form-container-wide" >
 	<div class="imui-form-container-wide"  style="width:95%;">
-				<div class="imui-chapter-title"><h2>検索条件</h2></div>
+		<div class="imui-chapter-title"><h2>検索条件</h2></div>
 		<nfwui:Form id="form" name="form" modelAttribute="form">
 			<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC001 %>" />
 			<nfwui:Table use="search">
-						<tbody>
-							<tr>
-						<th style="width: 5%;white-space:nowrap">
+				<tbody>
+					<tr>
+						<th style="width: 5%;">
 							<!-- 管理会社 -->
 							<nfwui:LabelBox id="lblManegeCompany" code="<%=MessageIdConstant.SKF3010_SC001_LBL_MANAGE_COMPANY %>" />
-								</th>
-								<td style="width: 7%;">
+						</th>
+						<td style="width: 7%;">
 							<imui:select id="selectedCompanyCd" name="selectedCompanyCd" 
 							width="185" list="${form.manageCompanyList}" tabindex="1" />
-								</td>
-						<th style="width: 5%;white-space:nowrap">
+						</td>
+						<th style="width: 5%;">
 							<!-- 社宅区分 -->
 							<nfwui:LabelBox id="lblShatakuKbn" code="<%=MessageIdConstant.SKF3010_SC001_LBL_SHATAKU_KBN %>" />
-								</th>
-								<td style="width: 5%;">
-							<imui:select id="shatakuKbn" name="shatakuKbn" 
+						</th>
+						<td style="width: 5%;">
+							<imui:select id="shatakuKbnCd" name="shatakuKbnCd" 
 							width="128" list="${form.shatakuKbnList}" tabindex="3" />
-								</td>
-						<th style="width: 5%;white-space:nowrap">
+						</td>
+						<th style="width: 5%;">
 							<!-- 空き部屋 -->
 							<nfwui:LabelBox id="lblEmptyRoom" code="<%=MessageIdConstant.SKF3010_SC001_LBL_EMPTY_ROOM %>" />
-								</th>
-								<td style="width: 3%;">
-							<imui:select id="emptyRoom" name="emptyRoom" 
+						</th>
+						<td style="width: 3%;">
+							<imui:select id="emptyRoomCd" name="emptyRoomCd" 
 							width="74" list="${form.emptyRoomList}" tabindex="5" />
-								</td>
-						<th style="width: 7%;white-space:nowrap">
+						</td>
+						<th style="width: 7%;">
 							<!-- 社宅名 -->
 							<nfwui:LabelBox id="lblShatakuName" code="<%=MessageIdConstant.SKF3010_SC001_LBL_SHATAKU_NAME %>" />
-								</th>
-								<td style="width: 10%;">
-						    <imui:textbox id="shatakuName" name="shatakuName" style="width:260px;" value="${form.shatakuName}" placeholder="例　社宅名" tabindex="7" />
-								</td>
-							</tr>
-							<tr>
-								<th>
+						</th>
+						<td style="width: 10%;">
+							<imui:textbox id="shatakuName" name="shatakuName" style="width:260px;" value="${form.shatakuName}" placeholder="例　社宅名" tabindex="7" />
+						</td>
+					</tr>
+					<tr>
+						<th>
 							<!-- 管理機関 -->
 							<nfwui:LabelBox id="lblManageAgency" code="<%=MessageIdConstant.SKF3010_SC001_LBL_MANAGE_AGENCY %>" />
-								</th>
-								<td>
+						</th>
+						<td>
 							<!-- 管理機関表示フラグ判定 -->
 							<c:if test="${form.agencyDispFlg == 'true'}">
 								<imui:select id="agencyCd" name="agencyCd" 
@@ -92,77 +92,88 @@
 								<imui:select id="agencyCd" name="agencyCd" 
 								width="185" list="${form.manageAgencyList}" tabindex="2" disabled/>
 							</c:if>
-								</td>
-								<th>
+						</td>
+						<th>
 							<!-- 利用区分 -->
 							<nfwui:LabelBox id="lblUseKbn" code="<%=MessageIdConstant.SKF3010_SC001_LBL_USE_KBN %>" />
-								</th>
-								<td>
-							<imui:select id="useKbn" name="useKbn" 
+						</th>
+						<td>
+							<imui:select id="useKbnCd" name="useKbnCd" 
 							width="128" list="${form.useKbnList}" tabindex="4" />
-								</td>
-						<th style="white-space:nowrap">
+						</td>
+						<th>
 							<!-- 空き駐車場 -->
 							<nfwui:LabelBox id="lblEmptyParking" code="<%=MessageIdConstant.SKF3010_SC001_LBL_EMPTY_PARKING %>" />
-								</th>
-								<td>
-							<imui:select id="emptyParking" name="emptyParking" 
+						</th>
+						<td>
+							<imui:select id="emptyParkingCd" name="emptyParkingCd" 
 							width="74" list="${form.emptyParkingList}" tabindex="6" />
-								</td>
-						<th style="white-space:nowrap">
+						</td>
+						<th>
 							<!-- 社宅住所 -->
 							<nfwui:LabelBox id="lblShatakuAddress" code="<%=MessageIdConstant.SKF3010_SC001_LBL_SHATAKU_ADDRESS %>" />
-								</th>
-								<td>
-						    <imui:textbox id="shatakuAddress" name="shatakuAddress" style="width:260px;" value="${form.shatakuAddress}" placeholder="例　愛知県名古屋市中区錦2-18-19" tabindex="8" />
-								</td>
-							</tr>
-						</tbody>
+						</th>
+						<td>
+							<imui:textbox id="shatakuAddress" name="shatakuAddress" style="width:260px;" value="${form.shatakuAddress}" placeholder="例　愛知県名古屋市中区錦2-18-19" tabindex="8" />
+						</td>
+					</tr>
+				</tbody>
 			</nfwui:Table>
 		</nfwui:Form>
-				<div class="align-L">	
+		<div class="align-L">	
 			<nfwui:Button id="search" name="search" code="<%=MessageIdConstant.SKF3010_SC001_BTN_SEARCH %>" cssClass="imui-small-button" 
 				url="skf/Skf3010Sc001/search" formId="form" tabindex="9" />
-				</div>
-				<script type="text/javascript">
-  (function($){
-    $.imui.util.loadCSS("../../ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
-  })(jQuery);
-</script>
-				
-			</div>
-			<!-- 明細＆細目未満 -->
+		</div>
+		<script type="text/javascript">
+			(function($){
+				$.imui.util.loadCSS("../../ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
+			})(jQuery);
+		</script>
+	</div>
+	<!-- 明細＆細目未満 -->
 	<div class="imui-form-container-wide"  style="width:95%;">
-				<!-- 明細部 -->
+		<!-- 明細部 -->
 		<nfwui:Form id="listTableForm" name="listTableForm" modelAttribute="form">
 			<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC001 %>" />
 			<!-- 検索キー  -->
-			<!-- 会社コード -->
+			<!-- 検索キー：管理会社コード -->
 			<input type = "hidden" name="hdnSelectedCompanyCd" id="hdnSelectedCompanyCd" value="${form.hdnSelectedCompanyCd}" />
-			<!-- 機関コード -->
+			<!-- 検索キー：管理機関コード -->
 			<input type = "hidden" name="hdnAgencyCd" id="hdnAgencyCd" value="${form.hdnAgencyCd}" />
-			<!-- 空き部屋 -->
-			<input type = "hidden" name="hdnEmptyRoom" id="hdnEmptyRoom" value="${form.hdnEmptyRoom}" />
-			<!-- 利用区分 -->
-			<input type = "hidden" name="hdnUseKbn" id="hdnUseKbn" value="${form.hdnUseKbn}" />
-			<!-- 空き駐車場 -->
-			<input type = "hidden" name="hdnEmptyParking" id="hdnEmptyParking" value="${form.hdnEmptyParking}" />
-			<!-- 社宅住所 -->
+			<!-- 検索キー：社宅区分コード -->
+			<input type = "hidden" name="hdnShatakuKbnCd" id="hdnShatakuKbnCd" value="${form.hdnShatakuKbnCd}" />
+			<!-- 検索キー：利用区分コード -->
+			<input type = "hidden" name="hdnUseKbnCd" id="hdnUseKbnCd" value="${form.hdnUseKbnCd}" />
+			<!-- 検索キー：空き部屋コード -->
+			<input type = "hidden" name="hdnEmptyRoomCd" id="hdnEmptyRoomCd" value="${form.hdnEmptyRoomCd}" />
+			<!-- 検索キー：空き駐車場コード -->
+			<input type = "hidden" name="hdnEmptyParkingCd" id="hdnEmptyParkingCd" value="${form.hdnEmptyParkingCd}" />
+			<!-- 検索キー：社宅名 -->
+			<input type = "hidden" name="hdnShatakuName" id="hdnShatakuName" value="${form.hdnShatakuName}" />
+			<!-- 検索キー：社宅住所 -->
 			<input type = "hidden" name="hdnShatakuAddress" id="hdnShatakuAddress" value="${form.hdnShatakuAddress}" />
-			<input type="hidden" name="hdnShatakuKbn" id="hdnShatakuKbn" value="" />
-			<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="" />
-			<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="" />
-			<input type="hidden" name="hdnAreaKbn" id="hdnAreaKbn" value="" />
-			<input type="hidden" name="hdnEmptyRoomCount" id="hdnEmptyRoomCount" value="" />
-			<input type="hidden" name="hdnEmptyParkingCount" id="hdnEmptyParkingCount" value="" />
+			
+			<!-- 選択行 -->
+			<!-- 選択行:社宅区分 -->
+			<input type="hidden" name="hdnRowShatakuKbn" id="hdnRowShatakuKbn" value="" />
+			<!-- 選択行:社宅管理番号 -->
+			<input type="hidden" name="hdnRowShatakuKanriNo" id="hdnRowShatakuKanriNo" value="" />
+			<!-- 選択行:社宅名 -->
+			<input type="hidden" name="hdnRowShatakuName" id="hdnRowShatakuName" value="" />
+			<!-- 選択行:地域区分 -->
+			<input type="hidden" name="hdnRowAreaKbn" id="hdnRowAreaKbn" value="" />
+			<!-- 選択行:空き部屋数 -->
+			<input type="hidden" name="hdnRowEmptyRoomCount" id="hdnRowEmptyRoomCount" value="" />
+			<!-- 選択行:空き駐車場数 -->
+			<input type="hidden" name="hdnRowEmptyParkingCount" id="hdnRowEmptyParkingCount" value="" />
 			
 			<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc001/init"/>
-					<div class="imui-chapter-title"><h2>検索結果一覧</h2></div>
-					<script type="text/javascript">
-					  (function($){
-				$.imui.util.loadCSS("../../ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
-						  })(jQuery);
-					</script>
+			<div class="imui-chapter-title"><h2>検索結果一覧</h2></div>
+			<script type="text/javascript">
+				(function($){
+					$.imui.util.loadCSS("../../ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
+				})(jQuery);
+			</script>
 
 			<imui:listTable id="mainList" process="jssp" autoEncode="true" autoWidth="true" rowNumbers="true"
 				autoResize="true" onCellSelect="onCellSelect"
@@ -195,7 +206,7 @@
 				</cols>
 			</imui:listTable>
 
-					<script type="text/javascript">
+			<script type="text/javascript">
 				(function($) {
 					onCellSelect = function(rowId,iCol,cellcontent,e) {
 						// リストテーブル情報取得
@@ -204,51 +215,41 @@
 						var row = grid.getRowData(rowId);
 						// 社宅区分
 						var shatakuKbn = row.hdnShatakuKbn;
-						// 社宅管理番号
-						var shatakuKanriNo = row.hdnShatakuKanriNo;
-						// 社宅名
-						var shatakuName = row.hdnShatakuName;
-						// 地域区分
-						var areaKbn = row.hdnAreaKbn;
-						// 空き部屋数
-						var emptyRoomCount = row.hdnEmptyRoomCount;
-						// 空き駐車場数
-						var emptyParkingCount = row.hdnEmptyParkingCount;
 						// URL
 						var url = "skf/Skf3010Sc001/init";
 
 						// 社宅区分
-						$("#hdnShatakuKbn").val(shatakuKbn);
+						$("#hdnRowShatakuKbn").val(row.hdnShatakuKbn);
 						// 社宅管理番号
-						$("#hdnShatakuKanriNo").val(shatakuKanriNo);
+						$("#hdnRowShatakuKanriNo").val(row.hdnShatakuKanriNo);
 						// 社宅名
-						$("#hdnShatakuName").val(shatakuName);
+						$("#hdnRowShatakuName").val(row.hdnShatakuName);
 						// 地域区分
-						$("#hdnAreaKbn").val(areaKbn);
+						$("#hdnRowAreaKbn").val(row.hdnAreaKbn);
 						// 空き部屋数
-						$("#hdnEmptyRoomCount").val(emptyRoomCount);
+						$("#hdnRowEmptyRoomCount").val(row.hdnEmptyRoomCount);
 						// 空き駐車場数
-						$("#hdnEmptyParkingCount").val(emptyParkingCount);
+						$("#hdnRowEmptyParkingCount").val(row.hdnEmptyParkingCount);
 
- 						// クリックアイコン判定
- 				    	if ($(cellcontent).hasClass('im-ui-icon-common-16-update')) {
- 				    		/** 基本 */
- 				    		// 社宅区分判定
- 				    		if (shatakuKbn != "2") {
- 				    			// 保有社宅登録画面へ
- 	 				    		url = "skf/Skf3010Sc002/init"; 				    			
- 				    		} else {
- 				    			// 借上げ社宅登録画面へ
- 				    			url = "skf/Skf3010Sc006/init";
- 				    		}
- 	 				    	$("#listTableForm").attr("action", url);
- 		 				    $("#listTableForm").submit();
- 				    	} else if ($(cellcontent).hasClass('im-ui-icon-common-16-settings')) {
- 				    		/** 部屋 */
- 				    		url = "skf/Skf3010Sc004/init";
- 	 				    	$("#listTableForm").attr("action", url);
- 		 				    $("#listTableForm").submit();
- 				    	}
+						// クリックアイコン判定
+						if ($(cellcontent).hasClass('im-ui-icon-common-16-update')) {
+							/** 基本 */
+							// 社宅区分判定
+							if (shatakuKbn != "2") {
+								// 保有社宅登録画面へ
+								url = "skf/Skf3010Sc002/init";
+							} else {
+								// 借上げ社宅登録画面へ
+								url = "skf/Skf3010Sc006/init";
+							}
+							$("#listTableForm").attr("action", url);
+							$("#listTableForm").submit();
+						} else if ($(cellcontent).hasClass('im-ui-icon-common-16-settings')) {
+							/** 部屋 */
+							url = "skf/Skf3010Sc004/init";
+							$("#listTableForm").attr("action", url);
+							$("#listTableForm").submit();
+						}
 					}
 					$("#selectedCompanyCd").bind('change', function() {
 						var map = new Object();
@@ -264,111 +265,159 @@
 								} else {
 									$("#agencyCd").prop('disabled', true);
 								}
-							});
-								});
+						});
+					});
 
 					$("span .im-ui-icon-common-16-update").mouseover(function(e) {
 						$(this).css("cursor","pointer");
 					}).mouseleave(
 						function(e) {
 							$(this).css("cursor","default");
-							}
+						}
 					);
 
-				    // 画面表示時に定義される処理
-								$(document).ready(function() {
-					    // 「契約情報出力」ボタン押下時のイベント
-					    preCopyEvent = function () {							
-					        // リストテーブル情報取得
-					        var grid = $("#mainList");
-//							var ids = grid.getGridParam("selarrrow"); // ←複数行
-							// 行番号取得
+					// 画面表示時に定義される処理
+					$(document).ready(function(){
+						// 下部ボタン押下時のイベント
+						preButtonEvent = function (mode) {
+							var dialogTitle = "";
+							var dialogMessage = "";
+							var url = "";
+							var grid = null;
+							var row = null;
 							var id = null;
-							id = grid.getGridParam("selrow"); // ←1行
-							// 選択行が無い場合
-							if( id == null )
-							{
-								nfw.common.showReserveMessage("warning", "<%= MessageIdConstant.W_SKF_3003 %>");
-								return false;
-							}
-							// 行データ取得
-							var row = grid.getRowData(id);
-							// 社宅区分取得
-							var shatakuKbn = row.hdnShatakuKbn;
- 				    		// 社宅区分判定
- 				    		if (shatakuKbn != "2") {
-								nfw.common.showReserveMessage("warning", "<%= MessageIdConstant.W_SKF_3002 %>");
-								return false;
- 				    		}
-					
-							// $("#submitApplNo").val(submitStr); // ←　フォーム変数設定
-							
-							return true;
-					    }
-								});
-							})(jQuery);
-					</script>
+							var shatakuKbn = null;
+
+							switch (mode) {
+								// 契約情報出力
+								case 0:
+									dialogTitle = "確認";
+									dialogMessage = "契約情報を出力します。よろしいですか？";
+									url = "skf/Skf3010Sc001/outContract";
+									nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form2", url, "OK", "CANCEL", this, true);
+									break;
+								// 新規（保有・区分）
+								case 1:
+									// 社宅区分に「保有」を指定
+									$('#form2 [name=hdnShatakuKbn]').val($("1").val());
+									// 保有社宅登録画面
+									url = "skf/Skf3010Sc002/init";
+									$("#form2").attr("action", url);
+									$("#form2").submit();
+									break;
+								// 新規（借上）
+								case 2:
+									// 社宅区分に「借上」を指定
+									$('#form2 [name=hdnShatakuKbn]').val($("2").val());
+									// 借上社宅登録画面
+									url = "skf/Skf3010Sc006/init";
+									$("#form2").attr("action", url);
+									$("#form2").submit();
+									break;
+								// 複写(借上)
+								case 3:
+/**
+									// リストテーブル情報取得
+									grid = $("#mainList");
+		//							var ids = grid.getGridParam("selarrrow"); // ←複数行
+									// 行番号取得
+									id = grid.getGridParam("selrow"); // ←1行
+									// 選択行がある場合
+									if( id != null )
+									{
+										// 行データ取得
+										row = grid.getRowData(id);
+										// 社宅区分取得
+										shatakuKbn = row.hdnShatakuKbn;
+										// 社宅区分判定
+										if (shatakuKbn != "2") {
+											// nfw.common.showReserveMessage("warning", "<%= MessageIdConstant.W_SKF_3002 %>");
+											nfw.common.showReserveMessage("warning", "社宅区分が「借上」ではないため複写できません。");
+											break;
+										}
+									}
+*/
+									/** パラメータ設定 */
+									// 選択行:社宅区分
+									$('#form2 [name=hdnRowShatakuKbn]').val($("#hdnRowShatakuKbn").val());
+									// 選択行:社宅管理番号
+									$('#form2 [name=hdnRowShatakuKanriNo]').val($("#hdnRowShatakuKanriNo").val());
+									// 選択行:社宅名
+									$('#form2 [name=hdnRowShatakuName]').val($("#hdnRowShatakuName").val());
+									// 選択行:地域区分
+									$('#form2 [name=hdnRowAreaKbn]').val($("#hdnRowAreaKbn").val());
+									// 選択行:空き部屋数
+									$('#form2 [name=hdnRowEmptyRoomCount]').val($("#hdnRowEmptyRoomCount").val());
+									// 選択行:空き駐車場数
+									$('#form2 [name=hdnRowEmptyParkingCount]').val($("#hdnRowEmptyParkingCount").val());
+									// 社宅一覧の借上(複写)ボタン処理
+									url = "skf/Skf3010Sc001/rentalCopyCheck";
+									$("#form2").attr("action", url);
+									$("#form2").submit();
+									break;
+								// 新規(一棟)
+								case 4:
+									// 社宅区分に「一棟」を指定
+									$('#form2 [name=hdnShatakuKbn]').val($("4").val());
+									// 保有社宅登録画面
+									url = "skf/Skf3010Sc002/init";
+									$("#form2").attr("action", url);
+									$("#form2").submit();
+									break;
+								default:
+									nfw.common.showReserveMessage("warning", "未サポート(未実装機能)です。");
+									break;
+							};
+						}
+					});
+				})(jQuery);
+			</script>
 		</nfwui:Form>
-			</div>
-			<br />
-			<div class="align-R">
-		<nfwui:Form id="csvForm" name="csvForm" >
-			<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC001 %>" />
-			<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc001/init"/>
-			<input type="hidden" name="hdnShatakuKbn" id="hdnShatakuKbn" value="" />
-			<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="" />
-			<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="" />
-			<input type="hidden" name="hdnAreaKbn" id="hdnAreaKbn" value="" />
-			<input type="hidden" name="hdnEmptyRoomCount" id="hdnEmptyRoomCount" value="" />
-			<input type="hidden" name="hdnEmptyParkingCount" id="hdnEmptyParkingCount" value="" />
-		</nfwui:Form>
-		<nfwui:Form id="newRentalForm" name="newRentalForm" >
-			<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC001 %>" />
-			<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc001/init"/>
-			<input type="hidden" name="hdnShatakuKbn" id="hdnShatakuKbn" value="" />
-			<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="" />
-			<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="" />
-			<input type="hidden" name="hdnAreaKbn" id="hdnAreaKbn" value="" />
-			<input type="hidden" name="hdnEmptyRoomCount" id="hdnEmptyRoomCount" value="" />
-			<input type="hidden" name="hdnEmptyParkingCount" id="hdnEmptyParkingCount" value="" />
-		</nfwui:Form>
-		<nfwui:Form id="copyForm" name="copyForm" >
-			<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC001 %>" />
-			<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc001/init"/>
-			<input type="hidden" name="hdnShatakuKbn" id="hdnShatakuKbn" value="${form.hdnShatakuKbn}" />
-			<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="${form.hdnShatakuKanriNo}" />
-			<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="${form.hdnShatakuName}" />
-			<input type="hidden" name="hdnAreaKbn" id="hdnAreaKbn" value="${form.hdnAreaKbn}" />
-			<input type="hidden" name="hdnEmptyRoomCount" id="hdnEmptyRoomCount" value="${form.hdnEmptyRoomCount}" />
-			<input type="hidden" name="hdnEmptyParkingCount" id="hdnEmptyParkingCount" value="${form.hdnEmptyParkingCount}" />
-		</nfwui:Form>
-		<nfwui:Form id="newIttoForm" name="newIttoForm" >
-			<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC001 %>" />
-			<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc001/init"/>
-			<input type="hidden" name="hdnShatakuKbn" id="hdnShatakuKbn" value="${form.hdnShatakuKbn}" />
-			<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="" />
-			<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="" />
-			<input type="hidden" name="hdnAreaKbn" id="hdnAreaKbn" value="" />
-			<input type="hidden" name="hdnEmptyRoomCount" id="hdnEmptyRoomCount" value="" />
-			<input type="hidden" name="hdnEmptyParkingCount" id="hdnEmptyParkingCount" value="" />
-		</nfwui:Form>
-		<nfwui:Form id="newHoyuForm" name="newHoyuForm" >
-			<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC001 %>" />
-			<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc001/init"/>
-			<input type="hidden" name="hdnShatakuKbn" id="hdnShatakuKbn" value="${form.hdnShatakuKbn}" />
-			<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="" />
-			<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="" />
-			<input type="hidden" name="hdnAreaKbn" id="hdnAreaKbn" value="" />
-			<input type="hidden" name="hdnEmptyRoomCount" id="hdnEmptyRoomCount" value="" />
-			<input type="hidden" name="hdnEmptyParkingCount" id="hdnEmptyParkingCount" value="" />
-		</nfwui:Form>
-		<nfwui:ConfirmButton id="csv" name="csv" formId="csvForm" value="契約情報出力" cssClass="imui-medium-button" 
-		title="<%= MessageIdConstant.SKF3010_SC001_BTN_OUTPUT_CONTRACT %>" message="<%= MessageIdConstant.I_SKF_3078 %>" 
-		url="skf/Skf3010Sc001/init" tabindex="10"/>
-		<nfwui:Button id="newRental" value="新規（借上）" cssClass="imui-medium-button" url="skf/Skf3010Sc006/init" formId="newRentalForm"  tabindex="11"/>
-		<nfwui:Button id="copy" value="複写（借上）" cssClass="imui-medium-button" url="skf/Skf3010Sc006/init" formId="copyForm"  tabindex="12" preOnclick="preCopyEvent()"/>
-		<nfwui:Button id="newItto" value="新規（一棟）" cssClass="imui-medium-button" url="skf/Skf3010Sc002/init" formId="newIttoForm"  tabindex="13"/>
-		<nfwui:Button id="newHoyu" value="新規（保有・区分）" cssClass="imui-medium-button" url="skf/Skf3010Sc002/init" formId="newHoyuForm"  tabindex="14"/>
-		</div>
 	</div>
+	<br />
+	<div class="align-R">
+		<nfwui:Form id="form2" name="form2" >
+			<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC001 %>" />
+			<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc001/init"/>
+			<!-- 検索キー  -->
+			<!-- 検索キー：管理会社コード -->
+			<input type = "hidden" name="hdnSelectedCompanyCd" id="hdnSelectedCompanyCd" value="${form.hdnSelectedCompanyCd}" />
+			<!-- 検索キー：管理機関コード -->
+			<input type = "hidden" name="hdnAgencyCd" id="hdnAgencyCd" value="${form.hdnAgencyCd}" />
+			<!-- 検索キー：社宅区分コード -->
+			<input type = "hidden" name="hdnShatakuKbnCd" id="hdnShatakuKbnCd" value="${form.hdnShatakuKbnCd}" />
+			<!-- 検索キー：利用区分コード -->
+			<input type = "hidden" name="hdnUseKbnCd" id="hdnUseKbnCd" value="${form.hdnUseKbnCd}" />
+			<!-- 検索キー：空き部屋コード-->
+			<input type = "hidden" name="hdnEmptyRoomCd" id="hdnEmptyRoomCd" value="${form.hdnEmptyRoomCd}" />
+			<!-- 検索キー：空き駐車場コード -->
+			<input type = "hidden" name="hdnEmptyParkingCd" id="hdnEmptyParkingCd" value="${form.hdnEmptyParkingCd}" />
+			<!-- 検索キー：社宅名 -->
+			<input type = "hidden" name="hdnShatakuName" id="hdnShatakuName" value="${form.hdnShatakuName}" />
+			<!-- 検索キー：社宅住所 -->
+			<input type = "hidden" name="hdnShatakuAddress" id="hdnShatakuAddress" value="${form.hdnShatakuAddress}" />
+			<!-- 社宅リスト -->
+			<input type = "hidden" name="listTableData" id="listTableData" value="${form.listTableData}" />
+
+			<!-- 選択行 -->
+			<!-- 選択行:社宅区分 -->
+			<input type="hidden" name="hdnRowShatakuKbn" id="hdnRowShatakuKbn" value="" />
+			<!-- 選択行:社宅管理番号 -->
+			<input type="hidden" name="hdnRowShatakuKanriNo" id="hdnRowShatakuKanriNo" value="" />
+			<!-- 選択行:社宅名 -->
+			<input type="hidden" name="hdnRowShatakuName" id="hdnRowShatakuName" value="" />
+			<!-- 選択行:地域区分 -->
+			<input type="hidden" name="hdnRowAreaKbn" id="hdnRowAreaKbn" value="" />
+			<!-- 選択行:空き部屋数 -->
+			<input type="hidden" name="hdnRowEmptyRoomCount" id="hdnRowEmptyRoomCount" value="" />
+			<!-- 選択行:空き駐車場数 -->
+			<input type="hidden" name="hdnRowEmptyParkingCount" id="hdnRowEmptyParkingCount" value="" />
+			<imui:button id="csv" name="csv" value="契約情報出力" class="imui-medium-button" onclick="preButtonEvent(0)" tabindex="10" />
+			<imui:button id="newRental" name="csv" value="新規（借上）" class="imui-medium-button" onclick="preButtonEvent(2)" tabindex="11" />
+			<imui:button id="copy" name="csv" value="複写（借上）" class="imui-medium-button" onclick="preButtonEvent(3)" tabindex="12" />
+			<imui:button id="newItto" name="csv" value="新規（一棟）" class="imui-medium-button" onclick="preButtonEvent(4)" tabindex="13" />
+			<imui:button id="newHoyu" name="csv" value="新規（保有・区分）" class="imui-medium-button" onclick="preButtonEvent(1)" tabindex="14" />
+		</nfwui:Form>
+	</div>
+</div>
 	<!-- コンテンツエリア　ここまで -->
