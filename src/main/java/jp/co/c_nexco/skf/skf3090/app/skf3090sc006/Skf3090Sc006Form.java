@@ -43,6 +43,24 @@ public class Skf3090Sc006Form extends BaseForm {
 	private List<Map<String, Object>> businessAreaList;
 
 	// リストテーブルデータ
-	private List<Map<String, Object>> listTableData;
+	private List<Map<String, Object>> createTableList;
+
+	// ページの最大表示数
+	private int maxPageCount;
+
+	// 更新フラグ
+	private String updateFlag;
+
+	/** 組織マスタ登録画面hidden項目連携用 */
+	// 会社コード
+	private String hdnCompanyCd;
+	// 機関コード
+	private String hdnAgencyCd;
+	// 部等コード
+	private String hdnAffiliation1Cd;
+	// 室、チーム又は課
+	private String hdnAffiliation2Cd;
+	// 事業領域
+	private String hdnBusinessAreaCd;
 
 }
