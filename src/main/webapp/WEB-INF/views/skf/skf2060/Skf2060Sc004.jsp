@@ -10,11 +10,27 @@
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
 
 <%-- コンテンツエリア --%>
-<style type="text/css">
 
-</style>
+<script type="text/javascript">
+  (function($){
+    // 画面表示時に定義される処理
+    $(document).ready(function(){
+
+    });
+  
+    // 社員選択支援ポップアップ コールバック関数
+    shainInfoCallback = function(param){
+        if( param != null && typeof param == 'object' && param.name != null){
+            $("#candidatePersonName").val(param.name);
+        }
+    }
+    
+    
+  })(jQuery);
+</script>
 
 <!-- コンテンツエリア -->
 <div class="imui-form-container-wide" width="1350px" style="width: 100%; max-width: 1350px;">
@@ -25,7 +41,7 @@
             <div>
                 <table class="imui-form-search-condition" width="100%" style="border: none;" >
                     <td class="imui-form-container-wide" style="width: 650p; border: none;background-color: #fdfdff;" >
-                     <div class="imui-form-container-wide" style="width: 650px;height:300px;">
+                     <div class="imui-form-container-wide" style="width: 650px;">
                        <nfwui:Title id="searchTitle" code="<%= MessageIdConstant.SKF2060_SC004_SEARCH_TITLE %>" titleLevel="2" />
                             <table class="imui-form-search-condition">
                                 <tr>
@@ -33,22 +49,23 @@
                                         <nfwui:LabelBox id="candidateDate" code="<%= MessageIdConstant.SKF2060_SC004_CANDIDATE_DATE %>" />
                                     </th>
                                     <td colspan="2">
-                                        <imui:textbox  type="text" name="candidateDateFrom" id="candidateDateFrom" value="${form.candidateDateFrom}"/>
-                                        &nbsp;～&nbsp;&nbsp;
-                                        <imui:textbox  type="text" name="candidateDateTo" id="candidateDateTo" value="${form.candidateDateTo}"/>
+                                        <imui:textbox  type="text" name="candidateDateFrom" id="candidateDateFrom" value="${form.candidateDateFrom}" style="width:100px" />
+                                        &nbsp;～&nbsp;
+                                        <imui:textbox  type="text" name="candidateDateTo" id="candidateDateTo" value="${form.candidateDateTo}" style="width:100px" />
                                     </td>
                                 </tr>
                                 <im:calendar floatable="true" altField="#candidateDateFrom" />
                                 <im:calendar floatable="true" altField="#candidateDateTo" />
                                 <tr>
                                     <th style="width: 120px;">
-                                        <nfwui:LabelBox id="candidatePersonName" code="<%= MessageIdConstant.SKF2060_SC004_CANDIDATE_PERSON_NAME %>" style="float:left" />
-                                        &nbsp;&nbsp;
+                                        <nfwui:LabelBox id="txtCandidatePersonName" code="<%= MessageIdConstant.SKF2060_SC004_CANDIDATE_PERSON_NAME %>" style="float:left"/> &nbsp;&nbsp;
+                                        <nobr>
                                         <nfwui:PopupButton id="support" name="support" value="支援"
                                             cssClass="imui-small-button" use="popup"
                                             screenUrl="skf/Skf2010Sc001/init"
                                             popupWidth="650" popupHeight="700"
                                             modalMode="false" />
+                                        </nobr>
                                     </th>
                                     <td style="width: 180px;" colspan="2">
                                     <input name="candidatePersonName" id="candidatePersonName" placeholder="例 中日本　一郎"
@@ -61,10 +78,9 @@
                                         <nfwui:LabelBox id="shatakuName" code="<%= MessageIdConstant.SKF2060_SC004_SHATAKU_NAME %>" />
                                     </th>
                                     <td style="width: 180px;" colspan="2">
-                                    <input name="shatakuName" id="shatakuName" placeholder="例 厚木宿舎"
-                                        value="${form.shatakuName}"></input>
+                                    <input name="shatakuName" id="shatakuName" placeholder="例 厚木宿舎" value="${form.shatakuName}"></input>
                                     </td>
-                                </tr>   
+                                </tr>
 
                                 <tr>
                                     <th style="width: 120px;">
@@ -85,19 +101,19 @@
                                             <tr style="height: 25px;">
                                                 <td>
                                                     <nfwui:CheckBox id="candidateStatus01" name="candidateStatus"
-                                                        value="01" label="確認依頼" />
+                                                        value="<%= CodeConstant.STATUS_KAKUNIN_IRAI %>" label="確認依頼" />
                                                 </td>
                                                 <td>
                                                     <nfwui:CheckBox id="candidateStatus02" name="candidateStatus"
-                                                        value="02" label="選択済" />
+                                                        value="<%= CodeConstant.STATUS_SENTAKU_ZUMI %>" label="選択済" />
                                                 </td>
                                                 <td>
                                                     <nfwui:CheckBox id="candidateStatus03" name="candidateStatus"
-                                                        value="03" label="選択しない" />
+                                                        value="<%= CodeConstant.STATUS_SENTAKU_SHINAI %>" label="選択しない" />
                                                 </td>
                                                 <td>
                                                     <nfwui:CheckBox id="candidateStatus04" name="candidateStatus"
-                                                        value="04" label="完了" />
+                                                        value="<%= CodeConstant.STATUS_KANRYOU %>" label="完了" />
                                                 </td>
                                             </tr>
                                         </table>
@@ -107,7 +123,7 @@
                             </table>
                          <div class="align-L">	
                              <nfwui:Button id="search" name="search" value="検索" cssClass="imui-small-button" 
-                                 url="skf/Skf2060Sc004/init" formId="form" tabindex="8" />
+                                 url="skf/Skf2060Sc004/search" formId="form" tabindex="8" />
                          </div>
                          </div>
                          
@@ -245,9 +261,9 @@
                 <nfwui:CheckBoxGroupTag id="reminderChkVal">
                     <imui:listTable id="mainList" process="jssp" autoEncode="false" autoWidth="true" rowNumbers="true"
                         autoResize="true" onCellSelect="onCellSelect"
-                        multiSelect="false" data="${form.listTableData }"
+                        multiSelect="false" data="${form.listTableData}"
                         style="max-height: 800px" >
-                        <pager rowNum="${form.listTableMaxRowCount }" />
+                        <pager rowNum="${form.listTableMaxRowCount}" />
                         <cols sortable="false">
                         <col name="col1" caption="完了" width="30" sortable="false" align="center" />
                         <col name="col2" caption="督促" width="50" sortable="false" align="center" />
