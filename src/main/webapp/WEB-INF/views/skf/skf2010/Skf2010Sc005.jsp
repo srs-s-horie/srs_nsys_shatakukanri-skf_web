@@ -389,6 +389,7 @@
     		$("#resultListForm").attr("action", nextPageUrl);
     		
     		$("#putApplNo").val(applNo);
+    		$("#putApplId").val(applId);
     		$("#putApplStatus").val(applStatusCd);
     		
     		nfw.common.submitForm("resultListForm", nextPageUrl);
@@ -413,7 +414,7 @@
 <div class="imui-form-container-wide" style="width: 100%; max-width: 1300px; min-width: 1300px;">
 <!-- 明細＆細目未満 -->
   <!-- 明細部 -->
-  <nfwui:Form id="resultListForm" name="resultListForm" modelAttribute="form">
+  <nfwui:Form id="resultListForm" name="resultListForm" modelAttribute="form" secureToken="false">
     <div class="imui-chapter-title" style="max-width:1300px;"><h2>検索結果一覧</h2></div>
         <script type="text/javascript">
   (function($){
@@ -421,6 +422,7 @@
   })(jQuery);
 </script>
 <input type="hidden" id="putApplNo" name="applNo" value="" />
+<input type="hidden" id="putApplId" name="applId" value="" />
 <input type="hidden" id="putApplStatus" name="applStatus" value="" />
 <input type="hidden" name="backUrl" value="skf/Skf2010Sc005/init" />
 <table name="imui-8eqlrzst4hv6std" id="sampleListTable1">
