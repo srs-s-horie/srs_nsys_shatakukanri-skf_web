@@ -96,7 +96,7 @@ function back1() {
 								</th>
 								<td style="width:21.3%;" >
 <!-- 									<input style="width:130px;" type="text" value="101" /> -->
-									<imui:textbox id="txtRoomNo" name="roomNo" style="ime-mode: disabled;width:130px;" value="${form.roomNo}" class="${form.roomNoError}" tabindex="1"/>
+									<imui:textbox id="txtRoomNo" name="roomNo" style="ime-mode: disabled;width:130px;" value="${form.roomNo}" class="${form.roomNoError}" placeholder="例　101（半角）" tabindex="1"/>
 								</td>
 								<th style="width:12%">
 <!-- 									<label>本来延面積</label> -->
@@ -220,7 +220,7 @@ function back1() {
 					<imui:listTable id="bihinList" process="jssp" autoEncode="false" autoWidth="false" rowNumbers="true"
 						autoResize="false" onCellSelect="onCellSelect"
 						multiSelect="false" data="${form.bihinListData}"
-						style="max-height: 800px" height="auto">
+						style="max-height: 800px" height="auto" tabindex="15">
 						<cols sortable="false">
 						<col name="bihinCode" hidden="true" />
 						<col name="bihinName" caption="備品名称" width="180" sortable="false" />
@@ -280,7 +280,6 @@ function back1() {
 								{
 									var tempStr = [];
 									var row = datas[i];
-									//var row = grid.getRowData(id);
 									var statusList = "bihinStatus"+i;
 									var bihinCode = row.bihinCode;
 									var bihinName = row.bihinName;
@@ -296,9 +295,7 @@ function back1() {
 									tempStr.push(updateDate);
 									
 									strs.push(tempStr.join(","));		//配列で格納
-								}
-								//var submitStr = strs.join(",");		//配列のデータを「,」で繋ぐ
-																
+								}																
 						
 								$("#registBihinData").val(strs.join(";"));
 							}
