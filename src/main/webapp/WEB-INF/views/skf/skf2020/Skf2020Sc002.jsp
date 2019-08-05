@@ -757,18 +757,11 @@
 //項目表示設定
 (function($) {	
 	//初期表示活性非活性制御
-	//非活性
-	//$('#nyukyoYoteiDate').imuiCalendar('disable');// 入居希望日カレンダー
-	//$('#carExpirationDate').imuiCalendar('disable');// 自動社の有効期間満了日 1台目カレンダー
-	//$('#parkingUseDate').imuiCalendar('disable');// 自動車の使用開始日 1台目カレンダー
-	//$('#carExpirationDate2').imuiCalendar('disable');// 自動社の有効期間満了日 2台目カレンダー
-	//$('#parkingUseDate2').imuiCalendar('disable');// 自動車の使用開始日 2台目カレンダー
 
 	//非表示
 	//退居届を促すメッセージの設定
 	$('#lblShatakuFuyouMsg').hide();
-	
-		
+			
 	//社宅を必要としますか-必要とする（項目表示設定)
 		$('#rdoHitsuyo').click(function() {	   
 		// 社宅を必要としますか？の必要とするにチェックが入っている場合
@@ -784,19 +777,32 @@
 				//自動車の保管場所
 				$('#rdoCarHitsuyo').prop('disabled', false);
 				$('#rdoCarFuyo').prop('disabled', false);
-				// 入居希望日カレンダー
-				//$('#nyukyoYoteiDate').imuiCalendar('enable');
+
 				
 				//非活性
 				//社宅を必要としない理由
 				$('#rdoFuyouJitakutsuukinn').prop('disabled', true);
 				$('#rdoFuyouJikokariage').prop('disabled', true);
 				$('#rdoFuyouSonota').prop('disabled', true);
+				//自動車の保有
+				$('#rdo1stCarHoyu').prop('disabled', true);
+				$('#rdo1stCarYotei').prop('disabled', true);
+				$('#rdo2stCarHoyu').prop('disabled', true);
+				$('#rdo2stCarYotei').prop('disabled', true);
+				
 				//チェック状態
 				$('#rdoHitsuyoSonota').prop('checked', false);
 				$('#rdoFuyouJitakutsuukinn').prop('checked', false);
 				$('#rdoFuyouJikokariage').prop('checked', false);
 				$('#rdoFuyouSonota').prop('checked', false);
+
+				//自動車の保管場所
+				$('#rdoCarHitsuyo').prop('checked', false);
+				$("#rdoCarFuyo").prop('checked',false)
+				$('#rdo1stCarHoyu').prop('checked', false);
+				$('#rdo1stCarYotei').prop('checked', false);
+				$('#rdo2stCarHoyu').prop('checked', false);
+				$('#rdo2stCarYotei').prop('checked', false);
 				
 	    		//表示（現社宅情報）
 				$('#shatakuStatus').show();
@@ -834,24 +840,13 @@
 				$('#rdoHitsuyoSetai').prop('disabled', true);
 				$('#rdoHitsuyoTanshin').prop('disabled', true);
 				$('#rdoHitsuyoDokushin').prop('disabled', true);
-				// 入居希望日カレンダー 
-				//$('#nyukyoYoteiDate').imuiCalendar('disable');
+
 				//自動車の保管場所
 				$('#rdoCarHitsuyo').prop('disabled', true);
 				$('#rdo1stCarHoyu').prop('disabled', true);
 				$('#rdo1stCarYotei').prop('disabled', true);
 				$('#rdo2stCarHoyu').prop('disabled', true);
 				$('#rdo2stCarYotei').prop('disabled', true);
-				$('#carNo').prop('disabled', true);
-				$('#carUser').prop('disabled', true);
-				$('#carName').prop('disabled', true);
-		    	//$('#carExpirationDate').imuiCalendar('disable');// 自動社の有効期間満了日 2台目カレンダー
-		    	//$('#parkingUseDate').imuiCalendar('disable');// 自動車の利用開始日 1台目カレンダー
-				$('#carNo2').prop('disabled', true);
-				$('#carUser2').prop('disabled', true);
-				$('#carName2').prop('disabled', true);
-		    	//$('#carExpirationDate2').imuiCalendar('disable');// 自動社の有効期間満了日 2台目カレンダー
-		    	//$('#parkingUseDate2').imuiCalendar('disable');// 自動車の利用開始日 1台目カレンダー
 
 				//チェック状態
 				//社宅を必要としない理由
@@ -864,6 +859,13 @@
 				$('#rdoHitsuyoSetai').prop('checked', false);
 				$('#rdoHitsuyoTanshin').prop('checked', false);
 				$('#rdoHitsuyoDokushin').prop('checked', false);
+				//自動車の保管場所
+				$('#rdoCarHitsuyo').prop('checked', false);
+				$("#rdoCarFuyo").prop('checked',false)
+				$('#rdo1stCarHoyu').prop('checked', false);
+				$('#rdo1stCarYotei').prop('checked', false);
+				$('#rdo2stCarHoyu').prop('checked', false);
+				$('#rdo2stCarYotei').prop('checked', false);
 	    		//表示（社宅不要時のメッセージ）
 	    		$("#rdoCarFuyo").prop('checked',true)
 	    		$('#lblShatakuFuyouMsg').show();
@@ -887,17 +889,6 @@
 				$('#rdo1stCarYotei').prop('disabled', false);
 				$('#rdo2stCarHoyu').prop('disabled', false);
 				$('#rdo2stCarYotei').prop('disabled', false);
-				$('#carNo').prop('disabled', false);
-				$('#carUser').prop('disabled', false);
-				$('#carName').prop('disabled', false);
-		    	//$('#carExpirationDate').imuiCalendar('enable');// 自動社の有効期間満了日 2台目カレンダー
-		    	//$('#parkingUseDate').imuiCalendar('enable');// 自動車の利用開始日 1台目カレンダー
-				$('#carNo2').prop('disabled', false);
-				$('#carUser2').prop('disabled', false);
-				$('#carName2').prop('disabled', false);
-		    	//$('#carExpirationDate2').imuiCalendar('enable');// 自動社の有効期間満了日 2台目カレンダー
-		    	//$('#parkingUseDate2').imuiCalendar('enable');// 自動車の利用開始日 1台目カレンダー
-				
 				
 				//非活性
 				//社宅を必要とする理由、しない理由
@@ -907,8 +898,7 @@
 				$('#rdoFuyouJitakutsuukinn').prop('disabled', true);
 				$('#rdoFuyouJikokariage').prop('disabled', true);
 				$('#rdoFuyouSonota').prop('disabled', true);
-				// 入居希望日カレンダー 
-				//$('#nyukyoYoteiDate').imuiCalendar('disable');
+
 				//必要とする社宅
 				$('#rdoKikon').prop('disabled', true);
 				$('#rdoHitsuyoSetai').prop('disabled', true);
@@ -925,6 +915,11 @@
 				$('#rdoFuyouSonota').prop('checked', true);// 社宅を必要としない理由　その他
 				//駐車場を必要とするか
 				$('#rdoCarHitsuyo').prop('checked', true);
+				$("#rdoCarFuyo").prop('checked',false)
+				$('#rdo1stCarHoyu').prop('checked', false);
+				$('#rdo1stCarYotei').prop('checked', false);
+				$('#rdo2stCarHoyu').prop('checked', false);
+				$('#rdo2stCarYotei').prop('checked', false);
 				// 現在の社宅継続利用
 				$('#rdoNowHoyuShatakuKeizoku').prop('checked', true);
 				//必要とする社宅
@@ -1083,10 +1078,7 @@
 				$('#rdo1stCarYotei').prop('disabled', false);
 				$('#rdo2stCarHoyu').prop('disabled', false);
 				$('#rdo2stCarYotei').prop('disabled', false);
-		    	//$('#carExpirationDate').imuiCalendar('enable');// 自動社の有効期間満了日 2台目カレンダー
-		    	//$('#parkingUseDate').imuiCalendar('enable');// 自動車の利用開始日 1台目カレンダー
-		    	//$('#carExpirationDate2').imuiCalendar('enable');// 自動社の有効期間満了日 2台目カレンダー
-		    	//$('#parkingUseDate2').imuiCalendar('enable');// 自動車の利用開始日 1台目カレンダー
+
 		      }
 		  }); 
 		  
@@ -1099,55 +1091,9 @@
 				$('#rdo1stCarYotei').prop('disabled', true);
 				$('#rdo2stCarHoyu').prop('disabled', true);
 				$('#rdo2stCarYotei').prop('disabled', true);
-				//$('#carExpirationDate').imuiCalendar('disable');// 自動社の有効期間満了日 1台目カレンダー
-				//$('#parkingUseDate').imuiCalendar('disable');// 自動車の利用開始日 1台目カレンダー
-				//$('#carExpirationDate2').imuiCalendar('disable');// 自動社の有効期間満了日 2台目カレンダー
-				//$('#parkingUseDate2').imuiCalendar('disable');// 自動車の利用開始日 2台目カレンダー
 		      }
 		  }); 
-		  
-		  // 自動車の保有の「保有している1台目」押下時に発動
-		  $('#rdo1stCarHoyu').click(function() { 	   
-			// 自動車の保有の「保有している1台目」押下時にチェックが入っている場合
-			if($("#rdo1stCarHoyu").prop('checked')) {		
-				　　// 活性
-		    	  //$('#carExpirationDate').imuiCalendar('enable');// 自動社の有効期間満了日 1台目カレンダー
-		    	 // $('#parkingUseDate').imuiCalendar('enable');// 自動車の利用開始日 1台目カレンダー
-		      }
-		  });
-	
-		  // 自動車の保有の「購入を予定している1台目」押下時に発動
-		  $('#rdo1stCarYotei').click(function() {  
-			// 自動車の保有の「購入を予定している1台目」押下時にチェックが入っている場合
-			if($("#rdo1stCarYotei").prop('checked')) {		
-				　　// 活性
-		    	 // $('#parkingUseDate').imuiCalendar('enable');// 自動車の利用開始日 1台目カレンダー
-		    	  //非活性
-		    	//  $('#carExpirationDate').imuiCalendar('disable');// 自動社の有効期間満了日 1台目カレンダー
-		      }
-		  }); 
-		  
-		  // 自動車の保有の「保有している2台目」押下時に発動
-		  $('#rdo2stCarHoyu').click(function() {	   
-			// 自動車の保有の「購入を予定している2台目」押下時にチェックが入っている場合
-			if($("#rdo2stCarHoyu").prop('checked')) {		
-				　　// 活性
-		    	 // $('#parkingUseDate2').imuiCalendar('enable');// 自動車の利用開始日 2台目カレンダー
-		    	 // $('#carExpirationDate2').imuiCalendar('enable');
-		      }
-		  }); 	
-		  
-		  // 自動車の保有の「購入を予定している2台目」押下時に発動
-		  $('#rdo2stCarYotei').click(function() {	 	   
-			// 自動車の保有の「購入を予定している2台目」押下時にチェックが入っている場合
-			if($("#rdo2stCarYotei").prop('checked')) {		
-				　　// 活性
-		    	 // $('#parkingUseDate2').imuiCalendar('enable');// 自動車の利用開始日 2台目カレンダー
-		    	  //非活性
-		    	//  $('#carExpirationDate2').imuiCalendar('disable');// 自動社の有効期間満了日 2台目カレンダー
-		      }
-		  }); 	
-		  	  
+		  		  		  			  	  
 		  // 現保有の社宅の「退居する」押下時に発動
 		  $('#rdoNowHoyuShatakuTaikyo').click(function() {	 	   
 			// 退居する
@@ -1159,16 +1105,6 @@
 		      }
 		  }); 
 	
-		  //  現保有の社宅の「継続利用する」押下時に発動
-		  $('#rdoNowHoyuShatakuKeizoku').click(function() {	 	   
-			// 継続利用する
-			if($("#rdoNowHoyuShatakuKeizoku").prop('checked')) {		
-				　　// 活性
-		    	  $('#taikyoYoteiDate').imuiCalendar('disable');//退居予定日カレンダー
-		    		//表示
-		    		$('#lblShatakuFuyouMsg').hide();
-		      }
-		  });
 		})(jQuery);
 	
 	//ラジオボタン以外の活性制御
@@ -1176,14 +1112,20 @@
 	var taiyoHituyoDynam = {
 			//社宅を必要としますか-必要とする
 			"1" : {
-				"enabled" : [ "nyukyoYoteiDate"]
+				"enabled" : [ "nyukyoYoteiDate"],
+	  			"disabled" : ["carName", "carNo", "carExpirationDate","carUser", "parkingUseDate",
+					          "carName2", "carNo2", "carExpirationDate2","carUser2", "parkingUseDate2"]
 			},
 		//社宅を必要としますか-必要としない
 			"0" : {
-	  			"disabled" : ["nyukyoYoteiDate"]
+	  			"disabled" : ["nyukyoYoteiDate",
+	  			              "carName", "carNo", "carExpirationDate","carUser", "parkingUseDate",
+					          "carName2", "carNo2", "carExpirationDate2","carUser2", "parkingUseDate2"]
 			},
 		//社宅を必要としますか-駐車場のみ
 			"2" : {
+				"enabled" : [ "carName", "carNo", "carExpirationDate","carUser", "parkingUseDate",
+					          "carName2", "carNo2", "carExpirationDate2","carUser2", "parkingUseDate2"],
 				"disabled" : ["nyukyoYoteiDate"]
 			}
 	}

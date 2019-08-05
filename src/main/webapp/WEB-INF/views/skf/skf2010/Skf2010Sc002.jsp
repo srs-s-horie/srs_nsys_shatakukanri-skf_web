@@ -83,7 +83,7 @@
    				<h2>コメント</h2>
 			</div>
 			<!-- 承認者から申請者へ-->
-			<imart:decision case="${form.commentDisplayLevel}" value=<%= CodeConstant.COMMENT_DISPLAY_LEVEL_2 %>)>
+			<imart:decision case="${form.commentDisplayLevel}" value="<%= CodeConstant.COMMENT_DISPLAY_LEVEL_2 %>">
 				<table class="imui-form-search-condition">
 					<tr　style="width: 100%; max-width: 1000px;text-align:center;">
 						<th style="width: 200px; max-width: 200px;">
