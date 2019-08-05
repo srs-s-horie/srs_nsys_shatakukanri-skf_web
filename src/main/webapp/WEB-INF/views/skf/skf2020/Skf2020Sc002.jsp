@@ -342,9 +342,10 @@
 												<nfwui:LabelBox id="lblHeadNyukyoKiboDate" code="<%= MessageIdConstant.SKF2020_SC002_NYUKYO_KIBO_DATA %>" />
 											</th>
 											<td colspan="3">
-												<imui:textbox name="nyukyoYoteiDate" id="nyukyoYoteiDate" class="${form.nyukyoYoteiDateErr}" 
+												<nfwui:DateBox id="nyukyoYoteiDate" name="nyukyoYoteiDate" value="${f:h(form.nyukyoYoteiDate)}" tabindex="30" disabled="true"/>
+												<!--<imui:textbox name="nyukyoYoteiDate" id="nyukyoYoteiDate" class="${form.nyukyoYoteiDateErr}" 
 													value="${f:h(form.nyukyoYoteiDate)}" style="width:50%" disabled="true" tabindex="30"/>
-												<im:calendar altField="#nyukyoYoteiDate" floatable="true" disabled="${form.nyukyoYoteiDateClDisabled}"/>   	                                  	
+												<im:calendar altField="#nyukyoYoteiDate" floatable="true" disabled="${form.nyukyoYoteiDateClDisabled}"/> -->  	                                  	
 											</td>
 										</tr>
 										<!--  自動車の保管場所 -->  
@@ -405,9 +406,11 @@
 												<nfwui:LabelBox id="lblHead1stCarExpirationDate" code="<%= MessageIdConstant.SKF2020_SC002_1ST_CAR_EXCEPTION_DATA %>" />
 											</th>
 											<td colspan="3">
-												<imui:textbox name="carExpirationDate" id="carExpirationDate"  class="${form.carExpirationDateErr}" 
+												<nfwui:DateBox id="carExpirationDate" name="carExpirationDate" value="${f:h(form.carExpirationDate)}"
+													 tabindex="35" disabled="true"/>
+												<!--<imui:textbox name="carExpirationDate" id="carExpirationDate"  class="${form.carExpirationDateErr}" 
 													value="${f:h(form.carExpirationDate)}" style="width:50%" disabled="true" tabindex="35"/>
-												<im:calendar altField="#carExpirationDate" floatable="true" disabled="${form.carExpirationDateClDisabled}"/>	                                   
+												<im:calendar altField="#carExpirationDate" floatable="true" disabled="${form.carExpirationDateClDisabled}"/>-->	                                   
 											</td>
 										</tr>
 										<!-- 自動車の使用者 -->
@@ -426,9 +429,11 @@
 												<nfwui:LabelBox id="lblHead1stParkingUseDate" code="<%= MessageIdConstant.SKF2020_SC002_1ST_PARKING_USE_DATE %>" />
 											</th>
 											<td colspan="3">
-												<imui:textbox name="parkingUseDate" id="parkingUseDate" class="${form.parkingUseDateErr}" 
+												<nfwui:DateBox id="parkingUseDate" name="parkingUseDate" value="${f:h(form.parkingUseDate)}"
+													 tabindex="37" disabled="true"/>
+												<!--<imui:textbox name="parkingUseDate" id="parkingUseDate" class="${form.parkingUseDateErr}" 
 													value="${f:h(form.parkingUseDate)}" style="width:50%" disabled="true" tabindex="37"/>
-												<im:calendar altField="#parkingUseDate" floatable="true" disabled="${form.parkingUseDateClDisabled}"/>		                                   
+												<im:calendar altField="#parkingUseDate" floatable="true" disabled="${form.parkingUseDateClDisabled}"/>	-->	                                   
 											</td>
 										</tr>
 										<!-- ２台目 --> 
@@ -480,9 +485,11 @@
 												<nfwui:LabelBox id="lblHead2ndCarExpirationDate" code="<%= MessageIdConstant.SKF2020_SC002_2ST_CAR_EXCEPTION_DATA %>" />
 											</th>
 											<td colspan="2">
-												<imui:textbox name="carExpirationDate2" id="carExpirationDate2" class="${form.carExpirationDate2Err}"
+												<nfwui:DateBox id="carExpirationDate2" name="carExpirationDate2" value="${f:h(form.carExpirationDate2)}"
+													 tabindex="41" disabled="true"/>
+												<!--<imui:textbox name="carExpirationDate2" id="carExpirationDate2" class="${form.carExpirationDate2Err}"
 													value="${f:h(form.carExpirationDate2)}" style="width:85%" disabled="true" tabindex="41"/>
-												<im:calendar altField="#carExpirationDate2" floatable="true" disabled="${form.carExpirationDate2ClDisabled}"/> 	                                 
+												<im:calendar altField="#carExpirationDate2" floatable="true" disabled="${form.carExpirationDate2ClDisabled}"/> 	 -->                                
 											</td>
 										</tr>
 										<!-- 自動車の使用者 -->	
@@ -501,9 +508,11 @@
 												<nfwui:LabelBox id="lblHead2ndParkingUseDate" code="<%= MessageIdConstant.SKF2020_SC002_2ST_PARKING_USE_DATE %>" />
 											</th>
 											<td colspan="2">
-												<imui:textbox name="parkingUseDate2" id="parkingUseDate2" class="${form.parkingUseDate2Err}" 
+												<nfwui:DateBox id="parkingUseDate2" name="parkingUseDate2" value="${f:h(form.carExpirationDate2)}"
+													 tabindex="43" disabled="true"/>
+												<!--<imui:textbox name="parkingUseDate2" id="parkingUseDate2" class="${form.parkingUseDate2Err}" 
 													value="${f:h(form.parkingUseDate2)}" style="width:85%" disabled="true" tabindex="43"/>
-												<im:calendar altField="#parkingUseDate2" floatable="true" disabled="${form.parkingUseDate2ClDisabled}" />
+												<im:calendar altField="#parkingUseDate2" floatable="true" disabled="${form.parkingUseDate2ClDisabled}" />-->
 											</td>
 										</tr> 
 										<!-- 現居住宅 --> 
@@ -619,10 +628,12 @@
 											<nfwui:LabelBox id="lblHeadTaikyoYoteiDate" code="<%= MessageIdConstant.SKF2020_SC002_TAIKYO_YOTEI_DATE %>" />
 										</th>
 										<td colspan="2">
-										<imui:textbox name="taikyoYoteiDate" id="taikyoYoteiDate" 
+											<nfwui:DateBox id="taikyoYoteiDate" name="taikyoYoteiDate" value="${f:h(form.taikyoYoteiDate)}"
+											 	tabindex="48" disabled="true"/>	
+										<!--<imui:textbox name="taikyoYoteiDate" id="taikyoYoteiDate" 
 										  	class="${form.taikyoYoteiDateErr}" value="${f:h(form.taikyoYoteiDate)}" style="width:50%"  disabled="true" tabindex="48"/>
 										<im:calendar altField="#taikyoYoteiDate" floatable="true" disabled="${form.taikyoYoteiDateClDisabled}" 
-											onClose="onClose"/>
+											onClose="onClose"/>-->
 										</td>
 									</tr>
 									<!-- 社宅の状態 -->
@@ -678,9 +689,11 @@
 												<nfwui:LabelBox id="lblHeadReturnWitnessRequestDate" code="<%= MessageIdConstant.SKF2020_SC002_RETURN_WITNESS_REQUEST_DATE %>" />
 											</th>
 											<td colspan="3">
-												<imui:textbox name="sessionDay" id="sessionDay" class="${form.sessionDayErr}" 
+												<nfwui:DateBox id="sessionDay" name="sessionDay" value="${f:h(form.sessionDay)}"
+											 		tabindex="53" disabled="${form.sessionDayDisabled}"/>	
+												<!--<imui:textbox name="sessionDay" id="sessionDay" class="${form.sessionDayErr}" 
 													value="${f:h(form.sessionDay)}" style="width:150px"  disabled="${form.sessionDayDisabled}" tabindex="53" />
-												<im:calendar altField="#sessionDay" floatable="true" disabled="${form.sessionDayClDisabled}" onClose="onClose"/> 
+												<im:calendar altField="#sessionDay" floatable="true" disabled="${form.sessionDayClDisabled}" onClose="onClose"/> -->
 												<imui:select id="sessionTime" name="sessionTime" class="${form.sessionTimeErr}" 
 													list="${form.ddlReturnWitnessRequestDateList}" disabled="${form.sessionTimeDisabled}" tabindex="54" />			
 											</td>
@@ -745,11 +758,11 @@
 (function($) {	
 	//初期表示活性非活性制御
 	//非活性
-	$('#nyukyoYoteiDate').imuiCalendar('disable');// 入居希望日カレンダー
-	$('#carExpirationDate').imuiCalendar('disable');// 自動社の有効期間満了日 1台目カレンダー
-	$('#parkingUseDate').imuiCalendar('disable');// 自動車の使用開始日 1台目カレンダー
-	$('#carExpirationDate2').imuiCalendar('disable');// 自動社の有効期間満了日 2台目カレンダー
-	$('#parkingUseDate2').imuiCalendar('disable');// 自動車の使用開始日 2台目カレンダー
+	//$('#nyukyoYoteiDate').imuiCalendar('disable');// 入居希望日カレンダー
+	//$('#carExpirationDate').imuiCalendar('disable');// 自動社の有効期間満了日 1台目カレンダー
+	//$('#parkingUseDate').imuiCalendar('disable');// 自動車の使用開始日 1台目カレンダー
+	//$('#carExpirationDate2').imuiCalendar('disable');// 自動社の有効期間満了日 2台目カレンダー
+	//$('#parkingUseDate2').imuiCalendar('disable');// 自動車の使用開始日 2台目カレンダー
 
 	//非表示
 	//退居届を促すメッセージの設定
@@ -772,7 +785,7 @@
 				$('#rdoCarHitsuyo').prop('disabled', false);
 				$('#rdoCarFuyo').prop('disabled', false);
 				// 入居希望日カレンダー
-				$('#nyukyoYoteiDate').imuiCalendar('enable');
+				//$('#nyukyoYoteiDate').imuiCalendar('enable');
 				
 				//非活性
 				//社宅を必要としない理由
@@ -822,7 +835,7 @@
 				$('#rdoHitsuyoTanshin').prop('disabled', true);
 				$('#rdoHitsuyoDokushin').prop('disabled', true);
 				// 入居希望日カレンダー 
-				$('#nyukyoYoteiDate').imuiCalendar('disable');
+				//$('#nyukyoYoteiDate').imuiCalendar('disable');
 				//自動車の保管場所
 				$('#rdoCarHitsuyo').prop('disabled', true);
 				$('#rdo1stCarHoyu').prop('disabled', true);
@@ -832,13 +845,13 @@
 				$('#carNo').prop('disabled', true);
 				$('#carUser').prop('disabled', true);
 				$('#carName').prop('disabled', true);
-		    	$('#carExpirationDate').imuiCalendar('disable');// 自動社の有効期間満了日 2台目カレンダー
-		    	$('#parkingUseDate').imuiCalendar('disable');// 自動車の利用開始日 1台目カレンダー
+		    	//$('#carExpirationDate').imuiCalendar('disable');// 自動社の有効期間満了日 2台目カレンダー
+		    	//$('#parkingUseDate').imuiCalendar('disable');// 自動車の利用開始日 1台目カレンダー
 				$('#carNo2').prop('disabled', true);
 				$('#carUser2').prop('disabled', true);
 				$('#carName2').prop('disabled', true);
-		    	$('#carExpirationDate2').imuiCalendar('disable');// 自動社の有効期間満了日 2台目カレンダー
-		    	$('#parkingUseDate2').imuiCalendar('disable');// 自動車の利用開始日 1台目カレンダー
+		    	//$('#carExpirationDate2').imuiCalendar('disable');// 自動社の有効期間満了日 2台目カレンダー
+		    	//$('#parkingUseDate2').imuiCalendar('disable');// 自動車の利用開始日 1台目カレンダー
 
 				//チェック状態
 				//社宅を必要としない理由
@@ -877,13 +890,13 @@
 				$('#carNo').prop('disabled', false);
 				$('#carUser').prop('disabled', false);
 				$('#carName').prop('disabled', false);
-		    	$('#carExpirationDate').imuiCalendar('enable');// 自動社の有効期間満了日 2台目カレンダー
-		    	$('#parkingUseDate').imuiCalendar('enable');// 自動車の利用開始日 1台目カレンダー
+		    	//$('#carExpirationDate').imuiCalendar('enable');// 自動社の有効期間満了日 2台目カレンダー
+		    	//$('#parkingUseDate').imuiCalendar('enable');// 自動車の利用開始日 1台目カレンダー
 				$('#carNo2').prop('disabled', false);
 				$('#carUser2').prop('disabled', false);
 				$('#carName2').prop('disabled', false);
-		    	$('#carExpirationDate2').imuiCalendar('enable');// 自動社の有効期間満了日 2台目カレンダー
-		    	$('#parkingUseDate2').imuiCalendar('enable');// 自動車の利用開始日 1台目カレンダー
+		    	//$('#carExpirationDate2').imuiCalendar('enable');// 自動社の有効期間満了日 2台目カレンダー
+		    	//$('#parkingUseDate2').imuiCalendar('enable');// 自動車の利用開始日 1台目カレンダー
 				
 				
 				//非活性
@@ -895,7 +908,7 @@
 				$('#rdoFuyouJikokariage').prop('disabled', true);
 				$('#rdoFuyouSonota').prop('disabled', true);
 				// 入居希望日カレンダー 
-				$('#nyukyoYoteiDate').imuiCalendar('disable');
+				//$('#nyukyoYoteiDate').imuiCalendar('disable');
 				//必要とする社宅
 				$('#rdoKikon').prop('disabled', true);
 				$('#rdoHitsuyoSetai').prop('disabled', true);
@@ -1070,10 +1083,10 @@
 				$('#rdo1stCarYotei').prop('disabled', false);
 				$('#rdo2stCarHoyu').prop('disabled', false);
 				$('#rdo2stCarYotei').prop('disabled', false);
-		    	$('#carExpirationDate').imuiCalendar('enable');// 自動社の有効期間満了日 2台目カレンダー
-		    	$('#parkingUseDate').imuiCalendar('enable');// 自動車の利用開始日 1台目カレンダー
-		    	$('#carExpirationDate2').imuiCalendar('enable');// 自動社の有効期間満了日 2台目カレンダー
-		    	$('#parkingUseDate2').imuiCalendar('enable');// 自動車の利用開始日 1台目カレンダー
+		    	//$('#carExpirationDate').imuiCalendar('enable');// 自動社の有効期間満了日 2台目カレンダー
+		    	//$('#parkingUseDate').imuiCalendar('enable');// 自動車の利用開始日 1台目カレンダー
+		    	//$('#carExpirationDate2').imuiCalendar('enable');// 自動社の有効期間満了日 2台目カレンダー
+		    	//$('#parkingUseDate2').imuiCalendar('enable');// 自動車の利用開始日 1台目カレンダー
 		      }
 		  }); 
 		  
@@ -1086,10 +1099,10 @@
 				$('#rdo1stCarYotei').prop('disabled', true);
 				$('#rdo2stCarHoyu').prop('disabled', true);
 				$('#rdo2stCarYotei').prop('disabled', true);
-				$('#carExpirationDate').imuiCalendar('disable');// 自動社の有効期間満了日 1台目カレンダー
-				$('#parkingUseDate').imuiCalendar('disable');// 自動車の利用開始日 1台目カレンダー
-				$('#carExpirationDate2').imuiCalendar('disable');// 自動社の有効期間満了日 2台目カレンダー
-				$('#parkingUseDate2').imuiCalendar('disable');// 自動車の利用開始日 2台目カレンダー
+				//$('#carExpirationDate').imuiCalendar('disable');// 自動社の有効期間満了日 1台目カレンダー
+				//$('#parkingUseDate').imuiCalendar('disable');// 自動車の利用開始日 1台目カレンダー
+				//$('#carExpirationDate2').imuiCalendar('disable');// 自動社の有効期間満了日 2台目カレンダー
+				//$('#parkingUseDate2').imuiCalendar('disable');// 自動車の利用開始日 2台目カレンダー
 		      }
 		  }); 
 		  
@@ -1098,8 +1111,8 @@
 			// 自動車の保有の「保有している1台目」押下時にチェックが入っている場合
 			if($("#rdo1stCarHoyu").prop('checked')) {		
 				　　// 活性
-		    	  $('#carExpirationDate').imuiCalendar('enable');// 自動社の有効期間満了日 1台目カレンダー
-		    	  $('#parkingUseDate').imuiCalendar('enable');// 自動車の利用開始日 1台目カレンダー
+		    	  //$('#carExpirationDate').imuiCalendar('enable');// 自動社の有効期間満了日 1台目カレンダー
+		    	 // $('#parkingUseDate').imuiCalendar('enable');// 自動車の利用開始日 1台目カレンダー
 		      }
 		  });
 	
@@ -1108,9 +1121,9 @@
 			// 自動車の保有の「購入を予定している1台目」押下時にチェックが入っている場合
 			if($("#rdo1stCarYotei").prop('checked')) {		
 				　　// 活性
-		    	  $('#parkingUseDate').imuiCalendar('enable');// 自動車の利用開始日 1台目カレンダー
+		    	 // $('#parkingUseDate').imuiCalendar('enable');// 自動車の利用開始日 1台目カレンダー
 		    	  //非活性
-		    	  $('#carExpirationDate').imuiCalendar('disable');// 自動社の有効期間満了日 1台目カレンダー
+		    	//  $('#carExpirationDate').imuiCalendar('disable');// 自動社の有効期間満了日 1台目カレンダー
 		      }
 		  }); 
 		  
@@ -1119,8 +1132,8 @@
 			// 自動車の保有の「購入を予定している2台目」押下時にチェックが入っている場合
 			if($("#rdo2stCarHoyu").prop('checked')) {		
 				　　// 活性
-		    	  $('#parkingUseDate2').imuiCalendar('enable');// 自動車の利用開始日 2台目カレンダー
-		    	  $('#carExpirationDate2').imuiCalendar('enable');
+		    	 // $('#parkingUseDate2').imuiCalendar('enable');// 自動車の利用開始日 2台目カレンダー
+		    	 // $('#carExpirationDate2').imuiCalendar('enable');
 		      }
 		  }); 	
 		  
@@ -1129,9 +1142,9 @@
 			// 自動車の保有の「購入を予定している2台目」押下時にチェックが入っている場合
 			if($("#rdo2stCarYotei").prop('checked')) {		
 				　　// 活性
-		    	  $('#parkingUseDate2').imuiCalendar('enable');// 自動車の利用開始日 2台目カレンダー
+		    	 // $('#parkingUseDate2').imuiCalendar('enable');// 自動車の利用開始日 2台目カレンダー
 		    	  //非活性
-		    	  $('#carExpirationDate2').imuiCalendar('disable');// 自動社の有効期間満了日 2台目カレンダー
+		    	//  $('#carExpirationDate2').imuiCalendar('disable');// 自動社の有効期間満了日 2台目カレンダー
 		      }
 		  }); 	
 		  	  
@@ -1302,64 +1315,11 @@
 	}
 }
 </style>
-<!-- フッターエリア　ボタン -->
-<div class="imui-box-layout">
-	<table width="100%">
-		<tr>
-			<!-- 左エリア -->
-			<div class="btnLeft">
- 				<!-- 入力内容をクリア -->
-				<nfwui:ConfirmButton cssStyle="width:150px;" id="clearBtn" formId="form" value="入力内容をクリア" 
-					cssClass="imui-medium-button" title="<%= MessageIdConstant.SKF2020_SC002_CONFIRM_TITLE %>" 
-					message="<%= MessageIdConstant.I_SKF_2004 %>" 
-					url="skf/Skf2020Sc002/Clear"/>	
- 			</div>
-			<!-- 右エリア -->
- 			<div class="btnRight">
- 				<!-- 申請要件を確認 -->
-				<nfwui:Button cssStyle="width:150px;" id="download" name="download" value="申請要件を確認" 
-					formID="form" cssClass="imui-medium-button" url="skf/Skf2020Sc002/Download" />   	 
-				<!-- 一時保存 -->
-				<nfwui:Button cssStyle="width:150px;" id="saveBtn" formId="form" value="一時保存"
-					cssClass="imui-medium-button" disabled="${form.btnSaveDisabeld}"
-					url="skf/Skf2020Sc002/Save"/>
- 			</div>
- 		</tr>
- 		<tr>
- 			<!-- 左エリア -->
- 			<div class="btnLeft">
-				<!-- 前の画面へ -->
- 				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" />
-				<!-- コメントボタン -->
-				<c:if test="${form.commentViewFlag == 'true'}">
-				<nfwui:PopupButton id="commentPop" value="コメント表示" 
-				cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
-				modalMode="false" popupWidth="1350" popupHeight="550"
-				parameter="applNo:applNo"
-				screenUrl="skf/Skf2010Sc010/init" use="popup" />
-				</c:if>
- 			</div>
- 			<!-- 右エリア -->
- 			<div id="dCheck1" class="btnRight">
- 				<!-- 申請内容を確認 -->
- 				  <imui:button id="checkBtn" value="申請内容を確認" class="imui-medium-button" 
- 				  	style="width: 150px" onclick="checkConfrirm('no')"  disabled="${form.btnCheckDisabled}"/> 
- 			</div>
- 			<div id="dCheck2" class="btnRight">
- 				 <!-- 申請内容を確認 -->
- 				  <imui:button id="checkBtn" value="申請内容を確認" class="imui-medium-button" 
- 				  	style="width: 150px" onclick="checkConfrirm('yes')" disabled="${form.btnCheckDisabled}"/>
- 			</div>
- 		</tr>	
- 	</table>
-</div>
+
 <!-- フッターエリア  text/JavaSclipt -->
 <script src="scripts/skf/skfCommon.js"></script>
 <script type="text/javascript">
     
-	//申請要件確認（ダイアログ表示あり）を非表示にする
-	document.getElementById('dCheck2').style.display="none";
-
 	/**
 	 * ひとつ前の画面に戻る
 	 */
@@ -1559,6 +1519,19 @@
 		  }
     	return result;
     }
+	 
+	/**
+	 * 日付型変換
+	 * <p>
+	 * 文字列をスラッシュを除いて日付に変換		
+	 * </p>
+	 * 
+	 * return 選択された値
+	 */ 
+	function toDate (str, delim) {
+		  var arr = str.split(delim)
+		  return new Date(arr[0], arr[1] - 1, arr[2]);
+	};	
                
 	/**
 	 * 退居予定取得
@@ -1566,9 +1539,30 @@
 	 * ラジオボタンの選択された値を取得する
 	 * </p>
 	 * 
-	 * @param {string} dialogue 退居予定日と返却希望立会日の確認ダイアログ表示判定　yes:あり　no:なし
 	 */ 
-    function checkConfrirm(dialogue) {
+    function checkConfrirm() {	 
+		 
+		//退居予定日と返却希望立会日の確認ダイアログ表示判定　yes:あり　no:なし
+			var sTaikyoYoteiDate = $("#taikyoYoteiDate").val(); //退居予定日
+			var sSessionDay = $("#sessionDay").val(); //返却希望立会日
+			if(sTaikyoYoteiDate != "" && sSessionDay != ""){
+			//退居予定日と返却希望立会日が空白じゃない場合		
+				var dTaikyoYoteiDate = toDate(sTaikyoYoteiDate, '/');	//退居予定日
+				var dSessionDay = toDate(sSessionDay, '/');				//返却希望立会日
+				
+				if(dSessionDay.getTime() > dTaikyoYoteiDate.getTime()){
+					//申請内容確認ボタン（ダイアログあり）を表示
+					dialogue　= "yes"
+				}else{
+					//申請内容確認ボタン（ダイアログなし）を表示
+					dialogue　= "no"
+				}
+			}else{
+				//申請内容確認ボタン（ダイアログなし）を表示
+				dialogue　= "no"
+			}		
+		 
+		 		 
     	//入力チェック判定用の値設定を行う    	
 		var map = new Object();
  	
@@ -1654,68 +1648,50 @@
 				}						
 		});
     }
-
-	/**
-	 * 退居予定日と返却希望立会日の相関確認
-	 * <p>
-	 * 退居予定日と返却希望立会日のテキストボックスが変更された場合に実行
-	 * </p>
-	 * 
-	 */ 
-	(function($){
-		$("#taikyoYoteiDate","sessionDay").on('change', function() {
-		//値からスラッシュを除いて日付に
-		function toDate (str, delim) {
-			  var arr = str.split(delim)
-			  return new Date(arr[0], arr[1] - 1, arr[2]);
-		};			
-		var sTaikyoYoteiDate = $("#taikyoYoteiDate").val(); //退居予定日
-		var sSessionDay = $("#sessionDay").val(); //返却希望立会日
-		if(sTaikyoYoteiDate != "" && sSessionDay != ""){
-		//退居予定日と返却希望立会日が空白じゃない場合		
-			var dTaikyoYoteiDate = toDate(sTaikyoYoteiDate, '/');	//退居予定日
-			var dSessionDay = toDate(sSessionDay, '/');				//返却希望立会日
-			
-			if(dSessionDay.getTime() > dTaikyoYoteiDate.getTime()){
-				//申請内容確認ボタン（ダイアログあり）を表示
-				document.getElementById("dCheck1").style.display="none";
-				document.getElementById("dCheck2").style.display="block";
-			}else{
-				//申請内容確認ボタン（ダイアログなし）を表示
-				document.getElementById("dCheck1").style.display="block";
-				document.getElementById("dCheck2").style.display="none";
-			}
-		}else{
-			//申請内容確認ボタン（ダイアログなし）を表示
-			document.getElementById("dCheck1").style.display="block";
-			document.getElementById("dCheck2").style.display="none";
-		}		
-	});
-	
-//カレンダーアイコン閉じたとき時
-window.onClose = function(){
-		function toDate (str, delim) {
-			  var arr = str.split(delim)
-			  return new Date(arr[0], arr[1] - 1, arr[2]);
-		};	
-		var sTaikyoYoteiDate = $("#taikyoYoteiDate").val();
-		var sSessionDay = $("#sessionDay").val();	
-		if(sTaikyoYoteiDate != "" && sSessionDay != ""){
-			//退居予定日
-			var dTaikyoYoteiDate = toDate(sTaikyoYoteiDate, '/');
-			//備品返却
-			var dSessionDay = toDate(sSessionDay, '/');				
-			if(dSessionDay.getTime() > dTaikyoYoteiDate.getTime()){
-				document.getElementById("dCheck1").style.display="none";
-				document.getElementById("dCheck2").style.display="block";
-			}else{
-				document.getElementById("dCheck1").style.display="block";
-				document.getElementById("dCheck2").style.display="none";
-			}
-		}else{
-			document.getElementById("dCheck1").style.display="block";
-			document.getElementById("dCheck2").style.display="none";		
-		}	
-	};
-})(jQuery);
 </script>
+<!-- フッターエリア　ボタン -->
+<div class="imui-box-layout">
+	<table width="100%">
+		<tr>
+			<!-- 左エリア -->
+			<div class="btnLeft">
+ 				<!-- 入力内容をクリア -->
+				<nfwui:ConfirmButton cssStyle="width:150px;" id="clearBtn" formId="form" value="入力内容をクリア" 
+					cssClass="imui-medium-button" title="<%= MessageIdConstant.SKF2020_SC002_CONFIRM_TITLE %>" 
+					message="<%= MessageIdConstant.I_SKF_2004 %>" 
+					url="skf/Skf2020Sc002/Clear"/>	
+ 			</div>
+			<!-- 右エリア -->
+ 			<div class="btnRight">
+ 				<!-- 申請要件を確認 -->
+				<nfwui:Button cssStyle="width:150px;" id="download" name="download" value="申請要件を確認" 
+					formID="form" cssClass="imui-medium-button" url="skf/Skf2020Sc002/Download" />   	 
+				<!-- 一時保存 -->
+				<nfwui:Button cssStyle="width:150px;" id="saveBtn" formId="form" value="一時保存"
+					cssClass="imui-medium-button" disabled="${form.btnSaveDisabeld}"
+					url="skf/Skf2020Sc002/Save"/>
+ 			</div>
+ 		</tr>
+ 		<tr>
+ 			<!-- 左エリア -->
+ 			<div class="btnLeft">
+				<!-- 前の画面へ -->
+ 				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" />
+				<!-- コメントボタン -->
+				<c:if test="${form.commentViewFlag == 'true'}">
+				<nfwui:PopupButton id="commentPop" value="コメント表示" 
+				cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
+				modalMode="false" popupWidth="1350" popupHeight="550"
+				parameter="applNo:applNo"
+				screenUrl="skf/Skf2010Sc010/init" use="popup" />
+				</c:if>
+ 			</div>
+ 			<!-- 右エリア -->
+ 			<div id="dCheck1" class="btnRight">
+ 				<!-- 申請内容を確認 -->
+ 				  <imui:button id="checkBtn" value="申請内容を確認" class="imui-medium-button" 
+ 				  	style="width: 150px" onclick="checkConfrirm()"  disabled="${form.btnCheckDisabled}"/> 
+ 			</div>
+ 		</tr>	
+ 	</table>
+</div>
