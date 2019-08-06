@@ -89,7 +89,7 @@
                                             cssClass="imui-small-button" use="popup"
                                             screenUrl="skf/Skf2010Sc001/init"
                                             popupWidth="650" popupHeight="700"
-                                            modalMode="false" />
+                                            modalMode="false" tabindex="1" />
                                     </nobr>
                                     </th>
                                     <td style="width:120px;">
@@ -97,7 +97,7 @@
                                         <imui:textbox style="width:120px;" id="shainNo" name="shainNo" value="${f:h(form.shainNo)}" />
                                     </td>
                                     <td style="border:none;">
-                                        <nfwui:Button id="select" name="select" formId="form" value="選択する" cssClass="imui-small-button" url="skf/Skf2010Sc008/Select" />
+                                        <nfwui:Button id="select" name="select" formId="form" value="選択する" cssClass="imui-small-button" url="skf/Skf2010Sc008/Select" tabindex="2" />
                                        <!-- <nfwui:Button id="login" name="login" formId="form" value="テストログイン" cssClass="imui-small-button" url="skf/Skf2010Sc008/Login" />
                                         <nfwui:Button id="logout" name="logout" formId="form" value="テストログアウト" cssClass="imui-small-button" url="skf/Skf2010Sc008/Logout" /> -->
                                     </td>
@@ -111,7 +111,7 @@
                         <% //代行ログイン対象社員情報確認画面_表示領域※ %>
                         <div id="Skf2010Sc008_2">
                         <div class="imui-form-container-wide">
-                        <table class="imui-form-search-condition">
+                        <table class="imui-form-search-condition" id="alterLoginInfoTable">
                             <tbody>
                               <div class="imui-chapter-title">
                                   <h2>代行対象社員</h2>
@@ -119,7 +119,7 @@
                                   <tbody>
                                       <tr>
                                           <th style="width:130px;">
-                                              <label>社員番号</label>
+                                              <nfwui:LabelBox id="infoShainNo" code="<%= MessageIdConstant.SKF2010_SC008_SHAIN_NO %>" style="float:left" />
                                           </th>
                                           <td colspan="2">
                                               ${f:h(form.shainNo)}
@@ -128,7 +128,7 @@
                                       </tr>
                                       <tr>
                                           <th>
-                                              <label>社員氏名</label>
+                                              <nfwui:LabelBox id="infoShainName" code="<%= MessageIdConstant.SKF2010_SC008_SHAIN_NAME %>" style="float:left" />
                                           </th>
                                           <td colspan="2">
                                               ${f:h(form.shainName)}
@@ -136,7 +136,7 @@
                                       </tr>
                                       <tr>
                                           <th>
-                                              <label>機関</label>
+                                              <nfwui:LabelBox id="infoAgency" code="<%= MessageIdConstant.SKF2010_SC008_AGENCY %>" style="float:left" />
                                           </th>
                                           <td colspan="2">
                                               ${f:h(form.agencyName)}
@@ -144,7 +144,7 @@
                                       </tr>
                                       <tr>
                                           <th>
-                                              <label>部等</label>
+                                              <nfwui:LabelBox id="infoAffiliation1" code="<%= MessageIdConstant.SKF2010_SC008_AFFLIATION1 %>" style="float:left" />
                                           </th>
                                           <td colspan="2">
                                               ${f:h(form.affiliation1Name)}
@@ -152,7 +152,7 @@
                                       </tr>
                                       <tr>
                                           <th>
-                                              <label>室、チーム又は課</label>
+                                              <nfwui:LabelBox id="infoAffiliation2" code="<%= MessageIdConstant.SKF2010_SC008_AFFLIATION2 %>" style="float:left" />
                                           </th>
                                           <td colspan="2">
                                               ${f:h(form.affiliation2Name)}
@@ -166,12 +166,12 @@
                         	<nfwui:ConfirmButton id="login" value="代行ログイン" 
 							 formId="form"
 							 cssClass="imui-small-button" title="<%=MessageIdConstant.SKF2010_SC008_CONFIRM_TITLE %>" message="<%=MessageIdConstant.I_SKF_2059 %>"
-							 url="skf/Skf2010Sc008/Login" />
-                            <nfwui:Button id="cancel" formId="form" value="キャンセル" cssClass="imui-small-button" url="skf/Skf2010Sc008/Cancel" />
+							 url="skf/Skf2010Sc008/Login" tabindex="3" />
+                            <nfwui:Button id="cancel" formId="form" value="キャンセル" cssClass="imui-small-button" url="skf/Skf2010Sc008/Cancel" tabindex="4" />
                         </div>
                         <% //ログイン後画面表示領域 %>
                         <div class="align-L" id="logoutButton">   
-                            <nfwui:Button id="logout" formId="form" value="代行ログアウト" cssClass="imui-small-button" url="skf/Skf2010Sc008/Logout" />
+                            <nfwui:Button id="logout" formId="form" value="代行ログアウト" cssClass="imui-small-button" url="skf/Skf2010Sc008/Logout" tabindex="5" />
                         </div>
                         </div>
                         </div>
@@ -184,18 +184,11 @@
                         <div class="imui-chapter-title" style="margin-bottom: 10px;">
                             <h2>操作ガイド</h2>
                         </div>
-                        <div>
                         <div style="overflow-y:scroll;height:99%">
-                            <span style="font-size: 100%; heigth:90%;">
-                            
-■社員番号には、社員番号（8桁の半角数字）を入力してください。<br/><br/>
-◆<span style="font-weight: bold;color:green;">「支援」</span>をクリックすると、社員検索画面を表示します。<br/><br/>
-◆<span style="font-weight: bold;color:green;">「選択する」</span>をクリックすると、入力した社員番号の社員情報を表示します。<br/><br/>
-◆<span style="font-weight: bold;color:green;">「代行ログイン」</span>をクリックすると、選択した社員番号の社員としてログインします。<br/><br/>
-◆<span style="font-weight: bold;color:green;">「キャンセル」</span>をクリックすると、選択した社員情報をクリアします。<br/><br/>
-◆<span style="font-weight: bold;color:green;">「代行ログアウト」</span>をクリックすると、代行ログインした社員のログアウトをします。<br/><br/>
-◆<span style="font-weight: bold;color:green;">「メニューへ」</span>をクリックすると、代行ログインした状態でメインメニューに戻ります。<br/><br/>
+                            <span style="font-size: 100%; heigth:90%;">      
+                        ${form.operationGuide}
                             </span>
+                        </div>
                         </div>
                       </table>
                     </td>
