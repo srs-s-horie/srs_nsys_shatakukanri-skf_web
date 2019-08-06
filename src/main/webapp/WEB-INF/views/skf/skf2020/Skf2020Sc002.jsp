@@ -777,8 +777,13 @@
 				//自動車の保管場所
 				$('#rdoCarHitsuyo').prop('disabled', false);
 				$('#rdoCarFuyo').prop('disabled', false);
-
 				
+				if($("#rdoNowJutakuHoyu").prop('checked')){
+					//現居住宅が保有の場合現保有の社宅を活性化
+					$('#rdoNowHoyuShatakuTaikyo').prop('disabled', false);
+					$('#rdoNowHoyuShatakuKeizoku').prop('disabled', false);
+				}
+		
 				//非活性
 				//社宅を必要としない理由
 				$('#rdoFuyouJitakutsuukinn').prop('disabled', true);
@@ -795,7 +800,6 @@
 				$('#rdoFuyouJitakutsuukinn').prop('checked', false);
 				$('#rdoFuyouJikokariage').prop('checked', false);
 				$('#rdoFuyouSonota').prop('checked', false);
-
 				//自動車の保管場所
 				$('#rdoCarHitsuyo').prop('checked', false);
 				$("#rdoCarFuyo").prop('checked',false)
@@ -803,7 +807,10 @@
 				$('#rdo1stCarYotei').prop('checked', false);
 				$('#rdo2stCarHoyu').prop('checked', false);
 				$('#rdo2stCarYotei').prop('checked', false);
-				
+				//現保有の社宅
+				$('#rdoNowHoyuShatakuTaikyo').prop('checked', false);
+				$('#rdoNowHoyuShatakuKeizoku').prop('checked', false);
+							
 	    		//表示（現社宅情報）
 				$('#shatakuStatus').show();
 				$('#taikyoRiyuInfo').show();
@@ -811,7 +818,7 @@
 				$('#returnEquipment').show();
 				$('#returnWitnessRequestDate').show();
 	  			$('#trRenrakuSaki').show();
-	    		//非表示（社宅不要時のメッセージ）
+	    		//非表示（「社宅を「必要としない」場合は、別途「社宅（自動車保管場所）退居届」を申請してください。」)）
 	    		$('#lblShatakuFuyouMsg').hide();
 			}
 		});
@@ -840,13 +847,17 @@
 				$('#rdoHitsuyoSetai').prop('disabled', true);
 				$('#rdoHitsuyoTanshin').prop('disabled', true);
 				$('#rdoHitsuyoDokushin').prop('disabled', true);
-
 				//自動車の保管場所
 				$('#rdoCarHitsuyo').prop('disabled', true);
 				$('#rdo1stCarHoyu').prop('disabled', true);
 				$('#rdo1stCarYotei').prop('disabled', true);
 				$('#rdo2stCarHoyu').prop('disabled', true);
 				$('#rdo2stCarYotei').prop('disabled', true);
+				if($("#rdoNowJutakuHoyu").prop('checked')){
+					//現居住宅が保有の場合現保有の社宅を活性化
+					$('#rdoNowHoyuShatakuTaikyo').prop('disabled', false);
+					$('#rdoNowHoyuShatakuKeizoku').prop('disabled', false);
+				}
 
 				//チェック状態
 				//社宅を必要としない理由
@@ -866,7 +877,10 @@
 				$('#rdo1stCarYotei').prop('checked', false);
 				$('#rdo2stCarHoyu').prop('checked', false);
 				$('#rdo2stCarYotei').prop('checked', false);
-	    		//表示（社宅不要時のメッセージ）
+				// 現在の社宅
+				$('#rdoNowHoyuShatakuTaikyo').prop('checked', false);
+				$('#rdoNowHoyuShatakuKeizoku').prop('checked', false);
+	    		//表示（（「社宅を「必要としない」場合は、別途「社宅（自動車保管場所）退居届」を申請してください。」)）
 	    		$("#rdoCarFuyo").prop('checked',true)
 	    		$('#lblShatakuFuyouMsg').show();
 	    		//非表示（現社宅情報）
@@ -920,7 +934,8 @@
 				$('#rdo1stCarYotei').prop('checked', false);
 				$('#rdo2stCarHoyu').prop('checked', false);
 				$('#rdo2stCarYotei').prop('checked', false);
-				// 現在の社宅継続利用
+				// 現在の社宅
+				$('#rdoNowHoyuShatakuTaikyo').prop('checked', false);
 				$('#rdoNowHoyuShatakuKeizoku').prop('checked', true);
 				//必要とする社宅
 				$('#rdoKikon').prop('checked', false);
@@ -935,7 +950,7 @@
 				$('#returnEquipment').show();
 				$('#returnWitnessRequestDate').show();
 				$('#trRenrakuSaki').show();
-				//非表示（社宅不要時のメッセージ）
+				//非表示（（「社宅を「必要としない」場合は、別途「社宅（自動車保管場所）退居届」を申請してください。」)）
 	    		$('#lblShatakuFuyouMsg').hide();
 		     }
 		 });
@@ -1114,19 +1129,22 @@
 			"1" : {
 				"enabled" : [ "nyukyoYoteiDate"],
 	  			"disabled" : ["carName", "carNo", "carExpirationDate","carUser", "parkingUseDate",
-					          "carName2", "carNo2", "carExpirationDate2","carUser2", "parkingUseDate2"]
+					          "carName2", "carNo2", "carExpirationDate2","carUser2", "parkingUseDate2",
+					          "taikyoYoteiDate","shatakuJyotai","taikyoRiyuKbn", "taikyogoRenrakuSaki"] 
 			},
 		//社宅を必要としますか-必要としない
 			"0" : {
 	  			"disabled" : ["nyukyoYoteiDate",
 	  			              "carName", "carNo", "carExpirationDate","carUser", "parkingUseDate",
-					          "carName2", "carNo2", "carExpirationDate2","carUser2", "parkingUseDate2"]
+					          "carName2", "carNo2", "carExpirationDate2","carUser2", "parkingUseDate2",
+					          "taikyoYoteiDate"]
 			},
 		//社宅を必要としますか-駐車場のみ
 			"2" : {
 				"enabled" : [ "carName", "carNo", "carExpirationDate","carUser", "parkingUseDate",
 					          "carName2", "carNo2", "carExpirationDate2","carUser2", "parkingUseDate2"],
-				"disabled" : ["nyukyoYoteiDate"]
+				"disabled" : ["nyukyoYoteiDate","taikyoYoteiDate","shatakuJyotai", 
+				              "taikyoRiyuKbn", "taikyogoRenrakuSaki"]
 			}
 	}
 
