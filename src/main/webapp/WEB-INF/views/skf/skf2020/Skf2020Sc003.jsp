@@ -27,6 +27,10 @@
     input {
        background-color: rgb(255, 255, 255);
     }
+    
+    table#dokyoList td {
+    	height: 20px;
+    } 
 </style>
 
 <script type="text/javascript">
@@ -194,7 +198,7 @@ $(function() {
                                 </tr>
                                 
                                 <tr>
-                                    <th rowspan="3"><nfwui:LabelBox id="lblApplcant" code="<%= MessageIdConstant.SKF2020_SC003_APPLICANT %>" /></th>
+                                    <th rowspan="4"><nfwui:LabelBox id="lblApplcant" code="<%= MessageIdConstant.SKF2020_SC003_APPLICANT %>" /></th>
                                     <th colspan="2"><nfwui:LabelBox id="lblShainNo" code="<%= MessageIdConstant.SKF2020_SC003_SHAIN_NO %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.shainNo)}
@@ -210,6 +214,12 @@ $(function() {
                                     <th colspan="2"><nfwui:LabelBox id="lblTokyu" code="<%= MessageIdConstant.SKF2020_SC003_TOKYU %>" /></th>
                                     <td colspan="2">
                                        ${f:h(form.tokyu)}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th colspan="2"><nfwui:LabelBox id="lblGender" code="<%= MessageIdConstant.SKF2020_SC003_GENDER %>" /></th>
+                                    <td colspan="2">
+                                       ${f:h(form.gender)}
                                     </td>
                                 </tr>
                                 
@@ -290,7 +300,7 @@ $(function() {
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblDokyoKazoku" code="<%= MessageIdConstant.SKF2020_SC003_DOKYO_KAZOKU %>" /></th>
                                     <td colspan="2">
-                                        <table class="imui-form-search-condition" style="width:100%;">
+                                        <table class="imui-form-search-condition" id="dokyoList" style="width:100%;">
                                             <tbody>
                                                 <tr>
                                                     <th><nfwui:LabelBox id="lblDokyoRelation" code="<%= MessageIdConstant.SKF2020_SC003_DOKYO_RELATION %>" /></th>
@@ -408,7 +418,7 @@ $(function() {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><nfwui:LabelBox id="lblCarExceptionDate" code="<%= MessageIdConstant.SKF2020_SC003_DOKYO_KAZOKU %>" /></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblCarExceptionDate" code="<%= MessageIdConstant.SKF2020_SC003_CAR_EXCEPTION_DATE %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.carExpirationDate)}
                                     </td>
@@ -431,8 +441,8 @@ $(function() {
                                     <th colspan="2"><nfwui:LabelBox id="lblCarFlag2" code="<%= MessageIdConstant.SKF2020_SC003_CAR_FLAG %>" /></th>
                                     <td>
                                     <nfwui:RadioButtonGroup id="carNoInputFlg2">
-                                      <nfwui:RadioButton id="carNoInputFlgHoyu" name="carNoInputFlg2" value="<%= CodeConstant.CAR_HOYU %>" label="保有している" />
-                                      <nfwui:RadioButton id="carNoInputFlgNotHoyu" name="carNoInputFlg2" value="<%= CodeConstant.CAR_YOTEI %>" label="購入を予定している" />
+                                      <nfwui:RadioButton id="carNoInputFlgHoyu2" name="carNoInputFlg2" value="<%= CodeConstant.CAR_HOYU %>" label="保有している" />
+                                      <nfwui:RadioButton id="carNoInputFlgNotHoyu2" name="carNoInputFlg2" value="<%= CodeConstant.CAR_YOTEI %>" label="購入を予定している" />
                                     </nfwui:RadioButtonGroup>
                                     </td>
                                 </tr>
@@ -449,7 +459,7 @@ $(function() {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><nfwui:LabelBox id="lblCarExceptionDate2" code="<%= MessageIdConstant.SKF2020_SC003_DOKYO_KAZOKU %>" /></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblCarExceptionDate2" code="<%= MessageIdConstant.SKF2020_SC003_CAR_EXCEPTION_DATE %>" /></th>
                                     <td>
                                       ${f:h(form.carExpirationDate2)}
                                     </td>
@@ -481,8 +491,7 @@ $(function() {
                                 </tr>
                                 <tr>
                                     <th colspan="2"><nfwui:LabelBox id="lblNowShatakuName" code="<%= MessageIdConstant.SKF2020_SC003_NOW_SHATAKU_NAME %>" /></th>
-                                    <td>
-                                    　　　　　　　　　　　　　　　　　　　　${f:h(form.nowShatakuName)}
+                                    <td>${f:h(form.nowShatakuName)}
                                     </td>
                                 </tr>
                                 <tr>
@@ -796,8 +805,8 @@ $(function() {
                                     <th colspan="2"><label></label></th>
                                     <td colspan="2">
                                     <nfwui:RadioButtonGroup id="bihinKibo">
-                                      <nfwui:RadioButton id="bihinKiboKano" name="bihinKibo" value="<%= CodeConstant.BIHIN_KIBO_SHINSEI_HITSUYO %>" label="可" />
-                                      <nfwui:RadioButton id="bihinKiboFukano" name="bihinKibo" value="<%= CodeConstant.BIHIN_KIBO_SHINSEI_FUYO %>" label="不可" />
+                                      <nfwui:RadioButton id="bihinKiboKano" name="bihinKibo" value="<%= CodeConstant.BIHIN_KIBO_SHINSEI_HITSUYO %>" label="可" disabledPatterns="TeijiNG" />
+                                      <nfwui:RadioButton id="bihinKiboFukano" name="bihinKibo" value="<%= CodeConstant.BIHIN_KIBO_SHINSEI_FUYO %>" label="不可" disabledPatterns="TeijiNG" />
                                     </nfwui:RadioButtonGroup>
                                     </td>
                                 </tr>
@@ -971,7 +980,7 @@ $(function() {
            use="popup" popupWidth="750" popupHeight="600"
            parameter="applNo:applNo,applId:applId" modalMode="false" 
            screenUrl="skf/Skf2010Sc009/init" formId="form" />
-      <nfwui:ConfirmButton id="remaindBtn" name="remaindBtn" value="差戻し"
+      <nfwui:ConfirmButton id="remandBtn" name="remandBtn" value="差戻し"
        cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
        title="<%= MessageIdConstant.SKF2020_SC003_CONFIRM_TITLE %>"
        message="<%= MessageIdConstant.SKF2020_SC003_REMAND_MSG %>"
