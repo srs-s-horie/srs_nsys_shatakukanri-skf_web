@@ -10,416 +10,314 @@
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
+
+<script src="scripts/skf/skfCommon.js"></script>
 
 <%-- コンテンツエリア --%>
-<style type="text/css">
-
-</style>
-
-<!-- コンテンツエリア:モックのまま -->
-<!-- 以下ツールバー -->
-<div class="imui-toolbar-wrap">
-    <div class="imui-toolbar-inner">
-        <!-- ツールバー左側 -->
-        <ul class="imui-list-toolbar">
-            <!-- 戻る -->
-            <li><a class="imui-toolbar-icon" title="戻る" tabindex="23"
-                onclick="back1()" href="javascript:void(0);"><span
-                    class="im-ui-icon-common-16-back"></span></a></li>
-                    
-        </ul>
-        <!-- ツールバー右側 -->
-        <ul class="imui-list-box-toolbar-utility">
-                					<li>
-						<a onclick="back()" class="imui-toolbar-icon" tabindex="16">
-							<span class="im-ui-icon-common-16-home"></span>
-							社宅TOP
-						</a>
-					</li>
-            <li><a class="imui-toolbar-icon" title="最新情報"  tabindex="22"><span
-                    class="im-ui-icon-common-16-refresh"
-                    onclick="refresh()"></span></a></li>
-        </ul>
-    </div>
-</div>
-<script type="text/javascript">
-    /**
-     * 一つ前の画面へ戻る
-     */
-    function back1() {
-        showConfirm(W_GFK_0002, function() {
-            history.back()
-        });
-    }
-
-			/**
-			* メニュー画面へ遷移する。
-			*/
-			function back() {
-				showConfirm(W_GFK_0007, function() {
-					$.StandardPost("../common/top.html");
-				});
-			}
-</script>
-
-<!-- <div class="alertDiv imui-box-warning" style="padding: 15px;margin-top: 10px;text-align:left;" id="errMainDiv"> -->
-<!-- <div class="alert-errorIcon alert" style="margin:0;padding:0;margin-right:10px;"> -->
-<!-- </div>  -->
-<!-- </div> -->
-
-<!-- コンテンツエリア -->
-<div class="imui-form-container-wide" width="1350px" style="width: 100%; max-width: 1350px;">
-<table align="center">
-    <tr>
-        <td>
-            <div>
-                <table class="imui-form-search-condition" width="100%" style="border: none;" >
-                    <td class="imui-form-container-wide" style="width: 650p; border: none;background-color: #fdfdff;" >
-                     <div class="imui-form-container-wide" style="width: 650px;height:300px;">
-                       <div class="imui-chapter-title" style="margin-bottom: 1px;" >
-                            <h2>検索条件</h2>
-                        </div>
-                            <form id="form" class="target_form mt-10" action="" method="POST">
-                                <table class="imui-form-search-condition">
-                                    <tr>
-                                        <th style="width: 120px;">
-                                            <label>提示日</label>
-                                        </th>
-                                        <td colspan="2">
-                                            <input type="text" name="cal001" id="cal001" value="9999/99/99"/>&nbsp;～&nbsp;&nbsp;<input type="text" name="cal002" id="cal002" value="9999/99/99"/>
-                                        </td>
-                                    </tr>
-                    
-                                    <tr>
-                                        <th style="width: 120px;">
-                                            <label>提示対象者名<div class="align-R float-R"><input class="imui-small-button check" type="button" value="支援"></div></input></label>
-                                            
-                                        </th>
-                                        <td style="width: 180px;" colspan="2">
-                                        <input placeholder="例 中日本　一郎"></input>
-                                        </td>
-                                    </tr>   
-
-                                    <tr>
-                                        <th style="width: 120px;">
-                                            <label>借上社宅名</label>
-                                            
-                                        </th>
-                                        <td style="width: 180px;" colspan="2">
-                                        <input placeholder="例 厚木宿舎"></input>
-                                        </td>
-                                    </tr>   
-
-                                    <tr>
-                                        <th style="width: 120px;">
-                                            <label>社宅所在地</label>
-                                            
-                                        </th>
-                                        <td style="width: 180px;" colspan="2">
-                                        <input placeholder="例 神奈川県厚木市恩名"></input>
-                                        </td>
-                                    </tr>   
-
-                                    <tr>
-                                        <th style="width: 120px;"　rowspan="2">
-                                            <label>提示状況&nbsp;&nbsp;
-                                            </label>
-
-                                            
-                                        </th>
-                                        <td style="width: 180px;" colspan="2">
-                                            <table>
-                                                <tr style="height: 25px;">
-                                                    <td>
-                                                        <INPUT checked type="checkbox">確認依頼&nbsp;&nbsp;
-                                                    </td>
-                                                    <td>
-                                                        <INPUT checked type="checkbox">選択済&nbsp;&nbsp;
-                                                    </td>
-                                                    <td>
-                                                        <INPUT checked type="checkbox">選択しない&nbsp;&nbsp;
-                                                    </td>
-                                                    <td>
-                                                        <INPUT type="checkbox">完了
-                                                    </td>
-
-                                                </tr>
-                                        
-                                            </table>
-                                        </td>
-                                    </tr>   
-                                </table>
-                            </form>
-        
-        
-                         <div class="align-L">	
-                             <input tabindex="19" name="imui-8euruuk15dn9qtq" id="submit0" type="button" value="検索" class="imui-medium-button" >
-                         </div>
-                         </div>
-                         
-                         
-    <!-- カレンダー出力用スクリプト -->
-    <script type="text/javascript">
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal001").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal002").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal003").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal004").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal005").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal006").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal007").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal008").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);      
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal009").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-    </script>
-
-            <td style="width: 45%; border: none;background-color: #fdfdff;">
-                <div class="imui-form-container-wide" width="100%" style="width: 600px;height:300px;">
-                <div style="overflow-y:scroll;max-height:300px;height:300px">
-                    <table >
-                        <div class="imui-chapter-title" style="margin-bottom: 10px;">
-                            <h2>操作ガイド</h2>
-                        </div>
-
-                            <tr>
-                                <td>
-                                    完了：
-                                </td>
-                                <td width="74%" valign="top" align="left">
-                                    チェックした借上候補物件提示結果を一括完了できます。<br/>
-                                    確認依頼中の借上候補物件提示内容は一括完了対象外です。
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    提示状況：
-                                </td>
-                                <td>
-                                    借上候補物件提示内容の現在の状態を表します。
-                                </td>
-                            </tr>
-                        
-                            <tr>
-                                <td>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;" >確認依頼：</span>
-                                </td>
-                                <td>
-                                    提示対象者に借上候補物件情報を提示している申請書類です。
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;" >選択済：</span>
-                                </td>
-                                <td>
-                                    提示対象者が提示内容の借上候補物件を選択した申請書類です。
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;" >選択しない：</span>
-                                </td>
-                                <td>
-                                    提示対象者が提示内容の借上候補物件を選択しなかった申請書類です。
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:green;" >完了：</span>
-                                </td>
-                                <td>
-                                    借上候補物件の提示業務が完了した申請書類です。
-                                </td>
-                            </tr>
-                        
-                            <tr>
-                                <td>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;color:green;">「再提示」：</span>
-                                </td>
-                                <td>
-                                    借上候補物件の提示内容変更等で再度提示が必要な場合は再提示を行います。<br/>
-                                    <span style="font-weight: bold;color:green;">「再提示」</span>をクリックすると、借上候補物件登録画面に遷移します。
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;color:green;">「確認」：</span>
-                                </td>
-                                <td>
-                                    借上候補物件の提示内容の確認を行います。<br/>
-                                    <span style="font-weight: bold;color:green;">「確認」</span>をクリックすると、借上候補物件提示確認画面に遷移します。
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;color:green;">「新規提示」：</span>
-                                </td>
-                                <td>
-                                    新規に借上候補物件の提示を行います。
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;color:green;">「一括完了」：</span>
-                                </td>
-                                <td>
-                                    「完了」がチェックされている申請書類を一括完了します。
-                                </td>
-                            </tr>
-
-                        </div>
-                    </table>
-                </div>  
-
-            </td>
-</table>
-</div>
-
-</div>
 
 <script type="text/javascript">
   (function($){
-    $.imui.util.loadCSS("../../ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
+    // 画面表示時に定義される処理
+    $(document).ready(function(){
+
+    });
+  
+    // 「新規提示」ボタン押下時のイベント
+    onClickNewCandidate = function () {
+        nfw.common.submitForm("form", "skf/Skf2060Sc001/Init");
+    }
+
+    // 「督促メール送信」ボタン押下時のイベント
+    onClickSendMail = function () {
+        // チェックされた督促チェックボックスの値を配列として取得
+     var checkedReminderBoxMap = $("[name=reminderChkVal]:checked").map(function() {
+         return $(this).val();
+     }).get();
+        
+     // 選択項目が無い場合
+        if( checkedCompBoxMap.length <= 0 ){
+            nfw.common.showReserveMessage("warning", "メール送付対象を選択してください。");
+            return false;
+        }
+
+        // TODO メッセージConstから取得
+        skf.common.confirmPopup("督促メールを送信します。よろしいですか？", 
+                "確認", "form", "skf/Skf2060Sc004/SendMail", 
+                "OK", "キャンセル", this, false);
+    }
+
+    // 「一括完了」ボタン押下時のイベント
+    onClickBulkComplete = function () {
+      // TODO 現行にチェック有無判定がないため削除予定
+      // チェックされた完了チェックボックスの値を配列として取得
+//       var checkedCompBoxMap = $("[name=completeChkVal]:checked").map(function() {
+//         return $(this).val();
+//       }).get();
+      
+//       // 選択項目が無い場合
+//         if( checkedCompBoxMap.length <= 0 ){
+//             nfw.common.showReserveMessage("warning", "選択してください。");
+//             return false;
+//         }
+
+        // TODO メッセージConstから取得
+        skf.common.confirmPopup("選択された申請書を一括で承認します。よろしいですか？", 
+                "確認", "form", "skf/Skf2060Sc004/BulkComplete", 
+                "OK", "キャンセル", this, false);
+    }
+    
+    // リストテーブルクリック時のイベント
+    onCellSelect = function(rowId, iCol, cellContent, e) {
+        if ($(cellContent).hasClass('im-ui-icon-common-16-update')) {
+          // 再提示押下時
+          onClickRecandidate(rowId);
+        }else if ($(cellContent).hasClass('im-ui-icon-menu-24-document')){
+          // 確認押下時
+          onClickConfirm(rowId);
+        }
+    }
+    
+    // 選択行から遷移先画面に渡すパラメータ情報を取得する
+    getGridRowData = function(rowId){
+      var grid = $("#mainList");
+        var rowData = grid.getRowData(rowId);
+        
+        $("#paramUserCd").val(rowData.candidatePersonNo);
+        $("#paramUserName").val(rowData.candidatePersonName);
+        $("#paramApplNo").val(rowData.applNo);
+        $("#paramApplId").val(rowData.applId);
+        $("#paramApplStatusCd").val(rowData.applStatusCd);
+    }
+    
+    // 再提示押下時の処理
+    onClickRecandidate = function(rowId){
+      getGridRowData(rowId);
+        
+        var nextPageUrl = "skf/Skf2060Sc001/Recandidate";
+        $("#paramForm").attr("action", nextPageUrl);
+        
+        nfw.common.submitForm("paramForm", nextPageUrl);
+    }
+    
+    // 確認押下時の処理
+    onClickConfirm = function(rowId){
+      getGridRowData(rowId);
+      
+      var nextPageUrl = "skf/Skf2060Sc003/Init";
+      $("#paramForm").attr("action", nextPageUrl);
+      
+      nfw.common.submitForm("paramForm", nextPageUrl);
+    }
+    
+    // リストテーブルの申請状況の文字色変更
+    onCellAttr = function(rowId,val,rawObject,cm,rdata){
+        var style;
+        switch (val) {
+        case '完了':
+            style = 'style="color:green;"';
+            break;
+        default:
+            style = 'style="color:blue;"';
+        break;
+        }
+        return style;
+    }
+    
+    // 社員選択支援ポップアップ コールバック関数
+    shainInfoCallback = function(param){
+        if( param != null && typeof param == 'object' && param.name != null){
+            $("#candidatePersonName").val(param.name);
+        }
+    }
+    
+    //ウィンドウリサイズ時イベント
+    $(window).bind('resize', function(){
+        // 一覧の横幅を変更（90%）
+        $('#mainList').setGridWidth($(window).width() * 0.9);
+    }).trigger('resize');
+
+    
   })(jQuery);
 </script>
 
+<!-- カレンダー出力用スクリプト -->
+<script type="text/javascript">
+  (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal001").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
+  (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal002").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
+  (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal003").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
+  (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal004").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
+  (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal005").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
+  (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal006").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
+  (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal007").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
+  (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal008").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);      
+  (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal009").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
+</script>
 
+<!-- コンテンツエリア -->
+<div>
+<nfwui:Form id="form" name="form" modelAttribute="form">
+    <div class="imui-form-container-wide">
+        <table class="imui-form-search-condition" width="100%" style="border: none;" >
+            <td style="width: 45%; border: none;" >
+                <div>
+                    <nfwui:Title id="searchTitle" code="<%= MessageIdConstant.SKF2060_SC004_SEARCH_TITLE %>" titleLevel="2" />
+                    <table class="imui-form-search-condition">
+                        <tr>
+                            <th style="width: 200px;">
+                                <nfwui:LabelBox id="candidateDate" code="<%= MessageIdConstant.SKF2060_SC004_CANDIDATE_DATE %>" />
+                            </th>
+                            <td colspan="2">
+                                <imui:textbox  type="text" name="candidateDateFrom" id="candidateDateFrom" value="${form.candidateDateFrom}" style="width:100px" />
+                                &nbsp;～&nbsp;
+                                <imui:textbox  type="text" name="candidateDateTo" id="candidateDateTo" value="${form.candidateDateTo}" style="width:100px" />
+                            </td>
+                        </tr>
+                        <im:calendar floatable="true" altField="#candidateDateFrom" />
+                        <im:calendar floatable="true" altField="#candidateDateTo" />
+                        <tr>
+                            <th style="width: 200px;">
+                                <div style="float:right" >
+                                    <nfwui:PopupButton id="support" name="support" value="支援"
+                                        cssClass="imui-small-button" use="popup"
+                                        screenUrl="skf/Skf2010Sc001/init"
+                                        popupWidth="650" popupHeight="700"
+                                        modalMode="false" />
+                                </div>
+                                <nfwui:LabelBox id="personName" code="<%= MessageIdConstant.SKF2060_SC004_CANDIDATE_PERSON_NAME %>"/>
+                                &nbsp;&nbsp;
+                                
+                            </th>
+                            <td colspan="2">
+                                <input name="candidatePersonName" id="candidatePersonName" placeholder="例 中日本　一郎"
+                                       value="${form.candidatePersonName}"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="width: 200px;">
+                                <nfwui:LabelBox id="shatakuName" code="<%= MessageIdConstant.SKF2060_SC004_SHATAKU_NAME %>" />
+                            </th>
+                            <td colspan="2">
+                                <input name="shatakuName" id="shatakuName" placeholder="例 厚木宿舎" value="${form.shatakuName}"></input>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th style="width: 200px;">
+                                <nfwui:LabelBox id="shatakuAddressName" code="<%= MessageIdConstant.SKF2060_SC004_SHATAKU_ADDRESS_NAME %>"/>
+                            </th>
+                            <td colspan="2">
+                                <input name="shatakuAddressName" id="shatakuAddressName" placeholder="例 神奈川県厚木市恩名"></input>
+                            </td>
+                        </tr>   
+
+                        <tr>
+                            <th style="width: 200px;"　rowspan="2">
+                                <nfwui:LabelBox id="candidateStatus" code="<%= MessageIdConstant.SKF2060_SC004_CANDIDATE_STATUS %>" />
+                            </th>
+                            <td colspan="2">
+                                <nfwui:CheckBoxGroupTag id="candidateStatus">
+                                <table>
+                                    <tr style="height: 25px;">
+                                        <td>
+                                            <nfwui:CheckBox id="candidateStatus01" name="candidateStatus"
+                                                value="<%= CodeConstant.STATUS_KAKUNIN_IRAI %>" label="確認依頼" />
+                                        </td>
+                                        <td>
+                                            <nfwui:CheckBox id="candidateStatus02" name="candidateStatus"
+                                                value="<%= CodeConstant.STATUS_SENTAKU_ZUMI %>" label="選択済" />
+                                        </td>
+                                        <td>
+                                            <nfwui:CheckBox id="candidateStatus03" name="candidateStatus"
+                                                value="<%= CodeConstant.STATUS_SENTAKU_SHINAI %>" label="選択しない" />
+                                        </td>
+                                        <td>
+                                            <nfwui:CheckBox id="candidateStatus04" name="candidateStatus"
+                                                value="<%= CodeConstant.STATUS_KANRYOU %>" label="完了" />
+                                        </td>
+                                    </tr>
+                                </table>
+                                </nfwui:CheckBoxGroupTag>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="align-L">
+                        <nfwui:Button id="search" name="search" value="検索" cssClass="imui-small-button" 
+                            url="skf/Skf2060Sc004/search" formId="form" tabindex="8" />
+                    </div>
+                </div>
+                <!-- 操作ガイド -->
+                <td style="width: 45%; border: none;background-color: #fdfdff;">
+                    <div style="overflow-y:scroll; max-height:300px; height:300px; margin-left: 20px; background-color:#eeeeee;">
+                        <nfwui:Title id="lblControlGuide" code="<%= MessageIdConstant.SKF2060_SC004_OPERATION_GUIDE %>" titleLevel="2" />
+                        <div style="margin-left: 20px;">
+                            ${form.operationGuide}
+                        </div>
+                    </div>  
+                </td>
+            </td>
+        </table>
+    </div>
 </div>
 
 <!-- テーブル一覧箇所 -->
-<div class="imui-form-container" width="1300px" style="width: 100%; max-width: 1300px;">
-<!-- 明細＆細目未満 -->
-  <!-- 明細部 -->
-  <form id="sampleList1">
-    <div class="imui-chapter-title" width="1300px" style="width:1300px; max-width:1300px;"><h2>検索結果一覧</h2></div>
-        <script type="text/javascript">
-  (function($){
-    $.imui.util.loadCSS("ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
-  })(jQuery);
-</script>
-
-<table name="imui-8eqlrzst4hv6std" id="sampleListTable1"></table>
-
-<div id="sampleListTable1-pager"></div>
-
-<script type="text/javascript">
-  (function() {
-    function imuiListTable() {
-
-      var grid = jQuery('#sampleListTable1');
-										var parameter = {
-											"multiselect":false,
-											"pager":"#sampleListTable1-pager",
-											"colNames":[
-												"",
-												"完了",
-												"督促 ",
-												"提示状況",
-												"提示日",
-												"社員番号",
-												"提示対象者",
-												"借上社宅名",
-												"社宅所在地",
-												"備考",
-												"再提示",
-												"確認",
-											],
-											"datatype":"local",
-											"errorCell":function(xhr) { imuiShowErrorMessage($(xhr.responseText).find('dt').text()); },
-											"rowNum":10,
-											"width":"1300",
-											"shrinkToFit":"false",
-											"cellsubmit":"clientArray",
-											"loadonce":true,
-											"colModel":[
-{"hidden":true,"name":"id","key":true}
-,{"name":"A001","width":"030","align":"center"}<!-- 完了 -->
-,{"name":"A012","width":"050","align":"center"}<!-- 督促 -->
-,{"name":"A002","width":"060","align":"center"}<!-- 提示状況 -->
-,{"name":"A003","width":"065","align":"center"}<!-- 提示日 -->
-,{"name":"A004","width":"060","align":"center"}<!-- 社員番号 -->
-,{"name":"A005","width":"120","align":"left"}  <!-- 申提示対象者 -->
-,{"name":"A006","width":"255","align":"left"}<!-- 借上社宅名 -->
-,{"name":"A007","width":"300","align":"left"}<!-- 社宅所在地 -->
-,{"name":"A008","width":"125","align":"left"}<!-- 備考 -->
-,{"name":"A010","width":"075","align":"center"}<!-- 再提示 -->
-,{"name":"A011","width":"075","align":"center"}<!-- 確認 -->
-											],
-											"rownumbers":true,
-											"height":"232"
-										};
-										parameter.data = [
-											{
-"A001":"<INPUT type='checkbox'>",
-"A012":"<INPUT type='checkbox'>",
-"A002":"<font style='color:blue'>選択済</font>",
-"A003":"2018/11/14",
-"A004":"01707424",
-"A005":"中日本 0001",
-"A006":"みずほ台1",
-"A007":"東京都〇〇市△△△",
-"A008":"××××××××",
-"A010":"<a hidden>再提示</a><input type='button' value='再提示' class='imui-small-button' onclick=\"location.href='../../skf/Skf2060_Sc001/init'\">",
-"A011":"<a hidden>確認</a><input type='button' value='確認' class='imui-small-button' onclick=\"location.href='../../skf/Skf2060_Sc003/init'\">",
-												"id":1
-											},
-											{
-"A001":"<INPUT type='checkbox'>",
-"A012":"<INPUT type='checkbox'>",
-"A002":"<font style='color:blue'>確認依頼</font>",
-"A003":"2018/11/14",
-"A004":"01112233",
-"A005":"中日本 0002",
-"A006":"",
-"A007":"",
-"A008":"",
-"A010":"",
-"A011":"<a hidden>確認</a><input type='button' value='確認' class='imui-small-button' onclick=\"location.href='../../skf/Skf2060_Sc003/init'\">",
-												"id":2
-											}
-										];
-
-      grid.jqGrid(parameter);
-
-      grid.jqGrid('navGrid','#sampleListTable1-pager',{
-        edit: false,
-        add: false,
-        del: false,
-        search: false
-      });
-
-      var gboxGridId     = 'gbox_sampleListTable1';
-      var gboxGrid       = jQuery('#' + gboxGridId);
-      var parentWidthOld = Number.MIN_VALUE;
-    }
-
-    (function($) {
-      $(document).ready(function() {
-        imuiListTable();
-
-      });
-    })(jQuery);
-  })();
-</script>
-<br>
-  </form>
-        <div class="align-R">
-            <input tabindex="19" name="imui-8euruuk15dn9qtq" id="submit0" type="button" value="新規提示" class="imui-medium-button" onclick="location.href='../../skf/Skf2060_Sc001/init'">
-            
-            <input tabindex="19" name="imui-8euruuk15dn9qtq" id="submit0" type="button" value="督促メール送信" class="imui-medium-button" />
-            
-            <input tabindex="19" name="imui-8euruuk15dn9qtq" id="submit0" type="button" value="一括完了" class="imui-medium-button" />
-        </div>
-</div>
+<div class="imui-form-container-wide">
+    <nfwui:Title id="listTitle" code="<%= MessageIdConstant.SKF2060_SC004_SEARCH_RESULT %>" titleLevel="2" />
+    <nfwui:CheckBoxGroupTag id="completeChkVal">
+    <nfwui:CheckBoxGroupTag id="reminderChkVal">
+        <imui:listTable id="mainList" process="jssp" autoEncode="false" autoWidth="true" rowNumbers="true"
+            autoResize="true" onCellSelect="onCellSelect"
+            multiSelect="false" data="${form.listTableData}"
+            style="max-height: 1000px" 
+            height="232">
+            <pager rowNum="${form.listTableMaxRowCount}" />
+            <cols sortable="false">
+            <col name="applId" hidden="true" />
+            <col name="applNo" hidden="true" />
+            <col name="applStatusCd" hidden="true" />
+            <col name="completeChk" caption="完了" width="40" sortable="false" align="center" />
+            <col name="reminderChk" caption="督促" width="40" sortable="false" align="center" />
+            <col name="candidateStatus" caption="提示状況" width="80" sortable="false" onCellAttr="onCellAttr"/>
+            <col name="candidateDate" caption="提示日" width="80" sortable="false" />
+            <col name="candidatePersonNo" caption="社員番号" width="70" sortable="false" />
+            <col name="candidatePersonName" caption="提示対象者" width="120" sortable="false" />
+            <col name="shatakuName" caption="借上社宅名" sortable="false" />
+            <col name="shatakuAddress" caption="社宅所在地" sortable="false" />
+            <col name="biko" caption="備考" width="125" sortable="false" />
+            <col name="recandidate" caption="再提示" width="50" sortable="false" align="center" >
+                <showIcon iconClass="im-ui-icon-common-16-update" />
+            </col>
+            <col name="confirm" caption="確認" width="50" sortable="false" align="center" >
+                <showIcon iconClass="im-ui-icon-menu-24-document" />
+            </col>
+            </cols>
+        </imui:listTable>
+    </nfwui:CheckBoxGroupTag>
+    </nfwui:CheckBoxGroupTag>
+    
+    <br>
+    <div class="align-R">
+        <imui:button id="newCandidate" name="newCandidate" value="新規提示" class="imui-medium-button" onclick="onClickNewCandidate()" />
+        
+        <imui:button id="sendMail" name="sendMail" value="督促メール送信" class="imui-medium-button" onclick="onClickSendMail()" />
+        
+        <imui:button id="bulkComplete" name="bulkComplete" value="一括完了" class="imui-medium-button" onclick="onClickBulkComplete()" />
+    </div>
 </div>
 
  <br><br>
 
-</table>
+<!-- NFWUIフォーム終了位置 -->
+</nfwui:Form>
 
-<div class="align-R">
-     <!-- <input class="imui-medium-button check" type="button" value="CSV出力" style="width:150px;"  > -->
-</div> 
+<!-- 遷移先画面に渡すパラメータフォーム -->
+<nfwui:Form id="paramForm" name="paramForm" modelAttribute="form" secureToken="false">
+    <input type="hidden" id="paramUserCd" name="userCd" value="" />
+    <input type="hidden" id="paramUserName" name="userName" value="" />
+    <input type="hidden" id="paramApplNo" name="applNo" value="" />
+    <input type="hidden" id="paramApplId" name="applId" value="" />
+    <input type="hidden" id="paramApplStatus" name="applStatus" value="" />
+    <input type="hidden" name="backUrl" value="skf/Skf2060Sc004/init" />
+</nfwui:Form>
 
-
-
-</div>
 <!-- コンテンツエリア　ここまで -->
