@@ -9,10 +9,10 @@ import lombok.EqualsAndHashCode;
 @lombok.Data
 @EqualsAndHashCode(callSuper = true)
 public class Skf2060Sc004Form extends BaseForm {
-	
-	private static final long serialVersionUID = 5285848663756806913L;
+    
+    private static final long serialVersionUID = 5285848663756806913L;
 
-	   /**
+       /**
      * listTable用
      */
     private List<Map<String, Object>> listTableData;
@@ -21,7 +21,7 @@ public class Skf2060Sc004Form extends BaseForm {
     private String[] completeChkVal;
     // チェックされた督促チェックボックス値の配列
     private String[] reminderChkVal;
-    
+
     /**
      * 検索フォーム用
      */
@@ -38,4 +38,9 @@ public class Skf2060Sc004Form extends BaseForm {
     // 提示状況
     private String[] candidateStatus;
 
+    /**
+     * 操作ガイド
+     */
+    // 操作ガイド
+    private String operationGuide;
 }
