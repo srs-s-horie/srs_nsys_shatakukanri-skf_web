@@ -850,63 +850,63 @@ $(function() {
                                     <th colspan="3"><nfwui:LabelBox id="lblBihinWasher" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_WASHER %>" /></th>
                                     <td colspan="1"><label>${f:h(form.bihinState11)}</label></td>
                                     <td colspan="1">
-                                        <imui:select id="bihinWish11" name="bihinWish11" list="${form.ddBihinList11}"/>
+                                        <imui:select id="bihinWish11" name="bihinWish11" list="${form.ddBihinList11}" disabled="${form.bihinDisabled11}" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblBihinFreezer" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_FREEZER %>" /></th>
                                     <td colspan="1"><label>${f:h(form.bihinState12)}</label></td>
                                     <td colspan="1">
-                                        <imui:select id="bihinWish12" name="bihinWish12" list="${form.ddBihinList12}"/>
+                                        <imui:select id="bihinWish12" name="bihinWish12" list="${form.ddBihinList12}" disabled="${form.bihinDisabled12}"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblBihinOven" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_OVEN %>" /></th>
                                     <td colspan="1"><label>${f:h(form.bihinState13)}</label></td>
                                     <td colspan="1">
-                                        <imui:select id="bihinWish13" name="bihinWish13" list="${form.ddBihinList13}"/>
+                                        <imui:select id="bihinWish13" name="bihinWish13" list="${form.ddBihinList13}" disabled="${form.bihinDisabled13}"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblBihinCleaner" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_CLEANER %>" /></th>
                                     <td colspan="1"><label>${f:h(form.bihinState14)}</label></td>
                                     <td colspan="1">
-                                        <imui:select id="bihinWish14" name="bihinWish14" list="${form.ddBihinList14}"/>
+                                        <imui:select id="bihinWish14" name="bihinWish14" list="${form.ddBihinList14}" disabled="${form.bihinDisabled14}"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblBihinRiceCooker" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_RICE_COOKER %>" /></th>
                                     <td colspan="1"><label>${f:h(form.bihinState15)}</label></td>
                                     <td colspan="1">
-                                        <imui:select id="bihinWish15" name="bihinWish15" list="${form.ddBihinList15}"/>
+                                        <imui:select id="bihinWish15" name="bihinWish15" list="${form.ddBihinList15}" disabled="${form.bihinDisabled15}"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblBihinTv" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_TV %>" /></th>
                                     <td colspan="1"><label>${f:h(form.bihinState16)}</label></td>
                                     <td colspan="1">
-                                        <imui:select id="bihinWish16" name="bihinWish16" list="${form.ddBihinList16}"/>
+                                        <imui:select id="bihinWish16" name="bihinWish16" list="${form.ddBihinList16}" disabled="${form.bihinDisabled16}"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblBihinTvStands" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_TV_STANDS %>" /></th>
                                     <td colspan="1"><label>${f:h(form.bihinState18)}</label></td>
                                     <td colspan="1">
-                                        <imui:select id="bihinWish17" name="bihinWish17" list="${form.ddBihinList17}"/>
+                                        <imui:select id="bihinWish17" name="bihinWish17" list="${form.ddBihinList17}" disabled="${form.bihinDisabled17}"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblBihinKotatsh" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_KOTATSU %>" /></th>
                                     <td colspan="1"><label>${f:h(form.bihinState18)}</label></td>
                                     <td colspan="1">
-                                        <imui:select id="bihinWish18" name="bihinWish18" list="${form.ddBihinList18}"/>
+                                        <imui:select id="bihinWish18" name="bihinWish18" list="${form.ddBihinList18}" disabled="${form.bihinDisabled18}"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblBihinKickenCabinet" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_KICHEN_CABINET %>" /></th>
                                     <td colspan="1"><label>${f:h(form.bihinState19)}</label></td>
                                     <td colspan="1">
-                                        <imui:select id="bihinWish19" name="bihinWish19" list="${form.ddBihinList19}"/>
+                                        <imui:select id="bihinWish19" name="bihinWish19" list="${form.ddBihinList19}" disabled="${form.bihinDisabled19}"/>
                                     </td>
                                 </tr>
                             </tbody>

@@ -193,7 +193,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 			</div>
 			<br />
 			<div class="align-L float-L">	
-				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()"  />
+				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="5" />
 			</div>
 			<div class="align-R">
 				<nfwui:Form id="new" name="new" >
@@ -209,7 +209,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 					<input type="hidden" name="hdnLendKbn" id="hdnLendKbn" value="" />
 					<input type="hidden" name="updateFlag" id="updateFlag" value="0"/>
 					<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc004/init"/>
-				<nfwui:Button id="regist" code="<%=MessageIdConstant.SKF3010_SC004_BUTTON_NEW %>" cssClass="imui-medium-button" url="skf/Skf3010Sc005/init" formId="new"  tabindex="9"/>
+				<nfwui:Button id="regist" code="<%=MessageIdConstant.SKF3010_SC004_BUTTON_NEW %>" cssClass="imui-medium-button" cssStyle="width:150px;" url="skf/Skf3010Sc005/init" formId="new"  tabindex="6"/>
 				
 				</nfwui:Form>
 			</div>
