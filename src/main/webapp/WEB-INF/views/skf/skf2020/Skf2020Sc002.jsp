@@ -342,10 +342,7 @@
 												<nfwui:LabelBox id="lblHeadNyukyoKiboDate" code="<%= MessageIdConstant.SKF2020_SC002_NYUKYO_KIBO_DATA %>" />
 											</th>
 											<td colspan="3">
-												<nfwui:DateBox id="nyukyoYoteiDate" name="nyukyoYoteiDate" value="${f:h(form.nyukyoYoteiDate)}" tabindex="30" disabled="true"/>
-												<!--<imui:textbox name="nyukyoYoteiDate" id="nyukyoYoteiDate" class="${form.nyukyoYoteiDateErr}" 
-													value="${f:h(form.nyukyoYoteiDate)}" style="width:50%" disabled="true" tabindex="30"/>
-												<im:calendar altField="#nyukyoYoteiDate" floatable="true" disabled="${form.nyukyoYoteiDateClDisabled}"/> -->  	                                  	
+												<nfwui:DateBox id="nyukyoYoteiDate" name="nyukyoYoteiDate" value="${f:h(form.nyukyoYoteiDate)}" tabindex="30" disabled="true"/> 	                                  	
 											</td>
 										</tr>
 										<!--  自動車の保管場所 -->  
@@ -407,10 +404,7 @@
 											</th>
 											<td colspan="3">
 												<nfwui:DateBox id="carExpirationDate" name="carExpirationDate" value="${f:h(form.carExpirationDate)}"
-													 tabindex="35" disabled="true"/>
-												<!--<imui:textbox name="carExpirationDate" id="carExpirationDate"  class="${form.carExpirationDateErr}" 
-													value="${f:h(form.carExpirationDate)}" style="width:50%" disabled="true" tabindex="35"/>
-												<im:calendar altField="#carExpirationDate" floatable="true" disabled="${form.carExpirationDateClDisabled}"/>-->	                                   
+													 tabindex="35" disabled="true"/>                                   
 											</td>
 										</tr>
 										<!-- 自動車の使用者 -->
@@ -431,9 +425,6 @@
 											<td colspan="3">
 												<nfwui:DateBox id="parkingUseDate" name="parkingUseDate" value="${f:h(form.parkingUseDate)}"
 													 tabindex="37" disabled="true"/>
-												<!--<imui:textbox name="parkingUseDate" id="parkingUseDate" class="${form.parkingUseDateErr}" 
-													value="${f:h(form.parkingUseDate)}" style="width:50%" disabled="true" tabindex="37"/>
-												<im:calendar altField="#parkingUseDate" floatable="true" disabled="${form.parkingUseDateClDisabled}"/>	-->	                                   
 											</td>
 										</tr>
 										<!-- ２台目 --> 
@@ -487,9 +478,6 @@
 											<td colspan="2">
 												<nfwui:DateBox id="carExpirationDate2" name="carExpirationDate2" value="${f:h(form.carExpirationDate2)}"
 													 tabindex="41" disabled="true"/>
-												<!--<imui:textbox name="carExpirationDate2" id="carExpirationDate2" class="${form.carExpirationDate2Err}"
-													value="${f:h(form.carExpirationDate2)}" style="width:85%" disabled="true" tabindex="41"/>
-												<im:calendar altField="#carExpirationDate2" floatable="true" disabled="${form.carExpirationDate2ClDisabled}"/> 	 -->                                
 											</td>
 										</tr>
 										<!-- 自動車の使用者 -->	
@@ -510,9 +498,6 @@
 											<td colspan="2">
 												<nfwui:DateBox id="parkingUseDate2" name="parkingUseDate2" value="${f:h(form.carExpirationDate2)}"
 													 tabindex="43" disabled="true"/>
-												<!--<imui:textbox name="parkingUseDate2" id="parkingUseDate2" class="${form.parkingUseDate2Err}" 
-													value="${f:h(form.parkingUseDate2)}" style="width:85%" disabled="true" tabindex="43"/>
-												<im:calendar altField="#parkingUseDate2" floatable="true" disabled="${form.parkingUseDate2ClDisabled}" />-->
 											</td>
 										</tr> 
 										<!-- 現居住宅 --> 
@@ -600,8 +585,7 @@
 												<nfwui:LabelBox id="lblHead" code="<%= MessageIdConstant.SKF2020_SC002_TOKUSHU_JIJO %>" />
 											</th>
 											<td colspan="3">
-												<imui:textArea id="tokushuJijo" name="tokushuJijo" class="${form.tokushuJijoErr}"
-												 value="${f:h(form.tokushuJijo)}" tabindex="46" />
+												<imui:textArea id="tokushuJijo" name="tokushuJijo" value="${f:h(form.tokushuJijo)}" tabindex="46"/>
 											</td>
 										</tr>                            	
 									<!-- 現保有社宅 -->   
@@ -630,10 +614,6 @@
 										<td colspan="2">
 											<nfwui:DateBox id="taikyoYoteiDate" name="taikyoYoteiDate" value="${f:h(form.taikyoYoteiDate)}"
 											 	tabindex="48" disabled="true"/>	
-										<!--<imui:textbox name="taikyoYoteiDate" id="taikyoYoteiDate" 
-										  	class="${form.taikyoYoteiDateErr}" value="${f:h(form.taikyoYoteiDate)}" style="width:50%"  disabled="true" tabindex="48"/>
-										<im:calendar altField="#taikyoYoteiDate" floatable="true" disabled="${form.taikyoYoteiDateClDisabled}" 
-											onClose="onClose"/>-->
 										</td>
 									</tr>
 									<!-- 社宅の状態 -->
@@ -691,9 +671,6 @@
 											<td colspan="3">
 												<nfwui:DateBox id="sessionDay" name="sessionDay" value="${f:h(form.sessionDay)}"
 											 		tabindex="53" disabled="${form.sessionDayDisabled}"/>	
-												<!--<imui:textbox name="sessionDay" id="sessionDay" class="${form.sessionDayErr}" 
-													value="${f:h(form.sessionDay)}" style="width:150px"  disabled="${form.sessionDayDisabled}" tabindex="53" />
-												<im:calendar altField="#sessionDay" floatable="true" disabled="${form.sessionDayClDisabled}" onClose="onClose"/> -->
 												<imui:select id="sessionTime" name="sessionTime" class="${form.sessionTimeErr}" 
 													list="${form.ddlReturnWitnessRequestDateList}" disabled="${form.sessionTimeDisabled}" tabindex="54" />			
 											</td>
@@ -720,17 +697,23 @@
 					</td>     
 					<!-- ステータス -->
 					<input type="hidden" name="hdnShainNo" id="hdnShainNo" value="${form.shainNo}" />
-					<input type="hidden" name="hdnstatus" id="hdnstatus" value="${form.hdnstatus}" />					
+					<input type="hidden" name="hdnstatus" id="hdnstatus" value="${form.hdnstatus}" />	
+									
+					<input type="hidden" name="hdnShatakuKanriId" id="hdnShatakuKanriId" value="${form.shatakuKanriId}" />
 					<input type="hidden" name="hdnSelectedNowShatakuName" id="hdnSelectedNowShatakuName" value="${form.hdnSelectedNowShatakuName}" />
-					<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="${form.hdnShatakuKanriNo}"/>
-					<input type="hidden" name="hdnShatakuRoomKanriNo" id="hdnShatakuRoomKanriNo" value="${form.hdnShatakuRoomKanriNo}"/>
-					<input type="hidden" name="hdnNowShatakuKanriNo" id="hdnNowShatakuKanriNo" value="${form.hdnNowShatakuKanriNo}"/>
-					<input type="hidden" name="hdnNowShatakuRoomKanriNo" id="hdnNowShatakuRoomKanriNo" value="${form.hdnNowShatakuRoomKanriNo}"/>
-					<input type="hidden" name="hdnConfirmFlg" id="hdnConfirmFlg" value="${form.hdnConfirmFlg}" />
+					<input type="hidden" name="hdnNowShatakuNo" id="hdnNowShatakuNo" value="${form.hdnNowShatakuNo}" />
 					<input type="hidden" name="hdnShatakuKikakuKbn" id="hdnShatakuKikakuKbn" value="${form.hdnShatakuKikakuKbn}"/>
+					<input type="hidden" name="hdnNowShatakuMenseki" id="hdnNowShatakuMenseki" value="${form.hdnNowShatakuMenseki}"/>
 					<input type="hidden" name="hdnParking1stNumber" id="hdnParking1stNumber" value="${form.hdnParking1stNumber}"/>
-					<input type="hidden" name="hdnParking2ndNumber" id="hdnParking2ndNumber" value="${form.hdnParking2ndNumber}"/>
+					<input type="hidden" name="hdnParking1stPlace" id="hdnParking1stPlace" value="${form.hdnParking1stPlace}"/>
+					<input type="hidden" name="hdnParking2stNumber" id="hdnParking2stNumber" value="${form.hdnParking2stNumber}"/>
+					<input type="hidden" name="hdnParking2stPlace" id="hdnParking2stPlace" value="${form.hdnParking2stPlace}"/>					
+					<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="${form.hdnShatakuKanriNo}"/>
+					<input type="hidden" name="hdnNowShatakuKanriNo" id="hdnNowShatakuKanriNo" value="${form.hdnNowShatakuKanriNo}"/>
+					<input type="hidden" name="hdnShatakuRoomKanriNo" id="hdnShatakuRoomKanriNo" value="${form.hdnShatakuRoomKanriNo}"/>
+					<input type="hidden" name="hdnNowShatakuRoomKanriNo" id="hdnNowShatakuRoomKanriNo" value="${form.hdnNowShatakuRoomKanriNo}"/>
 					<input type="hidden" name="hdnBihinHenkyakuUmu" id="hdnBihinHenkyakuUmu" value="${form.hdnBihinHenkyakuUmu}"/>
+					<input type="hidden" name="hdnConfirmFlg" id="hdnConfirmFlg" value="${form.hdnConfirmFlg}" />
 					<input type="hidden" name="hdnApplHistroyApplDate" id="hdnApplHistroyApplDate" value="${form.hdnApplHistroyApplDate}" />
 					<!-- 右側の入力ガイドの部分 -->
 					<td style="width: 30%; border: none;background-color: #fdfdff;">
@@ -1005,13 +988,75 @@
 			var hShainNo = $('#hdnShainNo').val();	
 			map['shatakuKanriId'] = $('#nowShatakuName option:selected').val();	
 			map['shainNo'] = hShainNo;	
+			
+			map['taiyoHituyo'] = getRdoTaiyoHituyo();　//社宅を必要としますか？
+	    	map['hitsuyoRiyu'] = getRdoHitsuyoRiyu(); //社宅を必要とする理由
+			map['fuhitsuyoRiyu'] = getFuhitsuyoRiyu(); //社宅を必要としない理由
+			map['parkingUmu'] = getParkingUmu();			   	
+		
 			nfw.common.doAjaxAction("skf/Skf2020Sc002/ChangeDropDownAsync",map,true,function(data) {
+				//値の変更
 				document.getElementById('nowShatakuNo').innerHTML = data.nowShatakuNo;
 				document.getElementById('nowShatakuKikakuName').innerHTML = data.nowShatakuKikakuName;
 				document.getElementById('nowShatakuMenseki').innerHTML = data.nowShatakuMenseki;
 				document.getElementById('parking1stPlace').innerHTML = data.parking1stPlace;
 				document.getElementById('parking2stPlace').innerHTML = data.parking2stPlace;
-				document.getElementById('returnEquipments').innerHTML = data.returnEquipment;	
+				document.getElementById('returnEquipments').innerHTML = data.returnEquipment;
+				
+				//値の設定
+				document.getElementById("hdnShatakuKanriId").value = data.shatakuKanriId;
+				document.getElementById("hdnSelectedNowShatakuName").value = data.hdnSelectedNowShatakuName;
+				document.getElementById('hdnNowShatakuNo').value = data.hdnNowShatakuNo;
+				document.getElementById('hdnShatakuKikakuKbn').value = data.hdnShatakuKikakuKbn;
+				document.getElementById('hdnNowShatakuMenseki').value = data.hdnNowShatakuMenseki;
+				document.getElementById('hdnParking1stNumber').value = data.hdnParking1stNumber;
+				document.getElementById('hdnParking1stPlace').value = data.hdnParking1stPlace;		
+				document.getElementById('hdnParking2stNumber').value = data.hdnParking2stNumber;
+				document.getElementById('hdnParking2stPlace').value = data.hdnParking2stPlace;
+				document.getElementById('hdnShatakuKanriNo').value = data.hdnShatakuKanriNo;
+				document.getElementById('hdnNowShatakuKanriNo').value = data.hdnNowShatakuKanriNo;
+				document.getElementById('hdnShatakuRoomKanriNo').value = data.hdnShatakuRoomKanriNo;
+				document.getElementById('hdnNowShatakuRoomKanriNo').value = data.hdnNowShatakuRoomKanriNo;
+				document.getElementById('hdnBihinHenkyakuUmu').value = data.hdnBihinHenkyakuUmu;
+				
+				alert(document.getElementById('hdnShatakuKanriId').value);
+				alert(document.getElementById('hdnSelectedNowShatakuName').value);
+				alert(document.getElementById('hdnNowShatakuNo').value);
+				alert(document.getElementById('hdnShatakuKikakuKbn').value);
+				alert(document.getElementById('hdnNowShatakuMenseki').value);
+				alert(document.getElementById('hdnParking1stNumber').value);
+				alert(document.getElementById('hdnParking1stPlace').value);
+				alert(document.getElementById('hdnParking2stNumber').value);
+				alert(document.getElementById('hdnParking2stPlace').value);
+				alert(document.getElementById('hdnShatakuKanriNo').value);
+				alert(document.getElementById('hdnNowShatakuKanriNo').value);
+				alert(document.getElementById('hdnShatakuRoomKanriNo').value);
+				alert(document.getElementById('hdnNowShatakuRoomKanriNo').value);
+				alert(document.getElementById('hdnBihinHenkyakuUmu').value);
+				
+				//画面制御
+		    	var parkingFullFlg = data.parkingFullFlg;
+		    	var bihinHenkyakuUmu = data.hdnBihinHenkyakuUmu;
+		    	
+				if(parkingFullFlg=="1"){
+					//2台借りている場合は、駐車場のみを非活性			
+					$('#rdoParkingOnly').prop('disabled', true);		
+				}else{
+					$('#rdoParkingOnly').prop('disabled', false);		
+				}
+				
+				if(bihinHenkyakuUmu=="0"){
+					//貸与遺品がない場合は、備品返却項目を非活性			
+					$('#sessionDay').prop('disabled', true);
+					$('#sessionTime').prop('disabled', true);	
+					$('#renrakuSaki').prop('disabled', true);	
+				}else{
+					$('#sessionDay').prop('disabled', false);	
+					$('#sessionTime').prop('disabled', false);	
+					$('#renrakuSaki').prop('disabled', false);	
+				}
+				
+				
 			});
 		});
 		
@@ -1114,7 +1159,7 @@
 			// 退居する
 			if($("#rdoNowHoyuShatakuTaikyo").prop('checked')) {		
 				　　// 活性
-		    	  $("#taikyoYoteiDate").imuiCalendar('enable');//退居予定日カレンダー
+		    	 // $("#taikyoYoteiDate").imuiCalendar('enable');//退居予定日カレンダー
 		    		//非表示
 		    		$('#lblShatakuFuyouMsg').show();
 		      }
@@ -1122,146 +1167,161 @@
 	
 		})(jQuery);
 	
-	//ラジオボタン以外の活性制御
-	//社宅を必要としますか？
-	var taiyoHituyoDynam = {
-			//社宅を必要としますか-必要とする
-			"1" : {
-				"enabled" : [ "nyukyoYoteiDate"],
-	  			"disabled" : ["carName", "carNo", "carExpirationDate","carUser", "parkingUseDate",
-					          "carName2", "carNo2", "carExpirationDate2","carUser2", "parkingUseDate2",
-					          "taikyoYoteiDate","shatakuJyotai","taikyoRiyuKbn", "taikyogoRenrakuSaki"] 
-			},
-		//社宅を必要としますか-必要としない
-			"0" : {
-	  			"disabled" : ["nyukyoYoteiDate",
-	  			              "carName", "carNo", "carExpirationDate","carUser", "parkingUseDate",
-					          "carName2", "carNo2", "carExpirationDate2","carUser2", "parkingUseDate2",
-					          "taikyoYoteiDate"]
-			},
-		//社宅を必要としますか-駐車場のみ
-			"2" : {
-				"enabled" : [ "carName", "carNo", "carExpirationDate","carUser", "parkingUseDate",
-					          "carName2", "carNo2", "carExpirationDate2","carUser2", "parkingUseDate2"],
-				"disabled" : ["nyukyoYoteiDate","taikyoYoteiDate","shatakuJyotai", 
-				              "taikyoRiyuKbn", "taikyogoRenrakuSaki"]
-			}
-	}
-
-	
-	//社宅を必要とする理由
-	var hitsuyoRiyuDynam = {
-			"1" : {
-				//社宅を必要とする理由の「異動のため」にチェックが入っている場合
-				"enabled" : [ "agencyCd", "affiliation1Cd","affiliation2Cd","nyukyoYoteiDate" ]
-			},
-			"2" : {
-				// 社宅を必要とする理由の「結婚のため」押下時に発動
-				"disabled" : [ "agencyCd","affiliation1Cd","affiliation2Cd"]
-			},
-			"9" : {
-				// 社宅を必要とする理由の「その他」押下時に発動
-				"disabled" : [ "agencyCd","affiliation1Cd","affiliation2Cd"]
-			}
+		//ラジオボタン以外の活性制御
+		//社宅を必要としますか？
+		var taiyoHituyoDynam = {
+				//社宅を必要としますか-必要とする
+				"1" : {
+					"enabled" : [ "nyukyoYoteiDate"],
+		  			"disabled" : ["carName", "carNo", "carExpirationDate","carUser", "parkingUseDate",
+						          "carName2", "carNo2", "carExpirationDate2","carUser2", "parkingUseDate2",
+						          "taikyoYoteiDate","shatakuJyotai","taikyoRiyuKbn", "taikyogoRenrakuSaki"] 
+				},
+			//社宅を必要としますか-必要としない
+				"0" : {
+		  			"disabled" : ["agencyCd", "affiliation1Cd","affiliation2Cd",
+		  			              "nyukyoYoteiDate",
+		  			              "dokyoRelation1","dokyoName1","dokyoAge1",
+					              "dokyoRelation2","dokyoName2","dokyoAge2",
+					              "dokyoRelation3","dokyoName3","dokyoAge3",
+					              "dokyoRelation4","dokyoName4","dokyoAge4",
+					              "dokyoRelation5","dokyoName5","dokyoAge5",
+					              "dokyoRelation6","dokyoName6","dokyoAge6",
+		  			              "carName", "carNo", "carExpirationDate","carUser", "parkingUseDate",
+						          "carName2", "carNo2", "carExpirationDate2","carUser2", "parkingUseDate2",
+						          "taikyoYoteiDate"]
+				},
+			//社宅を必要としますか-駐車場のみ
+				"2" : {
+					"enabled" : [ "carName", "carNo", "carExpirationDate","carUser", "parkingUseDate",
+						          "carName2", "carNo2", "carExpirationDate2","carUser2", "parkingUseDate2"],
+					"disabled" : ["agencyCd", "affiliation1Cd","affiliation2Cd",
+		  			              "dokyoRelation1","dokyoName1","dokyoAge1",
+					              "dokyoRelation2","dokyoName2","dokyoAge2",
+					              "dokyoRelation3","dokyoName3","dokyoAge3",
+					              "dokyoRelation4","dokyoName4","dokyoAge4",
+					              "dokyoRelation5","dokyoName5","dokyoAge5",
+					              "dokyoRelation6","dokyoName6","dokyoAge6",
+					              "nyukyoYoteiDate",
+					              "taikyoYoteiDate","shatakuJyotai", 
+					              "taikyoRiyuKbn", "taikyogoRenrakuSaki"]
+				}
 		}
-	
-	//必要とする社宅
-	var hitsuyoShatakuDynam1 = {
-			"1" : {
-				// 必要とする社宅の「世帯」にチェックが入っている場合
-				"enabled" : [ "dokyoRelation1","dokyoName1","dokyoAge1",
-				              "dokyoRelation2","dokyoName2","dokyoAge2",
-				              "dokyoRelation3","dokyoName3","dokyoAge3",
-				              "dokyoRelation4","dokyoName4","dokyoAge4",
-				              "dokyoRelation5","dokyoName5","dokyoAge5",
-				              "dokyoRelation6","dokyoName6","dokyoAge6" ]
-			},
-			"2" : {
-				// 必要とする社宅の「単身」にチェックが入っている場合
-				"disabled" :  [	"dokyoRelation1","dokyoName1","dokyoAge1",
-								"dokyoRelation2","dokyoName2","dokyoAge2",
-								"dokyoRelation3","dokyoName3","dokyoAge3",
-								"dokyoRelation4","dokyoName4","dokyoAge4",
-								"dokyoRelation5","dokyoName5","dokyoAge5",
-								"dokyoRelation6","dokyoName6","dokyoAge6" ]
-			},				
-			"3" : {
-				// 必要とする社宅の「独身」にチェックが入っている場合
-				"disabled" :  [ "dokyoRelation1","dokyoName1","dokyoAge1",
-								"dokyoRelation2","dokyoName2","dokyoAge2",
-								"dokyoRelation3","dokyoName3","dokyoAge3",
-								"dokyoRelation4","dokyoName4","dokyoAge4",
-								"dokyoRelation5","dokyoName5","dokyoAge5",
-								"dokyoRelation6","dokyoName6","dokyoAge6" ]
+
+		
+		//社宅を必要とする理由
+		var hitsuyoRiyuDynam = {
+				"1" : {
+					//社宅を必要とする理由の「異動のため」にチェックが入っている場合
+					"enabled" : [ "agencyCd", "affiliation1Cd","affiliation2Cd"]
+				},
+				"2" : {
+					// 社宅を必要とする理由の「結婚のため」押下時に発動
+					"disabled" : [ "agencyCd","affiliation1Cd","affiliation2Cd"]
+				},
+				"9" : {
+					// 社宅を必要とする理由の「その他」押下時に発動
+					"disabled" : [ "agencyCd","affiliation1Cd","affiliation2Cd"]
+				}
 			}
+		
+		//必要とする社宅
+		var hitsuyoShatakuDynam1 = {
+				"1" : {
+					// 必要とする社宅の「世帯」にチェックが入っている場合
+					"enabled" : [ "dokyoRelation1","dokyoName1","dokyoAge1",
+					              "dokyoRelation2","dokyoName2","dokyoAge2",
+					              "dokyoRelation3","dokyoName3","dokyoAge3",
+					              "dokyoRelation4","dokyoName4","dokyoAge4",
+					              "dokyoRelation5","dokyoName5","dokyoAge5",
+					              "dokyoRelation6","dokyoName6","dokyoAge6" ]
+				},
+				"2" : {
+					// 必要とする社宅の「単身」にチェックが入っている場合
+					"disabled" :  [	"dokyoRelation1","dokyoName1","dokyoAge1",
+									"dokyoRelation2","dokyoName2","dokyoAge2",
+									"dokyoRelation3","dokyoName3","dokyoAge3",
+									"dokyoRelation4","dokyoName4","dokyoAge4",
+									"dokyoRelation5","dokyoName5","dokyoAge5",
+									"dokyoRelation6","dokyoName6","dokyoAge6" ]
+				},				
+				"3" : {
+					// 必要とする社宅の「独身」にチェックが入っている場合
+					"disabled" :  [ "dokyoRelation1","dokyoName1","dokyoAge1",
+									"dokyoRelation2","dokyoName2","dokyoAge2",
+									"dokyoRelation3","dokyoName3","dokyoAge3",
+									"dokyoRelation4","dokyoName4","dokyoAge4",
+									"dokyoRelation5","dokyoName5","dokyoAge5",
+									"dokyoRelation6","dokyoName6","dokyoAge6" ]
+				}
+			}
+			
+		//自動車の保管場所
+	  	var parkingUmuDynam = {	
+				"1" : {
+					// 自動車の保管場所の「必要とする」にチェックが入っている場合
+					"enabled" : ["carName", "carNo", "carExpirationDate","carUser", "parkingUseDate",
+					             "carName2", "carNo2", "carExpirationDate2","carUser2", "parkingUseDate2"]
+				},
+				"0" : {
+					// 自動車の保管場所の「必要としない」にチェックが入っている場合
+					"disabled" : ["carName", "carNo", "carExpirationDate","carUser", "parkingUseDate",
+					             "carName2", "carNo2", "carExpirationDate2","carUser2", "parkingUseDate2"]
+				}
+			}
+		
+		//1台目
+		var carNoInputFlgDynam = {
+				"0" : {
+					// 自動車の保有　「保有している1台目」押下時に発動
+					"enabled" : [ "carName", "carNo", "carExpirationDate","carUser", "parkingUseDate"]
+				},
+				"1" : {
+					// 自動車の保有　「購入を予定している1台目」押下時に発動
+					"enabled" : [ "carUser", "parkingUseDate"],
+					"disabled" : ["carName", "carNo", "carExpirationDate"]
+				}
+			}
+		
+		//2台目
+		var carNoInputFlg2Dynam = {
+				"0" : {
+					// 自動車の保有　「保有している2台目」押下時に発動
+					"enabled" : [ "carName2", "carNo2", "carExpirationDate2","carUser2", "parkingUseDate2"]
+				},
+				"1" : {
+					// 自動車の保有　「購入を予定している2台目」押下時に発動
+					"enabled" : [ "carUser2", "parkingUseDate2"],
+					"disabled" : ["carName2", "carNo2", "carExpirationDate2"]
+				}
+			}
+		
+		//現保有の社宅
+		var nowShatakuDynam = {
+				// 現保有の社宅　保有(会社借上を含む)にチェックがある場合
+				"1" : {
+						"enabled" : [ "rdoNowJutakuHoyu","nowShatakuName", 
+						              "rdoNowHoyuShatakuTaikyo","rdoNowHoyuShatakuKeizoku"]
+				}
 		}
 		
-	//自動車の保管場所
-  	var parkingUmuDynam = {	
+		//現保有社宅
+		var taikyoYoteiDynam = {
 			"1" : {
-				// 自動車の保管場所の「必要とする」にチェックが入っている場合
-				"enabled" : ["carName", "carNo", "carExpirationDate","carUser", "parkingUseDate",
-				             "carName2", "carNo2", "carExpirationDate2","carUser2", "parkingUseDate2"]
-			},
-			"0" : {
-				// 自動車の保管場所の「必要としない」にチェックが入っている場合
-				"disabled" : ["carName", "carNo", "carExpirationDate","carUser", "parkingUseDate",
-				             "carName2", "carNo2", "carExpirationDate2","carUser2", "parkingUseDate2"]
-			}
-		}
-	
-	//1台目
-	var carNoInputFlgDynam = {
-			"0" : {
-				// 自動車の保有　「保有している1台目」押下時に発動
-				"enabled" : [ "carName", "carNo", "carExpirationDate","carUser", "parkingUseDate"]
-			},
-			"1" : {
-				// 自動車の保有　「購入を予定している1台目」押下時に発動
-				"enabled" : [ "carUser", "parkingUseDate"],
-				"disabled" : ["carName", "carNo", "carExpirationDate"]
-			}
-		}
-	
-	//2台目
-	var carNoInputFlg2Dynam = {
-			"0" : {
-				// 自動車の保有　「保有している2台目」押下時に発動
-				"enabled" : [ "carName2", "carNo2", "carExpirationDate2","carUser2", "parkingUseDate2"]
-			},
-			"1" : {
-				// 自動車の保有　「購入を予定している2台目」押下時に発動
-				"enabled" : [ "carUser2", "parkingUseDate2"],
-				"disabled" : ["carName2", "carNo2", "carExpirationDate2"]
-			}
-		}
-	
-	//現保有の社宅
-	var nowShatakuDynam = {
-			// 現保有の社宅　保有(会社借上を含む)にチェックがある場合
-			"1" : {
-					"enabled" : [ "rdoNowJutakuHoyu","nowShatakuName", "tokushuJijo", 
-					              "rdoNowHoyuShatakuTaikyo","rdoNowHoyuShatakuKeizoku"]
+					// 退居する
+					"enabled" : [ "taikyoYoteiDate",
+					              "shatakuJyotai", 
+					              "taikyoRiyuKbn", 
+					              "taikyogoRenrakuSaki"]
+				},
+			"2" : {
+					// 継続利用する
+						"disabled" : [ "taikyoYoteiDate",
+						               "shatakuJyotai",
+						               "taikyoRiyuKbn","taikyoRiyu",
+						               "taikyogoRenrakuSaki"]
 			}
 	}
-	
-	//現保有社宅
-	var taikyoYoteiDynam = {
-		"1" : {
-				// 退居する
-				"enabled" : [ "taikyoYoteiDate",
-				              "shatakuJyotai", 
-				              "taikyoRiyuKbn", 
-				              "taikyogoRenrakuSaki"]
-			},
-		"2" : {
-				// 継続利用する
-					"disabled" : [ "taikyoYoteiDate",
-					               "shatakuJyotai",
-					               "taikyoRiyuKbn","taikyoRiyu",
-					               "taikyogoRenrakuSaki"]
-		}
-}
 </script>
 <!-- フッターエリア CSS-->
 <style type="text/css">
@@ -1580,6 +1640,7 @@
 		
 		map['taikyoYotei'] = getTaikyoYotei();
     	map['taikyoYoteiDate'] = $("#taikyoYoteiDate").val();
+		map['tokushuJijo'] =  $("#tokushuJijo").val();
 		map['shatakuJyotai'] = $("#shatakuJyotai").val();	
     	map['taikyoRiyuKbn'] = $("#taikyoRiyuKbn option:selected").val();
 		map['taikyoRiyu'] = $("#taikyoRiyu").val();
@@ -1590,7 +1651,9 @@
 		map['sessionDay'] = $("#sessionDay").val();	
     	map['sessionTime'] = $("#sessionTime option:selected").val();
 		map['renrakuSaki'] = $("#renrakuSaki").val();
-
+		
+		map['pageId'] = $("#hdnPageId").val();
+		
 		//入力チェック非同期処理呼び出し
 		nfw.common.doAjaxAction("skf/Skf2020Sc002/checkAsync",map,true,function(data) {
 		
@@ -1601,7 +1664,7 @@
 				if(dialogue=="yes"){
 		    	//退居予定日と返却希望立会日の確認ダイアログが必要な場合
 					//ダイアログ
-					skf.common.confirmPopup("返却立会希望日が退居予定日以降で入力されています。申請してもよろしいですか？", "申請書類を作成する確認", form ,url, "OK", "CANCEL",this);			
+					skf.common.confirmPopup("返却立会希望日が退居予定日以降で入力されています。申請してもよろしいですか？", "確認", form ,url, "OK", "CANCEL",this);			
 				}else if(dialogue=="no"){
 					//退居予定日と返却希望立会日の確認ダイアログが不要な場合
 					nfw.common.submitForm(form,url,"checkBtn");
