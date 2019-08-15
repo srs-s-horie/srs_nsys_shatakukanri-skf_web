@@ -734,13 +734,11 @@
 	</nfwui:Form>		
 </div>
 
-
 <!-- コンテンツエリア  text/JavaSclipt -->
 <script type="text/javascript">
 //項目表示設定
 (function($) {	
 	//初期表示活性非活性制御
-
 	//非表示
 	//退居届を促すメッセージの設定
 	$('#lblShatakuFuyouMsg').hide();
@@ -855,7 +853,7 @@
 				$('#rdoHitsuyoDokushin').prop('checked', false);
 				//自動車の保管場所
 				$('#rdoCarHitsuyo').prop('checked', false);
-				$("#rdoCarFuyo").prop('checked',false)
+	    		$("#rdoCarFuyo").prop('checked',true)
 				$('#rdo1stCarHoyu').prop('checked', false);
 				$('#rdo1stCarYotei').prop('checked', false);
 				$('#rdo2stCarHoyu').prop('checked', false);
@@ -864,7 +862,6 @@
 				$('#rdoNowHoyuShatakuTaikyo').prop('checked', false);
 				$('#rdoNowHoyuShatakuKeizoku').prop('checked', false);
 	    		//表示（（「社宅を「必要としない」場合は、別途「社宅（自動車保管場所）退居届」を申請してください。」)）
-	    		$("#rdoCarFuyo").prop('checked',true)
 	    		$('#lblShatakuFuyouMsg').show();
 	    		//非表示（現社宅情報）
 				$('#shatakuStatus').hide();
@@ -886,6 +883,7 @@
 				$('#rdo1stCarYotei').prop('disabled', false);
 				$('#rdo2stCarHoyu').prop('disabled', false);
 				$('#rdo2stCarYotei').prop('disabled', false);
+				$("#rdoNowHoyuShatakuKeizoku").prop('disabled', false)
 				
 				//非活性
 				//社宅を必要とする理由、しない理由
@@ -1004,8 +1002,8 @@
 				document.getElementById('returnEquipments').innerHTML = data.returnEquipment;
 				
 				//値の設定
-				document.getElementById("hdnShatakuKanriId").value = data.shatakuKanriId;
-				document.getElementById("hdnSelectedNowShatakuName").value = data.hdnSelectedNowShatakuName;
+				document.getElementById('hdnShatakuKanriId').value = data.shatakuKanriId;
+				document.getElementById('hdnSelectedNowShatakuName').value = data.hdnSelectedNowShatakuName;
 				document.getElementById('hdnNowShatakuNo').value = data.hdnNowShatakuNo;
 				document.getElementById('hdnShatakuKikakuKbn').value = data.hdnShatakuKikakuKbn;
 				document.getElementById('hdnNowShatakuMenseki').value = data.hdnNowShatakuMenseki;
@@ -1018,21 +1016,6 @@
 				document.getElementById('hdnShatakuRoomKanriNo').value = data.hdnShatakuRoomKanriNo;
 				document.getElementById('hdnNowShatakuRoomKanriNo').value = data.hdnNowShatakuRoomKanriNo;
 				document.getElementById('hdnBihinHenkyakuUmu').value = data.hdnBihinHenkyakuUmu;
-				
-				alert(document.getElementById('hdnShatakuKanriId').value);
-				alert(document.getElementById('hdnSelectedNowShatakuName').value);
-				alert(document.getElementById('hdnNowShatakuNo').value);
-				alert(document.getElementById('hdnShatakuKikakuKbn').value);
-				alert(document.getElementById('hdnNowShatakuMenseki').value);
-				alert(document.getElementById('hdnParking1stNumber').value);
-				alert(document.getElementById('hdnParking1stPlace').value);
-				alert(document.getElementById('hdnParking2stNumber').value);
-				alert(document.getElementById('hdnParking2stPlace').value);
-				alert(document.getElementById('hdnShatakuKanriNo').value);
-				alert(document.getElementById('hdnNowShatakuKanriNo').value);
-				alert(document.getElementById('hdnShatakuRoomKanriNo').value);
-				alert(document.getElementById('hdnNowShatakuRoomKanriNo').value);
-				alert(document.getElementById('hdnBihinHenkyakuUmu').value);
 				
 				//画面制御
 		    	var parkingFullFlg = data.parkingFullFlg;
@@ -1158,10 +1141,17 @@
 		  $('#rdoNowHoyuShatakuTaikyo').click(function() {	 	   
 			// 退居する
 			if($("#rdoNowHoyuShatakuTaikyo").prop('checked')) {		
-				　　// 活性
-		    	 // $("#taikyoYoteiDate").imuiCalendar('enable');//退居予定日カレンダー
 		    		//非表示
 		    		$('#lblShatakuFuyouMsg').show();
+		      }
+		  }); 
+		  
+		  // 現保有の社宅の「継続利用する」押下時に発動
+		  $('#rdoNowHoyuShatakuKeizoku').click(function() {	 	   
+			// 継続利用する
+			if($("#rdoNowHoyuShatakuKeizoku").prop('checked')) {		
+		    		//非表示
+		    		$('#lblShatakuFuyouMsg').hide();
 		      }
 		  }); 
 	
@@ -1175,7 +1165,7 @@
 					"enabled" : [ "nyukyoYoteiDate"],
 		  			"disabled" : ["carName", "carNo", "carExpirationDate","carUser", "parkingUseDate",
 						          "carName2", "carNo2", "carExpirationDate2","carUser2", "parkingUseDate2",
-						          "taikyoYoteiDate","shatakuJyotai","taikyoRiyuKbn", "taikyogoRenrakuSaki"] 
+						          "taikyoYoteiDate","shatakuJyotai","taikyoRiyuKbn", "taikyoRiyu","taikyogoRenrakuSaki"] 
 				},
 			//社宅を必要としますか-必要としない
 				"0" : {
@@ -1189,7 +1179,7 @@
 					              "dokyoRelation6","dokyoName6","dokyoAge6",
 		  			              "carName", "carNo", "carExpirationDate","carUser", "parkingUseDate",
 						          "carName2", "carNo2", "carExpirationDate2","carUser2", "parkingUseDate2",
-						          "taikyoYoteiDate"]
+						          "taikyoYoteiDate","shatakuJyotai","taikyoRiyuKbn", "taikyoRiyu","taikyogoRenrakuSaki"]
 				},
 			//社宅を必要としますか-駐車場のみ
 				"2" : {
@@ -1204,7 +1194,7 @@
 					              "dokyoRelation6","dokyoName6","dokyoAge6",
 					              "nyukyoYoteiDate",
 					              "taikyoYoteiDate","shatakuJyotai", 
-					              "taikyoRiyuKbn", "taikyogoRenrakuSaki"]
+					              "taikyoRiyuKbn", "taikyoRiyu","taikyogoRenrakuSaki"]
 				}
 		}
 
@@ -1300,8 +1290,16 @@
 		var nowShatakuDynam = {
 				// 現保有の社宅　保有(会社借上を含む)にチェックがある場合
 				"1" : {
-						"enabled" : [ "rdoNowJutakuHoyu","nowShatakuName", 
-						              "rdoNowHoyuShatakuTaikyo","rdoNowHoyuShatakuKeizoku"]
+						"enabled" : [ "nowShatakuName"]
+				},
+				"2" : {
+					"disabled" : [ "nowShatakuName"]
+				},
+				"3" : {
+					"disabled" : [ "nowShatakuName"]
+				},
+				"9" : {
+					"disabled" : [ "nowShatakuName"]
 				}
 		}
 		
@@ -1554,7 +1552,7 @@
 	};	
                
 	/**
-	 * 退居予定取得
+	 * 申請内容確認ボタンを押下時の処理
 	 * <p>
 	 * ラジオボタンの選択された値を取得する
 	 * </p>
