@@ -10,112 +10,50 @@
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
-
-<%-- コンテンツエリア --%>
-<style type="text/css">
-
-</style>
-
-<!-- コンテンツエリア:モックのまま -->
-<!-- 以下ツールバー -->
-		<div class="imui-toolbar-wrap">
-			<div class="imui-toolbar-inner">
-				<!-- ツールバー左側 -->
-				<ul class="imui-list-toolbar">
-					<!-- 戻る -->
-					<li>
-						<a class="imui-toolbar-icon" title="戻る" tabindex="23" onclick="back1()" href="javascript:void(0);">
-							<span class="im-ui-icon-common-16-back"></span>
-						</a>
-					</li>
-
-				</ul>
-				<!-- ツールバー右側 -->
-				<ul class="imui-list-box-toolbar-utility">
-					<li>
-						<a onclick="back()" class="imui-toolbar-icon" tabindex="16">
-							<span class="im-ui-icon-common-16-home"></span>
-							社宅TOP
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<script type="text/javascript">
-			/**
-			* 一つ前の画面へ戻る
-			*/
-			function back1() {
-				showConfirm(W_GFK_0002, function() {
-					history.back()
-				});
-			}
-
-			/**
-			* メニュー画面へ遷移する。
-			*/
-			function back() {
-				showConfirm(W_GFK_0007, function() {
-					$.StandardPost("../common/top.html");
-				});
-			}
-		</script>
-
-<!-- 		<div class="alertDiv imui-box-warning" style="padding: 15px;margin-top: 10px;text-align:left;" id="errMainDiv"> -->
-<!-- 			<div class="alert-errorIcon alert" style="margin:0;padding:0;margin-right:10px;"> -->
-<!-- 			</div>  -->
-<!-- 		</div> -->
+<%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
 
 		<!-- コンテンツエリア -->
-		<div class="imui-form-container-wide" width="1350px" style="width: 100%; min-width:1300px;max-width: 1350px;">
-			<div class="imui-form-container-wide"  style="width:1280px;">
+		<div class="imui-form-container-wide"  style="width: 95% ;">
 				<div class="imui-chapter-title"><h2>組織情報</h2></div>
-				<form id="form" class="target_form mt-10" action="" method="POST">
-					<table class="imui-form-search-condition">
+				<nfwui:Form id="form" name="form" modelAttribute="form">
+					<nfwui:Table use="search">
 						<tbody>
 							<tr>
 								<th style="width: 15%;">
-									<label>会社</label>
+									<nfwui:LabelBox id="lblCompanyCd" code="<%= MessageIdConstant.SKF3090_SC007_COMPANY %>" />
 								</th>
 								<td style="width: 30%;">
-									<select style="width:95%;">
-										<option value="0"></option>
-										<option value="1">NEXCO中日本</option>
-										<option value="2">NEXCO東日本</option>
-										<option value="4">NEXCO西日本</option>
-										<option value="5">高速道路総合研究所</option>
-										<option value="6">外部機関</option>
-									</select>
+									<imui:select id="companyCd" name="companyCd"
+									width="185" tabindex="1" />
 								</td>
 								<td style="border:none">
 								</td>
 							</tr>
 							<tr>
-								</td>
 								<th style="width: 15%;">
-									<label>機関コード</label>
+									<nfwui:LabelBox id="lblAgencyCd" code="<%= MessageIdConstant.SKF3090_SC007_AGENCY_CODE %>" />
 								</th>
 
 								<td style="width: 30%;">
-								<input style="width: 20%;" placeholder="例 000"></input>
+								<imui:textbox id="agencyCd" name="agencyCd" style="width: 55%" placeholder="例 00" tabindex="2" />
 								<input type='button' value='名称を検索' class='imui-small-button' onclick="location.href=''">
 								</td>
 							</tr>
 							<tr>
 								<th style="width: 15%;">
-									<label>部等コード</label>
+									<nfwui:LabelBox id="lblAffiliation1Cd" code="<%= MessageIdConstant.SKF3090_SC007_AFFILIATION1_CODE %>" />
 								</th>
 								<td style="width: 30%;">
-								<input style="width: 20%;" placeholder="例 01"></input>
+								<imui:textbox id="affiliation1Cd" name="affiliation1Cd" style="width: 55%" placeholder="例 01" tabindex="4" />
 								<input type="button" value="名称を検索" class="imui-small-button" onclick="location.href=''">
 								</td>
 							</tr>
 							<tr>
 								<th style="width: 15%;">
-									<label>室、チーム又は課コード</label>
+									<nfwui:LabelBox id="lblAffiliation2Cd" code="<%= MessageIdConstant.SKF3090_SC007_AFFILIATION2_CODE %>" />
 								</th>
 								<td style="width: 30%;">
-								<input style="width: 20%;" placeholder="例 001"></input>
+								<imui:textbox id="affiliation2Cd" name="affiliation2Cd" style="width: 95%" placeholder="例 001" tabindex="6" />
 								</td>
 							</tr>
 							
@@ -127,50 +65,44 @@
 
 							<tr>
 								<th style="width: 15%;">
-									<label>機関</label>
+									<nfwui:LabelBox id="lblAgencyName" code="<%= MessageIdConstant.SKF3090_SC007_AGENCY %>" />
 								</th>
 								<td style="width: 30%;">
-								<input style="width: 93%;" placeholder="例 機関の名称"></input>
+								<imui:textbox id="agencyName" name="agencyName" style="width: 95%" placeholder="例 機関の名称" tabindex="7" />
 								</td>
 							</tr>
 							<tr>
 								<th style="width: 15%;">
-									<label>部等</label>
+									<nfwui:LabelBox id="lblAffiliation1Name" code="<%= MessageIdConstant.SKF3090_SC007_AFFILIATION1 %>" />
 								</th>
 								<td style="width: 30%;">
-									<input style="width: 93%;" placeholder="例 部等の名称"></input>
+									<imui:textbox id="affiliation1Name" name="affiliation1Name" style="width: 95%" placeholder="例 部等の名称" tabindex="8" />
 								</td>
 							</tr>
 							<tr>
 								<th style="width: 15%;">
-									<label>室、チーム又は課</label>
+									<nfwui:LabelBox id="lblAffiliation2Name" code="<%= MessageIdConstant.SKF3090_SC007_AFFILIATION2 %>" />
 								</th>
 								<td style="width: 30%;">
-								<input style="width: 93%;" placeholder="例 室、チーム又は課名称"></input>
+								<imui:textbox id="affiliation2Name" name="affiliation2Name" style="width: 95%" placeholder="例 室、チーム又は課の名称" tabindex="9" />
 								</td>
 							</tr>
 							<tr>
 
 								<th style="width: 15%;">
-									<label>事業領域</label>
+									<nfwui:LabelBox id="lblBusinessAreaCd" code="<%= MessageIdConstant.SKF3090_SC007_BUSINESS_AREA %>" />
 								</th>
 								<td style="width: 30%;">
-								<select style="width:95%;">
-										<option value="0"></option>
-										<option value="1"></option>
-										<option value="2"></option>
-										<option value="3"></option>
-										<option value="4"></option>
-										<option value="5"></option>
-									</select>
+								<imui:select id="businessAreaCd" name="businessAreaCd" 
+									width="185" tabindex="10" />
 								
 								</td>
 							</tr>
 							<tr>
 							</tr>
 						</tbody>
-					</table>
-				</form>
+					</nfwui:Table>
+				</nfwui:Form>	
 			</div>
 
 			<br />
