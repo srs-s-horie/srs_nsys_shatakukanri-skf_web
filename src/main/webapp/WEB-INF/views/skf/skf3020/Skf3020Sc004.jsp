@@ -468,8 +468,8 @@ function openWindow(){
 			<br />
 			<div class="align-R">
 				<input style="width:170px;" type="button" value="仮社員番号のデータ削除" class="imui-medium-button" onclick=""/>
-				<input style="width:150px;" type="button" value="転任者調書取込" class="imui-medium-button" onclick="location.href='../../skf/Skf3020_Sc002/init'"/>
-				<input style="width:150px;" type="button" value="新規" class="imui-medium-button" onclick="location.href='../../skf/Skf3020_Sc005/init'"/>
+				<input style="width:150px;" type="button" value="転任者調書取込" class="imui-medium-button" onclick="location.href='../../skf/Skf3020Sc002/init'"/>
+				<input style="width:150px;" type="button" value="新規" class="imui-medium-button" onclick="location.href='../../skf/Skf3020Sc005/init'"/>
 				<input style="width:150px;" type="button" value="登録" class="imui-medium-button" onclick=""/>
 			</div>
 		</div>

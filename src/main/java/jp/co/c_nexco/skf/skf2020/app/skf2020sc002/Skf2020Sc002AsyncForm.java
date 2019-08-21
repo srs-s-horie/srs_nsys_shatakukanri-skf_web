@@ -71,12 +71,6 @@ public class Skf2020Sc002AsyncForm extends AsyncBaseForm {
 	// 駐車場2台目
 	private String parking2stPlace;
 
-	/**
-	 * Hidden
-	 */
-	// 備品返却有無
-	private String hdnBihinHenkyakuUmu;
-
 	// 勤務先のTEL
 	private String tel;
 
@@ -420,21 +414,22 @@ public class Skf2020Sc002AsyncForm extends AsyncBaseForm {
 	 */
 	// 社員番号
 	private String shainNo;
+	// 申請書番号
+	private String applNo;
 
 	/**
 	 * Hidden
 	 */
-
-	// 社宅管理部屋番号
-	private long hdnShatakuRoomKanriNo;
-	// 社宅管理番号
-	private long hdnShatakuKanriNo;
-	// 現居住社宅部屋管理番号
-	private long hdnNowShatakuRoomKanriNo;
-	// 現居住社宅管理番号
-	private long hdnNowShatakuKanriNo;
+	// 社宅管理ID
+	private long hdnShatakuKanriId;
+	// 選択された社宅名
+	private String hdnSelectedNowShatakuName;
+	// 室番号
+	private String hdnNowShatakuNo;
 	// 規格(間取り)
 	private String hdnShatakuKikakuKbn;
+	// 面積
+	private String hdnNowShatakuMenseki;
 	// 現在の位置番号
 	private String hdnParking1stNumber;
 	// 現在の保管場所
@@ -443,13 +438,80 @@ public class Skf2020Sc002AsyncForm extends AsyncBaseForm {
 	private String hdnParking2stNumber;
 	// 現在の保管場所2
 	private String hdnParking2stPlace;
-	// 選択された社宅名
-	private String hdnSelectedNowShatakuName;
+	// 社宅管理番号
+	private long hdnShatakuKanriNo;
+	// 現居住社宅管理番号
+	private long hdnNowShatakuKanriNo;
+	// 社宅管理部屋番号
+	private long hdnShatakuRoomKanriNo;
+	// 現居住社宅部屋管理番号
+	private long hdnNowShatakuRoomKanriNo;
+	// 備品返却有無
+	private String hdnBihinHenkyakuUmu;
+
+	/**
+	 * 活性非活性
+	 */
+	// 社宅を必要としますか？ 駐車場のみ
+	private String rdoParkingOnlyDisabled;
+
+	// 必要とする理由
+	private String rdoHitsuyoIdoDisabled;
+	private String rdoHitsuyoKekkonDisabled;
+	private String rdoHitsuyoSonotaDisabled;
+
+	// 必要としない理由
+	private String rdoFuyouJitakuTsuukinnDisabled;
+	private String rdoFuyouJikoKariageDisabled;
+	private String rdoFuyouSonotaDisabled;
+
+	// 既婚
+	private String rdoKikonDisabled;
+	// 必要とする社宅 世帯
+	private String rdoHitsuyoSetaiDisabled;
+	// 必要とする社宅 単身
+	private String rdoHitsuyoTanshinDisabled;
+	// 必要とする社宅 独身
+	private String rdoHitsuyoDokushinDisabled;
+
+	// 駐車場を必要とするか？
+	private String rdoCarHitsuyoDisabled;
+	private String rdoCarFuyoDisabled;
+
+	// 自動車の保有（1台目）
+	private String rdo1stCarHoyuDisabled;
+	private String rdo1stCarYoteiDisabled;
+
+	// 自動車の保有（2台目）
+	private String rdo2stCarHoyuDisabled;
+	private String rdo2stCarYoteiDisabled;
+
+	// 現居住宅 保有(会社借上を含む)
+	private String rdoNowJutakuHoyuDisabled;
+	// 現居住宅 自宅
+	private String rdoNowJutakuJitakuDisabeld;
+	// 現居住宅 自己借上
+	private String rdoNowJutakuKariageDisabled;
+	// 現居住宅 保有(会社借上を含む)
+	private String rdoNowJutakuSonotaDisabled;
+
+	// 現保有の社宅（退居予定）
+	private String rdoNowHoyuShatakuTaikyoDisabled;
+	private String rdoNowHoyuShatakuKeizokuDisabled;
+
+	// 返却立会希望日
+	private String sessionTimeDisabled;
+	private String sessionDayDisabled;
+	// 連絡先
+	private String renrakuSakiDisabled;
 
 	/**
 	 * エラーフラグ
 	 */
 	// 更新不可フラグ
 	private String updateErrorFlg;
+
+	// 駐車場2台フラグ
+	private String parkingFullFlg;
 
 }

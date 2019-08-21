@@ -27,9 +27,14 @@
     input {
        background-color: rgb(255, 255, 255);
     }
+    
+    table#dokyoList td {
+    	height: 20px;
+    } 
 </style>
 
 <script type="text/javascript">
+// 前の画面に戻る
 function back1() {
 	var url="skf/Skf2010Sc005/init"
 	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
@@ -47,6 +52,57 @@ $(function() {
 		} else {
 			$("input[name!='bihinKibo']:radio:not(:checked)").prop("disabled", true);
 		}
+		
+		// 備品希望が不可の時は備品一覧を非表示
+		if ($("#bihinKiboFukano").attr("checked")) {
+			$("#bihinKiboList").hide();	
+		}
+
+		// 備品希望のラジオボタンを変更した時のイベント
+		$("input[name='bihinKibo']:radio").change(function() {
+			var check = $(this).val();
+			if (check == "<%= CodeConstant.BIHIN_KIBO_SHINSEI_FUYO %>") {
+				$("#bihinKiboList").animate({
+				    height: ['hide', 'swing']
+				  }, 300);	
+			} else {
+				$("#bihinKiboList").animate({
+				    height: ['show', 'swing']
+				  }, 300);	
+			}
+		});
+		
+		// 「編集」ボタンを押下した時の処理
+    	$("#edit").click(function() {
+    		$("#editMode").show();
+    		$("#readOnlyMode").hide();
+    		$("input[name='hitsuyoShataku']:radio").prop("disabled", false);
+    	});
+    	// 「取消」ボタンを押下した時の処理
+    	$("#cancel").click(function() {
+    		$("#editMode").hide();
+    		$("#readOnlyMode").show();
+    		var defaultHitsuyoShataku = $("#default").val();
+    		switch (defaultHitsuyoShataku) {
+    		case "<%= CodeConstant.SETAI %>":
+    			$("#hitsuyoShatakuSetai").prop("checked", true);
+    			$("#hitsuyoShatakuTanshin").prop("checked", false);
+    			$("#hitsuyoShatakuDokushin").prop("checked", false);
+    			break;
+    		case '<%= CodeConstant.TANSHIN %>':
+    			$("#hitsuyoShatakuSetai").prop("checked", false);
+    			$("#hitsuyoShatakuTanshin").prop("checked", true);
+    			$("#hitsuyoShatakuDokushin").prop("checked", false);
+    			break;
+    		case '<%= CodeConstant.DOKUSHIN %>':
+    			$("#hitsuyoShatakuSetai").prop("checked", false);
+    			$("#hitsuyoShatakuTanshin").prop("checked", false);
+    			$("#hitsuyoShatakuDokushin").prop("checked", true);
+    			break;
+    		}
+    		
+    		$("input[name='hitsuyoShataku']:radio:not(:checked)").prop("disabled", true);
+    	});
 	});
 	
 	// 添付ファイルリンクからのファイルダウンロード処理
@@ -79,12 +135,11 @@ $(function() {
 
     <!-- コンテンツエリア -->
     <div class="imui-form-container-wide" style="width: 100%; max-width: 1350px;">
-    
                     <table class="imui-form-search-condition">
                        <tr>
-                            <th width="100px"><label>申請状況</label></th>
+                            <th width="100px"><nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2020_SC003_APPL_STATUS %>" /></th>
                             <td width="100px"><label>${form.applStatusText }</label></td>
-                            <th width="100px"><label>添付資料</label></th>
+                            <th width="100px"><nfwui:LabelBox id="lblAttachedFile" code="<%= MessageIdConstant.SKF2020_SC003_ATTACHED_FILE %>" /></th>
                             <td>
                             <div id="shatakuAttachedFileAreaDiv" style="float:left;">
 <c:forEach var="objShataku" items="${form.shatakuAttachedFileList }">
@@ -117,53 +172,59 @@ $(function() {
                             <tbody>
                             <div class="imui-chapter-title" style="margin-bottom: 10px;"><h2>申請内容表示</h2></div>
                                 <tr>
-                                    <th rowspan="4"><label>所属</label></th>
-                                    <th colspan="2"><label>機関</label></th>
+                                    <th rowspan="4"><nfwui:LabelBox id="lblShozoku" code="<%= MessageIdConstant.SKF2020_SC003_SHOZOKU %>" /></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblAgency" code="<%= MessageIdConstant.SKF2020_SC003_AGENCY %>" /></th>
                                     <td colspan="2" style="min-width: 400px;">
                                         ${f:h(form.agencyName)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>部等</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblAffiliation1" code="<%= MessageIdConstant.SKF2020_SC003_AFFILIATION1 %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.affiliation1Name)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>室、チーム又は課</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblAffiliation2" code="<%= MessageIdConstant.SKF2020_SC003_AFFILIATION2 %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.affiliation2Name)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>勤務先のTEL</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblTel" code="<%= MessageIdConstant.SKF2020_SC003_TEL %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.tel)}
                                     </td>
                                 </tr>
                                 
                                 <tr>
-                                    <th rowspan="3"><label>申請者</label></th>
-                                    <th colspan="2"><label>社員番号</label></th>
+                                    <th rowspan="4"><nfwui:LabelBox id="lblApplcant" code="<%= MessageIdConstant.SKF2020_SC003_APPLICANT %>" /></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblShainNo" code="<%= MessageIdConstant.SKF2020_SC003_SHAIN_NO %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.shainNo)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>氏名</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblShainName" code="<%= MessageIdConstant.SKF2020_SC003_NAME %>" /></th>
                                     <td colspan="2">
                                        ${f:h(form.name)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>等級</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblTokyu" code="<%= MessageIdConstant.SKF2020_SC003_TOKYU %>" /></th>
                                     <td colspan="2">
                                        ${f:h(form.tokyu)}
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th colspan="2"><nfwui:LabelBox id="lblGender" code="<%= MessageIdConstant.SKF2020_SC003_GENDER %>" /></th>
+                                    <td colspan="2">
+                                       ${f:h(form.gender)}
+                                    </td>
+                                </tr>
                                 
                                 <tr>
-                                    <th colspan="3"><label>新たに社宅を必要としますか？</label></th>
+                                    <th colspan="3"><nfwui:LabelBox id="lblAskedShataku" code="<%= MessageIdConstant.SKF2020_SC003_ASKED_SHATAKU %>" /></th>
                                     <td colspan="2">
                                     <nfwui:RadioButtonGroup id="taiyoHituyo">
                                       <nfwui:RadioButton id="taiyoHitsuyoHitsuyo" name="taiyoHituyo" value="<%= CodeConstant.ASKED_SHATAKU_HITSUYO %>" label="必要とする" />
@@ -173,7 +234,7 @@ $(function() {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="3"><label>社宅を必要とする理由</label></th>
+                                    <th colspan="3"><nfwui:LabelBox id="lblHitsuyoRiyu" code="<%= MessageIdConstant.SKF2020_SC003_HITSUYO_RIYU %>" /></th>
                                     <td colspan="2">
                                     <nfwui:RadioButtonGroup id="hitsuyoRiyu">
                                       <nfwui:RadioButton id="hitsuyoRiyuIdo" name="hitsuyoRiyu" value="<%= CodeConstant.IDOU %>" label="異動のため" />
@@ -183,7 +244,7 @@ $(function() {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="3"><label>社宅を必要としない理由</label></th>
+                                    <th colspan="3"><nfwui:LabelBox id="lblFuyoRiyu" code="<%= MessageIdConstant.SKF2020_SC003_FUYO_RIYU %>" /></th>
                                     <td colspan="2">
                                     <nfwui:RadioButtonGroup id="fuhitsuyoRiyu">
                                       <nfwui:RadioButton id="fuhitsuyoRiyuJitaku" name="fuhitsuyoRiyu" value="<%= CodeConstant.JITAKU_TSUKIN %>" label="自宅通勤" />
@@ -194,27 +255,27 @@ $(function() {
                                 </tr>
                                 
                                 <tr>
-                                    <th rowspan="3"><label>新所属</label></th>
-                                    <th colspan="2"><label>機関</label></th>
+                                    <th rowspan="3"><nfwui:LabelBox id="lblNewShozoku" code="<%= MessageIdConstant.SKF2020_SC003_NEW_SHOZOKU %>" /></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblNewAgency" code="<%= MessageIdConstant.SKF2020_SC003_AGENCY %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.newAgency)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>部等</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblNewAffiliation1" code="<%= MessageIdConstant.SKF2020_SC003_AFFILIATION1 %>" /></th>
                                     <td colspan="2">
                                        ${f:h(form.newAffiliation1)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>室、チーム又は課</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblNewAffiliation2" code="<%= MessageIdConstant.SKF2020_SC003_AFFILIATION2 %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.newAffiliation2)}
                                     </td>
                                 </tr>
                                 
                                 <tr>
-                                    <th colspan="3"><label>必要とする社宅
+                                    <th colspan="3"><nfwui:LabelBox id="lblHitsuyoShataku" code="<%= MessageIdConstant.SKF2020_SC003_HITSUYO_SHATAKU %>" >
 
 <imart:condition validity="<%= String.valueOf(form.isEditBtnVisible()) %>" >
                                     <div id="readOnlyMode" class="align-R float-R">
@@ -225,7 +286,7 @@ $(function() {
                                     formId="form" url="skf/Skf2020Sc003/Update" /><br>
                                     <imui:button id="cancel" name="cancel" class="imui-small-button check" value="取消" /></div>
 </imart:condition>
-                                    </label>
+                                    </nfwui:LabelBox>
                                     </th>
                                     <td colspan="2">
                                     <input type="hidden" id="default" value="${form.hitsuyoShataku }" />
@@ -236,50 +297,15 @@ $(function() {
                                     </nfwui:RadioButtonGroup>
                                     </td>
                                 </tr>
-                                <script>
-                                $(function() {
-                                	// 「編集」ボタンを押下した時の処理
-                                	$("#edit").click(function() {
-                                		$("#editMode").show();
-                                		$("#readOnlyMode").hide();
-                                		$("input[name='hitsuyoShataku']:radio").prop("disabled", false);
-                                	});
-                                	// 「取消」ボタンを押下した時の処理
-                                	$("#cancel").click(function() {
-                                		$("#editMode").hide();
-                                		$("#readOnlyMode").show();
-                                		var defaultHitsuyoShataku = $("#default").val();
-                                		switch (defaultHitsuyoShataku) {
-                                		case '1':
-                                			$("#hitsuyoShatakuSetai").prop("checked", true);
-                                			$("#hitsuyoShatakuTanshin").prop("checked", false);
-                                			$("#hitsuyoShatakuDokushin").prop("checked", false);
-                                			break;
-                                		case '2':
-                                			$("#hitsuyoShatakuSetai").prop("checked", false);
-                                			$("#hitsuyoShatakuTanshin").prop("checked", true);
-                                			$("#hitsuyoShatakuDokushin").prop("checked", false);
-                                			break;
-                                		case '3':
-                                			$("#hitsuyoShatakuSetai").prop("checked", false);
-                                			$("#hitsuyoShatakuTanshin").prop("checked", false);
-                                			$("#hitsuyoShatakuDokushin").prop("checked", true);
-                                			break;
-                                		}
-                                		
-                                		$("input[name='hitsuyoShataku']:radio").prop("disabled", false);
-                                	});
-                                });
-                                </script>
                                 <tr>
-                                    <th colspan="3"><label>同居家族</label></th>
+                                    <th colspan="3"><nfwui:LabelBox id="lblDokyoKazoku" code="<%= MessageIdConstant.SKF2020_SC003_DOKYO_KAZOKU %>" /></th>
                                     <td colspan="2">
-                                        <table class="imui-form-search-condition" style="width:100%;">
+                                        <table class="imui-form-search-condition" id="dokyoList" style="width:100%;">
                                             <tbody>
                                                 <tr>
-                                                    <th><label>続柄</label></th>
-                                                    <th><label>氏名</label></th>
-                                                    <th><label>年齢</label></th>
+                                                    <th><nfwui:LabelBox id="lblDokyoRelation" code="<%= MessageIdConstant.SKF2020_SC003_DOKYO_RELATION %>" /></th>
+                                                    <th><nfwui:LabelBox id="lblDokyoName" code="<%= MessageIdConstant.SKF2020_SC003_DOKYO_NAME %>" /></th>
+                                                    <th><nfwui:LabelBox id="lblDokyoAge" code="<%= MessageIdConstant.SKF2020_SC003_DOKYO_AGE %>" /></th>
                                                 </tr>
                                                 <tr>
                                                     <td style="text-align:left;">
@@ -353,14 +379,14 @@ $(function() {
                                 </tr>
                                 
                                 <tr>
-                                    <th colspan="3"><label>入居希望日（予定日）</label></th>
+                                    <th colspan="3"><nfwui:LabelBox id="lblNyukyoYoteiDate" code="<%= MessageIdConstant.SKF2020_SC003_NYUKYO_YOTEI_DATE %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.nyukyoYoteiDate)}
                                     </td>
                                 </tr>
                                 
                                 <tr>
-                                    <th colspan="3"><label>自動車の保管場所</label></th>
+                                    <th colspan="3"><nfwui:LabelBox id="lblParkingUmu" code="<%= MessageIdConstant.SKF2020_SC003_PARKING_UMU %>" /></th>
                                     <td colspan="2">
                                     <nfwui:RadioButtonGroup id="parkingUmu">
                                       <nfwui:RadioButton id="parkingUmuHitsuyo" name="parkingUmu" value="<%= CodeConstant.CAR_PARK_HITUYO %>" label="必要とする" />
@@ -370,8 +396,8 @@ $(function() {
                                 </tr>
                                 
                                 <tr>
-                                    <th rowspan="6"><label>１台目</label></th>
-                                    <th colspan="2"><label>自動車の保有</label></th>
+                                    <th rowspan="6"><nfwui:LabelBox id="lbl1stCar" code="<%= MessageIdConstant.SKF2020_SC003_1ST_CAR %>" /></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblCarFlag" code="<%= MessageIdConstant.SKF2020_SC003_CAR_FLAG %>" /></th>
                                     <td colspan="2">
                                     <nfwui:RadioButtonGroup id="carNoInputFlg">
                                       <nfwui:RadioButton id="carNoInputFlgHoyu" name="carNoInputFlg" value="<%= CodeConstant.CAR_HOYU %>" label="保有している" />
@@ -380,79 +406,79 @@ $(function() {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>自動車の車名</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblCarName" code="<%= MessageIdConstant.SKF2020_SC003_CAR_NAME %>" /></th>
                                     <td colspan="2">
                                        ${f:h(form.carName)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>自動車の登録番号</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblCarNo" code="<%= MessageIdConstant.SKF2020_SC003_CAR_NO %>" /></th>
                                     <td colspan="2">
                                        ${f:h(form.carNo)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>車検の有効期間満了日</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblCarExceptionDate" code="<%= MessageIdConstant.SKF2020_SC003_CAR_EXCEPTION_DATE %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.carExpirationDate)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>自動車の使用者</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblCarUser" code="<%= MessageIdConstant.SKF2020_SC003_CAR_USER %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.carUser)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>自動車の保管場所<br>使用開始日（予定日）</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblParkingUseDate" code="<%= MessageIdConstant.SKF2020_SC003_PARKING_USE_DATE %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.parkingUseDate)}
                                     </td>
                                 </tr>
                                 
                                 <tr>
-                                    <th rowspan="6"><label>２台目</label></th>
-                                    <th colspan="2"><label>自動車の保有</label></th>
+                                    <th rowspan="6"><nfwui:LabelBox id="lbl2ndCar" code="<%= MessageIdConstant.SKF2020_SC003_2ND_CAR %>" /></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblCarFlag2" code="<%= MessageIdConstant.SKF2020_SC003_CAR_FLAG %>" /></th>
                                     <td>
                                     <nfwui:RadioButtonGroup id="carNoInputFlg2">
-                                      <nfwui:RadioButton id="carNoInputFlgHoyu" name="carNoInputFlg2" value="<%= CodeConstant.CAR_HOYU %>" label="保有している" />
-                                      <nfwui:RadioButton id="carNoInputFlgNotHoyu" name="carNoInputFlg2" value="<%= CodeConstant.CAR_YOTEI %>" label="購入を予定している" />
+                                      <nfwui:RadioButton id="carNoInputFlgHoyu2" name="carNoInputFlg2" value="<%= CodeConstant.CAR_HOYU %>" label="保有している" />
+                                      <nfwui:RadioButton id="carNoInputFlgNotHoyu2" name="carNoInputFlg2" value="<%= CodeConstant.CAR_YOTEI %>" label="購入を予定している" />
                                     </nfwui:RadioButtonGroup>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>自動車の車名</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblCarName2" code="<%= MessageIdConstant.SKF2020_SC003_CAR_NAME %>" /></th>
                                     <td>
                                       ${f:h(form.carName2)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>自動車の登録番号</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblCarNo2" code="<%= MessageIdConstant.SKF2020_SC003_CAR_NO %>" /></th>
                                     <td>
                                       ${f:h(form.carNo2)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>車検の有効期間満了日</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblCarExceptionDate2" code="<%= MessageIdConstant.SKF2020_SC003_CAR_EXCEPTION_DATE %>" /></th>
                                     <td>
                                       ${f:h(form.carExpirationDate2)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>自動車の使用者</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblCarUser2" code="<%= MessageIdConstant.SKF2020_SC003_CAR_USER %>" /></th>
                                     <td>
                                       ${f:h(form.carUser2)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>自動車の保管場所<br>使用開始日（予定日）</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblParkingUseDate2" code="<%= MessageIdConstant.SKF2020_SC003_PARKING_USE_DATE %>" /></th>
                                     <td>
                                       ${f:h(form.parkingUseDate2)}
                                     </td>
                                 </tr>
                                 
                                 <tr>
-                                    <th rowspan="5"><label>現居住宅</label></th>
+                                    <th rowspan="5"><nfwui:LabelBox id="lblNowShataku" code="<%= MessageIdConstant.SKF2020_SC003_NOW_SHATAKU %>" /></th>
                                     <th colspan="2"><label></label></th>
                                     <td colspan="2">
                                     <nfwui:RadioButtonGroup id="nowShataku">
@@ -464,55 +490,54 @@ $(function() {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>保有社宅名</label></th>
-                                    <td>
-                                    　　　　　　　　　　　　　　　　　　　　${f:h(form.nowShatakuName)}
+                                    <th colspan="2"><nfwui:LabelBox id="lblNowShatakuName" code="<%= MessageIdConstant.SKF2020_SC003_NOW_SHATAKU_NAME %>" /></th>
+                                    <td>${f:h(form.nowShatakuName)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>室番号</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblNowShatakuNo" code="<%= MessageIdConstant.SKF2020_SC003_SHATAKU_NO %>" /></th>
                                     <td>
                                     ${f:h(form.nowShatakuNo)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>規格（間取り）</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblNowShatakuKikaku" code="<%= MessageIdConstant.SKF2020_SC003_SHATAKU_KIKAKU %>" /></th>
                                     <td>
                                     ${f:h(form.nowShatakuKikaku)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>面積</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblNowShatakuMenseki" code="<%= MessageIdConstant.SKF2020_SC003_SHATAKU_MENSEKI %>" /></th>
                                     <td>
                                     ${f:h(form.nowShatakuMenseki)}
                                     </td>
                                 </tr>
                                 
                                 <tr>
-                                    <th rowspan="2"><label>駐車場</label></th>
-                                    <th colspan="1"><label>１台目</label></th>
-                                    <th colspan="1"><label>保管場所</label></th>
+                                    <th rowspan="2"><nfwui:LabelBox id="lblParking" code="<%= MessageIdConstant.SKF2020_SC003_PARKING %>" /></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblParking1stCar" code="<%= MessageIdConstant.SKF2020_SC003_1ST_CAR %>" /></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblParkingPlace1" code="<%= MessageIdConstant.SKF2020_SC003_PARKING_PLACE %>" /></th>
                                     <td colspan="2">
                                     ${f:h(form.parking1stPlace)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1"><label>２台目</label></th>
-                                    <th colspan="1"><label>保管場所</label></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblParking2ndCar" code="<%= MessageIdConstant.SKF2020_SC003_2ND_CAR %>" /></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblParkingPlace2" code="<%= MessageIdConstant.SKF2020_SC003_PARKING_PLACE %>" /></th>
                                     <td colspan="2">
                                     ${f:h(form.parking2stPlace)}
                                     </td>
                                 </tr>
                                 
                                 <tr>
-                                    <th colspan="3"><label>特殊事情等<br>(希望地域、間取り、階層、具体の社宅名を記入してください。)</label></th>
+                                    <th colspan="3"><nfwui:LabelBox id="lblTokushuJijo" code="<%= MessageIdConstant.SKF2020_SC003_TOKUSHU_JIJO %>" /></th>
                                     <td colspan="2">
                                     ${f:h(form.tokushuJijo)}
                                     </td>
                                 </tr>
                                 
                                 <tr>
-                                    <th colspan="3"><label>現保有社宅</label></th>
+                                    <th colspan="3"><nfwui:LabelBox id="lblHoyuShataku" code="<%= MessageIdConstant.SKF2020_SC003_HOYU_SHATAKU %>" /></th>
                                     <td colspan="2">
                                     <nfwui:RadioButtonGroup id="taikyoYotei">
                                       <nfwui:RadioButton id="taikyoYoteiTaikyo" name="taikyoYotei" value="<%= CodeConstant.LEAVE %>" label="退居する" />
@@ -522,49 +547,49 @@ $(function() {
                                 </tr>
                                 
                                 <tr>
-                                    <th colspan="3"><label>退居予定日</label></th>
+                                    <th colspan="3"><nfwui:LabelBox id="lblTaikyoYoteiDate" code="<%= MessageIdConstant.SKF2020_SC003_TAIKYO_YOTEI_DATE %>" /></th>
                                     <td colspan="2">
                                     ${f:h(form.taikyoYoteiDate)}
                                     </td>
                                 </tr>
                                 
                                 <tr>
-                                    <th colspan="3"><label>社宅の状態</label></th>
+                                    <th colspan="3"><nfwui:LabelBox id="lblShatakuStatus" code="<%= MessageIdConstant.SKF2020_SC003_SHATAKU_STATUS %>" /></th>
                                     <td colspan="2">
                                     ${f:h(form.shatakuJyotai)}
                                     </td>
                                 </tr>
                                 
                                 <tr>
-                                    <th colspan="3"><label>退居理由</label></th>
+                                    <th colspan="3"><nfwui:LabelBox id="lblTaikyoRiyu" code="<%= MessageIdConstant.SKF2020_SC003_TAIKYO_RIYU %>" /></th>
                                     <td colspan="2">
                                     ${f:h(form.taikyoRiyu)}
                                     </td>
                                 </tr>
                                 
                                 <tr>
-                                    <th colspan="3"><label>退居後の連絡先</label></th>
+                                    <th colspan="3"><nfwui:LabelBox id="lblTaikyogoRenrakuSaki" code="<%= MessageIdConstant.SKF2020_SC003_TAIKYOGO_RENRAKU_SAKI %>" /></th>
                                     <td colspan="2">
                                     ${f:h(form.taikyogoRenrakuSaki)}
                                     </td>
                                 </tr>
                                 
                                 <tr>
-                                    <th colspan="3"><label>返却備品</label></th>
+                                    <th colspan="3"><nfwui:LabelBox id="lblReturnBihin" code="<%= MessageIdConstant.SKF2020_SC003_RETURN_EQUIPMENT %>" /></th>
                                     <td colspan="2">
                                     ${f:h(form.returnEquipment)}
                                     </td>
                                 </tr>
                                 
                                 <tr>
-                                    <th colspan="3"><label>返却立会希望日</label></th>
+                                    <th colspan="3"><nfwui:LabelBox id="lblSessionDay" code="<%= MessageIdConstant.SKF2020_SC003_SESSION_DAY %>" /></th>
                                     <td colspan="2">
                                     ${f:h(form.sessionDay)}
                                     </td>
                                 </tr>
                                 
                                 <tr>
-                                    <th colspan="3"><label>連絡先</label></th>
+                                    <th colspan="3"><nfwui:LabelBox id="lblRenrakuSaki" code="<%= MessageIdConstant.SKF2020_SC003_RENRAKU_SAKI %>" /></th>
                                     <td colspan="2">
                                     ${f:h(form.renrakuSaki)}
                                     </td>
@@ -582,223 +607,223 @@ $(function() {
                             <tbody>
                             <div class="imui-chapter-title-blue"style="margin-bottom: 10px;"><h2>承認者入力欄</h2></div>
                                 <tr>
-                                    <th rowspan="23"><label>社宅情報</label></th>
-                                    <th colspan="2"><label>社宅所在地</label></th>
+                                    <th rowspan="23"><nfwui:LabelBox id="lblShatakuInfo" code="<%= MessageIdConstant.SKF2020_SC003_SHATAKU_INFO %>" /></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblNewShozaichi" code="<%= MessageIdConstant.SKF2020_SC003_NEW_SHOZAICHI %>" /></th>
                                     <td colspan="2" style="min-width: 400px;">
                                         ${f:h(form.newShozaichi)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>社宅名</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblNewShatakuName" code="<%= MessageIdConstant.SKF2020_SC003_NEW_SHATAKU_NAME %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.newShatakuName)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>室番号</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblNewShatakuNo" code="<%= MessageIdConstant.SKF2020_SC003_SHATAKU_NO %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.newShatakuNo)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>規格(間取り)</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblNewShatakuKikaku" code="<%= MessageIdConstant.SKF2020_SC003_SHATAKU_KIKAKU %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.newShatakuKikaku)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>面積</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblNewShatakuMenseki" code="<%= MessageIdConstant.SKF2020_SC003_SHATAKU_MENSEKI %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.newShatakuMenseki)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>使用料(月)<br>※自動車の保管場所に<br>係わる使用料を除く</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblNewRental" code="<%= MessageIdConstant.SKF2020_SC003_NEW_RENTAL %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.newRental)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>共益費</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblNewKyoekihi" code="<%= MessageIdConstant.SKF2020_SC003_NEW_KYOEKIHI %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.newKyoekihi)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>入居可能日</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblNyukyoKanoDate" code="<%= MessageIdConstant.SKF2020_SC003_NYUKYO_KANO_DATE %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.nyukyoKanoDate)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th rowspan="5"><label>寮長・自治会長</label></th>
-                                    <th colspan="1"><label>部屋名称</label></th>
+                                    <th rowspan="5"><nfwui:LabelBox id="lblRyochoJichiKaicho" code="<%= MessageIdConstant.SKF2020_SC003_RYOCHO_JICHIKAICHO %>" /></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblManageShataku" code="<%= MessageIdConstant.SKF2020_SC003_MANAGE_SHATAKU %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.manegeShatakuNo1)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1"><label>氏名</label></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblManageName" code="<%= MessageIdConstant.SKF2020_SC003_MANAGE_NAME %>" /></th>
                                     <td colspan="2">
                                        ${f:h(form.manegeName1)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1"><label>電子メールアドレス</label></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblManageMailAddress" code="<%= MessageIdConstant.SKF2020_SC003_MANAGE_MAIL_ADDRESS %>" /></th>
                                     <td colspan="2">
                                       ${f:h(form.manegeMailAddress1)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1"><label>電話番号</label></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblManageTel" code="<%= MessageIdConstant.SKF2020_SC003_TEL %>" /></th>
                                     <td colspan="2">
                                       ${f:h(form.manegeTelNo1)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1"><label>内線番号</label></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblManageExtensionNo" code="<%= MessageIdConstant.SKF2020_SC003_MANAGE_EXTENSION_NO %>" /></th>
                                     <td colspan="2">
                                     ${f:h(form.manegeExtensionNo1)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th rowspan="5"><label>鍵管理者</label></th>
-                                    <th colspan="1"><label>部屋名称</label></th>
+                                    <th rowspan="5"><nfwui:LabelBox id="lblKeyManager" code="<%= MessageIdConstant.SKF2020_SC003_KEY_MANAGER %>" /></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblManageShataku2" code="<%= MessageIdConstant.SKF2020_SC003_MANAGE_SHATAKU %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.manegeShatakuNo2)}
                                 </tr>
                                 <tr>
-                                    <th colspan="1"><label>氏名</label></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblManageName2" code="<%= MessageIdConstant.SKF2020_SC003_MANAGE_NAME %>" /></th>
                                     <td colspan="2">
                                     ${f:h(form.manegeName2)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1"><label>電子メールアドレス</label></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblManageMailAddress2" code="<%= MessageIdConstant.SKF2020_SC003_MANAGE_MAIL_ADDRESS %>" /></th>
                                     <td colspan="2">
                                     ${f:h(form.manegeMailAddress2)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1"><label>電話番号</label></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblManageTel2" code="<%= MessageIdConstant.SKF2020_SC003_TEL %>" /></th>
                                     <td colspan="2">
                                     ${f:h(form.manegeTelNo2)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1"><label>内線番号</label></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblManageExtensionNo2" code="<%= MessageIdConstant.SKF2020_SC003_MANAGE_EXTENSION_NO %>" /></th>
                                     <td colspan="2">
                                     ${f:h(form.manegeExtensionNo2)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th rowspan="5"><label>寮母・管理会社</label></th>
-                                    <th colspan="1"><label>部屋名称</label></th>
+                                    <th rowspan="5"><nfwui:LabelBox id="lblShatakuManager" code="<%= MessageIdConstant.SKF2020_SC003_SHATAKU_MANAGER %>" /></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblManageShataku3" code="<%= MessageIdConstant.SKF2020_SC003_MANAGE_SHATAKU %>" /></th>
                                     <td colspan="2">
                                     ${f:h(form.manegeShatakuNo3)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1"><label>氏名</label></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblManageName3" code="<%= MessageIdConstant.SKF2020_SC003_MANAGE_NAME %>" /></th>
                                     <td colspan="2">
                                     ${f:h(form.manegeName3)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1"><label>電子メールアドレス</label></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblManageMailAddress3" code="<%= MessageIdConstant.SKF2020_SC003_MANAGE_MAIL_ADDRESS %>" /></th>
                                     <td colspan="2">
                                     ${f:h(form.manegeMailAddress3)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1"><label>電話番号</label></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblManageTel3" code="<%= MessageIdConstant.SKF2020_SC003_TEL %>" /></th>
                                     <td colspan="2">
                                     ${f:h(form.manegeTelNo3)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1"><label>内線番号</label></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblManageExtensionNo3" code="<%= MessageIdConstant.SKF2020_SC003_MANAGE_EXTENSION_NO %>" /></th>
                                     <td colspan="2">
                                     ${f:h(form.manegeExtensionNo3)}
                                     </td>
                                 </tr>
                                 
                                 <tr>
-                                    <th rowspan="8"><label>駐車場情報</label></th>
-                                    <th rowspan="4"><label>1台目</label></th>
-                                    <th colspan="1"><label>自動車の保管場所</label></th>
+                                    <th rowspan="8"><nfwui:LabelBox id="lblParkingInfo" code="<%= MessageIdConstant.SKF2020_SC003_PARKING_INFO %>" /></th>
+                                    <th rowspan="4"><nfwui:LabelBox id="lblNew1stCar" code="<%= MessageIdConstant.SKF2020_SC003_1ST_CAR %>" /></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblParkingAddress" code="<%= MessageIdConstant.SKF2020_SC003_PARKING_ADDRESS %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.parkingAddress1)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1"><label>位置番号等</label></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblCarIchiNo" code="<%= MessageIdConstant.SKF2020_SC003_CAR_ICHI_NO %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.carIchiNo1)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1"><label>自動車の保管場所に<br>係わる使用料(月)</label></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblParkingRental" code="<%= MessageIdConstant.SKF2020_SC003_PARKING_RENTAL %>" /></th>
                                     <td colspan="2" vertical-align="middle">
                                         ${f:h(form.parkingRental1)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1"><label>使用開始可能日</label></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblParkingStartDate" code="<%= MessageIdConstant.SKF2020_SC003_PARKING_START_DATE %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.parking1StartDate)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th rowspan="4"><label>2台目</label></th>
-                                    <th colspan="1"><label>自動車の保管場所</label></th>
+                                    <th rowspan="4"><nfwui:LabelBox id="lblNew2ndCar" code="<%= MessageIdConstant.SKF2020_SC003_2ND_CAR %>" /></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblParkingAddress2" code="<%= MessageIdConstant.SKF2020_SC003_PARKING_ADDRESS %>" /></th>
                                     <td colspan="2">
                                     ${f:h(form.parkingAddress2)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1"><label>位置番号等</label></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblCarIchiNo2" code="<%= MessageIdConstant.SKF2020_SC003_CAR_ICHI_NO %>" /></th>
                                     <td colspan="2">
                                     ${f:h(form.carIchiNo2)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1"><label>自動車の保管場所に<br>係わる使用料(月)</label></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblParkingRental2" code="<%= MessageIdConstant.SKF2020_SC003_PARKING_RENTAL %>" /></th>
                                     <td colspan="2">
                                     ${f:h(form.parkingRental2)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="1"><label>使用開始可能日</label></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblParkingStartDate2" code="<%= MessageIdConstant.SKF2020_SC003_PARKING_START_DATE %>" /></th>
                                     <td colspan="2">
                                     ${f:h(form.parking2StartDate)}
                                     </td>
                                 </tr>
                                 
                                 <tr>
-                                    <th rowspan="4"><label>備品希望申請</label></th>
+                                    <th rowspan="4"><nfwui:LabelBox id="lblBihinKiboShinsei" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_KIBO %>" /></th>
                                     <th colspan="2"><label></label></th>
                                     <td colspan="2">
                                     <nfwui:RadioButtonGroup id="bihinKibo">
-                                      <nfwui:RadioButton id="bihinKiboKano" name="bihinKibo" value="<%= CodeConstant.BIHIN_KIBO_SHINSEI_HITSUYO %>" label="可" />
-                                      <nfwui:RadioButton id="bihinKiboFukano" name="bihinKibo" value="<%= CodeConstant.BIHIN_KIBO_SHINSEI_FUYO %>" label="不可" />
+                                      <nfwui:RadioButton id="bihinKiboKano" name="bihinKibo" value="<%= CodeConstant.BIHIN_KIBO_SHINSEI_HITSUYO %>" label="可" disabledPatterns="TeijiNG" />
+                                      <nfwui:RadioButton id="bihinKiboFukano" name="bihinKibo" value="<%= CodeConstant.BIHIN_KIBO_SHINSEI_FUYO %>" label="不可" disabledPatterns="TeijiNG" />
                                     </nfwui:RadioButtonGroup>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>氏名</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblBihinName" code="<%= MessageIdConstant.SKF2020_SC003_NAME %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.name)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>性別</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblBihinGender" code="<%= MessageIdConstant.SKF2020_SC003_GENDER %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.gender)}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><label>必要とする社宅理由</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblBihinHitsuyoShataku" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_HITSUYO_SHATAKU %>" /></th>
                                     <td colspan="2">
                                     <nfwui:RadioButtonGroup id="bihinHitsuyoShataku">
                                       <nfwui:RadioButton id="newHitsuyoShatakuSetai" name="bihinHitsuyoShataku" value="<%= CodeConstant.SETAI %>" label="世帯" />
@@ -810,29 +835,6 @@ $(function() {
                             </tbody>
                         </table>
 <imart:condition validity="<%= String.valueOf(form.isBihinVisible()) %>" >
-<script>
-$(function(){
-	$(document).ready(function(){
-		if ($("#bihinKiboFukano").attr("checked")) {
-			$("#bihinKiboList").hide(500);	
-		}
-	});
-	
-	$("input[name='bihinKibo']:radio").change(function() {
-		var check = $(this).val();
-		if (check == '0') {
-			$("#bihinKiboList").animate({
-			    height: ['hide', 'swing']
-			  }, 300);	
-		} else {
-			$("#bihinKiboList").animate({
-			    height: ['show', 'swing']
-			  }, 300);	
-		}
-	});
-});
-
-</script>
 <div id="bihinKiboList">
                         <table class="imui-form-search-condition-blue">
                         <colgroup span="1" style= "width:140px;">
@@ -841,70 +843,70 @@ $(function(){
                             <tbody>
                                 <tr>
                                     <th colspan="3"><label></label></th>
-                                    <th colspan="1"><label>状態</label></th>
-                                    <th colspan="1"><label>希望可能</label></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblBihinStatus" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_STATUS %>" /></th>
+                                    <th colspan="1"><nfwui:LabelBox id="lblBihinWish" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_WISH %>" /></th>
                                 </tr>
                                 <tr>
-                                    <th colspan="3"><label>洗濯機</label></th>
+                                    <th colspan="3"><nfwui:LabelBox id="lblBihinWasher" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_WASHER %>" /></th>
                                     <td colspan="1"><label>${f:h(form.bihinState11)}</label></td>
                                     <td colspan="1">
-                                        <imui:select id="bihinWish11" name="bihinWish11" list="${form.ddBihinList11}"/>
+                                        <imui:select id="bihinWish11" name="bihinWish11" list="${form.ddBihinList11}" disabled="${form.bihinDisabled11}" />
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="3"><label>冷蔵庫</label></th>
+                                    <th colspan="3"><nfwui:LabelBox id="lblBihinFreezer" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_FREEZER %>" /></th>
                                     <td colspan="1"><label>${f:h(form.bihinState12)}</label></td>
                                     <td colspan="1">
-                                        <imui:select id="bihinWish12" name="bihinWish12" list="${form.ddBihinList12}"/>
+                                        <imui:select id="bihinWish12" name="bihinWish12" list="${form.ddBihinList12}" disabled="${form.bihinDisabled12}"/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="3"><label>オーブンレンジ</label></th>
+                                    <th colspan="3"><nfwui:LabelBox id="lblBihinOven" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_OVEN %>" /></th>
                                     <td colspan="1"><label>${f:h(form.bihinState13)}</label></td>
                                     <td colspan="1">
-                                        <imui:select id="bihinWish13" name="bihinWish13" list="${form.ddBihinList13}"/>
+                                        <imui:select id="bihinWish13" name="bihinWish13" list="${form.ddBihinList13}" disabled="${form.bihinDisabled13}"/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="3"><label>掃除機</label></th>
+                                    <th colspan="3"><nfwui:LabelBox id="lblBihinCleaner" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_CLEANER %>" /></th>
                                     <td colspan="1"><label>${f:h(form.bihinState14)}</label></td>
                                     <td colspan="1">
-                                        <imui:select id="bihinWish14" name="bihinWish14" list="${form.ddBihinList14}"/>
+                                        <imui:select id="bihinWish14" name="bihinWish14" list="${form.ddBihinList14}" disabled="${form.bihinDisabled14}"/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="3"><label>電子炊飯ジャー</label></th>
+                                    <th colspan="3"><nfwui:LabelBox id="lblBihinRiceCooker" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_RICE_COOKER %>" /></th>
                                     <td colspan="1"><label>${f:h(form.bihinState15)}</label></td>
                                     <td colspan="1">
-                                        <imui:select id="bihinWish15" name="bihinWish15" list="${form.ddBihinList15}"/>
+                                        <imui:select id="bihinWish15" name="bihinWish15" list="${form.ddBihinList15}" disabled="${form.bihinDisabled15}"/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="3"><label>テレビ</label></th>
+                                    <th colspan="3"><nfwui:LabelBox id="lblBihinTv" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_TV %>" /></th>
                                     <td colspan="1"><label>${f:h(form.bihinState16)}</label></td>
                                     <td colspan="1">
-                                        <imui:select id="bihinWish16" name="bihinWish16" list="${form.ddBihinList16}"/>
+                                        <imui:select id="bihinWish16" name="bihinWish16" list="${form.ddBihinList16}" disabled="${form.bihinDisabled16}"/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="3"><label>テレビ台</label></th>
+                                    <th colspan="3"><nfwui:LabelBox id="lblBihinTvStands" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_TV_STANDS %>" /></th>
                                     <td colspan="1"><label>${f:h(form.bihinState18)}</label></td>
                                     <td colspan="1">
-                                        <imui:select id="bihinWish17" name="bihinWish17" list="${form.ddBihinList17}"/>
+                                        <imui:select id="bihinWish17" name="bihinWish17" list="${form.ddBihinList17}" disabled="${form.bihinDisabled17}"/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="3"><label>座卓(こたつ)</label></th>
+                                    <th colspan="3"><nfwui:LabelBox id="lblBihinKotatsh" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_KOTATSU %>" /></th>
                                     <td colspan="1"><label>${f:h(form.bihinState18)}</label></td>
                                     <td colspan="1">
-                                        <imui:select id="bihinWish18" name="bihinWish18" list="${form.ddBihinList18}"/>
+                                        <imui:select id="bihinWish18" name="bihinWish18" list="${form.ddBihinList18}" disabled="${form.bihinDisabled18}"/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="3"><label>キッチンキャビネット</label></th>
+                                    <th colspan="3"><nfwui:LabelBox id="lblBihinKickenCabinet" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_KICHEN_CABINET %>" /></th>
                                     <td colspan="1"><label>${f:h(form.bihinState19)}</label></td>
                                     <td colspan="1">
-                                        <imui:select id="bihinWish19" name="bihinWish19" list="${form.ddBihinList19}"/>
+                                        <imui:select id="bihinWish19" name="bihinWish19" list="${form.ddBihinList19}" disabled="${form.bihinDisabled19}"/>
                                     </td>
                                 </tr>
                             </tbody>
@@ -914,12 +916,12 @@ $(function(){
                         </div>
                         
                         <div class="imui-form-container-wide" >
-                        <div class="imui-chapter-title"style="margin-bottom: 10px;"><h2>【修正依頼】【差戻し】の場合の入力欄</h2></div>
+                        <nfwui:Title id="title" code="<%= MessageIdConstant.SKF2020_SC003_TITLE_COMMENT %>" titleLevel="2" />
                         <table class="imui-form-search-condition">
                         <colgroup span="1" style= "width:140px;">
                             <tbody>
                                 <tr>
-                                    <th colspan="2"><label>修正依頼/差戻し理由</label></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblComment" code="<%= MessageIdConstant.SKF2020_SC003_COMMENT %>" /></th>
                                     <td colspan="1">
                                         <imui:textArea id="commentNote" name="commentNote" rows="4" cols="118" placeholder="修正依頼/差戻し理由" style="max-width: 700px;"></imui:textArea>
                                     </td>
@@ -932,9 +934,7 @@ $(function(){
                       <table>
                         <!-- 右側の操作ガイドの部分 -->
                         <div class="imui-form-container-wide" >
-                        <div class="imui-chapter-title" style="margin-bottom: 10px;">
-                            <h2>操作ガイド</h2>
-                        </div>
+                            <nfwui:Title id="titleOperationGuide" code="<%= MessageIdConstant.SKF2020_SC003_OPERATION_GUIDE %>" titleLevel="2" />
                         <div style="overflow-y:scroll;height:99%">
                             ${form.operationGuide}
                         </div>
@@ -945,7 +945,6 @@ $(function(){
             </tbody>
         </table>
 <div class="imui-box-layout">
-
     <table style="width:100%;">
     <tbody>
 <tr>
@@ -981,14 +980,14 @@ $(function(){
            use="popup" popupWidth="750" popupHeight="600"
            parameter="applNo:applNo,applId:applId" modalMode="false" 
            screenUrl="skf/Skf2010Sc009/init" formId="form" />
-      <nfwui:ConfirmButton id="remaindBtn" name="remaindBtn" value="差戻し"
+      <nfwui:ConfirmButton id="remandBtn" name="remandBtn" value="差戻し"
        cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
        title="<%= MessageIdConstant.SKF2020_SC003_CONFIRM_TITLE %>"
        message="<%= MessageIdConstant.SKF2020_SC003_REMAND_MSG %>"
        url="skf/Skf2020Sc003/Remand" />
       <nfwui:Button id="confirmBtn" name="confirmBtn" value="提示内容を確認"
        cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
-       url="skf/Skf2020Sc003/Confirm" />
+       url="skf/Skf2020Sc003/Confirm" disabledPatterns="TeijiNG" />
 </td>
 </tr>
     </tbody>

@@ -65,7 +65,7 @@
                                   </tr>
                                   <tr style="height: 60px;">
                                     <td style="text-align:center;">
-                                       ${f:h(obj.commentName)}
+                                       ${obj.commentName}
                                     </td>
                                     <td style="text-align:center;">
                                          ${f:h(obj.commentDate)}
@@ -75,7 +75,7 @@
                                     </td>
                                     <td style="text-align:left;">
                                       <div class="comment-row">
-                                         ${f:h(obj.commentNote)}
+                                         ${obj.commentNote}
                                        </div>
                                     </td>
 
