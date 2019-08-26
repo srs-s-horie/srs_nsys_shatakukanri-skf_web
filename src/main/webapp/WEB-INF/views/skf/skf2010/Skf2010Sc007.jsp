@@ -9,8 +9,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
+
+<% // 代行ログイン時CSS読み込み箇所ここから  %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
+<% // 代行ログイン時CSS読み込み箇所ここまで %>
 <!DOCTYPE html>
 <!-- コンテンツエリア -->
+	<!-- 代行ログイン時のみ表示されるメッセージ -->
+	<%@ include file="common/INC_SkfAlterLoginCss.jsp" %>
 <div class="common-page">
 <nfwui:Form id="form" name="form" modelAttribute="form">
 	<br><br><br><br><br>
