@@ -15,11 +15,6 @@
 <%-- コンテンツエリア --%>
 <style type="text/css"></style>
 <script type="text/javascript">
-	function back1() {
-		var url="skf/Skf1010Sc001/init?SKF1010_SC001&tokenCheck=0"
-		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？");
-	}
-
 	// リストテーブルの利用区分の文字色変更
 	function onCellAttr(rowId,val,rawObject,cm,rdata){
 		var style;
@@ -74,7 +69,7 @@
 							<nfwui:LabelBox id="lblShatakuName" code="<%=MessageIdConstant.SKF3010_SC001_LBL_SHATAKU_NAME %>" />
 						</th>
 						<td style="width: 10%;">
-							<imui:textbox id="shatakuName" name="shatakuName" style="width:260px;" value="${form.shatakuName}" placeholder="例　社宅名" tabindex="7" />
+							<imui:textbox id="shatakuName" name="shatakuName" style="width:260px;" manlength="30" value="${form.shatakuName}" placeholder="例　社宅名" tabindex="7" />
 						</td>
 					</tr>
 					<tr>
@@ -114,7 +109,7 @@
 							<nfwui:LabelBox id="lblShatakuAddress" code="<%=MessageIdConstant.SKF3010_SC001_LBL_SHATAKU_ADDRESS %>" />
 						</th>
 						<td>
-							<imui:textbox id="shatakuAddress" name="shatakuAddress" style="width:260px;" value="${form.shatakuAddress}" placeholder="例　愛知県名古屋市中区錦2-18-19" tabindex="8" />
+							<imui:textbox id="shatakuAddress" name="shatakuAddress" style="width:260px;" manlength="100" value="${form.shatakuAddress}" placeholder="例　愛知県名古屋市中区錦2-18-19" tabindex="8" />
 						</td>
 					</tr>
 				</tbody>
@@ -181,18 +176,18 @@
 				style="max-height: 800px" >
 				<pager rowNum="${form.listTableMaxRowCount }" />
 				<cols sortable="false">
-					<col name="companyName" caption="管理会社" width="115" sortable="false" align="left" />
-					<col name="agencyName" caption="管理機関" width="100" sortable="false" align="left" />
-					<col name="shtakuKbn" caption="社宅区分" width="100" sortable="false" align="center" />
-					<col name="useKbn" caption="利用区分" width="100" sortable="false" align="center" onCellAttr="onCellAttr" />
-					<col name="shatakuName" caption="社宅名" width="175" sortable="false" align="left" />
-					<col name="shatakuAddress" caption="社宅所在地" width="343" sortable="false" align="left" />
-					<col name="structureKbn" caption="構造" width="50" sortable="false" align="center" />
-					<col name="aging" caption="経年" width="50" sortable="false" align="center" />
-					<col name="emptyRoomCount" caption="空き部屋数" width="125" sortable="false" align="right" />
-					<col name="emptyParkingCount" caption="空き駐車場数" width="150" sortable="false" align="right" />
+					<col name="companyName" caption="管理会社" width="115" sortable="false" align="left" wrap="true" />
+					<col name="agencyName" caption="管理機関" width="100" sortable="false" align="left" wrap="true" />
+					<col name="shatakuKbn" caption="社宅区分" width="100" sortable="false" align="center" wrap="true" />
+					<col name="useKbn" caption="利用区分" width="100" sortable="false" align="center" onCellAttr="onCellAttr" wrap="true" />
+					<col name="shatakuName" caption="社宅名" width="175" sortable="false" align="left" wrap="true" />
+					<col name="shatakuAddress" caption="社宅所在地" width="343" sortable="false" align="left" wrap="true" />
+					<col name="structureKbn" caption="構造" width="50" sortable="false" align="center" wrap="true" />
+					<col name="aging" caption="経年" width="50" sortable="false" align="center" wrap="true" />
+					<col name="emptyRoomCount" caption="空き部屋数" width="125" sortable="false" align="right" wrap="true" />
+					<col name="emptyParkingCount" caption="空き駐車場数" width="150" sortable="false" align="right" wrap="true" />
 					<col name="col11" caption="基本" width="50" sortable="false" align="center" >
-						<showIcon iconClass="im-ui-icon-common-16-update" align="center" />
+						<showIcon iconClass="im-ui-icon-common-16-update" align="center" wrap="true" />
 					</col>
 					<col name="col12" caption="部屋" width="50" sortable="false" align="center" >
 						<showIcon iconClass="im-ui-icon-common-16-settings" />
@@ -203,6 +198,7 @@
 					<col name="hdnAreaKbn" caption="対象行の地域区分" hidden="true" />
 					<col name="hdnEmptyRoomCount" caption="対象行の空き部屋数" hidden="true" />
 					<col name="hdnEmptyParkingCount" caption="対象行の空き駐車場数" hidden="true" />
+					<col name="hdnRoomNo" caption="対象行の部屋番号" hidden="true" />
 				</cols>
 			</imui:listTable>
 
@@ -293,7 +289,7 @@
 								case 0:
 									dialogTitle = "確認";
 									dialogMessage = "契約情報を出力します。よろしいですか？";
-									url = "skf/Skf3010Sc001/outContract";
+									url = "skf/Skf3010Sc001/contractDownLoad";
 									nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form2", url, "OK", "CANCEL", this, true);
 									break;
 								// 新規（保有・区分）
@@ -413,10 +409,10 @@
 			<!-- 選択行:空き駐車場数 -->
 			<input type="hidden" name="hdnRowEmptyParkingCount" id="hdnRowEmptyParkingCount" value="" />
 			<imui:button id="csv" name="csv" value="契約情報出力" class="imui-medium-button" onclick="preButtonEvent(0)" tabindex="10" />
-			<imui:button id="newRental" name="csv" value="新規（借上）" class="imui-medium-button" onclick="preButtonEvent(2)" tabindex="11" />
-			<imui:button id="copy" name="csv" value="複写（借上）" class="imui-medium-button" onclick="preButtonEvent(3)" tabindex="12" />
-			<imui:button id="newItto" name="csv" value="新規（一棟）" class="imui-medium-button" onclick="preButtonEvent(4)" tabindex="13" />
-			<imui:button id="newHoyu" name="csv" value="新規（保有・区分）" class="imui-medium-button" onclick="preButtonEvent(1)" tabindex="14" />
+			<imui:button id="newRental" name="newRental" value="新規（借上）" class="imui-medium-button" onclick="preButtonEvent(2)" tabindex="11" />
+			<imui:button id="copy" name="copy" value="複写（借上）" class="imui-medium-button" onclick="preButtonEvent(3)" tabindex="12" />
+			<imui:button id="newItto" name="newItto" value="新規（一棟）" class="imui-medium-button" onclick="preButtonEvent(4)" tabindex="13" />
+			<imui:button id="newHoyu" name="newHoyu" value="新規（保有・区分）" class="imui-medium-button" onclick="preButtonEvent(1)" tabindex="14" />
 		</nfwui:Form>
 	</div>
 </div>

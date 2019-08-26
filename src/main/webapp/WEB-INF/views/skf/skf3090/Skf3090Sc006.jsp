@@ -14,8 +14,8 @@
 
 
 		<!-- コンテンツエリア -->
-		<div class="imui-form-container-wide" width="1350px" style="width: 100%; min-width:1300px;max-width: 1350px;">
-			<div class="imui-form-container-wide"  style="width:1280px;">
+		<div class="imui-form-container-wide">
+			<div class="imui-form-container-wide" style="width:95%;">
 				<div class="imui-chapter-title"><h2>検索条件</h2></div>
 				<nfwui:Form id="form" name="form" modelAttribute="form">
 					<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3090_SC006 %>" />
@@ -75,7 +75,7 @@
 				
 			</div>
 			<!-- 明細＆細目未満 -->
-			<div class="imui-form-container-wide"  style="width:1280px;">
+			<div class="imui-form-container-wide"  style="width:95%;">
 				<!-- 明細部 -->
 				<nfwui:Form id="form2" name="form2" modelAttribute="form">
 					<input type="hidden" name="hdnCompanyCd" id="sendCompanyCd" value="" />
@@ -90,9 +90,9 @@
 					
 					
 					<imui:listTable id="mainList" process="java" autoEncode="true" autoWidth="true"
-						autoResize="true" width="1280" onCellSelect="onCellSelect"
-						height="400" multiSelect="false" rowNumbers="true" data="${form.createTableList}">
-						<pager rowNum="100" />
+						autoResize="true"  onCellSelect="onCellSelect"
+						style="max-height: 800px" multiSelect="false" rowNumbers="true" data="${form.createTableList}">
+						<pager rowNum="${form.listTableMaxRowCount }" />
 						<cols sortable="false">
 						<col name="companyName" caption="会社名"　width="200" align="left" />
 						<col name="agencyName" caption="機関名"　width="200" align="left" />

@@ -82,12 +82,12 @@
 			<div class="imui-chapter-title" style="margin-bottom: 10px;">
    				<h2>コメント</h2>
 			</div>
-			<!-- 承認者から申請者へ-->
-			<imart:decision case="${form.commentDisplayLevel}" value="<%= CodeConstant.COMMENT_DISPLAY_LEVEL_2 %>">
+			<!-- 申請者から承認者へ-->
+			<imart:decision case="${form.commentDisplayLevel}" value="<%= CodeConstant.COMMENT_DISPLAY_LEVEL_1 %>">
 				<table class="imui-form-search-condition">
-					<tr　style="width: 100%; max-width: 1000px;text-align:center;">
+					<tr  style="width: 100%; max-width: 1000px;text-align:center;">
 						<th style="width: 200px; max-width: 200px;">
-							<label>申請者へのコメント</label>
+							<label>承認者へのコメント</label>
 						</th>
 						<td>
 							<imui:textArea id="commentNote" name="commentNote" style="height:50px;width:100%;" placeholder="例 添付資料が間違っています。" />
@@ -95,12 +95,12 @@
 					</tr>
 				</table>
 			</imart:decision>
-			<!-- 申請者から承認者へ-->
-			<imart:decision case="${form.commentDisplayLevel}" value="<%= CodeConstant.COMMENT_DISPLAY_LEVEL_1 %>">
+			<!-- 承認者から申請者へ-->
+			<imart:decision case="${form.commentDisplayLevel}" value="<%= CodeConstant.COMMENT_DISPLAY_LEVEL_2 %>">
 				<table class="imui-form-search-condition">
-					<tr  style="width: 100%; max-width: 1000px;text-align:center;">
+					<tr　style="width: 100%; max-width: 1000px;text-align:center;">
 						<th style="width: 200px; max-width: 200px;">
-							<label>承認者へのコメント</label>
+							<label>申請者へのコメント</label>
 						</th>
 						<td>
 							<imui:textArea id="commentNote" name="commentNote" style="height:50px;width:100%;" placeholder="例 添付資料が間違っています。" />

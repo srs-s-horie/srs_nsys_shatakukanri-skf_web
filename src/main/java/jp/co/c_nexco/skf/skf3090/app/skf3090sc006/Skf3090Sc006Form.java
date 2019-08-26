@@ -46,7 +46,7 @@ public class Skf3090Sc006Form extends BaseForm {
 	private List<Map<String, Object>> createTableList;
 
 	// ページの最大表示数
-	private int maxPageCount;
+	private String listTableMaxRowCount;
 
 	// 更新フラグ
 	private String updateFlag;
