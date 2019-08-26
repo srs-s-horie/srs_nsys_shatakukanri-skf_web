@@ -61,6 +61,8 @@ public class Skf2020Sc002Form extends NfwfileScDwdForm {
 	 */
 	// 社宅貸与必要
 	private String taiyoHituyo;
+	// ラジオボタン駐車場のみ
+	private String rdoParkingOnly;
 
 	/**
 	 * 社宅を必要とする理由
@@ -105,8 +107,6 @@ public class Skf2020Sc002Form extends NfwfileScDwdForm {
 	private String hitsuyoShataku;
 	// 必要理由(ラジオボタン 既婚)
 	private String rdoKikon;
-	// 必要理由(ラジオボタン 世帯か単身か独身)
-	// private String rdoHitsuyoShataku;
 
 	/**
 	 * 同居家族
@@ -309,46 +309,24 @@ public class Skf2020Sc002Form extends NfwfileScDwdForm {
 	private String yearMonthDay;
 	// 操作ガイド
 	private String operationGuide;
-	// 退居情報エリア表示フラグ（true:表示、false:非表示）
-	private String taikyoViewFlag;
-	// コメントボタン表示フラグ（true:表示、false:非表示）
-	private String commentViewFlag;
 
 	/**
 	 * hidden
 	 */
 
-	// 社宅管理ID
-	private long hdnShatakuKanriId;
 	// 選択された社宅名
 	private String hdnSelectedNowShatakuName;
-	// 室番号
-	private String hdnNowShatakuNo;
-	// 規格(間取り)
-	private String hdnShatakuKikakuKbn;
-	// 面積
-	private String hdnNowShatakuMenseki;
 	// 現在の位置番号
 	private String hdnParking1stNumber;
-	// 現在の保管場所
-	private String hdnParking1stPlace;
 	// 現在の位置番号2
 	private String hdnParking2stNumber;
-	// 現在の保管場所2
-	private String hdnParking2stPlace;
-	// 社宅管理番号
-	private long hdnShatakuKanriNo;
 	// 現居住社宅管理番号
 	private long hdnNowShatakuKanriNo;
-	// 社宅管理部屋番号
-	private long hdnShatakuRoomKanriNo;
 	// 現居住社宅部屋管理番号
 	private long hdnNowShatakuRoomKanriNo;
 	// 備品返却有無
 	private String hdnBihinHenkyakuUmu;
 
-	// 可否フラグ
-	private String hdnConfirmFlg;
 	// 自動車 駐車場番号
 	private String hdnParking2ndNumber;
 
@@ -382,6 +360,10 @@ public class Skf2020Sc002Form extends NfwfileScDwdForm {
 	private String rdoFuyouJitakuTsuukinnDisabled;
 	private String rdoFuyouJikoKariageDisabled;
 	private String rdoFuyouSonotaDisabled;
+
+	// 新所属
+	private String newAffiliation1OtherDisabled;
+	private String newAffiliation2OtherDisabled;
 
 	// 既婚
 	private String rdoKikonDisabled;
@@ -422,21 +404,6 @@ public class Skf2020Sc002Form extends NfwfileScDwdForm {
 	private String sessionDayDisabled;
 	// 連絡先
 	private String renrakuSakiDisabled;
-
-	// // 入居希望日カレンダー
-	// private String nyukyoYoteiDateClDisabled;
-	// // 自動社の有効期間満了日 1台目カレンダー
-	// private String carExpirationDateClDisabled;
-	// // 自動車の使用開始日 1台目カレンダー
-	// private String parkingUseDateClDisabled;
-	// // 自動社の有効期間満了日 2台目カレンダー
-	// private String carExpirationDate2ClDisabled;
-	// // 自動車の使用開始日 2台目カレンダー
-	// private String parkingUseDate2ClDisabled;
-	// // 退居予定日 2台目カレンダー
-	// private String taikyoYoteiDateClDisabled;
-	// // 返却立会希望日カレンダー
-	// private String sessionDayClDisabled;
 
 	// 申請内容を確認ボタン
 	private String btnCheckDisabled;
@@ -545,143 +512,6 @@ public class Skf2020Sc002Form extends NfwfileScDwdForm {
 	private String functionId;
 
 	/**
-	 * エラー表示関連
-	 */
-
-	// 勤務先のTEL
-	private String telErr;
-	// 社宅貸与必要
-	private String taiyoHituyoErr;
-	// 社宅を必要とする理由
-	private String hitsuyoRiyuErr;
-	// 社宅を不必要とする理由
-	private String fuhitsuyoRiyuErr;
-	// 新機関
-	private String newAgencyErr;
-	// 新機関その他
-	private String otherAgencyErr;
-	// 新部等
-	private String newAffiliation1Err;
-	// 新部等コードその他
-	private String otherAffiliation1Err;
-	// 新室、チームまたは課コード
-	private String newAffiliation2Err;
-	// 新室、チームまたは課コードその他
-	private String otherAffiliation2Err;
-	// 必要とする社宅
-	private String hitsuyoShatakuErr;
-	// 続柄1
-	private String dokyoRelation1Err;
-	// 氏名1
-	private String dokyoName1Err;
-	// 年齢1
-	private String dokyoAge1Err;
-
-	// 続柄2
-	private String dokyoRelation2Err;
-	// 氏名2
-	private String dokyoName2Err;
-	// 年齢2
-	private String dokyoAge2Err;
-
-	// 続柄3
-	private String dokyoRelation3Err;
-	// 氏名3
-	private String dokyoName3Err;
-	// 年齢3
-	private String dokyoAge3Err;
-
-	// 続柄4
-	private String dokyoRelation4Err;
-	// 氏名4
-	private String dokyoName4Err;
-	// 年齢4
-	private String dokyoAge4Err;
-
-	// 続柄5
-	private String dokyoRelation5Err;
-	// 氏名5
-	private String dokyoName5Err;
-	// 年齢5
-	private String dokyoAge5Err;
-
-	// 続柄6
-	private String dokyoRelation6Err;
-	// 氏名6
-	private String dokyoName6Err;
-	// 年齢6
-	private String dokyoAge6Err;
-
-	// 入居希望日（予定日）
-	private String nyukyoYoteiDateErr;
-
-	// 自動車の保有
-	private String parkingUmuErr;
-	// 自動車の登録番号入力フラグ
-	private String carNoInputFlgErr;
-	// 自動車の車名
-	private String carNameErr;
-	// 自動車の登録番号
-	private String carNoErr;
-	// 自動車の有効期間満了日
-	private String carExpirationDateErr;
-	// 自動車の利用者
-	private String carUserErr;
-	// 自動車の保管場所使用開始日
-	private String parkingUseDateErr;
-
-	/**
-	 * 自動車2台目
-	 */
-	// 自動車の登録番号入力フラグ
-	private String carNoInputFlg2Err;
-	// 自動車の車名
-	private String carName2Err;
-	// 自動車の登録番号
-	private String carNo2Err;
-	// 自動車の有効期間満了日
-	private String carExpirationDate2Err;
-	// 自動車の利用者
-	private String carUser2Err;
-	// 自動車の保管場所使用開始日
-	private String parkingUseDate2Err;
-
-	// 現入居社宅
-	private String nowShatakuErr;
-	// 保有社宅名
-	private String nowShatakuNameErr;
-	// 室番号
-	private String nowShatakuNoErr;
-	// 規格（間取り）
-	private String nowShatakuKikakuErr;
-	// 面積
-	private String nowShatakuMensekiErr;
-	// 社宅管理ID
-	private long shatakuKanriIdErr;
-	// 社宅管理部屋番号
-	private long shatakuKanriNoErr;
-	// 特殊事情など
-	private String tokushuJijoErr;
-	// 退居する
-	private String taikyoYoteiErr;
-	// 退居予定日
-	private String taikyoYoteiDateErr;
-	// 社宅の状態
-	private String shatakuJyotaiErr;
-	// 退居理由(ドロップダウン)
-	private String ddlTaikyoRiyuKbnListErr;
-	// 退居理由
-	private String taikyoRiyuErr;
-	// 退居後の連絡先
-	private String taikyogoRenrakuSakiErr;
-	// 返却立会希望日
-	private String sessionDayErr;
-	// 返却立会希望時間
-	private String sessionTimeErr;
-	// 連絡先
-	private String renrakuSakiErr;
-
-	/**
 	 * 申請情報
 	 */
 	// 申請区分
@@ -720,17 +550,27 @@ public class Skf2020Sc002Form extends NfwfileScDwdForm {
 	/**
 	 * 退居届必要時
 	 */
-	// 備品返却申請番号 フラグ
+	// 備品返却申請番号
 	private String bihinHenkaykuShinseiApplNo;
 	// 退居申請書番号
 	private String taikyoApplNo;
 
 	/**
-	 * 更新フラグ
+	 * フラグ
 	 */
+	// 可否フラグ
+	private String hdnConfirmFlg;
+	// 退居情報エリア表示フラグ（true:表示、false:非表示）
+	private String taikyoViewFlag;
+	// コメントボタン表示フラグ（true:表示、false:非表示）
+	private String commentViewFlag;
+	// 更新フラグ
 	private String updateFlg;
+	// 駐車場2台フラグ
+	private String parkingFullFlg;
 
-	private String rdoParkingOnly;
+	// 代行ログインフラグ
+	private String alterLoginFlg;
 
 	/**
 	 * データダウンロード処理。

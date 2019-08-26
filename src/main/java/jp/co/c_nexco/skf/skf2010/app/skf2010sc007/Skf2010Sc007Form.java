@@ -47,6 +47,9 @@ public class Skf2010Sc007Form extends NfwfileScDwdForm {
 	// 現入居社宅
 	private String nowShataku;
 
+	// 代行ログインフラグ
+	private String alterLoginFlg;
+
 	/**
 	 * データダウンロード処理。
 	 */
