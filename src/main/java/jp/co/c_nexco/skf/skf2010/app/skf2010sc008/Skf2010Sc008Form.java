@@ -26,4 +26,7 @@ public class Skf2010Sc008Form extends BaseForm {
 	private String affiliation1Name;
 	// 室、チーム又は課名
 	private String affiliation2Name;
+	
+	// 操作ガイド
+	private String operationGuide;
 }

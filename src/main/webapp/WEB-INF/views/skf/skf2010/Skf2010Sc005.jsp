@@ -425,6 +425,7 @@
 <input type="hidden" id="putApplId" name="applId" value="" />
 <input type="hidden" id="putApplStatus" name="applStatus" value="" />
 <input type="hidden" name="backUrl" value="skf/Skf2010Sc005/init" />
+<input type="hidden" name="prePageId" value="Skf2010Sc005" />
 <table name="imui-8eqlrzst4hv6std" id="sampleListTable1">
 <tr>
   <td>

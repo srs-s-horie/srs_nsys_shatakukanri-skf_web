@@ -27,6 +27,10 @@
     input {
        background-color: rgb(255, 255, 255);
     }
+    
+    table#dokyoList td {
+    	height: 20px;
+    } 
 </style>
 
 <script type="text/javascript">
@@ -194,7 +198,7 @@ $(function() {
                                 </tr>
                                 
                                 <tr>
-                                    <th rowspan="3"><nfwui:LabelBox id="lblApplcant" code="<%= MessageIdConstant.SKF2020_SC003_APPLICANT %>" /></th>
+                                    <th rowspan="4"><nfwui:LabelBox id="lblApplcant" code="<%= MessageIdConstant.SKF2020_SC003_APPLICANT %>" /></th>
                                     <th colspan="2"><nfwui:LabelBox id="lblShainNo" code="<%= MessageIdConstant.SKF2020_SC003_SHAIN_NO %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.shainNo)}
@@ -210,6 +214,12 @@ $(function() {
                                     <th colspan="2"><nfwui:LabelBox id="lblTokyu" code="<%= MessageIdConstant.SKF2020_SC003_TOKYU %>" /></th>
                                     <td colspan="2">
                                        ${f:h(form.tokyu)}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th colspan="2"><nfwui:LabelBox id="lblGender" code="<%= MessageIdConstant.SKF2020_SC003_GENDER %>" /></th>
+                                    <td colspan="2">
+                                       ${f:h(form.gender)}
                                     </td>
                                 </tr>
                                 
@@ -290,7 +300,7 @@ $(function() {
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblDokyoKazoku" code="<%= MessageIdConstant.SKF2020_SC003_DOKYO_KAZOKU %>" /></th>
                                     <td colspan="2">
-                                        <table class="imui-form-search-condition" style="width:100%;">
+                                        <table class="imui-form-search-condition" id="dokyoList" style="width:100%;">
                                             <tbody>
                                                 <tr>
                                                     <th><nfwui:LabelBox id="lblDokyoRelation" code="<%= MessageIdConstant.SKF2020_SC003_DOKYO_RELATION %>" /></th>
@@ -408,7 +418,7 @@ $(function() {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><nfwui:LabelBox id="lblCarExceptionDate" code="<%= MessageIdConstant.SKF2020_SC003_DOKYO_KAZOKU %>" /></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblCarExceptionDate" code="<%= MessageIdConstant.SKF2020_SC003_CAR_EXCEPTION_DATE %>" /></th>
                                     <td colspan="2">
                                         ${f:h(form.carExpirationDate)}
                                     </td>
@@ -431,8 +441,8 @@ $(function() {
                                     <th colspan="2"><nfwui:LabelBox id="lblCarFlag2" code="<%= MessageIdConstant.SKF2020_SC003_CAR_FLAG %>" /></th>
                                     <td>
                                     <nfwui:RadioButtonGroup id="carNoInputFlg2">
-                                      <nfwui:RadioButton id="carNoInputFlgHoyu" name="carNoInputFlg2" value="<%= CodeConstant.CAR_HOYU %>" label="保有している" />
-                                      <nfwui:RadioButton id="carNoInputFlgNotHoyu" name="carNoInputFlg2" value="<%= CodeConstant.CAR_YOTEI %>" label="購入を予定している" />
+                                      <nfwui:RadioButton id="carNoInputFlgHoyu2" name="carNoInputFlg2" value="<%= CodeConstant.CAR_HOYU %>" label="保有している" />
+                                      <nfwui:RadioButton id="carNoInputFlgNotHoyu2" name="carNoInputFlg2" value="<%= CodeConstant.CAR_YOTEI %>" label="購入を予定している" />
                                     </nfwui:RadioButtonGroup>
                                     </td>
                                 </tr>
@@ -449,7 +459,7 @@ $(function() {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th colspan="2"><nfwui:LabelBox id="lblCarExceptionDate2" code="<%= MessageIdConstant.SKF2020_SC003_DOKYO_KAZOKU %>" /></th>
+                                    <th colspan="2"><nfwui:LabelBox id="lblCarExceptionDate2" code="<%= MessageIdConstant.SKF2020_SC003_CAR_EXCEPTION_DATE %>" /></th>
                                     <td>
                                       ${f:h(form.carExpirationDate2)}
                                     </td>
@@ -481,8 +491,7 @@ $(function() {
                                 </tr>
                                 <tr>
                                     <th colspan="2"><nfwui:LabelBox id="lblNowShatakuName" code="<%= MessageIdConstant.SKF2020_SC003_NOW_SHATAKU_NAME %>" /></th>
-                                    <td>
-                                    　　　　　　　　　　　　　　　　　　　　${f:h(form.nowShatakuName)}
+                                    <td>${f:h(form.nowShatakuName)}
                                     </td>
                                 </tr>
                                 <tr>
@@ -796,8 +805,8 @@ $(function() {
                                     <th colspan="2"><label></label></th>
                                     <td colspan="2">
                                     <nfwui:RadioButtonGroup id="bihinKibo">
-                                      <nfwui:RadioButton id="bihinKiboKano" name="bihinKibo" value="<%= CodeConstant.BIHIN_KIBO_SHINSEI_HITSUYO %>" label="可" />
-                                      <nfwui:RadioButton id="bihinKiboFukano" name="bihinKibo" value="<%= CodeConstant.BIHIN_KIBO_SHINSEI_FUYO %>" label="不可" />
+                                      <nfwui:RadioButton id="bihinKiboKano" name="bihinKibo" value="<%= CodeConstant.BIHIN_KIBO_SHINSEI_HITSUYO %>" label="可" disabledPatterns="TeijiNG" />
+                                      <nfwui:RadioButton id="bihinKiboFukano" name="bihinKibo" value="<%= CodeConstant.BIHIN_KIBO_SHINSEI_FUYO %>" label="不可" disabledPatterns="TeijiNG" />
                                     </nfwui:RadioButtonGroup>
                                     </td>
                                 </tr>
@@ -841,63 +850,63 @@ $(function() {
                                     <th colspan="3"><nfwui:LabelBox id="lblBihinWasher" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_WASHER %>" /></th>
                                     <td colspan="1"><label>${f:h(form.bihinState11)}</label></td>
                                     <td colspan="1">
-                                        <imui:select id="bihinWish11" name="bihinWish11" list="${form.ddBihinList11}"/>
+                                        <imui:select id="bihinWish11" name="bihinWish11" list="${form.ddBihinList11}" disabled="${form.bihinDisabled11}" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblBihinFreezer" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_FREEZER %>" /></th>
                                     <td colspan="1"><label>${f:h(form.bihinState12)}</label></td>
                                     <td colspan="1">
-                                        <imui:select id="bihinWish12" name="bihinWish12" list="${form.ddBihinList12}"/>
+                                        <imui:select id="bihinWish12" name="bihinWish12" list="${form.ddBihinList12}" disabled="${form.bihinDisabled12}"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblBihinOven" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_OVEN %>" /></th>
                                     <td colspan="1"><label>${f:h(form.bihinState13)}</label></td>
                                     <td colspan="1">
-                                        <imui:select id="bihinWish13" name="bihinWish13" list="${form.ddBihinList13}"/>
+                                        <imui:select id="bihinWish13" name="bihinWish13" list="${form.ddBihinList13}" disabled="${form.bihinDisabled13}"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblBihinCleaner" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_CLEANER %>" /></th>
                                     <td colspan="1"><label>${f:h(form.bihinState14)}</label></td>
                                     <td colspan="1">
-                                        <imui:select id="bihinWish14" name="bihinWish14" list="${form.ddBihinList14}"/>
+                                        <imui:select id="bihinWish14" name="bihinWish14" list="${form.ddBihinList14}" disabled="${form.bihinDisabled14}"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblBihinRiceCooker" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_RICE_COOKER %>" /></th>
                                     <td colspan="1"><label>${f:h(form.bihinState15)}</label></td>
                                     <td colspan="1">
-                                        <imui:select id="bihinWish15" name="bihinWish15" list="${form.ddBihinList15}"/>
+                                        <imui:select id="bihinWish15" name="bihinWish15" list="${form.ddBihinList15}" disabled="${form.bihinDisabled15}"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblBihinTv" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_TV %>" /></th>
                                     <td colspan="1"><label>${f:h(form.bihinState16)}</label></td>
                                     <td colspan="1">
-                                        <imui:select id="bihinWish16" name="bihinWish16" list="${form.ddBihinList16}"/>
+                                        <imui:select id="bihinWish16" name="bihinWish16" list="${form.ddBihinList16}" disabled="${form.bihinDisabled16}"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblBihinTvStands" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_TV_STANDS %>" /></th>
                                     <td colspan="1"><label>${f:h(form.bihinState18)}</label></td>
                                     <td colspan="1">
-                                        <imui:select id="bihinWish17" name="bihinWish17" list="${form.ddBihinList17}"/>
+                                        <imui:select id="bihinWish17" name="bihinWish17" list="${form.ddBihinList17}" disabled="${form.bihinDisabled17}"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblBihinKotatsh" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_KOTATSU %>" /></th>
                                     <td colspan="1"><label>${f:h(form.bihinState18)}</label></td>
                                     <td colspan="1">
-                                        <imui:select id="bihinWish18" name="bihinWish18" list="${form.ddBihinList18}"/>
+                                        <imui:select id="bihinWish18" name="bihinWish18" list="${form.ddBihinList18}" disabled="${form.bihinDisabled18}"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblBihinKickenCabinet" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_KICHEN_CABINET %>" /></th>
                                     <td colspan="1"><label>${f:h(form.bihinState19)}</label></td>
                                     <td colspan="1">
-                                        <imui:select id="bihinWish19" name="bihinWish19" list="${form.ddBihinList19}"/>
+                                        <imui:select id="bihinWish19" name="bihinWish19" list="${form.ddBihinList19}" disabled="${form.bihinDisabled19}"/>
                                     </td>
                                 </tr>
                             </tbody>
@@ -971,7 +980,7 @@ $(function() {
            use="popup" popupWidth="750" popupHeight="600"
            parameter="applNo:applNo,applId:applId" modalMode="false" 
            screenUrl="skf/Skf2010Sc009/init" formId="form" />
-      <nfwui:ConfirmButton id="remaindBtn" name="remaindBtn" value="差戻し"
+      <nfwui:ConfirmButton id="remandBtn" name="remandBtn" value="差戻し"
        cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
        title="<%= MessageIdConstant.SKF2020_SC003_CONFIRM_TITLE %>"
        message="<%= MessageIdConstant.SKF2020_SC003_REMAND_MSG %>"
