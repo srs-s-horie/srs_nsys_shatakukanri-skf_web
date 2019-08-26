@@ -347,53 +347,18 @@
     		var nextPageId2 = "";
     		var applId = rowData.applId;
     		var applStatusCd = rowData.applStatusCd;
+    		var agreName1 = rowData.agreName1;
+    		var agreName2 = rowData.agreName2;
     		
-    		if (applStatus == "一時保存") {
-				nextPageId = "Skf2010Sc006";
-				nextPageId2 = "SKF2010_SC006";
-			} else {
-	    		switch (applId) {
-	    			case 'R0100':
-	    				// 社宅入居等希望申請調書
-	    				if (applStatus == "審査中"
-	    						|| applStatus == "同意しない") {
-		    				nextPageId = "Skf2020Sc003";
-		    				nextPageId2 = "SKF2020SC003";
-	    				} else {
-	    					nextPageId = "Skf2010Sc006";
-	    					nextPageId2 = "SKF2010SC006";
-	    				}
-	    				break;
-	    			case 'R0103':
-	    				// 社宅（自動車保管場所）退居届
-	    				nextPageId = "Skf2040Sc002";
-	    				nextPageId2 = "SKF2040SC002";
-	    				break;
-	    			case 'R0104':
-	    				// 備品希望申請
-	    				nextPageId = "Skf2030Sc002";
-	    				nextPageId2 = "SKF2030SC002";
-	    				break;
-	    			case 'R0105':
-	    				// 備品返却申請
-	    				nextPageId = "Skf2050Sc002";
-	    				nextPageId2 = "SKF2050SC002";
-	    				break;
-
-	    		}
-			}
-    		if (nextPageId == "") {
-    			return false;
-    		}
-    		var nextPageUrl = "skf/" + nextPageId + "/init?" + nextPageId2;
-    		$("#resultListForm").attr("action", nextPageUrl);
+   			var nextPageUrl = "skf/Skf2010Sc005/Transfer";
     		
     		$("#putApplNo").val(applNo);
     		$("#putApplId").val(applId);
     		$("#putApplStatus").val(applStatusCd);
+    		$("#putShonin1").val(agreName1);
+    		$("#putShonin2").val(agreName2);
     		
     		nfw.common.submitForm("resultListForm", nextPageUrl);
-    		//$("#resultListForm").submit();
     		
     	}
     }
@@ -423,7 +388,10 @@
 </script>
 <input type="hidden" id="putApplNo" name="applNo" value="" />
 <input type="hidden" id="putApplId" name="applId" value="" />
-<input type="hidden" id="putApplStatus" name="applStatus" value="" />
+<input type="hidden" id="putApplStatus" name="sendApplStatus" value="" />
+<input type="hidden" id="putShonin1" name="shonin1" value="" />
+<input type="hidden" id="putShonin2" name="shonin2" value="" />
+<input type="hidden" id="putShainNo" name="applShainNo" value="" />
 <input type="hidden" name="backUrl" value="skf/Skf2010Sc005/init" />
 <input type="hidden" name="prePageId" value="Skf2010Sc005" />
 <table name="imui-8eqlrzst4hv6std" id="sampleListTable1">

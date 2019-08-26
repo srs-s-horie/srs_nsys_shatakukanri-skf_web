@@ -73,6 +73,14 @@ public class Skf2010Sc005Form extends GridForm {
 	private String agreDateToErr;
 	private String applStatusErr;
 
+	// 以下画面遷移用
+	private String applNo;
+	private String applId;
+	private String sendApplStatus;
+	private String applShainNo;
+	private String shonin1;
+	private String shonin2;
+
 	private String backUrl;
 
 	/**
