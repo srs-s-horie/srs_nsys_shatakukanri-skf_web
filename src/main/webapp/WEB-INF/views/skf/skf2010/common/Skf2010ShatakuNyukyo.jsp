@@ -325,7 +325,8 @@
                                 <tr>
                                     <td style="font-size: 120%;font-family: ＭＳ Ｐ明朝"   width="200px">規格（間取り）</td>
                                     <td style="font-size: 120%;font-family: ＭＳ Ｐ明朝">
-                                        ${f:h(form.nowShatakuKikaku)}
+                                        <!--  ${f:h(form.nowShatakuKikaku)}-->
+                                        ${f:h(form.nowShatakuKikakuName)}
                                     </td>
                                     <td style="font-size: 120%;font-family: ＭＳ Ｐ明朝">面積</td>
                                     <td style="font-size: 120%;font-family: ＭＳ Ｐ明朝">
@@ -339,7 +340,7 @@
                                 <table class="imui-table">
 
                                 <tr>
-                                    <td width="90px" rowspan="2" style="font-size: 120%;font-family: ＭＳ Ｐ明朝">23.現保有社宅退去日</td>
+                                    <td width="90px" rowspan="2" style="font-size: 120%;font-family: ＭＳ Ｐ明朝">23.現保有社宅退居日</td>
                                     <td width="220px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝">
                                         ${f:h(form.taikyoYoteiTrue)}&nbsp;退居する
                                         ${f:h(form.taikyoYoteiFalse)}&nbsp;継続使用する
