@@ -36,7 +36,7 @@
      }).get();
         
      // 選択項目が無い場合
-        if( checkedCompBoxMap.length <= 0 ){
+        if( checkedReminderBoxMap.length <= 0 ){
             nfw.common.showReserveMessage("warning", "メール送付対象を選択してください。");
             return false;
         }
@@ -134,7 +134,7 @@
     //ウィンドウリサイズ時イベント
     $(window).bind('resize', function(){
         // 一覧の横幅を変更（90%）
-        $('#mainList').setGridWidth($(window).width() * 0.9);
+        //$('#mainList').setGridWidth($(window).width() * 0.9);
     }).trigger('resize');
 
     
@@ -155,7 +155,7 @@
 </script>
 
 <!-- コンテンツエリア -->
-<div>
+
 <nfwui:Form id="form" name="form" modelAttribute="form">
     <div class="imui-form-container-wide">
         <table class="imui-form-search-condition" width="100%" style="border: none;" >
@@ -258,7 +258,7 @@
             </td>
         </table>
     </div>
-</div>
+
 
 <!-- テーブル一覧箇所 -->
 <div class="imui-form-container-wide">
