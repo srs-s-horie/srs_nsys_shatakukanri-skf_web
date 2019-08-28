@@ -84,8 +84,6 @@
 			</nfwui:Accordion>
 		</div>
 	</imart:condition>
-	
-	<nfwui:Form id="form" name="form"  modelAttribute="form" encType="multipart/form-data">
 		<!-- コメント欄 -->
 		<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;" height="100px">
 			<div class="imui-chapter-title" style="margin-bottom: 10px;">
@@ -234,4 +232,3 @@ function back1() {
 	}
 })(jQuery);
 </script>
-</nfwui:Form>

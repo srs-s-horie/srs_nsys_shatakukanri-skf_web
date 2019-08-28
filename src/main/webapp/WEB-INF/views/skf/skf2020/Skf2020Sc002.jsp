@@ -677,6 +677,7 @@
 											<td colspan="3">
 												<nfwui:DateBox id="sessionDay" name="sessionDay" value="${f:h(form.sessionDay)}"
 											 		tabindex="53" disabled="${form.sessionDayDisabled}"/>	
+											 		<!-- disabled="${form.sessionDayDisabled}"  -->
 												<imui:select id="sessionTime" name="sessionTime" 
 													list="${form.ddlReturnWitnessRequestDateList}" disabled="${form.sessionTimeDisabled}" tabindex="54" />			
 											</td>
@@ -986,12 +987,14 @@
 				}
 		    							
 				if(bihinHenkyakuUmu=="0"){
+					alert("ドロップダウン変更時非活性");
 					//貸与遺品がない場合は、備品返却項目を非活性	
 					$('#sessionDay').prop('disabled', true);
 					$('#sessionTime').prop('disabled', true);	
 					$('#renrakuSaki').prop('disabled', true);
 					document.querySelector('#sessionDayDiv').disabled = "false";			
 				}else{
+					alert("ドロップダウン変更時活性");
 					$('#sessionDay').prop('disabled', false);	
 					$('#sessionTime').prop('disabled', false);	
 					$('#renrakuSaki').prop('disabled', false);
@@ -1122,7 +1125,18 @@
 				$('#rdoParkingOnly').prop('disabled', false);		
 			}
 
-			//新所属でその他が選択された場合、その他ボックスを活性化する
+	    	//備品のカレンダー
+	    	alert($("#hdnBihinHenkyakuUmu").val());
+			if($("#hdnBihinHenkyakuUmu").val()=="0"){
+	    		alert("非活性！");
+				$('#sessionDay').prop('disabled', true);	
+				document.querySelector('#sessionDayDiv').disabled = "false";			
+			}else{
+				alert("活性！");
+				$('#sessionDay').prop('disabled', false);	
+				document.querySelector('#sessionDayDiv').disabled = "";		
+			}
+
 
 			
 			//退居理由その他が選択された場合、その他ボックスを活性化する
