@@ -11,15 +11,8 @@
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.skf2010.app.skf2010sc002.Skf2010Sc002Form" %>
 
-<% // 代行ログイン時CSS読み込み箇所ここから  %>
-<%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
-
-<% // 代行ログイン時CSS読み込み箇所ここまで %>
-
 <!-- コンテンツエリア -->
 <div class="imui-form-container-wide" width="1350px" style="width: 100%; max-width: 1350px;">
-   	<!-- 代行ログイン時のみ表示されるメッセージ -->
-   	<jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
 	<!-- 状況、資料ヘッダ -->
 	<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;border:none;" height="100px">
 	<nfwui:Form id="form" name="form" modelAttribute="form">
@@ -31,6 +24,7 @@
 				<td width="100px">
 					${form.applStatusText }
 				</td>
+			
 				<th width="100px">
 					<nfwui:LabelBox id="lblAttachedFile" code="<%= MessageIdConstant.SKF2010_SC006_LBL_ATTACHED_FILE %>" />
 				</th>
@@ -41,47 +35,47 @@
 						</c:forEach>
 					</div>
 				</td>
+			
 			</tr>
 		</table>
 	</div>
-
 	<!-- アコーディオンエリア -->
-	<!-- Todo 退居届-->
-		<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
-			<nfwui:Accordion id="taikyoView" >
-				<nfwui:AccordionItem id="taikyoItem" code="<%= MessageIdConstant.SKF2010_SC002_TAIKYO %>" defaultOpen="${form.level3Open }">
-					<%@ include file="../skf2010/common/Skf2010TaikyoTodoke.jsp" %>
-				</nfwui:AccordionItem>
-			</nfwui:Accordion>
+	<!-- 退居届-->
+	<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
+		<nfwui:Accordion id="taikyoView" >
+			<nfwui:AccordionItem id="taikyoItem" code="<%= MessageIdConstant.SKF2010_SC002_TAIKYO %>" defaultOpen="${form.level3Open }">
+				<%@ include file="../skf2010/common/Skf2010TaikyoTodoke.jsp" %>
+			</nfwui:AccordionItem>
+		</nfwui:Accordion>
+	</div>
+	<!-- 備品表示欄-->	
+		
+	<!-- コメント欄 -->
+	<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;" height="100px">
+		<div class="imui-chapter-title" style="margin-bottom: 10px;">
+			<h2>コメント</h2>
 		</div>
-	
-	
-		<!-- コメント欄 -->
-		<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;" height="100px">
-			<div class="imui-chapter-title" style="margin-bottom: 10px;">
-   				<h2>コメント</h2>
-			</div>
-			<!-- 承認者から申請者へ-->
-			<imart:decision case="${form.commentDisplayLevel}" value="<%= CodeConstant.COMMENT_DISPLAY_LEVEL_2 %>">
-				<table class="imui-form-search-condition">
-					<tr　style="width: 100%; max-width: 1000px;text-align:center;">
-						<th style="width: 200px; max-width: 200px;">
-							<label>申請者へのコメント</label>
-						</th>
-						<td>
-							<imui:textArea id="commentNote" name="commentNote" style="height:50px;width:100%;" placeholder="例 添付資料が間違っています。" />
-						</td>
-					</tr>
-				</table>
-			</imart:decision>
-		</div>
-		<br>
-		<nfwui:Hidden id="applNo" name="applNo" />
-		<nfwui:Hidden id="applId" name="applId" />
-		<nfwui:Hidden id="shainNo" name="shainNo" />
-		<nfwui:Hidden id="applUpdateDate" name="applUpdateDate" />
-		<nfwui:Hidden id="prePageId" name="prePageId" value="${form.prePageId}" />
-		<nfwui:Hidden id="attachedNo" name="attachedNo" />
+		<!-- 承認者から申請者へ-->
+		<imart:decision case="${form.commentDisplayLevel}" value="<%= CodeConstant.COMMENT_DISPLAY_LEVEL_2 %>">
+			<table class="imui-form-search-condition">
+				<tr　style="width: 100%; max-width: 1000px;text-align:center;">
+					<th style="width: 200px; max-width: 200px;">
+						<label>申請者へのコメント</label>
+					</th>
+					<td>
+						<imui:textArea id="commentNote" name="commentNote" style="height:50px;width:100%;" placeholder="例 添付資料が間違っています。" />
+					</td>
+				</tr>
+			</table>
+		</imart:decision>
+	</div>
+	<br>
+	<nfwui:Hidden id="applNo" name="applNo" />
+	<nfwui:Hidden id="applId" name="applId" />
+	<nfwui:Hidden id="shainNo" name="shainNo" />
+	<nfwui:Hidden id="applUpdateDate" name="applUpdateDate" />
+	<nfwui:Hidden id="prePageId" name="prePageId" value="${form.prePageId}" />
+	<nfwui:Hidden id="attachedNo" name="attachedNo" />
 	<!-- フッター -->
 	<table width="100%">
 		<tr>
@@ -113,7 +107,15 @@
 							url="skf/Skf2010Sc002/Presentation" formId="form" removePatterns="LV1"
 							remove="${form.presenBtnViewFlg }" />
 					</imart:condition>
-
+					<!-- 承認ボタン -->
+					<imart:condition validity="${form.presenBtnViewFlg}" >
+						<nfwui:Button id="PresenBtn" name="PresenBtn"
+							value="提示" cssClass="imui-medium-button" cssStyle="width: 150px" 
+							title="<%= MessageIdConstant.SKF2010_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2011 %>"
+							url="skf/Skf2010Sc002/Presentation" formId="form" removePatterns="LV1"
+							remove="${form.presenBtnViewFlg }" />
+					</imart:condition>
+	
 				</div>
 			</td>
 		</tr>

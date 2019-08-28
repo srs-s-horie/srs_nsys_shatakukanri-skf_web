@@ -736,97 +736,242 @@
 <!-- コンテンツエリア  text/JavaSclipt -->
 <script type="text/javascript">
 
+/**
+ * 社宅を必要とする理由の活性制御
+ * disabled:非活性　abled:活性
+ */ 
+function rdoHitsuyoDisabled(ischecked){
+	
+    if(ischecked == "disabled"){
+			$('#rdoHitsuyoIdo').prop('disabled', true);
+			$('#rdoHitsuyoKekkon').prop('disabled', true);
+			$('#rdoHitsuyoSonota').prop('disabled', true);
+      } else {
+	  		$('#rdoHitsuyoIdo').prop('disabled', false);
+			$('#rdoHitsuyoKekkon').prop('disabled', false);
+			$('#rdoHitsuyoSonota').prop('disabled', false);
+      }
+}
+
+/**
+ * 社宅を必要としない理由の活性制御
+ * disabled:非活性　abled:活性
+ */ 
+function rdoFuyouDisabled(ischecked){
+	
+    if(ischecked == "disabled"){
+		$('#rdoFuyouJitakutsuukinn').prop('disabled', true);
+		$('#rdoFuyouJikokariage').prop('disabled', true);
+		$('#rdoFuyouSonota').prop('disabled', true);
+      } else {
+		$('#rdoFuyouJitakutsuukinn').prop('disabled', false);
+		$('#rdoFuyouJikokariage').prop('disabled', false);
+		$('#rdoFuyouSonota').prop('disabled', false);
+      }
+}
+
+/**
+ * 必要とする社宅の活性制御
+ * disabled:非活性　abled:活性
+ */ 
+function rdoHitsuyoShatakuDisabled(ischecked){
+	
+    if(ischecked == "disabled"){
+        document.getElementById("hospitalization").disabled = true;
+      } else {
+			$('#rdoKikon').prop('disabled', false);
+			$('#rdoHitsuyoDokushin').prop('disabled', false);
+      }
+}
+
+/**
+ * 自動車の保管場所の活性制御
+ * disabled:非活性　abled:活性
+ */ 
+function rdoCarUmuDisabled(ischecked){
+	
+    if(ischecked == "disabled"){
+			$('#rdoCarHitsuyo').prop('disabled', true);
+			$('#rdoCarFuyo').prop('disabled', true);
+      } else {
+			$('#rdoCarHitsuyo').prop('disabled', false);
+			$('#rdoCarFuyo').prop('disabled', false);
+      }
+}
+
+/**
+ * 自動車の保有の活性制御
+ * disabled:非活性　abled:活性
+ */ 
+function rdoCarHoyuDisabled(ischecked){
+	
+    if(ischecked == "disabled"){
+			$('#rdo1stCarHoyu').prop('disabled', true);
+			$('#rdo1stCarYotei').prop('disabled', true);
+			$('#rdo2stCarHoyu').prop('disabled', true);
+			$('#rdo2stCarYotei').prop('disabled', true);
+      } else {
+			$('#rdo1stCarHoyu').prop('disabled', false);
+			$('#rdo1stCarYotei').prop('disabled', false);
+			$('#rdo2stCarHoyu').prop('disabled', false);
+			$('#rdo2stCarYotei').prop('disabled', false);
+      }
+}
+
+/**
+ * 自動車1の情報の活性制御
+ * disabled:非活性　abled:活性
+ */ 
+function carInfo1Disabled(ischecked){
+	
+    if(ischecked == "disabled"){
+        document.getElementById("hospitalization").disabled = true;
+      } else {
+			$('#carName').prop('disabled', false);
+			$('#carNo').prop('disabled', false);
+			$('#carExpirationDate').prop('disabled', false);
+			document.querySelector('#carExpirationDateDiv').disabled = "";	
+			$('#carUser').prop('disabled', false);
+			$('#parkingUseDate').prop('disabled', false);
+			document.querySelector('#parkingUseDateDiv').disabled = "";	
+      }
+}
+
+/**
+ * 自動車2の情報の活性制御
+ * disabled:非活性　abled:活性
+ */ 
+function carInfo2Disabled(ischecked){
+	
+    if(ischecked == "disabled"){
+        document.getElementById("hospitalization").disabled = true;
+      } else {
+    	  $('#carName2').prop('disabled', false);
+    	  $('#carNo2').prop('disabled', false);
+    	  $('#carExpirationDate2').prop('disabled', false);
+    	  document.querySelector('#carExpirationDate2Div').disabled = "";	
+    	  $('#carUser2').prop('disabled', false);
+    	  $('#parkingUseDate2').prop('disabled', false);
+    	  document.querySelector('#parkingUseDate2Div').disabled = "";
+      }
+}
+
+/**
+ * 現保有の社宅の活性制御
+ * disabled:非活性　abled:活性
+ */ 
+function rdoNowHoyuShatakuDisabled(ischecked){
+	
+    if(ischecked == "disabled"){
+        document.getElementById("hospitalization").disabled = true;
+      } else {
+			$('#rdoNowHoyuShatakuTaikyo').prop('disabled', false);
+			$('#rdoNowHoyuShatakuKeizoku').prop('disabled', false);
+      }
+}
+
+/**
+ * 現居住表示制御
+ * yes:表示　no:非表示
+ */ 
+function shatakuDisplayControl(isShow){
+	
+    if(isShow == "yes"){
+			$('#shatakuStatus').show();
+			$('#taikyoRiyuInfo').show();
+			$('#trTaikyogoRenrakuSaki').show();
+			$('#returnEquipment').show();
+			$('#returnWitnessRequestDate').show();
+			$('#trRenrakuSaki').show();
+      } else {
+			$('#shatakuStatus').hide();
+			$('#taikyoRiyuInfo').hide();
+			$('#trTaikyogoRenrakuSaki').hide();
+			$('#returnEquipment').hide();
+			$('#returnWitnessRequestDate').hide();
+			$('#trRenrakuSaki').hide();
+
+      }
+}
+
+/**
+ * 退居メッセージ表示制御
+ * yes:表示　no:表示
+ */ 
+function mesDisplayControl(isHide){
+	
+    if(isHide == "yes"){
+    	$('#lblShatakuFuyouMsg').show();
+      } else {
+		//非表示（「社宅を「必要としない」場合は、別途「社宅（自動車保管場所）退居届」を申請してください。」)）
+		$('#lblShatakuFuyouMsg').hide();
+      }
+}
+
+
 //項目表示設定
 (function($) {	
-
 	//表示制御
 	//退居届を促すメッセージの設定
-	$('#lblShatakuFuyouMsg').hide();	
+	$('#lblShatakuFuyouMsg').hide();
+		
 	//クリックイベント		
-	//社宅を必要としますか-必要とする（項目表示設定)
+	//社宅を必要としますか-必要とする押下時
 		$('#rdoHitsuyo').click(function() { 	   
 		// 社宅を必要としますか？の必要とするにチェックが入っている場合
 			if($("#rdoHitsuyo").prop('checked')) {
-				//活性
-				//社宅を必要とする理由
-				$('#rdoHitsuyoIdo').prop('disabled', false);
-				$('#rdoHitsuyoKekkon').prop('disabled', false);
-				$('#rdoHitsuyoSonota').prop('disabled', false);
-				//必要とする社宅
-				$('#rdoKikon').prop('disabled', false);
-				$('#rdoHitsuyoDokushin').prop('disabled', false);
-				//自動車の保管場所
-				$('#rdoCarHitsuyo').prop('disabled', false);
-				$('#rdoCarFuyo').prop('disabled', false);
-				
+				//社宅を必要とする理由 活性
+				rdoHitsuyoDisabled("abled");
+				//社宅を必要としない理由 非活性
+				rdoFuyouDisabled("disabled");
+				//必要とする社宅  活性
+				rdoHitsuyoShatakuDisabled("abled");
+				//自動車の保管場所  活性
+				rdoCarUmuDisabled("abled");				
+				//現居住宅が保有
 				if($("#rdoNowJutakuHoyu").prop('checked')){
-					//現居住宅が保有の場合現保有の社宅を活性化
-					$('#rdoNowHoyuShatakuTaikyo').prop('disabled', false);
-					$('#rdoNowHoyuShatakuKeizoku').prop('disabled', false);
-				}
-		
-				//非活性
-				//社宅を必要としない理由
-				$('#rdoFuyouJitakutsuukinn').prop('disabled', true);
-				$('#rdoFuyouJikokariage').prop('disabled', true);
-				$('#rdoFuyouSonota').prop('disabled', true);
-						
-	    		//表示（現社宅情報）
-				$('#shatakuStatus').show();
-				$('#taikyoRiyuInfo').show();
-				$('#trTaikyogoRenrakuSaki').show();
-				$('#returnEquipment').show();
-				$('#returnWitnessRequestDate').show();
-	  			$('#trRenrakuSaki').show();
-	    		//非表示（「社宅を「必要としない」場合は、別途「社宅（自動車保管場所）退居届」を申請してください。」)）
-	    		$('#lblShatakuFuyouMsg').hide();
+					//現保有の社宅　活性化
+					rdoNowHoyuShatakuDisabled("abled");
+				}	
+	    		//表示制御（現社宅情報） 表示
+				shatakuDisplayControl("yes");
+	    		//退居を促すメッセージ制御（現社宅情報）　非表示
+				mesDisplayControl("no");
 			}
 		});
-	//社宅を必要としますか-必要としない（項目非表示設定)
+	
+	//社宅を必要としますか-必要としない押下時
 		$('#rdoFuyou').click(function() {   
 		 //社宅を必要としますか？の「必要としない」にチェックが入っている場合
-			if($("#rdoFuyou").prop('checked')) {
-				//活性
-				//社宅を必要としない理由
-				$('#rdoFuyouJitakutsuukinn').prop('disabled', false);
-				$('#rdoFuyouJikokariage').prop('disabled', false);
-				$('#rdoFuyouSonota').prop('disabled', false);
-				//自動車の保管場所			
+			if($("#rdoFuyou").prop('checked')) {			
+				//社宅を必要とする理由　非活性
+				rdoHitsuyoDisabled("disabled");
+				//社宅を必要としない理由 活性
+				rdoFuyouDisabled("abled");	
+				//自動車の保管場所	不要　活性	
 				$('#rdoCarFuyo').prop('disabled', false);
-				//非活性
-				//社宅を必要とする理由
-				$('#rdoHitsuyoIdo').prop('disabled', true);
-				$('#rdoHitsuyoKekkon').prop('disabled', true);
-				$('#rdoHitsuyoSonota').prop('disabled', true);
-				//新所属
+				//自動車の保管場所　必要　非活性
+				$('#rdoCarHitsuyo').prop('disabled', true);
+				//新所属　非活性
 				$("#agencyCd").prop('disabled', true);
 				$("#affiliation1Cd").prop('disabled', true);
-				$("#affiliation2Cd").prop('disabled', true);
-				//必要とする社宅
+				$("#affiliation2Cd").prop('disabled', true);		
+				//必要とする社宅　非活性
 				$('#rdoKikon').prop('disabled', true);
 				$('#rdoHitsuyoSetai').prop('disabled', true);
 				$('#rdoHitsuyoTanshin').prop('disabled', true);
 				$('#rdoHitsuyoDokushin').prop('disabled', true);
-				//自動車の保管場所
-				$('#rdoCarHitsuyo').prop('disabled', true);
-				$('#rdo1stCarHoyu').prop('disabled', true);
-				$('#rdo1stCarYotei').prop('disabled', true);
-				$('#rdo2stCarHoyu').prop('disabled', true);
-				$('#rdo2stCarYotei').prop('disabled', true);
+				//自動車の保有　非活性
+				rdoCarHoyuDisabled("disabled");				
+				//現居住宅が保有
 				if($("#rdoNowJutakuHoyu").prop('checked')){
-					//現居住宅が保有の場合現保有の社宅を活性化
-					$('#rdoNowHoyuShatakuTaikyo').prop('disabled', false);
-					$('#rdoNowHoyuShatakuKeizoku').prop('disabled', false);
-				}
-	    		//表示（（「社宅を「必要としない」場合は、別途「社宅（自動車保管場所）退居届」を申請してください。」)）
-	    		$('#lblShatakuFuyouMsg').show();
-	    		//非表示（現社宅情報）
-				$('#shatakuStatus').hide();
-				$('#taikyoRiyuInfo').hide();
-				$('#trTaikyogoRenrakuSaki').hide();
-				$('#returnEquipment').hide();
-				$('#returnWitnessRequestDate').hide();
-				$('#trRenrakuSaki').hide();
+					//現保有の社宅　活性化
+					rdoNowHoyuShatakuDisabled("abled");
+				}	
+				//表示制御（現社宅情報） 非表示
+				shatakuDisplayControl("no");
+	    		//退居を促すメッセージ制御（現社宅情報）　表示
+				mesDisplayControl("yes");
 			}
 		});
 		
@@ -834,69 +979,40 @@
 		$('#rdoParkingOnly').click(function() {
 			// 社宅を必要としますか？の「駐車場のみ」にチェックが入っている場合
 			if($("#rdoParkingOnly").prop('checked')) {	
-				//自動車の保管場所
+				//社宅を必要とする理由　非活性
+				rdoHitsuyoDisabled("disabled");
+				//社宅を必要としない理由　非活性
+				rdoFuyouDisabled("disabled");	
+				//自動車の保管場所　必要　活性
 				$('#rdoCarHitsuyo').prop('disabled', false);
-				$('#rdo1stCarHoyu').prop('disabled', false);
-				$('#rdo1stCarYotei').prop('disabled', false);
-				$('#rdo2stCarHoyu').prop('disabled', false);
-				$('#rdo2stCarYotei').prop('disabled', false);
-				
-				$('#carName').prop('disabled', false);
-				$('#carNo').prop('disabled', false);
-				$('#carExpirationDate').prop('disabled', false);
-				document.querySelector('#carExpirationDateDiv').disabled = "";	
-				$('#carUser').prop('disabled', false);
-				$('#parkingUseDate').prop('disabled', false);
-				document.querySelector('#parkingUseDateDiv').disabled = "";	
-				
-				$('#carName2').prop('disabled', false);
-				$('#carNo2').prop('disabled', false);
-				$('#carExpirationDate2').prop('disabled', false);
-				document.querySelector('#carExpirationDate2Div').disabled = "";	
-				$('#carUser2').prop('disabled', false);
-				$('#parkingUseDate2').prop('disabled', false);
-				document.querySelector('#parkingUseDate2Div').disabled = "";	
-				
+				//自動車の保管場所	不要　非活性		
+				$('#rdoCarFuyo').prop('disabled', true);
+				//自動車の保有　活性
+				rdoCarHoyuDisabled("abled");
+				//自動車の入力箇所1 活性
+				carInfo1Disabled("abled");
+				//自動車の入力箇所2 活性
+				carInfo2Disabled("abled");
+				// 現保有社宅　継続利用　活性
 				$("#rdoNowHoyuShatakuKeizoku").prop('disabled', false)
-				
-				//非活性
-				//社宅を必要とする理由、しない理由
-				$('#rdoHitsuyoIdo').prop('disabled', true);
-				$('#rdoHitsuyoKekkon').prop('disabled', true);
-				$('#rdoHitsuyoSonota').prop('disabled', true);			
-				$('#rdoFuyouJitakutsuukinn').prop('disabled', true);
-				$('#rdoFuyouJikokariage').prop('disabled', true);
-				$('#rdoFuyouSonota').prop('disabled', true);
-
+				// 現保有社宅　退居　非活性活性
+				$("#rdoNowHoyuShatakuTaikyo").prop('disabled', true)
 				//必要とする社宅
 				$('#rdoKikon').prop('disabled', true);
 				$('#rdoHitsuyoSetai').prop('disabled', true);
 				$('#rdoHitsuyoTanshin').prop('disabled', true);
 				$('#rdoHitsuyoDokushin').prop('disabled', true);
-				//自動車の保管場所			
-				$('#rdoCarFuyo').prop('disabled', true);
-				//退居予定
-				$("#rdoNowHoyuShatakuTaikyo").prop('disabled', true)
 				
 				//チェック状態
-				//社宅を必要とする理由、しない理由
 				$('#rdoHitsuyoSonota').prop('checked', true);// 社宅を必要とする理由　その他
 				$('#rdoFuyouSonota').prop('checked', true);// 社宅を必要としない理由　その他
-				//駐車場を必要とするか
-				$('#rdoCarHitsuyo').prop('checked', true);
+				$('#rdoCarHitsuyo').prop('checked', true);　//駐車場を必要とするか
+				$('#rdoNowHoyuShatakuKeizoku').prop('checked', true);// 現保有社宅　
 
-				// 現在の社宅
-				$('#rdoNowHoyuShatakuKeizoku').prop('checked', true);
-
-				//表示  （現社宅情報）
-				$('#shatakuStatus').show();
-				$('#taikyoRiyuInfo').show();
-				$('#trTaikyogoRenrakuSaki').show();
-				$('#returnEquipment').show();
-				$('#returnWitnessRequestDate').show();
-				$('#trRenrakuSaki').show();
-				//非表示（（「社宅を「必要としない」場合は、別途「社宅（自動車保管場所）退居届」を申請してください。」)）
-	    		$('#lblShatakuFuyouMsg').hide();
+	    		//表示制御（現社宅情報） 表示
+				shatakuDisplayControl("yes");
+	    		//退居を促すメッセージ制御（現社宅情報）　非表示
+				mesDisplayControl("no");
 		     }
 		 });
 	
@@ -929,7 +1045,7 @@
 				$('#newAffiliation1Other').prop('disabled', false);
 			}else{
 				$('#newAffiliation1Other').prop('disabled', true);
-				$('#newAffiliation1Other').val("")
+				$('#newAffiliation1Other').val("");
 			}
 		});
 		
@@ -941,7 +1057,7 @@
 				$('#newAffiliation2Other').prop('disabled', false);
 			}else{
 				$('#newAffiliation2Other').prop('disabled', true);
-				$('#newAffiliation2Other').val("")
+				$('#newAffiliation2Other').val("");
 			}
 						
 		});
@@ -985,20 +1101,19 @@
 				}else{
 					$('#rdoParkingOnly').prop('disabled', false);		
 				}
-		    							
+		    		  	
 				if(bihinHenkyakuUmu=="0"){
-					alert("ドロップダウン変更時非活性");
-					//貸与遺品がない場合は、備品返却項目を非活性	
+					//貸与遺品がない場合は、備品返却項目を非活性		
+					$('#sessionDayDiv').prop('disabled', true);
 					$('#sessionDay').prop('disabled', true);
 					$('#sessionTime').prop('disabled', true);	
-					$('#renrakuSaki').prop('disabled', true);
-					document.querySelector('#sessionDayDiv').disabled = "false";			
+					$('#renrakuSaki').prop('disabled', true);		
 				}else{
-					alert("ドロップダウン変更時活性");
+					$('#sessionDayDiv').removeClass("wj-state-disabled");
+					$('#sessionDayDiv').prop('disabled', false);
 					$('#sessionDay').prop('disabled', false);	
 					$('#sessionTime').prop('disabled', false);	
 					$('#renrakuSaki').prop('disabled', false);
-					document.querySelector('#sessionDayDiv').disabled = "";
 				}			
 			});
 		});
@@ -1077,11 +1192,8 @@
 		  $('#rdoCarHitsuyo').click(function() {	 	   
 			// 自動車の保管場所の「必要とする」にチェックが入っている場合
 			if($("#rdoCarHitsuyo").prop('checked')) {		
-				// 活性
-				$('#rdo1stCarHoyu').prop('disabled', false);
-				$('#rdo1stCarYotei').prop('disabled', false);
-				$('#rdo2stCarHoyu').prop('disabled', false);
-				$('#rdo2stCarYotei').prop('disabled', false);
+				//自動車の保有  活性
+				rdoCarHoyuDisabled("abled");	
 
 		      }
 		  }); 
@@ -1090,11 +1202,8 @@
 		  $('#rdoCarFuyo').click(function() {	 	   
 			// 自動車の保管場所の「必要としない」にチェックが入っている場合
 			if($("#rdoCarFuyo").prop('checked')) {
-		    	//非活性
-				$('#rdo1stCarHoyu').prop('disabled', true);
-				$('#rdo1stCarYotei').prop('disabled', true);
-				$('#rdo2stCarHoyu').prop('disabled', true);
-				$('#rdo2stCarYotei').prop('disabled', true);
+				//自動車の保有 活性
+				rdoCarHoyuDisabled("disabled");
 		      }
 		  }); 
 		  		  		  			  	  
@@ -1102,8 +1211,8 @@
 		  $('#rdoNowHoyuShatakuTaikyo').click(function() {	 	   
 			// 退居する
 			if($("#rdoNowHoyuShatakuTaikyo").prop('checked')) {		
-		    		//非表示
-		    		$('#lblShatakuFuyouMsg').show();
+	    		//退居を促すメッセージ制御（現社宅情報）　表示
+				mesDisplayControl("yes");
 		      }
 		  }); 
 		  
@@ -1111,12 +1220,11 @@
 		  $('#rdoNowHoyuShatakuKeizoku').click(function() {	 	   
 			// 継続利用する
 			if($("#rdoNowHoyuShatakuKeizoku").prop('checked')) {		
-		    		//非表示
-		    		$('#lblShatakuFuyouMsg').hide();
+	    		//退居を促すメッセージ制御（現社宅情報）　非表示
+				mesDisplayControl("no");
 		      }
 		  }); 
-		  
-		  
+		  	  
 	    	//駐車場の貸与可否
 			if($("hdnParkingFullFlg")=="1"){
 				//2台借りている場合は、駐車場のみを非活性			
@@ -1124,30 +1232,28 @@
 			}else{
 				$('#rdoParkingOnly').prop('disabled', false);		
 			}
-
-	    	//備品のカレンダー
-	    	alert($("#hdnBihinHenkyakuUmu").val());
-			if($("#hdnBihinHenkyakuUmu").val()=="0"){
-	    		alert("非活性！");
-				$('#sessionDay').prop('disabled', true);	
-				document.querySelector('#sessionDayDiv').disabled = "false";			
-			}else{
-				alert("活性！");
-				$('#sessionDay').prop('disabled', false);	
-				document.querySelector('#sessionDayDiv').disabled = "";		
-			}
-
-
-			
+    						
 			//退居理由その他が選択された場合、その他ボックスを活性化する
 			if($('#taikyoRiyuKbn option:selected').val()　==　"9"){
 				$('#taikyoRiyu').prop('disabled', false);
 			}else{
 				$('#taikyoRiyu').prop('disabled', true);
 			}
+			
+			//返却希望立会日
+			$(document).ready(function(){
+				if($("#hdnBihinHenkyakuUmu").val()=="0"){
+		    	//返却希望立会日　非活性
+					$('#sessionDayDiv').prop('disabled', true);	
+					$('#sessionDay').prop('disabled', true);			
+				}else{
+					$('#sessionDayDiv').prop('disabled', false);
+					$('#sessionDay').prop('disabled', false);	
+				}
+			});
 	    								
 		})(jQuery);
-	
+		
 		//ラジオボタン以外の活性制御
 		//社宅を必要としますか？
 		var taiyoHituyoDynam = {
