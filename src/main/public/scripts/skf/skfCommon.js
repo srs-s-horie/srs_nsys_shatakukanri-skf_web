@@ -76,7 +76,10 @@ skf.common.confirmPopup2 = function(message, title, formId, url, okText, cancelT
  * @param {Object} button this
  */
 skf.common.confirmPopup = function(message, title, formId, url, okText, cancelText, button) {
-	skf.common.confirmPopup(message, title, formId, url, okText, cancelText, button, false);
+	skf.common.confirmPopup(message, title, formId, url, okText, cancelText, button, false, null);
+}
+skf.common.confirmPopupForCallback = function(message, title, formId, okText, cancelText, button, callback) {
+	skf.common.confirmPopup(message, title, formId, null, okText, cancelText, button, false, callback);	
 }
 
 /**
@@ -94,7 +97,7 @@ skf.common.confirmPopup = function(message, title, formId, url, okText, cancelTe
  * @param {Object} button this
  * @param {boolean} popupDownload ポップアップダウンロード
  */
-skf.common.confirmPopup = function(message, title, formId, url, okText, cancelText, button, popupDownload) {
+skf.common.confirmPopup = function(message, title, formId, url, okText, cancelText, button, popupDownload, callback) {
 	var buttons = [ 
 		   {
 			'id': 'okbutton',
@@ -114,7 +117,12 @@ skf.common.confirmPopup = function(message, title, formId, url, okText, cancelTe
 					   eval(preOkFunc)
 				   }
 			   };
-			   skf.common.submitForm(formId, url, button, popupDownload);}
+			   if (url != null && url != "") {
+				   skf.common.submitForm(formId, url, button, popupDownload);
+			   } else if (callback != null) {
+				   callback();
+			   }
+			}
 			}, 
 			{
 			'text' : cancelText,
