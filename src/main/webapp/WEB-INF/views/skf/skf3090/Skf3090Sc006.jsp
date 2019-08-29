@@ -77,12 +77,17 @@
 			<!-- 明細＆細目未満 -->
 			<div class="imui-form-container-wide"  style="width:95%;">
 				<!-- 明細部 -->
-				<nfwui:Form id="form2" name="form2" modelAttribute="form">
+				<nfwui:Form id="form2" name="form2"  modelAttribute="form">
 					<input type="hidden" name="hdnCompanyCd" id="sendCompanyCd" value="" />
 					<input type="hidden" name="hdnAgencyCd" id="sendAgencyCd" value="" />
+					<input type="hidden" name="hdnAffiliation1Cd" id="sendAffiliation1Cd" value="" />
+					<input type="hidden" name="hdnAffiliation2Cd" id="sendAffiliation2Cd" value="" />
+					<input type="hidden" name="hdnCompanyCd" id="hdnCompanyCd" value="${form.hdnCompanyCd}" />
+					<input type="hidden" name="hdnAgenyCd" id="hdnAgencyCd" value="${form.hdnAgencyCd}" />
 					<input type="hidden" name="hdnAffiliation1Cd" id="hdnAffiliation1Cd" value="${form.hdnAffiliation1Cd}" />
 					<input type="hidden" name="hdnAffiliation2Cd" id="hdnAffiliation2Cd" value="${form.hdnAffiliation2Cd}" />
 					<input type="hidden" name="hdnBusinessAreaCd" id="hdnBusinessAreaCd" value="${form.hdnBusinessAreaCd}" />
+					<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3090Sc006/init"/>
 					
 					<input type="hidden" name="updateFlag" id="updateFlag" value="1" />
 					
@@ -101,10 +106,12 @@
 						<col name="businessAreaName" caption="事業領域" width="150" align="left" />
 						<col name="companyCd" caption="会社コード" hidden="true" />
 						<col name="agencyCd" caption="機関コード" hidden="true" />
+						<col name="affiliation1Cd" caption="部等コード" hidden="true" />
+						<col name="affiliation2Cd" caption="室、チーム又は課コード" hidden="true" />
 						<col name="details" caption="詳細" width="100" align="center" >
 							<showIcon iconClass="im-ui-icon-common-16-update" />
 						</col>
-						</cols>
+						</cols> 
 						</imui:listTable>
 					
 
@@ -120,9 +127,16 @@
 								var companyCd = row.companyCd;
 								// agencyCd:機関コード
 								var agencyCd = row.agencyCd;
+								// affiliation1Cd:部等コード
+								var affiliation1Cd = row.affiliation1Cd;
+								// affiliation2Cd:室、チーム又は課コード
+								var affiliation2Cd = row.affiliation2Cd;
+								
 								
 								$("#sendCompanyCd").val(companyCd);
 								$("#sendAgencyCd").val(agencyCd);
+								$("#sendAffiliation1Cd").val(affiliation1Cd);
+								$("#sendAffiliation2Cd").val(affiliation2Cd);
 								
 								nfw.common.submitForm("form2", "skf/Skf3090Sc007/init");
 								
@@ -170,7 +184,9 @@
 			<br />
 			<div class="align-R">
 			<nfwui:Form id="new" name="new">
+				<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3090_SC006 %>" />
 				<input type="hidden" name="updateFlag" id="updateFlag" value="0" />
+				<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3090Sc006/init" />
 				<nfwui:Button id="regist"  value="新規" cssClass="imui-medium-button" url="skf/Skf3090Sc007/init" formId="new" tabindex="7" />
 			</nfwui:Form>
 			</div>
