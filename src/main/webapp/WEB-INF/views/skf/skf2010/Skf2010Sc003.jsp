@@ -8,7 +8,7 @@
 <%@ taglib prefix="workflow" uri="http://www.intra-mart.co.jp/taglib/imw/workflow" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
-
+<%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 
 <%-- コンテンツエリア --%>
@@ -296,7 +296,14 @@ width="1300" height="232">
     	
 	    	if ($(cellContent).hasClass('im-ui-icon-common-16-update')) {
 	    		// 表示
-	    		url = "skf/Skf2010Sc004/init"
+	    		switch (applId) {
+	    		case "R0104":
+	    			url = "skf/Skf2030Sc001/init";
+	    			break;
+	    		default:
+	    			url = "skf/Skf2010Sc004/init";
+	    			break;
+	    		}
 	    	} else if ($(cellContent).hasClass('im-ui-icon-common-16-ng')) {
 	    		// 取下げ
 	    		url = url + "Cancel";
@@ -307,8 +314,11 @@ width="1300" height="232">
 	    	
 	    	$("#form").attr("action", url);
 	    	
-	    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "CANCEL", this, true);
-	    	
+	    	if (dialogMessage == "") {
+	    		nfw.common.submitForm("form", url, this);
+	    	} else {
+	    		nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "CANCEL", this, true);
+	    	}
 	    	//$("#form").submit();
     	}
     }

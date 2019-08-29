@@ -1,3 +1,6 @@
+/*
+ * Copyright(c) 2020 NEXCO Systems company limited All rights reserved.
+ */
 package jp.co.c_nexco.skf.skf2020.app.skf2020sc003;
 
 import jp.co.c_nexco.nfw.webcore.app.AsyncBaseForm;
