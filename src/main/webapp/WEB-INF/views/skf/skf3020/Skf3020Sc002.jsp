@@ -40,7 +40,9 @@
 			</div>
 			<br /><br /><br />
 			<div class="align-L">
-				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()"  />
+				<c:if test="${form.backBtnHiddenFlg == 'false'}">
+					<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()"  />
+				</c:if>
 			</div>
 		</div>
 		
@@ -52,7 +54,7 @@
 				var dialogTitle = "確認";
 				var dialogMessage = "転任者調書ファイルの取込を開始します。よろしいですか？";
 				var url = "skf/Skf3020Sc002/import";
-				nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
+				nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "CANCEL", this, true);
 			}
 			
 			 /**

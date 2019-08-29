@@ -22,5 +22,8 @@ public class Skf3020Sc002Form extends GridForm {
 	
 	/** 転任者調書取込ファイル */
 	private MultipartFile fuTenninsha;
+	
+	/** 「前に戻る」ボタン非表示フラグ（hidden） */
+	private String backBtnHiddenFlg;
 
 }
