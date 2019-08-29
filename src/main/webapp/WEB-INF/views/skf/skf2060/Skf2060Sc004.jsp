@@ -155,7 +155,7 @@
 </script>
 
 <!-- コンテンツエリア -->
-<div>
+
 <nfwui:Form id="form" name="form" modelAttribute="form">
     <div class="imui-form-container-wide">
         <table class="imui-form-search-condition" width="100%" style="border: none;" >
@@ -258,7 +258,7 @@
             </td>
         </table>
     </div>
-</div>
+
 
 <!-- テーブル一覧箇所 -->
 <div class="imui-form-container-wide">
