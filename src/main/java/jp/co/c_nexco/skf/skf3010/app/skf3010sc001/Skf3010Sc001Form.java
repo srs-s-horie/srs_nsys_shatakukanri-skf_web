@@ -1,19 +1,32 @@
 package jp.co.c_nexco.skf.skf3010.app.skf3010sc001;
 
 import jp.co.c_nexco.nfw.webcore.app.BaseForm;
+import jp.co.c_nexco.nfw.webcore.app.GridForm;
 
 import java.util.*;
 
 import lombok.EqualsAndHashCode;
 
+import java.util.Map;
+import jp.co.c_nexco.nfw.webcore.app.AsyncBaseForm;
+import lombok.EqualsAndHashCode;
+
+/**
+* 社宅一覧同期処理Form
+* 
+* @author NEXCOシステムズ
+*
+*/
 @lombok.Data
 @EqualsAndHashCode(callSuper = true)
-public class Skf3010Sc001Form extends BaseForm {
+public class Skf3010Sc001Form extends GridForm {
 	
 	private static final long serialVersionUID = 5285848663756806913L;
 
 	/**
 	 * listTable用
+	 * 
+	 * @author NEXCOシステムズ
 	 */
 	private List<Map<String, Object>> listTableData;
 	private String listTableMaxRowCount;
@@ -66,6 +79,8 @@ public class Skf3010Sc001Form extends BaseForm {
     private String hdnRowEmptyRoomCount;
     // 対象行の空き駐車場数
     private String hdnRowEmptyParkingCount;
+    // 対象行の部屋番号
+    private String hdnRoomNo;
     
     /** hdn検索キー */
 	// 管理会社コード(検索キー)

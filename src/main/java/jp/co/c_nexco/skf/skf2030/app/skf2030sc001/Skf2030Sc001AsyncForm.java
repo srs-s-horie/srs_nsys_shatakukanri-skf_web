@@ -1,12 +1,13 @@
 package jp.co.c_nexco.skf.skf2030.app.skf2030sc001;
 
+import jp.co.c_nexco.skf.skf2030.app.Skf2030common.Skf2030CommonAsyncForm;
 import jp.co.c_nexco.skf.skf2030.app.Skf2030common.Skf2030CommonForm;
 import java.util.*;
 import lombok.EqualsAndHashCode;
 
 @lombok.Data
 @EqualsAndHashCode(callSuper = true)
-public class Skf2030Sc001Form extends Skf2030CommonForm {
+public class Skf2030Sc001AsyncForm extends Skf2030CommonAsyncForm {
 
 	private static final long serialVersionUID = 5285848663756806913L;
 
@@ -16,6 +17,11 @@ public class Skf2030Sc001Form extends Skf2030CommonForm {
 	private boolean status01Flag;
 	// 備品申請ラジオボタンフラグ
 	private String bihinCheckFlag;
+	// ダイアログ表示フラグ
+	private String showDialogFlag;
+
+	// 入居日
+	private String nyukyobi;
 
 	// 希望時間ドロップダウンリスト
 	private List<Map<String, Object>> ddlWishTime;

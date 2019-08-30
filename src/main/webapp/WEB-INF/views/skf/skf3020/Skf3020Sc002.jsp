@@ -20,6 +20,7 @@
 <!-- コンテンツエリア:モックのまま -->
 <!-- コンテンツエリア -->
 		<div class="imui-form-container-wide" width="1350px" style="width: 100%; min-width:1300px;max-width: 1350px;">
+			<nfwui:Form id="form" name="form" enctype="multipart/form-data" >
 			<table class="imui-form-search-condition">
 				<tbody>
 					<tr>
@@ -27,17 +28,41 @@
 							<label style="width:115px;">転任者調書</label>
 						</th>
 						<td style="width:98%;">
-							<input type="file" size="40" accept=".csv"/>
+							<nfwui:FileBox id="fuTenninsha" name="fuTenninsha" />
+							 <%-- <input type="file" size="40" accept=".csv"/> --%>
 						</td>
 					</tr>
 				</tbody>
 			</table>
-			<div class="align-L">	
-				<input type="button" value="取込" class="imui-small-button" onclick="location.href='../../skf/Skf3020Sc003/init'"/>
+			</nfwui:Form>
+			<div class="align-L">
+				<input type="button" value="取込" class="imui-small-button" onclick="clickTorikomiBtn()"/>
 			</div>
 			<br /><br /><br />
 			<div class="align-L">
-				<input style="width:150px;" type="button" value="前の画面へ" class="imui-medium-button" onclick="back1()"/>
+				<c:if test="${form.backBtnHiddenFlg == 'false'}">
+					<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()"  />
+				</c:if>
 			</div>
 		</div>
+		
+		<script type="text/javascript">
+			/*
+			* 「取込」ボタンクリックイベント
+			*/
+			function clickTorikomiBtn() {
+				var dialogTitle = "確認";
+				var dialogMessage = "転任者調書ファイルの取込を開始します。よろしいですか？";
+				var url = "skf/Skf3020Sc002/import";
+				nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "CANCEL", this, true);
+			}
+			
+			 /**
+		     * 一つ前の画面へ戻る
+		     */
+		    function back1() {
+		    	var url = "skf/Skf3020Sc004/init?SKF3020_SC004&tokenCheck=0";
+		    	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？");
+		    }
+		</script>
 	<!-- コンテンツエリア　ここまで -->
