@@ -3,6 +3,7 @@
  */
 package jp.co.c_nexco.skf.skf2040.app.skf2040sc002;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import jp.co.c_nexco.skf.skf2040.app.skf2040common.Skf2040CommonForm;
@@ -79,17 +80,27 @@ public class Skf2040Sc002Form extends Skf2040CommonForm {
 	private String commentNote;
 
 	/*
+	 * hidden
+	 */
+	// 社員番号
+	private String hdnApplShainNo;
+	// 更新日
+	private Date hdnApplUpdateDate;
+
+	/*
 	 * 表示フラグ類
 	 */
-	// 備品返却欄
+	// 備品返却欄表示フラグ
 	private boolean bihinVisible;
-	// 帳票ボタン表示フラグ
-	private boolean level1;
+	// 退居（自動車の保管場所変換）届PDF出力ボタン表示フラグ
+	private boolean taikyoPdfViewFlg;
 	// コメントボタン表示フラグ
 	private boolean commentViewFlag;
-	// ボタン表示フラグ
+	// 提示ボタン表示フラグ
 	private boolean presenBtnViewFlg;
-
-	private boolean commentDisplayLevel;
+	// 修正依頼ボタン表示フラグ
+	private boolean revisionBtnViewFlg;
+	// 差戻しボタン表示フラグ
+	private boolean remandBtnViewFlg;
 
 }
