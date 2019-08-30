@@ -291,6 +291,7 @@
 								$("#rowId").val(rowId);
 								
 								map['applId'] = "R0106";
+								map['candidateNo'] = candidateNo;
 								
 								var popupUrl = "skf/Skf2010Sc009/init";
 								nfw.common.modelessPopup(popupUrl, null, map, 750, 600);
