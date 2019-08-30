@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import jp.co.c_nexco.nfw.webcore.app.AsyncResponse;
 import jp.co.c_nexco.nfw.webcore.app.BaseControllerAbstract;
 import jp.co.c_nexco.skf.common.constants.SkfCommonConstant;
-import jp.co.intra_mart.foundation.authz.annotation.Authz;
 
 /**
  * 
