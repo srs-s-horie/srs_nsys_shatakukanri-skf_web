@@ -133,8 +133,8 @@
     
     //ウィンドウリサイズ時イベント
     $(window).bind('resize', function(){
-        // 一覧の横幅を変更（90%）
-        //$('#mainList').setGridWidth($(window).width() * 0.9);
+        // 一覧の横幅を変更
+        $('#mainList').setGridWidth($("#listTableArea").width(), true);
     }).trigger('resize');
 
     
@@ -263,37 +263,40 @@
 <!-- テーブル一覧箇所 -->
 <div class="imui-form-container-wide">
     <nfwui:Title id="listTitle" code="<%= MessageIdConstant.SKF2060_SC004_SEARCH_RESULT %>" titleLevel="2" />
-    <nfwui:CheckBoxGroupTag id="completeChkVal">
-    <nfwui:CheckBoxGroupTag id="reminderChkVal">
-        <imui:listTable id="mainList" process="jssp" autoEncode="false" autoWidth="true" rowNumbers="true"
-            autoResize="true" onCellSelect="onCellSelect"
-            multiSelect="false" data="${form.listTableData}"
-            style="max-height: 1000px" 
-            height="232">
-            <pager rowNum="${form.listTableMaxRowCount}" />
-            <cols sortable="false">
-            <col name="applId" hidden="true" />
-            <col name="applNo" hidden="true" />
-            <col name="applStatusCd" hidden="true" />
-            <col name="completeChk" caption="完了" width="40" sortable="false" align="center" />
-            <col name="reminderChk" caption="督促" width="40" sortable="false" align="center" />
-            <col name="candidateStatus" caption="提示状況" width="80" sortable="false" onCellAttr="onCellAttr"/>
-            <col name="candidateDate" caption="提示日" width="80" sortable="false" />
-            <col name="candidatePersonNo" caption="社員番号" width="70" sortable="false" />
-            <col name="candidatePersonName" caption="提示対象者" width="120" sortable="false" />
-            <col name="shatakuName" caption="借上社宅名" sortable="false" />
-            <col name="shatakuAddress" caption="社宅所在地" sortable="false" />
-            <col name="biko" caption="備考" width="125" sortable="false" />
-            <col name="recandidate" caption="再提示" width="50" sortable="false" align="center" >
-                <showIcon iconClass="im-ui-icon-common-16-update" />
-            </col>
-            <col name="confirm" caption="確認" width="50" sortable="false" align="center" >
-                <showIcon iconClass="im-ui-icon-menu-24-document" />
-            </col>
-            </cols>
-        </imui:listTable>
-    </nfwui:CheckBoxGroupTag>
-    </nfwui:CheckBoxGroupTag>
+    <!-- listTable表示領域 -->
+    <div id="listTableArea">
+        <nfwui:CheckBoxGroupTag id="completeChkVal">
+        <nfwui:CheckBoxGroupTag id="reminderChkVal">
+            <imui:listTable id="mainList" process="jssp" autoEncode="false" autoWidth="true" rowNumbers="true"
+                autoResize="true" onCellSelect="onCellSelect"
+                multiSelect="false" data="${form.listTableData}"
+                style="max-height: 1000px" 
+                height="232">
+                <pager rowNum="${form.listTableMaxRowCount}" />
+                <cols sortable="false">
+                <col name="applId" hidden="true" />
+                <col name="applNo" hidden="true" />
+                <col name="applStatusCd" hidden="true" />
+                <col name="completeChk" caption="完了" width="40" sortable="false" align="center" />
+                <col name="reminderChk" caption="督促" width="40" sortable="false" align="center" />
+                <col name="candidateStatus" caption="提示状況" width="80" sortable="false" onCellAttr="onCellAttr"/>
+                <col name="candidateDate" caption="提示日" width="80" sortable="false" wrap="true"/>
+                <col name="candidatePersonNo" caption="社員番号" width="70" sortable="false" wrap="true"/>
+                <col name="candidatePersonName" caption="提示対象者" width="120" sortable="false" wrap="true"/>
+                <col name="shatakuName" caption="借上社宅名" sortable="false" wrap="true"/>
+                <col name="shatakuAddress" caption="社宅所在地" sortable="false" wrap="true"/>
+                <col name="biko" caption="備考" width="125" sortable="false" wrap="true"/>
+                <col name="recandidate" caption="再提示" width="50" sortable="false" align="center" >
+                    <showIcon iconClass="im-ui-icon-common-16-update" />
+                </col>
+                <col name="confirm" caption="確認" width="50" sortable="false" align="center" >
+                    <showIcon iconClass="im-ui-icon-menu-24-document" />
+                </col>
+                </cols>
+            </imui:listTable>
+        </nfwui:CheckBoxGroupTag>
+        </nfwui:CheckBoxGroupTag>
+    </div>
     
     <br>
     <div class="align-R">
