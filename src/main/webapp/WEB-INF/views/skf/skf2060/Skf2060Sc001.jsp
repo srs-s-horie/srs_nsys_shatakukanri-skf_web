@@ -243,9 +243,11 @@
 
 					<input type="hidden" name="hdnCompanyCd" id="sendCompanyCd" value="" />
 					<input type="hidden" name="hdnCandidateNo" id="sendCandidateNo" value="" />
+					<input type="hidden" name="rowId" id="rowId" value="" />
 
 					<script type="text/javascript">
 					(function($) {
+						$(document).ready(function(){
 						onCellSelect = function(rowId,iCol,cellcontent,e) {
 							if ($(cellcontent).hasClass('im-ui-icon-common-16-trashbox')) {
 								// リストテーブル情報取得
@@ -260,16 +262,57 @@
 								$("#sendCompanyCd").val(companyCd);
 								$("#sendCandidateNo").val(candidateNo);
 								
+								
 								//nfw.common.submitForm("form2", "skf/Skf2060Sc001/delete");
 								
 								var dialogMessage = '<%=MessageIdConstant.I_SKF_3005 %>';
 								var dialogTitle = '<%=MessageIdConstant.SKF2060_SC001_CONFIRM_TITLE %>';
 								var formId = "form2";
-								var url = "skf/Skf2060Sc001/delete"
+								var url = "skf/Skf2060Sc001/delete";
 								
 								nfw.common.confirmPopup("削除します。よろしいですか？", "確認", formId, url, "OK", "キャンセル", this, true);
 							}
+							
+							if ($(cellcontent).hasClass('im-ui-icon-menu-24-document')) {
+								// リストテーブル情報取得
+								var grid = $("#kariageCandidateList");
+								// 行番号から選択した行の情報を取得
+								var row = grid.getRowData(rowId);
+								
+								var map = new Object();
+								
+								// companyCd:会社コード
+								var companyCd = row.companyCd;
+								// candidateNo:借上候補物件番号
+								var candidateNo = row.candidateNo;
+								
+								$("#sendCompanyCd").val(companyCd);
+								$("#sendCandidateNo").val(candidateNo);
+								$("#rowId").val(rowId);
+								
+								map['applId'] = "R0106";
+								
+								var popupUrl = "skf/Skf2010Sc009/init";
+								nfw.common.modelessPopup(popupUrl, null, map, 750, 600);
+							}
 						}
+						});
+						
+						updateAttachedFileArea = function(res) {
+							var map = new Object();
+							map['candidateNo'] = $("#sendCandidateNo").val();
+							
+							nfw.common.doAjaxAction("skf/Skf2060Sc001/AttachedAsync", map, true, function(data){
+								if(data.attachedFileLink != null){
+									var rowId = $("#rowId").val();
+									
+									// リストテーブル情報取得
+									var grid = $("#kariageCandidateList");
+									grid.setRowData(rowId, {attachedName:data.attachedFileLink});
+								}
+							});
+						}
+						
 					})(jQuery);	
 					</script>
 </nfwui:Form>
