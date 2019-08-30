@@ -42,7 +42,6 @@ public class SkfController extends BaseControllerAbstract {
 	 *             例外処理
 	 */
 	@RequestMapping(C_SYSTEMID + "/{pageId}/{actionId}")
-	@Authz(uri = "service://skf/{pageId}/init", action = "execute")
 	public String doAction(HttpServletRequest request, HttpServletResponse response, Model model,
 			@PathVariable String pageId, @PathVariable String actionId) throws Exception {
 		return super.doAction(request, response, model, C_SYSTEMID, pageId, actionId);
