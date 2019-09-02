@@ -36,6 +36,17 @@ public class Skf2060Sc001Form extends NfwfileScDwdForm {
 	private String postalCdError;
 	//住所エラークラス
 	private String addressError;
+	
+	//支援ボタン制御
+	private String supportDisabled;
+	
+	//コメントボタン表示切替用
+	private boolean commentViewFlag;
+	
+	//借上候補物件番号
+	private long candidateNo;
+	//添付ファイル番号
+	private String attachedNo;
 
 	// リストテーブルデータ
 	private List<Map<String, Object>> listTableData;
@@ -52,6 +63,8 @@ public class Skf2060Sc001Form extends NfwfileScDwdForm {
 	private String hdnCompanyCd;
 	// 借上候補物件番号
 	private String hdnCandidateNo;
+	//添付ファイル番号
+	private String hdnAttachedNo;
 	
 	//申請書類ID
 	private String applId;
