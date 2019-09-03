@@ -6,7 +6,7 @@
                 <tr>
                     <td style="width: 70%; border: none;background-color: #fdfdff;">
                         <!-- 左側の入力域の部分 -->
-                        <div class="imui-form-container-wide" >
+                        <div class="imui-form-container-wide" style="margin-left: 0px; margin-top:0px; margin-right: 0px; width: 95%;">
                         <nfwui:Title id="ttlBihinKibo" code="<%= MessageIdConstant.SKF2030_SC001_BIHIN_KIBO_NAIYO %>" titleLevel="2" />
                         <table class="imui-form-search-condition">
                             <tbody>
@@ -33,7 +33,7 @@
                                 <tr>
                                     <th colspan="2"><nfwui:LabelBox id="lblTel" code="<%= MessageIdConstant.SKF2030_SC001_TEL %>" /></th>
                                     <td colspan="2">
-                                    	<imui:textbox id="tel" name="tel" value="${f:h(form.tel) }" />
+                                    	<imui:textbox id="tel" name="tel" value="${f:h(form.tel) }" tabindex="1" />
                                     </td>
                                 </tr>
                                 
@@ -94,8 +94,8 @@
                                     <th rowspan="2"><nfwui:LabelBox id="lblBihinHannyu" code="<%= MessageIdConstant.SKF2030_SC001_BIHIN_HANNYU %>" /></th>
                                     <th colspan="2"><nfwui:LabelBox id="lblBihinKiboDate" code="<%= MessageIdConstant.SKF2030_SC001_BIHIN_KIBO_DATE %>" /></th>
                                     <td colspan="2">
-                                    	<nfwui:DateBox  id="sessionDay" name="sessionDay" cssStyle="width: 150px;" disabledPatterns="ST01" />
-                                        <imui:select id="sessionTime" name="sessionTime" list="${form.ddlWishTime }" />
+                                    	<nfwui:DateBox  id="sessionDay" name="sessionDay" cssStyle="width: 150px;" disabledPatterns="ST01" tabindex="2" />
+                                        <imui:select id="sessionTime" name="sessionTime" list="${form.ddlWishTime }" tabindex="3" />
                                     </td>
                                 </tr>
 
@@ -103,7 +103,7 @@
                                 <tr>
                                     <th colspan="2"><nfwui:LabelBox id="lblRenrakusaki" code="<%= MessageIdConstant.SKF2030_SC001_RENRAKUSAKI %>" /></th>
                                     <td colspan="2">
-                                    	<imui:textbox id="renrakuSaki" name="renrakuSaki" value="${f:h(form.renrakuSaki) }" maxlenght="13" style="width: 150px;" />
+                                    	<imui:textbox id="renrakuSaki" name="renrakuSaki" value="${f:h(form.renrakuSaki) }" maxlenght="13" style="width: 150px;" tabindex="4" />
                                         <span style="color:red;">※搬入業者から連絡がありますので、連絡先は必ず入力してください。</span>
                                     </td>
                                 </tr>
@@ -229,7 +229,7 @@
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblComment" code="<%= MessageIdConstant.SKF2030_SC001_COMMENT %>" /></th>
                                     <td colspan="3" >
-                                    	<imui:textArea id="commentNote" name="commentNote" rows="4" placeholder="例  承認者へのコメント" style="width: 90%;"></imui:textArea>
+                                    	<imui:textArea id="commentNote" name="commentNote" rows="4" placeholder="例  承認者へのコメント" style="width: 90%;" tabindex="6"></imui:textArea>
                                     </td>
                                 </tr>
 </imart:condition>                                

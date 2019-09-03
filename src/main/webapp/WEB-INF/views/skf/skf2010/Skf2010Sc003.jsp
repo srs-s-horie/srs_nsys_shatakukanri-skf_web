@@ -48,6 +48,7 @@ function back() {
 
 <!-- コンテンツエリア -->
 <div class="imui-form-container-wide" width="1350px" style="width: 100%; max-width: 1350px;">
+<jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
 <table align="center">
     <tr>
         <td>
