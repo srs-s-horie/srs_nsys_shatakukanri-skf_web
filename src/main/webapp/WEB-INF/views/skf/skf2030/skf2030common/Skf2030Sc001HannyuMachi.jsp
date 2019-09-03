@@ -7,7 +7,7 @@
                     <td style="width: 70%; border: none;background-color: #fdfdff;">
                         <!-- 左側の入力域の部分 -->
                         
-                        <div class="imui-form-container-wide" >
+                        <div class="imui-form-container-wide" style="margin-left: 0px; margin-right: 0px; width: 95%;" >
                         <nfwui:Title id="ttlBihinKibo" code="<%= MessageIdConstant.SKF2030_SC001_BIHIN_KIBO_NAIYO %>" titleLevel="2" />
                         <table class="imui-form-search-condition">
                             <tbody>
@@ -124,7 +124,7 @@
                                        <span style="color:red;">※備品の搬入が完了した日を入力してください</span>
 </imart:condition>
 <imart:condition validity="<%= String.valueOf(form.isCompletionDayDisabled()) %>">
-                                       <imui:textbox id="completionDay" name="completionDay" value="${f:h(form.sompletionDay) }" cssStyle="width: 150px;" disabled="true"  />
+                                       <imui:textbox id="completionDay" name="completionDay" value="${f:h(form.sompletionDay) }" cssStyle="width: 150px;" disabled="true" tabindex="5"  />
 </imart:condition>
                                     </td>
                                 </tr>

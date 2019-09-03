@@ -29,7 +29,7 @@ if(menuSesVal != null){
 	Map<String, String> alterLoginUserInfoMap = (Map<String, String>)menuSesVal.get(SessionCacheKeyConstant.ALTER_LOGIN_USER_INFO_MAP);
 	// 代行対象者
 	if(alterLoginUserInfoMap != null){
-		alterLoginUserName = alterLoginUserInfoMap.get(SessionCacheKeyConstant.ALTER_LOGIN_USER_SHAIN_NAME);
+		alterLoginUserName = alterLoginUserInfoMap.get(CodeConstant.ALTER_LOGIN_USER_SHAIN_NAME);
 	}
 }
 %>
