@@ -48,15 +48,16 @@
 			</nfwui:AccordionItem>
 		</nfwui:Accordion>
 	</div>
-	<!-- 備品表示欄-->	
-		
+	<!-- 備品表示欄-->
+		<imart:condition validity="${form.bihinVisible}">	
+			<%@ include file="skf2040common/Skf2040Sc002HenkyakuBihin.jsp" %>
+		</imart:condition>		
 	<!-- コメント欄 -->
 	<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;" height="100px">
 		<div class="imui-chapter-title" style="margin-bottom: 10px;">
 			<h2>コメント</h2>
 		</div>
 		<!-- 承認者から申請者へ-->
-		<imart:decision case="${form.commentDisplayLevel}" value="<%= CodeConstant.COMMENT_DISPLAY_LEVEL_2 %>">
 			<table class="imui-form-search-condition">
 				<tr　style="width: 100%; max-width: 1000px;text-align:center;">
 					<th style="width: 200px; max-width: 200px;">
@@ -67,7 +68,6 @@
 					</td>
 				</tr>
 			</table>
-		</imart:decision>
 	</div>
 	<br>
 	<nfwui:Hidden id="applNo" name="applNo" />
@@ -129,18 +129,20 @@
 						title="<%= MessageIdConstant.SKF2040_SC002_CONFIRM_TITLE %>"
 						message="<%= MessageIdConstant.SKF2040_SC002_REMAND_MSG %>"
 						url="skf/Skf2040Sc002/Remand" remove="${form.remandBtnViewFlg }"/>
-					<!-- 提示ボタン --> >
-						<nfwui:Button id="presenBtn" name="presenBtn"
+					<!-- 提示ボタン --> 
+						<nfwui:Button id="PresentBtn" name="PresentBtn"
 							value="提示" cssClass="imui-medium-button" cssStyle="width: 150px" 
 							title="<%= MessageIdConstant.SKF2040_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2011 %>"
 							url="skf/Skf2040Sc002/Presentation" formId="form" removePatterns="LV1"
-							remove="${form.presenBtnViewFlg }" />
+							remove="${form.presentBtnViewFlg }" 
+							disabled="${form.btnSaveDisabeld}"/>
 					<!-- 承認ボタン -->
-						<nfwui:Button id="approvalBtn" name="approvalBtn"
+						<nfwui:Button id="approveBtn" name="approveBtn"
 							value="承認" cssClass="imui-medium-button" cssStyle="width: 150px" 
 							title="<%= MessageIdConstant.SKF2040_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2011 %>"
 							url="skf/Skf2040Sc002/Approval" formId="form" removePatterns="LV1"
-							remove="${form.approvalViewFlg }" />
+							remove="${form.approveBtnViewFlg}"
+							disabled="${form.btnSaveDisabeld}"/>
  			</div>
  		</tr>	
  	</table>

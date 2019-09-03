@@ -74,7 +74,11 @@ public class Skf2040Sc002Form extends Skf2040CommonForm {
 	private String bihinReturn19;
 
 	// 社宅の状態
-	private String shatakuStatus;
+	private String shatakuJyotai;
+	// 返却立会希望日
+	private String sessionDay;
+	// 連絡先
+	private String renrakuSaki;
 
 	// コメント
 	private String commentNote;
@@ -88,19 +92,34 @@ public class Skf2040Sc002Form extends Skf2040CommonForm {
 	private Date hdnApplUpdateDate;
 
 	/*
+	 * 活性制御類
+	 */
+
+	// 承認ボタン
+	private String btnApproveDisabled;
+	// 提示ボタンボタン
+	private String btnPresentDisabeld;
+
+	/*
 	 * 表示フラグ類
 	 */
 	// 備品返却欄表示フラグ
 	private boolean bihinVisible;
+
+	private String commentDisplayLevel;
 	// 退居（自動車の保管場所変換）届PDF出力ボタン表示フラグ
 	private boolean taikyoPdfViewFlg;
 	// コメントボタン表示フラグ
 	private boolean commentViewFlag;
 	// 提示ボタン表示フラグ
-	private boolean presenBtnViewFlg;
+	private boolean presentBtnViewFlg;
+	// 承認ボタン表示フラグ
+	private boolean approveBtnViewFlg;
 	// 修正依頼ボタン表示フラグ
 	private boolean revisionBtnViewFlg;
 	// 差戻しボタン表示フラグ
 	private boolean remandBtnViewFlg;
+	// 資料を添付
+	private boolean shiryoBtnViewFlg;
 
 }
