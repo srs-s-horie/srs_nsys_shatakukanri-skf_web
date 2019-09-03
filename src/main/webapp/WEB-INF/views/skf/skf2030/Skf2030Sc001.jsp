@@ -35,7 +35,7 @@
 		checkBihinChecked = function() {
 			var bihinAllFalse = "true";
 			for(var i = 11; i <= 19; i++) {
-				if ($("input[name='bihinAppl" + i + "']:checked").val() === "2") {
+				if ($("input[name='bihinAppl" + i + "']:checked").val() === "<%= CodeConstant.BIHIN_APPL_WISH %>") {
 					bihinAllFalse = "false";
 				}
 			}
@@ -57,7 +57,7 @@
 		$(document).ready(function() {
 			checkBihinChecked();
 			
-			$("#btnApply, #btnCarryIn").click(function(){
+			$("#btnCarryIn").click(function(){
 				skf.common.confirmPopupForCallback("備品搬入を完了します。よろしいですか？", "搬入完了", "form", "OK", "cancel", this, function(){
 					var map = new Object();
 					
@@ -99,23 +99,33 @@
 </script>
 
     <!-- コンテンツエリア -->
-    <div class="imui-form-container-wide" width="1350px" style="width: 100%; max-width: 1350px;">
-	<nfwui:Form id="form" name="form" modelAttribute="form">
-	<nfwui:Hidden id="applNo" name="applNo" />
-	<nfwui:Hidden id="applId" name="applId" />
-	<nfwui:Hidden id="applStatus" name="applStatus" />
-	<nfwui:Hidden id="hdnShainNo" name="hdnShainNo" />
-	<input type="hidden" id="bihinCheckFlag" value="false" />
-    <!-- コンテンツエリア -->
-                          <table class="imui-form-search-condition">
-                       <tr>
-                            <th style="width: 10%;"><nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2030_SC001_APPL_STATUS %>" /></th>
-                            <td style="width: 10%;"><label>${f:h(form.applStatusText) }</label></td>
-                            <td style="border:none;background-color: #fdfdff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                            <td style="border:none;background-color: #fdfdff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                      </tr>
-                    </table>
-    
+<div style="width: 95%;margin: 0px 20px;">
+<div style="margin: 0px;">
+<jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
+</div>
+<nfwui:Form id="form" name="form" modelAttribute="form">
+<nfwui:Hidden id="applNo" name="applNo" />
+<nfwui:Hidden id="applId" name="applId" />
+<nfwui:Hidden id="applStatus" name="applStatus" />
+<nfwui:Hidden id="hdnShainNo" name="hdnShainNo" />
+<input type="hidden" id="bihinCheckFlag" name="bihinCheckFlag" value="false" />
+<!-- コンテンツエリア -->
+<div style="max-width: 300px;margin: 0px;">
+	<table class="imui-form-search-condition">
+		<tr>
+		<th style="width: 10%;"><nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2030_SC001_APPL_STATUS %>" /></th>
+		<td style="width: 10%;"><label>${f:h(form.applStatusText) }</label></td>
+	</tr>
+	</table>
+</div>
+<div class="imui-form-container-wide" style="margin-top: 0px; margin-bottom: 10px;"> 
+<table class="imui-form-search-condition">
+<tbody>
+<tr>
+<td style="width: 70%; border: none;background-color: #fdfdff;">
+<!-- 左側の入力域の部分 -->
+<div style="width: 95%; margin: 0px 20px;">
+<nfwui:Title id="ttlBihinKibo" code="<%= MessageIdConstant.SKF2030_SC001_BIHIN_KIBO_NAIYO %>" titleLevel="2" />
 <imart:condition validity="<%= String.valueOf(form.isBihinReadOnly()) %>">
 <%@ include file="skf2030common/Skf2030Sc001HannyuMachi.jsp" %>
 </imart:condition>
@@ -123,16 +133,15 @@
 <%@ include file="skf2030common/Skf2030Sc001Hozon.jsp" %>
 </imart:condition>
 
-                        </div>
                     </td>
                     
                     <td style="width: 30%; border: none; background-color: #fdfdff;">
                       <table >
                         <!-- 右側の操作ガイドの部分 -->
-                        <div class="imui-form-container-wide" >
+                        <div style="margin: 0px 20px;" >
                             <nfwui:Title id="titOperationGuide" code="<%= MessageIdConstant.SKF2030_SC001_GUIDE %>" titleLevel="2" />
                         <div>
-                        <div style="overflow-y:scroll;height:99%">
+                        <div style="overflow-y:scroll;height:99%; background-color:#eeeeee;">
                             ${form.operationGuide }
                         </div>
                       </table>
@@ -140,13 +149,14 @@
                 </tr>
             </tbody>
         </table>
+        </div>
 <imart:condition validity="<%= String.valueOf(form.isBihinReadOnly()) %>">
 <div class="align-L float-L">
-      <input class="imui-medium-button check" type="button" value="前の画面へ" style="width:150px;" onclick="back1()">
+      <input class="imui-medium-button check" type="button" value="前の画面へ" style="width:150px;" tabindex="13" onclick="back1()">
 </div> 
 
 <div class="align-R">
-      <imui:button class="imui-medium-button check" id="btnCarryIn" name="btnCarryIn" value="搬入完了" style="width:150px;" />
+      <imui:button class="imui-medium-button check" id="btnCarryIn" name="btnCarryIn" value="搬入完了" tabindex="11" style="width:150px;" />
 </div> 
 </imart:condition>
 
@@ -155,18 +165,18 @@
            <nfwui:ConfirmButton id="revisionBtn" name="clearBtn" value="入力内容をクリア"
            cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
            title="<%= MessageIdConstant.SKF2020_SC003_CONFIRM_TITLE %>"
-           message="<%= MessageIdConstant.I_SKF_2004 %>"
+           message="<%= MessageIdConstant.I_SKF_2004 %>" tabindex="7"
            url="skf/Skf2030Sc001/Clear" removePatterns="ST01" />
 <imart:condition validity="<%= String.valueOf(form.isCommentViewFlag()) %>" >
           <nfwui:PopupButton id="commentPop" value="コメント表示" 
           cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
           modalMode="false" popupWidth="1350" popupHeight="550"
-          parameter="applNo:applNo" formId="form"
+          parameter="applNo:applNo" formId="form" tabindex="12"
           screenUrl="skf/Skf2010Sc010/init" use="popup" />
 </imart:condition>
 </div> 
 <div class="align-R">
-           <nfwui:Button id="saveBtn" name="saveBtn" value="一時保存"
+           <nfwui:Button id="saveBtn" name="saveBtn" value="一時保存" tabindex="8"
            cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
            url="skf/Skf2030Sc001/Save" removePatterns="ST01" />
 </div> 
@@ -176,14 +186,13 @@
 <imart:condition validity="<%= String.valueOf(form.isStatus01Flag()) %>" negative>
 <div class="align-L float-L" style="clear: both;">
 </imart:condition>
-      <imui:button class="imui-medium-button check" value="前の画面へ" style="width:150px;" onclick="back1()" />
+      <imui:button class="imui-medium-button check" value="前の画面へ" style="width:150px;" tabindex="13" onclick="back1()" />
 </div> 
-
 <div class="align-R">
            <nfwui:ConfirmButton id="applyBtn" name="applyBtn" value="申請"
            cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
            title="<%= MessageIdConstant.SKF2020_SC003_CONFIRM_TITLE %>"
-           message="<%= MessageIdConstant.I_SKF_2003 %>"
+           message="<%= MessageIdConstant.I_SKF_2003 %>" tabindex="10"
            url="skf/Skf2030Sc001/Apply" removePatterns="ST01" />
 </div> 
 </imart:condition>
