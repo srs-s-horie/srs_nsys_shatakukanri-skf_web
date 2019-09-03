@@ -45,7 +45,6 @@
 				<input style="width:150px;" type="button" value="前の画面へ" class="imui-medium-button" onclick="back1()"/>
 			</div>
 			<div class="align-R">
-			<%-- <nfwui:Button id="confirmBtn" name="confirmBtn" value="取込実行" cssStyle="width:150px;" formId="form" onclick="clickTorikomiBtn()" disabledPatterns="NOT_DATA" /> --%>
 				<input id="torikomiBtn" style="width:150px;" type="button" value="取込実行" class="imui-medium-button" onclick="clickTorikomiBtn()" />
 			</div>
 		</nfwui:Form>
@@ -62,7 +61,6 @@
 				
 				if (datas.length == 0) {
 					// 「取込実行」ボタン非活性
-					$("#torikomiBtn").css("color", "#cccccc");
 					$("#torikomiBtn").attr("disabled", true);
 				}
 			});
@@ -71,7 +69,6 @@
 			* 画面項目の初期設定
 			*/
 			function initDispItems() {
-				$("#torikomiBtn").css("color", "#333333");
 				$("#torikomiBtn").attr("disabled", false);
 			}
 			
@@ -81,18 +78,15 @@
 			function setErrStatus() {
 				var grid = $("#grvTenninshaIchiran"); // 転任者情報テーブル
 				var datas = grid.getGridParam('data'); // テーブル内全行
-				
+
 				 for (var i in datas) {
-					 console.log(datas[i]);
 					 var errCol = datas[i].col8; // エラー項目（カンマ区切）
-					 console.log('エラー： ' + errCol);
 					 if (errCol !== '' && errCol !== undefined) {
 						 var array = errCol.split(',');
 						 
 						 // エラー項目の配列にセットされているカラムの背景色を変更する。
 						 for (var j=0; j < array.length; j++) {
-							console.log('エラー配列： ' + array[j]);
-							grid.setCell(datas[i].id, array[j], '', { background: '#FF6666' });
+							grid.setCell(datas[i].id, array[j], '', { background: '#fedede' });
 						 }
 					 }
 				 }
@@ -105,7 +99,7 @@
 				var dialogTitle = "確認";
 				var dialogMessage = "転任者調書データを取り込みます。よろしいですか？";
 				var url = "skf/Skf3020Sc003/import";
-				nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
+				nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "CANCEL", this, true);
 			}
 			
 			/*
