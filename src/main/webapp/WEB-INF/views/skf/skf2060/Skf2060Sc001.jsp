@@ -12,6 +12,7 @@
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.skf2060.app.skf2060sc001.Skf2060Sc001Form" %>
 
+<%  Skf2060Sc001Form form = (Skf2060Sc001Form)request.getAttribute("form"); %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
 
 <script type="text/javascript">
@@ -53,7 +54,7 @@
                                             cssClass="imui-small-button" use="popup"
                                             screenUrl="skf/Skf2010Sc001/init"
                                             popupWidth="650" popupHeight="700"
-                                            modalMode="false" />
+                                            modalMode="false" disabled="${form.supportDisabled}"/>
                                         </nobr>   
                                         </th>
                                         <td colspan="2">
@@ -173,9 +174,7 @@
 						<col name="attachedFile" caption="ファイルの添付/削除" width="135" sortable="false" align="center" >
 						<showIcon iconClass="im-ui-icon-menu-24-document" />
 						</col>
-						<col name="deleteBukken" caption="物件削除" width="70" sortable="false" align="center" >
-						<showIcon iconClass="im-ui-icon-common-16-trashbox" />
-						</col>
+						<col name="deleteBukken" caption="物件削除" width="70" sortable="false" align="center" />
 						<col name="companyCd" caption="会社コード" hidden="true" />
 						<col name="candidateNo" caption="借上候補物件番号" hidden="true" />
 						</cols>
@@ -218,7 +217,15 @@
 
 <div class="align-L float-L">
       <imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()"  />
+<imart:condition validity="<%= String.valueOf(form.isCommentViewFlag()) %>" >
+          <nfwui:PopupButton id="commentPop" value="コメント表示" 
+          cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
+          modalMode="false" popupWidth="1350" popupHeight="550"
+          parameter="applNo:applNo" formId="form"
+          screenUrl="skf/Skf2010Sc010/init" use="popup" />
+</imart:condition>
 </div> 
+
 
 
 <div class="align-R">
@@ -243,11 +250,20 @@
 
 					<input type="hidden" name="hdnCompanyCd" id="sendCompanyCd" value="" />
 					<input type="hidden" name="hdnCandidateNo" id="sendCandidateNo" value="" />
+					<input type="hidden" name="hdnAttachedNo" id="sendAttachedNo" value="" />
 					<input type="hidden" name="rowId" id="rowId" value="" />
 
+					<script src="scripts/skf/skfCommon.js"></script>
 					<script type="text/javascript">
 					(function($) {
 						$(document).ready(function(){
+							
+							//リンククリック時
+							$("a[id^='attached_']").click(function(){
+								downloadKariageBukkenFile(this);
+								
+							});
+						
 						onCellSelect = function(rowId,iCol,cellcontent,e) {
 							if ($(cellcontent).hasClass('im-ui-icon-common-16-trashbox')) {
 								// リストテーブル情報取得
@@ -291,6 +307,7 @@
 								$("#rowId").val(rowId);
 								
 								map['applId'] = "R0106";
+								map['candidateNo'] = candidateNo;
 								
 								var popupUrl = "skf/Skf2010Sc009/init";
 								nfw.common.modelessPopup(popupUrl, null, map, 750, 600);
@@ -309,8 +326,28 @@
 									// リストテーブル情報取得
 									var grid = $("#kariageCandidateList");
 									grid.setRowData(rowId, {attachedName:data.attachedFileLink});
+									
+									$("a[id^='attached_']").bind("click",function(){
+										downloadKariageBukkenFile(this);
+										
+									});
+									
 								}
 							});
+						}
+						
+						downloadKariageBukkenFile = function(data) {
+							var id = $(data).attr("id");
+							var url = "skf/Skf2060Sc001/AttachedDownload";
+							var list = id.split('_');
+							var candidateNo = list[1];
+							var attachedNo = list[2];
+							
+							$("#sendCandidateNo").val(candidateNo);
+							$("#sendAttachedNo").val(attachedNo);
+							
+							skf.common.submitForm("form2", url, this);
+							
 						}
 						
 					})(jQuery);	
