@@ -22,10 +22,10 @@
     $(document).ready(function(){
 
     });
-  
+
     // 「新規提示」ボタン押下時のイベント
     onClickNewCandidate = function () {
-        nfw.common.submitForm("form", "skf/Skf2060Sc001/Init");
+        nfw.common.submitForm("paramForm", "skf/Skf2060Sc001/Init");
     }
 
     // 「督促メール送信」ボタン押下時のイベント
@@ -34,7 +34,7 @@
      var checkedReminderBoxMap = $("[name=reminderChkVal]:checked").map(function() {
          return $(this).val();
      }).get();
-        
+
      // 選択項目が無い場合
         if( checkedReminderBoxMap.length <= 0 ){
             nfw.common.showReserveMessage("warning", "メール送付対象を選択してください。");
@@ -49,24 +49,13 @@
 
     // 「一括完了」ボタン押下時のイベント
     onClickBulkComplete = function () {
-      // TODO 現行にチェック有無判定がないため削除予定
-      // チェックされた完了チェックボックスの値を配列として取得
-//       var checkedCompBoxMap = $("[name=completeChkVal]:checked").map(function() {
-//         return $(this).val();
-//       }).get();
-      
-//       // 選択項目が無い場合
-//         if( checkedCompBoxMap.length <= 0 ){
-//             nfw.common.showReserveMessage("warning", "選択してください。");
-//             return false;
-//         }
-
         // TODO メッセージConstから取得
+        //W_GFK_0001.replace('{0}', '申請内容を確認')
         skf.common.confirmPopup("選択された申請書を一括で承認します。よろしいですか？", 
                 "確認", "form", "skf/Skf2060Sc004/BulkComplete", 
                 "OK", "キャンセル", this, false);
     }
-    
+
     // リストテーブルクリック時のイベント
     onCellSelect = function(rowId, iCol, cellContent, e) {
         if ($(cellContent).hasClass('im-ui-icon-common-16-update')) {
@@ -77,39 +66,40 @@
           onClickConfirm(rowId);
         }
     }
-    
+
     // 選択行から遷移先画面に渡すパラメータ情報を取得する
-    getGridRowData = function(rowId){
-      var grid = $("#mainList");
+    setParamFromGridRowData = function(rowId){
+        var grid = $("#mainList");
         var rowData = grid.getRowData(rowId);
-        
         $("#paramUserCd").val(rowData.candidatePersonNo);
-        $("#paramUserName").val(rowData.candidatePersonName);
         $("#paramApplNo").val(rowData.applNo);
-        $("#paramApplId").val(rowData.applId);
-        $("#paramApplStatusCd").val(rowData.applStatusCd);
+        $("#paramApplStatus").val(rowData.applStatusCd);
     }
-    
+
     // 再提示押下時の処理
     onClickRecandidate = function(rowId){
-      getGridRowData(rowId);
-        
-        var nextPageUrl = "skf/Skf2060Sc001/Recandidate";
+        // TODO メッセージConstから取得
+        if(!confirm("既に選択済みですが、再提示します。よろしいですか？")){
+            return;
+        }
+        setParamFromGridRowData(rowId);
+
+        var nextPageUrl = "skf/Skf2060Sc001/Init";
         $("#paramForm").attr("action", nextPageUrl);
-        
+
         nfw.common.submitForm("paramForm", nextPageUrl);
     }
-    
+
     // 確認押下時の処理
     onClickConfirm = function(rowId){
-      getGridRowData(rowId);
-      
-      var nextPageUrl = "skf/Skf2060Sc003/Init";
-      $("#paramForm").attr("action", nextPageUrl);
-      
-      nfw.common.submitForm("paramForm", nextPageUrl);
+        setParamFromGridRowData(rowId);
+
+        var nextPageUrl = "skf/Skf2060Sc003/Init";
+        $("#paramForm").attr("action", nextPageUrl);
+
+        nfw.common.submitForm("paramForm", nextPageUrl);
     }
-    
+
     // リストテーブルの申請状況の文字色変更
     onCellAttr = function(rowId,val,rawObject,cm,rdata){
         var style;
@@ -123,35 +113,22 @@
         }
         return style;
     }
-    
+
     // 社員選択支援ポップアップ コールバック関数
     shainInfoCallback = function(param){
         if( param != null && typeof param == 'object' && param.name != null){
             $("#candidatePersonName").val(param.name);
+            $("#candidatePersonNo").val(param.shainNo);
         }
     }
-    
+
     //ウィンドウリサイズ時イベント
     $(window).bind('resize', function(){
         // 一覧の横幅を変更
         $('#mainList').setGridWidth($("#listTableArea").width(), true);
     }).trigger('resize');
 
-    
   })(jQuery);
-</script>
-
-<!-- カレンダー出力用スクリプト -->
-<script type="text/javascript">
-  (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal001").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-  (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal002").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-  (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal003").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-  (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal004").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-  (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal005").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-  (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal006").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-  (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal007").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-  (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal008").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);      
-  (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal009").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
 </script>
 
 <!-- コンテンツエリア -->
@@ -165,16 +142,16 @@
                     <table class="imui-form-search-condition">
                         <tr>
                             <th style="width: 200px;">
-                                <nfwui:LabelBox id="candidateDate" code="<%= MessageIdConstant.SKF2060_SC004_CANDIDATE_DATE %>" />
+                                <nfwui:LabelBox id="lblCandidateDate" code="<%= MessageIdConstant.SKF2060_SC004_CANDIDATE_DATE %>" />
                             </th>
                             <td colspan="2">
-                                <imui:textbox  type="text" name="candidateDateFrom" id="candidateDateFrom" value="${form.candidateDateFrom}" style="width:100px" />
+                                <nfwui:DateBox id="candidateDateFrom" name="candidateDateFrom" value="${f:h(form.candidateDateFrom)}"
+                                               cssClass="${f:h(form.candidateDateFromErr)}" tabindex="1" cssStyle="width:100px"/>
                                 &nbsp;～&nbsp;
-                                <imui:textbox  type="text" name="candidateDateTo" id="candidateDateTo" value="${form.candidateDateTo}" style="width:100px" />
+                                <nfwui:DateBox id="candidateDateTo" name="candidateDateTo" value="${f:h(form.candidateDateTo)}"
+                                               cssClass="${f:h(form.candidateDateToErr)}" tabindex="2" cssStyle="width:100px"/>
                             </td>
                         </tr>
-                        <im:calendar floatable="true" altField="#candidateDateFrom" />
-                        <im:calendar floatable="true" altField="#candidateDateTo" />
                         <tr>
                             <th style="width: 200px;">
                                 <div style="float:right" >
@@ -182,58 +159,59 @@
                                         cssClass="imui-small-button" use="popup"
                                         screenUrl="skf/Skf2010Sc001/init"
                                         popupWidth="650" popupHeight="700"
-                                        modalMode="false" />
+                                        modalMode="false"  tabindex="3"/>
                                 </div>
-                                <nfwui:LabelBox id="personName" code="<%= MessageIdConstant.SKF2060_SC004_CANDIDATE_PERSON_NAME %>"/>
+                                <nfwui:LabelBox id="lblCandidatePersonName" code="<%= MessageIdConstant.SKF2060_SC004_CANDIDATE_PERSON_NAME %>"/>
                                 &nbsp;&nbsp;
                                 
                             </th>
                             <td colspan="2">
+                                <input type="hidden" name="candidatePersonNo" id="candidatePersonNo" value="${form.candidatePersonNo}" />
                                 <input name="candidatePersonName" id="candidatePersonName" placeholder="例 中日本　一郎"
-                                       value="${form.candidatePersonName}"></input>
+                                       value="${form.candidatePersonName}" readonly="readonly" tabindex="4"></input>
                             </td>
                         </tr>
                         <tr>
                             <th style="width: 200px;">
-                                <nfwui:LabelBox id="shatakuName" code="<%= MessageIdConstant.SKF2060_SC004_SHATAKU_NAME %>" />
+                                <nfwui:LabelBox id="lblShatakuName" code="<%= MessageIdConstant.SKF2060_SC004_SHATAKU_NAME %>" />
                             </th>
                             <td colspan="2">
-                                <input name="shatakuName" id="shatakuName" placeholder="例 厚木宿舎" value="${form.shatakuName}"></input>
+                                <input name="shatakuName" id="shatakuName" placeholder="例 厚木宿舎" value="${form.shatakuName}"  tabindex="5"></input>
                             </td>
                         </tr>
 
                         <tr>
                             <th style="width: 200px;">
-                                <nfwui:LabelBox id="shatakuAddressName" code="<%= MessageIdConstant.SKF2060_SC004_SHATAKU_ADDRESS_NAME %>"/>
+                                <nfwui:LabelBox id="lblShatakuAddressName" code="<%= MessageIdConstant.SKF2060_SC004_SHATAKU_ADDRESS_NAME %>"/>
                             </th>
                             <td colspan="2">
-                                <input name="shatakuAddressName" id="shatakuAddressName" placeholder="例 神奈川県厚木市恩名"></input>
+                                <input name="shatakuAddressName" id="shatakuAddressName" placeholder="例 神奈川県厚木市恩名" value="${form.shatakuAddressName}" tabindex="6"></input>
                             </td>
                         </tr>   
 
                         <tr>
                             <th style="width: 200px;"　rowspan="2">
-                                <nfwui:LabelBox id="candidateStatus" code="<%= MessageIdConstant.SKF2060_SC004_CANDIDATE_STATUS %>" />
+                                <nfwui:LabelBox id="lblCandidateStatus" code="<%= MessageIdConstant.SKF2060_SC004_CANDIDATE_STATUS %>" />
                             </th>
                             <td colspan="2">
                                 <nfwui:CheckBoxGroupTag id="candidateStatus">
-                                <table>
+                                <table class="${f:h(form.candidateStatusErr)}">
                                     <tr style="height: 25px;">
                                         <td>
                                             <nfwui:CheckBox id="candidateStatus01" name="candidateStatus"
-                                                value="<%= CodeConstant.STATUS_KAKUNIN_IRAI %>" label="確認依頼" />
+                                                value="<%= CodeConstant.STATUS_KAKUNIN_IRAI %>" label="確認依頼" tabindex="7" />
                                         </td>
                                         <td>
                                             <nfwui:CheckBox id="candidateStatus02" name="candidateStatus"
-                                                value="<%= CodeConstant.STATUS_SENTAKU_ZUMI %>" label="選択済" />
+                                                value="<%= CodeConstant.STATUS_SENTAKU_ZUMI %>" label="選択済" tabindex="8" />
                                         </td>
                                         <td>
                                             <nfwui:CheckBox id="candidateStatus03" name="candidateStatus"
-                                                value="<%= CodeConstant.STATUS_SENTAKU_SHINAI %>" label="選択しない" />
+                                                value="<%= CodeConstant.STATUS_SENTAKU_SHINAI %>" label="選択しない" tabindex="9" />
                                         </td>
                                         <td>
                                             <nfwui:CheckBox id="candidateStatus04" name="candidateStatus"
-                                                value="<%= CodeConstant.STATUS_KANRYOU %>" label="完了" />
+                                                value="<%= CodeConstant.STATUS_KANRYOU %>" label="完了" tabindex="10" />
                                         </td>
                                     </tr>
                                 </table>
@@ -243,7 +221,7 @@
                     </table>
                     <div class="align-L">
                         <nfwui:Button id="search" name="search" value="検索" cssClass="imui-small-button" 
-                            url="skf/Skf2060Sc004/search" formId="form" tabindex="8" />
+                            url="skf/Skf2060Sc004/search" formId="form" tabindex="11" />
                     </div>
                 </div>
                 <!-- 操作ガイド -->
@@ -274,9 +252,6 @@
                 height="232">
                 <pager rowNum="${form.listTableMaxRowCount}" />
                 <cols sortable="false">
-                <col name="applId" hidden="true" />
-                <col name="applNo" hidden="true" />
-                <col name="applStatusCd" hidden="true" />
                 <col name="completeChk" caption="完了" width="40" sortable="false" align="center" />
                 <col name="reminderChk" caption="督促" width="40" sortable="false" align="center" />
                 <col name="candidateStatus" caption="提示状況" width="80" sortable="false" onCellAttr="onCellAttr"/>
@@ -292,6 +267,9 @@
                 <col name="confirm" caption="確認" width="50" sortable="false" align="center" >
                     <showIcon iconClass="im-ui-icon-menu-24-document" />
                 </col>
+                <col name="applId" hidden="true" />
+                <col name="applNo" hidden="true" />
+                <col name="applStatusCd" hidden="true" />
                 </cols>
             </imui:listTable>
         </nfwui:CheckBoxGroupTag>
@@ -300,11 +278,14 @@
     
     <br>
     <div class="align-R">
-        <imui:button id="newCandidate" name="newCandidate" value="新規提示" class="imui-medium-button" onclick="onClickNewCandidate()" />
+        <imui:button id="newCandidate" name="newCandidate" value="新規提示" class="imui-medium-button"
+                     onclick="onClickNewCandidate()" tabindex="14" />
         
-        <imui:button id="sendMail" name="sendMail" value="督促メール送信" class="imui-medium-button" onclick="onClickSendMail()" />
+        <imui:button id="sendMail" name="sendMail" value="督促メール送信" class="imui-medium-button"
+                     onclick="onClickSendMail()" tabindex="15" />
         
-        <imui:button id="bulkComplete" name="bulkComplete" value="一括完了" class="imui-medium-button" onclick="onClickBulkComplete()" />
+        <imui:button id="bulkComplete" name="bulkComplete" value="一括完了" class="imui-medium-button"
+                     onclick="onClickBulkComplete()" tabindex="16" />
     </div>
 </div>
 
@@ -315,10 +296,8 @@
 
 <!-- 遷移先画面に渡すパラメータフォーム -->
 <nfwui:Form id="paramForm" name="paramForm" modelAttribute="form" secureToken="false">
-    <input type="hidden" id="paramUserCd" name="userCd" value="" />
-    <input type="hidden" id="paramUserName" name="userName" value="" />
+    <input type="hidden" id="paramUserCd" name="shainNo" value="" />
     <input type="hidden" id="paramApplNo" name="applNo" value="" />
-    <input type="hidden" id="paramApplId" name="applId" value="" />
     <input type="hidden" id="paramApplStatus" name="applStatus" value="" />
     <input type="hidden" name="backUrl" value="skf/Skf2060Sc004/init" />
 </nfwui:Form>
