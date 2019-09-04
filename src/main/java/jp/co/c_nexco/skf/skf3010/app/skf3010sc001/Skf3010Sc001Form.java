@@ -1,15 +1,9 @@
 package jp.co.c_nexco.skf.skf3010.app.skf3010sc001;
 
-import jp.co.c_nexco.nfw.webcore.app.BaseForm;
 import jp.co.c_nexco.nfw.webcore.app.GridForm;
-
-import java.util.*;
-
 import lombok.EqualsAndHashCode;
-
+import java.util.List;
 import java.util.Map;
-import jp.co.c_nexco.nfw.webcore.app.AsyncBaseForm;
-import lombok.EqualsAndHashCode;
 
 /**
 * 社宅一覧同期処理Form
@@ -47,11 +41,11 @@ public class Skf3010Sc001Form extends GridForm {
 	private String shatakuName;
 	// 社宅住所(検索キー)
 	private String shatakuAddress;
-	
+
 	/** 表示/非表示フラグ */
 	// 外部機関表示フラグ(検索キー)
 	private Boolean agencyDispFlg;
-	
+
 	/** ドロップダウンリスト */
 	// 管理会社リスト
 	private List<Map<String, Object>> manageCompanyList;
@@ -65,24 +59,24 @@ public class Skf3010Sc001Form extends GridForm {
 	private List<Map<String, Object>> useKbnList;
 	// 空き駐車場リスト
 	private List<Map<String, Object>> emptyParkingList;
-	
+
 	/** 画面連携用 */
-    // 対象行の社宅区分
-    private String hdnRowShatakuKbn;
-    // 対象行の社宅管理番号
-    private String hdnRowShatakuKanriNo;
-    // 対象行の社宅名
-    private String hdnRowShatakuName;
-    // 対象行の地域区分
-    private String hdnRowAreaKbn;
-    // 対象行の空き部屋数
-    private String hdnRowEmptyRoomCount;
-    // 対象行の空き駐車場数
-    private String hdnRowEmptyParkingCount;
-    // 対象行の部屋番号
-    private String hdnRoomNo;
-    
-    /** hdn検索キー */
+	// 対象行の社宅区分
+	private String hdnRowShatakuKbn;
+	// 対象行の社宅管理番号
+	private String hdnRowShatakuKanriNo;
+	// 対象行の社宅名
+	private String hdnRowShatakuName;
+	// 対象行の地域区分
+	private String hdnRowAreaKbn;
+	// 対象行の空き部屋数
+	private String hdnRowEmptyRoomCount;
+	// 対象行の空き駐車場数
+	private String hdnRowEmptyParkingCount;
+	// 対象行の部屋番号
+	private String hdnRoomNo;
+
+	/** hdn検索キー */
 	// 管理会社コード(検索キー)
 	private String hdnSelectedCompanyCd;
 	// 管理機関コード(検索キー)
@@ -91,15 +85,15 @@ public class Skf3010Sc001Form extends GridForm {
 	private String hdnShatakuKbnCd;
 	// 利用区分コード(検索キー)
 	private String hdnUseKbnCd;
-    // 空き部屋コード(検索キー)
-    private String hdnEmptyRoomCd;
+	// 空き部屋コード(検索キー)
+	private String hdnEmptyRoomCd;
 	// 空き駐車場コード(検索キー)
 	private String hdnEmptyParkingCd;
-    // 社宅名(検索キー)
-    private String hdnShatakuName;
+	// 社宅名(検索キー)
+	private String hdnShatakuName;
 	// 社宅住所(検索キー)
 	private String hdnShatakuAddress;
-	
+
 	/** 画面表示用 */
 	// 会社名
 	private String companyName;
