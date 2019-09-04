@@ -149,7 +149,7 @@
                 </tr>
             </tbody>
         </table>
-        </div>
+
 <imart:condition validity="<%= String.valueOf(form.isBihinReadOnly()) %>">
 <div class="align-L float-L">
       <input class="imui-medium-button check" type="button" value="前の画面へ" style="width:150px;" tabindex="13" onclick="back1()">
@@ -161,7 +161,7 @@
 </imart:condition>
 
 <imart:condition validity="<%= String.valueOf(form.isBihinReadOnly()) %>" negative>
-<div class="align-L float-L" style="width: 50%;">
+<div class="align-L float-L">
            <nfwui:ConfirmButton id="revisionBtn" name="clearBtn" value="入力内容をクリア"
            cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
            title="<%= MessageIdConstant.SKF2020_SC003_CONFIRM_TITLE %>"
@@ -181,7 +181,7 @@
            url="skf/Skf2030Sc001/Save" removePatterns="ST01" />
 </div> 
 <imart:condition validity="<%= String.valueOf(form.isStatus01Flag()) %>">
-<div class="align-L">
+<div class="align-L" style="clear: both;">
 </imart:condition>
 <imart:condition validity="<%= String.valueOf(form.isStatus01Flag()) %>" negative>
 <div class="align-L float-L" style="clear: both;">
@@ -199,7 +199,7 @@
 
 
 </nfwui:Form>
-
+        </div>
     </div>
 
   
