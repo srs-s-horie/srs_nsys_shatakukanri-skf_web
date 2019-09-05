@@ -107,7 +107,7 @@
                                     <th rowspan="2"><nfwui:LabelBox id="lblBihinHannyu" code="<%= MessageIdConstant.SKF2030_SC001_BIHIN_HANNYU %>" /></th>
                                     <th colspan="3"><nfwui:LabelBox id="lblBihinKiboDate" code="<%= MessageIdConstant.SKF2030_SC001_BIHIN_KIBO_DATE %>" /></th>
                                     <td colspan="3">
-                                        ${f:h(form.sessionDay) }${f:h(form.sessionTimeText) } 
+                                        ${f:h(form.sessionDay) }&nbsp;${f:h(form.sessionTimeText) } 
                                     </td>
                                 </tr>
                                 <tr>
