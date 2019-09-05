@@ -23,6 +23,16 @@
 
     });
 
+    // 提示候補者名欄でDeleteKeyまたはBackSpaceを押下時イベント
+    candidateName_KeyDown = function(e) {
+        var c = e.keyCode;
+        if (c == 46 || c == 8) {
+            $("#candidatePersonName").val("");
+            // 裏で保持している社員番号をクリア
+            $("#candidatePersonNo").val("");
+        }
+    };
+
     // 「新規提示」ボタン押下時のイベント
     onClickNewCandidate = function () {
         nfw.common.submitForm("paramForm", "skf/Skf2060Sc001/Init");
@@ -168,7 +178,7 @@
                             <td colspan="2">
                                 <input type="hidden" name="candidatePersonNo" id="candidatePersonNo" value="${form.candidatePersonNo}" />
                                 <input name="candidatePersonName" id="candidatePersonName" placeholder="例 中日本　一郎"
-                                       value="${form.candidatePersonName}" readonly="readonly" tabindex="4"></input>
+                                       value="${form.candidatePersonName}" readonly="readonly" tabindex="4" onKeyDown="candidateName_KeyDown(event)" ></input>
                             </td>
                         </tr>
                         <tr>
