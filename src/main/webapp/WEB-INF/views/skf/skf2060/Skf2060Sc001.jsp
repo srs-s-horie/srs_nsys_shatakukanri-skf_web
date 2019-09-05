@@ -21,7 +21,7 @@
     shainInfoCallback = function(param){
         if( param != null && typeof param == 'object' && param.name != null){
             $("#presentedName").val(param.name);
-            $("#presentedNo").val(param.shainNo);
+            $("#shainNo").val(param.shainNo);
             
             nfw.common.submitForm("form", "skf/Skf2060Sc001/support");
         }
@@ -33,8 +33,12 @@
 <!-- コンテンツエリア -->
 <div class="imui-form-container-wide" >
 <nfwui:Form id="form" name="form" modelAttribute="form" encType="multipart/form-data" >
-<input type="hidden" name="presentedNo" id="presentedNo" value="${form.presentedNo}" />
-<input type="hidden" name="updateDate" id="updateDate" value="${form.updateDate}" />
+<!-- 隠し項目 -->
+<input type="hidden" name="shainNo" id="shainNo" value="${form.shainNo}" /> <!-- 提示対象者の社員番号 -->
+<input type="hidden" name="updateDate" id="updateDate" value="${form.updateDate}" /> <!-- 更新日時 -->
+<input type="hidden" name="applNo" id="applNo" value="${form.applNo}" />　<!-- 申請書類管理番号 -->
+<!-- 申請書類ステータス(いらない？？？） -->
+<!-- 隠し項目終わり -->
 <table align="center" style="width:100%;">
     <tr>
         <td>
@@ -132,7 +136,8 @@
                             <!--</form>-->
 
                          <div class="align-L">	
-                             <nfwui:Button id="insert" name="insert" formId="form" value="追加" cssClass="imui-small-button" url="skf/Skf2060Sc001/insertKariage"/>
+                             <!--<nfwui:Button id="insert" name="insert" formId="form" value="追加" cssClass="imui-small-button" url="skf/Skf2060Sc001/insertKariage"/>-->
+                             <imui:button id="insert" name="insert" value="追加" class="imui-small-button" />
                          </div>
                          </td>
 </table>
@@ -243,6 +248,8 @@
     	var url = "skf/Skf2060Sc004/init?SKF2060_SC004&tokenCheck=0";
     	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
     }
+    
+    
 
 </script>
 
@@ -256,39 +263,37 @@
 					<script src="scripts/skf/skfCommon.js"></script>
 					<script type="text/javascript">
 					(function($) {
+						//画面表示時
 						$(document).ready(function(){
 							
-							//リンククリック時
+							//添付ファイルリンククリック時
 							$("a[id^='attached_']").click(function(){
 								downloadKariageBukkenFile(this);
 								
 							});
 						
 						onCellSelect = function(rowId,iCol,cellcontent,e) {
+							//削除アイコンクリック時
 							if ($(cellcontent).hasClass('im-ui-icon-common-16-trashbox')) {
 								// リストテーブル情報取得
 								var grid = $("#kariageCandidateList");
 								// 行番号から選択した行の情報を取得
 								var row = grid.getRowData(rowId);
-								// companyCd:会社コード
-								var companyCd = row.companyCd;
+
 								// candidateNo:借上候補物件番号
 								var candidateNo = row.candidateNo;
 								
-								$("#sendCompanyCd").val(companyCd);
 								$("#sendCandidateNo").val(candidateNo);
-								
-								
-								//nfw.common.submitForm("form2", "skf/Skf2060Sc001/delete");
 								
 								var dialogMessage = '<%=MessageIdConstant.I_SKF_3005 %>';
 								var dialogTitle = '<%=MessageIdConstant.SKF2060_SC001_CONFIRM_TITLE %>';
 								var formId = "form2";
 								var url = "skf/Skf2060Sc001/delete";
 								
-								nfw.common.confirmPopup("削除します。よろしいですか？", "確認", formId, url, "OK", "キャンセル", this, true);
+								nfw.common.confirmPopup("削除します。よろしいですか？", "確認", formId, url, "ok", "キャンセル", this, true);
 							}
 							
+							//添付ファイルアイコンクリック時
 							if ($(cellcontent).hasClass('im-ui-icon-menu-24-document')) {
 								// リストテーブル情報取得
 								var grid = $("#kariageCandidateList");
@@ -314,7 +319,7 @@
 							}
 						}
 						});
-						
+						//添付資料入力支援ポップアップ画面閉じたとき
 						updateAttachedFileArea = function(res) {
 							var map = new Object();
 							map['candidateNo'] = $("#sendCandidateNo").val();
@@ -327,6 +332,7 @@
 									var grid = $("#kariageCandidateList");
 									grid.setRowData(rowId, {attachedName:data.attachedFileLink});
 									
+									//添付ファイルリンククリック時
 									$("a[id^='attached_']").bind("click",function(){
 										downloadKariageBukkenFile(this);
 										
@@ -335,8 +341,9 @@
 								}
 							});
 						}
-						
+						//添付ファイルリンククリック時呼び出し先
 						downloadKariageBukkenFile = function(data) {
+							//リンクタグのidから借上候補物件番号と添付ファイル番号を取得
 							var id = $(data).attr("id");
 							var url = "skf/Skf2060Sc001/AttachedDownload";
 							var list = id.split('_');
@@ -349,6 +356,27 @@
 							skf.common.submitForm("form2", url, this);
 							
 						}
+						
+						$("#insert").click(function(){
+							var map = new Object();
+							map['shatakuName'] = $("#shatakuName").val();
+							map['address'] = $("#address").val();
+							
+							nfw.common.doAjaxAction("skf/Skf2060Sc001/CheckAsync", map, true, function(data){
+								var formId = "form";
+								var url = "skf/Skf2060Sc001/insertKariage";
+								if(data.dialogFlg){
+									var shainName = data.dialogShainName;
+									var message = "入力した借上候補物件は"+shainName+"さんに提示し完了しています。登録してもよろしいですか？";
+									
+									nfw.common.confirmPopup(message, "確認", formId, url, "ok", "キャンセル", this, true);
+								}else{
+									nfw.common.submitForm(formId, url, this);
+								}
+									
+							});
+							
+						});
 						
 					})(jQuery);	
 					</script>

@@ -16,18 +16,31 @@ public class Skf2060Sc001AsyncForm extends AsyncBaseForm {
 	//借上候補物件番号
 	private long candidateNo;
 	
+	
+	//入力・重複チェックフラグ
+	private boolean checkFlg;
+	//確認ダイアログフラグ
+	private boolean dialogFlg;
+	
+	//確認ダイアログ用社員名
+	private String dialogShainName;
+	
+	//借上社宅名
+	private String shatakuName;
+	//住所
+	private String address;
+	
+	
+	
 /*	//提示対象者名
 	private String presentedName;
 	//提示状況
 	private String presentedStatus;
 	//提示日
 	private String presentedDate;
-	//借上社宅名
-	private String shatakuName;
 	//郵便番号
 	private String postalCd;
-	//住所
-	private String address;
+
 	//コメント
 	private String comment;
 	//借上社宅名エラークラス
@@ -45,7 +58,7 @@ public class Skf2060Sc001AsyncForm extends AsyncBaseForm {
 	
 	*//** 借上候補物件登録画面hidden項目連携用 *//*
 	//提示対象者番号
-	private String presentedNo;
+	private String shainNo;
 	//更新日時
 	private String updateDate;
 	// 会社コード

@@ -56,9 +56,11 @@ public class Skf2060Sc001Form extends NfwfileScDwdForm {
 	
 	/** 借上候補物件登録画面hidden項目連携用 */
 	//提示対象者番号
-	private String presentedNo;
+	private String shainNo;
 	//更新日時
 	private String updateDate;
+	//申請書類管理番号
+	private String applNo;
 	// 会社コード
 	private String hdnCompanyCd;
 	// 借上候補物件番号
