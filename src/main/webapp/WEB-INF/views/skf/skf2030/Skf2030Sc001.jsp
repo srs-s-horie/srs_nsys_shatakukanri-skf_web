@@ -57,6 +57,7 @@
 		$(document).ready(function() {
 			checkBihinChecked();
 			
+			// 搬入完了ボタンクリックイベント
 			$("#btnCarryIn").click(function(){
 				skf.common.confirmPopupForCallback("備品搬入を完了します。よろしいですか？", "搬入完了", "form", "OK", "cancel", this, function(){
 					var map = new Object();
@@ -77,22 +78,19 @@
 				});
 				
 			});
+				
+<imart:condition validity="<%= String.valueOf(form.isStatus01Flag()) %>">
+    		$("input:text").prop("disabled", true);
+    		$("select").prop("disabled", true);
+    		$("input:radio").prop("disabled", true);
+</imart:condition>
+
 		});
 		
 		$("input[name^='bihinAppl']:radio").change(function(){
 			checkBihinChecked();
 		});
 
-	<imart:condition validity="<%= String.valueOf(form.isStatus01Flag()) %>">
-	    $(function() {
-	    	$(document).ready(function() {
-	    		$("input:text").prop("disabled", true);
-	    		$("select").prop("disabled", true);
-	    		$("input:radio").prop("disabled", true);
-	    	});
-	    });
-
-	</imart:condition>
 
 	});
 

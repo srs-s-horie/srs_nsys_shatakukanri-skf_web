@@ -3,8 +3,8 @@
 <table class="imui-form-search-condition">
 <tbody>
 <tr>
-	<th rowspan="4"  style="width: 10%;"><nfwui:LabelBox id="lblShozoku" code="<%= MessageIdConstant.SKF2030_SC001_SHOZOKU %>" /></th>
-	<th colspan="2" style="width: 15%;"><nfwui:LabelBox id="lblAgency" code="<%= MessageIdConstant.SKF2030_SC001_AGENCY %>" /></th>
+	<th rowspan="4" style="width: 10%;"><nfwui:LabelBox id="lblShozoku" code="<%= MessageIdConstant.SKF2030_SC001_SHOZOKU %>" /></th>
+	<th colspan="2"><nfwui:LabelBox id="lblAgency" code="<%= MessageIdConstant.SKF2030_SC001_AGENCY %>" /></th>
 	<td colspan="2">
 	${f:h(form.agency) }
 	</td>
