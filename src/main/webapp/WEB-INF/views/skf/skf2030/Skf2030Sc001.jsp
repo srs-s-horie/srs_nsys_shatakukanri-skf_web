@@ -151,10 +151,23 @@
 <imart:condition validity="<%= String.valueOf(form.isBihinReadOnly()) %>">
 <div class="align-L float-L">
       <imui:button class="imui-medium-button check" id="backBtn" name="backBtn" value="前の画面へ" style="width:150px;" tabindex="13" onclick="back1()" />
+<imart:condition validity="<%= String.valueOf(form.isCommentViewFlag()) %>" >
+    <nfwui:PopupButton id="commentPop" value="コメント表示" 
+    cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
+    modalMode="false" popupWidth="1350" popupHeight="550"
+    parameter="applNo:applNo" formId="form" tabindex="12"
+    screenUrl="skf/Skf2010Sc010/init" use="popup" />
+</imart:condition>
 </div> 
-
+<imart:condition validity="<%= String.valueOf(form.isStatus24Flag()) %>">
+<div class="align-R" style="clear: both;">
+</imart:condition>
+<imart:condition validity="<%= String.valueOf(form.isStatus24Flag()) %>" negative>
 <div class="align-R">
+</imart:condition>
+<imart:condition validity="<%= String.valueOf(form.isStatus24Flag()) %>" negative>
       <imui:button class="imui-medium-button check" id="btnCarryIn" name="btnCarryIn" value="搬入完了" tabindex="11" style="width:150px;" />
+</imart:condition>
 </div> 
 </imart:condition>
 

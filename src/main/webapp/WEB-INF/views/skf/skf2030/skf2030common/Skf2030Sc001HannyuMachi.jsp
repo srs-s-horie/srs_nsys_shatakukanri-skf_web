@@ -12,8 +12,8 @@
                         <table class="imui-form-search-condition">
                             <tbody>
                                 <tr>
-                                    <th rowspan="4"  style="width: 10%;"><nfwui:LabelBox id="lblShozoku" code="<%= MessageIdConstant.SKF2030_SC001_SHOZOKU %>" /></th>
-                                    <th colspan="3" style="width: 15%;"><nfwui:LabelBox id="lblAgency" code="<%= MessageIdConstant.SKF2030_SC001_AGENCY %>" /></th>
+                                    <th rowspan="4" style="width: 10%;"><nfwui:LabelBox id="lblShozoku" code="<%= MessageIdConstant.SKF2030_SC001_SHOZOKU %>" /></th>
+                                    <th colspan="3" style="width: 20%;"><nfwui:LabelBox id="lblAgency" code="<%= MessageIdConstant.SKF2030_SC001_AGENCY %>" /></th>
                                     <td colspan="3">
                                         ${f:h(form.agency) }
                                     </td>
@@ -124,7 +124,7 @@
                                        <span style="color:red;">※備品の搬入が完了した日を入力してください</span>
 </imart:condition>
 <imart:condition validity="<%= String.valueOf(form.isCompletionDayDisabled()) %>">
-                                       <imui:textbox id="completionDay" name="completionDay" value="${f:h(form.sompletionDay) }" cssStyle="width: 150px;" disabled="true" tabindex="5"  />
+                                       <imui:textbox id="completionDay" name="completionDay" value="${f:h(form.completionDay) }" cssStyle="width: 150px;" disabled="true" tabindex="5"  />
 </imart:condition>
                                     </td>
                                 </tr>
@@ -211,3 +211,8 @@
                                 
                             </tbody>
                         </table>
+                      </div>
+                    </td>
+                  </tr>
+                 </tbody>
+               </table>
