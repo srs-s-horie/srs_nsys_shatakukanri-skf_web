@@ -71,7 +71,7 @@
         if ($(cellContent).hasClass('im-ui-icon-common-16-update')) {
           // 再提示押下時
           onClickRecandidate(rowId);
-        }else if ($(cellContent).hasClass('im-ui-icon-menu-24-document')){
+        }else if ($(cellContent).hasClass('im-smart-icon-common-16-information')){
           // 確認押下時
           onClickConfirm(rowId);
         }
@@ -275,7 +275,7 @@
                     <showIcon iconClass="im-ui-icon-common-16-update" />
                 </col>
                 <col name="confirm" caption="確認" width="50" sortable="false" align="center" >
-                    <showIcon iconClass="im-ui-icon-menu-24-document" />
+                    <showIcon iconClass="im-smart-icon-common-16-information" />
                 </col>
                 <col name="applId" hidden="true" />
                 <col name="applNo" hidden="true" />
