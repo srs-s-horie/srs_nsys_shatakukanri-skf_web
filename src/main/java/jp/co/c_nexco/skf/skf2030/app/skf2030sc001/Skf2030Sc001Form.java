@@ -14,6 +14,8 @@ public class Skf2030Sc001Form extends Skf2030CommonForm {
 	private boolean bihinReadOnly;
 	// 「申請中」フラグ
 	private boolean status01Flag;
+	// 「搬入済」フラグ
+	private boolean status24Flag;
 	// 備品申請ラジオボタンフラグ
 	private String bihinCheckFlag;
 

@@ -85,8 +85,13 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 			//var url = "/imart/skf/Skf3020Sc004/init";
 			//$("#form2").attr("action", url);
 			//$("#form2").attr("target", "hoge");
-			//$("#form2").submit();								
-			window.showModalDialog(url,this,"top=Number((window.screen.height-650)/2);left=Number((window.screen.width-550)/2);dialogWidth=580px;dialogHeight=600px; menubar=no;toolbar=no;resizable=yes;location=no;status=no");			
+			//$("#form2").submit();
+			
+			document.getElementById('genshataku').click();
+			
+			//var sendArguments = new Array(row.col4);
+			//window.showModalDialog(url,sendArguments,"top=Number((window.screen.height-650)/2);left=Number((window.screen.width-550)/2);dialogWidth=580px;dialogHeight=600px; menubar=no;toolbar=no;resizable=yes;location=no;status=no");			
+			//window.showModalDialog(url,$("#form2"),"top=Number((window.screen.height-650)/2);left=Number((window.screen.width-550)/2);dialogWidth=580px;dialogHeight=600px; menubar=no;toolbar=no;resizable=yes;location=no;status=no");			
 			
 		}else if($(cellcontent).hasClass('im-ui-icon-common-16-update')){
 			// 詳細ボタン押下
@@ -115,6 +120,11 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 	
 	// 画面表示時に定義される処理
 	$(document).ready(function(){
+		
+		$(window).bind('resize', function(){			
+			$('#mainList').setGridWidth($('#listTableArea').width(), true);		
+		}).trigger('resize');			
+		
 		// 下部ボタン押下時のイベント
 		preButtonEvent = function (mode) {
 			var dialogTitle = "";
@@ -162,7 +172,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 	});
 	
 	
-	})(jQuery);
+})(jQuery);
 
 </script>
 
@@ -182,8 +192,8 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 	<input type="hidden" name="hdnBiko" id="hdnBiko" value="${form.hdnBiko}" />
 	<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3020Sc004/init"/>
 	
-	<div class="imui-form-container-wide" >
-		<div class="imui-form-container-wide"  style="width:95%;">
+	<div style="width:100%;" >
+		<div class="imui-form-container-wide">
 			<div class="imui-chapter-title"><h2>検索条件</h2></div>
 			<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3020_SC004 %>" />
 				<nfwui:Table use="search">
@@ -262,7 +272,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 			</div>
 		</div>
 		<!-- 明細＆細目未満 -->
-		<div class="imui-form-container-wide"  style="width:95%;">
+		<div class="imui-form-container-wide">
 			<!-- 明細部 -->
 				<div class="imui-chapter-title" ><h2>検索結果一覧</h2></div>
 				<script type="text/javascript">
@@ -270,6 +280,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 					$.imui.util.loadCSS("../../ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
 					})(jQuery);
 				</script>
+				<div id="listTableArea">
 				<nfwui:CheckBoxGroupTag id="nyukyoChkVal">
 				<nfwui:CheckBoxGroupTag id="taikyoChkVal">
 				<nfwui:CheckBoxGroupTag id="henkouChkVal">
@@ -282,15 +293,15 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 							<col name="col1" caption="入居" width="35" sortable="false" align="center" tabindex="12"/>
 							<col name="col2" caption="退去" width="35" sortable="false" align="center" tabindex="13"/>
 							<col name="col3" caption="変更" width="35" sortable="false" align="center" tabindex="14"/>
-							<col name="col4" caption="社員番号" width="80" sortable="false" />
-							<col name="col5" caption="社員氏名" width="100" sortable="false" />
-							<col name="col6" caption="等級" width="35" sortable="false" />
-							<col name="col7" caption="年齢" width="35" sortable="false" align="right"/>
+							<col name="col4" caption="社員番号" width="80" sortable="false" wrap="true"/>
+							<col name="col5" caption="社員氏名" width="100" sortable="false" wrap="true"/>
+							<col name="col6" caption="等級" width="35" sortable="false" wrap="true"/>
+							<col name="col7" caption="年齢" width="35" sortable="false" align="right" wrap="true"/>
 							<col name="col8" caption="新所属" width="185" sortable="false" wrap="true"/>
 							<col name="col9" caption="現所属" width="185" sortable="false" wrap="true" />
 							<col name="col10" caption="備考" width="93" sortable="false" wrap="true" />
-							<col name="col11" caption="取込日" width="90" sortable="false" align="center" />
-							<col name="col12" caption="入退去予定作成区分" width="130" sortable="false" align="center" onCellAttr="onCellAttr"/>
+							<col name="col11" caption="取込日" width="90" sortable="false" align="center" wrap="true"/>
+							<col name="col12" caption="入退去予定作成区分" width="130" sortable="false" align="center" onCellAttr="onCellAttr" wrap="true"/>
 							<!-- 
 							<col name="col13" caption="現社宅" width="75" sortable="false" align="center" tabindex="15"/>
 							 -->
@@ -316,14 +327,14 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 				</nfwui:CheckBoxGroupTag>
 				</nfwui:CheckBoxGroupTag>
 				</nfwui:CheckBoxGroupTag>
-			
+				</div>
 				<table name="imui-8eqlrzst4hv6std" id="sampleListTable1"></table>
 	
 				<div id="sampleListTable1-pager"></div>
-				
-				</div>
-				<br />
+			<br />
 			<div class="align-R">
+				<!-- 現社宅照会表示ボタン（非表示） -->
+				<nfwui:PopupButton id="genshataku" style="visibility:hidden" value="a" cssClass="imui-medium-button" modalMode="true" popupWidth="580" popupHeight="650" parameter="hdnRowShainNo:hdnRowShainNo" screenUrl="skf/Skf3020Sc001/init" use="popup" />				
 				<!-- 仮社員番号のデータ削除 ボタン -->
 				<imui:button id="delete" name="delete" value="仮社員番号のデータ削除" class="imui-medium-button" onclick="preButtonEvent(0)" tabindex="18" />
 				<!-- 転入者取込 ボタン -->
@@ -333,6 +344,8 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 				<!-- 登録 ボタン -->
 				<imui:button id="regist" name="regist" value="登録" class="imui-medium-button" onclick="preButtonEvent(3)" tabindex="21" />
 			</div>
+
+		</div>
 				
 	</div>
 </nfwui:Form>

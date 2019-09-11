@@ -57,6 +57,7 @@
 		$(document).ready(function() {
 			checkBihinChecked();
 			
+			// 搬入完了ボタンクリックイベント
 			$("#btnCarryIn").click(function(){
 				skf.common.confirmPopupForCallback("備品搬入を完了します。よろしいですか？", "搬入完了", "form", "OK", "cancel", this, function(){
 					var map = new Object();
@@ -77,22 +78,19 @@
 				});
 				
 			});
+				
+<imart:condition validity="<%= String.valueOf(form.isStatus01Flag()) %>">
+    		$("input:text").prop("disabled", true);
+    		$("select").prop("disabled", true);
+    		$("input:radio").prop("disabled", true);
+</imart:condition>
+
 		});
 		
 		$("input[name^='bihinAppl']:radio").change(function(){
 			checkBihinChecked();
 		});
 
-	<imart:condition validity="<%= String.valueOf(form.isStatus01Flag()) %>">
-	    $(function() {
-	    	$(document).ready(function() {
-	    		$("input:text").prop("disabled", true);
-	    		$("select").prop("disabled", true);
-	    		$("input:radio").prop("disabled", true);
-	    	});
-	    });
-
-	</imart:condition>
 
 	});
 
@@ -149,20 +147,33 @@
                 </tr>
             </tbody>
         </table>
-        </div>
+
 <imart:condition validity="<%= String.valueOf(form.isBihinReadOnly()) %>">
 <div class="align-L float-L">
-      <input class="imui-medium-button check" type="button" value="前の画面へ" style="width:150px;" tabindex="13" onclick="back1()">
+      <imui:button class="imui-medium-button check" id="backBtn" name="backBtn" value="前の画面へ" style="width:150px;" tabindex="13" onclick="back1()" />
+<imart:condition validity="<%= String.valueOf(form.isCommentViewFlag()) %>" >
+    <nfwui:PopupButton id="commentPop" value="コメント表示" 
+    cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
+    modalMode="false" popupWidth="1350" popupHeight="550"
+    parameter="applNo:applNo" formId="form" tabindex="12"
+    screenUrl="skf/Skf2010Sc010/init" use="popup" />
+</imart:condition>
 </div> 
-
+<imart:condition validity="<%= String.valueOf(form.isStatus24Flag()) %>">
+<div class="align-R" style="clear: both;">
+</imart:condition>
+<imart:condition validity="<%= String.valueOf(form.isStatus24Flag()) %>" negative>
 <div class="align-R">
+</imart:condition>
+<imart:condition validity="<%= String.valueOf(form.isStatus24Flag()) %>" negative>
       <imui:button class="imui-medium-button check" id="btnCarryIn" name="btnCarryIn" value="搬入完了" tabindex="11" style="width:150px;" />
+</imart:condition>
 </div> 
 </imart:condition>
 
 <imart:condition validity="<%= String.valueOf(form.isBihinReadOnly()) %>" negative>
-<div class="align-L float-L" style="width: 50%;">
-           <nfwui:ConfirmButton id="revisionBtn" name="clearBtn" value="入力内容をクリア"
+<div class="align-L float-L">
+           <nfwui:ConfirmButton id="clearBtn" name="clearBtn" value="入力内容をクリア"
            cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
            title="<%= MessageIdConstant.SKF2020_SC003_CONFIRM_TITLE %>"
            message="<%= MessageIdConstant.I_SKF_2004 %>" tabindex="7"
@@ -181,12 +192,12 @@
            url="skf/Skf2030Sc001/Save" removePatterns="ST01" />
 </div> 
 <imart:condition validity="<%= String.valueOf(form.isStatus01Flag()) %>">
-<div class="align-L">
+<div class="align-L" style="clear: both;">
 </imart:condition>
 <imart:condition validity="<%= String.valueOf(form.isStatus01Flag()) %>" negative>
 <div class="align-L float-L" style="clear: both;">
 </imart:condition>
-      <imui:button class="imui-medium-button check" value="前の画面へ" style="width:150px;" tabindex="13" onclick="back1()" />
+      <imui:button class="imui-medium-button check" id="backBtn" name="backBtn" value="前の画面へ" style="width:150px;" tabindex="13" onclick="back1()" />
 </div> 
 <div class="align-R">
            <nfwui:ConfirmButton id="applyBtn" name="applyBtn" value="申請"
@@ -199,7 +210,7 @@
 
 
 </nfwui:Form>
-
+        </div>
     </div>
 
   

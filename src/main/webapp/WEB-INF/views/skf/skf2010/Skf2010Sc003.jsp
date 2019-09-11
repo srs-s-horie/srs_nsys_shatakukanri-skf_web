@@ -293,7 +293,8 @@ height="232">
     	
 	    	if ($(cellContent).hasClass('im-ui-icon-common-16-update')) {
 	    		// 表示
-	    		if (applId != "R0106" && !((applStatus == "<%= CodeConstant.STATUS_ICHIJIHOZON %>" || applStatus == "<%= CodeConstant.STATUS_SASHIMODOSHI %>"))) {
+	    		if ((applId == "R0100" || applId == "R0103") 
+	    				&& !((applStatus == "<%= CodeConstant.STATUS_ICHIJIHOZON %>" || applStatus == "<%= CodeConstant.STATUS_SASHIMODOSHI %>"))) {
 	    			url = "skf/Skf2010Sc004/init";
 	    		} else {
 		    		switch (applId) {

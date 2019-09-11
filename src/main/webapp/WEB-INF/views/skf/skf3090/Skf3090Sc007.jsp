@@ -10,112 +10,59 @@
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
 
-<%-- コンテンツエリア --%>
-<style type="text/css">
-
-</style>
-
-<!-- コンテンツエリア:モックのまま -->
-<!-- 以下ツールバー -->
-		<div class="imui-toolbar-wrap">
-			<div class="imui-toolbar-inner">
-				<!-- ツールバー左側 -->
-				<ul class="imui-list-toolbar">
-					<!-- 戻る -->
-					<li>
-						<a class="imui-toolbar-icon" title="戻る" tabindex="23" onclick="back1()" href="javascript:void(0);">
-							<span class="im-ui-icon-common-16-back"></span>
-						</a>
-					</li>
-
-				</ul>
-				<!-- ツールバー右側 -->
-				<ul class="imui-list-box-toolbar-utility">
-					<li>
-						<a onclick="back()" class="imui-toolbar-icon" tabindex="16">
-							<span class="im-ui-icon-common-16-home"></span>
-							社宅TOP
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<script type="text/javascript">
-			/**
-			* 一つ前の画面へ戻る
-			*/
-			function back1() {
-				showConfirm(W_GFK_0002, function() {
-					history.back()
-				});
-			}
-
-			/**
-			* メニュー画面へ遷移する。
-			*/
-			function back() {
-				showConfirm(W_GFK_0007, function() {
-					$.StandardPost("../common/top.html");
-				});
-			}
-		</script>
-
-<!-- 		<div class="alertDiv imui-box-warning" style="padding: 15px;margin-top: 10px;text-align:left;" id="errMainDiv"> -->
-<!-- 			<div class="alert-errorIcon alert" style="margin:0;padding:0;margin-right:10px;"> -->
-<!-- 			</div>  -->
-<!-- 		</div> -->
 
 		<!-- コンテンツエリア -->
-		<div class="imui-form-container-wide" width="1350px" style="width: 100%; min-width:1300px;max-width: 1350px;">
-			<div class="imui-form-container-wide"  style="width:1280px;">
+		<div class="imui-form-container-wide"  style="width: 95% ;">
 				<div class="imui-chapter-title"><h2>組織情報</h2></div>
-				<form id="form" class="target_form mt-10" action="" method="POST">
-					<table class="imui-form-search-condition">
+				<nfwui:Form id="form" name="form" modelAttribute="form">
+				<input type="hidden" name="hdnCompanyCd" id="hdnCompanyCd" value="${form.hdnCompanyCd}" />
+				<input type="hidden" name="hdnAgencyCd" id="hdnAgencyCd" value="${form.hdnAgencyCd}" />
+				<input type="hidden" name="hdnAffiliation1Cd" id="hdnAffiliation1Cd" value="${form.hdnAffiliation1Cd}" />
+				<input type="hidden" name="hdnAffiliation2Cd" id="hdnAffiliation2Cd" value="${form.hdnAffiliation2Cd}" />
+				<input type="hidden" name="hdnBusinessAreaCd" id="hdnBusinessAreaCd" value="${form.hdnBusinessAreaCd}" />
+				<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3090_SC007 %>" />
+					<nfwui:Table use="search">
 						<tbody>
 							<tr>
 								<th style="width: 15%;">
-									<label>会社</label>
+									<nfwui:LabelBox id="lblCompanyCd" code="<%= MessageIdConstant.SKF3090_SC007_COMPANY %>" />
 								</th>
 								<td style="width: 30%;">
-									<select style="width:95%;">
-										<option value="0"></option>
-										<option value="1">NEXCO中日本</option>
-										<option value="2">NEXCO東日本</option>
-										<option value="4">NEXCO西日本</option>
-										<option value="5">高速道路総合研究所</option>
-										<option value="6">外部機関</option>
-									</select>
+									<imui:select id="registCompanyCd" name="registCompanyCd"
+									width="185" list="${form.companyList}" disabled="${form.companyCdDisabled}"  tabindex="1" />
 								</td>
 								<td style="border:none">
 								</td>
 							</tr>
 							<tr>
-								</td>
 								<th style="width: 15%;">
-									<label>機関コード</label>
+									<nfwui:LabelBox id="lblAgencyCd" code="<%= MessageIdConstant.SKF3090_SC007_AGENCY_CODE %>" />
 								</th>
 
 								<td style="width: 30%;">
-								<input style="width: 20%;" placeholder="例 000"></input>
-								<input type='button' value='名称を検索' class='imui-small-button' onclick="location.href=''">
+								<imui:textbox id="registAgencyCd" name="registAgencyCd" value="${f:h(form.registAgencyCd)}" disabled="${form.agencyCdDisabled}" style="width: 55%; ime-mode:disabled" maxlength="4" placeholder="例 00" onblur="focusOut()" tabindex="2" />
+								<imui:button id="agencyCdSearch"  value="名称を検索" disabled="${form.agencyCdSearchDisabled}" class="imui-small-button"
+									  onclick="agencyCheckConfrim()" tabindex="3" />
 								</td>
 							</tr>
 							<tr>
 								<th style="width: 15%;">
-									<label>部等コード</label>
+									<nfwui:LabelBox id="lblAffiliation1Cd" code="<%= MessageIdConstant.SKF3090_SC007_AFFILIATION1_CODE %>" />
 								</th>
 								<td style="width: 30%;">
-								<input style="width: 20%;" placeholder="例 01"></input>
-								<input type="button" value="名称を検索" class="imui-small-button" onclick="location.href=''">
+								<imui:textbox id="registAffiliation1Cd" name="registAffiliation1Cd" value="${f:h(form.registAffiliation1Cd)}" disabled="${form.affiliation1CdDisabled}" style="width: 55%; ime-mode:disabled" maxlength="2" placeholder="例 01" tabindex="4" />
+								<imui:button id="affiliation1CdSearch"  value="名称を検索" disabled="${form.affiliation1CdSearchDisabled}" class="imui-small-button"
+									   onclick="affiliation1CheckConfrim()" tabindex="5" />	
 								</td>
 							</tr>
 							<tr>
 								<th style="width: 15%;">
-									<label>室、チーム又は課コード</label>
+									<nfwui:LabelBox id="lblAffiliation2Cd" code="<%= MessageIdConstant.SKF3090_SC007_AFFILIATION2_CODE %>" />
 								</th>
 								<td style="width: 30%;">
-								<input style="width: 20%;" placeholder="例 001"></input>
+								<imui:textbox id="registAffiliation2Cd" name="registAffiliation2Cd" value="${f:h(form.registAffiliation2Cd)}" disabled="${form.affiliation2CdDisabled}" style="width: 55%; ime-mode:disabled" maxlength="3" placeholder="例 001" tabindex="6" />
 								</td>
 							</tr>
 							
@@ -127,73 +74,221 @@
 
 							<tr>
 								<th style="width: 15%;">
-									<label>機関</label>
+									<nfwui:LabelBox id="lblAgencyName" code="<%= MessageIdConstant.SKF3090_SC007_AGENCY %>" />
 								</th>
 								<td style="width: 30%;">
-								<input style="width: 93%;" placeholder="例 機関の名称"></input>
+								<imui:textbox id="registAgencyName" name="registAgencyName" value="${f:h(form.registAgencyName)}" disabled="${form.agencyNameDisabled}" style="width: 95%" placeholder="例 機関の名称" tabindex="7" />
 								</td>
 							</tr>
 							<tr>
 								<th style="width: 15%;">
-									<label>部等</label>
+									<nfwui:LabelBox id="lblAffiliation1Name" code="<%= MessageIdConstant.SKF3090_SC007_AFFILIATION1 %>" />
 								</th>
 								<td style="width: 30%;">
-									<input style="width: 93%;" placeholder="例 部等の名称"></input>
+									<imui:textbox id="registAffiliation1Name" name="registAffiliation1Name" value="${f:h(form.registAffiliation1Name)}" disabled="${form.affiliation1NameDisabled}" style="width: 95%" placeholder="例 部等の名称" tabindex="8" />
 								</td>
 							</tr>
 							<tr>
 								<th style="width: 15%;">
-									<label>室、チーム又は課</label>
+									<nfwui:LabelBox id="lblAffiliation2Name" code="<%= MessageIdConstant.SKF3090_SC007_AFFILIATION2 %>" />
 								</th>
 								<td style="width: 30%;">
-								<input style="width: 93%;" placeholder="例 室、チーム又は課名称"></input>
+								<imui:textbox id="registAffiliation2Name" name="registAffiliation2Name" value="${f:h(form.registAffiliation2Name)}" disabled="${form.affiliation2NameDisabled}" style="width: 95%" placeholder="例 室、チーム又は課の名称" tabindex="9" />
 								</td>
 							</tr>
 							<tr>
 
 								<th style="width: 15%;">
-									<label>事業領域</label>
+									<nfwui:LabelBox id="lblBusinessAreaCd" code="<%= MessageIdConstant.SKF3090_SC007_BUSINESS_AREA %>" />
 								</th>
 								<td style="width: 30%;">
-								<select style="width:95%;">
-										<option value="0"></option>
-										<option value="1"></option>
-										<option value="2"></option>
-										<option value="3"></option>
-										<option value="4"></option>
-										<option value="5"></option>
-									</select>
+								<imui:select id="registBusinessAreaCd" name="registBusinessAreaCd" 
+									width="185" list="${form.businessAreaList}" disabled="${f:h(form.businessAreaCdDisabled)}" tabindex="10" />
 								
 								</td>
 							</tr>
 							<tr>
 							</tr>
 						</tbody>
-					</table>
-				</form>
+					</nfwui:Table>
+				</nfwui:Form>	
 			</div>
 
 			<br />
-			                        <div class="align-L float-L">    
-                <input style="width:150px;" name="doSendBack" id="" type="button" value="前の画面へ" class="imui-medium-button" onclick="back1()"/>
-            </div>
+			
+		<script src="scripts/skf/skfCommon.js"></script>	
+		<script type="text/javascript">
+				(function($) {
+					$("#registCompanyCd").change(function() {
+						// 会社以外の内容が入力されているかの確認ダイアログ表示判定 yes:あり no:なし
+						var sRegistCompanyCd = $("#registCompanyCd").val();
+						var sRegistAgencyCd = $("#registAgencyCd").val();
+						var sRegistAffiliation1Cd = $("#registAffiliation1Cd").val();
+						var sRegistAffiliation2Cd = $("#registAffiliation2Cd").val();
+						var sRegistAgencyName = $("#registAgencyName").val();
+						var sRegistAffiliation1Name = $("#registAffiliation1Name").val();
+						var sRegistAffiliation2Name = $("#registAffiliation2Name").val();
+												
+						if (sRegistAgencyCd != "" || sRegistAffiliation1Cd != "" || sRegistAffiliation2Cd != "" || sRegistAgencyName != ""
+										|| sRegistAffiliation1Name != "" || sRegistAffiliation1Name != "" || sRegistAffiliation2Name != "" ) {
+							dialogue = "yes"
+						} else {
+							dialogue = "no"
+						}
+						
+							var form = "form";
+						
+							if (dialogue == "yes") {
+								skf.common.confirmPopupForCallback("会社コード以外の内容がクリアされます。よろしいですか?", "確認", "form", "OK", "キャンセル", this, function(){
+									$("#registAgencyCd").val("");
+									$('#registAgencyName').val("");
+									$("#registAffiliation1Cd").val("");
+									$("#registAffiliation2Cd").val("");
+									$("#registAffiliation1Name").val("");
+									$("#registAffiliation2Name").val("");
+									$("#registBusinessAreaCd").imuiSelect('replace', "")
+								});
+								} 
+				});
+					
+					focusOut = function() {
+							var map = new Object();
+							map['registCompanyCd'] = $("#registCompanyCd").val();
+							map['registAgencyCd'] = $("#registAgencyCd").val();
+					
+							nfw.common.doAjaxAction("skf/Skf3090Sc007/ChangeDropDownAsync",map,true,function(data) {
+								$("#registBusinessAreaCd").imuiSelect('replace', data.businessAreaList);
+							});	
+							
+					}
+					
+					$("#registAgencyCd").bind('change', function() {
+						var text = $("#registAgencyCd").val();
+						if (text.length >= 2) {
+						focusOut();
+						}
+					});
+					
+					agencyCheckConfrim = function() {
+						// 会社と機関コード以外の内容が入力されているかの確認ダイアログ表示判定 yes:あり no:なし
+						var sRegistCompanyCd = $("#registCompanyCd").val();
+						var sRegistAgencyCd = $("#registAgencyCd").val();
+						var sRegistAffiliation1Cd = $("#registAffiliation1Cd").val();
+						var sRegistAffiliation2Cd = $("#registAffiliation2Cd").val();
+						var sRegistAgencyName = $("#registAgencyName").val();
+						var sRegistAffiliation1Name = $("#registAffiliation1Name").val();
+						var sRegistAffiliation2Name = $("#registAffiliation2Name").val();
+						var sRegistBusinessAreaCd = $("#registBusinessAreaCd").val();
+						
+						if (sRegistCompanyCd != "" && sRegistAgencyCd != "" && 
+								(sRegistAffiliation1Cd != "" || sRegistAffiliation2Cd != "" || sRegistAgencyName != ""
+										|| sRegistAffiliation1Name != "" || sRegistAffiliation1Name != "" || sRegistAffiliation2Name != "" )) {
+							dialogue = "yes"
+						} else {
+							dialogue = "no"
+						}
+						
+						// 入力チェック判定用の値設定を行う
+						var map = new Object();
+						
+						map['registCompanyCd'] = $('#registCompanyCd').val(); // 会社コード
+						map['registAgencyCd'] = $('#registAgencyCd').val(); // 機関コード
+						map['registAffiliation1Cd'] = $('#registAffiliation1Cd').val(); // 部等コード
+						map['registAffiliation2Cd'] = $('#registAffiliation2Cd').val(); // 室、チーム又は課コード
+						map['registAgencyName'] = $('#registAgencyName').val(); // 機関名称
+						map['registAffiliation1Name'] = $('#registAffiliation1Name').val(); // 部等名称
+						map['registAffiliation2Name'] = $('#registAffiliation2Name').val(); // 室、チーム又は課名称
+						
+						// 入力チェック非同期処理呼び出し
+						nfw.common.doAjaxAction("skf/Skf3090Sc007/AgencySearchAsync", map, true, function(data) {
+							
+							var form = "form";
+						
+							if (dialogue == "yes") {
+								skf.common.confirmPopupForCallback("部等（コード・名称）と室、チーム又は課（コード・名称）の内容がクリアされ、機関（名称）はマスタに登録されている内容に変更されます。よろしいですか?", "確認", "form", "OK", "キャンセル", this, function(){
+									$("#registAffiliation1Cd").val("");
+									$("#registAffiliation2Cd").val("");
+									$("#registAgencyName").val(data.registAgencyName);
+									$("#registAffiliation1Name").val("");
+									$("#registAffiliation2Name").val("");
+									$("#registBusinessAreaCd").val(data.registBusinessAreaCd);
+									});
+								} else {
+									$("#registAgencyName").val(data.registAgencyName);
+								}
 
+						});
+				}
+					
+					affiliation1CheckConfrim = function() {
+						// 会社と機関コードと部等コード以外の内容が入力されているかの確認ダイアログ表示判定 yes:あり no:なし
+						var sRegistCompanyCd = $("#registCompanyCd").val();
+						var sRegistAgencyCd = $("#registAgencyCd").val();
+						var sRegistAffiliation1Cd = $("#registAffiliation1Cd").val();
+						var sRegistAffiliation2Cd = $("#registAffiliation2Cd").val();
+						var sRegistAgencyName = $("#registAgencyName").val();
+						var sRegistAffiliation1Name = $("#registAffiliation1Name").val();
+						var sRegistAffiliation2Name = $("#registAffiliation2Name").val();
+						var sRegistBusinessAreaCd = $("#registBusinessAreaCd").val();
+						
+						if (sRegistCompanyCd != "" && sRegistAgencyCd != "" && sRegistAffiliation1Cd != "" &&
+								(sRegistAffiliation2Cd != "" ||  
+										 sRegistAffiliation1Name != "" || sRegistAffiliation2Name != "" )) {
+							dialogue = "yes"
+						} else {
+							dialogue = "no"
+						}
+						
+						// 入力チェック判定用の値設定を行う
+						var map = new Object();
+						
+						map['registCompanyCd'] = $('#registCompanyCd').val(); // 会社コード
+						map['registAgencyCd'] = $('#registAgencyCd').val(); // 機関コード
+						map['registAffiliation1Cd'] = $('#registAffiliation1Cd').val(); // 部等コード
+						map['registAffiliation2Cd'] = $('#registAffiliation2Cd').val(); // 室、チーム又は課コード
+						map['registAgencyName'] = $('#registAgencyName').val(); // 機関名称
+						map['registAffiliation1Name'] = $('#registAffiliation1Name').val(); // 部等名称
+						map['registAffiliation2Name'] = $('#registAffiliation2Name').val(); // 室、チーム又は課名称
+						
+						// 入力チェック非同期処理呼び出し
+						nfw.common.doAjaxAction("skf/Skf3090Sc007/Affiliation1SearchAsync", map, true, function(data) {
+							
+							var form = "form";
+						
+							if (dialogue == "yes") {
+								skf.common.confirmPopupForCallback("室、チーム又は課（コード・名称）の内容がクリアされ、部等（名称）はマスタに登録されている内容に変更されます。よろしいですか?", "確認", "form", "OK", "キャンセル", this, function(){
+									$("#registAffiliation2Cd").val("");
+									$("#registAffiliation1Name").val(data.registAffiliation1Name);
+									$("#registAffiliation2Name").val("");
+									$("#registBusinessAreaCd").val(data.registBusinessAreaCd);
+									});
+								} else {
+									$("#registAffiliation1Name").val(data.registAffiliation1Name);
+								}
+
+						});
+				}
+					
+				})(jQuery);
+			</script>	
+
+			<div class="align-L float-L">
+				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="11" />
+				<script type="text/javascript">
+					// 1つ前の画面に戻る
+					function back1() {
+						var url = "skf/Skf3090Sc006/init?SKF3090_SC006&tokenCheck=0";
+						nfw.common.doBack(url, "前の画面に戻ります。よろしいですか？編集中の内容は無効になります。");
+					}
+					
+				</script>	
+			</div>
 			<div class="align-R">
-				<input style="width:150px;" id="" type="button" value="登録" class="imui-medium-button"  onclick="location.href=''"/>
-				<input style="width:150px;" id="" type="button" value="削除" class="imui-medium-button"  onclick="location.href=''" disabled/>
+				<nfwui:ConfirmButton cssStyle="width: 150px" id="regist" name="regist" value="登録" disabled="${form.registButtonDisabled}" remove="${form.registButtonRemove}" cssClass="imui-medium-button"
+					title="<%=MessageIdConstant.SKF3090_SC007_CONFIRM_TITLE %>" message="<%=MessageIdConstant.I_SKF_3053 %>" url="skf/Skf3090Sc007/regist" formId="form" tabindex="12" />
+				<nfwui:ConfirmButton cssStyle="width: 150px" id="delete" name="delete" value="削除" disabled="${form.deleteButtonDisabled}"  cssClass="imui-medium-button"
+					 title="<%=MessageIdConstant.SKF3090_SC007_CONFIRM_TITLE %>" message="<%=MessageIdConstant.I_SKF_3005 %>" url="skf/Skf3090Sc007/delete" formId="form" tabindex="13" />	
+			
 			</div>
 		</div>
-	</div>
-	    <!-- カレンダー出力用スクリプト -->
-    <script type="text/javascript">
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal001").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal002").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal003").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal004").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal005").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal006").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal007").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal008").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);      
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal009").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-    </script>
 	<!-- コンテンツエリア　ここまで -->
