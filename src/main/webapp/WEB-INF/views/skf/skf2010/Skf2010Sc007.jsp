@@ -16,7 +16,7 @@
 <!DOCTYPE html>
 <!-- コンテンツエリア -->
 	<!-- 代行ログイン時のみ表示されるメッセージ -->
-	<%@ include file="common/INC_SkfAlterLoginCss.jsp" %>
+	<jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
 <div class="common-page">
 <nfwui:Form id="form" name="form" modelAttribute="form">
 	<br><br><br><br><br>

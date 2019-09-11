@@ -41,4 +41,9 @@ public class Skf2040CommonForm extends Skf2010NyukyoCommonForm {
 	 */
 	// 連絡先
 	private String renrakuSaki;
+
+	// 退居取り消し線フラグ
+	private String taikyoTorikeshiFlag;
+	// 自動車の保管場所返還取消線フラグ
+	private String parkingHenkanTorikeshiFlag;
 }

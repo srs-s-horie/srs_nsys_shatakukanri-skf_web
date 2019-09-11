@@ -86,15 +86,13 @@
 	</imart:condition>
 		<!-- コメント欄 -->
 		<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;" height="100px">
-			<div class="imui-chapter-title" style="margin-bottom: 10px;">
-   				<h2>コメント</h2>
-			</div>
+				<nfwui:Title id="title" code="<%= MessageIdConstant.SKF2010_SC002_COMMENT %>" titleLevel="2" />
 			<!-- 申請者から承認者へ-->
 			<imart:decision case="${form.commentDisplayLevel}" value="<%= CodeConstant.COMMENT_DISPLAY_LEVEL_1 %>">
 				<table class="imui-form-search-condition">
 					<tr  style="width: 100%; max-width: 1000px;text-align:center;">
 						<th style="width: 200px; max-width: 200px;">
-							<label>承認者へのコメント</label>
+							<nfwui:LabelBox id="lblComment1" code="<%= MessageIdConstant.SKF2010_SC002_COMMENT_1 %>" />
 						</th>
 						<td>
 							<imui:textArea id="commentNote" name="commentNote" style="height:50px;width:100%;" placeholder="例 添付資料が間違っています。" />
@@ -107,7 +105,7 @@
 				<table class="imui-form-search-condition">
 					<tr　style="width: 100%; max-width: 1000px;text-align:center;">
 						<th style="width: 200px; max-width: 200px;">
-							<label>申請者へのコメント</label>
+							<nfwui:LabelBox id="lblComment2" code="<%= MessageIdConstant.SKF2010_SC002_COMMENT_2 %>" />
 						</th>
 						<td>
 							<imui:textArea id="commentNote" name="commentNote" style="height:50px;width:100%;" placeholder="例 添付資料が間違っています。" />
