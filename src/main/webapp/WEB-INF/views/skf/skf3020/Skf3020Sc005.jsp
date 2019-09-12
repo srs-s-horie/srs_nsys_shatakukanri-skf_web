@@ -128,10 +128,31 @@
 					 */
 					setControlStatus = function() {
 	
-						var disabledFlg = $("#txtDisabled").val();
+						var txtDisabled = cnvBoolean($("#txtDisabled").val());
 					
 						for (var i=0; i < TXT_ARRAY.length; i++) {
-							$("#" + TXT_ARRAY[i]).attr("disabled", disabledFlg);
+							$("#" + TXT_ARRAY[i]).attr("disabled", txtDisabled);
+						}
+					}
+					
+					/*
+					 * boolean変換
+					 */
+					cnvBoolean = function(targetVal) {
+						var result = typeof(targetVal);
+						
+						if (result === 'string') {
+							if (targetVal === 'true') {
+								return true;
+							} else {
+								return false;
+							}
+						
+						} else if (result === 'boolean') {
+							return targetVal;
+							 
+						} else {
+							return false;
 						}
 					}
 					
