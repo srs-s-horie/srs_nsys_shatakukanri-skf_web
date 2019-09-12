@@ -10,10 +10,19 @@
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.skf2010.app.skf2010sc002.Skf2010Sc002Form" %>
+
+<% // 代行ログイン時CSS読み込み箇所ここから  %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
+
+<% // 代行ログイン時CSS読み込み箇所ここまで %>
+
 <!-- コンテンツエリア -->
 <div class="imui-form-container-wide" width="1350px" style="width: 100%; max-width: 1350px;">
+   	<!-- 代行ログイン時のみ表示されるメッセージ -->
+   	<jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
 	<!-- 状況、資料ヘッダ -->
 	<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;border:none;" height="100px">
+	<nfwui:Form id="form" name="form" modelAttribute="form">
 		<table class="imui-form-search-condition">
 			<tr>
 				<th width="100px">
@@ -75,19 +84,15 @@
 			</nfwui:Accordion>
 		</div>
 	</imart:condition>
-	
-	<nfwui:Form id="form" name="form"  modelAttribute="form" encType="multipart/form-data">
 		<!-- コメント欄 -->
 		<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;" height="100px">
-			<div class="imui-chapter-title" style="margin-bottom: 10px;">
-   				<h2>コメント</h2>
-			</div>
+				<nfwui:Title id="title" code="<%= MessageIdConstant.SKF2010_SC002_COMMENT %>" titleLevel="2" />
 			<!-- 申請者から承認者へ-->
 			<imart:decision case="${form.commentDisplayLevel}" value="<%= CodeConstant.COMMENT_DISPLAY_LEVEL_1 %>">
 				<table class="imui-form-search-condition">
 					<tr  style="width: 100%; max-width: 1000px;text-align:center;">
 						<th style="width: 200px; max-width: 200px;">
-							<label>承認者へのコメント</label>
+							<nfwui:LabelBox id="lblComment1" code="<%= MessageIdConstant.SKF2010_SC002_COMMENT_1 %>" />
 						</th>
 						<td>
 							<imui:textArea id="commentNote" name="commentNote" style="height:50px;width:100%;" placeholder="例 添付資料が間違っています。" />
@@ -100,7 +105,7 @@
 				<table class="imui-form-search-condition">
 					<tr　style="width: 100%; max-width: 1000px;text-align:center;">
 						<th style="width: 200px; max-width: 200px;">
-							<label>申請者へのコメント</label>
+							<nfwui:LabelBox id="lblComment2" code="<%= MessageIdConstant.SKF2010_SC002_COMMENT_2 %>" />
 						</th>
 						<td>
 							<imui:textArea id="commentNote" name="commentNote" style="height:50px;width:100%;" placeholder="例 添付資料が間違っています。" />
@@ -164,6 +169,7 @@
 			</td>
 		</tr>
 	</table>
+	</nfwui:Form>
 </div>
 <%-- コンテンツエリア CSS--%>
 <style type="text/css">
@@ -224,4 +230,3 @@ function back1() {
 	}
 })(jQuery);
 </script>
-</nfwui:Form>

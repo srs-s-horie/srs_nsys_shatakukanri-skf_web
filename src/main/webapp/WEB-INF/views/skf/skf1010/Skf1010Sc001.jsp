@@ -146,7 +146,7 @@
 
                     <tr>
                         <th width="20%">
-                            <a href="http://localhost:8080/imart/skf/Skf2010Sc007/init" class="imui-accent" style="margin-left: 8px">社宅入居希望等調書</a>
+                            <a href="http://localhost:8080/imart/skf/Skf2010Sc007/init?confirmationKbn=1" class="imui-accent" style="margin-left: 8px">社宅入居希望等調書</a>
                         </th>
                         <td width="30%">
                             <font>社宅・寮に入居したい場合に作成する申請書類です。(※併せて退居が発生する場合、退居届も自動で作成されます。)</font>
@@ -156,7 +156,7 @@
                     <!--
                     <tr>
                         <th width="20%">
-                            <a href="../S1262/S1262_BihinKibouShinsei.html" class="imui-accent" style="margin-left: 8px">備品希望申請</a>
+                            <a href="http://localhost:8080/imart/skf/Skf3090Sc004/init?menuFlg=1" class="imui-accent" style="margin-left: 8px">備品希望申請</a>
                         </th>
                         <td width="30%">
                             <font>備品を希望する場合に作成する申請です。<br>　　　</font>
@@ -166,7 +166,7 @@
                     
                     <tr>
                         <th width="20%">
-                            <a href="../S0006/S0006_ShinseiJokenKakunin2.html" class="imui-accent" style="margin-left: 8px">社宅（自動車保管場所）退居届</a>
+                            <a href="http://localhost:8080/imart/skf/Skf3090Sc004/init?menuFlg=1" class="imui-accent" style="margin-left: 8px">社宅（自動車保管場所）退居届</a>
                         </th>
                         <td width="30%">
                             <font>社宅・寮を退居する場合及び駐車場を返還する場合に作成する申請書類です。</font>

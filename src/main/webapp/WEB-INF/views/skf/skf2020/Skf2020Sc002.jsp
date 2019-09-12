@@ -12,864 +12,1025 @@
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.util.SkfDropDownUtils" %>
 <%@ taglib prefix="im" uri="http://www.intra-mart.co.jp/taglib/im-tenant" %>
+<% // 代行ログイン時CSS読み込み箇所ここから  %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
+
+<% // 代行ログイン時CSS読み込み箇所ここまで %>
 
 <!DOCTYPE html>
-<!-- ツールバー -->
+<!-- フッターエリア CSS-->
+<style type="text/css">
+	div.btnLeft{
+	    text-align: left;
+	    float: left;
+	}
+
+	div.btnRight{
+    	text-align: right;
+	}
+}
+</style>
 <!-- コンテンツエリア -->
 <div class="imui-form-container-wide" >
+<!-- 代行ログイン時のみ表示-->
+<jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
 	<nfwui:Form id="form" name="form" modelAttribute="form">
-		<table class="imui-form-search-condition">
-			<tbody style="background-color: #33333;">
-				<tr>
-					<!-- 左側の入力域の部分 -->
-					<td style="width:70%; border: none;background-color:#fdfdff;" class="imui-form-container ">
-						<div class="imui-form-container-wide">
-							<table class="imui-form-search-condition">
-								<colgroup>
-									<col style="width: 10%;">
-									<col style="width: 10%;">
-									<col style="width: 10%;">
-									<col style="width: 20%;">
-									<col style="width: 10%;">
-									<col style="width: 10%;">
-								</colgroup>
-								<!-- タイトル（申請内容） -->
-								<div class="imui-chapter-title" style="margin-bottom: 10px;">
-									<h2>申請内容</h2>
-								</div>
-								<tbody>
-									<!-- 所属 -->
-									<tr>
-										<th rowspan="4">
-											<nfwui:LabelBox id="lblHeadBelong" code="<%= MessageIdConstant.SKF2020_SC002_BELONG %>" />
-										</th>
-										<!-- 機関 -->
-										<th colspan="2">
-											<nfwui:LabelBox id="lblHeadAgency" code="<%= MessageIdConstant.SKF2020_SC002_AGENCY %>" />
-										</th>
-										<td colspan="3">
-											${f:h(form.agencyName)}
-										</td>
-									</tr>
-									<!-- 部等 -->
-									<tr>
-										<th colspan="2">
-											<nfwui:LabelBox id="lblHeadAffiliation1" code="<%= MessageIdConstant.SKF2020_SC002_AFFLIATION1 %>" />
-										</th>
-							   			<td colspan="3">
-							   				${f:h(form.affiliation1Name)}
-							 			</td>
-									</tr>
-									<!-- 室、チーム又は課 -->
-									<tr>
-									   	<th colspan="2">
-									   		<nfwui:LabelBox id="lblHeadAffiliation2" code="<%= MessageIdConstant.SKF2020_SC002_AFFLIATION2 %>" />
-										</th>
-								   		<td colspan="3">
-									   		${f:h(form.affiliation2Name)}
-						   				</td>
-									</tr>
-									<!-- 勤務先のTEL -->
-									<tr>
-										<th colspan="2">
-											<nfwui:LabelBox id="lblHeadTel" code="<%= MessageIdConstant.SKF2020_SC002_TEL %>" />
-										</th>
-										<td colspan="3">
-											<imui:textbox id="tel" name="tel" value="${f:h(form.tel)}" style="width: 50%;" 
-											 	placeholder="例　84-3549（半角）" tabindex="1"/>
-										</td>
-									</tr>			
-									<!-- 申請者情報 -->
-									<tr>
-										<th rowspan="4">
-											<nfwui:LabelBox id="lblHeadApplicant" code="<%= MessageIdConstant.SKF2020_SC002_APPLICANT %>" />
-										</th>
-										<!-- 社員番号 -->
-										<th colspan="2">
-											<nfwui:LabelBox id="lblHeadShainNo" code="<%= MessageIdConstant.SKF2020_SC002_SHAIN_NO %>" />
-										</th>
-										<td colspan="3">
-											${f:h(form.shainNo)}
-										</td>
-									</tr>
-									<!-- 氏名 -->
-									<tr>
-										<th colspan="2">
-											<nfwui:LabelBox id="lblHeadName" code="<%= MessageIdConstant.SKF2020_SC002_NAME %>" />
-										</th>
-										<td colspan="3">
-											${f:h(form.name)}
-										</td>
-									</tr>
-									<!-- 等級 -->
-									<tr>
-										<th colspan="2">
-											<nfwui:LabelBox id="lblHeadTokyu" code="<%= MessageIdConstant.SKF2020_SC002_TOKYU %>" />	
-										</th>
-										<td colspan="3">
-											${f:h(form.tokyuName)}
-										</td>
-									</tr>
-									<!-- 性別 -->
-									<tr>
-										<th colspan="2">
-											<nfwui:LabelBox id="lblHeadGender" code="<%= MessageIdConstant.SKF2020_SC002_GENDER %>" />
-										</th>
-										<td colspan="3">
-											${f:h(form.genderName)}
-										</td>
-									</tr>
-									<!-- 社宅を必要としますか？ -->
-									<tr>
-										<th colspan="3">
-											<nfwui:LabelBox id="lblHeadAskedShataku" code="<%= MessageIdConstant.SKF2020_SC002_ASKED_SHATAKU %>" />
-										</th>
-										<td colspan="3">         
-											<nfwui:RadioButtonGroup id="taiyoHituyo" dynamicMaskList="taiyoHituyoDynam" tabindex="2">
-												<nfwui:RadioButton name="taiyoHituyo" id="rdoHitsuyo" label="必要とする" tabindex="2"
-													value="<%= CodeConstant.ASKED_SHATAKU_HITSUYO %>" checked="${form.rdoHitsuyoChecked}"/>
-												<nfwui:RadioButton name="taiyoHituyo" id="rdoFuyou" label="必要としない" tabindex="2"
-													value="<%=CodeConstant.ASKED_SHATAKU_FUYOU %>" checked="${form.rdoFuyouChecked}"/>	
-												<nfwui:RadioButton name="taiyoHituyo" id="rdoParkingOnly" label="駐車場のみ" tabindex="2"
-													value="<%=CodeConstant.ASKED_SHATAKU_PARKING_ONLY %>"
-												disabled="${form.rdoParkingOnlyDisabled}" checked="${form.rdoParkingOnlyChecked}"/>
-											</nfwui:RadioButtonGroup>
-										</td>
-									</tr>
-									<!-- 社宅を必要とする理由 -->
-									<tr>
-										<th colspan="3" >
-											<nfwui:LabelBox id="lblHeadHitsuyoRiyu" code="<%= MessageIdConstant.SKF2020_SC002_HITSUYO_RIYU %>" />
-										</th>
-										<td colspan="3" class="${form.hitsuyoRiyuErr}">
-											<nfwui:RadioButtonGroup id="hitsuyoRiyu" dynamicMaskList="hitsuyoRiyuDynam" tabindex="3">
-												<nfwui:RadioButton name="hitsuyoRiyu" id="rdoHitsuyoIdo" label="異動のため" tabindex="3" 
-													value="<%= CodeConstant.IDOU %>" disabled="${form.rdoHitsuyoIdoDisabled}" checked="${form.rdoHitsuyoIdoChecked}"/>
-												<nfwui:RadioButton name="hitsuyoRiyu" id="rdoHitsuyoKekkon" label="結婚のため" tabindex="3" 
-													value="<%= CodeConstant.KEKKON %>" disabled="${form.rdoHitsuyoKekkonDisabled}" checked="${form.rdoHitsuyoKekkonChecked}"/>
-												<nfwui:RadioButton name="hitsuyoRiyu" id="rdoHitsuyoSonota" label="その他" tabindex="3" 
-													value="<%= CodeConstant.HITUYO_RIYU_OTHERS %>" disabled="${form.rdoHitsuyoSonotaDisabled}" checked="${form.rdoHitsuyoSonotaChecked}"/>
-											</nfwui:RadioButtonGroup>
-										</td>
-									</tr>
-									<!-- 社宅を必要としない理由 -->
-									<tr>
-										<th colspan="3">
-											<nfwui:LabelBox id="lblHeadFuyouRiyu" code="<%= MessageIdConstant.SKF2020_SC002_FUYO_RIYU %>" />
-										</th>
-										<td colspan="3" class="${form.fuhitsuyoRiyuErr}" >
-											<nfwui:RadioButtonGroup id="fuhitsuyoRiyu" tabindex="4">
-												<nfwui:RadioButton name="fuhitsuyoRiyu" id="rdoFuyouJitakutsuukinn" label="自宅通勤" tabindex="4" 
-													value="<%= CodeConstant.JITAKU_TSUKIN %>" disabled="${form.rdoFuyouJitakuTsuukinnDisabled}" checked="${form.rdoFuyouJitakutsuukinnChecked}"/>
-												<nfwui:RadioButton name="fuhitsuyoRiyu" id="rdoFuyouJikokariage" label="自己借上" tabindex="4" 
-													value="<%= CodeConstant.JIKO_KARIAGE %>" disabled="${form.rdoFuyouJikoKariageDisabled}" checked="${form.rdoFuyouJikokariageChecked}"/>
-												<nfwui:RadioButton name="fuhitsuyoRiyu" id="rdoFuyouSonota" tabindex="4" 
-													label="その他" value="<%= CodeConstant.FUYO_RIYU_OTHERS %>" disabled="${form.rdoFuyouSonotaDisabled}" checked="${form.rdoFuyouSonotaChecked}"/>
-											</nfwui:RadioButtonGroup>
-										</td>
-									</tr>
-									<!-- 新所属 -->
-									<tr>
-										<th rowspan="3">
-											<nfwui:LabelBox id="lblHeadNewBelong" code="<%= MessageIdConstant.SKF2020_SC002_NEW_BELONG %>" />
-										</th>
-										<!-- 機関-->                           		
-										<th colspan="2">
-											<nfwui:LabelBox id="lblHeadNewAgency" code="<%= MessageIdConstant.SKF2020_SC002_NEW_AGENCY %>" />
-										</th>
-										<td colspan="3" class="${form.newAgencyErr}">
-											<imui:select id="agencyCd" name="agencyCd" list="${form.ddlAgencyList}"  disabled="true" width="50%" tabindex="5"/>
-										</td>
-										<!-- 部等-->                              	
+		<div id="mainArea">
+			<table class="imui-form-search-condition">
+				<tbody style="background-color: #33333;">
+					<tr>
+						<!-- 左側の入力域の部分 -->
+						<!-- <td style="width:70%; border: none;background-color:#fdfdff;" class="imui-form-container "> -->
+						<td style="width:70%; border: none; background-color:#fdfdff;" class="imui-form-container ">
+							<!--  <div class="imui-form-container-wide">-->
+								<table class="imui-form-search-condition">
+									<colgroup>
+										<col style="width: 10%;">
+										<col style="width: 10%;">
+										<col style="width: 10%;">
+										<col style="width: 20%;">
+										<col style="width: 10%;">
+										<col style="width: 10%;">
+									</colgroup>
+									<!-- タイトル（申請内容） -->
+									<nfwui:Title id="searchTitle" code="<%= MessageIdConstant.SKF2020_SC002_SHINSEI_TITLE %>" titleLevel="2" />
+									<tbody>
+										<!-- 所属 -->
 										<tr>
-										  	<th colspan="2">
-										   		<nfwui:LabelBox id="lblHeadNewAffiliation1" dynamicMaskList="otherEnabled" code="<%= MessageIdConstant.SKF2020_SC002_NEW_AFFLIATION1 %>" />
+											<th rowspan="4">
+												<nfwui:LabelBox id="lblHeadBelong" code="<%= MessageIdConstant.SKF2020_SC002_BELONG %>" />
 											</th>
-											<td colspan="3" class="${form.newAffiliation1Err}">
-												<imui:select id="affiliation1Cd" name="affiliation1Cd" list="${form.ddlAffiliation1List}" disabled="true" width="50%" tabindex="6"/>
-												<div>
-													<imui:textbox id="newAffiliation1Other" name="newAffiliation1Other" value="${f:h(form.newAffiliation1Other)}" 
-													style="width: 50%;" placeholder="例 〇〇部" class="${form.otherAffiliation1Err}" disabled="true"  tabindex="7"/>
-												</div>
+											<!-- 機関 -->
+											<th colspan="2">
+												<nfwui:LabelBox id="lblHeadAgency" code="<%= MessageIdConstant.SKF2020_SC002_AGENCY %>" />
+											</th>
+											<td colspan="3">
+												${f:h(form.agencyName)}
 											</td>
 										</tr>
-										<!-- 室、チーム又は課--> 
+										<!-- 部等 -->
 										<tr>
 											<th colspan="2">
-												<nfwui:LabelBox id="lblHeadNewAffiliation2" code="<%= MessageIdConstant.SKF2020_SC002_NEW_AFFLIATION2 %>" />
+												<nfwui:LabelBox id="lblHeadAffiliation1" code="<%= MessageIdConstant.SKF2020_SC002_AFFLIATION1 %>" />
 											</th>
-										 	<td colspan="3" class="${form.newAffiliation2Err}">
-												<imui:select id="affiliation2Cd" name="affiliation2Cd" list="${form.ddlAffiliation2List}" width="50%" disabled="true" tabindex="8"/>
-												<div>
-													<imui:textbox id="newAffiliation2Other" name="newAffiliation2Other" value="${f:h(form.newAffiliation2Other)}" 
-														style="width: 50%;" class="${form.otherAffiliation1Err}" placeholder="例 〇〇事業所" disabled="true" tabindex="9"/>
-												</div>
+								   			<td colspan="3">
+								   				${f:h(form.affiliation1Name)}
+								 			</td>
+										</tr>
+										<!-- 室、チーム又は課 -->
+										<tr>
+										   	<th colspan="2">
+										   		<nfwui:LabelBox id="lblHeadAffiliation2" code="<%= MessageIdConstant.SKF2020_SC002_AFFLIATION2 %>" />
+											</th>
+									   		<td colspan="3">
+										   		${f:h(form.affiliation2Name)}
+							   				</td>
+										</tr>
+										<!-- 勤務先のTEL -->
+										<tr>
+											<th colspan="2">
+												<nfwui:LabelBox id="lblHeadTel" code="<%= MessageIdConstant.SKF2020_SC002_TEL %>" />
+											</th>
+											<td colspan="3">
+												<imui:textbox id="tel" name="tel" value="${f:h(form.tel)}" style="width: 50%;" 
+												 	placeholder="例　84-3549（半角）" tabindex="1"/>
+											</td>
+										</tr>			
+										<!-- 申請者情報 -->
+										<tr>
+											<th rowspan="4">
+												<nfwui:LabelBox id="lblHeadApplicant" code="<%= MessageIdConstant.SKF2020_SC002_APPLICANT %>" />
+											</th>
+											<!-- 社員番号 -->
+											<th colspan="2">
+												<nfwui:LabelBox id="lblHeadShainNo" code="<%= MessageIdConstant.SKF2020_SC002_SHAIN_NO %>" />
+											</th>
+											<td colspan="3">
+												${f:h(form.shainNo)}
 											</td>
 										</tr>
-										<!-- 必要とする社宅 -->
+										<!-- 氏名 -->
+										<tr>
+											<th colspan="2">
+												<nfwui:LabelBox id="lblHeadName" code="<%= MessageIdConstant.SKF2020_SC002_NAME %>" />
+											</th>
+											<td colspan="3">
+												${f:h(form.name)}
+											</td>
+										</tr>
+										<!-- 等級 -->
+										<tr>
+											<th colspan="2">
+												<nfwui:LabelBox id="lblHeadTokyu" code="<%= MessageIdConstant.SKF2020_SC002_TOKYU %>" />	
+											</th>
+											<td colspan="3">
+												${f:h(form.tokyuName)}
+											</td>
+										</tr>
+										<!-- 性別 -->
+										<tr>
+											<th colspan="2">
+												<nfwui:LabelBox id="lblHeadGender" code="<%= MessageIdConstant.SKF2020_SC002_GENDER %>" />
+											</th>
+											<td colspan="3">
+												${f:h(form.genderName)}
+											</td>
+										</tr>
+										<!-- 社宅を必要としますか？ -->
 										<tr>
 											<th colspan="3">
-												<nfwui:LabelBox id="lblHeadHitsuyoShataku" code="<%= MessageIdConstant.SKF2020_SC002_HITSUYO_SHATAKU %>" />
+												<nfwui:LabelBox id="lblHeadAskedShataku" code="<%= MessageIdConstant.SKF2020_SC002_ASKED_SHATAKU %>" />
 											</th>
-											<td id="hitsuyoShataku" colspan="3" class="${form.hitsuyoShatakuErr}">
-												<nfwui:RadioButton name="rdoKikon" id="rdoKikon" label="既婚" disabled="${form.rdoKikonDisabled}"
-													value="<%= CodeConstant.KIKON %>" checked="${form.rdoKikonChecked}" tabindex="10" />
-													<nfwui:RadioButtonGroup id="hitsuyoShataku" dynamicMaskList="hitsuyoShatakuDynam1" tabindex="11"> 
-														（
-															<nfwui:RadioButton name="hitsuyoShataku" id="rdoHitsuyoSetai" label="世帯" 
-																value="<%= CodeConstant.SETAI %>" disabled="${form.rdoHitsuyoSetaiDisabled}" checked="${form.rdoHitsuyoSetaiChecked}" tabindex="11"/>
-															<nfwui:RadioButton name="hitsuyoShataku" id="rdoHitsuyoTanshin" label="単身" 
-																value="<%= CodeConstant.TANSHIN %>" disabled="${form.rdoHitsuyoTanshinDisabled}" checked="${form.rdoHitsuyoTanshinChecked}" tabindex="11"/>
-														）
-															<br>
-															<nfwui:RadioButton name="hitsuyoShataku" id="rdoHitsuyoDokushin" label="独身" 
-																value="<%= CodeConstant.DOKUSHIN %>" disabled="${form.rdoHitsuyoDokushinDisabled}" checked="${form.rdoHitsuyoDokushinChecked}" tabindex="19"/>
+											<td colspan="3">         
+												<nfwui:RadioButtonGroup id="taiyoHituyo" dynamicMaskList="taiyoHituyoDynam" tabindex="2">
+													<nfwui:RadioButton name="taiyoHituyo" id="rdoHitsuyo" label="必要とする" tabindex="2"
+														value="<%= CodeConstant.ASKED_SHATAKU_HITSUYO %>" checked="${form.rdoHitsuyoChecked}"/>
+													<nfwui:RadioButton name="taiyoHituyo" id="rdoFuyou" label="必要としない" tabindex="2"
+														value="<%=CodeConstant.ASKED_SHATAKU_FUYOU %>" checked="${form.rdoFuyouChecked}"/>	
+													<nfwui:RadioButton name="taiyoHituyo" id="rdoParkingOnly" label="駐車場のみ" tabindex="2"
+														value="<%=CodeConstant.ASKED_SHATAKU_PARKING_ONLY %>"
+													disabled="${form.rdoParkingOnlyDisabled}" checked="${form.rdoParkingOnlyChecked}"/>
+												</nfwui:RadioButtonGroup>
+											</td>
+										</tr>
+										<!-- 社宅を必要とする理由 -->
+										<tr>
+											<th colspan="3" >
+												<nfwui:LabelBox id="lblHeadHitsuyoRiyu" code="<%= MessageIdConstant.SKF2020_SC002_HITSUYO_RIYU %>" />
+											</th>
+											<td colspan="3">
+												<nfwui:RadioButtonGroup id="hitsuyoRiyu" dynamicMaskList="hitsuyoRiyuDynam" tabindex="3">
+													<nfwui:RadioButton name="hitsuyoRiyu" id="rdoHitsuyoIdo" label="異動のため" tabindex="3" 
+														value="<%= CodeConstant.IDOU %>" disabled="${form.rdoHitsuyoIdoDisabled}" checked="${form.rdoHitsuyoIdoChecked}"/>
+													<nfwui:RadioButton name="hitsuyoRiyu" id="rdoHitsuyoKekkon" label="結婚のため" tabindex="3" 
+														value="<%= CodeConstant.KEKKON %>" disabled="${form.rdoHitsuyoKekkonDisabled}" checked="${form.rdoHitsuyoKekkonChecked}"/>
+													<nfwui:RadioButton name="hitsuyoRiyu" id="rdoHitsuyoSonota" label="その他" tabindex="3" 
+														value="<%= CodeConstant.HITUYO_RIYU_OTHERS %>" disabled="${form.rdoHitsuyoSonotaDisabled}" checked="${form.rdoHitsuyoSonotaChecked}"/>
+												</nfwui:RadioButtonGroup>
+											</td>
+										</tr>
+										<!-- 社宅を必要としない理由 -->
+										<tr>
+											<th colspan="3">
+												<nfwui:LabelBox id="lblHeadFuyouRiyu" code="<%= MessageIdConstant.SKF2020_SC002_FUYO_RIYU %>" />
+											</th>
+											<td colspan="3">
+												<nfwui:RadioButtonGroup id="fuhitsuyoRiyu" tabindex="4">
+													<nfwui:RadioButton name="fuhitsuyoRiyu" id="rdoFuyouJitakutsuukinn" label="自宅通勤" tabindex="4" 
+														value="<%= CodeConstant.JITAKU_TSUKIN %>" disabled="${form.rdoFuyouJitakuTsuukinnDisabled}" checked="${form.rdoFuyouJitakutsuukinnChecked}"/>
+													<nfwui:RadioButton name="fuhitsuyoRiyu" id="rdoFuyouJikokariage" label="自己借上" tabindex="4" 
+														value="<%= CodeConstant.JIKO_KARIAGE %>" disabled="${form.rdoFuyouJikoKariageDisabled}" checked="${form.rdoFuyouJikokariageChecked}"/>
+													<nfwui:RadioButton name="fuhitsuyoRiyu" id="rdoFuyouSonota" tabindex="4" 
+														label="その他" value="<%= CodeConstant.FUYO_RIYU_OTHERS %>" disabled="${form.rdoFuyouSonotaDisabled}" checked="${form.rdoFuyouSonotaChecked}"/>
+												</nfwui:RadioButtonGroup>
+											</td>
+										</tr>
+										<!-- 新所属 -->
+										<tr>
+											<th rowspan="3">
+												<nfwui:LabelBox id="lblHeadNewBelong" code="<%= MessageIdConstant.SKF2020_SC002_NEW_BELONG %>" />
+											</th>
+											<!-- 機関-->                           		
+											<th colspan="2">
+												<nfwui:LabelBox id="lblHeadNewAgency" code="<%= MessageIdConstant.SKF2020_SC002_NEW_AGENCY %>" />
+											</th>
+											<td colspan="3">
+												<imui:select id="agencyCd" name="agencyCd" list="${form.ddlAgencyList}"  disabled="true" width="50%" tabindex="5"/>
+											</td>
+											<!-- 部等-->                              	
+											<tr>
+											  	<th colspan="2">
+											   		<nfwui:LabelBox id="lblHeadNewAffiliation1" dynamicMaskList="otherEnabled" code="<%= MessageIdConstant.SKF2020_SC002_NEW_AFFLIATION1 %>" />
+												</th>
+												<td colspan="3">
+													<imui:select id="affiliation1Cd" name="affiliation1Cd" list="${form.ddlAffiliation1List}" disabled="true" width="50%" tabindex="6"/>
+													<div>
+														<imui:textbox id="newAffiliation1Other" name="newAffiliation1Other" value="${f:h(form.newAffiliation1Other)}" 
+														style="width: 50%;" placeholder="例 〇〇部"  disabled="${form.newAffiliation1OtherDisabled}"  tabindex="7"/>
+													</div>
+												</td>
+											</tr>
+											<!-- 室、チーム又は課--> 
+											<tr>
+												<th colspan="2">
+													<nfwui:LabelBox id="lblHeadNewAffiliation2" code="<%= MessageIdConstant.SKF2020_SC002_NEW_AFFLIATION2 %>" />
+												</th>
+											 	<td colspan="3">
+													<imui:select id="affiliation2Cd" name="affiliation2Cd" list="${form.ddlAffiliation2List}" width="50%" disabled="true" tabindex="8"/>
+													<div>
+														<imui:textbox id="newAffiliation2Other" name="newAffiliation2Other" value="${f:h(form.newAffiliation2Other)}" 
+															style="width: 50%;"  placeholder="例 〇〇事業所" disabled="${form.newAffiliation2OtherDisabled}" tabindex="9"/>
+													</div>
+												</td>
+											</tr>
+											<!-- 必要とする社宅 -->
+											<tr>
+												<th colspan="3">
+													<nfwui:LabelBox id="lblHeadHitsuyoShataku" code="<%= MessageIdConstant.SKF2020_SC002_HITSUYO_SHATAKU %>" />
+												</th>
+												<td id="hitsuyoShataku" colspan="3" >
+													<nfwui:RadioButton name="rdoKikon" id="rdoKikon" label="既婚" disabled="${form.rdoKikonDisabled}"
+														value="<%= CodeConstant.KIKON %>" checked="${form.rdoKikonChecked}" tabindex="10" />
+														<nfwui:RadioButtonGroup id="hitsuyoShataku" dynamicMaskList="hitsuyoShatakuDynam1" tabindex="11"> 
+															（
+																<nfwui:RadioButton name="hitsuyoShataku" id="rdoHitsuyoSetai" label="世帯" 
+																	value="<%= CodeConstant.SETAI %>" disabled="${form.rdoHitsuyoSetaiDisabled}" checked="${form.rdoHitsuyoSetaiChecked}" tabindex="11"/>
+																<nfwui:RadioButton name="hitsuyoShataku" id="rdoHitsuyoTanshin" label="単身" 
+																	value="<%= CodeConstant.TANSHIN %>" disabled="${form.rdoHitsuyoTanshinDisabled}" checked="${form.rdoHitsuyoTanshinChecked}" tabindex="11"/>
+															）
+																<br>
+																<nfwui:RadioButton name="hitsuyoShataku" id="rdoHitsuyoDokushin" label="独身" 
+																	value="<%= CodeConstant.DOKUSHIN %>" disabled="${form.rdoHitsuyoDokushinDisabled}" checked="${form.rdoHitsuyoDokushinChecked}" tabindex="19"/>
+														</nfwui:RadioButtonGroup>
+												</td>
+											</tr>
+											<!-- 同居家族 -->                                	
+											<tr>
+												<th colspan="3">
+													<nfwui:LabelBox id="lblHeadDokyoKazoku" code="<%= MessageIdConstant.SKF2020_SC002_DOKYO_KAZOKU %>" />
+												</th>
+												<td colspan="3">
+													<table class="imui-form-search-condition" style="width:100%;">
+														<tbody>
+															<tr>
+																<!-- 続柄、氏名、年齢 --> 
+																<th>
+																	<nfwui:LabelBox id="lblHeadZokugara" code="<%= MessageIdConstant.SKF2020_SC002_ZOKUGARA %>" />
+																</th>
+																<th>
+																	<nfwui:LabelBox id="lblHeadShrmei" code="<%= MessageIdConstant.SKF2020_SC002_SHIMEI %>" />
+																</th>
+																<th>
+																	<nfwui:LabelBox id="lblHeadNenrei" code="<%= MessageIdConstant.SKF2020_SC002_NENREI %>" />
+																</th>
+															</tr>
+															<tr>
+																<td style="text-align:center;">
+																	<imui:textbox id="dokyoRelation1" name="dokyoRelation1" value="${f:h(form.dokyoRelation1)}" style="width: 95%;" 
+																		placeholder="例 祖父" disabled="true" tabindex="12"/> 
+																</td>
+																<td style="text-align:center;" >
+																	<imui:textbox id="dokyoName1" name="dokyoName1" value="${f:h(form.dokyoName1)}" 
+																		 style="width: 95%;" placeholder="例 中日本 一郎" disabled="true" tabindex="13"/>
+																</td>
+																<td style="text-align:center;">
+																	<imui:textbox id="dokyoAge1" name="dokyoAge1" value="${f:h(form.dokyoAge1)}" 
+																		style="width: 90%;" placeholder="例 半角数字" disabled="true" tabindex="14"/>
+																</td>
+															</tr>
+															<tr>
+																<td style="text-align:center;">
+																	<imui:textbox id="dokyoRelation2" name="dokyoRelation2" value="${f:h(form.dokyoRelation2)}" 
+																	 style="width: 95%;" placeholder="例 祖父" disabled="true" tabindex="15" />
+																</td>
+																<td style="text-align:center;">
+																	<imui:textbox id="dokyoName2" name="dokyoName2" value="${f:h(form.dokyoName2)}" 
+																	 style="width: 95%;" placeholder="例 中日本 一郎" disabled="true" tabindex="16" />	    
+																</td>
+																<td style="text-align:center;">
+																	<imui:textbox id="dokyoAge2" name="dokyoAge2" value="${f:h(form.dokyoAge2)}" 
+																		style="width: 90%;" placeholder="例 半角数字" disabled="true" tabindex="17"/>
+															    </td>
+															</tr>
+															<tr>
+														    	<td  style="text-align:center;">
+																	<imui:textbox id="dokyoRelation3" name="dokyoRelation3" value="${f:h(form.dokyoRelation3)}"
+																		 style="width: 95%;" placeholder="例 祖父" disabled="true" tabindex="18" />		    
+																</td>
+																<td style="text-align:center;">
+																	<imui:textbox id="dokyoName3" name="dokyoName3" value="${f:h(form.dokyoName3)}" 
+																		 style="width: 95%;" placeholder="例 中日本 一郎" disabled="true" tabindex="19" />		    
+																</td>
+																<td style="text-align:center;">
+																	<imui:textbox id="dokyoAge3" name="dokyoAge3" value="${f:h(form.dokyoAge3)}" 
+																	 style="width: 90%;" placeholder="例 半角数字" disabled="true" tabindex="20"/>
+														    	</td>
+															</tr>
+															<tr>
+																<td style="text-align:center;">
+																	<imui:textbox id="dokyoRelation4" name="dokyoRelation4" value="${f:h(form.dokyoRelation4)}" 
+																	 style="width: 95%;" placeholder="例 祖父" disabled="true" tabindex="21" />   
+																</td>
+																<td style="text-align:center;">
+																	<imui:textbox id="dokyoName4" name="dokyoName4" value="${f:h(form.dokyoName4)}" 
+																		 style="width: 95%;" placeholder="例 中日本 一郎" disabled="true" tabindex="22" />    
+																</td>
+																<td style="text-align:center;">
+																	<imui:textbox id="dokyoAge4" name="dokyoAge4" value="${f:h(form.dokyoAge4)}" 
+																		 style="width: 90%;" placeholder="例 半角数字" disabled="true" tabindex="23" />
+																</td>
+															</tr>
+															<tr>
+																<td style="text-align:center;">
+																	<imui:textbox id="dokyoRelation5" name="dokyoRelation5" 
+																	 value="${f:h(form.dokyoRelation5)}" style="width: 95%;" placeholder="例 祖父" disabled="true" tabindex="24" />
+																</td>					  
+																<td style="text-align:center;">
+																	<imui:textbox id="dokyoName5" name="dokyoName5" value="${f:h(form.dokyoName5)}"
+																		 style="width: 95%;" placeholder="例 中日本 一郎" disabled="true" tabindex="25" />					    
+																</td>
+																<td style="text-align:center;">
+																	<imui:textbox id="dokyoAge5" name="dokyoAge5" 
+																	 value="${f:h(form.dokyoAge5)}" style="width: 90%;" placeholder="例 半角数字" disabled="true" tabindex="26"/>
+																</td>
+															</tr>
+															<tr>
+																<td  style="text-align:center;">
+																	<imui:textbox id="dokyoRelation6" name="dokyoRelation6" 
+																	value="${f:h(form.dokyoRelation6)}" style="width: 95%;" placeholder="例 祖父" disabled="true" tabindex="27"/>                                                      
+																</td>
+																<td style="text-align:center;">
+																	<imui:textbox id="dokyoName6" name="dokyoName6" 
+																	value="${f:h(form.dokyoName6)}" style="width: 95%;" placeholder="例 中日本 一郎" disabled="true" tabindex="28" /> 
+																</td>
+																<td style="text-align:center;">
+																	<imui:textbox id="dokyoAge6" name="dokyoAge6" 
+																	value="${f:h(form.dokyoAge6)}" style="width: 90%;" placeholder="例 半角数字" disabled="true" tabindex="29"/>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</td>
+											</tr> 
+											<!-- 入居情報 -->                                	
+											<tr>
+												<!--  入居希望日（予定日） -->
+												<th colspan="3">
+													<nfwui:LabelBox id="lblHeadNyukyoKiboDate" code="<%= MessageIdConstant.SKF2020_SC002_NYUKYO_KIBO_DATA %>" />
+												</th>
+												<td colspan="3">
+													<nfwui:DateBox id="nyukyoYoteiDate" name="nyukyoYoteiDate" value="${f:h(form.nyukyoYoteiDate)}" tabindex="30" disabled="true"/> 	                                  	
+												</td>
+											</tr>
+											<!--  自動車の保管場所 -->  
+											<tr>
+												<th colspan="3">
+													<nfwui:LabelBox id="lblHeadCarPark" code="<%= MessageIdConstant.SKF2020_SC002_CAR_PARK %>" />
+												</th>
+												<td colspan="3"  >
+													<nfwui:RadioButtonGroup id="parkingUmu" dynamicMaskList="parkingUmuDynam" tabindex="31">
+														<nfwui:RadioButton name="parkingUmu" id="rdoCarHitsuyo" label="必要とする" 
+															value="<%= CodeConstant.CAR_PARK_HITUYO %>" disabled="${form.rdoCarHitsuyoDisabled}" checked="${form.rdoCarHitsuyoChecked}" tabindex="31"/>
+														<nfwui:RadioButton name="parkingUmu" id="rdoCarFuyo" label="必要としない" 
+															value="<%= CodeConstant.CAR_PARK_FUYO %>" disabled="${form.rdoCarFuyoDisabled}"  checked="${form.rdoCarFuyoChecked}" tabindex="31"/>
 													</nfwui:RadioButtonGroup>
-											</td>
-										</tr>
-										<!-- 同居家族 -->                                	
+												</td>
+											</tr>
+											<!--  １台目 --> 
+											<tr>
+												<th rowspan="6">
+													<nfwui:LabelBox id="lblHead1stCar" code="<%= MessageIdConstant.SKF2020_SC002_1ST_CAR %>" />
+												</th>
+												<!-- 自動車の保有 --> 
+												<th colspan="2">
+													<nfwui:LabelBox id="lblHead1stCarNoInputFlg" code="<%= MessageIdConstant.SKF2020_SC002_1ST_CAR_NO_INPUT_FLG %>" />
+												</th>
+												<td colspan="3" >
+													<nfwui:RadioButtonGroup id="carNoInputFlg" dynamicMaskList="carNoInputFlgDynam" tabindex="32">
+														<nfwui:RadioButton name="carNoInputFlg" id="rdo1stCarHoyu" label="保有している" value="<%= CodeConstant.CAR_HOYU %>" 
+															disabled="${form.rdo1stCarHoyuDisabled}" checked="${form.rdo1stCarHoyuChecked}" tabindex="32"/>
+														<nfwui:RadioButton name="carNoInputFlg" id="rdo1stCarYotei" label="購入を予定している" value="<%= CodeConstant.CAR_YOTEI %>" 
+															disabled="${form.rdo1stCarYoteiDisabled}" checked="${form.rdo1stCarYoteiChecked}" tabindex="32"/>
+													</nfwui:RadioButtonGroup>
+												</td>
+											</tr>	
+											<!-- 自動車の車名 --> 								
+											<tr>
+												<th colspan="2">
+													<nfwui:LabelBox id="lblHead1stCarName" code="<%= MessageIdConstant.SKF2020_SC002_1ST_CAR_NAME %>" />	
+												</th>
+												<td colspan="3">
+													<imui:textbox id="carName" name="carName"  value="${f:h(form.carName)}"
+													 style="width: 50%;" placeholder="例 プリウス" disabled="true" tabindex="33"/>
+												</td>
+											</tr>
+											<!-- 自動車の登録番号 -->
+											<tr>
+												<th colspan="2">
+													<nfwui:LabelBox id="lblHead1stCarNo" code="<%= MessageIdConstant.SKF2020_SC002_1ST_CAR_NO %>" />
+												</th>
+												<td colspan="3">
+													<imui:textbox id="carNo" name="carNo"  value="${f:h(form.carNo)}"
+													 style="width: 50%;" placeholder="例 名古屋 300 あ 1235" disabled="true" tabindex="34"/>
+												</td>
+											</tr>
+											<!-- 車検の有効期間満了日 -->																	
+											<tr>
+												<th colspan="2">
+													<nfwui:LabelBox id="lblHead1stCarExpirationDate" code="<%= MessageIdConstant.SKF2020_SC002_1ST_CAR_EXCEPTION_DATA %>" />
+												</th>
+												<td colspan="3">
+													<nfwui:DateBox id="carExpirationDate" name="carExpirationDate" value="${f:h(form.carExpirationDate)}"
+														 tabindex="35" disabled="true"/>                                   
+												</td>
+											</tr>
+											<!-- 自動車の使用者 -->
+											<tr>
+												<th colspan="2">
+													<nfwui:LabelBox id="lblHead1stCarUser" code="<%= MessageIdConstant.SKF2020_SC002_1ST_CAR_USE %>" />
+												</th>
+												<td colspan="3">
+													<imui:textbox id="carUser" name="carUser"  value="${f:h(form.carUser)}"
+													 style="width: 50%;" placeholder="中日本 太郎" disabled="true" tabindex="36"/>
+												</td>
+											</tr>
+											<!-- 自動車の保管場所使用開始日（予定日） -->
+											<tr>
+												<th colspan="2">
+													<nfwui:LabelBox id="lblHead1stParkingUseDate" code="<%= MessageIdConstant.SKF2020_SC002_1ST_PARKING_USE_DATE %>" />
+												</th>
+												<td colspan="3">
+													<nfwui:DateBox id="parkingUseDate" name="parkingUseDate" value="${f:h(form.parkingUseDate)}"
+														 tabindex="37" disabled="true"/>
+												</td>
+											</tr>
+											<!-- ２台目 --> 
+											<tr>
+												<th rowspan="6">
+													<nfwui:LabelBox id="lblHead2ndCar" code="<%= MessageIdConstant.SKF2020_SC002_2ST_CAR %>" />
+												</th>
+												<!-- 自動車の保有 --> 
+												<th colspan="2">
+													<nfwui:LabelBox id="lblHead2ndCarNoInputFlg" code="<%= MessageIdConstant.SKF2020_SC002_2ST_CAR_NO_INPUT_FLG %>" />
+												</th>
+												<td colspan="2" >
+													<nfwui:RadioButtonGroup id="carNoInputFlg2" dynamicMaskList="carNoInputFlg2Dynam" tabindex="38">
+														<nfwui:RadioButton name="carNoInputFlg2" id="rdo2stCarHoyu" label="保有している" value="<%= CodeConstant.CAR_HOYU %>"
+															disabled="${form.rdo2stCarHoyuDisabled}" checked="${form.rdo2stCarHoyuChecked}" tabindex="38"/>
+														<nfwui:RadioButton name="carNoInputFlg2" id="rdo2stCarYotei" label="購入を予定している" value="<%= CodeConstant.CAR_YOTEI %>"
+															disabled="${form.rdo2stCarHoyuDisabled}" checked="${form.rdo2stCarYoteiChecked}" tabindex="38"/>
+													</nfwui:RadioButtonGroup>
+												</td>
+												<td rowspan="6" colspan="1" style="color:red;">
+													<div>
+														<nfwui:LabelBox id="lbl2ndExplanationCar" code="<%= MessageIdConstant.SKF2020_SC002_2ND_EXPLANATION_CAR %>" />
+													</div>
+												</td>
+											</tr>
+											<!-- 自動車の車名 -->                             	
+											<tr>
+												<th colspan="2">
+													<nfwui:LabelBox id="lblHead2ndCarName" code="<%= MessageIdConstant.SKF2020_SC002_2ST_CAR_NAME %>" />
+												</th>
+												<td colspan="2">
+													<imui:textbox id="carName2" name="carName2" 
+														value="${f:h(form.carName2)}" style="width: 85%;" placeholder="例 プリウス" disabled="true" tabindex="39"/>
+												</td>
+											</tr>
+											<!-- 自動車の登録番号 --> 
+											<tr>
+												<th colspan="2">
+													<nfwui:LabelBox id="lblHead2ndCarNo" code="<%= MessageIdConstant.SKF2020_SC002_2ST_CAR_NO %>" />
+												</th>
+												<td colspan="2">
+												<imui:textbox id="carNo2" name="carNo2" 
+													value="${f:h(form.carNo2)}" style="width: 85%;" placeholder="例 名古屋 300 あ 1235" disabled="true" tabindex="40"/>
+												</td>
+											</tr>
+											<!-- 車検の有効期間満了日 -->																	
+											<tr>
+												<th colspan="2">
+													<nfwui:LabelBox id="lblHead2ndCarExpirationDate" code="<%= MessageIdConstant.SKF2020_SC002_2ST_CAR_EXCEPTION_DATA %>" />
+												</th>
+												<td colspan="2">
+													<nfwui:DateBox id="carExpirationDate2" name="carExpirationDate2" value="${f:h(form.carExpirationDate2)}"
+														 tabindex="41" disabled="true"/>
+												</td>
+											</tr>
+											<!-- 自動車の使用者 -->	
+											<tr>
+												<th colspan="2">
+													<nfwui:LabelBox id="lblHead2ndCarUser" code="<%= MessageIdConstant.SKF2020_SC002_2ST_CAR_USE %>" />
+												</th>
+												<td colspan="2">
+													<imui:textbox id="carUser2" name="carUser2"  value="${f:h(form.carUser2)}" 
+														style="width: 85%;" placeholder="中日本太郎" disabled="true" tabindex="42"/>
+												</td>
+											</tr>
+											<!-- 自動車の保管場所使用開始日（予定日） -->
+											<tr>
+												<th colspan="2">
+													<nfwui:LabelBox id="lblHead2ndParkingUseDate" code="<%= MessageIdConstant.SKF2020_SC002_2ST_PARKING_USE_DATE %>" />
+												</th>
+												<td colspan="2">
+													<nfwui:DateBox id="parkingUseDate2" name="parkingUseDate2" value="${f:h(form.carExpirationDate2)}"
+														 tabindex="43" disabled="true"/>
+												</td>
+											</tr> 
+											<!-- 現居住宅 --> 
+											<tr>
+												<th rowspan="5">
+													<nfwui:LabelBox id="lblHeadNowShatakuName" code="<%= MessageIdConstant.SKF2020_SC002_NOW_JYUTAKU %>" />
+												</th>
+												<th colspan="2"><label></label></th>
+												<td colspan="3">
+													<nfwui:RadioButtonGroup id="nowShataku" dynamicMaskList="nowShatakuDynam" tabindex="44">
+														<nfwui:RadioButton name="nowShataku" id="rdoNowJutakuHoyu" label="保有(会社借上を含む)" value="<%= CodeConstant.GENNYUKYO_SHATAKU_KBN_HOYU %>" disabled="${form.rdoNowJutakuHoyuDisabled}" checked="${form.rdoNowJutakuHoyuChecked}" tabindex="44" />
+														<nfwui:RadioButton name="nowShataku" id="rdoNowJutakuJitaku" label="自宅" value="<%= CodeConstant.GENNYUKYO_SHATAKU_KBN_JITAKU %>" disabled="${form.rdoNowJutakuJitakuDisabeld}" checked="${form.rdoNowJutakuJitakuChecked}" tabindex="44" />
+														<nfwui:RadioButton name="nowShataku" id="rdoNowJutakuKariage" label="自己借上" value="<%= CodeConstant.GENNYUKYO_SHATAKU_KBN_JIKO_KARIAGE %>" disabled="${form.rdoNowJutakuKariageDisabled}" checked="${form.rdoNowJutakuKariageChecked}" tabindex="44" />
+														<nfwui:RadioButton name="nowShataku" id="rdoNowJutakuSonota" label="その他" value="<%= CodeConstant.GENNYUKYO_SHATAKU_KBN_OTHERS %>" disabled="${form.rdoNowJutakuSonotaDisabled}"  checked="${form.rdoNowJutakuSonotaChecked}" tabindex="44" />                             			
+													</nfwui:RadioButtonGroup>
+												</td>
+											</tr>
+											<!-- 保有社宅名 -->	
+											<tr>
+												<th colspan="2">
+													<nfwui:LabelBox id="lblHeadNowShatakuName" code="<%= MessageIdConstant.SKF2020_SC002_NOW_SHATAKU_NAME %>" />
+												</th>
+												<td colspan="3">
+													<imui:select id="nowShatakuName" name="nowShatakuName" list="${form.ddlNowShatakuNameList}" 
+														 value="" disabled="true" tabindex="45"/>
+												</td>
+											</tr>
+											<!--　室番号 -->	
+											<tr>
+												<th colspan="2">
+													<nfwui:LabelBox id="lblHeadNowRoomNo" code="<%= MessageIdConstant.SKF2020_SC002_NOW_ROOM_NO %>" />
+												</th>
+												<td colspan="3">                         
+													<span id="nowShatakuNo">${f:h(form.nowShatakuNo)} </span>
+												</td>
+											</tr>
+											<!--　規格（間取り） -->
+											<tr>
+												<th colspan="2">
+													<nfwui:LabelBox id="lblHeadNowRoomKikaku" code="<%= MessageIdConstant.SKF2020_SC002_NOW_ROOM_KIKAKU %>" />
+												</th>
+												<td colspan="3">
+													<span id="nowShatakuKikakuName">${f:h(form.nowShatakuKikakuName)} </span>
+												</td>
+											</tr>
+											<!--　面積-->
+											<tr>
+												<th colspan="2">
+													<nfwui:LabelBox id="lblHeadNowRoomMenseki" code="<%= MessageIdConstant.SKF2020_SC002_NOW_ROOM_MENSEKI %>" />
+												</th>
+												<td colspan="3">
+													<span id="nowShatakuMenseki">${f:h(form.nowShatakuMenseki)} </span>
+												</td>
+											</tr>
+											<!-- 駐車場　1台目　保管場所 -->	                               	
+											<tr>
+												<th rowspan="2">
+													<nfwui:LabelBox id="lblHeadParking" code="<%= MessageIdConstant.SKF2020_SC002_PARKING %>" />
+												</th>
+												<th colspan="1">
+													<nfwui:LabelBox id="lblHeadParking1nd" code="<%= MessageIdConstant.SKF2020_SC002_PARKING_1ND %>" />
+												</th>
+												<th colspan="1">
+													<nfwui:LabelBox id="lblHeadParking1ndPlace" code="<%= MessageIdConstant.SKF2020_SC002_PARKING_1ND_PLACE %>" />
+												</th>
+												<td colspan="3" >
+													<span id="parking1stPlace">${f:h(form.parking1stPlace)} </span>
+												</td>
+											</tr>
+											<!-- ２台目　保管場所 -->  
+											<tr>
+												<th colspan="1">
+													<nfwui:LabelBox id="lblHeadParking2nd" code="<%= MessageIdConstant.SKF2020_SC002_PARKING_2ND %>" />
+												</th>
+												<th colspan="1">
+													<nfwui:LabelBox id="lblHeadParking2ndPlace" code="<%= MessageIdConstant.SKF2020_SC002_PARKING_2ND_PLACE %>" />
+												</th>
+												<td colspan="3">
+													<span id="parking2stPlace">${f:h(form.parking2stPlace)} </span>
+												</td>
+											</tr>
+											<!-- 特殊事情等 -->  
+											<tr>
+												<th colspan="3">
+													<nfwui:LabelBox id="lblHead" code="<%= MessageIdConstant.SKF2020_SC002_TOKUSHU_JIJO %>" />
+												</th>
+												<td colspan="3">
+													<imui:textArea id="tokushuJijo" name="tokushuJijo" value="${f:h(form.tokushuJijo)}" tabindex="46"/>
+												</td>
+											</tr>                            	
+										<!-- 現保有社宅 -->   
 										<tr>
 											<th colspan="3">
-												<nfwui:LabelBox id="lblHeadDokyoKazoku" code="<%= MessageIdConstant.SKF2020_SC002_DOKYO_KAZOKU %>" />
+												<nfwui:LabelBox id="lblHeadNowHoyuShataku" code="<%= MessageIdConstant.SKF2020_SC002_NOW_HOYU_SHATAKU %>" />
 											</th>
-											<td colspan="3">
-												<table class="imui-form-search-condition" style="width:100%;">
-													<tbody>
-														<tr>
-															<!-- 続柄、氏名、年齢 --> 
-															<th>
-																<nfwui:LabelBox id="lblHeadZokugara" code="<%= MessageIdConstant.SKF2020_SC002_ZOKUGARA %>" />
-															</th>
-															<th>
-																<nfwui:LabelBox id="lblHeadShrmei" code="<%= MessageIdConstant.SKF2020_SC002_SHIMEI %>" />
-															</th>
-															<th>
-																<nfwui:LabelBox id="lblHeadNenrei" code="<%= MessageIdConstant.SKF2020_SC002_NENREI %>" />
-															</th>
-														</tr>
-														<tr>
-															<td style="text-align:center;">
-																<imui:textbox id="dokyoRelation1" name="dokyoRelation1"  class="${form.dokyoRelation1Err}" value="${f:h(form.dokyoRelation1)}" style="width: 95%;" 
-																	placeholder="例 祖父" disabled="true" tabindex="12"/> 
-															</td>
-															<td style="text-align:center;" >
-																<imui:textbox id="dokyoName1" name="dokyoName1" value="${f:h(form.dokyoName1)}" 
-																	class="${form.dokyoName1Err}" style="width: 95%;" placeholder="例 中日本 一郎" disabled="true" tabindex="13"/>
-															</td>
-															<td style="text-align:center;">
-																<imui:textbox id="dokyoAge1" name="dokyoAge1" value="${f:h(form.dokyoAge1)}" 
-																	class="${form.dokyoAge1Err}" style="width: 90%;" placeholder="例 半角数字" disabled="true" tabindex="14"/>
-															</td>
-														</tr>
-														<tr>
-															<td style="text-align:center;">
-																<imui:textbox id="dokyoRelation2" name="dokyoRelation2" value="${f:h(form.dokyoRelation2)}" class="${form.dokyoRelation2Err}"
-																 style="width: 95%;" placeholder="例 祖父" disabled="true" tabindex="15" />
-															</td>
-															<td style="text-align:center;">
-																<imui:textbox id="dokyoName2" name="dokyoName2" value="${f:h(form.dokyoName2)}" class="${form.dokyoName2Err}"
-																 style="width: 95%;" placeholder="例 中日本 一郎" disabled="true" tabindex="16" />	    
-															</td>
-															<td style="text-align:center;">
-																<imui:textbox id="dokyoAge2" name="dokyoAge2" value="${f:h(form.dokyoAge2)}" 
-																	class="${form.dokyoAge2Err}" style="width: 90%;" placeholder="例 半角数字" disabled="true" tabindex="17"/>
-														    </td>
-														</tr>
-														<tr>
-													    	<td  style="text-align:center;">
-																<imui:textbox id="dokyoRelation3" name="dokyoRelation3" value="${f:h(form.dokyoRelation3)}" class="${form.dokyoRelation3Err}"
-																	 style="width: 95%;" placeholder="例 祖父" disabled="true" tabindex="18" />		    
-															</td>
-															<td style="text-align:center;">
-																<imui:textbox id="dokyoName3" name="dokyoName3" value="${f:h(form.dokyoName3)}" class="${form.dokyoName3Err}"
-																	 style="width: 95%;" placeholder="例 中日本 一郎" disabled="true" tabindex="19" />		    
-															</td>
-															<td style="text-align:center;">
-																<imui:textbox id="dokyoAge3" name="dokyoAge3" value="${f:h(form.dokyoAge3)}" class="${form.dokyoAge3Err}"
-																 style="width: 90%;" placeholder="例 半角数字" disabled="true" tabindex="20"/>
-													    	</td>
-														</tr>
-														<tr>
-															<td style="text-align:center;">
-																<imui:textbox id="dokyoRelation4" name="dokyoRelation4" value="${f:h(form.dokyoRelation4)}" 
-																class="${form.dokyoRelation4Err}" style="width: 95%;" placeholder="例 祖父" disabled="true" tabindex="21" />   
-															</td>
-															<td style="text-align:center;">
-																<imui:textbox id="dokyoName4" name="dokyoName4" value="${f:h(form.dokyoName4)}" 
-																	class="${form.dokyoName4Err}" style="width: 95%;" placeholder="例 中日本 一郎" disabled="true" tabindex="22" />    
-															</td>
-															<td style="text-align:center;">
-																<imui:textbox id="dokyoAge4" name="dokyoAge4" value="${f:h(form.dokyoAge4)}" 
-																	class="${form.dokyoAge4Err}" style="width: 90%;" placeholder="例 半角数字" disabled="true" tabindex="23" />
-															</td>
-														</tr>
-														<tr>
-															<td style="text-align:center;">
-																<imui:textbox id="dokyoRelation5" name="dokyoRelation5" class="${form.dokyoRelation5Err}"
-																 value="${f:h(form.dokyoRelation5)}" style="width: 95%;" placeholder="例 祖父" disabled="true" tabindex="24" />
-															</td>					  
-															<td style="text-align:center;">
-																<imui:textbox id="dokyoName5" name="dokyoName5"  class="${form.dokyoName5Err}" value="${f:h(form.dokyoName5)}"
-																	 style="width: 95%;" placeholder="例 中日本 一郎" disabled="true" tabindex="25" />					    
-															</td>
-															<td style="text-align:center;">
-																<imui:textbox id="dokyoAge5" name="dokyoAge5" class="${form.dokyoAge5Err}"
-																 value="${f:h(form.dokyoAge5)}" style="width: 90%;" placeholder="例 半角数字" disabled="true" tabindex="26"/>
-															</td>
-														</tr>
-														<tr>
-															<td  style="text-align:center;">
-																<imui:textbox id="dokyoRelation6" name="dokyoRelation6" class="${form.dokyoRelation6Err}" 
-																value="${f:h(form.dokyoRelation6)}" style="width: 95%;" placeholder="例 祖父" disabled="true" tabindex="27"/>                                                      
-															</td>
-															<td style="text-align:center;">
-																<imui:textbox id="dokyoName6" name="dokyoName6" class="${form.dokyoName6Err}" 
-																value="${f:h(form.dokyoName6)}" style="width: 95%;" placeholder="例 中日本 一郎" disabled="true" tabindex="28" /> 
-															</td>
-															<td style="text-align:center;">
-																<imui:textbox id="dokyoAge6" name="dokyoAge6" class="${form.dokyoAge6Err}" 
-																value="${f:h(form.dokyoAge6)}" style="width: 90%;" placeholder="例 半角数字" disabled="true" tabindex="29"/>
-															</td>
-														</tr>
-													</tbody>
-												</table>
-											</td>
-										</tr> 
-										<!-- 入居情報 -->                                	
-										<tr>
-											<!--  入居希望日（予定日） -->
-											<th colspan="3">
-												<nfwui:LabelBox id="lblHeadNyukyoKiboDate" code="<%= MessageIdConstant.SKF2020_SC002_NYUKYO_KIBO_DATA %>" />
-											</th>
-											<td colspan="3">
-												<nfwui:DateBox id="nyukyoYoteiDate" name="nyukyoYoteiDate" value="${f:h(form.nyukyoYoteiDate)}" tabindex="30" disabled="true"/> 	                                  	
-											</td>
-										</tr>
-										<!--  自動車の保管場所 -->  
-										<tr>
-											<th colspan="3">
-												<nfwui:LabelBox id="lblHeadCarPark" code="<%= MessageIdConstant.SKF2020_SC002_CAR_PARK %>" />
-											</th>
-											<td colspan="3" class="${form.parkingUmuErr}" >
-												<nfwui:RadioButtonGroup id="parkingUmu" dynamicMaskList="parkingUmuDynam" tabindex="31">
-													<nfwui:RadioButton name="parkingUmu" id="rdoCarHitsuyo" label="必要とする" 
-														value="<%= CodeConstant.CAR_PARK_HITUYO %>" disabled="${form.rdoCarHitsuyoDisabled}" checked="${form.rdoCarHitsuyoChecked}" tabindex="31"/>
-													<nfwui:RadioButton name="parkingUmu" id="rdoCarFuyo" label="必要としない" 
-														value="<%= CodeConstant.CAR_PARK_FUYO %>" disabled="${form.rdoCarFuyoDisabled}"  checked="${form.rdoCarFuyoChecked}" tabindex="31"/>
+											<td colspan="2" id="taikyoYotei">
+												<nfwui:RadioButtonGroup id="taikyoYotei" dynamicMaskList="taikyoYoteiDynam" tabindex="47">
+													<nfwui:RadioButton name="taikyoYotei" id="rdoNowHoyuShatakuTaikyo" label="退居する" value="<%= CodeConstant.LEAVE %>"
+														disabled="${form.rdoNowHoyuShatakuTaikyoDisabled}" checked="${form.rdoNowHoyuShatakuTaikyoChecked}" tabindex="47"/>
+													<nfwui:RadioButton name="taikyoYotei" id="rdoNowHoyuShatakuKeizoku" label="継続使用する" value="<%= CodeConstant.NOT_LEAVE %>" 
+														disabled="${form.rdoNowHoyuShatakuKeizokuDisabled}" checked="${form.rdoNowHoyuShatakuKeizokuChecked}" tabindex="47"/>
 												</nfwui:RadioButtonGroup>
 											</td>
-										</tr>
-										<!--  １台目 --> 
-										<tr>
-											<th rowspan="6">
-												<nfwui:LabelBox id="lblHead1stCar" code="<%= MessageIdConstant.SKF2020_SC002_1ST_CAR %>" />
-											</th>
-											<!-- 自動車の保有 --> 
-											<th colspan="2">
-												<nfwui:LabelBox id="lblHead1stCarNoInputFlg" code="<%= MessageIdConstant.SKF2020_SC002_1ST_CAR_NO_INPUT_FLG %>" />
-											</th>
-											<td colspan="3" class="${form.carNoInputFlgErr}">
-												<nfwui:RadioButtonGroup id="carNoInputFlg" dynamicMaskList="carNoInputFlgDynam" tabindex="32">
-													<nfwui:RadioButton name="carNoInputFlg" id="rdo1stCarHoyu" label="保有している" value="<%= CodeConstant.CAR_HOYU %>" 
-														disabled="${form.rdo1stCarHoyuDisabled}" checked="${form.rdo1stCarHoyuChecked}" tabindex="32"/>
-													<nfwui:RadioButton name="carNoInputFlg" id="rdo1stCarYotei" label="購入を予定している" value="<%= CodeConstant.CAR_YOTEI %>" 
-														disabled="${form.rdo1stCarYoteiDisabled}" checked="${form.rdo1stCarYoteiChecked}" tabindex="32"/>
-												</nfwui:RadioButtonGroup>
-											</td>
-										</tr>	
-										<!-- 自動車の車名 --> 								
-										<tr>
-											<th colspan="2">
-												<nfwui:LabelBox id="lblHead1stCarName" code="<%= MessageIdConstant.SKF2020_SC002_1ST_CAR_NAME %>" />	
-											</th>
-											<td colspan="3">
-												<imui:textbox id="carName" name="carName" class="${form.carNameErr}" value="${f:h(form.carName)}"
-												 style="width: 50%;" placeholder="例 プリウス" disabled="true" tabindex="33"/>
-											</td>
-										</tr>
-										<!-- 自動車の登録番号 -->
-										<tr>
-											<th colspan="2">
-												<nfwui:LabelBox id="lblHead1stCarNo" code="<%= MessageIdConstant.SKF2020_SC002_1ST_CAR_NO %>" />
-											</th>
-											<td colspan="3">
-												<imui:textbox id="carNo" name="carNo" class="${form.carNoErr}" value="${f:h(form.carNo)}"
-												 style="width: 50%;" placeholder="例 名古屋 300 あ 1235" disabled="true" tabindex="34"/>
-											</td>
-										</tr>
-										<!-- 車検の有効期間満了日 -->																	
-										<tr>
-											<th colspan="2">
-												<nfwui:LabelBox id="lblHead1stCarExpirationDate" code="<%= MessageIdConstant.SKF2020_SC002_1ST_CAR_EXCEPTION_DATA %>" />
-											</th>
-											<td colspan="3">
-												<nfwui:DateBox id="carExpirationDate" name="carExpirationDate" value="${f:h(form.carExpirationDate)}"
-													 tabindex="35" disabled="true"/>                                   
-											</td>
-										</tr>
-										<!-- 自動車の使用者 -->
-										<tr>
-											<th colspan="2">
-												<nfwui:LabelBox id="lblHead1stCarUser" code="<%= MessageIdConstant.SKF2020_SC002_1ST_CAR_USE %>" />
-											</th>
-											<td colspan="3">
-												<imui:textbox id="carUser" name="carUser" class="${form.carUserErr}" value="${f:h(form.carUser)}"
-												 style="width: 50%;" placeholder="中日本 太郎" disabled="true" tabindex="36"/>
-											</td>
-										</tr>
-										<!-- 自動車の保管場所使用開始日（予定日） -->
-										<tr>
-											<th colspan="2">
-												<nfwui:LabelBox id="lblHead1stParkingUseDate" code="<%= MessageIdConstant.SKF2020_SC002_1ST_PARKING_USE_DATE %>" />
-											</th>
-											<td colspan="3">
-												<nfwui:DateBox id="parkingUseDate" name="parkingUseDate" value="${f:h(form.parkingUseDate)}"
-													 tabindex="37" disabled="true"/>
-											</td>
-										</tr>
-										<!-- ２台目 --> 
-										<tr>
-											<th rowspan="6">
-												<nfwui:LabelBox id="lblHead2ndCar" code="<%= MessageIdConstant.SKF2020_SC002_2ST_CAR %>" />
-											</th>
-											<!-- 自動車の保有 --> 
-											<th colspan="2">
-												<nfwui:LabelBox id="lblHead2ndCarNoInputFlg" code="<%= MessageIdConstant.SKF2020_SC002_2ST_CAR_NO_INPUT_FLG %>" />
-											</th>
-											<td colspan="2" class="${form.carNoInputFlg2Err}">
-												<nfwui:RadioButtonGroup id="carNoInputFlg2" dynamicMaskList="carNoInputFlg2Dynam" tabindex="38">
-													<nfwui:RadioButton name="carNoInputFlg2" id="rdo2stCarHoyu" label="保有している" value="<%= CodeConstant.CAR_HOYU %>"
-														disabled="${form.rdo2stCarHoyuDisabled}" checked="${form.rdo2stCarHoyuChecked}" tabindex="38"/>
-													<nfwui:RadioButton name="carNoInputFlg2" id="rdo2stCarYotei" label="購入を予定している" value="<%= CodeConstant.CAR_YOTEI %>"
-														disabled="${form.rdo2stCarHoyuDisabled}" checked="${form.rdo2stCarYoteiChecked}" tabindex="38"/>
-												</nfwui:RadioButtonGroup>
-											</td>
-											<td rowspan="6" colspan="1" style="color:red;">
-												<div>
-													<nfwui:LabelBox id="lbl2ndExplanationCar" code="<%= MessageIdConstant.SKF2020_SC002_2ND_EXPLANATION_CAR %>" />
-												</div>
-											</td>
-										</tr>
-										<!-- 自動車の車名 -->                             	
-										<tr>
-											<th colspan="2">
-												<nfwui:LabelBox id="lblHead2ndCarName" code="<%= MessageIdConstant.SKF2020_SC002_2ST_CAR_NAME %>" />
-											</th>
-											<td colspan="2">
-												<imui:textbox id="carName2" name="carName2"  class="${form.carName2Err}" 
-													value="${f:h(form.carName2)}" style="width: 85%;" placeholder="例 プリウス" disabled="true" tabindex="39"/>
-											</td>
-										</tr>
-										<!-- 自動車の登録番号 --> 
-										<tr>
-											<th colspan="2">
-												<nfwui:LabelBox id="lblHead2ndCarNo" code="<%= MessageIdConstant.SKF2020_SC002_2ST_CAR_NO %>" />
-											</th>
-											<td colspan="2">
-											<imui:textbox id="carNo2" name="carNo2" class="${form.carNo2Err}"
-												value="${f:h(form.carNo2)}" style="width: 85%;" placeholder="例 名古屋 300 あ 1235" disabled="true" tabindex="40"/>
-											</td>
-										</tr>
-										<!-- 車検の有効期間満了日 -->																	
-										<tr>
-											<th colspan="2">
-												<nfwui:LabelBox id="lblHead2ndCarExpirationDate" code="<%= MessageIdConstant.SKF2020_SC002_2ST_CAR_EXCEPTION_DATA %>" />
-											</th>
-											<td colspan="2">
-												<nfwui:DateBox id="carExpirationDate2" name="carExpirationDate2" value="${f:h(form.carExpirationDate2)}"
-													 tabindex="41" disabled="true"/>
-											</td>
-										</tr>
-										<!-- 自動車の使用者 -->	
-										<tr>
-											<th colspan="2">
-												<nfwui:LabelBox id="lblHead2ndCarUser" code="<%= MessageIdConstant.SKF2020_SC002_2ST_CAR_USE %>" />
-											</th>
-											<td colspan="2">
-												<imui:textbox id="carUser2" name="carUser2" class="${form.carUser2Err}" value="${f:h(form.carUser2)}" 
-													style="width: 85%;" placeholder="中日本太郎" disabled="true" tabindex="42"/>
-											</td>
-										</tr>
-										<!-- 自動車の保管場所使用開始日（予定日） -->
-										<tr>
-											<th colspan="2">
-												<nfwui:LabelBox id="lblHead2ndParkingUseDate" code="<%= MessageIdConstant.SKF2020_SC002_2ST_PARKING_USE_DATE %>" />
-											</th>
-											<td colspan="2">
-												<nfwui:DateBox id="parkingUseDate2" name="parkingUseDate2" value="${f:h(form.carExpirationDate2)}"
-													 tabindex="43" disabled="true"/>
+											<td rowspan="2" colspan="2" style="color:red;">
+												<nfwui:LabelBox id="lblShatakuFuyouMsg" remove="${form.lblShatakuFuyouMsgRemove}"
+													code="<%= MessageIdConstant.SKF2020_SC002_SHATAKU_FUYOU_MSG %>"  />
 											</td>
 										</tr> 
-										<!-- 現居住宅 --> 
-										<tr>
-											<th rowspan="5">
-												<nfwui:LabelBox id="lblHeadNowShatakuName" code="<%= MessageIdConstant.SKF2020_SC002_NOW_JYUTAKU %>" />
-											</th>
-											<th colspan="2"><label></label></th>
-											<td colspan="3" class="${form.nowShatakuErr}">
-												<nfwui:RadioButtonGroup id="nowShataku" dynamicMaskList="nowShatakuDynam" tabindex="44">
-													<nfwui:RadioButton name="nowShataku" id="rdoNowJutakuHoyu" label="保有(会社借上を含む)" value="<%= CodeConstant.GENNYUKYO_SHATAKU_KBN_HOYU %>" disabled="${form.rdoNowJutakuHoyuDisabled}" checked="${form.rdoNowJutakuHoyuChecked}" tabindex="44" />
-													<nfwui:RadioButton name="nowShataku" id="rdoNowJutakuJitaku" label="自宅" value="<%= CodeConstant.GENNYUKYO_SHATAKU_KBN_JITAKU %>" disabled="${form.rdoNowJutakuJitakuDisabeld}" checked="${form.rdoNowJutakuJitakuChecked}" tabindex="44" />
-													<nfwui:RadioButton name="nowShataku" id="rdoNowJutakuKariage" label="自己借上" value="<%= CodeConstant.GENNYUKYO_SHATAKU_KBN_JIKO_KARIAGE %>" disabled="${form.rdoNowJutakuKariageDisabled}" checked="${form.rdoNowJutakuKariageChecked}" tabindex="44" />
-													<nfwui:RadioButton name="nowShataku" id="rdoNowJutakuSonota" label="その他" value="<%= CodeConstant.GENNYUKYO_SHATAKU_KBN_OTHERS %>" disabled="${form.rdoNowJutakuSonotaDisabled}"  checked="${form.rdoNowJutakuSonotaChecked}" tabindex="44" />                             			
-												</nfwui:RadioButtonGroup>
-											</td>
-										</tr>
-										<!-- 保有社宅名 -->	
-										<tr>
-											<th colspan="2">
-												<nfwui:LabelBox id="lblHeadNowShatakuName" code="<%= MessageIdConstant.SKF2020_SC002_NOW_SHATAKU_NAME %>" />
-											</th>
-											<td colspan="3">
-												<imui:select id="nowShatakuName" name="nowShatakuName" list="${form.ddlNowShatakuNameList}" 
-													class="${form.nowShatakuNameErr}" value="" disabled="true" tabindex="45"/>
-											</td>
-										</tr>
-										<!--　室番号 -->	
-										<tr>
-											<th colspan="2">
-												<nfwui:LabelBox id="lblHeadNowRoomNo" code="<%= MessageIdConstant.SKF2020_SC002_NOW_ROOM_NO %>" />
-											</th>
-											<td colspan="3">                         
-												<span id="nowShatakuNo">${f:h(form.nowShatakuNo)} </span>
-											</td>
-										</tr>
-										<!--　規格（間取り） -->
-										<tr>
-											<th colspan="2">
-												<nfwui:LabelBox id="lblHeadNowRoomKikaku" code="<%= MessageIdConstant.SKF2020_SC002_NOW_ROOM_KIKAKU %>" />
-											</th>
-											<td colspan="3">
-												<span id="nowShatakuKikakuName">${f:h(form.nowShatakuKikakuName)} </span>
-											</td>
-										</tr>
-										<!--　面積-->
-										<tr>
-											<th colspan="2">
-												<nfwui:LabelBox id="lblHeadNowRoomMenseki" code="<%= MessageIdConstant.SKF2020_SC002_NOW_ROOM_MENSEKI %>" />
-											</th>
-											<td colspan="3">
-												<span id="nowShatakuMenseki">${f:h(form.nowShatakuMenseki)} </span>
-											</td>
-										</tr>
-										<!-- 駐車場　1台目　保管場所 -->	                               	
-										<tr>
-											<th rowspan="2">
-												<nfwui:LabelBox id="lblHeadParking" code="<%= MessageIdConstant.SKF2020_SC002_PARKING %>" />
-											</th>
-											<th colspan="1">
-												<nfwui:LabelBox id="lblHeadParking1nd" code="<%= MessageIdConstant.SKF2020_SC002_PARKING_1ND %>" />
-											</th>
-											<th colspan="1">
-												<nfwui:LabelBox id="lblHeadParking1ndPlace" code="<%= MessageIdConstant.SKF2020_SC002_PARKING_1ND_PLACE %>" />
-											</th>
-											<td colspan="3" >
-												<span id="parking1stPlace">${f:h(form.parking1stPlace)} </span>
-											</td>
-										</tr>
-										<!-- ２台目　保管場所 -->  
-										<tr>
-											<th colspan="1">
-												<nfwui:LabelBox id="lblHeadParking2nd" code="<%= MessageIdConstant.SKF2020_SC002_PARKING_2ND %>" />
-											</th>
-											<th colspan="1">
-												<nfwui:LabelBox id="lblHeadParking2ndPlace" code="<%= MessageIdConstant.SKF2020_SC002_PARKING_2ND_PLACE %>" />
-											</th>
-											<td colspan="3">
-												<span id="parking2stPlace">${f:h(form.parking2stPlace)} </span>
-											</td>
-										</tr>
-										<!-- 特殊事情等 -->  
+										<!-- 退居予定日 -->                               	
 										<tr>
 											<th colspan="3">
-												<nfwui:LabelBox id="lblHead" code="<%= MessageIdConstant.SKF2020_SC002_TOKUSHU_JIJO %>" />
+												<nfwui:LabelBox id="lblHeadTaikyoYoteiDate" code="<%= MessageIdConstant.SKF2020_SC002_TAIKYO_YOTEI_DATE %>" />
 											</th>
-											<td colspan="3">
-												<imui:textArea id="tokushuJijo" name="tokushuJijo" value="${f:h(form.tokushuJijo)}" tabindex="46"/>
-											</td>
-										</tr>                            	
-									<!-- 現保有社宅 -->   
-									<tr>
-										<th colspan="3">
-											<nfwui:LabelBox id="lblHeadNowHoyuShataku" code="<%= MessageIdConstant.SKF2020_SC002_NOW_HOYU_SHATAKU %>" />
-										</th>
-										<td colspan="2" id="taikyoYotei" class="${form.taikyoYoteiErr}">
-											<nfwui:RadioButtonGroup id="taikyoYotei" dynamicMaskList="taikyoYoteiDynam" tabindex="47">
-												<nfwui:RadioButton name="taikyoYotei" id="rdoNowHoyuShatakuTaikyo" label="退居する" value="<%= CodeConstant.LEAVE %>"
-													disabled="${form.rdoNowHoyuShatakuTaikyoDisabled}" checked="${form.rdoNowHoyuShatakuTaikyoChecked}" tabindex="47"/>
-												<nfwui:RadioButton name="taikyoYotei" id="rdoNowHoyuShatakuKeizoku" label="継続使用する" value="<%= CodeConstant.NOT_LEAVE %>" 
-													disabled="${form.rdoNowHoyuShatakuKeizokuDisabled}" checked="${form.rdoNowHoyuShatakuKeizokuChecked}" tabindex="47"/>
-											</nfwui:RadioButtonGroup>
-										</td>
-										<td rowspan="2" colspan="2" style="color:red;">
-											<nfwui:LabelBox id="lblShatakuFuyouMsg" remove="${form.lblShatakuFuyouMsgRemove}"
-												code="<%= MessageIdConstant.SKF2020_SC002_SHATAKU_FUYOU_MSG %>"  />
-										</td>
-									</tr> 
-									<!-- 退居予定日 -->                               	
-									<tr>
-										<th colspan="3">
-											<nfwui:LabelBox id="lblHeadTaikyoYoteiDate" code="<%= MessageIdConstant.SKF2020_SC002_TAIKYO_YOTEI_DATE %>" />
-										</th>
-										<td colspan="2">
-											<nfwui:DateBox id="taikyoYoteiDate" name="taikyoYoteiDate" value="${f:h(form.taikyoYoteiDate)}"
-											 	tabindex="48" disabled="true"/>	
-										</td>
-									</tr>
-									<!-- 社宅の状態 -->
-									<c:if test="${form.taikyoViewFlag == 'true'}">
-										<tr id="shatakuStatus">
-											<th colspan="3">
-												<nfwui:LabelBox id="lblHeadShatakuStatus" code="<%= MessageIdConstant.SKF2020_SC002_SHATAKU_STATUS %>"
-													remove="false"/>
-											</th>
-											<td colspan="3">
-												<imui:textArea id="shatakuJyotai" name="shatakuJyotai"  class="${form.shatakuJyotaiErr}"
-													value="${f:h(form.shatakuJyotai)}" style="width: 90%;" placeholder="例 壁紙に破損あり"
-													  disabled="true" hidden="false"  tabindex="49"/>
-											</td>
-										</tr> 
-										<!-- 退居理由 -->                               	
-										<tr id="taikyoRiyuInfo">
-											<th colspan="3">
-												<nfwui:LabelBox id="lblHeadTaikyoRiyu" code="<%= MessageIdConstant.SKF2020_SC002_TAIKYO_RIYU %>" />
-											</th>
-											<td colspan="3">
-												<imui:select id="taikyoRiyuKbn" name="taikyoRiyuKbn"  style="width: 50%;" class="${form.ddlTaikyoRiyuKbnListErr}"
-													list="${form.ddlTaikyoRiyuKbnList}"  disabled="true" tabindex="50"/>
-												<div>
-													<imui:textArea id="taikyoRiyu" name="taikyoRiyu" class="${form.taikyoRiyuErr}"
-														value="${f:h(form.taikyoRiyu)}" style="width: 90%;" placeholder="例 退職のため" disabled="true" tabindex="51" />
-												</div>
-											</td>
-										</tr> 
-										<!-- 退居後の連絡先 -->
-										<tr id="trTaikyogoRenrakuSaki">
-											<th colspan="3">
-												<nfwui:LabelBox id="lblHeadTaikyogoRenrakuSaki" code="<%= MessageIdConstant.SKF2020_SC002_TAIKYOGO_RENRAKU_SAKI %>" />
-											</th>
-											<td colspan="3">
-												<imui:textArea id="taikyogoRenrakuSaki" name="taikyogoRenrakuSaki" class="${form.taikyogoRenrakuSakiErr}"
-													value="${f:h(form.taikyogoRenrakuSaki)}" style="width: 90%;" placeholder="例 090-0000-0000" disabled="true"
-													 tabindex="52"/>
+											<td colspan="2">
+												<nfwui:DateBox id="taikyoYoteiDate" name="taikyoYoteiDate" value="${f:h(form.taikyoYoteiDate)}"
+												 	tabindex="48" disabled="true"/>	
 											</td>
 										</tr>
-										<!-- 返却備品 -->
-										<tr id="returnEquipment">
-											<th colspan="3">
-												<nfwui:LabelBox id="lblHeadReturnEquipment" code="<%= MessageIdConstant.SKF2020_SC002_RETURN_EQUIPMENT %>" />
-											</th>
-											<td colspan="3" id="lblReturnEquipment">
-												<span id="returnEquipments">${form.returnEquipment)} </span>
-											</td>
-										</tr>
-										<!-- 返却希望日 -->
-										<tr id="returnWitnessRequestDate">
-											<th colspan="3">
-												<nfwui:LabelBox id="lblHeadReturnWitnessRequestDate" code="<%= MessageIdConstant.SKF2020_SC002_RETURN_WITNESS_REQUEST_DATE %>" />
-											</th>
-											<td colspan="3">
-												<nfwui:DateBox id="sessionDay" name="sessionDay" value="${f:h(form.sessionDay)}"
-											 		tabindex="53" disabled="${form.sessionDayDisabled}"/>	
-												<imui:select id="sessionTime" name="sessionTime" class="${form.sessionTimeErr}" 
-													list="${form.ddlReturnWitnessRequestDateList}" disabled="${form.sessionTimeDisabled}" tabindex="54" />			
-											</td>
-										</tr>
-										<!-- 連絡先 -->
-										<tr id="trRenrakuSaki">
-											<th colspan="3">
-												<nfwui:LabelBox id="lblRenrakuSaki" code="<%= MessageIdConstant.SKF2020_SC002_RENRAKU_SAKI %>" />
-											</th>
-											<td colspan="3">
-												<imui:textbox id="renrakuSaki" name="renrakuSaki" class="${form.renrakuSakiErr}"
-													value="${f:h(form.renrakuSaki)}" style="width: 90%;" placeholder="例 090-0000-0000"  
-													disabled="${form.renrakuSakiDisabled}" tabindex="55" />
-												<br>
-												<span style="color:red;">
-													<nfwui:LabelBox id="lblExplanationRenrakuSaki" code="<%= MessageIdConstant.SKF2020_SC002_EXPLANATION_RENRAKU_SAKI %>" />
-												</span>
-											</td>
-										</tr> 
-									</c:if>                           	                                                              
-						   		</tbody>                     	
-					   		</table>
-						</div>
+										<!-- 社宅の状態 -->
+										<c:if test="${form.taikyoViewFlag == 'true'}">
+											<tr id="shatakuStatus">
+												<th colspan="3">
+													<nfwui:LabelBox id="lblHeadShatakuStatus" code="<%= MessageIdConstant.SKF2020_SC002_SHATAKU_STATUS %>"
+														remove="false"/>
+												</th>
+												<td colspan="3">
+													<imui:textArea id="shatakuJyotai" name="shatakuJyotai" 
+														value="${f:h(form.shatakuJyotai)}" style="width: 90%;" placeholder="例 壁紙に破損あり"
+														  disabled="true" hidden="false"  tabindex="49"/>
+												</td>
+											</tr> 
+											<!-- 退居理由 -->                               	
+											<tr id="taikyoRiyuInfo">
+												<th colspan="3">
+													<nfwui:LabelBox id="lblHeadTaikyoRiyu" code="<%= MessageIdConstant.SKF2020_SC002_TAIKYO_RIYU %>" />
+												</th>
+												<td colspan="3">
+													<imui:select id="taikyoRiyuKbn" name="taikyoRiyuKbn"  style="width: 50%;" 
+														list="${form.ddlTaikyoRiyuKbnList}"  disabled="true" tabindex="50"/>
+													<div>
+														<imui:textArea id="taikyoRiyu" name="taikyoRiyu"
+															value="${f:h(form.taikyoRiyu)}" style="width: 90%;" placeholder="例 退職のため" disabled="true" tabindex="51" />
+													</div>
+												</td>
+											</tr> 
+											<!-- 退居後の連絡先 -->
+											<tr id="trTaikyogoRenrakuSaki">
+												<th colspan="3">
+													<nfwui:LabelBox id="lblHeadTaikyogoRenrakuSaki" code="<%= MessageIdConstant.SKF2020_SC002_TAIKYOGO_RENRAKU_SAKI %>" />
+												</th>
+												<td colspan="3">
+													<imui:textArea id="taikyogoRenrakuSaki" name="taikyogoRenrakuSaki" 
+														value="${f:h(form.taikyogoRenrakuSaki)}" style="width: 90%;" placeholder="例 090-0000-0000" disabled="true"
+														 tabindex="52"/>
+												</td>
+											</tr>
+											<!-- 返却備品 -->
+											<tr id="returnEquipment">
+												<th colspan="3">
+													<nfwui:LabelBox id="lblHeadReturnEquipment" code="<%= MessageIdConstant.SKF2020_SC002_RETURN_EQUIPMENT %>" />
+												</th>
+												<td colspan="3" id="lblReturnEquipment">
+													<span id="returnEquipments">${form.returnEquipment)} </span>
+												</td>
+											</tr>
+											<!-- 返却希望日 -->
+											<tr id="returnWitnessRequestDate">
+												<th colspan="3">
+													<nfwui:LabelBox id="lblHeadReturnWitnessRequestDate" code="<%= MessageIdConstant.SKF2020_SC002_RETURN_WITNESS_REQUEST_DATE %>" />
+												</th>
+												<td colspan="3">
+													<nfwui:DateBox id="sessionDay" name="sessionDay" value="${f:h(form.sessionDay)}"
+												 		tabindex="53" disabled="${form.sessionDayDisabled}"/>	
+												 		<!-- disabled="${form.sessionDayDisabled}"  -->
+													<imui:select id="sessionTime" name="sessionTime" 
+														list="${form.ddlReturnWitnessRequestDateList}" disabled="${form.sessionTimeDisabled}" tabindex="54" />			
+												</td>
+											</tr>
+											<!-- 連絡先 -->
+											<tr id="trRenrakuSaki">
+												<th colspan="3">
+													<nfwui:LabelBox id="lblRenrakuSaki" code="<%= MessageIdConstant.SKF2020_SC002_RENRAKU_SAKI %>" />
+												</th>
+												<td colspan="3">
+													<imui:textbox id="renrakuSaki" name="renrakuSaki" 
+														value="${f:h(form.renrakuSaki)}" style="width: 90%;" placeholder="例 090-0000-0000"  
+														disabled="${form.renrakuSakiDisabled}" tabindex="55" />
+													<br>
+													<span style="color:red;">
+														<nfwui:LabelBox id="lblExplanationRenrakuSaki" code="<%= MessageIdConstant.SKF2020_SC002_EXPLANATION_RENRAKU_SAKI %>" />
+													</span>
+												</td>
+											</tr> 
+										</c:if>                           	                                                              
+							   		</tbody>                     	
+						   		</table>
+						<!-- </div>  -->
 					</td>     
 					<!-- ステータス -->
 					<input type="hidden" name="hdnShainNo" id="hdnShainNo" value="${form.shainNo}" />
-					<input type="hidden" name="hdnstatus" id="hdnstatus" value="${form.hdnstatus}" />	
-									
-					<input type="hidden" name="hdnShatakuKanriId" id="hdnShatakuKanriId" value="${form.shatakuKanriId}" />
+					<input type="hidden" name="hdnstatus" id="hdnstatus" value="${form.hdnstatus}" />		
 					<input type="hidden" name="hdnSelectedNowShatakuName" id="hdnSelectedNowShatakuName" value="${form.hdnSelectedNowShatakuName}" />
-					<input type="hidden" name="hdnNowShatakuNo" id="hdnNowShatakuNo" value="${form.hdnNowShatakuNo}" />
-					<input type="hidden" name="hdnShatakuKikakuKbn" id="hdnShatakuKikakuKbn" value="${form.hdnShatakuKikakuKbn}"/>
-					<input type="hidden" name="hdnNowShatakuMenseki" id="hdnNowShatakuMenseki" value="${form.hdnNowShatakuMenseki}"/>
-					<input type="hidden" name="hdnParking1stNumber" id="hdnParking1stNumber" value="${form.hdnParking1stNumber}"/>
-					<input type="hidden" name="hdnParking1stPlace" id="hdnParking1stPlace" value="${form.hdnParking1stPlace}"/>
+					<input type="hidden" name="hdnParking1stNumber" id="hdnParking1stNumber" value="${form.hdnParking1stNumber}"/>			
 					<input type="hidden" name="hdnParking2stNumber" id="hdnParking2stNumber" value="${form.hdnParking2stNumber}"/>
-					<input type="hidden" name="hdnParking2stPlace" id="hdnParking2stPlace" value="${form.hdnParking2stPlace}"/>					
-					<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="${form.hdnShatakuKanriNo}"/>
 					<input type="hidden" name="hdnNowShatakuKanriNo" id="hdnNowShatakuKanriNo" value="${form.hdnNowShatakuKanriNo}"/>
-					<input type="hidden" name="hdnShatakuRoomKanriNo" id="hdnShatakuRoomKanriNo" value="${form.hdnShatakuRoomKanriNo}"/>
 					<input type="hidden" name="hdnNowShatakuRoomKanriNo" id="hdnNowShatakuRoomKanriNo" value="${form.hdnNowShatakuRoomKanriNo}"/>
 					<input type="hidden" name="hdnBihinHenkyakuUmu" id="hdnBihinHenkyakuUmu" value="${form.hdnBihinHenkyakuUmu}"/>
 					<input type="hidden" name="hdnConfirmFlg" id="hdnConfirmFlg" value="${form.hdnConfirmFlg}" />
 					<input type="hidden" name="hdnApplHistroyApplDate" id="hdnApplHistroyApplDate" value="${form.hdnApplHistroyApplDate}" />
+					<input type="hidden" name="hdnParkingFullFlg" id="hdnParkingFullFlg" value="${form.parkingFullFlg}" />
 					<!-- 右側の入力ガイドの部分 -->
-					<td style="width: 30%; border: none;background-color: #fdfdff;">
-						<div class="imui-form-container-wide">
-							<table >
-								<div class="imui-chapter-title" style="margin-bottom: 10px;">
-									<h2>操作ガイド</h2>
-								</div>
-								<div>
+					<!-- <td style="width: 30%; border: none;background-color: #fdfdff;"> -->
+					<td style="width: 30%; border: none; background-color: #fdfdff;;">
+						<div style="overflow-y:scroll; max-height:1500px; height:1500px; margin-left: 20px; background-color:#eeeeee;">
+						<!-- <div class="imui-form-container-wide"> -->
+								<nfwui:Title id="lblControlGuide" code="<%= MessageIdConstant.SKF2020_SC002_OPERATION_GUIDE %>" titleLevel="2" />
+								<div style="margin-left: 20px">
 									${form.operationGuide}
 								</div>
-							</table>
-						</div>
+						<!-- </div> -->
+						</div> 
 					</td>      
 				</tr>
 			</tbody>
 		</table>
-	</nfwui:Form>		
-</div>
+	</div>
+	</nfwui:Form>
+
+	<!-- フッターエリア　ボタン -->
+<div class="imui-box-layout" style="width:100%; margin:0 auto;">
+	<table>
+		<tr>
+			<!-- 左エリア -->
+			<div class="btnLeft">
+ 				<!-- 入力内容をクリア -->
+				<nfwui:ConfirmButton cssStyle="width:150px;" id="clearBtn" formId="form" value="入力内容をクリア" 
+					cssClass="imui-medium-button" title="<%= MessageIdConstant.SKF2020_SC002_CONFIRM_TITLE %>" 
+					message="<%= MessageIdConstant.I_SKF_2004 %>" 
+					url="skf/Skf2020Sc002/Clear"/>	
+ 			</div>
+			<!-- 右エリア -->
+ 			<div class="btnRight">
+ 				<!-- 申請要件を確認 -->
+				<nfwui:Button cssStyle="width:150px;" id="download" name="download" value="申請要件を確認" 
+					formID="form" cssClass="imui-medium-button" url="skf/Skf2020Sc002/Download" />   	 
+				<!-- 一時保存 -->
+				<nfwui:Button cssStyle="width:150px;" id="saveBtn" formId="form" value="一時保存"
+					cssClass="imui-medium-button" disabled="${form.btnSaveDisabeld}"
+					url="skf/Skf2020Sc002/Save"/>
+ 			</div>
+ 		</tr>
+ 		<tr>
+ 			<!-- 左エリア -->
+ 			<div class="btnLeft">
+				<!-- 前の画面へ -->
+ 				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" />
+				<!-- コメントボタン -->
+				<c:if test="${form.commentViewFlag == 'true'}">
+				<nfwui:PopupButton id="commentPop" value="コメント表示" 
+				cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
+				modalMode="false" popupWidth="1350" popupHeight="550"
+				parameter="applNo:applNo"
+				screenUrl="skf/Skf2010Sc010/init" use="popup" />
+				</c:if>
+ 			</div>
+ 			<!-- 右エリア -->
+ 			<div id="dCheck1" class="btnRight">
+ 				<!-- 申請内容を確認 -->
+ 				  <imui:button id="checkBtn" value="申請内容を確認" class="imui-medium-button" 
+ 				  	style="width: 150px" onclick="checkConfrirm()"  disabled="${form.btnCheckDisabled}"/> 
+ 			</div>
+ 		</tr>	
+ 	</table>
+</div>		
+
 
 <!-- コンテンツエリア  text/JavaSclipt -->
 <script type="text/javascript">
+
+/**
+ * 社宅を必要とする理由の活性制御
+ * disabled:非活性　abled:活性
+ */ 
+function rdoHitsuyoDisabled(ischecked){
+	
+    if(ischecked == "disabled"){
+			$('#rdoHitsuyoIdo').prop('disabled', true);
+			$('#rdoHitsuyoKekkon').prop('disabled', true);
+			$('#rdoHitsuyoSonota').prop('disabled', true);
+      } else {
+	  		$('#rdoHitsuyoIdo').prop('disabled', false);
+			$('#rdoHitsuyoKekkon').prop('disabled', false);
+			$('#rdoHitsuyoSonota').prop('disabled', false);
+      }
+}
+
+/**
+ * 社宅を必要としない理由の活性制御
+ * disabled:非活性　abled:活性
+ */ 
+function rdoFuyouDisabled(ischecked){
+	
+    if(ischecked == "disabled"){
+		$('#rdoFuyouJitakutsuukinn').prop('disabled', true);
+		$('#rdoFuyouJikokariage').prop('disabled', true);
+		$('#rdoFuyouSonota').prop('disabled', true);
+      } else {
+		$('#rdoFuyouJitakutsuukinn').prop('disabled', false);
+		$('#rdoFuyouJikokariage').prop('disabled', false);
+		$('#rdoFuyouSonota').prop('disabled', false);
+      }
+}
+
+/**
+ * 必要とする社宅の活性制御
+ * disabled:非活性　abled:活性
+ */ 
+function rdoHitsuyoShatakuDisabled(ischecked){
+	
+    if(ischecked == "disabled"){
+        document.getElementById("hospitalization").disabled = true;
+      } else {
+			$('#rdoKikon').prop('disabled', false);
+			$('#rdoHitsuyoDokushin').prop('disabled', false);
+      }
+}
+
+/**
+ * 自動車の保管場所の活性制御
+ * disabled:非活性　abled:活性
+ */ 
+function rdoCarUmuDisabled(ischecked){
+	
+    if(ischecked == "disabled"){
+			$('#rdoCarHitsuyo').prop('disabled', true);
+			$('#rdoCarFuyo').prop('disabled', true);
+      } else {
+			$('#rdoCarHitsuyo').prop('disabled', false);
+			$('#rdoCarFuyo').prop('disabled', false);
+      }
+}
+
+/**
+ * 自動車の保有の活性制御
+ * disabled:非活性　abled:活性
+ */ 
+function rdoCarHoyuDisabled(ischecked){
+	
+    if(ischecked == "disabled"){
+			$('#rdo1stCarHoyu').prop('disabled', true);
+			$('#rdo1stCarYotei').prop('disabled', true);
+			$('#rdo2stCarHoyu').prop('disabled', true);
+			$('#rdo2stCarYotei').prop('disabled', true);
+      } else {
+			$('#rdo1stCarHoyu').prop('disabled', false);
+			$('#rdo1stCarYotei').prop('disabled', false);
+			$('#rdo2stCarHoyu').prop('disabled', false);
+			$('#rdo2stCarYotei').prop('disabled', false);
+      }
+}
+
+/**
+ * 自動車1の情報の活性制御
+ * disabled:非活性　abled:活性
+ */ 
+function carInfo1Disabled(ischecked){
+	
+    if(ischecked == "disabled"){
+        document.getElementById("hospitalization").disabled = true;
+      } else {
+			$('#carName').prop('disabled', false);
+			$('#carNo').prop('disabled', false);
+			$('#carExpirationDate').prop('disabled', false);
+			document.querySelector('#carExpirationDateDiv').disabled = "";	
+			$('#carUser').prop('disabled', false);
+			$('#parkingUseDate').prop('disabled', false);
+			document.querySelector('#parkingUseDateDiv').disabled = "";	
+      }
+}
+
+/**
+ * 自動車2の情報の活性制御
+ * disabled:非活性　abled:活性
+ */ 
+function carInfo2Disabled(ischecked){
+	
+    if(ischecked == "disabled"){
+        document.getElementById("hospitalization").disabled = true;
+      } else {
+    	  $('#carName2').prop('disabled', false);
+    	  $('#carNo2').prop('disabled', false);
+    	  $('#carExpirationDate2').prop('disabled', false);
+    	  document.querySelector('#carExpirationDate2Div').disabled = "";	
+    	  $('#carUser2').prop('disabled', false);
+    	  $('#parkingUseDate2').prop('disabled', false);
+    	  document.querySelector('#parkingUseDate2Div').disabled = "";
+      }
+}
+
+/**
+ * 現保有の社宅の活性制御
+ * disabled:非活性　abled:活性
+ */ 
+function rdoNowHoyuShatakuDisabled(ischecked){
+	
+    if(ischecked == "disabled"){
+        document.getElementById("hospitalization").disabled = true;
+      } else {
+			$('#rdoNowHoyuShatakuTaikyo').prop('disabled', false);
+			$('#rdoNowHoyuShatakuKeizoku').prop('disabled', false);
+      }
+}
+
+/**
+ * 現居住表示制御
+ * yes:表示　no:非表示
+ */ 
+function shatakuDisplayControl(isShow){
+	
+    if(isShow == "yes"){
+			$('#shatakuStatus').show();
+			$('#taikyoRiyuInfo').show();
+			$('#trTaikyogoRenrakuSaki').show();
+			$('#returnEquipment').show();
+			$('#returnWitnessRequestDate').show();
+			$('#trRenrakuSaki').show();
+      } else {
+			$('#shatakuStatus').hide();
+			$('#taikyoRiyuInfo').hide();
+			$('#trTaikyogoRenrakuSaki').hide();
+			$('#returnEquipment').hide();
+			$('#returnWitnessRequestDate').hide();
+			$('#trRenrakuSaki').hide();
+
+      }
+}
+
+/**
+ * 退居メッセージ表示制御
+ * yes:表示　no:表示
+ */ 
+function mesDisplayControl(isHide){
+	
+    if(isHide == "yes"){
+    	$('#lblShatakuFuyouMsg').show();
+      } else {
+		//非表示（「社宅を「必要としない」場合は、別途「社宅（自動車保管場所）退居届」を申請してください。」)）
+		$('#lblShatakuFuyouMsg').hide();
+      }
+}
+
+
 //項目表示設定
 (function($) {	
-	//初期表示活性非活性制御
-	//非表示
+	//表示制御
 	//退居届を促すメッセージの設定
 	$('#lblShatakuFuyouMsg').hide();
-			
-	//社宅を必要としますか-必要とする（項目表示設定)
-		$('#rdoHitsuyo').click(function() {	   
+		
+	//クリックイベント		
+	//社宅を必要としますか-必要とする押下時
+		$('#rdoHitsuyo').click(function() { 	   
 		// 社宅を必要としますか？の必要とするにチェックが入っている場合
 			if($("#rdoHitsuyo").prop('checked')) {
-				//活性
-				//社宅を必要とする理由
-				$('#rdoHitsuyoIdo').prop('disabled', false);
-				$('#rdoHitsuyoKekkon').prop('disabled', false);
-				$('#rdoHitsuyoSonota').prop('disabled', false);
-				//必要とする社宅
-				$('#rdoKikon').prop('disabled', false);
-				$('#rdoHitsuyoDokushin').prop('disabled', false);
-				//自動車の保管場所
-				$('#rdoCarHitsuyo').prop('disabled', false);
-				$('#rdoCarFuyo').prop('disabled', false);
-				
+				//社宅を必要とする理由 活性
+				rdoHitsuyoDisabled("abled");
+				//社宅を必要としない理由 非活性
+				rdoFuyouDisabled("disabled");
+				//必要とする社宅  活性
+				rdoHitsuyoShatakuDisabled("abled");
+				//自動車の保管場所  活性
+				rdoCarUmuDisabled("abled");				
+				//現居住宅が保有
 				if($("#rdoNowJutakuHoyu").prop('checked')){
-					//現居住宅が保有の場合現保有の社宅を活性化
-					$('#rdoNowHoyuShatakuTaikyo').prop('disabled', false);
-					$('#rdoNowHoyuShatakuKeizoku').prop('disabled', false);
-				}
-		
-				//非活性
-				//社宅を必要としない理由
-				$('#rdoFuyouJitakutsuukinn').prop('disabled', true);
-				$('#rdoFuyouJikokariage').prop('disabled', true);
-				$('#rdoFuyouSonota').prop('disabled', true);
-				//自動車の保有
-				$('#rdo1stCarHoyu').prop('disabled', true);
-				$('#rdo1stCarYotei').prop('disabled', true);
-				$('#rdo2stCarHoyu').prop('disabled', true);
-				$('#rdo2stCarYotei').prop('disabled', true);
-				
-				//チェック状態
-				$('#rdoHitsuyoSonota').prop('checked', false);
-				$('#rdoFuyouJitakutsuukinn').prop('checked', false);
-				$('#rdoFuyouJikokariage').prop('checked', false);
-				$('#rdoFuyouSonota').prop('checked', false);
-				//自動車の保管場所
-				$('#rdoCarHitsuyo').prop('checked', false);
-				$("#rdoCarFuyo").prop('checked',false)
-				$('#rdo1stCarHoyu').prop('checked', false);
-				$('#rdo1stCarYotei').prop('checked', false);
-				$('#rdo2stCarHoyu').prop('checked', false);
-				$('#rdo2stCarYotei').prop('checked', false);
-				//現保有の社宅
-				$('#rdoNowHoyuShatakuTaikyo').prop('checked', false);
-				$('#rdoNowHoyuShatakuKeizoku').prop('checked', false);
-							
-	    		//表示（現社宅情報）
-				$('#shatakuStatus').show();
-				$('#taikyoRiyuInfo').show();
-				$('#trTaikyogoRenrakuSaki').show();
-				$('#returnEquipment').show();
-				$('#returnWitnessRequestDate').show();
-	  			$('#trRenrakuSaki').show();
-	    		//非表示（「社宅を「必要としない」場合は、別途「社宅（自動車保管場所）退居届」を申請してください。」)）
-	    		$('#lblShatakuFuyouMsg').hide();
+					//現保有の社宅　活性化
+					rdoNowHoyuShatakuDisabled("abled");
+				}	
+	    		//表示制御（現社宅情報） 表示
+				shatakuDisplayControl("yes");
+	    		//退居を促すメッセージ制御（現社宅情報）　非表示
+				mesDisplayControl("no");
 			}
 		});
-	//社宅を必要としますか-必要としない（項目非表示設定)
+	
+	//社宅を必要としますか-必要としない押下時
 		$('#rdoFuyou').click(function() {   
 		 //社宅を必要としますか？の「必要としない」にチェックが入っている場合
-			if($("#rdoFuyou").prop('checked')) {
-				//活性
-				//社宅を必要としない理由
-				$('#rdoFuyouJitakutsuukinn').prop('disabled', false);
-				$('#rdoFuyouJikokariage').prop('disabled', false);
-				$('#rdoFuyouSonota').prop('disabled', false);
-				//自動車の保管場所			
+			if($("#rdoFuyou").prop('checked')) {			
+				//社宅を必要とする理由　非活性
+				rdoHitsuyoDisabled("disabled");
+				//社宅を必要としない理由 活性
+				rdoFuyouDisabled("abled");	
+				//自動車の保管場所	不要　活性	
 				$('#rdoCarFuyo').prop('disabled', false);
-				//非活性
-				//社宅を必要とする理由
-				$('#rdoHitsuyoIdo').prop('disabled', true);
-				$('#rdoHitsuyoKekkon').prop('disabled', true);
-				$('#rdoHitsuyoSonota').prop('disabled', true);
-				//新所属
+				//自動車の保管場所　必要　非活性
+				$('#rdoCarHitsuyo').prop('disabled', true);
+				//新所属　非活性
 				$("#agencyCd").prop('disabled', true);
 				$("#affiliation1Cd").prop('disabled', true);
-				$("#affiliation2Cd").prop('disabled', true);
-				//必要とする社宅
+				$("#affiliation2Cd").prop('disabled', true);		
+				//必要とする社宅　非活性
 				$('#rdoKikon').prop('disabled', true);
 				$('#rdoHitsuyoSetai').prop('disabled', true);
 				$('#rdoHitsuyoTanshin').prop('disabled', true);
 				$('#rdoHitsuyoDokushin').prop('disabled', true);
-				//自動車の保管場所
-				$('#rdoCarHitsuyo').prop('disabled', true);
-				$('#rdo1stCarHoyu').prop('disabled', true);
-				$('#rdo1stCarYotei').prop('disabled', true);
-				$('#rdo2stCarHoyu').prop('disabled', true);
-				$('#rdo2stCarYotei').prop('disabled', true);
+				//自動車の保有　非活性
+				rdoCarHoyuDisabled("disabled");				
+				$('#rdoCarFuyo').prop('checked', true);　//駐車場を必要とするか
+				//現居住宅が保有
 				if($("#rdoNowJutakuHoyu").prop('checked')){
-					//現居住宅が保有の場合現保有の社宅を活性化
-					$('#rdoNowHoyuShatakuTaikyo').prop('disabled', false);
-					$('#rdoNowHoyuShatakuKeizoku').prop('disabled', false);
+					//現保有の社宅　活性化
+					rdoNowHoyuShatakuDisabled("abled");
 				}
-
-				//チェック状態
-				//社宅を必要としない理由
-				$('#rdoHitsuyoIdo').prop('checked', false);
-				$('#rdoHitsuyoKekkon').prop('checked', false);
-				$('#rdoHitsuyoSonota').prop('checked', false);
-				$('#rdoFuyouSonota').prop('checked', false);
-				//必要とする社宅
-				$('#rdoKikon').prop('checked', false);
-				$('#rdoHitsuyoSetai').prop('checked', false);
-				$('#rdoHitsuyoTanshin').prop('checked', false);
-				$('#rdoHitsuyoDokushin').prop('checked', false);
-				//自動車の保管場所
-				$('#rdoCarHitsuyo').prop('checked', false);
-	    		$("#rdoCarFuyo").prop('checked',true)
-				$('#rdo1stCarHoyu').prop('checked', false);
-				$('#rdo1stCarYotei').prop('checked', false);
-				$('#rdo2stCarHoyu').prop('checked', false);
-				$('#rdo2stCarYotei').prop('checked', false);
-				// 現在の社宅
-				$('#rdoNowHoyuShatakuTaikyo').prop('checked', false);
-				$('#rdoNowHoyuShatakuKeizoku').prop('checked', false);
-	    		//表示（（「社宅を「必要としない」場合は、別途「社宅（自動車保管場所）退居届」を申請してください。」)）
-	    		$('#lblShatakuFuyouMsg').show();
-	    		//非表示（現社宅情報）
-				$('#shatakuStatus').hide();
-				$('#taikyoRiyuInfo').hide();
-				$('#trTaikyogoRenrakuSaki').hide();
-				$('#returnEquipment').hide();
-				$('#returnWitnessRequestDate').hide();
-				$('#trRenrakuSaki').hide();
+				//表示制御（現社宅情報） 非表示
+				shatakuDisplayControl("no");
+	    		//退居を促すメッセージ制御（現社宅情報）　表示
+				mesDisplayControl("yes");
 			}
 		});
 		
@@ -877,62 +1038,40 @@
 		$('#rdoParkingOnly').click(function() {
 			// 社宅を必要としますか？の「駐車場のみ」にチェックが入っている場合
 			if($("#rdoParkingOnly").prop('checked')) {	
-				//自動車の保管場所
+				//社宅を必要とする理由　非活性
+				rdoHitsuyoDisabled("disabled");
+				//社宅を必要としない理由　非活性
+				rdoFuyouDisabled("disabled");	
+				//自動車の保管場所　必要　活性
 				$('#rdoCarHitsuyo').prop('disabled', false);
-				$('#rdo1stCarHoyu').prop('disabled', false);
-				$('#rdo1stCarYotei').prop('disabled', false);
-				$('#rdo2stCarHoyu').prop('disabled', false);
-				$('#rdo2stCarYotei').prop('disabled', false);
+				//自動車の保管場所	不要　非活性		
+				$('#rdoCarFuyo').prop('disabled', true);
+				//自動車の保有　活性
+				rdoCarHoyuDisabled("abled");
+				//自動車の入力箇所1 活性
+				carInfo1Disabled("abled");
+				//自動車の入力箇所2 活性
+				carInfo2Disabled("abled");
+				// 現保有社宅　継続利用　活性
 				$("#rdoNowHoyuShatakuKeizoku").prop('disabled', false)
-				
-				//非活性
-				//社宅を必要とする理由、しない理由
-				$('#rdoHitsuyoIdo').prop('disabled', true);
-				$('#rdoHitsuyoKekkon').prop('disabled', true);
-				$('#rdoHitsuyoSonota').prop('disabled', true);			
-				$('#rdoFuyouJitakutsuukinn').prop('disabled', true);
-				$('#rdoFuyouJikokariage').prop('disabled', true);
-				$('#rdoFuyouSonota').prop('disabled', true);
-
+				// 現保有社宅　退居　非活性活性
+				$("#rdoNowHoyuShatakuTaikyo").prop('disabled', true)
 				//必要とする社宅
 				$('#rdoKikon').prop('disabled', true);
 				$('#rdoHitsuyoSetai').prop('disabled', true);
 				$('#rdoHitsuyoTanshin').prop('disabled', true);
 				$('#rdoHitsuyoDokushin').prop('disabled', true);
-				//自動車の保管場所			
-				$('#rdoCarFuyo').prop('disabled', true);
-				//退居予定
-				$("#rdoNowHoyuShatakuTaikyo").prop('disabled', true)
 				
 				//チェック状態
-				//社宅を必要とする理由、しない理由
 				$('#rdoHitsuyoSonota').prop('checked', true);// 社宅を必要とする理由　その他
 				$('#rdoFuyouSonota').prop('checked', true);// 社宅を必要としない理由　その他
-				//駐車場を必要とするか
-				$('#rdoCarHitsuyo').prop('checked', true);
-				$("#rdoCarFuyo").prop('checked',false)
-				$('#rdo1stCarHoyu').prop('checked', false);
-				$('#rdo1stCarYotei').prop('checked', false);
-				$('#rdo2stCarHoyu').prop('checked', false);
-				$('#rdo2stCarYotei').prop('checked', false);
-				// 現在の社宅
-				$('#rdoNowHoyuShatakuTaikyo').prop('checked', false);
-				$('#rdoNowHoyuShatakuKeizoku').prop('checked', true);
-				//必要とする社宅
-				$('#rdoKikon').prop('checked', false);
-				$('#rdoHitsuyoSetai').prop('checked', false);
-				$('#rdoHitsuyoTanshin').prop('checked', false);
-				$('#rdoHitsuyoDokushin').prop('checked', false);
-				
-				//表示  （現社宅情報）
-				$('#shatakuStatus').show();
-				$('#taikyoRiyuInfo').show();
-				$('#trTaikyogoRenrakuSaki').show();
-				$('#returnEquipment').show();
-				$('#returnWitnessRequestDate').show();
-				$('#trRenrakuSaki').show();
-				//非表示（（「社宅を「必要としない」場合は、別途「社宅（自動車保管場所）退居届」を申請してください。」)）
-	    		$('#lblShatakuFuyouMsg').hide();
+				$('#rdoCarHitsuyo').prop('checked', true);　//駐車場を必要とするか
+				$('#rdoNowHoyuShatakuKeizoku').prop('checked', true);// 現保有社宅　
+
+	    		//表示制御（現社宅情報） 表示
+				shatakuDisplayControl("yes");
+	    		//退居を促すメッセージ制御（現社宅情報）　非表示
+				mesDisplayControl("no");
 		     }
 		 });
 	
@@ -965,6 +1104,7 @@
 				$('#newAffiliation1Other').prop('disabled', false);
 			}else{
 				$('#newAffiliation1Other').prop('disabled', true);
+				$('#newAffiliation1Other').val("");
 			}
 		});
 		
@@ -976,10 +1116,11 @@
 				$('#newAffiliation2Other').prop('disabled', false);
 			}else{
 				$('#newAffiliation2Other').prop('disabled', true);
+				$('#newAffiliation2Other').val("");
 			}
 						
 		});
-		
+				
 		//社宅プルダウン
 		$("#nowShatakuName").bind('change', function() {
 			var map = new Object();
@@ -1002,47 +1143,40 @@
 				document.getElementById('returnEquipments').innerHTML = data.returnEquipment;
 				
 				//値の設定
-				document.getElementById('hdnShatakuKanriId').value = data.shatakuKanriId;
-				document.getElementById('hdnSelectedNowShatakuName').value = data.hdnSelectedNowShatakuName;
-				document.getElementById('hdnNowShatakuNo').value = data.hdnNowShatakuNo;
-				document.getElementById('hdnShatakuKikakuKbn').value = data.hdnShatakuKikakuKbn;
-				document.getElementById('hdnNowShatakuMenseki').value = data.hdnNowShatakuMenseki;
-				document.getElementById('hdnParking1stNumber').value = data.hdnParking1stNumber;
-				document.getElementById('hdnParking1stPlace').value = data.hdnParking1stPlace;		
-				document.getElementById('hdnParking2stNumber').value = data.hdnParking2stNumber;
-				document.getElementById('hdnParking2stPlace').value = data.hdnParking2stPlace;
-				document.getElementById('hdnShatakuKanriNo').value = data.hdnShatakuKanriNo;
-				document.getElementById('hdnNowShatakuKanriNo').value = data.hdnNowShatakuKanriNo;
-				document.getElementById('hdnShatakuRoomKanriNo').value = data.hdnShatakuRoomKanriNo;
-				document.getElementById('hdnNowShatakuRoomKanriNo').value = data.hdnNowShatakuRoomKanriNo;
-				document.getElementById('hdnBihinHenkyakuUmu').value = data.hdnBihinHenkyakuUmu;
-				
+				$('#hdnSelectedNowShatakuName').val(data.hdnSelectedNowShatakuName);
+				$('#hdnParking1stNumber').val(data.hdnParking1stNumber);
+				$('#hdnParking2stNumber').val(data.hdnParking2stNumber);		
+				$('#hdnBihinHenkyakuUmu').val(data.hdnBihinHenkyakuUmu);
+				$('#hdnParkingFullFlg').val(data.parkingFullFlg);
+											
 				//画面制御
 		    	var parkingFullFlg = data.parkingFullFlg;
 		    	var bihinHenkyakuUmu = data.hdnBihinHenkyakuUmu;
 		    	
+		    	//駐車場の貸与可否
 				if(parkingFullFlg=="1"){
 					//2台借りている場合は、駐車場のみを非活性			
 					$('#rdoParkingOnly').prop('disabled', true);		
 				}else{
 					$('#rdoParkingOnly').prop('disabled', false);		
 				}
-				
+		    		  	
 				if(bihinHenkyakuUmu=="0"){
-					//貸与遺品がない場合は、備品返却項目を非活性			
+					//貸与遺品がない場合は、備品返却項目を非活性		
+					$('#sessionDayDiv').prop('disabled', true);
 					$('#sessionDay').prop('disabled', true);
 					$('#sessionTime').prop('disabled', true);	
-					$('#renrakuSaki').prop('disabled', true);	
+					$('#renrakuSaki').prop('disabled', true);		
 				}else{
+					$('#sessionDayDiv').removeClass("wj-state-disabled");
+					$('#sessionDayDiv').prop('disabled', false);
 					$('#sessionDay').prop('disabled', false);	
 					$('#sessionTime').prop('disabled', false);	
-					$('#renrakuSaki').prop('disabled', false);	
-				}
-				
-				
+					$('#renrakuSaki').prop('disabled', false);
+				}			
 			});
 		});
-		
+				
 		//　退居理由
 		$("#taikyoRiyuKbn").bind('change', function() {
 			//その他が選択された場合、その他ボックスを活性化する
@@ -1051,6 +1185,7 @@
 				$('#taikyoRiyu').prop('disabled', false);
 			}else{
 				$('#taikyoRiyu').prop('disabled', true);
+				$('#taikyoRiyu').val("")
 			}			
 		});	
 		
@@ -1116,11 +1251,8 @@
 		  $('#rdoCarHitsuyo').click(function() {	 	   
 			// 自動車の保管場所の「必要とする」にチェックが入っている場合
 			if($("#rdoCarHitsuyo").prop('checked')) {		
-				// 活性
-				$('#rdo1stCarHoyu').prop('disabled', false);
-				$('#rdo1stCarYotei').prop('disabled', false);
-				$('#rdo2stCarHoyu').prop('disabled', false);
-				$('#rdo2stCarYotei').prop('disabled', false);
+				//自動車の保有  活性
+				rdoCarHoyuDisabled("abled");	
 
 		      }
 		  }); 
@@ -1129,11 +1261,8 @@
 		  $('#rdoCarFuyo').click(function() {	 	   
 			// 自動車の保管場所の「必要としない」にチェックが入っている場合
 			if($("#rdoCarFuyo").prop('checked')) {
-		    	//非活性
-				$('#rdo1stCarHoyu').prop('disabled', true);
-				$('#rdo1stCarYotei').prop('disabled', true);
-				$('#rdo2stCarHoyu').prop('disabled', true);
-				$('#rdo2stCarYotei').prop('disabled', true);
+				//自動車の保有 活性
+				rdoCarHoyuDisabled("disabled");
 		      }
 		  }); 
 		  		  		  			  	  
@@ -1141,8 +1270,8 @@
 		  $('#rdoNowHoyuShatakuTaikyo').click(function() {	 	   
 			// 退居する
 			if($("#rdoNowHoyuShatakuTaikyo").prop('checked')) {		
-		    		//非表示
-		    		$('#lblShatakuFuyouMsg').show();
+	    		//退居を促すメッセージ制御（現社宅情報）　表示
+				mesDisplayControl("yes");
 		      }
 		  }); 
 		  
@@ -1150,51 +1279,54 @@
 		  $('#rdoNowHoyuShatakuKeizoku').click(function() {	 	   
 			// 継続利用する
 			if($("#rdoNowHoyuShatakuKeizoku").prop('checked')) {		
-		    		//非表示
-		    		$('#lblShatakuFuyouMsg').hide();
+	    		//退居を促すメッセージ制御（現社宅情報）　非表示
+				mesDisplayControl("no");
 		      }
 		  }); 
-	
+		  	  
+	    	//駐車場の貸与可否
+			if($("hdnParkingFullFlg")=="1"){
+				//2台借りている場合は、駐車場のみを非活性			
+				$('#rdoParkingOnly').prop('disabled', true);		
+			}else{
+				$('#rdoParkingOnly').prop('disabled', false);		
+			}
+    						
+			//退居理由その他が選択された場合、その他ボックスを活性化する
+			if($('#taikyoRiyuKbn option:selected').val()　==　"9"){
+				$('#taikyoRiyu').prop('disabled', false);
+			}else{
+				$('#taikyoRiyu').prop('disabled', true);
+			}
+			
+			//返却希望立会日
+			$(document).ready(function(){
+				if($("#hdnBihinHenkyakuUmu").val()=="0"){
+		    	//返却希望立会日　非活性
+					$('#sessionDayDiv').prop('disabled', true);	
+					$('#sessionDay').prop('disabled', true);			
+				}else{
+					$('#sessionDayDiv').prop('disabled', false);
+					$('#sessionDay').prop('disabled', false);	
+				}
+			});
+	    								
 		})(jQuery);
-	
+		
 		//ラジオボタン以外の活性制御
 		//社宅を必要としますか？
 		var taiyoHituyoDynam = {
 				//社宅を必要としますか-必要とする
 				"1" : {
-					"enabled" : [ "nyukyoYoteiDate"],
-		  			"disabled" : ["carName", "carNo", "carExpirationDate","carUser", "parkingUseDate",
-						          "carName2", "carNo2", "carExpirationDate2","carUser2", "parkingUseDate2",
-						          "taikyoYoteiDate","shatakuJyotai","taikyoRiyuKbn", "taikyoRiyu","taikyogoRenrakuSaki"] 
+					"enabled" : [ "nyukyoYoteiDate"]
 				},
 			//社宅を必要としますか-必要としない
 				"0" : {
-		  			"disabled" : ["agencyCd", "affiliation1Cd","affiliation2Cd",
-		  			              "nyukyoYoteiDate",
-		  			              "dokyoRelation1","dokyoName1","dokyoAge1",
-					              "dokyoRelation2","dokyoName2","dokyoAge2",
-					              "dokyoRelation3","dokyoName3","dokyoAge3",
-					              "dokyoRelation4","dokyoName4","dokyoAge4",
-					              "dokyoRelation5","dokyoName5","dokyoAge5",
-					              "dokyoRelation6","dokyoName6","dokyoAge6",
-		  			              "carName", "carNo", "carExpirationDate","carUser", "parkingUseDate",
-						          "carName2", "carNo2", "carExpirationDate2","carUser2", "parkingUseDate2",
-						          "taikyoYoteiDate","shatakuJyotai","taikyoRiyuKbn", "taikyoRiyu","taikyogoRenrakuSaki"]
+		  			"disabled" : ["nyukyoYoteiDate"]
 				},
 			//社宅を必要としますか-駐車場のみ
 				"2" : {
-					"enabled" : [ "carName", "carNo", "carExpirationDate","carUser", "parkingUseDate",
-						          "carName2", "carNo2", "carExpirationDate2","carUser2", "parkingUseDate2"],
-					"disabled" : ["agencyCd", "affiliation1Cd","affiliation2Cd",
-		  			              "dokyoRelation1","dokyoName1","dokyoAge1",
-					              "dokyoRelation2","dokyoName2","dokyoAge2",
-					              "dokyoRelation3","dokyoName3","dokyoAge3",
-					              "dokyoRelation4","dokyoName4","dokyoAge4",
-					              "dokyoRelation5","dokyoName5","dokyoAge5",
-					              "dokyoRelation6","dokyoName6","dokyoAge6",
-					              "nyukyoYoteiDate",
-					              "taikyoYoteiDate","shatakuJyotai", 
-					              "taikyoRiyuKbn", "taikyoRiyu","taikyogoRenrakuSaki"]
+					"disabled" : ["nyukyoYoteiDate"]
 				}
 		}
 
@@ -1316,23 +1448,12 @@
 					// 継続利用する
 						"disabled" : [ "taikyoYoteiDate",
 						               "shatakuJyotai",
-						               "taikyoRiyuKbn","taikyoRiyu",
+						               "taikyoRiyuKbn",
 						               "taikyogoRenrakuSaki"]
 			}
 	}
 </script>
-<!-- フッターエリア CSS-->
-<style type="text/css">
-	div.btnLeft{
-	    text-align: left;
-	    float: left;
-	}
 
-	div.btnRight{
-    	text-align: right;
-	}
-}
-</style>
 
 <!-- フッターエリア  text/JavaSclipt -->
 <script src="scripts/skf/skfCommon.js"></script>
@@ -1658,11 +1779,10 @@
 				//エラーが無い場合
 		    	var form = "form"; //受け渡すformId
 		    	var url = "skf/Skf2020Sc002/Confirm"; //遷移先サービス
-		  		
 				if(dialogue=="yes"){
 		    	//退居予定日と返却希望立会日の確認ダイアログが必要な場合
 					//ダイアログ
-					skf.common.confirmPopup("返却立会希望日が退居予定日以降で入力されています。申請してもよろしいですか？", "確認", form ,url, "OK", "CANCEL",this);			
+					skf.common.confirmPopup("返却立会希望日が退居予定日以降で入力されています。申請してもよろしいですか？", "確認", form ,url, "ok", "キャンセル",this);			
 				}else if(dialogue=="no"){
 					//退居予定日と返却希望立会日の確認ダイアログが不要な場合
 					nfw.common.submitForm(form,url,"checkBtn");
@@ -1670,49 +1790,3 @@
 		});
     }
 </script>
-<!-- フッターエリア　ボタン -->
-<div class="imui-box-layout">
-	<table width="100%">
-		<tr>
-			<!-- 左エリア -->
-			<div class="btnLeft">
- 				<!-- 入力内容をクリア -->
-				<nfwui:ConfirmButton cssStyle="width:150px;" id="clearBtn" formId="form" value="入力内容をクリア" 
-					cssClass="imui-medium-button" title="<%= MessageIdConstant.SKF2020_SC002_CONFIRM_TITLE %>" 
-					message="<%= MessageIdConstant.I_SKF_2004 %>" 
-					url="skf/Skf2020Sc002/Clear"/>	
- 			</div>
-			<!-- 右エリア -->
- 			<div class="btnRight">
- 				<!-- 申請要件を確認 -->
-				<nfwui:Button cssStyle="width:150px;" id="download" name="download" value="申請要件を確認" 
-					formID="form" cssClass="imui-medium-button" url="skf/Skf2020Sc002/Download" />   	 
-				<!-- 一時保存 -->
-				<nfwui:Button cssStyle="width:150px;" id="saveBtn" formId="form" value="一時保存"
-					cssClass="imui-medium-button" disabled="${form.btnSaveDisabeld}"
-					url="skf/Skf2020Sc002/Save"/>
- 			</div>
- 		</tr>
- 		<tr>
- 			<!-- 左エリア -->
- 			<div class="btnLeft">
-				<!-- 前の画面へ -->
- 				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" />
-				<!-- コメントボタン -->
-				<c:if test="${form.commentViewFlag == 'true'}">
-				<nfwui:PopupButton id="commentPop" value="コメント表示" 
-				cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
-				modalMode="false" popupWidth="1350" popupHeight="550"
-				parameter="applNo:applNo"
-				screenUrl="skf/Skf2010Sc010/init" use="popup" />
-				</c:if>
- 			</div>
- 			<!-- 右エリア -->
- 			<div id="dCheck1" class="btnRight">
- 				<!-- 申請内容を確認 -->
- 				  <imui:button id="checkBtn" value="申請内容を確認" class="imui-medium-button" 
- 				  	style="width: 150px" onclick="checkConfrirm()"  disabled="${form.btnCheckDisabled}"/> 
- 			</div>
- 		</tr>	
- 	</table>
-</div>

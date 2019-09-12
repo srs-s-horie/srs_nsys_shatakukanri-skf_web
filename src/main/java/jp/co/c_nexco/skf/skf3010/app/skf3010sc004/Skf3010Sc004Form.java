@@ -3,7 +3,8 @@ package jp.co.c_nexco.skf.skf3010.app.skf3010sc004;
 import jp.co.c_nexco.nfw.webcore.app.BaseForm;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 import lombok.EqualsAndHashCode;
 

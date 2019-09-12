@@ -9,11 +9,11 @@ import jp.co.c_nexco.nfw.webcore.app.AsyncBaseForm;
 import lombok.EqualsAndHashCode;
 
 /**
- * 社宅一覧非同期処理Form
- * 
- * @author k.takagi
- *
- */
+* 社宅一覧非同期処理Form
+* 
+* @author NEXCOシステムズ
+*
+*/
 @lombok.Data
 @EqualsAndHashCode(callSuper = true)
 public class Skf3010Sc001AsyncForm extends AsyncBaseForm {

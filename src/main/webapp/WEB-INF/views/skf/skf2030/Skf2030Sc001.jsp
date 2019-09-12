@@ -8,8 +8,11 @@
 <%@ taglib prefix="workflow" uri="http://www.intra-mart.co.jp/taglib/imw/workflow" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
-
+<%@ page import="jp.co.c_nexco.skf.skf2030.app.skf2030sc001.Skf2030Sc001Form" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
+<%  Skf2030Sc001Form form = (Skf2030Sc001Form)request.getAttribute("form"); %>
+
 
 <%-- コンテンツエリア --%>
 <style type="text/css">
@@ -17,354 +20,127 @@
 </style>
 
 <!-- コンテンツエリア:モックのまま -->
-<!-- 以下ツールバー -->
-<div class="imui-toolbar-wrap">
-    <div class="imui-toolbar-inner">
-        <!-- ツールバー左側 -->
-        <ul class="imui-list-toolbar">
-            <!-- 戻る -->
-            <li><a class="imui-toolbar-icon" title="戻る" tabindex="23"
-                onclick="back1()" href="javascript:void(0);"><span class="im-ui-icon-common-16-back"></span></a>
-            </li>
-        </ul>
-        <!-- ツールバー右側 -->
-        <ul class="imui-list-box-toolbar-utility">
-            <li>
-                <a onclick="TOP()" class="imui-toolbar-icon" tabindex="16">
-                <span class="im-ui-icon-common-16-home"></span>
-                    社宅TOP
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
+
+<script src="scripts/skf/skfCommon.js"></script>
 <script type="text/javascript">
     /**
      * 一つ前の画面へ戻る
      */
     function back1() {
-        showConfirm(W_GFK_0002, function() {
-            history.back()
-        });
+    	var url="skf/Skf2010Sc003/init"
+    	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
     }
-    /**
-     * 前画面に戻る。
-     */
-    function back() {
-        showConfirm(W_GFK_0002, function() {
-            $.StandardPost("../../skf/Skf2010_Sc005/init");
-        });
-    }
+	$(function() {
+		// 備品申請のラジオボタン操作
+		checkBihinChecked = function() {
+			var bihinAllFalse = "true";
+			for(var i = 11; i <= 19; i++) {
+				if ($("input[name='bihinAppl" + i + "']:checked").val() === "<%= CodeConstant.BIHIN_APPL_WISH %>") {
+					bihinAllFalse = "false";
+				}
+			}
+			if (bihinAllFalse == "true") {
+				$("#sessionDayDiv").prop("disabled", true);
+				$("#sessionDay").prop("disabled", true);
+				$("#sessionTime").prop("disabled", true);
+				$("#renrakuSaki").prop("disabled", true);
+				$("#bihinCheckFlag").val("false");
+			} else {
+				$("#sessionDayDiv").prop("disabled", false);
+				$("#sessionDay").prop("disabled", false);
+				$("#sessionTime").prop("disabled", false);
+				$("#renrakuSaki").prop("disabled", false);
+				$("#bihinCheckFlag").val("true");
+			}
+		}
+		
+		$(document).ready(function() {
+			checkBihinChecked();
+			
+			// 搬入完了ボタンクリックイベント
+			$("#btnCarryIn").click(function(){
+				skf.common.confirmPopupForCallback("備品搬入を完了します。よろしいですか？", "搬入完了", "form", "OK", "cancel", this, function(){
+					var map = new Object();
+					
+					map['applNo'] = $("#applNo").val();
+					map['applId'] = $("#applId").val();
+					map['applStatus'] = $("#applStatus").val();
+					map['hdnShainNo'] = $("#hdnShainNo").val();
+					map['completionDay'] = $("#completionDay").val();
+					nfw.common.doAjaxAction("skf/Skf2030Sc001/CheckAsync", map, true, function(res){
+						if (res.showDialogFlag == "true") {
+							var message = "搬入完了日が入居日より前ですがよろしいですか？(入居日:" + res.nyukyobi + "）";
+							skf.common.confirmPopup(message, "搬入完了", "form", "skf/Skf2030Sc001/Complete",  "OK", "cancel", this);
+						} else {
+							skf.common.submitForm("form", "skf/Skf2030Sc001/Complete", this);
+						}
+					});
+				});
+				
+			});
+				
+<imart:condition validity="<%= String.valueOf(form.isStatus01Flag()) %>">
+    		$("input:text").prop("disabled", true);
+    		$("select").prop("disabled", true);
+    		$("input:radio").prop("disabled", true);
+</imart:condition>
 
-    /**
-     * 「差戻し」ボタン押下時
-     */
-    function sashimodoshi() {
-        showConfirm(W_GFK_0007.replace('{0}', '申請内容の差戻'), function() {
-        
-            $.StandardPost("../../skf/Skf2010_Sc005/init");
-      var INFO="差戻しが正常に終了しました。"
-      
-      if(INFO!=""){
-      imuiShowSuccessMessage(INFO);
-}
-        });
-    }
+		});
+		
+		$("input[name^='bihinAppl']:radio").change(function(){
+			checkBihinChecked();
+		});
 
-    /**
-     * 「搬入完了」ボタン押下時
-     */
-    function kanryou() {
-        showConfirm(W_GFK_0007.replace('{0}', '搬入完了'), function() {
-                 
-      $.StandardPost("../../skf/Skf2010_Sc003/init");
-      var INFO="登録が正常に終了しました。"
-      
-      if(INFO!=""){
-      imuiShowSuccessMessage(INFO);
-}
-        });
-    }
 
-    /**
-     * TOP画面へ遷移する。
-     */
-    function TOP() {
-        showConfirm(W_GFK_0008, function() {
-            $.StandardPost("../common/top.html");
-        });
-    }
+	});
+
 </script>
 
     <!-- コンテンツエリア -->
-    <div class="imui-form-container-wide" width="1350px" style="width: 100%; max-width: 1350px;">
+<div style="width: 95%;margin: 0px 20px;">
+<div style="margin: 0px;">
+<jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
+</div>
+<nfwui:Form id="form" name="form" modelAttribute="form">
+<nfwui:Hidden id="applNo" name="applNo" />
+<nfwui:Hidden id="applId" name="applId" />
+<nfwui:Hidden id="applStatus" name="applStatus" />
+<nfwui:Hidden id="hdnShainNo" name="hdnShainNo" />
+<input type="hidden" id="bihinCheckFlag" name="bihinCheckFlag" value="false" />
+<!-- コンテンツエリア -->
+<div style="max-width: 300px;margin: 0px;">
+	<table class="imui-form-search-condition">
+		<tr>
+		<th style="width: 10%;"><nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2030_SC001_APPL_STATUS %>" /></th>
+		<td style="width: 10%;"><label>${f:h(form.applStatusText) }</label></td>
+	</tr>
+	</table>
+</div>
+<div class="imui-form-container-wide" style="margin-top: 0px; margin-bottom: 10px;"> 
+<table class="imui-form-search-condition">
+<tbody>
+<tr>
+<td style="width: 70%; border: none;background-color: #fdfdff;">
+<!-- 左側の入力域の部分 -->
+<div style="width: 95%; margin: 0px 20px;">
+<nfwui:Title id="ttlBihinKibo" code="<%= MessageIdConstant.SKF2030_SC001_BIHIN_KIBO_NAIYO %>" titleLevel="2" />
+<imart:condition validity="<%= String.valueOf(form.isBihinReadOnly()) %>">
+<%@ include file="skf2030common/Skf2030Sc001HannyuMachi.jsp" %>
+</imart:condition>
+<imart:condition validity="<%= String.valueOf(form.isBihinReadOnly()) %>" negative>
+<%@ include file="skf2030common/Skf2030Sc001Hozon.jsp" %>
+</imart:condition>
 
-    <!-- コンテンツエリア -->
-                          <table class="imui-form-search-condition">
-                       <tr>
-                            <th style="width: 10%;"><label>申請状況</label></th>
-                            <td style="width: 10%;"><label>搬入待ち</label></td>
-                            <td style="border:none;background-color: #fdfdff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                            <td style="border:none;background-color: #fdfdff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                      </tr>
-                    </table>
-    
-        <table class="imui-form-search-condition">
-        
-            <tbody>
-                <tr>
-                    <td style="width: 70%; border: none;background-color: #fdfdff;">
-                        <!-- 左側の入力域の部分 -->
-                        
-                        <div class="imui-form-container-wide" >
-                        <div class="imui-chapter-title" style="margin-bottom: 10px;">
-                            <h2>備品希望内容</h2>
-                        </div>
-                        <table class="imui-form-search-condition">
-                            <tbody>
-                                <tr>
-                                    <th rowspan="4"  style="width: 10%;"><label>所属</label></th>
-                                    <th colspan="3" style="width: 15%;"><label>機関</label></th>
-                                    <td colspan="3">
-                                        八王子
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th colspan="3"><label>部等</label></th>
-                                    <td colspan="3">
-                                        保全・サービス事業部
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th colspan="3"><label>室、チーム又は課</label></th>
-                                    <td colspan="3">
-                                        道路管理センター
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th colspan="3"><label>勤務先のTEL</label></th>
-                                    <td colspan="3">
-                                        00-0000
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th rowspan="4"><label>申請者</label></th>
-                                    <th colspan="3"><label>社員番号</label></th>
-                                    <td colspan="3">
-                                        01234567
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th colspan="3"><label>氏名</label></th>
-                                    <td colspan="3">
-                                        中日本ユーザ
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th colspan="3"><label>等級</label></th>
-                                    <td colspan="3">
-                                        リーダー職１級
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th colspan="3"><label>性別</label></th>
-                                    <td colspan="3">
-                                        男
-                                    </td>
-                                </tr>
-                                
-                                <tr>
-                                    <th rowspan="4"><label>入居社宅</label></th>
-                                      <th colspan="3"><label>社宅名</label></th>
-                                    <td colspan="3">
-                                        彦根寮
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th colspan="3"><label>室番号</label></th>
-                                    <td colspan="3">
-                                        225
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th colspan="3"><label>規格(間取り)</label></th>
-                                    <td colspan="3">
-                                        1K
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th colspan="3"><label>面積</label></th>
-                                    <td colspan="3">
-                                        32.38㎡
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th rowspan="2"><label>代理人</label></th>
-                                    <th colspan="3"><label>代理受取人</label></th>
-                                    <td colspan="3">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th colspan="3"><label>代理連絡先</label></th>
-                                    <td colspan="3">
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th rowspan="2"><label>備品搬入</label></th>
-                                    <th colspan="3"><label>備品搬入希望日</label></th>
-                                    <td colspan="3">
-                                        2016/02/26 08:00～12:00                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th colspan="3"><label>連絡先</label></th>
-                                    <td colspan="3">
-                                        000-0000-0000
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th colspan="4"><label>搬入完了日</label></th>
-                                    <td colspan="3">
-                                       <input type="text" name="cal001" id="cal001" value="9999/99/99"/>
-                                       <span style="color:red;">※備品の搬入が完了した日を入力してください</span>
-                                    </td>
-                                </tr>
-
-
-<tr style="border:none">
-   <td style="border:none">
-   </td>
-</tr>
-
-                                <tr>
-                                    <th rowspan="2" colspan="4"><label>備品</label></th>
-                                                <tr>
-                                                    <th><label>備付状況</label></th>
-                                                    <th><label>申請</label></th>
-                                                    <th><label>調整結果</label></th>
-                                                </tr>
-
-                                                <tr>
-                                                   <th colspan="4"><label>洗濯機</label></th>
-                                                   <td>なし</td>
-                                                   <td>申請あり</td>
-                                                   <td>レンタル搬入</td>
-                                                </tr>
-                                                <tr>
-                                                   <th colspan="4"><label>冷蔵庫</label></th>
-                                                   <td>なし</td>
-                                                   <td>申請あり</td>
-                                                   <td>レンタル搬入</td>
-                                                </tr>
-                                                <tr>
-                                                   <th colspan="4"><label>オーブンレンジ</label></th>
-                                                   <td>なし</td>
-                                                   <td>申請あり</td>
-                                                   <td>レンタル搬入</td>
-                                                </tr>
-                                                <tr>
-                                                   <th colspan="4"><label>掃除機</label></th>
-                                                   <td>なし</td>
-                                                   <td>申請なし</td>
-                                                   <td>レンタル搬入</td>
-                                                </tr>
-                                                <tr>
-                                                   <th colspan="4"><label>電子炊飯ジャー</label></th>
-                                                   <td>なし</td>
-                                                   <td>申請あり</td>
-                                                   <td>レンタル搬入</td>
-                                                </tr>
-                                                <tr>
-                                                   <th colspan="4"><label>テレビ</label></th>
-                                                   <td>なし</td>
-                                                   <td>申請あり</td>
-                                                   <td>レンタル搬入</td>
-                                                </tr>
-                                                <tr>
-                                                   <th colspan="4"><label>テレビ台</label></th>
-                                                   <td>なし</td>
-                                                   <td>申請あり</td>
-                                                   <td>レンタル搬入</td>
-                                                </tr>
-                                                <tr>
-                                                   <th colspan="4"><label>座卓（こたつ）</label></th>
-                                                   <td>なし</td>
-                                                   <td>申請あり</td>
-                                                   <td>レンタル搬入</td>
-                                                </tr>
-                                                <tr>
-                                                   <th colspan="4"><label>キッチンキャビネット</label></th>
-                                                   <td>なし</td>
-                                                   <td>申請あり</td>
-                                                   <td>レンタル搬入</td>
-                                                </tr>
-                                </tr>
-<tr style="border:none">
-   <td style="border:none">
-   </td>
-</tr>
-                                <tr>
-                                    <th colspan="4"><label>承認者へのコメント</label></th>
-                                    <td colspan="3" >
-                                        <textarea rows="4" style="width: 98%" placeholder="例  承認者へのコメント"></textarea>
-                                    </td>
-                                </tr>
-                                
-                            </tbody>
-                        </table>
-                        </div>
                     </td>
                     
                     <td style="width: 30%; border: none; background-color: #fdfdff;">
                       <table >
                         <!-- 右側の操作ガイドの部分 -->
-                        <div class="imui-form-container-wide" >
-                        <div class="imui-chapter-title" style="margin-bottom: 10px;">
-                            <h2>操作ガイド</h2>
-                        </div>
+                        <div style="margin: 0px 20px;" >
+                            <nfwui:Title id="titOperationGuide" code="<%= MessageIdConstant.SKF2030_SC001_GUIDE %>" titleLevel="2" />
                         <div>
-                        <div style="overflow-y:scroll;height:99%">
-                            <span style="font-size: 100%; heigth:90%;">
-                           ■貸与を希望する備品を申請します。
-                            <br>
-                            入力ガイド
-                            <br>
-                            ①勤務先の電話番号を入力してください。
-                            <br>
-                            ②備品搬入希望日を入力、備品搬入希望時間帯を選択してください。
-                            <br>
-                            ※地域により希望時間指定できない場合があります。
-                            <br>
-                            ③連絡先の電話番号を入力してください。
-                            <br>
-                            ④必要とする備品の場合「申請する」、不要な備品の場合「申請しない」をチェックしてください。
-                            <br><br>
-                            各種ボタンの操作ガイド
-
-                            <br>
-                            ◆「<font color ="green">入力内容をクリア</font>」をクリックすると、現在の入力内容をクリアすることができます。
-                            <br>
-                            ◆「<font color ="green">一時保存</font>」をクリックすると、現在の入力内容を保存することができます。
-                            <br>
-                            ◆「<font color ="green">申請</font>」をクリックすると、現在の入力内容で申請行います。
-                            <br><br>
-                            ◆備品の搬入完了を報告します。
-                            <br>
-                            入力ガイド
-                            <br>
-                            ①備品搬入完了日を入力してください。
-                            <br>
-                            備品の搬入がない場合には入居日を入力してください。
-
-                            各種ボタンの操作ガイド
-                            <br>
-                            ◆「<font color ="green">搬入完了</font>」をクリックすると、現在の入力内容で搬入完了を報告します。
-
-
-                            </span>
+                        <div style="overflow-y:scroll;height:99%; background-color:#eeeeee;">
+                            ${form.operationGuide }
                         </div>
                       </table>
                     </td>
@@ -372,45 +148,72 @@
             </tbody>
         </table>
 
-
+<imart:condition validity="<%= String.valueOf(form.isBihinReadOnly()) %>">
 <div class="align-L float-L">
-      <input class="imui-medium-button check" type="button" value="前の画面へ" style="width:150px;" onclick="back1()">
+      <imui:button class="imui-medium-button check" id="backBtn" name="backBtn" value="前の画面へ" style="width:150px;" tabindex="13" onclick="back1()" />
+<imart:condition validity="<%= String.valueOf(form.isCommentViewFlag()) %>" >
+    <nfwui:PopupButton id="commentPop" value="コメント表示" 
+    cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
+    modalMode="false" popupWidth="1350" popupHeight="550"
+    parameter="applNo:applNo" formId="form" tabindex="12"
+    screenUrl="skf/Skf2010Sc010/init" use="popup" />
+</imart:condition>
 </div> 
-
+<imart:condition validity="<%= String.valueOf(form.isStatus24Flag()) %>">
+<div class="align-R" style="clear: both;">
+</imart:condition>
+<imart:condition validity="<%= String.valueOf(form.isStatus24Flag()) %>" negative>
 <div class="align-R">
-      <input class="imui-medium-button check" type="button" value="搬入完了" style="width:150px;"  onclick="kanryou()">
+</imart:condition>
+<imart:condition validity="<%= String.valueOf(form.isStatus24Flag()) %>" negative>
+      <imui:button class="imui-medium-button check" id="btnCarryIn" name="btnCarryIn" value="搬入完了" tabindex="11" style="width:150px;" />
+</imart:condition>
 </div> 
+</imart:condition>
+
+<imart:condition validity="<%= String.valueOf(form.isBihinReadOnly()) %>" negative>
+<div class="align-L float-L">
+           <nfwui:ConfirmButton id="clearBtn" name="clearBtn" value="入力内容をクリア"
+           cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
+           title="<%= MessageIdConstant.SKF2020_SC003_CONFIRM_TITLE %>"
+           message="<%= MessageIdConstant.I_SKF_2004 %>" tabindex="7"
+           url="skf/Skf2030Sc001/Clear" removePatterns="ST01" />
+<imart:condition validity="<%= String.valueOf(form.isCommentViewFlag()) %>" >
+          <nfwui:PopupButton id="commentPop" value="コメント表示" 
+          cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
+          modalMode="false" popupWidth="1350" popupHeight="550"
+          parameter="applNo:applNo" formId="form" tabindex="12"
+          screenUrl="skf/Skf2010Sc010/init" use="popup" />
+</imart:condition>
+</div> 
+<div class="align-R">
+           <nfwui:Button id="saveBtn" name="saveBtn" value="一時保存" tabindex="8"
+           cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
+           url="skf/Skf2030Sc001/Save" removePatterns="ST01" />
+</div> 
+<imart:condition validity="<%= String.valueOf(form.isStatus01Flag()) %>">
+<div class="align-L" style="clear: both;">
+</imart:condition>
+<imart:condition validity="<%= String.valueOf(form.isStatus01Flag()) %>" negative>
+<div class="align-L float-L" style="clear: both;">
+</imart:condition>
+      <imui:button class="imui-medium-button check" id="backBtn" name="backBtn" value="前の画面へ" style="width:150px;" tabindex="13" onclick="back1()" />
+</div> 
+<div class="align-R">
+           <nfwui:ConfirmButton id="applyBtn" name="applyBtn" value="申請"
+           cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
+           title="<%= MessageIdConstant.SKF2020_SC003_CONFIRM_TITLE %>"
+           message="<%= MessageIdConstant.I_SKF_2003 %>" tabindex="10"
+           url="skf/Skf2030Sc001/Apply" removePatterns="ST01" />
+</div> 
+</imart:condition>
 
 
-
+</nfwui:Form>
+        </div>
     </div>
 
-    <!-- メッセージを表示するためのJavaScript（モック時はコメント）
-    <script type="text/javascript">
-        $(function() {
-            showWarningDialog('', 'true');
-        });
-
-(function($){ $.imDateUtil.setOffset(540); $(function () { $("#jikoHaseiYmd").imuiCalendar({
-"altField":"#jikoHaseiYmd","buttonText":"カレンダー","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"USA_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); 
-})(jQuery);
+  
 
     
-    </script>
--->    
-
-    
-<script type="text/javascript">
-    <!-- カレンダー出力用スクリプト -->
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal001").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal002").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal003").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal004").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal005").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal006").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal007").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal008").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);      
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal009").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-    
-</script>
 	<!-- コンテンツエリア　ここまで -->

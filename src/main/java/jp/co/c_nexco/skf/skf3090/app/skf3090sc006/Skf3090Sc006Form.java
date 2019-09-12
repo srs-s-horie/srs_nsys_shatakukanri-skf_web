@@ -51,6 +51,9 @@ public class Skf3090Sc006Form extends BaseForm {
 	// 更新フラグ
 	private String updateFlag;
 
+	// 登録フラグ
+	private String registFlag;
+
 	/** 組織マスタ登録画面hidden項目連携用 */
 	// 会社コード
 	private String hdnCompanyCd;

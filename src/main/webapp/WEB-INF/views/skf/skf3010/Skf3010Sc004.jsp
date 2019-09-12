@@ -41,7 +41,6 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 </script>
 		<!-- コンテンツエリア -->
 		<div class="imui-form-container-wide" >
-			<div class="imui-form-container-wide"  style="width:95%;">
 				<div class="imui-chapter-title"><h2>検索条件</h2></div>
 				<nfwui:Form id="form" name="form" modelAttribute="form">
 				<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC004 %>" />
@@ -109,9 +108,9 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 					<nfwui:Button id="search" name="search" code="<%=MessageIdConstant.SKF3010_SC004_BUTTON_SEARCH %>" cssClass="imui-small-button" 
 						url="skf/Skf3010Sc004/search" formId="form" tabindex="3" />
 				</div>
-			</div>
+		</div>
 			<!-- 明細＆細目未満 -->
-			<div class="imui-form-container-wide"  style="width:95%;">
+		<div class="imui-form-container-wide" >
 				<!-- 明細部 -->
 				<nfwui:Form id="form2" name="form2" action="/skf/Skf3010Sc005/init" modelAttribute="form">
 					<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC004 %>" />
@@ -133,7 +132,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 						$.imui.util.loadCSS("../../ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
 						})(jQuery);
 					</script>
-
+					<div id="listTableArea">
 					<imui:listTable id="mainList" process="jssp" autoEncode="true" autoWidth="true" rowNumbers="true"
 						autoResize="true" onCellSelect="onCellSelect"
 						multiSelect="false" data="${form.listTableData }"
@@ -144,9 +143,9 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 						<col name="col2" caption="本来用途" width="80" sortable="false" align="center" />
 						<col name="col3" caption="本来規格" width="80" sortable="false" align="center" />
 						<col name="col4" caption="本来延面積" width="90" sortable="false" align="right"/>
-						<col name="col5" caption="貸与区分"　width="80" sortable="false"align="center" onCellAttr="onCellAttr" />
-						<col name="col6" caption="使用者" width="120" sortable="false" />
-						<col name="col7" caption="備考"  width="610" sortable="false" />
+						<col name="col5" caption="貸与区分"　width="80" sortable="false"align="center" onCellAttr="onCellAttr" wrap="true"/>
+						<col name="col6" caption="使用者" width="120" sortable="false" wrap="true"/>
+						<col name="col7" caption="備考"  width="610" sortable="false" wrap="true"/>
 						<col name="col8" caption="詳細" width="80" sortable="false" align="center" >
 							<showIcon iconClass="im-ui-icon-common-16-update" />
 						</col>
@@ -154,7 +153,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 						
 						</cols>
 					</imui:listTable>
-
+					</div>
 					<table name="imui-8eqlrzst4hv6std" id="sampleListTable1"></table>
 
 					<div id="sampleListTable1-pager"></div>
@@ -184,14 +183,22 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 										$(this).css("cursor","default");
 							}
 							);
-
-							})(jQuery);
+							
+							// 画面表示時に定義される処理
+						    $(document).ready(function(){
+						    	//リサイズ時イベント
+						    	$(window).bind('resize', function(){
+						    		$('#mainList').setGridWidth($('#listTableArea').width(), true);	
+						    	}).trigger('resize');
+						    				
+						    });
+						    
+						})(jQuery);
 
 					</script>
 
 				</nfwui:Form>
-			</div>
-			<br />
+							<br />
 			<div class="align-L float-L">	
 				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="5" />
 			</div>
@@ -214,5 +221,4 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 				</nfwui:Form>
 			</div>
 		</div>
-	</div>
 	<!-- コンテンツエリア　ここまで -->
