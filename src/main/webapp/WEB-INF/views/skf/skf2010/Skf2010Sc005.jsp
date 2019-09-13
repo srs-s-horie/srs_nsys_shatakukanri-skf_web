@@ -48,15 +48,12 @@
 </style>
 
 <!-- コンテンツエリア -->
-<div class="imui-form-container-wide" style="width: 100%; min-width:1350px; max-width: 1350px;">
-<table align="center">
-    <tr>
-        <td>
-            <div>
-                <table class="imui-form-search-condition" width="100%">
+<div style="width: 100%;">
+		<div class="imui-form-container-wide">
+                <table class="imui-form-search-condition">
                 <tr>
-                    <td class="imui-form-container-wide" style="width: 50%; border: none;background-color: #fdfdff;" >
-                     <div class="imui-form-container-wide" style="max-width: 650px;min-width: 650px; max-height: 450px; height: 500px;">
+                    <td style="width: 60%; border: none;background-color: #fdfdff;" >
+                     <div style="margin-left: 10px; width: 95%;">
                        <nfwui:Title id="searchTitle" code="<%= MessageIdConstant.SKF2010_SC005_SEARCH_TITLE %>" titleLevel="2" />
                             <nfwui:Form id="form" name="form" modelAttribute="form" encType="multipart/form-data">
                              <input type="hidden" id="submitApplNo" name="submitApplNo" value="" />
@@ -67,21 +64,17 @@
                                         	<nfwui:LabelBox id="applDater" code="<%= MessageIdConstant.SKF2010_SC005_APPL_DATER %>" />
                                         </th>
                                         <td colspan="2">
-                                            <imui:textbox name="applDateFrom" id="applDateFrom" value="${form.applDateFrom}" class="${form.applDateFromErr}" style="width:100px" />&nbsp;～&nbsp;<imui:textbox name="applDateTo" id="applDateTo" value="${form.applDateTo}" style="width:100px" class="${form.applDateToErr}" />
+                                            <nfwui:DateBox name="applDateFrom" id="applDateFrom" cssStyle="width:100px" />&nbsp;～&nbsp;<nfwui:DateBox name="applDateTo" id="applDateTo" cssStyle="width:100px" />
                                         </td>
                                     </tr>
-                                    <im:calendar floatable="true" altField="#applDateFrom" />
-                                    <im:calendar floatable="true" altField="#applDateTo" />
                                     <tr>
                                         <th style="width: 100px;">
                                         	<nfwui:LabelBox id="agreDate" code="<%= MessageIdConstant.SKF2010_SC005_AGRE_DATE %>" />
                                         </th>
                                         <td colspan="2">
-                                            <imui:textbox name="agreDateFrom" id="agreDateFrom" value="${form.agreDateFrom}" style="width:100px" class="${form.agreDateFromErr}"/>&nbsp;～&nbsp;<imui:textbox name="agreDateTo" id="agreDateTo" value="${form.agreDateTo}" class="${form.agreDateToErr}" style="width:100px"/>
+                                            <nfwui:DateBox name="agreDateFrom" id="agreDateFrom" cssStyle="width:100px"/>&nbsp;～&nbsp;<nfwui:DateBox name="agreDateTo" id="agreDateTo" cssStyle="width:100px"/>
                                         </td>
                                     </tr>
-                    				<im:calendar floatable="true" altField="#agreDateFrom" />
-                                    <im:calendar floatable="true" altField="#agreDateTo" />
                                     <tr>
                                         <th style="width: 100px;">
                                         	<nfwui:LabelBox id="shozoku" code="<%= MessageIdConstant.SKF2010_SC005_SHOZOKU %>" />
@@ -242,14 +235,14 @@
                          <div class="align-L">	
                          	<nfwui:Button id="submit" formId="form" value="申請書類を検索" cssClass="imui-medium-button" url="skf/Skf2010Sc005/Search" />
                          </div>
-                         </div>
+                   </div>
 
 			</td>
             <td style="width: 45%; border: none;background-color: #fdfdff;">
             <!-- 個人に関するお知らせ -->
-                <div class="imui-form-container-wide" width="100%" style="max-width: 600px; min-width: 450px; max-height:450px;">
-                <div style="overflow-y:scroll;max-height:500px;height:450px">
-                        <nfwui:Title id="lblControlGuide" code="<%= MessageIdConstant.SKF2010_SC005_CONTROL_GUIDE %>" titleLevel="2" />
+                <div style="width: 100%; max-height:450px;">
+                 <nfwui:Title id="lblControlGuide" code="<%= MessageIdConstant.SKF2010_SC005_CONTROL_GUIDE %>" titleLevel="2" />
+                <div style="overflow-y:scroll;max-height:375px;height:450px;background-color:#eeeeee;">
                     ${form.operationGuide}
                 </div>
 				</div>
@@ -257,7 +250,6 @@
             </tr>
 </table>
 </div>
-
 <script type="text/javascript">
   (function($){
     // 機関ドロップダウン変更時のイベント
@@ -376,16 +368,11 @@
 
 
 <!-- テーブル一覧箇所 -->
-<div class="imui-form-container-wide" style="width: 100%; max-width: 1300px; min-width: 1300px;">
+<div class="imui-form-container-wide" style="top: 660px;">
 <!-- 明細＆細目未満 -->
   <!-- 明細部 -->
   <nfwui:Form id="resultListForm" name="resultListForm" modelAttribute="form" secureToken="false">
     <div class="imui-chapter-title" style="max-width:1300px;"><h2>検索結果一覧</h2></div>
-        <script type="text/javascript">
-  (function($){
-    $.imui.util.loadCSS("ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
-  })(jQuery);
-</script>
 <input type="hidden" id="putApplNo" name="applNo" value="" />
 <input type="hidden" id="putApplId" name="applId" value="" />
 <input type="hidden" id="putApplStatus" name="sendApplStatus" value="" />
@@ -394,14 +381,11 @@
 <input type="hidden" id="putShainNo" name="applShainNo" value="" />
 <input type="hidden" name="backUrl" value="skf/Skf2010Sc005/init" />
 <input type="hidden" name="prePageId" value="Skf2010Sc005" />
-<table name="imui-8eqlrzst4hv6std" id="sampleListTable1">
-<tr>
-  <td>
 <imui:listTable data="${form.ltResultList}"
 id="ltResultListTable" name="ltResultListTable"
 multiSelect="true" autoResize="true" autoWidth="true"
 rowNumbers="true" onCellSelect="onCellSelect"
-width="1300" height="232"
+ height="232"
 >
 <pager num="30" />
 <cols>
@@ -423,10 +407,6 @@ width="1300" height="232"
   </col><!-- 確認 -->
 </cols>
 </imui:listTable>
-  </td>
-</tr>
-
-</table>
 
 <br>
   </nfwui:Form>
@@ -443,10 +423,10 @@ width="1300" height="232"
  <br><br>
  
 
-</table>
-<div class="align-R">
+<div class="align-R" style="margin-right: 45px; margin-top: -25px;">
   <nfwui:ConfirmButton id="csvDownload" name="csvDownload" value="CSV出力"
     cssStyle="width:150px;" cssClass="imui-medium-button check"
   formId="form" title="<%= MessageIdConstant.SKF2010_SC005_CSV %>" message="<%= MessageIdConstant.I_SKF_2008 %>"
   url="skf/Skf2010Sc005/Download" />
 </div> 
+</div>
