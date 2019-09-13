@@ -166,7 +166,7 @@
                     
                     <tr>
                         <th>
-                            <a href="http://localhost:8080/imart/skf/Skf3090Sc004/init?menuFlg=1" class="imui-accent" style="margin-left: 8px">社宅（自動車保管場所）退居届</a>
+                            <a href="http://localhost:8080/imart/skf/Skf2010Sc007/init?confirmationKbn=2" class="imui-accent" style="margin-left: 8px">社宅（自動車保管場所）退居届</a>
                         </th>
                         <td style="width: 60%;">
                             <font>社宅・寮を退居する場合及び駐車場を返還する場合に作成する申請書類です。</font>
@@ -174,7 +174,7 @@
                      </tr> 
                      <tr>
                       <th>
-                            <a href="../S0008/S0008_ShinseiJokyoIchiran_IppanUserVer.html" class="imui-accent" style="margin-left: 8px">社宅申請状況一覧</a>
+                            <a href="http://localhost:8080/imart/skf/Skf2010Sc003/init?menuFlg=1" class="imui-accent" style="margin-left: 8px">社宅申請状況一覧</a>
                         </th>
                         <td style="width: 60%;">
                             <font>申請書類を確認します。<br>　　　</font>
@@ -199,7 +199,7 @@
                      
                       <imart:condition validity="${form.level2_1}" negative> 
                      <th>
-                          <a href="../S0010/S0010_ShatakuSearchPage_UnderButton.html" class="imui-accent" style="margin-left: 8px">申請書類を承認する</a>
+                          <a href="http://localhost:8080/imart/skf/Skf2010Sc005/init" class="imui-accent" style="margin-left: 8px">申請書類を承認する</a>
                       </th>
                       <td style="width: 60%;">
                           <font>申請者への提示、および申請書類の承認を行います。<br>　　　</font>
@@ -226,7 +226,7 @@
                     <tr>
                         <imart:condition validity="${form.level2_2}" negative> 
                         <th>
-                            <a href="../S1001/S1001_ShatakuSearchPage.html" class="imui-accent" style="margin-left: 8px">社宅を管理する</a>
+                            <a href="http://localhost:8080/imart/skf/Skf3010Sc001/init" class="imui-accent" style="margin-left: 8px">社宅を管理する</a>
                         </th>
                         <td style="width: 60%;">
                             <font>社宅の登録を行います。<br>　　</font>
@@ -234,7 +234,7 @@
                     </tr>
                     <tr>
                         <th>
-                            <a href="../S2003/S2003_TenninshaSearchPage.html" class="imui-accent" style="margin-left: 8px">転任者情報を管理する</a>
+                            <a href="http://localhost:8080/imart/skf/Skf3020Sc004/init" class="imui-accent" style="margin-left: 8px">転任者情報を管理する</a>
                         </th>
                         <td style="width: 60%;">
                             <font >転任者情報の登録、一覧を表示します。<br>また、転任者調書(Excel)の取込を行います。</font>
@@ -243,7 +243,7 @@
 
                     <tr>
                         <th>
-                            <a href="../S2005/S2005_NyutaikyoYoteiSearchPage.html" class="imui-accent" style="margin-left: 8px">入退居情報を管理する</a>
+                            <a href="http://localhost:8080/imart/skf/Skf3021Sc001/init" class="imui-accent" style="margin-left: 8px">入退居情報を管理する</a>
                         </th>
                         <td style="width: 60%;">
                             <font >入退居予定の一覧を表示します。<br>　　　</font>
@@ -251,7 +251,7 @@
                     </tr>
                     <tr>
                         <th>
-                            <a href="../S2006/S2006_TeijiDataSearchPage.html" class="imui-accent" style="margin-left: 8px">提示データを作成する</a>
+                            <a href="http://localhost:8080/imart/skf/Skf3022Sc005/init" class="imui-accent" style="margin-left: 8px">提示データを作成する</a>
                      </th>
                         <td style="width: 60%;">
                             <font >提示データの作成を行います。<br>　　　</font>
@@ -259,7 +259,7 @@
                     </tr>
                     <tr>
                         <th>
-                            <a href="../S0025/S0025_KariageKouhoBukkenJokyoIchiran.html" class="imui-accent" style="margin-left: 8px">借上候補物件を提示する</a>
+                            <a href="http://localhost:8080/imart/skf/Skf2060Sc004/init" class="imui-accent" style="margin-left: 8px">借上候補物件を提示する</a>
                         </th>
                         <td style="width: 60%;">
                             <font >借上候補物件の提示情報の完了、および申請者への提示を行います。</font><br/><br/>
@@ -267,7 +267,7 @@
                     </tr>
                     <tr>
                         <th>
-                            <a href="../S3001/S3001_ShatakuKanriDaichoSearchPage.html" class="imui-accent" style="margin-left: 8px">社宅管理台帳を確認する</a>
+                            <a href="http://localhost:8080/imart/skf/Skf3030Sc001/init" class="imui-accent" style="margin-left: 8px">社宅管理台帳を確認する</a>
                         
                         </th>
                         <td style="width: 60%;">
@@ -277,7 +277,7 @@
 
                      <tr>
                         <th>
-                            <a href="../S5001/S5001_SyainBangouIkkatsuSettei.html" class="imui-accent" style="margin-left: 8px">社員情報を一括更新する</a>
+                            <a href="http://localhost:8080/imart/skf/Skf3050Sc001/init" class="imui-accent" style="margin-left: 8px">社員情報を一括更新する</a>
                         </th>
                         <td style="width: 60%;">
                             <font >社員番号の一括設定を行います。<br>　　　</font>
@@ -288,7 +288,7 @@
                     <tr>  
                     <imart:condition validity="${form.level2_3}" negative>
                         <th>
-                            <a href="../S5002/S5002_GetsujiUnyouKanri.html" class="imui-accent" style="margin-left: 8px">月締め処理を行う</a>
+                            <a href="http://localhost:8080/imart/skf/Skf3050Sc002/init" class="imui-accent" style="margin-left: 8px">月締め処理を行う</a>
                         </th>
                         <td style="width: 60%;">
                             <font >月次の運用管理を行います。<br>　　　</font>
@@ -305,7 +305,7 @@
                     <tr>
                     <imart:condition validity="${form.level2_4}" negative>
                         <th>
-                            <a href="../S4001/S4001_RentalBihinShijishoPage.html" class="imui-accent" style="margin-left: 8px">レンタル備品指示書を作成する</a>
+                            <a href="http://localhost:8080/imart/skf/Skf3040Sc001/init" class="imui-accent" style="margin-left: 8px">レンタル備品指示書を作成する</a>
                         
                         </th>
                         <td style="width: 60%;">
@@ -316,7 +316,7 @@
                     <!---->
                     <tr>
                         <th>
-                            <a href="../S4002/S4002_BihinHannyuHanshutsuCheckListPage.html" class="imui-accent" style="margin-left: 8px">備品搬入・搬出確認リストを作成する</a>
+                            <a href="http://localhost:8080/imart/skf/Skf3040Sc002/init" class="imui-accent" style="margin-left: 8px">備品搬入・搬出確認リストを作成する</a>
                         
                         </th>
                         <td style="width: 60%;">
@@ -333,7 +333,7 @@
                     <tr>
                     <imart:condition validity="${form.level2_5}" negative>
                         <th>
-                            <a href="../所有者情報一覧・詳細/S0000_ShoyushaJouhouIchiran.html" class="imui-accent" style="margin-left: 8px">法定調書データを管理する</a>
+                            <a href="http://localhost:8080/imart/skf/Skf3070Sc001/init" class="imui-accent" style="margin-left: 8px">法定調書データを管理する</a>
                         </th>
                         <td style="width: 60%;">
                             <font >法定調書を作成するに当たり、必要な情報の管理、出力を行います。</font><br/><br/>
@@ -343,7 +343,7 @@
                     <tr>
                     <imart:condition validity="${form.level2_6}" negative>
                         <th>
-                            <a href="../S6001/S6001_AgeKasanSearchPage.html" class="imui-accent" style="margin-left: 8px">年齢による使用料の変更通知</a>                        
+                            <a href="http://localhost:8080/imart/skf/Skf3060Sc001/init" class="imui-accent" style="margin-left: 8px">年齢による使用料の変更通知</a>                        
                         </th>
                         <td style="width: 60%;">
                             <font >年齢による社宅の使用料の変更通知の設定を行います。<br>　　　</font>
@@ -378,7 +378,7 @@
                     
                     <tr name="daikoHide">
                         <th>
-                            <a href="../S9110/S9110_OshiraseMasterMaintenance.html" class="imui-accent" style="margin-left: 8px">お知らせマスタメンテナンス</a>
+                            <a href="http://localhost:8080/imart/skf/Skf3090Sc008/init" class="imui-accent" style="margin-left: 8px">お知らせマスタメンテナンス</a>
                         </th>
                         <td style="width: 60%;">
                             <font >システムに関するお知らせ欄の管理を行います。<br>　　　</font>
@@ -387,7 +387,7 @@
 
                     <tr name="daikoHide">
                       <th>
-                          <a href="../S9004/S9004_UserMasterIchiran.html" class="imui-accent" style="margin-left: 8px">従業員マスタメンテナンス</a>
+                          <a href="http://localhost:8080/imart/skf/Skf3090Sc004/init" class="imui-accent" style="margin-left: 8px">従業員マスタメンテナンス</a>
                       </th>
                       <td style="width: 60%;">
                           <font >社宅利用者の従業員マスタを管理します。<br>　　　</font>
@@ -396,7 +396,9 @@
                     
                     <tr name="daikoHide">
                       <th>
-                          <a href="http://localhost:8080/imart/skf/Skf3090Sc006/init" class="imui-accent" style="margin-left: 8px">組織マスタメンテナンス</a>
+                          <a href="http://localhost:8080/imart/skf/Skf3090Sc006/init" class="imui-accent" style="margin-left: 8px">
+                          	組織マスタメンテナンス
+                          </a>
                       </th>
                       <td style="width: 60%;">
                           <font >社宅申請システム利用者の組織を管理します。<br>　　　</font>
@@ -415,7 +417,7 @@
                     
                     <tr name="daikoHide">
                       <th>
-                            <a href="../S9001/S9001_GenbutsuShikyukagakuMasterIchiran.html" class="imui-accent" style="margin-left: 8px">現物支給価額マスタメンテナンス</a>
+                            <a href="http://localhost:8080/imart/skf/Skf3090Sc001/init" class="imui-accent" style="margin-left: 8px">現物支給価額マスタメンテナンス</a>
                         </th>
                         <td style="width: 60%;">
                             <font >現物支給価額の管理を行います。<br>　　　</font>
@@ -424,7 +426,7 @@
                     
                     <tr name="daikoHide">
                         <th>
-                            <a href="../S9003/S9003_JigyoRyouikiMasrerTouroku_before.html" class="imui-accent" style="margin-left: 8px">事業領域マスタメンテナンス</a>                        
+                            <a href="http://localhost:8080/imart/skf/Skf3090Sc003/init" class="imui-accent" style="margin-left: 8px">事業領域マスタメンテナンス</a>                        
                         </th>
                         <td style="width: 60%;">
                             <font >事業領域の管理を行います。<br>　　　</font>
