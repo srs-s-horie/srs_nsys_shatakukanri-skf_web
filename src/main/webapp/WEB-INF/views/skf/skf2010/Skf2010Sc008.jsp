@@ -63,7 +63,7 @@
 </script>
 
     <!-- コンテンツエリア -->
-    <div class="imui-form-container-wide" width="1350px" style="width: 100%; max-width: 1350px;">
+    <div style="width: 100%;">
     <!-- 代行ログイン時のみ表示されるメッセージ -->
 	<jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
       <nfwui:Form id="form" name="form" modelAttribute="form" encType="multipart/form-data">
@@ -71,11 +71,11 @@
         <table class="imui-form-search-condition">
             <tbody>
                 <tr>
-                    <td style="width: 70%; border: none;background-color: #fdfdff;">
+                    <td style="width: 65%; border: none;background-color: #fdfdff;">
                         <!-- 左側の入力域の部分 -->
                         <% //社員選択画面_表示領域 %>
                         <div id="Skf2010Sc008_1" >
-                        <div class="imui-form-container-wide">
+                        <div class="imui-form-container-wide" style="width:95%;">
                         <table class="imui-form-search-condition" >
 
                             <tbody>
@@ -94,7 +94,7 @@
                                     </th>
                                     <td style="width:120px;">
                                         <!-- <input style="width:120px;" id="shainNo" name="shainNo" type="text" value="${f:h(form.shainNo)}">-->
-                                        <imui:textbox style="width:120px;" id="shainNo" name="shainNo" value="${f:h(form.shainNo)}" />
+                                        <imui:textbox style="width:120px;" id="shainNo" name="shainNo" value="${f:h(form.shainNo)}" maxlength="8"/>
                                     </td>
                                     <td style="border:none;">
                                         <nfwui:Button id="select" name="select" formId="form" value="選択する" cssClass="imui-small-button" url="skf/Skf2010Sc008/Select" tabindex="2" />
@@ -110,7 +110,7 @@
                         
                         <% //代行ログイン対象社員情報確認画面_表示領域※ %>
                         <div id="Skf2010Sc008_2">
-                        <div class="imui-form-container-wide">
+                        <div class="imui-form-container-wide" style="width:95%;">
                         <table class="imui-form-search-condition" id="alterLoginInfoTable">
                             <tbody>
                               <div class="imui-chapter-title">
@@ -177,7 +177,7 @@
                         </div>
                         </td>
                     
-                    <td style="width: 30%; border: none;background-color: #fdfdff;">
+                    <td style="width: 35%; border: none;background-color: #fdfdff;">
                       <table >
                         <!-- 右側の操作ガイドの部分 -->
                         <div class="imui-form-container-wide" >
