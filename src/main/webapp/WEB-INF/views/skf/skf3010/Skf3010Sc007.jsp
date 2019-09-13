@@ -10,86 +10,45 @@
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
 
 <%-- コンテンツエリア --%>
 <style type="text/css">
 
 </style>
-
+<script type="text/javascript">
+function back1() {
+	var url="skf/Skf3010Sc002/init?SKF3010_SC002&tokenCheck=0"
+	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
+}
+</script>
 <!-- コンテンツエリア:モックのまま -->
-<!-- 以下ツールバー -->
-		<div class="imui-toolbar-wrap">
-			<div class="imui-toolbar-inner">
-				<!-- ツールバー左側 -->
-				<ul class="imui-list-toolbar">
-					<!-- 戻る -->
-					<li>
-						<a class="imui-toolbar-icon" title="戻る" tabindex="23" onclick="back1()" href="javascript:void(0);">
-							<span class="im-ui-icon-common-16-back"></span>
-						</a>
-					</li>
-				</ul>
-				<!-- ツールバー右側 -->
-				<ul class="imui-list-box-toolbar-utility">
-					<li>
-						<a onclick="back()" class="imui-toolbar-icon" tabindex="16">
-							<span class="im-ui-icon-common-16-home"></span>
-							社宅TOP
-						</a>
-					</li>
-
-				</ul>
-			</div>
-		</div>
-		<script type="text/javascript">
-			/**
-			* 一つ前の画面へ戻る
-			*/
-			function back1() {
-				showConfirm(W_GFK_0002, function() {
-					history.back()
-				});
-			}
-
-			/**
-			* メニュー画面へ遷移する。
-			*/
-			function back() {
-				showConfirm(W_GFK_0007, function() {
-					$.StandardPost("../common/top.html");
-				});
-			}
-		</script>
-
-		<div class="alertDiv imui-box-warning" style="padding: 15px;margin-top: 10px;text-align:left;" id="errMainDiv">
-			<div class="alert-errorIcon alert" style="margin:0;padding:0;margin-right:10px;">
-			</div> 
-		</div>
-
 		<!-- コンテンツエリア -->
-		<div class="imui-form-container-wide" width="1350px" style="width: 100%; min-width:1300px;max-width: 1350px;">
-			<!--<div class="imui-form-container-wide"  style="width:1280px;">-->
-				<form id="form" class="target_form mt-10" action="" method="POST">
-					<table class="imui-form-search-condition">
+		<div class="imui-form-container-wide">
+			<nfwui:Form id="form" name="form" modelAttribute="form">
+					<nfwui:Table use="search">
 						<tbody>
 							<tr>
 								<th style="width: 5%;">
-									<label style="height:24px;">社宅名</label>
+<!-- 									<label style="height:24px;">社宅名</label> -->
+									<nfwui:LabelBox id="lblShatakuName" code="<%=MessageIdConstant.SKF3010_SC007_SHATAKU_NAME %>" />
 								</th>
 								<td style="width: 15%;">
-									ｴﾊﾞｰｸﾞﾘｰﾝ
+									<label>${form.shatakuName}<label>
 								</td>
 								<th style="width: 5%;">
-									<label>地域区分</label>
+<!-- 									<label>地域区分</label> -->
+									<nfwui:LabelBox id="lblAreaKbn" code="<%=MessageIdConstant.SKF3010_SC007_AREA_KBN %>" />
 								</th>
 								<td style="width: 5%;">
-									甲
+									<label>${form.areaKbn}<label>
 								</td>
 								<th style="width: 5%;">
-									<label>社宅区分</label>
+<!-- 									<label>社宅区分</label> -->
+									<nfwui:LabelBox id="lblShatakuKbn" code="<%=MessageIdConstant.SKF3010_SC007_SHATAKU_KBN %>" />
 								</th>
 								<td style="width: 5%;">
-									一棟借上
+									<label>${form.shatakuKbn}<label>
 								</td>
 								<td style="width: 40%;border:none;	">
 								</td>
@@ -97,460 +56,451 @@
 							<tr>
 							</tr>
 						</tbody>
-					</table>
-				</form>
-				<!--
-			</div>-->
-			<!-- 明細＆細目未満 -->
-			<div class="imui-form-container-wide"  style="width:1280px;">
+					</nfwui:Table>
 			
+		</nfwui:Form>
+		<br>
+			<!-- 明細＆細目未満 -->
 				<!-- 明細部 -->
-				<form id="sampleList1">
+				<nfwui:Form id="form2" name="form2" action="/skf/Skf3010Sc007/selectList" modelAttribute="form">
+				<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC007 %>" />
+					<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="${form.hdnShatakuKanriNo}" />
+					<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="${form.hdnShatakuName}" />
+					<input type="hidden" name="hdnAreaKbn" id="hdnAreaKbn" value="${form.hdnAreaKbn}" />
+					<input type="hidden" name="hdnShatakuKbn" id="hdnShatakuKbn" value="${form.hdnShatakuKbn}" />
+					<input type="hidden" name="hdnListData" id="hdnListData" value="${form.hdnListData}" />
+					<input type="hidden" name="hdnParkingBlock" id="sendParkingBlock" value="${form.hdnParkingBlock}" />
+					<input type="hidden" name="hdnBackupContractPropertyId" id="hdnBackupContractPropertyId" value="${form.hdnBackupContractPropertyId}" />
+					<input type="hidden" name="hdnBackupMaxContractPropertyId" id="hdnBackupMaxContractPropertyId" value="${form.hdnBackupMaxContractPropertyId}" />
+					<input type="hidden" name="hdnRegistContractPropertyId" id="hdnRegistContractPropertyId" value="${form.hdnRegistContractPropertyId}" />
+					<input type="hidden" name="hdnBackupParkingContractType" id="hdnBackupParkingContractType" value="${form.hdnBackupParkingContractType}" />
+					<input type="hidden" name="hdnBackupｓOwnerName" id="hdnBackupOwnerName" value="${form.hdnBackupOwnerName}" />
+					<input type="hidden" name="hdnBackupOwnerNo" id="hdnBackupOwnerNo" value="${form.hdnBackupOwnerNo}" />
+					<input type="hidden" name="hdnBackupParkingZipCd" id="hdnBackupParkingZipCd" value="${form.hdnBackupParkingZipCd}" />
+					<input type="hidden" name="hdnBackupParkingAddress" id="hdnBackupParkingAddress" value="${form.hdnBackupParkingAddress}" />
+					<input type="hidden" name="hdnBackupParkingName" id="hdnBackupParkingName" value="${form.hdnBackupParkingName}" />
+					<input type="hidden" name="hdnBackupAssetRegisterNo" id="hdnBackupAssetRegisterNo" value="${form.hdnBackupAssetRegisterNo}" />
+					<input type="hidden" name="hdnBackupParkinglendKbn" id="hdnBackupParkinglendKbn" value="${form.hdnBackupParkinglendKbn}" />
+					<input type="hidden" name="hdnBackupContractStartDate" id="hdnBackupContractStartDate" value="${form.hdnBackupContractStartDate}" />
+					<input type="hidden" name="hdnBackupContractEndDate" id="hdnBackupContractEndDate" value="${form.hdnBackupContractEndDate}" />
+					<input type="hidden" name="hdnBackupLandRent" id="hdnBackupLandRent" value="${form.hdnBackupLandRent}" />
+					<input type="hidden" name="hdnBackupBiko" id="hdnBackupBiko" value="${form.hdnBackupBiko}" />
+					<input type="hidden" name="contractPropertyId" id="sendContractPropertyId" value="" />
+					<input type="hidden" name="parkingContractType" id="sendParkingContractType" value="" />
+					<input type="hidden" name="parkingKanriNo" id="sendParkingKanriNo" value="${form.parkingKanriNo}" />
+					<input type="hidden" name="selectMode" id="selectMode" value="${form.selectMode}" />
+					<input type="hidden" name="hdnDelInfoFlg" id="hdnDelInfoFlg" value="${form.hdnDelInfoFlg}" />
+					<input type="hidden" name="ownerNo" id="ownerNo" value="${form.ownerNo}" />
+
+					
 					<script type="text/javascript">
 						(function($){
-						$.imui.util.loadCSS("ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
+						$.imui.util.loadCSS("../../ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
 						})(jQuery);
 					</script>
-
+					<div id="listTableArea">
+					<imui:listTable id="mainList" process="jssp" autoEncode="true" autoWidth="true" rowNumbers="true"
+						autoResize="true" onCellSelect="onCellSelect"
+						multiSelect="false" data="${form.listTableData }"
+						style="max-height: 800px" tabindex="1">
+						<pager rowNum="${form.listTableMaxRowCount }" />
+						<cols sortable="false">
+						<col name="colParkingBlock" caption="区画番号" width="65" sortable="false" align="left" />
+						<col name="colParkingContractType" caption="契約形態" width="100" sortable="false" align="left" wrap="true"/>
+						<col name="colContractPropertyId" caption="契約番号" width="65" sortable="false" align="center" wrap="true"/>
+						<col name="colOwnerName" caption="賃貸人（代理人）" width="140" sortable="false" align="left" wrap="true"/>
+						<col name="colParkingAddress" caption="所在地"　width="250" sortable="false" align="left" wrap="true"/>
+						<col name="colParkingName" caption="駐車場名" width="120" sortable="false" align="left" wrap="true"/>
+						<col name="colAssetRegisterNo" caption="経理連携用管理番号"  width="120" sortable="false" align="center" wrap="true"/>
+						<col name="colContractStartDate" caption="契約開始日" width="80" sortable="false" align="center" wrap="true"/>
+						<col name="colContractEndDate" caption="契約終了日" width="80" sortable="false" align="center" wrap="true"/>
+						<col name="colLandRent" caption="地代" width="70" sortable="false" align="right" wrap="true"/>
+						<col name="colBiko" caption="備考" width="80" sortable="false" align="left" wrap="true"/>
+						<col name="colParkingKanriNo" caption="駐車場管理番号" hidden="true"/>
+						
+						</cols>
+					</imui:listTable>
+					
 					<table name="imui-8eqlrzst4hv6std" id="sampleListTable1"></table>
-
 					<div id="sampleListTable1-pager"></div>
-
 					<script type="text/javascript">
-						(function() {
-							function imuiListTable() {
-								var grid = jQuery('#sampleListTable1');
-								var parameter = {
-									"multiselect":false,
-//									"pager":"#sampleListTable1-pager",
-									"colNames":[
-										"",
-										"区画番号",				
-										"契約形態",				
-										"契約番号",							
-										"賃貸人（代理人）",						
-										"所在地",				
-										"駐車場名",						
-										"経理連携用管理番号",			
-										"契約開始日",				
-										"契約終了日",				
-										"地代",				
-										"備考",				
-									],
-									"datatype":"local",
-									"errorCell":function(xhr) { imuiShowErrorMessage($(xhr.responseText).find('dt').text()); },
-//									"rowNum":3,
-									"width":"1280",
-									"shrinkToFit":"true",
-									"cellsubmit":"clientArray",
-									"loadonce":true,
-									"colModel":[
-										{"hidden":true,"name":"id","key":true}
-										,{"name":"A11","width":"060","align":"left"}<!-- 区画番号 -->
-										,{"name":"A01","width":"100","align":"left"}<!-- 契約形態 -->
-										,{"name":"A02","width":"060","align":"center"}<!-- 契約番号 -->
-										,{"name":"A03","width":"150","align":"left"}<!-- 所有者 -->
-										,{"name":"A04","width":"300","align":"left"}<!-- 所在地 -->
-										,{"name":"A05","width":"120","align":"left"}<!-- 駐車場名 -->
-										,{"name":"A06","width":"120","align":"center"}<!-- 経理連携用管理番号 -->
-										,{"name":"A07","width":"070","align":"center"}<!-- 契約開始日 -->
-										,{"name":"A08","width":"070","align":"center"}<!-- 契約終了日 -->
-										,{"name":"A09","width":"070","align":"right"}<!-- 地代 -->
-										,{"name":"A10","width":"080","align":"left"}<!-- 備考 -->
-									],
-									"rownumbers":false,
-									"height":"200"
-								};
-								parameter.data = [
-									{
-										"A11":"01",
-										"A01":"社宅と一括契約",
-										"A02":"",
-										"A03":"",
-										"A04":"",
-										"A05":"",
-										"A06":"",
-										"A07":"",
-										"A08":"",
-										"A09":"",
-										"A10":"",
-										
-										
-									},
-																		{
-										"A11":"02",
-										"A01":"社宅と一括契約",
-										"A02":"",
-										"A03":"",
-										"A04":"",
-										"A05":"",
-										"A06":"",
-										"A07":"",
-										"A08":"",
-										"A09":"",
-										"A10":"",
-										
-										
-									},									{
-										"A11":"03",
-										"A01":"社宅と一括契約",
-										"A02":"",
-										"A03":"",
-										"A04":"",
-										"A05":"",
-										"A06":"",
-										"A07":"",
-										"A08":"",
-										"A09":"",
-										"A10":"",
-										
-										
-									},									{
-										"A11":"04",
-										"A01":"社宅と一括契約",
-										"A02":"",
-										"A03":"",
-										"A04":"",
-										"A05":"",
-										"A06":"",
-										"A07":"",
-										"A08":"",
-										"A09":"",
-										"A10":"",
-										
-										
-									},									{
-										"A11":"05",
-										"A01":"社宅と一括契約",
-										"A02":"",
-										"A03":"",
-										"A04":"",
-										"A05":"",
-										"A06":"",
-										"A07":"",
-										"A08":"",
-										"A09":"",
-										"A10":"",
-										
-										
-									},									{
-										"A11":"06",
-										"A01":"社宅と別契約",
-										"A02":"1",
-										"A03":"中日本　太郎",
-										"A04":"東京都〇〇市△△△1-2-3",
-										"A05":"〇〇〇〇〇",
-										"A06":"A009160717202",
-										"A07":"2017/04/01",
-										"A08":"9999/12/31",
-										"A09":"10,000",
-										"A10":"",
-										
-									},									{
-										"A11":"07",
-										"A01":"社宅と別契約",
-										"A02":"1",
-										"A03":"中日本　太郎",
-										"A04":"東京都〇〇市△△△1-2-3",
-										"A05":"〇〇〇〇〇",
-										"A06":"A009160717203",
-										"A07":"2017/09/01",
-										"A08":"9999/12/31",
-										"A09":"10,000",
-										"A10":"",
-										
-									},									{
-										"A11":"08",
-										"A01":"社宅と別契約",
-										"A02":"1",
-										"A03":"中日本　太郎",
-										"A04":"東京都〇〇市△△△1-2-3",
-										"A05":"〇〇〇〇〇",
-										"A06":"A009160717204",
-										"A07":"2018/10/01",
-										"A08":"9999/12/31",
-										"A09":"10,000",
-										"A10":"",
-										
-									},
-								];
-
-								grid.jqGrid(parameter);
-
-								// ヘッダ結合
-								grid.jqGrid('setGroupHeaders', {
-									useColSpanStyle: true,
-									groupHeaders:[
-										{startColumnName: 'kihon', numberOfColumns: 2,  titleText: 'メンテナンス'},
-									]
-								});
-
-// as
-//									// 1行づつ網掛け挑戦
-//									jQuery('#sampleListTable1').jqGrid({
-//										loadComplete: function () {
-//											var rowIDs = jQuery('#sampleListTable1').getDataIDs(); 
-//											$.each(rowIDs, function (i, item) {
-//												if (i % 2 == 0) {
-//													$('#'+item).removeClass('ui-widget-content');
-//													$('#'+item).addClass('testcss');
-//												}
-//											});
-//										},
-//									});
-//									jQuery('#sampleListTable1').jqGrid({
-//										gridComplete: function () {
-//											$('tbody > tr:even', this).addClass('ui-row-even');
-//										}
-//									});
-// ae
-
-								grid.jqGrid('navGrid','#sampleListTable1-pager',{
-									edit: false,
-									add: false,
-									del: false,
-									search: false,
-								});
-
-								var gboxGridId     = 'gbox_sampleListTable1';
-								var gboxGrid       = jQuery('#' + gboxGridId);
-								var parentWidthOld = Number.MIN_VALUE;
+						(function($) {
+							onCellSelect = function(rowId,iCol,cellcontent,e) {
+								
+								// リストテーブル情報取得
+								var grid = $("#mainList");
+								// 行番号から選択した行の情報を取得
+								var row = grid.getRowData(rowId);
+								
+								$("#sendParkingBlock").val(row.colParkingBlock);
+								$("#sendContractPropertyId").val(row.colContractPropertyId);
+								$("#sendParkingKanriNo").val(row.colParkingKanriNo);
+								if($("#selectMode").val() == 'init'){
+									$("#selectMode").val('mainlList');
+									
+									url = "skf/Skf3010Sc007/selectList";
+									$("#form2").attr("action", url);
+									$("#form2").submit();
+								}else{
+									checkInput('mainList');		
+								}
+								
 							}
-
-							(function($) {
-								$(document).ready(function() {
-									imuiListTable();
-								});
+							
 							})(jQuery);
 
-						})();
-					</script>
-					<style type="text/css">  
-						<!--
-							/* ヘッダテキスト中央寄せ */
-							.ui-jqgrid .ui-jqgrid-htable th div {
-								display:table-cell;
-							    height: 32px;
-								text-align:center;
-								vertical-align:middle;
-							}
-							/** 1行間隔で網掛け挑戦
-							.testcss {
-								border: 1px solid #a6c9e2;
-								background-color: #e6e6fa ;
-								color: #222222;
-							}
-
-							.ui-row-even {
-								background-color: #e6e6fa ;
-							}
-							*/
-
-							/* データ行の改行許容 */
-							#sampleListTable1 tr td{
-								white-space:normal;
-							}
-						-->
-					</style>
-				</form>
-		<!--
-			</div>
-			-->
-			
-<br/>
+					</script>	
+					</div>
+		</div>
+		<div class="imui-form-container-wide">
 		<table class="imui-form-search-condition">
-                            <tbody>
-             <tr>
-               <th style="width:12%" colspan="2"><label>区画番号</label></th>
-               <td>
-               06
+          <tbody>
+           <tr>
+               <th style="width:12%" colspan="2">
+<!--                	<label>区画番号</label> -->
+               	<nfwui:LabelBox id="lblParkingBlock" code="<%=MessageIdConstant.SKF3010_SC007_PARKING_BLOCK %>" />
+               </th>
+               <td style="width:20%">
+               	<span id="spanParkingBlock">${form.parkingBlock}</span>
                </td>
                
-               <th style="width:12%"><label>契約形態</label></th>
-               <form>
+			 <th style="width:12%">
+<!-- 			 <label>契約番号</label> -->
+			 <nfwui:LabelBox id="lblContractPropertyId" code="<%=MessageIdConstant.SKF3010_SC007_CONTRACT_PROPERTY_ID %>" />
+			 </th>
                <td style="width:20%">
-               <select id="IDOS" onchange="check(this)">
-                    <option value=""></option>
-                    <option value="社宅と一括契約">社宅と一括契約</option>
-                    <option value="社宅と別契約" selected="selected">社宅と別契約</option>
-               </select>
-               <td style="width:20%;border:none;" ></td>
+               		<imui:select id="contractPropertyId" name="contractPropertyId" 
+					 width="140" list="${form.contractPropertyIdList}" tabindex="1" disabled="${form.contractListDisabled}" class="${form.contractPropertyIdError}"/>
 
-</tr>
+               		<imui:button id="add" name="add" value="追加" class="imui-small-button" disabled="${form.addButtonDisabled}" onclick="addOnClick()" tabindex="2" />
+           			<imui:button id="delete" name="delete" value="削除" class="imui-small-button" disabled="${form.deleteButtonDisabled}" onclick="deleteOnClick()" tabindex="3" />
+               
+               <td style="width:20%;border:none;" ></td>
+			</tr>
                     <!-- スペース-->
                     <tr style="border:none">
                        <td style="border:none">
                        </td>
                     </tr>
 
-<tr>
-               <th colspan="2"><label>契約番号</label></th>
-               <td width="20%">
-					<select style="width: 105px;" id="Change10"  tabindex="12" name="Change10">
-                            <option value=""></option>
-                            <option value="1" selected="selected">1</option>
-                            <option value="2">2</option>
-                            <option value="3"></option>
-                            <option value="4"></option>
-                            <option value="5"></option>
-					</select>
-
-                        <input name="doSendBack" id="" type="button" value="追加" class="imui-small-button"/>
-                        <input name="doSendBack" id="" type="button" value="削除" class="imui-small-button" />
-
-               <th><label>賃貸人（代理人）<label></th>
-               <td>
-               <input class="ime-off" style="width: 150px;" type="text" value="中日本　太郎" name="Change1"></input>
-               <input name="doSendBack" id="" type="button" value="支援" class="imui-small-button"/>
+			<tr>
+               <th colspan="2">
+<!--                 <label>契約形態</label> -->
+               <nfwui:LabelBox id="lblParkingContractType" code="<%=MessageIdConstant.SKF3010_SC007_PARKING_CONTRACT_TYPE %>" />
+               </th>
+               <td colspan="3">
+               <imui:select id="parkingContractType" name="parkingContractType" 
+					 width="130" list="${form.parkingContractTypeList}" tabindex="4" disabled="${form.contractListDisabled}" class="${form.parkingContractTypeError}"/>
                </td>
-
-
-
              </tr>
-
+			<tr>
+               <th  colspan="2">
+<!--                <label>賃貸人（代理人）<label> -->
+               		<nfwui:LabelBox id="lblOwnerName" code="<%=MessageIdConstant.SKF3010_SC007_OWNER_NAME %>" />
+               </th>
+               <td colspan="3">
+<%--                		<imui:textbox id="txtOwnerName" name="ownerName" style="width:130px;" value="${f:h(form.ownerName)}" class="${form.ownerNameError}" disabled="${form.contractInfoDisabled}" maxlength="30" tabindex="5" readonly /> --%>
+               		<imui:textbox id="txtOwnerName" name="ownerName" style="width:130px;" value="${f:h(form.ownerName)}" class="${form.ownerNameError}" disabled="${form.contractInfoDisabled}" maxlength="30" tabindex="5" />
+               		<nfwui:PopupButton id="ownerShien" name="ownerShien" value="支援" use="popup" 
+               		cssClass="imui-small-button" popupWidth="650" popupHeight="550" 
+               		modalMode="false" screenUrl="skf/Skf2010Sc001/init" 
+               		parameter="parkinglendKbn:nyukyoFlag" disabled="${form.contractInfoDisabled}" 
+               		callbackFunc="updateOwnerName" tabindex="6"/>
+               </td>
+               </tr>           
 
              <tr>
                <th rowspan="2">
-               <label>所在地 <!--郵便番号--></label>
+<!--                <label>所在地 </label> -->
+               		<nfwui:LabelBox id="lblParkingAddressKbn" code="<%=MessageIdConstant.SKF3010_SC007_PARKING_ADDRESS_KBN %>" />
                </th>
                <th>
-               <label>郵便番号</label>
+<!--                <label>郵便番号</label> -->
+               		<nfwui:LabelBox id="lblParkingZipCd" code="<%=MessageIdConstant.SKF3010_SC007_PARKING_ZIP_CD %>" />
                </th>
                <td colspan="3">
-               <input class="ime-off" style="width: 100px;" type="text" value="1231234"  name="Change2"></input>
-               <input name="doSendBack" id="" type="button" value="住所検索" class="imui-small-button" />
-               </tr>
-<!--
-               </td>
+               	<imui:textbox id="txtParkingZipCd" name="parkingZipCd" style="ime-mode: disabled;width:130px;" value="${f:h(form.parkingZipCd)}" class="${form.parkingZipCdError}" disabled="${form.contractInfoDisabled}" placeholder="例　4600003" maxlength="7" tabindex="7"/>
+              	<nfwui:Button id="addressSearch" name="addressSearch" code="<%=MessageIdConstant.SKF3010_SC007_ADDRESS_SEARCH %>" cssClass="imui-small-button" url="skf/Skf3010Sc007/addressSearch" disabled="${form.contractInfoDisabled}" formId="form2"  tabindex="8"/>
+             </tr>
 
-               <th><label>所在地 住所</label></th>
-               <td>
-    -->
-               <tr>
+             <tr>
                <th>
-               <label>住所</label>
-
+<!--                <label>住所</label> -->
+					<nfwui:LabelBox id="lblParkingAddress" code="<%=MessageIdConstant.SKF3010_SC007_PARKING_ADDRESS %>" />
                <td colspan="3">
-               <input class="ime-off" style="width: 50%;" type="text" value="東京都〇〇市△△△1-2-3"  name="Change3"></input>
+               		<imui:textbox id="txtParkingAddress" name="parkingAddress" style="width:50%;" value="${f:h(form.parkingAddress)}" class="${form.parkingAddressError}" placeholder="例　愛知県名古屋市中区錦2-18-19" maxlength="50" tabindex="9" disabled="${form.contractInfoDisabled}"/>
                </td>
                </tr>
   
-               <th style="width:12%" colspan="2"><label>駐車場名</label></th>
+               <th style="width:12%" colspan="2">
+<!--                		<label>駐車場名</label> -->
+               		<nfwui:LabelBox id="lblParkingName" code="<%=MessageIdConstant.SKF3010_SC007_PARKING_NAME %>" />
+               </th>
                <td colspan="3">
-               <input class="ime-off" style="width: 200px;" type="text" value="〇〇〇〇"  name="Change4"></input>
+               		<imui:textbox id="txtParkingName" name="parkingName" style="width:200px;" value="${f:h(form.parkingName)}" class="${form.parkingNameError}" disabled="${form.contractInfoDisabled}" placeholder="例　駐車場名" maxlength="30" tabindex="10"/>
                </td>
-               
-
              </tr>
 
              <tr>
                <th  colspan="2">
-               <label>経理連携用管理番号<label>
+<!--                <label>経理連携用管理番号<label> -->
+               		<nfwui:LabelBox id="lblAssetRegisterNo" code="<%=MessageIdConstant.SKF3010_SC007_ASSET_REGISTER_NO %>" />
                </th>
                <td  colspan="3">
-               <input class="ime-off" style="width: 150px; text-align: left;" type="text" value="A009160717202"  name="Change5"></input><!--A009160717202-->
+               		<imui:textbox id="txtAssetRegisterNo" name="assetRegisterNo" style="ime-mode: disabled;width:200px;" value="${f:h(form.assetRegisterNo)}" class="${form.assetRegisterNoError}" disabled="${form.contractInfoDisabled}" placeholder="例　1234-56-7890-1-001" maxlength="15" tabindex="11"/>
                </td>
                
-</tr>
-<tr>
-               <th colspan="2"><label>貸与区分<label></th>
+			</tr>
+			<tr>
+               <th colspan="2">
+<!--                		<label>貸与区分<label> -->
+               		<nfwui:LabelBox id="lblParkinglendKbn" code="<%=MessageIdConstant.SKF3010_SC007_PARKING_LEND_KBN %>" />
+               </th>
                <td colspan="3">
-               <select style="width: 105px;" id="Change6"  tabindex="12" name="Change6">
-                            <option value=""></option>
-                            <option value="貸与可" selected="selected">貸与可</option>
-                            <option value="貸与不可">貸与不可</option>
-               </select>
+               		<imui:select id="parkinglendKbn" name="parkinglendKbn" 
+					 	width="110" list="${form.parkinglendKbnList}" disabled="${form.contractInfoDisabled}" tabindex="12" />
                </td>
                
-</tr>
-<tr>
+			</tr>
+			<tr>
                <th style="width:12%" colspan="2">
-               <label>契約開始日<label>
+<!--                <label>契約開始日<label> -->
+              		<nfwui:LabelBox id="lblContractStartDate" code="<%=MessageIdConstant.SKF3010_SC007_CONTRACT_START_DATE %>" />
                </th>
                <td>
-                 <input type="text" name="Change7" id="Change7" value="2018/03/01"/>
+                 <imui:textbox name="contractStartDate" id="contractStartDate" value="${f:h(form.contractStartDate)}" class="${form.contractStartDateError}" disabled="${form.contractInfoDisabled}" style="width:100px"  tabindex="13"/>
                </td>
                <th style="width: 150px;">
-               <label>契約終了日<label>
+<!--                <label>契約終了日<label> -->
+               		<nfwui:LabelBox id="lblContractEndDate" code="<%=MessageIdConstant.SKF3010_SC007_CONTRACT_END_DATE %>" />
                </th>
                     <td>
-                        <input type="text" name="Change8" id="Change8" value="9999/12/31"/>
+                       <imui:textbox name="contractEndDate" id="contractEndDate" value="${f:h(form.contractEndDate)}" class="${form.contractEndDateError}" disabled="${form.contractInfoDisabled}" style="width:100px"  tabindex="14"/>
                     </td>
-
-
+				<im:calendar floatable="true" altField="#contractStartDate" disabled="${form.contractInfoDisabled}"/>
+				<im:calendar floatable="true" altField="#contractEndDate" disabled="${form.contractInfoDisabled}"/>
              </tr>
 
              <tr>
                <th  colspan="2">
-               <label>駐車場料（地代）<label>
+<!--                <label>駐車場料（地代）<label> -->
+               		<nfwui:LabelBox id="lblLandRent" code="<%=MessageIdConstant.SKF3010_SC007_LAND_RENT %>" />
                </th>
                     <td colspan="3">
-                        <input class="ime-off" style="width: 100px; text-align: right;" type="text" value="10,000"  name="Change9"></input>&nbsp;円
+                        <imui:textbox name="landRent" id="txtLandRent" value="${f:h(form.landRent)}" class="${form.landRentError}" disabled="${form.contractInfoDisabled}" style="text-align: right;ime-mode: disabled;width:100px" placeholder="例　半角数字" maxlength="6" tabindex="15"/>
+<%--                         <nfwui:NumberBox name="landRent" id="txtLandRent" value="${f:h(form.landRent)}" cssClass="${form.landRentError}" disabled="${form.contractInfoDisabled}" cssStyle="text-align: right;ime-mode: disabled;width:100px" maxlength="7" tabindex="15"/> --%>
+                        &nbsp;円
                     </td>
                </tr>           
                <tr>
 
                <th colspan="2">
-               <label>備考<label>
+<!--                <label>備考<label> -->
+               		<nfwui:LabelBox id="lblBiko" code="<%=MessageIdConstant.SKF3010_SC007_BIKO %>" />
                </th>
-                    <td colspan="3">
-                        <input class="ime-off" style="width: 500px; text-align: left;" type="text" value="" name="Change11"></input>
-                    </td>             
-                    
+               <td colspan="3">
+                    <imui:textbox name="biko" id="biko" value="${f:h(form.biko)}" disabled="${form.contractInfoDisabled}" style="width:500px" maxlength="100" tabindex="16"/>
+               </td>             
                </tr>
-
-</table>
-			
-			
+		</table>	
 			<br />
 
 			<div class="align-R">
-
-				<input style="width:150px;" type="button" value="登録" class="imui-medium-button"> <!--onclick="location.href='../../skf/Skf3010_Sc002/init'"-->
-				<input style="width:150px;" type="button" value="キャンセル" class="imui-medium-button"> <!--onclick="location.href='../../skf/Skf3010_Sc002/init'"-->
-			</div>
-
-		</div>
-		<br>
-					<div class="align-L float-L">	
-				<input style="width:150px;" type="button" value="前の画面へ" class="imui-medium-button" onclick="back1()"/>
+				<imui:button id="regist" name="regist" value="登録" class="imui-medium-button" style="width: 150px" onclick="registOnClick()" tabindex="17" disabled="${form.registButtonDisabled}"/>
+				<imui:button id="cancel" name="cancel" value="キャンセル" class="imui-medium-button" style="width: 150px" onclick="cancelOnClick()" tabindex="18" disabled="${form.cancelButtonDisabled}"/>
+			
 			</div>
 			<br>
-		</div>
 		
-	</div>
-	
-					<script type="text/javascript">
-				function check(sel) {
-				var v = sel.value, frm = sel.form;
-				flg = (v=='社宅と別契約' || v=='')?false:true;
-				frm.elements['Change1'].disabled = flg;
-				frm.elements['Change2'].disabled = flg;
-				frm.elements['Change3'].disabled = flg;
-				frm.elements['Change4'].disabled = flg;
-				frm.elements['Change5'].disabled = flg;
-				frm.elements['Change6'].disabled = flg;
-				frm.elements['Change7'].disabled = flg;
-				frm.elements['Change8'].disabled = flg;
-				frm.elements['Change9'].disabled = flg;
-				frm.elements['Change10'].disabled = flg;
-				frm.elements['Change11'].disabled = flg;
-				frm.elements['Change12'].disabled = flg;
-				frm.elements['cal004'].disabled = flg;
-				frm.elements['cal005'].disabled = flg;
-				}
+			<div class="align-L">	
+				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="19" />
+			</div>
+		</div>
+
+		<script type="text/javascript">
+				(function($) {
+					// 画面表示時に定義される処理
+				    $(document).ready(function(){
+				    	checkInput = function (mode) {
+				    		
+							$("#selectMode").val(mode);
+							
+							//入力内容チェック
+							var map = new Object();
+							map['parkingBlock'] = $("#sendParkingBlock").val();
+							map['contractPropertyId'] = $("#contractPropertyId").val();
+							map['hdnBackupContractPropertyId'] = $("#hdnBackupContractPropertyId").val();
+							map['hdnBackupMaxContractPropertyId'] = $("#hdnBackupMaxContractPropertyId").val();
+							map['hdnBackupParkingContractType'] = $("#hdnBackupParkingContractType").val();
+							map['hdnBackupOwnerName'] = $("#hdnBackupOwnerName").val();
+							map['hdnBackupOwnerNo'] = $("#hdnBackupOwnerNo").val();
+							map['hdnBackupParkingZipCd'] = $("#hdnBackupParkingZipCd").val();
+							map['hdnBackupParkingAddress'] = $("#hdnBackupParkingAddress").val();
+							map['hdnBackupParkingName'] = $("#hdnBackupParkingName").val();
+							map['hdnBackupAssetRegisterNo'] = $("#hdnBackupAssetRegisterNo").val();
+							map['hdnBackupParkinglendKbn'] = $("#hdnBackupParkinglendKbn").val();
+							map['hdnBackupContractStartDate'] = $("#hdnBackupContractStartDate").val();
+							map['hdnBackupContractEndDate'] = $("#hdnBackupContractEndDate").val();
+							map['hdnBackupLandRent'] = $("#hdnBackupLandRent").val();
+							map['hdnBackupBiko'] = $("#hdnBackupBiko").val();
+
+							map['parkingContractType'] = $("#parkingContractType").val();
+							map['ownerName'] = $("#txtOwnerName").val();
+							map['parkingZipCd'] = $("#txtParkingZipCd").val();
+							map['parkingAddress'] = $("#txtParkingAddress").val();
+							map['parkingName'] = $("#txtParkingName").val();
+							map['assetRegisterNo'] = $("#txtAssetRegisterNo").val();
+							map['parkinglendKbn'] = $("#parkinglendKbn").val();
+							map['contractStartDate'] = $("#contractStartDate").val();
+							map['contractEndDate'] = $("#contractEndDate").val();
+							map['landRent'] = $("#txtLandRent").val();
+							map['biko'] = $("#biko").val();
+							
+							map['hdnDelInfoFlg'] = $("#hdnDelInfoFlg").val();
+							map['selectMode'] = $("#selectMode").val();
+							
+							nfw.common.doAjaxAction("skf/Skf3010Sc007/ContractInfoSelectAsync",map,true,function(data) {
+								
+								var result = data.checkResult;
+								if(result == "1"){
+									$("#contractPropertyId").imuiSelect('replace', data.contractPropertyIdList);
+									//内容変更有で、確認メッセージ
+									//確認メッセージ
+										var dialogTitle = "確認";
+										//MessageIdConstant.：I-SKF-2024
+										var dialogMessage = "入力内容が無効になります。破棄してもよろしいですか？";
+								    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form2", "skf/Skf3010Sc007/selectList", "OK", "CANCEL", this, true);
+								}else{
+									
+									url = "skf/Skf3010Sc007/selectList";
+									$("#form2").attr("action", url);
+									$("#form2").submit();
+									//nfw.common.submitForm("form2",url,"checkBtn");
+								}
+								
+								
+							});
+				    	}
+				    	
+				    	addOnClick = function () {
+				    		$("#sendParkingBlock").val($("#sendParkingBlock").val());
+							$("#sendContractPropertyId").val( $("#contractPropertyId").val());
+				    		$("<div>駐車場の契約情報を追加します。よろしいですか？</div>").imuiMessageDialog({
+				    			iconType : 'question',
+				    			title : '確認',
+				    			modal : true,
+				    		    buttons: [
+				    		      {
+				    		        'id': 'okbutton',
+				    		        'text': 'OK',
+				    		        'click': function() { checkInput('addButton'); }
+				    		      },
+				    		      {
+				    		        'text': 'キャンセル',
+				    		        'click': function() {$(this).imuiMessageDialog('close'); }
+				    		      }
+				    		    ]
+				    		});
+				    	}
+				    	
+				    	deleteOnClick = function(){
+				    		var mode = $("#selectMode").val();
+				    		var dialogTitle = "確認";
+				    		
+				    		if(mode == "addButton"){
+				    			//追加（未登録）情報の削除
+				    			$("#sendParkingBlock").val($("#sendParkingBlock").val());
+								$("#sendContractPropertyId").val( $("#hdnBackupContractPropertyId").val());
+								$("#selectMode").val('deleteButtonAdd');
+								
+								//MessageIdConstant.：I-SKF-2024
+								var dialogMessage = "入力内容が無効になります。破棄してもよろしいですか？";
+						    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form2", "skf/Skf3010Sc007/selectList", "OK", "CANCEL", this, true);
+				    		}else{
+				    			//登録済み情報の削除
+				    			$("#sendParkingBlock").val($("#sendParkingBlock").val());
+								$("#sendContractPropertyId").val( $("#contractPropertyId").val());
+								$("#selectMode").val('deleteButton');
+			
+				    			
+								//MessageIdConstant.：I-SKF-3064
+								var dialogMessage = "駐車場の契約情報を削除します。よろしいですか？";
+						    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form2", "skf/Skf3010Sc007/selectList", "OK", "CANCEL", this, true);
+				    		}
+				    	}
+				    	
+				    	cancelOnClick = function () {
+				    		$("#sendParkingBlock").val($("#sendParkingBlock").val());
+							$("#sendContractPropertyId").val( $("#hdnRegistContractPropertyId").val());
+							$("#selectMode").val('mainList');
+							//MessageIdConstant.：I-SKF-3051編集が無効になります。よろしいですか？
+				    		
+			    			var dialogTitle = "確認";
+							var dialogMessage = "編集が無効になります。よろしいですか？";
+					    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form2", "skf/Skf3010Sc007/selectList", "OK", "CANCEL", this, true);
+				    	}
+				    	
+				    	registOnClick = function () {
+				    		$("#sendParkingBlock").val($("#sendParkingBlock").val());
+							$("#sendContractPropertyId").val( $("#contractPropertyId").val());
+							$("#sendParkingContractType").val( $("#parkingContractType").val());
+							$("#selectMode").val('registButton');
+							//MessageIdConstant.I_SKF_3035[{0}を登録します。よろしいですか？]
+				    		
+			    			var dialogTitle = "確認";
+							var dialogMessage = "駐車場契約情報を登録します。よろしいですか？";
+					    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form2", "skf/Skf3010Sc007/regist", "OK", "CANCEL", this, true);
+				    	}
+				    	
+				    	updateOwnerName = function() {
+				            if( param != null && typeof param == 'object' && param.name != null && param.no != null){
+				                $("#txtOwnerName").val(param.name);
+				                $("#ownerNo").val(param.no);
+				            }
+				    		
+				    	}
+				    	
+				    	backOnClick = function () {
+					    	//確認メッセージ
+							dialogTitle = "確認";
+							dialogMessage = "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。";
+					    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc002/init", "OK", "CANCEL", this, true);	
+					    }
+				    	
+				    	//リサイズ時イベント
+				    	$(window).bind('resize', function(){
+				    		$('#mainList').setGridWidth($('#listTableArea').width(), true);	
+				    	}).trigger('resize');
+				    				
+				    });
+					
+					$("#contractPropertyId").bind('change', function() {
+						$("#sendParkingBlock").val($("#sendParkingBlock").val());
+						$("#sendContractPropertyId").val( $("#contractPropertyId").val());
+						
+						checkInput('contractPropertyIdList');
+						
+					});
+					
+					$("#parkingContractType").bind('change', function() {
+						//契約形態変更
+						$('#sendParkingContractType').val($("#parkingContractType").val());
+						// サービス呼び出し
+						url = "skf/Skf3010Sc007/changeContractType";
+						$("#form2").attr("action", url);
+						$("#form2").submit();
+					
+					
+					});
+					
+					//txtOwnerName
+					$("#txtOwnerName").bind('click', function() {
+						
+						
+					});
+				})(jQuery);
 				</script>
+		</nfwui:Form>
+
 	
-    <!-- カレンダー出力用スクリプト -->
-    <script type="text/javascript">
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal001").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal002").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal003").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#Change7").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#Change8").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal006").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal007").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal008").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);      
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal009").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-    </script>
 	<!-- コンテンツエリア　ここまで -->

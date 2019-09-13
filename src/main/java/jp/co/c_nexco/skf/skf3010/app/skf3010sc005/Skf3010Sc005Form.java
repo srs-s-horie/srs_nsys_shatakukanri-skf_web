@@ -2,7 +2,8 @@ package jp.co.c_nexco.skf.skf3010.app.skf3010sc005;
 
 import jp.co.c_nexco.nfw.webcore.app.BaseForm;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 import lombok.EqualsAndHashCode;
 
@@ -111,6 +112,8 @@ public class Skf3010Sc005Form extends BaseForm {
 	private String registBihinData;
 	// 非表示備品情報リスト
 	private List<Map<String, Object>> hdnBihinStatusList;
+	
+	private String deleteBtnFlg;
 	
 	/** エラー系 **/
 	// 部屋番号

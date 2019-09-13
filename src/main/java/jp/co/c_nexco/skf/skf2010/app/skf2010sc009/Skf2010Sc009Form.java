@@ -20,6 +20,8 @@ public class Skf2010Sc009Form extends GridForm {
 	private String applId;
 	// 申請書類名
 	private String applName;
+	// 借上候補物件番号
+	private String candidateNo;
 	// 添付書類
 	private MultipartFile attachedFile;
 	// 添付書類リスト

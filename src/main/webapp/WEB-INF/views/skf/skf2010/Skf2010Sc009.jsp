@@ -27,6 +27,7 @@
 				<nfwui:Form id="form" name="form" enctype="multipart/form-data" modelAttribute="form"  >
 				  <nfwui:Hidden id="applNo" name="applNo" />
 				  <nfwui:Hidden id="applId" name="applId" />
+				  <nfwui:Hidden id="candidateNo" name="candidateNo" />
 					<table class="imui-form-search-condition">
 						<tbody>
 							<tr>

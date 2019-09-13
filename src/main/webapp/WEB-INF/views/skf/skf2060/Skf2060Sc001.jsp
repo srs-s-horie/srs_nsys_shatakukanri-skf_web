@@ -12,6 +12,7 @@
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.skf2060.app.skf2060sc001.Skf2060Sc001Form" %>
 
+<%  Skf2060Sc001Form form = (Skf2060Sc001Form)request.getAttribute("form"); %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
 
 <script type="text/javascript">
@@ -20,7 +21,7 @@
     shainInfoCallback = function(param){
         if( param != null && typeof param == 'object' && param.name != null){
             $("#presentedName").val(param.name);
-            $("#presentedNo").val(param.shainNo);
+            $("#shainNo").val(param.shainNo);
             
             nfw.common.submitForm("form", "skf/Skf2060Sc001/support");
         }
@@ -32,8 +33,12 @@
 <!-- コンテンツエリア -->
 <div class="imui-form-container-wide" >
 <nfwui:Form id="form" name="form" modelAttribute="form" encType="multipart/form-data" >
-<input type="hidden" name="presentedNo" id="presentedNo" value="${form.presentedNo}" />
-<input type="hidden" name="updateDate" id="updateDate" value="${form.updateDate}" />
+<!-- 隠し項目 -->
+<input type="hidden" name="shainNo" id="shainNo" value="${form.shainNo}" /> <!-- 提示対象者の社員番号 -->
+<input type="hidden" name="updateDate" id="updateDate" value="${form.updateDate}" /> <!-- 更新日時 -->
+<input type="hidden" name="applNo" id="applNo" value="${form.applNo}" />　<!-- 申請書類管理番号 -->
+<!-- 申請書類ステータス(いらない？？？） -->
+<!-- 隠し項目終わり -->
 <table align="center" style="width:100%;">
     <tr>
         <td>
@@ -53,7 +58,7 @@
                                             cssClass="imui-small-button" use="popup"
                                             screenUrl="skf/Skf2010Sc001/init"
                                             popupWidth="650" popupHeight="700"
-                                            modalMode="false" />
+                                            modalMode="false" disabled="${form.supportDisabled}"/>
                                         </nobr>   
                                         </th>
                                         <td colspan="2">
@@ -131,7 +136,8 @@
                             <!--</form>-->
 
                          <div class="align-L">	
-                             <nfwui:Button id="insert" name="insert" formId="form" value="追加" cssClass="imui-small-button" url="skf/Skf2060Sc001/insertKariage"/>
+                             <!--<nfwui:Button id="insert" name="insert" formId="form" value="追加" cssClass="imui-small-button" url="skf/Skf2060Sc001/insertKariage"/>-->
+                             <imui:button id="insert" name="insert" value="追加" class="imui-small-button" />
                          </div>
                          </td>
 </table>
@@ -173,9 +179,7 @@
 						<col name="attachedFile" caption="ファイルの添付/削除" width="135" sortable="false" align="center" >
 						<showIcon iconClass="im-ui-icon-menu-24-document" />
 						</col>
-						<col name="deleteBukken" caption="物件削除" width="70" sortable="false" align="center" >
-						<showIcon iconClass="im-ui-icon-common-16-trashbox" />
-						</col>
+						<col name="deleteBukken" caption="物件削除" width="70" sortable="false" align="center" />
 						<col name="companyCd" caption="会社コード" hidden="true" />
 						<col name="candidateNo" caption="借上候補物件番号" hidden="true" />
 						</cols>
@@ -218,7 +222,15 @@
 
 <div class="align-L float-L">
       <imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()"  />
+<imart:condition validity="<%= String.valueOf(form.isCommentViewFlag()) %>" >
+          <nfwui:PopupButton id="commentPop" value="コメント表示" 
+          cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
+          modalMode="false" popupWidth="1350" popupHeight="550"
+          parameter="applNo:applNo" formId="form"
+          screenUrl="skf/Skf2010Sc010/init" use="popup" />
+</imart:condition>
 </div> 
+
 
 
 <div class="align-R">
@@ -236,6 +248,8 @@
     	var url = "skf/Skf2060Sc004/init?SKF2060_SC004&tokenCheck=0";
     	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
     }
+    
+    
 
 </script>
 
@@ -243,15 +257,51 @@
 
 					<input type="hidden" name="hdnCompanyCd" id="sendCompanyCd" value="" />
 					<input type="hidden" name="hdnCandidateNo" id="sendCandidateNo" value="" />
+					<input type="hidden" name="hdnAttachedNo" id="sendAttachedNo" value="" />
+					<input type="hidden" name="rowId" id="rowId" value="" />
 
+					<script src="scripts/skf/skfCommon.js"></script>
 					<script type="text/javascript">
 					(function($) {
+						//画面表示時
+						$(document).ready(function(){
+							
+							//添付ファイルリンククリック時
+							$("a[id^='attached_']").click(function(){
+								downloadKariageBukkenFile(this);
+								
+							});
+						
 						onCellSelect = function(rowId,iCol,cellcontent,e) {
+							//削除アイコンクリック時
 							if ($(cellcontent).hasClass('im-ui-icon-common-16-trashbox')) {
 								// リストテーブル情報取得
 								var grid = $("#kariageCandidateList");
 								// 行番号から選択した行の情報を取得
 								var row = grid.getRowData(rowId);
+
+								// candidateNo:借上候補物件番号
+								var candidateNo = row.candidateNo;
+								
+								$("#sendCandidateNo").val(candidateNo);
+								
+								var dialogMessage = '<%=MessageIdConstant.I_SKF_3005 %>';
+								var dialogTitle = '<%=MessageIdConstant.SKF2060_SC001_CONFIRM_TITLE %>';
+								var formId = "form2";
+								var url = "skf/Skf2060Sc001/delete";
+								
+								nfw.common.confirmPopup("削除します。よろしいですか？", "確認", formId, url, "ok", "キャンセル", this, true);
+							}
+							
+							//添付ファイルアイコンクリック時
+							if ($(cellcontent).hasClass('im-ui-icon-menu-24-document')) {
+								// リストテーブル情報取得
+								var grid = $("#kariageCandidateList");
+								// 行番号から選択した行の情報を取得
+								var row = grid.getRowData(rowId);
+								
+								var map = new Object();
+								
 								// companyCd:会社コード
 								var companyCd = row.companyCd;
 								// candidateNo:借上候補物件番号
@@ -259,17 +309,75 @@
 								
 								$("#sendCompanyCd").val(companyCd);
 								$("#sendCandidateNo").val(candidateNo);
+								$("#rowId").val(rowId);
 								
-								//nfw.common.submitForm("form2", "skf/Skf2060Sc001/delete");
+								map['applId'] = "R0106";
+								map['candidateNo'] = candidateNo;
 								
-								var dialogMessage = '<%=MessageIdConstant.I_SKF_3005 %>';
-								var dialogTitle = '<%=MessageIdConstant.SKF2060_SC001_CONFIRM_TITLE %>';
-								var formId = "form2";
-								var url = "skf/Skf2060Sc001/delete"
-								
-								nfw.common.confirmPopup("削除します。よろしいですか？", "確認", formId, url, "OK", "キャンセル", this, true);
+								var popupUrl = "skf/Skf2010Sc009/init";
+								nfw.common.modelessPopup(popupUrl, null, map, 750, 600);
 							}
 						}
+						});
+						//添付資料入力支援ポップアップ画面閉じたとき
+						updateAttachedFileArea = function(res) {
+							var map = new Object();
+							map['candidateNo'] = $("#sendCandidateNo").val();
+							
+							nfw.common.doAjaxAction("skf/Skf2060Sc001/AttachedAsync", map, true, function(data){
+								if(data.attachedFileLink != null){
+									var rowId = $("#rowId").val();
+									
+									// リストテーブル情報取得
+									var grid = $("#kariageCandidateList");
+									grid.setRowData(rowId, {attachedName:data.attachedFileLink});
+									
+									//添付ファイルリンククリック時
+									$("a[id^='attached_']").bind("click",function(){
+										downloadKariageBukkenFile(this);
+										
+									});
+									
+								}
+							});
+						}
+						//添付ファイルリンククリック時呼び出し先
+						downloadKariageBukkenFile = function(data) {
+							//リンクタグのidから借上候補物件番号と添付ファイル番号を取得
+							var id = $(data).attr("id");
+							var url = "skf/Skf2060Sc001/AttachedDownload";
+							var list = id.split('_');
+							var candidateNo = list[1];
+							var attachedNo = list[2];
+							
+							$("#sendCandidateNo").val(candidateNo);
+							$("#sendAttachedNo").val(attachedNo);
+							
+							skf.common.submitForm("form2", url, this);
+							
+						}
+						
+						$("#insert").click(function(){
+							var map = new Object();
+							map['shatakuName'] = $("#shatakuName").val();
+							map['address'] = $("#address").val();
+							
+							nfw.common.doAjaxAction("skf/Skf2060Sc001/CheckAsync", map, true, function(data){
+								var formId = "form";
+								var url = "skf/Skf2060Sc001/insertKariage";
+								if(data.dialogFlg){
+									var shainName = data.dialogShainName;
+									var message = "入力した借上候補物件は"+shainName+"さんに提示し完了しています。登録してもよろしいですか？";
+									
+									nfw.common.confirmPopup(message, "確認", formId, url, "ok", "キャンセル", this, true);
+								}else{
+									nfw.common.submitForm(formId, url, this);
+								}
+									
+							});
+							
+						});
+						
 					})(jQuery);	
 					</script>
 </nfwui:Form>

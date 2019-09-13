@@ -9,10 +9,30 @@
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
-<%@ page import="jp.co.c_nexco.skf.skf2010.app.skf2010sc002.Skf2010Sc002Form" %>
+<%@ page import="jp.co.c_nexco.skf.skf2040.app.skf2040sc002.Skf2040Sc002Form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="im" uri="http://www.intra-mart.co.jp/taglib/im-tenant" %>
+<link rel="stylesheet" type="text/css" href="styles/skf/theme.css" />
+
+<%  Skf2040Sc002Form form = (Skf2040Sc002Form)request.getAttribute("form"); %>
+
+
+<!-- フッターエリア CSS-->
+<style type="text/css">
+	div.btnLeft{
+	    text-align: left;
+	    float: left;
+	}
+
+	div.btnRight{
+    	text-align: right;
+	}
+}
+</style>
+
 
 <!-- コンテンツエリア -->
-<div class="imui-form-container-wide" width="1350px" style="width: 100%; max-width: 1350px;">
+<div class="imui-form-container-wide" width="1350px" style="width: 95%; max-width: 1350px;">
 	<!-- 状況、資料ヘッダ -->
 	<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;border:none;" height="100px">
 	<nfwui:Form id="form" name="form" modelAttribute="form">
@@ -24,101 +44,174 @@
 				<td width="100px">
 					${form.applStatusText }
 				</td>
-			
-				<th width="100px">
-					<nfwui:LabelBox id="lblAttachedFile" code="<%= MessageIdConstant.SKF2010_SC006_LBL_ATTACHED_FILE %>" />
-				</th>
-				<td>
-					<div id="attachedFileAreaDiv">
-						<c:forEach var="obj" items="${form.attachedFileList }">
-							<a id="attached_${obj.attachedNo}">${obj.attachedName }</a>&nbsp;
-						</c:forEach>
-					</div>
-				</td>
-			
+				<imart:condition validity="${form.tenpViewFlg}">
+					<th width="100px">
+						<nfwui:LabelBox id="lblAttachedFile" code="<%= MessageIdConstant.SKF2040_SC002_LBL_ATTACHED_FILE %>" />
+					</th>
+					<td>
+						<div id="attachedFileAreaDiv">
+							<c:forEach var="obj" items="${form.attachedFileList }">
+								<a id="attached_${obj.attachedNo}">${obj.attachedName }</a>&nbsp;
+							</c:forEach>
+						</div>
+					</td>
+				</imart:condition>
 			</tr>
 		</table>
 	</div>
 	<!-- アコーディオンエリア -->
 	<!-- 退居届-->
+	<imart:condition validity="${form.taikyoViewFlg}">
+		<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
+			<nfwui:Accordion id="taikyoPdfViewFlg" >
+				<nfwui:AccordionItem id="taikyoItem" code="<%= MessageIdConstant.SKF2040_SC002_TAIKYO %>" defaultOpen="${form.levelOpen }">
+					<%@ include file="../skf2010/common/Skf2010TaikyoTodoke.jsp" %>
+				</nfwui:AccordionItem>
+			</nfwui:Accordion>
+		</div>
+	</imart:condition>
+	<!-- 備品表示欄-->
+	<imart:condition validity="${form.henkyakuInfoViewFlg}">	
 	<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
-		<nfwui:Accordion id="taikyoView" >
-			<nfwui:AccordionItem id="taikyoItem" code="<%= MessageIdConstant.SKF2010_SC002_TAIKYO %>" defaultOpen="${form.level3Open }">
-				<%@ include file="../skf2010/common/Skf2010TaikyoTodoke.jsp" %>
-			</nfwui:AccordionItem>
-		</nfwui:Accordion>
+		<%@ include file="skf2040common/Skf2040Sc002HenkyakuBihin.jsp" %>
 	</div>
-	<!-- 備品表示欄-->	
-		
+	</imart:condition>		
 	<!-- コメント欄 -->
 	<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;" height="100px">
 		<div class="imui-chapter-title" style="margin-bottom: 10px;">
 			<h2>コメント</h2>
 		</div>
 		<!-- 承認者から申請者へ-->
-		<imart:decision case="${form.commentDisplayLevel}" value="<%= CodeConstant.COMMENT_DISPLAY_LEVEL_2 %>">
-			<table class="imui-form-search-condition">
-				<tr　style="width: 100%; max-width: 1000px;text-align:center;">
-					<th style="width: 200px; max-width: 200px;">
-						<label>申請者へのコメント</label>
-					</th>
-					<td>
-						<imui:textArea id="commentNote" name="commentNote" style="height:50px;width:100%;" placeholder="例 添付資料が間違っています。" />
-					</td>
-				</tr>
-			</table>
-		</imart:decision>
+		<table class="imui-form-search-condition">
+			<tr　style="width: 100%; max-width: 1000px;text-align:center;">
+				<th style="width: 200px; max-width: 200px;">
+					<nfwui:LabelBox id="lblComment" code="<%= MessageIdConstant.SKF2040_SC002_COMMENT %>" />
+				</th>
+				<td>
+					<imui:textArea id="commentNote" name="commentNote" style="height:50px;width:100%;" placeholder="例 添付資料が間違っています。" />
+				</td>
+			</tr>
+		</table>
 	</div>
 	<br>
-	<nfwui:Hidden id="applNo" name="applNo" />
-	<nfwui:Hidden id="applId" name="applId" />
+    <nfwui:Hidden id="applNo" name="applNo" />
+    <nfwui:Hidden id="applId" name="applId" value="${form.applId}"/>
 	<nfwui:Hidden id="shainNo" name="shainNo" />
 	<nfwui:Hidden id="applUpdateDate" name="applUpdateDate" />
 	<nfwui:Hidden id="prePageId" name="prePageId" value="${form.prePageId}" />
-	<nfwui:Hidden id="attachedNo" name="attachedNo" />
-	<!-- フッター -->
+	<input type="hidden" id="attachedNo" name="attachedNo" value="" />
+	<input type="hidden" id="hdnBihinHenkyakuApplNo" name="hdnBihinHenkyakuApplNo" value="${hdnBihinHenkyakuApplNo}"/>
+
+<!-- フッターエリア　ボタン -->
+<div class="imui-box-layout">
 	<table width="100%">
 		<tr>
-			<td>
-				<!-- 左側 -->
-				<div class="align-L float-L">
-					<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()"  />
-					<imart:condition validity="${form.level1}">
-						<input name="doDelRow1" id="doDelRow1" type="button" value="退居（自動車の保管場所変換）届PDF出力ボタン" class="imui-medium-button" onclick="" />
-					</imart:condition>
-					<imart:condition validity="${form.commentViewFlag}" >
-						<br>
-						<nfwui:PopupButton id="commentPop" value="コメント表示" 
-							cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
-							modalMode="false" popupWidth="1350" popupHeight="550"
-							parameter="applNo:applNo"
-							screenUrl="skf/Skf2010Sc010/init" use="popup" />
-					</imart:condition>
-				</div>
-			</td>
-			<!-- 右側 -->
-			<td class="vertical-top" style="vertical-align:top">
-				<div class="align-R">
-					<!-- 提示ボタン -->
-					<imart:condition validity="${form.presenBtnViewFlg}" >
-						<nfwui:Button id="PresenBtn" name="PresenBtn"
+			<!-- 左エリア -->
+			<div class="btnLeft">
+
+			</div>
+			<!-- 右エリア -->
+ 			<div class="btnRight">
+ 				<!-- 修正依頼 -->
+				      <nfwui:ConfirmButton id="revisionBtn" name="revisionBtn" value="修正依頼"
+				       cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
+				       title="<%= MessageIdConstant.SKF2040_SC002_CONFIRM_TITLE %>"
+				       message="<%= MessageIdConstant.SKF2040_SC002_REVISION_MSG %>"
+				       url="skf/Skf2040Sc002/Revision" removePatterns="PTN_A,PTN_B,PTN_D,PTN_E"/>
+ 			</div>
+ 		</tr>
+ 		<tr>
+ 			<!-- 左エリア -->
+ 			<div class="btnLeft">
+				<!-- 前の画面へ -->
+ 				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" />
+		 		<!-- 退居届PDFダウンロード -->
+				<imart:condition validity="${form.taikyoPdfViewFlg}">
+					<input name="doDelRow1" id="doDelRow1" type="button" value="退居（自動車の保管場所変換）届PDF出力ボタン" class="imui-medium-button" onclick="" />
+				</imart:condition>
+				<!-- コメントボタン -->
+				<imart:condition validity="${form.commentViewFlg}">
+					<nfwui:PopupButton id="commentPop" value="コメント表示" 
+					cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
+					modalMode="false" popupWidth="1350" popupHeight="550"
+					parameter="applNo:applNo"
+					screenUrl="skf/Skf2010Sc010/init" use="popup" />
+				</imart:condition>
+ 			</div>
+ 			<!-- 右エリア -->
+ 			<div id="dCheck1" class="btnRight">
+ 					<!-- 資料を添付 -->
+						<nfwui:PopupButton id="shiryoBtn" name="shiryoBtn" value="資料を添付"
+						cssClass="imui-medium-button" cssStyle="width: 150px" 
+						use="popup" popupWidth="750" popupHeight="600"
+						parameter="applNo:applNo,applId:applId" modalMode="false" 
+						screenUrl="skf/Skf2010Sc009/init" formId="form" removePatterns="PTN_A,PTN_B,PTN_D,PTN_E"
+						callbackFunc="updateAttachedFileArea" />
+					<!-- 差戻しボタン -->
+						<nfwui:ConfirmButton id="remandBtn" name="remandBtn" value="差戻し"
+						cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
+						title="<%= MessageIdConstant.SKF2040_SC002_CONFIRM_TITLE %>"
+						message="<%= MessageIdConstant.SKF2040_SC002_REMAND_MSG %>"
+						removePatterns="PTN_A,PTN_B,PTN_D,PTN_E"
+						url="skf/Skf2040Sc002/Remand"/>
+					<!-- 提示ボタン --> 
+						<nfwui:Button id="PresentBtn" name="PresentBtn"
 							value="提示" cssClass="imui-medium-button" cssStyle="width: 150px" 
-							title="<%= MessageIdConstant.SKF2010_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2011 %>"
-							url="skf/Skf2010Sc002/Presentation" formId="form" removePatterns="LV1"
-							remove="${form.presenBtnViewFlg }" />
-					</imart:condition>
+							title="<%= MessageIdConstant.SKF2040_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2011 %>"
+							url="skf/Skf2040Sc002/Presentation" formId="form"  
+							removePatterns="PTN_B,PTN_E"
+							disabled="${form.btnPresentDisabeld}"/>
 					<!-- 承認ボタン -->
-					<imart:condition validity="${form.presenBtnViewFlg}" >
-						<nfwui:Button id="PresenBtn" name="PresenBtn"
-							value="提示" cssClass="imui-medium-button" cssStyle="width: 150px" 
-							title="<%= MessageIdConstant.SKF2010_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2011 %>"
-							url="skf/Skf2010Sc002/Presentation" formId="form" removePatterns="LV1"
-							remove="${form.presenBtnViewFlg }" />
-					</imart:condition>
-	
-				</div>
-			</td>
-		</tr>
-	</table>
+						<nfwui:Button id="approveBtn" name="approveBtn"
+							value="承認" cssClass="imui-medium-button" cssStyle="width: 150px" 
+							title="<%= MessageIdConstant.SKF2040_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2011 %>"
+							url="skf/Skf2040Sc002/Approval" formId="form" removePatterns="PTN_A,PTN_C,PTN_D,PTN_E"
+							disabled="${form.btnApproveDisabled}"/>
+ 			</div>
+ 		</tr>	
+ 	</table>
 	</nfwui:Form>
-</div>
+</div>	
+<script type="text/javascript">
+// 前の画面に戻る
+function back1() {
+	var url="skf/Skf2010Sc005/init"
+	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
+}
+
+$(function() {
+	$(document).ready(function(){
+		// 添付資料のリンクをクリックした時のイベント
+		$("a[id*='attached_']").click(function(){
+			attachedFileDownload(this);
+		});
+	});
+	
+	// 添付ファイルリンクからのファイルダウンロード処理
+	attachedFileDownload = function(obj) {
+		var id = $(obj).attr("id");
+		var url = "skf/Skf2040Sc002/Download";
+		var attachedNo = id.replace(/\attached_/, '');
+		
+		$("#attachedNo").val(attachedNo);
+		$("#form").attr("action", url);
+		$("#form").submit();
+	}
+	
+	// 添付資料設定時に上部表示エリアに追記する処理
+	updateAttachedFileArea = function () {
+		var map = new Object();
+		map['applNo'] = $("#applNo").val();
+		nfw.common.doAjaxAction("skf/Skf2040Sc002/AttachedFileAreaAsync", map, true, function(res){
+			$("#attachedFileAreaDiv").html(res.attachedFileArea);
+			
+			// 追記したリンクにはファイルダウンロード機能が無いため追加
+			$("a[id*='attached_']").bind("click", function(){
+				attachedFileDownload(this);
+			});
+		});
+	}
+
+});
+</script>
+

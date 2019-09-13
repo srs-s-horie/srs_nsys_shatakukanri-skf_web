@@ -333,10 +333,10 @@ function back1() {
 			</div>
 			<div class="align-R">
 				<imui:button id="regist" name="regist" value="登録" class="imui-medium-button" style="width: 150px" onclick="registOnClick()" tabindex="17" />
-				<imui:button id="regist" name="regist" value="削除" class="imui-medium-button" style="width: 150px" onclick="deleteOnClick()" tabindex="18" />
-			</nfwui:Form>
-			</div>
+				<imui:button id="delete" name="delete" value="削除" class="imui-medium-button" style="width: 150px" onclick="deleteOnClick()" disabled="${form.deleteBtnFlg}" tabindex="18" />
 			
+			</div>
+			</nfwui:Form>
 		</div>
 		<script>
 			$(function() {

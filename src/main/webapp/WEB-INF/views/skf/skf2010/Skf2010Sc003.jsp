@@ -47,14 +47,14 @@ function back() {
 </script>
 
 <!-- コンテンツエリア -->
-<div class="imui-form-container-wide" width="1350px" style="width: 100%; max-width: 1350px;">
+<div style="width: 100%; margin: auto;">
 <table align="center">
     <tr>
         <td>
-            <div>
-                <table class="imui-form-search-condition" width="1350px">
+            <div class="imui-form-container-wide" style="margin-top: 0px;"> 
+<jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
+                <table class="imui-form-search-condition">
                     <td class="imui-form-container-wide" style="width: 45%; border: none;background-color: #fdfdff;" >
-                     <div class="imui-form-container-wide" style="height:440px;width: 650px;">
                        <nfwui:Title id="lblSearchTitle" code="<%= MessageIdConstant.SKF2010_SC003_SEARCH_TITLE %>" titleLevel="2" />
                             <nfwui:Form id="form" name="form" modelAttribute="form">
                             <input type="hidden" name="backUrl" value="skf/Skf2010Sc003/init" />
@@ -195,22 +195,18 @@ function back() {
                              cssClass="imui-medium-button" formId="form"
                              url="skf/Skf2010Sc003/Search" />
                          </div>
-                         </div>
                          
                          
 
-            <td style="width: 45%; border: none;;background-color: #fdfdff;">
-                <div class="imui-form-container-wide" width="100%" style="width: 600px;height:440px;">
-                <div style="max-height:440px;height:500px">
+            <td style="width: 45%; border: none;background-color: #fdfdff;">
+                <div style="margin-left: 20px; max-height:440px;">
                     <nfwui:Title code="<%= MessageIdConstant.SKF2010_SC003_CONTROL_GUIDE %>" titleLevel="2" />
+                    <div style="overflow-y:scroll; max-height:300px; height:300px; background-color:#eeeeee;">
 ${form.operationGuide}
+					</div>
                 </div>  
-
             </td>
-</table>
-</div>
-
-</div>
+	</table>
 
 <script type="text/javascript">
 </script>
@@ -218,18 +214,19 @@ ${form.operationGuide}
 </div>
 
 <!-- テーブル一覧箇所 -->
-<div class="imui-form-container" width="1300px" style="width: 100%; max-width: 1300px;">
+<div style="width: 100%;">
+<div class="imui-form-container-wide"> 
 <!-- 明細＆細目未満 -->
   <!-- 明細部 -->
   <nfwui:Form id="listTableForm" name="listTableForm" modelAttribute="form">
         
-    <div width="1300px" style="width:1300px; max-width:1300px;"><nfwui:Title id="resultListTitle" code="<%= MessageIdConstant.SKF2010_SC003_GRV_APPL_LIST %>" titleLevel="2" /></div>
+    <div style="width:100%;"><nfwui:Title id="resultListTitle" code="<%= MessageIdConstant.SKF2010_SC003_GRV_APPL_LIST %>" titleLevel="2" /></div>
 
 <imui:listTable data="${form.ltResultList}"
 id="ltResultListTable" name="ltResultListTable"
 autoResize="true" autoWidth="true"
 rowNumbers="true" onCellSelect="onCellSelect"
-width="1300" height="232">
+height="232">
 <cols>
   <col name="detail" caption="表示" width="90" align="center">
      <showIcon iconClass="im-ui-icon-common-16-update" />
@@ -237,7 +234,7 @@ width="1300" height="232">
   <col name="applId" hidden="true" />
   <col name="applStatus" hidden="true" />
   <col name="applDate" caption="申請日" width="100" align="center" />
-  <col name="applStatusText" caption="申請状況" width="60" align="center" onCellAttr="onCellAttr" />
+  <col name="applStatusText" caption="申請状況" width="80" align="center" onCellAttr="onCellAttr" />
   <col name="applNo" caption="申請書番号" width="200" align="center" />
   <col name="applName" caption="申請書類名" width="440" align="left" />
   <col name="agreDate" caption="承認日／修正依頼日" width="140" align="center" />
@@ -296,13 +293,27 @@ width="1300" height="232">
     	
 	    	if ($(cellContent).hasClass('im-ui-icon-common-16-update')) {
 	    		// 表示
-	    		switch (applId) {
-	    		case "R0104":
-	    			url = "skf/Skf2030Sc001/init";
-	    			break;
-	    		default:
+	    		if ((applId == "R0100" || applId == "R0103") 
+	    				&& !((applStatus == "<%= CodeConstant.STATUS_ICHIJIHOZON %>" || applStatus == "<%= CodeConstant.STATUS_SASHIMODOSHI %>"))) {
 	    			url = "skf/Skf2010Sc004/init";
-	    			break;
+	    		} else {
+		    		switch (applId) {
+		    		case "R0100":
+		    			url = "skf/Skf2020Sc002/init";
+		    			break;
+		    		case "R0103":
+		    			url = "skf/Skf2040Sc001/init";
+		    			break;
+		    		case "R0104":
+		    			url = "skf/Skf2030Sc001/init";
+		    			break;
+		    		case "R0106":
+		    			url = "skf/Skf2060Sc002/init";
+		    			break;
+		    		default:
+		    			url = "skf/Skf2010Sc004/init";
+		    			break;
+		    		}
 	    		}
 	    	} else if ($(cellContent).hasClass('im-ui-icon-common-16-ng')) {
 	    		// 取下げ
