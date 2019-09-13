@@ -129,26 +129,26 @@
 
     <!-- コンテンツエリア -->
     
-<div class="imui-form-container-wide" width="1350px" style="width: 100%; max-width: 1350px;">
+<div class="imui-form-container-wide" style="width: 95%;">
 <!-- 代行ログイン時のみ表示されるメッセージ -->
 <jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
 
-<table class="imui-form-search-condition" width="1100px">
+<nfwui:Form id="form" name="form" modelAttribute="form">
+<table class="imui-form-search-condition" style="width: 100%; ">
             <td style="width: 50%; border: none;;background-color: #fdfdff;">
             
-                <div class="imui-form-container-wide"style="width: 650px; max-width: 650px;">
+<imart:condition validity="${form.level1}" negative >
+                <div class="imui-form-container-wide"style="width: 93%;">
                 
      <!-- 申請者 -->
-        <div class='imui-chapter-title' style='margin-bottom: 10px;'>
-            <h2>申請</h2>
-        </div>
+            <nfwui:Title id="applicationTitle" code="<%= MessageIdConstant.SKF1010_SC001_APPLICATION_TITLE %>" titleLevel="2" />
         <table class="imui-form-search-condition">
 
                     <tr>
-                        <th width="20%">
+                        <th>
                             <a href="http://localhost:8080/imart/skf/Skf2010Sc007/init?confirmationKbn=1" class="imui-accent" style="margin-left: 8px">社宅入居希望等調書</a>
                         </th>
-                        <td width="30%">
+                        <td style="width: 60%;">
                             <font>社宅・寮に入居したい場合に作成する申請書類です。(※併せて退居が発生する場合、退居届も自動で作成されます。)</font>
                         </td>
                     </tr> 
@@ -165,45 +165,47 @@
                     -->
                     
                     <tr>
-                        <th width="20%">
+                        <th>
                             <a href="http://localhost:8080/imart/skf/Skf3090Sc004/init?menuFlg=1" class="imui-accent" style="margin-left: 8px">社宅（自動車保管場所）退居届</a>
                         </th>
-                        <td width="30%">
+                        <td style="width: 60%;">
                             <font>社宅・寮を退居する場合及び駐車場を返還する場合に作成する申請書類です。</font>
                         </td>
                      </tr> 
                      <tr>
-                      <th width="20%">
+                      <th>
                             <a href="../S0008/S0008_ShinseiJokyoIchiran_IppanUserVer.html" class="imui-accent" style="margin-left: 8px">社宅申請状況一覧</a>
                         </th>
-                        <td width="30%">
+                        <td style="width: 60%;">
                             <font>申請書類を確認します。<br>　　　</font>
                        </td>
 
                      </tr>
                      
         </table>
+</imart:condition>
 </div>
 
 <div name="daikoHide">
-<div class="imui-form-container-wide" style="width: 650px; max-width: 650px;">
+<imart:condition validity="${form.level2}" negative>
+<div class="imui-form-container-wide" style="width: 93%;">
        <!-- 社宅窓口 -->
-        <div class='imui-chapter-title' style='margin-bottom: 0px;'>
-            <h2>窓口</h2>
-        </div>  
+            <nfwui:Title id="windowTitle" code="<%= MessageIdConstant.SKF1010_SC001_WINDOW_TITLE %>" titleLevel="2" />
           
         <table class="imui-form-search-condition">
 
                     <ul class='imui-list-link-side'>
                      <tr>
-                     <th width="20%">
+                     
+                      <imart:condition validity="${form.level2_1}" negative> 
+                     <th>
                           <a href="../S0010/S0010_ShatakuSearchPage_UnderButton.html" class="imui-accent" style="margin-left: 8px">申請書類を承認する</a>
                       </th>
-                      <td width="30%">
+                      <td style="width: 60%;">
                           <font>申請者への提示、および申請書類の承認を行います。<br>　　　</font>
                       </td>
+                      </imart:condition>
                     </tr>
-                    
                     <!--
                     <tr>
                       <th width="20%">
@@ -222,72 +224,76 @@
                     </tr>
 
                     <tr>
-                        <th width="20%">
+                        <imart:condition validity="${form.level2_2}" negative> 
+                        <th>
                             <a href="../S1001/S1001_ShatakuSearchPage.html" class="imui-accent" style="margin-left: 8px">社宅を管理する</a>
                         </th>
-                        <td width="30%">
+                        <td style="width: 60%;">
                             <font>社宅の登録を行います。<br>　　</font>
                         </td>
                     </tr>
                     <tr>
-                        <th width="20%">
+                        <th>
                             <a href="../S2003/S2003_TenninshaSearchPage.html" class="imui-accent" style="margin-left: 8px">転任者情報を管理する</a>
                         </th>
-                        <td width="30%">
+                        <td style="width: 60%;">
                             <font >転任者情報の登録、一覧を表示します。<br>また、転任者調書(Excel)の取込を行います。</font>
                         </td>
                     </tr>
 
                     <tr>
-                        <th width="20%">
+                        <th>
                             <a href="../S2005/S2005_NyutaikyoYoteiSearchPage.html" class="imui-accent" style="margin-left: 8px">入退居情報を管理する</a>
                         </th>
-                        <td width="30%">
+                        <td style="width: 60%;">
                             <font >入退居予定の一覧を表示します。<br>　　　</font>
                         </td>
                     </tr>
                     <tr>
-                        <th width="20%">
+                        <th>
                             <a href="../S2006/S2006_TeijiDataSearchPage.html" class="imui-accent" style="margin-left: 8px">提示データを作成する</a>
                      </th>
-                        <td width="30%">
+                        <td style="width: 60%;">
                             <font >提示データの作成を行います。<br>　　　</font>
                         </td>
                     </tr>
                     <tr>
-                        <th width="20%">
+                        <th>
                             <a href="../S0025/S0025_KariageKouhoBukkenJokyoIchiran.html" class="imui-accent" style="margin-left: 8px">借上候補物件を提示する</a>
                         </th>
-                        <td width="30%">
+                        <td style="width: 60%;">
                             <font >借上候補物件の提示情報の完了、および申請者への提示を行います。</font><br/><br/>
                         </td>
                     </tr>
                     <tr>
-                        <th width="20%">
+                        <th>
                             <a href="../S3001/S3001_ShatakuKanriDaichoSearchPage.html" class="imui-accent" style="margin-left: 8px">社宅管理台帳を確認する</a>
                         
                         </th>
-                        <td width="30%">
+                        <td style="width: 60%;">
                             <font >社宅管理台帳の確認を行います。<br>　　　　</font>
                         </td>
                      </tr> 
 
                      <tr>
-                        <th width="20%">
+                        <th>
                             <a href="../S5001/S5001_SyainBangouIkkatsuSettei.html" class="imui-accent" style="margin-left: 8px">社員情報を一括更新する</a>
                         </th>
-                        <td width="30%">
+                        <td style="width: 60%;">
                             <font >社員番号の一括設定を行います。<br>　　　</font>
                         </td>
+                         </imart:condition>
                     </tr>                
 
                     <tr>  
-                        <th width="20%">
+                    <imart:condition validity="${form.level2_3}" negative>
+                        <th>
                             <a href="../S5002/S5002_GetsujiUnyouKanri.html" class="imui-accent" style="margin-left: 8px">月締め処理を行う</a>
                         </th>
-                        <td width="30%">
+                        <td style="width: 60%;">
                             <font >月次の運用管理を行います。<br>　　　</font>
                         </td>
+                        </imart:condition>
                     </tr>  
 
                     <!-- スペース-->
@@ -297,26 +303,27 @@
                     </tr>
 
                     <tr>
-                        <th width="20%">
+                    <imart:condition validity="${form.level2_4}" negative>
+                        <th>
                             <a href="../S4001/S4001_RentalBihinShijishoPage.html" class="imui-accent" style="margin-left: 8px">レンタル備品指示書を作成する</a>
                         
                         </th>
-                        <td width="30%">
+                        <td style="width: 60%;">
                             <font >レンタル備品指示書を出力します。<br>　　</font>
                         </td>
                     </tr>
                     
                     <!---->
                     <tr>
-                        <th width="20%">
+                        <th>
                             <a href="../S4002/S4002_BihinHannyuHanshutsuCheckListPage.html" class="imui-accent" style="margin-left: 8px">備品搬入・搬出確認リストを作成する</a>
                         
                         </th>
-                        <td width="30%">
+                        <td style="width: 60%;">
                             <font >備品搬入・搬出確認リストを出力します。<br>　　</font>
                         </td>
                     </tr>
-
+					</imart:condition>
                     <!-- スペース-->
                     <tr style="border:none">
                        <td style="border:none">
@@ -324,21 +331,24 @@
                     </tr>
 
                     <tr>
-                        <th width="20%">
+                    <imart:condition validity="${form.level2_5}" negative>
+                        <th>
                             <a href="../所有者情報一覧・詳細/S0000_ShoyushaJouhouIchiran.html" class="imui-accent" style="margin-left: 8px">法定調書データを管理する</a>
                         </th>
-                        <td width="30%">
+                        <td style="width: 60%;">
                             <font >法定調書を作成するに当たり、必要な情報の管理、出力を行います。</font><br/><br/>
                         </td>
+                    </imart:condition>
                     </tr>
-                    
                     <tr>
-                        <th width="20%">
+                    <imart:condition validity="${form.level2_6}" negative>
+                        <th>
                             <a href="../S6001/S6001_AgeKasanSearchPage.html" class="imui-accent" style="margin-left: 8px">年齢による使用料の変更通知</a>                        
                         </th>
-                        <td width="30%">
+                        <td style="width: 60%;">
                             <font >年齢による社宅の使用料の変更通知の設定を行います。<br>　　　</font>
                         </td>
+                    </imart:condition>
                     </tr>
 
                     </ul>
@@ -347,48 +357,48 @@
         
         </div>
         </div>
-        <div class="imui-form-container-wide" style="width: 650px; max-width: 650px;">
+</imart:condition>        
+<imart:condition validity="${form.level3}" negative>      
+        <div class="imui-form-container-wide" style="width: 93%;">
 
        <!-- 管理者 --><!-- 次の内容はIM共通機能利用で、不要になるかも　操作ログメンテナンス、代行ログイン、お知らせ管理画面、メニューメンテナンス、機能権限マスタメンテナンス-->
-        <div class='imui-chapter-title' style='margin-bottom: 0px;'>
-            <h2>管理者</h2>
-        </div>
+            <nfwui:Title id="administratorTitle" code="<%= MessageIdConstant.SKF1010_SC001_ADMINISTRATOR_TITLE %>" titleLevel="2" />
         <table class="imui-form-search-condition">
          <ul class='imui-list-link-side'>
     
                     <tr>
 
-                        <th width="20%">
+                        <th>
                             <a href="http://localhost:8080/imart/skf/Skf2010Sc008/init" class="imui-accent" style="margin-left: 8px">代行ログイン</a>
                         </th>
-                        <td width="30%">
+                        <td style="width: 60%;">
                             <font >代行ログインを行います。<br>　　　</font>
                         </td>
                     </tr>
                     
                     <tr name="daikoHide">
-                        <th width="20%">
+                        <th>
                             <a href="../S9110/S9110_OshiraseMasterMaintenance.html" class="imui-accent" style="margin-left: 8px">お知らせマスタメンテナンス</a>
                         </th>
-                        <td width="30%">
+                        <td style="width: 60%;">
                             <font >システムに関するお知らせ欄の管理を行います。<br>　　　</font>
                         </td>
                     </tr>
 
                     <tr name="daikoHide">
-                      <th width="20%">
+                      <th>
                           <a href="../S9004/S9004_UserMasterIchiran.html" class="imui-accent" style="margin-left: 8px">従業員マスタメンテナンス</a>
                       </th>
-                      <td width="30%">
+                      <td style="width: 60%;">
                           <font >社宅利用者の従業員マスタを管理します。<br>　　　</font>
                       </td>
                     </tr>
                     
                     <tr name="daikoHide">
-                      <th width="20%">
-                          <a href="../S9006/S9006_SohikiMasterIchiran.html" class="imui-accent" style="margin-left: 8px">組織マスタメンテナンス</a>
+                      <th>
+                          <a href="http://localhost:8080/imart/skf/Skf3090Sc006/init" class="imui-accent" style="margin-left: 8px">組織マスタメンテナンス</a>
                       </th>
-                      <td width="30%">
+                      <td style="width: 60%;">
                           <font >社宅申請システム利用者の組織を管理します。<br>　　　</font>
                       </td>
                     </tr>
@@ -404,29 +414,29 @@
                     -->
                     
                     <tr name="daikoHide">
-                      <th width="20%">
+                      <th>
                             <a href="../S9001/S9001_GenbutsuShikyukagakuMasterIchiran.html" class="imui-accent" style="margin-left: 8px">現物支給価額マスタメンテナンス</a>
                         </th>
-                        <td width="30%">
+                        <td style="width: 60%;">
                             <font >現物支給価額の管理を行います。<br>　　　</font>
                       </td>
                     </tr>
                     
                     <tr name="daikoHide">
-                        <th width="20%">
+                        <th>
                             <a href="../S9003/S9003_JigyoRyouikiMasrerTouroku_before.html" class="imui-accent" style="margin-left: 8px">事業領域マスタメンテナンス</a>                        
                         </th>
-                        <td width="30%">
+                        <td style="width: 60%;">
                             <font >事業領域の管理を行います。<br>　　　</font>
                         </td>
                     </tr>
          </ul>
         </table>
         </div>
-<div class="imui-form-container-wide" style="width: 650px; max-width: 650px;">
-        <div class='imui-chapter-title' style='margin-bottom: 0px;'>
-            <h2>操作方法に困ったときは</h2>
-        </div>
+</imart:condition>  
+<imart:condition validity="${form.level4}" negative>      
+<div class="imui-form-container-wide" style="width: 93%;">
+            <nfwui:Title id="difficultOperationTitle" code="<%= MessageIdConstant.SKF1010_SC001_DIFFICULT_OPERATION_TITLE %>" titleLevel="2" />
         <table class="imui-table">
             <tr>
 
@@ -436,37 +446,40 @@
                             <a href="../S0000/S0010_ShinseiJokenKakunin.html" class="imui-accent" style="margin-left: 8px">マニュアル(一般)</a>
                         </th>
                     </tr>
-                    
                     <tr>
-
+                    <imart:condition validity="${form.level4_1}" negative> 
                         <th>
                             <a href="../S0000/S0010_SyatakuNyukyoKibouChoushoPage_UnderButton.html" class="imui-accent" style="margin-left: 8px">マニュアル(管理)</a>
                         </td>
-
+					 </imart:condition>
                      <tr> 
                     </ul>
             </tr>
         </table>
+</imart:condition>
     </div>
 
     </div>
                 </div>  
             </td>
 
-            <td style="width: 50%; border: none;;background-color: #fdfdff;">
-
-
+            <td style="width: 49%; border: none;;background-color: #fdfdff;">
+<imart:condition validity="${form.level5}" negative> 
             <!-- 未処理情報 -->
             <div name="daikoHide">
-                <div class="imui-form-container-wide" width="100%" style="width: 100%; max-width: 600px;">
+                <div class="imui-form-container-wide" style="width: 94%;">
                     <table>
-                        <div class="imui-chapter-title" style="margin-bottom: 10px;"><h2>未処理情報</h2></div>
+                    <nfwui:Title id="rawInformation" code="<%= MessageIdConstant.SKF1010_SC001_RAW_INFORMATION_TITLE %>" titleLevel="2" />
                                 <tr>
                                                                         <table class="imui-form-search-condition" style="width:100%;">
                                             <tbody>
                                                 <tr>
-                                                    <th style="width:520px;"><label>メッセージ</label></th>
-                                                    <th style="width:80px;text-align:center"><label>件数</label></th>
+                                                    <th style="width:520px;">
+                                                    <nfwui:LabelBox id="lblMessage1" code="<%= MessageIdConstant.SKF1010_SC001_MESSAGE %>" />
+                                                    </th>
+                                                    <th style="width:80px;text-align:center">
+                                                    <nfwui:LabelBox id="lblNumber" code="<%= MessageIdConstant.SKF1010_SC001_NUMBER %>" />
+                                                    </th>
 
                                                 </tr>
                                                 <tr>
@@ -494,12 +507,24 @@
                                         <table class="imui-form-search-condition" style="width:100%;">
                                             <tbody>
                                                 <tr>
-                                                    <th style="width:520px;"><label>メッセージ</label></th>
-                                                    <th style="width:40px;text-align:center"><label>本社</label></th>
-                                                    <th style="width:40px;text-align:center"><label>東京</label></th>
-                                                    <th style="width:40px;text-align:center"><label>八王子</label></th>
-                                                    <th style="width:40px;text-align:center"><label>名古屋</label></th>
-                                                    <th style="width:40px;text-align:center"><label>金沢</label></th>
+                                                    <th style="width:520px;">
+                                                    <nfwui:LabelBox id="lblMessage2" code="<%= MessageIdConstant.SKF1010_SC001_MESSAGE %>" />
+                                                    </th>
+                                                    <th style="width:40px;text-align:center">
+                                                    <nfwui:LabelBox id="lblHonsya" code="<%= MessageIdConstant.SKF1010_SC001_HONSYA %>" />
+                                                    </th>
+                                                    <th style="width:40px;text-align:center">
+                                                    <nfwui:LabelBox id="lblTokyo" code="<%= MessageIdConstant.SKF1010_SC001_TOKYO %>" />
+                                                    </th>
+                                                    <th style="width:40px;text-align:center">
+                                                    <nfwui:LabelBox id="lblHatiouzi" code="<%= MessageIdConstant.SKF1010_SC001_HATIOUZI %>" />
+                                                    </th>
+                                                    <th style="width:40px;text-align:center">
+                                                    <nfwui:LabelBox id="lblNagoya" code="<%= MessageIdConstant.SKF1010_SC001_NAGOYA %>" />
+                                                    </th>
+                                                    <th style="width:40px;text-align:center">
+                                                    <nfwui:LabelBox id="lblKanazawa" code="<%= MessageIdConstant.SKF1010_SC001_KANAZAWA %>" />
+                                                    </th>
                                                 </tr>
 
                                                 <tr>
@@ -913,13 +938,12 @@
                                         </table>
                 </div>  
              </div>
+</imart:condition>              
             <!-- 個人に関するお知らせ -->
             <div name="daikoHide">
-                <div class="imui-form-container-wide" width="100%" style="width: 100%; max-width:600px;">
+                <div class="imui-form-container-wide" style="width: 94%;">
                     <table >
-                        <div class="imui-chapter-title" style="margin-bottom: 10px;">
-                            <h2>〇〇△△△さんに関するお知らせ</h2>
-                        </div>
+                            <nfwui:Title id="personalInformationTitle" code="<%= MessageIdConstant.SKF1010_SC001_PERSONAL_INFORMATION_TITLE %>" titleLevel="2"  />　
                         <div style="overflow-y:scroll;height:280px;max-height: 280px;">
                             2018/11/01「社宅入居希望等調書」&nbsp;の案内が通知されましたので内容を確認して下さい。<br>
                             2018/11/01名古屋支社&nbsp;建設事業部&nbsp;中日本3906(00903906)さんが「社宅入居希望等調書」に同意しました。内容を確認後承認してください。<br>
@@ -939,45 +963,19 @@
                     </table>
                 </div> 
              </div> 
-
+</nfwui:Form>  
               <!-- システムに関するお知らせ -->
               <div name="daikoHide">
-                <div class="imui-form-container-wide" width="100%" style="width: 100%; max-width: 600px;">
-                    <table >
-                        <div class="imui-chapter-title" style="margin-bottom: 10px;">
-                            <h2>システムに関するお知らせ</h2>
-                        </div>
+                <div class="imui-form-container-wide" style="width: 94%;">
+                    <table style="width: 100%;">
+                            <nfwui:Title id="sysytemAnnouncementsTitle" code="<%= MessageIdConstant.SKF1010_SC001_SYSTEM_ANNOUNCEMENTS_TITLE %>" titleLevel="2" />
                         <div style="overflow-y:scroll;height:280px;max-height: 280px;">
-                                【お問い合わせ先】
-                                <br>
-                                ・システムに関するご質問は、本社ヘルプデスク(℡052-222-3592、内線84-5662、5664)
-                                <br><br>
-                                ≪社宅関係≫℡052-222-9951
-                                <br>　　本社、名古屋、金沢支社：94-6107、東京、八王子支社:94-6109
-                                <br><br>
-                                ・赴任旅費に関するご質問は、各所属の総務担当
-                                <br><br>
-                                ・その他、ご意見などは、本社人事チーム℡052-222-3708、内線84-5564
-                                <br><br>
-                                【システムメンテナンス時間】
-                                <br><br>
-                                <ul><li>
-                                <font color="red">
-                                毎週水曜日、18:00～18:30の間において定期マスタメンテナンスのためシステムがご利用いただけません。
-                                あらかじめご了承ください。
-                                </font>
-                                </li></ul>
+                            ${form.note}
                         </div>
                       </table>
                 </div>
              </div>
 
-                                    </td>
-                                </tr>
-                      </table>
-
-            </td>
-            
 </table>
     </div>
     
