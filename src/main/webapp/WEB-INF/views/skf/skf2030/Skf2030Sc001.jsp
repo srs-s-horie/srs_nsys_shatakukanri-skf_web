@@ -90,14 +90,13 @@
 		$("input[name^='bihinAppl']:radio").change(function(){
 			checkBihinChecked();
 		});
-
-
+		
 	});
 
 </script>
 
     <!-- コンテンツエリア -->
-<div style="width: 95%;margin: 0px 20px;">
+<div class="imui-form-container-wide">
 <div style="margin: 0px;">
 <jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
 </div>
@@ -108,7 +107,7 @@
 <nfwui:Hidden id="hdnShainNo" name="hdnShainNo" />
 <input type="hidden" id="bihinCheckFlag" name="bihinCheckFlag" value="false" />
 <!-- コンテンツエリア -->
-<div style="max-width: 300px;margin: 0px;">
+<div style="max-width: 300px;">
 	<table class="imui-form-search-condition">
 		<tr>
 		<th style="width: 10%;"><nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2030_SC001_APPL_STATUS %>" /></th>
@@ -116,13 +115,12 @@
 	</tr>
 	</table>
 </div>
-<div class="imui-form-container-wide" style="margin-top: 0px; margin-bottom: 10px;"> 
 <table class="imui-form-search-condition">
 <tbody>
 <tr>
 <td style="width: 70%; border: none;background-color: #fdfdff;">
 <!-- 左側の入力域の部分 -->
-<div style="width: 95%; margin: 0px 20px;">
+<div class="imui-form-container-wide" style="margin-top: 0px; margin-bottom: 10px;">
 <nfwui:Title id="ttlBihinKibo" code="<%= MessageIdConstant.SKF2030_SC001_BIHIN_KIBO_NAIYO %>" titleLevel="2" />
 <imart:condition validity="<%= String.valueOf(form.isBihinReadOnly()) %>">
 <%@ include file="skf2030common/Skf2030Sc001HannyuMachi.jsp" %>
@@ -131,15 +129,16 @@
 <%@ include file="skf2030common/Skf2030Sc001Hozon.jsp" %>
 </imart:condition>
 
+                        </div>
                     </td>
                     
                     <td style="width: 30%; border: none; background-color: #fdfdff;">
                       <table >
                         <!-- 右側の操作ガイドの部分 -->
-                        <div style="margin: 0px 20px;" >
+                        <div class="imui-form-container-wide" style="margin-top: 0px;" >
                             <nfwui:Title id="titOperationGuide" code="<%= MessageIdConstant.SKF2030_SC001_GUIDE %>" titleLevel="2" />
                         <div>
-                        <div style="overflow-y:scroll;height:99%; background-color:#eeeeee;">
+                        <div style="overflow-y:scroll;height:99%;">
                             ${form.operationGuide }
                         </div>
                       </table>
@@ -147,7 +146,6 @@
                 </tr>
             </tbody>
         </table>
-
 <imart:condition validity="<%= String.valueOf(form.isBihinReadOnly()) %>">
 <div class="align-L float-L">
       <imui:button class="imui-medium-button check" id="backBtn" name="backBtn" value="前の画面へ" style="width:150px;" tabindex="13" onclick="back1()" />
@@ -210,7 +208,7 @@
 
 
 </nfwui:Form>
-        </div>
+
     </div>
 
   
