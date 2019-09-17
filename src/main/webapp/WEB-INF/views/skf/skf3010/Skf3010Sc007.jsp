@@ -22,7 +22,6 @@ function back1() {
 	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
 }
 </script>
-<!-- コンテンツエリア:モックのまま -->
 		<!-- コンテンツエリア -->
 		<div class="imui-form-container-wide">
 			<nfwui:Form id="form" name="form" modelAttribute="form">
@@ -62,7 +61,7 @@ function back1() {
 		<br>
 			<!-- 明細＆細目未満 -->
 				<!-- 明細部 -->
-				<nfwui:Form id="form2" name="form2" action="/skf/Skf3010Sc007/selectList" modelAttribute="form">
+			<nfwui:Form id="form2" name="form2" action="/skf/Skf3010Sc007/selectList" modelAttribute="form">
 				<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC007 %>" />
 					<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="${form.hdnShatakuKanriNo}" />
 					<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="${form.hdnShatakuName}" />
@@ -90,7 +89,7 @@ function back1() {
 					<input type="hidden" name="parkingKanriNo" id="sendParkingKanriNo" value="${form.parkingKanriNo}" />
 					<input type="hidden" name="selectMode" id="selectMode" value="${form.selectMode}" />
 					<input type="hidden" name="hdnDelInfoFlg" id="hdnDelInfoFlg" value="${form.hdnDelInfoFlg}" />
-					<input type="hidden" name="ownerNo" id="ownerNo" value="${form.ownerNo}" />
+					<input type="hidden" name="ownerNo" id="sendOwnerNo" value="${form.ownerNo}" />
 
 					
 					<script type="text/javascript">
@@ -142,7 +141,7 @@ function back1() {
 									$("#form2").attr("action", url);
 									$("#form2").submit();
 								}else{
-									checkInput('mainList');		
+									checkInput('mainList');	
 								}
 								
 							}
@@ -205,9 +204,9 @@ function back1() {
                		cssClass="imui-small-button" popupWidth="650" popupHeight="550" 
                		modalMode="false" screenUrl="skf/Skf2010Sc001/init" 
                		parameter="parkinglendKbn:nyukyoFlag" disabled="${form.contractInfoDisabled}" 
-               		callbackFunc="updateOwnerName" tabindex="6"/>
+               		callbackFunc="shainInfoCallback" tabindex="6"/>
                </td>
-               </tr>           
+               </tr>
 
              <tr>
                <th rowspan="2">
@@ -287,11 +286,11 @@ function back1() {
                		<nfwui:LabelBox id="lblLandRent" code="<%=MessageIdConstant.SKF3010_SC007_LAND_RENT %>" />
                </th>
                     <td colspan="3">
-                        <imui:textbox name="landRent" id="txtLandRent" value="${f:h(form.landRent)}" class="${form.landRentError}" disabled="${form.contractInfoDisabled}" style="text-align: right;ime-mode: disabled;width:100px" placeholder="例　半角数字" maxlength="6" tabindex="15"/>
-<%--                         <nfwui:NumberBox name="landRent" id="txtLandRent" value="${f:h(form.landRent)}" cssClass="${form.landRentError}" disabled="${form.contractInfoDisabled}" cssStyle="text-align: right;ime-mode: disabled;width:100px" maxlength="7" tabindex="15"/> --%>
+                         <imui:textbox name="landRent" id="landRent" value="${f:h(form.landRent)}" class="${form.landRentError}" disabled="${form.contractInfoDisabled}" style="text-align: right;ime-mode: disabled;width:100px" placeholder="例　半角数字" maxlength="6" tabindex="15"/> 
+<%--                          <nfwui:NumberBox name="landRentnumber" id="landRentnumber" value="${form.landRentnumber}" cssClass="${form.landRentError}" disabled="${form.contractInfoDisabled}" cssStyle="width:100px;" inputFormat="n0" maxlength="7" tabindex="15"/>  --%>
                         &nbsp;円
                     </td>
-               </tr>           
+               </tr>
                <tr>
 
                <th colspan="2">
@@ -353,7 +352,7 @@ function back1() {
 							map['parkinglendKbn'] = $("#parkinglendKbn").val();
 							map['contractStartDate'] = $("#contractStartDate").val();
 							map['contractEndDate'] = $("#contractEndDate").val();
-							map['landRent'] = $("#txtLandRent").val();
+							map['landRent'] = $("#landRent").val();
 							map['biko'] = $("#biko").val();
 							
 							map['hdnDelInfoFlg'] = $("#hdnDelInfoFlg").val();
@@ -375,7 +374,6 @@ function back1() {
 									url = "skf/Skf3010Sc007/selectList";
 									$("#form2").attr("action", url);
 									$("#form2").submit();
-									//nfw.common.submitForm("form2",url,"checkBtn");
 								}
 								
 								
@@ -459,6 +457,13 @@ function back1() {
 				            }
 				    		
 				    	}
+				    	shainInfoCallback = function(param) {
+				            if( param != null && typeof param == 'object' && param.name != null && param.shainNo != null){
+				                $("#txtOwnerName").val(param.name);
+				                $("#sendOwnerNo").val(param.shainNo);
+				            }
+				    		
+				    	}
 				    	
 				    	backOnClick = function () {
 					    	//確認メッセージ
@@ -471,7 +476,7 @@ function back1() {
 				    	$(window).bind('resize', function(){
 				    		$('#mainList').setGridWidth($('#listTableArea').width(), true);	
 				    	}).trigger('resize');
-				    				
+				    
 				    });
 					
 					$("#contractPropertyId").bind('change', function() {
@@ -493,11 +498,6 @@ function back1() {
 					
 					});
 					
-					//txtOwnerName
-					$("#txtOwnerName").bind('click', function() {
-						
-						
-					});
 				})(jQuery);
 				</script>
 		</nfwui:Form>
