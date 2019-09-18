@@ -15,6 +15,13 @@
 
 
 <%-- コンテンツエリア --%>
+<script type="text/javascript">
+function back1() {
+	var url="skf/Skf2010Sc005/Search"
+	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
+}
+</script>
+
 <style type="text/css">
 
 </style>
@@ -32,6 +39,7 @@
     </table>
     </div>
     <nfwui:Form id="form" name="form" modelAttribute="form" encType="multipart/form-data">
+      <nfwui:Hidden id="applNo" name="applNo" />
         <table class="imui-form-search-condition">
             <tbody>
                 <tr>
@@ -182,7 +190,7 @@
                                 <tr>
                                     <th colspan="4"><nfwui:LabelBox id="lblComment" code="<%= MessageIdConstant.SKF2030_SC002_COMMENT %>" /></th>
                                     <td colspan="3" >
-                                        <textarea rows="4" style="width: 98%" placeholder="例  申請者へのコメント"></textarea>
+                						<imui:textArea id="commentNote" name="commentNote" style="height:80px;width:98%;" placeholder="例  申請者へのコメント" />
                                     </td>
                                 </tr>
 </imart:condition>                                
@@ -207,18 +215,33 @@
             </tbody>
         </table>
 <div class="align-L${f:h(form.floatL) }" style="margin-top: -5px;">
-      <input class="imui-medium-button check" type="button" value="前の画面へ" style="width:150px;" onclick="back1()">
-<imart:condition validity="<%= String.valueOf(form.isCommentViewFlag()) %>" >
-	<input class="imui-medium-button check" type="button" value="コメント表示" style="width:150px; margin-top:5px;" onclick="back1()">
+      <imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()"  />
+<imart:condition validity="<%= String.valueOf(form.isCommentBtnVisibled()) %>" >
+	<nfwui:PopupButton id="commentPop" value="コメント表示" 
+          cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
+          modalMode="false" popupWidth="1350" popupHeight="550"
+          parameter="applNo:applNo" disabledPatterns="NONADMIN"
+          screenUrl="skf/Skf2010Sc010/init" use="popup" />
 </imart:condition>
 </div>
 
 <imart:decision case="${form.dispMode}" value="<%= String.valueOf(CodeConstant.VIEW_LEVEL_2) %>">
 <div class="align-R">
-      <input class="imui-medium-button check" type="button" value="差戻し" style="width:150px;"  onclick="sashimodoshi()">
-      <input class="imui-medium-button check" type="button" value="修正依頼" style="width:150px;"  onclick="syuuseiirai()">
+      <!-- 差戻しボタン -->
+      <nfwui:ConfirmButton id="sendbackBtn" name="sendbackBtn"
+      value="差戻し" cssClass="imui-medium-button" cssStyle="width: 150px" 
+      title="<%= MessageIdConstant.SKF2030_SC002_SENDBACK %>" message="<%= MessageIdConstant.I_SKF_2010 %>"
+      url="skf/Skf2030Sc002/Sendback" formId="form" disabledPatterns="NONADMIN" />
+      
+      <nfwui:ConfirmButton id="revisionBtn" name="revisionBtn"
+      value="修正依頼" cssClass="imui-medium-button" cssStyle="width: 150px" 
+      title="<%= MessageIdConstant.SKF2030_SC002_REVISION %>" message="<%= MessageIdConstant.I_SKF_2005 %>"
+      url="skf/Skf2030Sc002/Revision" formId="form" disabledPatterns="NONADMIN" />
 <imart:condition validity="<%= form.getBihinCheckFlag() %>" >      
-      <input class="imui-medium-button check" type="button" value="提示" style="width:150px;"  onclick="teiji()">
+      <nfwui:ConfirmButton id="presentBtn" name="presentBtn"
+      value="提示" cssClass="imui-medium-button" cssStyle="width: 150px" 
+      title="<%= MessageIdConstant.SKF2030_SC002_PRESENT %>" message="<%= MessageIdConstant.I_SKF_2011 %>"
+      url="skf/Skf2030Sc002/Present" formId="form" disabledPatterns="NONADMIN" />
 </imart:condition>
 <imart:condition validity="<%= form.getBihinCheckFlag() %>" negative>      
       <input class="imui-medium-button check" type="button" value="承認" style="width:150px;"  onclick="teiji()">
@@ -227,8 +250,14 @@
 </imart:decision>
 <imart:decision case="${form.dispMode}" value="<%= String.valueOf(CodeConstant.VIEW_LEVEL_3) %>">
 	<div class="align-R">
-      <input class="imui-medium-button check" type="button" value="修正依頼" style="width:150px;"  onclick="syuuseiirai()">
-      <input class="imui-medium-button check" type="button" value="承認" style="width:150px;"  onclick="syounin()">
+      <nfwui:ConfirmButton id="revisionBtn" name="revisionBtn"
+      value="修正依頼" cssClass="imui-medium-button" cssStyle="width: 150px" 
+      title="<%= MessageIdConstant.SKF2030_SC002_REVISION %>" message="<%= MessageIdConstant.I_SKF_2005 %>"
+      url="skf/Skf2030Sc002/Revision" formId="form" disabledPatterns="NONADMIN" />
+      <nfwui:ConfirmButton id="applyBtn" name="applyBtn"
+      value="承認" cssClass="imui-medium-button" cssStyle="width: 150px" 
+      title="<%= MessageIdConstant.SKF2030_SC002_REVISION %>" message="<%= MessageIdConstant.I_SKF_2006 %>"
+      url="skf/Skf2030Sc002/Apply" formId="form" disabledPatterns="NONADMIN" />
 	</div>  
 </imart:decision>  
 <script type="text/javascript">
