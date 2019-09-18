@@ -731,60 +731,60 @@
 								<div>
 									${form.operationGuide}
 								</div>
+							</table>
+						</div>
 					</td>      
 				</tr>
-			</tbody>
+			</tbody>	
 		</table>
-	</nfwui:Form>		
-</div>
-
-<!-- フッターエリア　ボタン -->
-<div class="imui-box-layout" style="width:100%; margin:0 auto;">
-	<table>
-		<tr>
-			<!-- 左エリア -->
-			<div class="btnLeft">
- 				<!-- 入力内容をクリア -->
-				<nfwui:ConfirmButton cssStyle="width:150px;" id="clearBtn" formId="form" value="入力内容をクリア" 
-					cssClass="imui-medium-button" title="<%= MessageIdConstant.SKF2020_SC002_CONFIRM_TITLE %>" 
-					message="<%= MessageIdConstant.I_SKF_2004 %>" 
-					url="skf/Skf2020Sc002/Clear"/>	
- 			</div>
-			<!-- 右エリア -->
- 			<div class="btnRight">
- 				<!-- 申請要件を確認 -->
-				<nfwui:Button cssStyle="width:150px;" id="download" name="download" value="申請要件を確認" 
-					formID="form" cssClass="imui-medium-button" url="skf/Skf2020Sc002/Download" />   	 
-				<!-- 一時保存 -->
-				<nfwui:Button cssStyle="width:150px;" id="saveBtn" formId="form" value="一時保存"
-					cssClass="imui-medium-button" disabled="${form.btnSaveDisabeld}"
-					url="skf/Skf2020Sc002/Save"/>
- 			</div>
- 		</tr>
- 		<tr>
- 			<!-- 左エリア -->
- 			<div class="btnLeft">
-				<!-- 前の画面へ -->
- 				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" />
-				<!-- コメントボタン -->
-				<c:if test="${form.commentViewFlag == 'true'}">
-				<nfwui:PopupButton id="commentPop" value="コメント表示" 
-				cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
-				modalMode="false" popupWidth="1350" popupHeight="550"
-				parameter="applNo:applNo"
-				screenUrl="skf/Skf2010Sc010/init" use="popup" />
-				</c:if>
- 			</div>
- 			<!-- 右エリア -->
- 			<div id="dCheck1" class="btnRight">
- 				<!-- 申請内容を確認 -->
- 				  <imui:button id="checkBtn" value="申請内容を確認" class="imui-medium-button" 
- 				  	style="width: 150px" onclick="checkConfrirm()"  disabled="${form.btnCheckDisabled}"/> 
- 			</div>
- 		</tr>	
- 	</table>
-</div>		
-
+	<!-- フッターエリア　ボタン -->
+	<div class="imui-box-layout" style="width:100%; margin:0 auto;">
+		<table>
+			<tr>
+				<!-- 左エリア -->
+				<div class="btnLeft">
+	 				<!-- 入力内容をクリア -->
+					<nfwui:ConfirmButton cssStyle="width:150px;" id="clearBtn" formId="form" value="入力内容をクリア" 
+						cssClass="imui-medium-button" title="<%= MessageIdConstant.SKF2020_SC002_CONFIRM_TITLE %>" 
+						message="<%= MessageIdConstant.I_SKF_2004 %>" 
+						url="skf/Skf2020Sc002/Clear"/>	
+	 			</div>
+				<!-- 右エリア -->
+	 			<div class="btnRight">
+	 				<!-- 申請要件を確認 -->
+					<nfwui:Button cssStyle="width:150px;" id="download" name="download" value="申請要件を確認" 
+						formID="form" cssClass="imui-medium-button" url="skf/Skf2020Sc002/Download" />   	 
+					<!-- 一時保存 -->
+					<nfwui:Button cssStyle="width:150px;" id="saveBtn" formId="form" value="一時保存"
+						cssClass="imui-medium-button" disabled="${form.btnSaveDisabeld}"
+						url="skf/Skf2020Sc002/Save"/>
+	 			</div>
+	 		</tr>
+	 		<tr>
+	 			<!-- 左エリア -->
+	 			<div class="btnLeft">
+					<!-- 前の画面へ -->
+	 				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" />
+					<!-- コメントボタン -->
+					<c:if test="${form.commentViewFlag == 'true'}">
+					<nfwui:PopupButton id="commentPop" value="コメント表示" 
+					cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
+					modalMode="false" popupWidth="1350" popupHeight="550"
+					parameter="applNo:applNo"
+					screenUrl="skf/Skf2010Sc010/init" use="popup" />
+					</c:if>
+	 			</div>
+	 			<!-- 右エリア -->
+	 			<div id="dCheck1" class="btnRight">
+	 				<!-- 申請内容を確認 -->
+	 				  <imui:button id="checkBtn" value="申請内容を確認" class="imui-medium-button" 
+	 				  	style="width: 150px" onclick="checkConfrirm()"  disabled="${form.btnCheckDisabled}"/> 
+	 			</div>
+	 		</tr>	
+	 	</table>
+		</nfwui:Form>
+	</div>
+	</div>		
 
 <!-- コンテンツエリア  text/JavaSclipt -->
 <script type="text/javascript">

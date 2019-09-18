@@ -38,10 +38,10 @@
 	<nfwui:Form id="form" name="form" modelAttribute="form">
 		<table class="imui-form-search-condition">
 			<tr>
-				<th width="10%">
+				<th width="100px">
 					<nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2010_SC006_LBL_APPL_STATUS %>" />
 				</th>
-				<td >
+				<td width="100px">
 					${form.applStatusText }
 				</td>
 				<imart:condition validity="${form.tenpViewFlg}">
@@ -155,7 +155,7 @@
 						removePatterns="PTN_A,PTN_B,PTN_D,PTN_F"
 						url="skf/Skf2040Sc002/Remand"/>
 					<!-- 提示ボタン --> 
-						<nfwui:Button id="PresentBtn" name="PresentBtn"
+						<nfwui:Button id="presentBtn" name="presentBtn"
 							value="提示" cssClass="imui-medium-button" cssStyle="width: 150px" 
 							title="<%= MessageIdConstant.SKF2040_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2011 %>"
 							url="skf/Skf2040Sc002/Presentation" formId="form"  
