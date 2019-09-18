@@ -35,23 +35,21 @@
 <!-- 代行ログイン時のみ表示-->
 <jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
 	<nfwui:Form id="form" name="form" modelAttribute="form">
-		<div id="mainArea">
-			<table class="imui-form-search-condition">
-				<tbody style="background-color: #33333;">
-					<tr>
-						<!-- 左側の入力域の部分 -->
-						<!-- <td style="width:70%; border: none;background-color:#fdfdff;" class="imui-form-container "> -->
-						<td style="width:70%; border: none; background-color:#fdfdff;" class="imui-form-container ">
-							<!--  <div class="imui-form-container-wide">-->
-								<table class="imui-form-search-condition">
-									<colgroup>
-										<col style="width: 10%;">
-										<col style="width: 10%;">
-										<col style="width: 10%;">
-										<col style="width: 20%;">
-										<col style="width: 10%;">
-										<col style="width: 10%;">
-									</colgroup>
+		<table class="imui-form-search-condition">
+			<tbody style="background-color: #33333;">
+				<tr>
+					<!-- 左側の入力域の部分 -->
+					<td style="width:70%; border: none;background-color:#fdfdff;" class="imui-form-container ">
+						<div class="imui-form-container-wide">
+							<table class="imui-form-search-condition">
+								<colgroup>
+									<col style="width: 10%;">
+									<col style="width: 10%;">
+									<col style="width: 10%;">
+									<col style="width: 20%;">
+									<col style="width: 10%;">
+									<col style="width: 10%;">
+								</colgroup>
 									<!-- タイトル（申請内容） -->
 									<nfwui:Title id="searchTitle" code="<%= MessageIdConstant.SKF2020_SC002_SHINSEI_TITLE %>" titleLevel="2" />
 									<tbody>
@@ -711,7 +709,7 @@
 										</c:if>                           	                                                              
 							   		</tbody>                     	
 						   		</table>
-						<!-- </div>  -->
+						</div> 
 					</td>     
 					<!-- ステータス -->
 					<input type="hidden" name="hdnShainNo" id="hdnShainNo" value="${form.shainNo}" />
@@ -726,24 +724,21 @@
 					<input type="hidden" name="hdnApplHistroyApplDate" id="hdnApplHistroyApplDate" value="${form.hdnApplHistroyApplDate}" />
 					<input type="hidden" name="hdnParkingFullFlg" id="hdnParkingFullFlg" value="${form.parkingFullFlg}" />
 					<!-- 右側の入力ガイドの部分 -->
-					<!-- <td style="width: 30%; border: none;background-color: #fdfdff;"> -->
-					<td style="width: 30%; border: none; background-color: #fdfdff;;">
-						<div style="overflow-y:scroll; max-height:1500px; height:1500px; margin-left: 20px; background-color:#eeeeee;">
-						<!-- <div class="imui-form-container-wide"> -->
+					<td style="width: 30%; border: none;background-color: #fdfdff;">
+						<div class="imui-form-container-wide">
+							<table >
 								<nfwui:Title id="lblControlGuide" code="<%= MessageIdConstant.SKF2020_SC002_OPERATION_GUIDE %>" titleLevel="2" />
-								<div style="margin-left: 20px">
+								<div>
 									${form.operationGuide}
 								</div>
-						<!-- </div> -->
-						</div> 
 					</td>      
 				</tr>
 			</tbody>
 		</table>
-	</div>
-	</nfwui:Form>
+	</nfwui:Form>		
+</div>
 
-	<!-- フッターエリア　ボタン -->
+<!-- フッターエリア　ボタン -->
 <div class="imui-box-layout" style="width:100%; margin:0 auto;">
 	<table>
 		<tr>

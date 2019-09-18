@@ -4,8 +4,10 @@
 
 <table class="imui-form-search-condition">
 	<tbody>
-		<imart:condition validity="${form.henkyakuBihinNothing}" negative>>
+		<imart:condition validity="${form.henkyakuBihinNothing}" negative>
 			<nfwui:Title id="searchTitle" code="<%= MessageIdConstant.SKF2040_SC002_BIHIN %>" titleLevel="2" />
+		</imart:condition>
+		<imart:condition validity="${form.henkyakuBihinNothing}" negative>
 					<tr>
 						<th></th>
 						<th><nfwui:LabelBox id="lblBihinAppl" code="<%= MessageIdConstant.SKF2040_SC002_BIHIN_STATE %>" /></th>
@@ -57,7 +59,8 @@
 	                   <td>${f:h(form.bihinState19) }</td>
 	                   <td>${f:h(form.bihinReturn19) }</td>
 	                </tr>
-         </imart:condition>
+		</imart:condition>
+		<imart:condition validity="${form.shatakuJyotaiViewFlg}">	
                 <imart:condition validity="${form.shatakuJyotaiViewFlg}">	
 	                <tr>
 		                <th><nfwui:LabelBox id="lblShatakuJyotai" code="<%= MessageIdConstant.SKF2040_SC002_SHATAKU_STATUS %>" /></th>
@@ -66,7 +69,7 @@
 		                </td>
 	                </tr>
                 </imart:condition>
-				<imart:condition validity="${form.henkyakuBihinNothing}" negative>>
+				<imart:condition validity="${form.henkyakuBihinNothing}" negative>
 	                <tr>
 		                <th><nfwui:LabelBox id="lblSessionDay" code="<%= MessageIdConstant.SKF2040_SC002_RETURN_WITNESS_REQUEST_DATE %>" /></th>
 		                <td colspan="2">
@@ -80,5 +83,6 @@
 		                </td>
 	                </tr>
 				</imart:condition>
+		</imart:condition>
 	</tbody>
 </table>
