@@ -23,6 +23,7 @@ public class Skf3010Sc001Form extends GridForm {
 	 * @author NEXCOシステムズ
 	 */
 	private List<Map<String, Object>> listTableData;
+	// リストテーブル最大行数
 	private String listTableMaxRowCount;
 	/** 検索キー */
 	// 会社コード(検索キー)
@@ -58,6 +59,9 @@ public class Skf3010Sc001Form extends GridForm {
 	// 利用区分リスト
 	private List<Map<String, Object>> useKbnList;
 	// 空き駐車場リスト
+	/**
+	 * 空き駐車場リスト
+	 */
 	private List<Map<String, Object>> emptyParkingList;
 
 	/** 画面連携用 */
@@ -73,8 +77,6 @@ public class Skf3010Sc001Form extends GridForm {
 	private String hdnRowEmptyRoomCount;
 	// 対象行の空き駐車場数
 	private String hdnRowEmptyParkingCount;
-	// 対象行の部屋番号
-	private String hdnRoomNo;
 
 	/** hdn検索キー */
 	// 管理会社コード(検索キー)
