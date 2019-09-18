@@ -1,3 +1,6 @@
+/*
+ * Copyright(c) 2020 NEXCO Systems company limited All rights reserved.
+ */
 package jp.co.c_nexco.skf.skf2060.app.skf2060sc004;
 
 import java.util.List;
@@ -10,6 +13,12 @@ import jp.co.c_nexco.nfw.webcore.validator.IsDateFormat;
 import jp.co.c_nexco.nfw.webcore.validator.IsDateFormatValidator;
 import lombok.EqualsAndHashCode;
 
+/**
+ * Skf2060Sc004 借上候補物件状況一覧画面Form
+ * 
+ * @author NEXCOシステムズ
+ *
+ */
 @lombok.Data
 @EqualsAndHashCode(callSuper = true)
 public class Skf2060Sc004Form extends BaseForm {

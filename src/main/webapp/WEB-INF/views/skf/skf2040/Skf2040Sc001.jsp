@@ -10,99 +10,82 @@
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
 
-<%-- コンテンツエリア --%>
+<script src="scripts/skf/skfCommon.js"></script>
+
+<!-- フッターエリア CSS-->
 <style type="text/css">
+	div.btnLeft{
+	    text-align: left;
+	    float: left;
+	}
 
+	div.btnRight{
+    	text-align: right;
+	}
+}
 </style>
-
-<!-- コンテンツエリア:モックのまま -->
-<!-- 以下ツールバー -->
-<div class="imui-toolbar-wrap">
-    <div class="imui-toolbar-inner">
-        <!-- ツールバー左側 -->
-        <ul class="imui-list-toolbar">
-            <!-- 戻る -->
-            <li><a class="imui-toolbar-icon" title="戻る" tabindex="23"
-                onclick="back1()" href="javascript:void(0);"><span class="im-ui-icon-common-16-back"></span></a>
-            </li>
-            <li>
-                <a onclick="confreq()" class="imui-toolbar-icon" tabindex="16">
-                <span class="im-smart-icon-common-16-information"></span>
-                    申請要件を確認
-                </a>
-            </li>
-        </ul>
-        <!-- ツールバー右側 -->
-        <ul class="imui-list-box-toolbar-utility">
-            <li>
-                <a onclick="TOP()" class="imui-toolbar-icon" tabindex="16">
-                <span class="im-ui-icon-common-16-home"></span>
-                    社宅TOP
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
+<%-- コンテンツエリア --%>
 <script type="text/javascript">
-    /**
-     * メニュー画面へ遷移する。
-     */
-    function back() {
-        showConfirm(W_GFK_0002, function() {
-            $.StandardPost("../common/top.html");
-        });
-    }
+  (function($){
+    // 画面表示時に定義される処理
+    $(document).ready(function(){
 
-    /**
-     * 「申請内容を確認」ボタン押下時
-     */
-    function confreq() {
+    });
+
+
+    // 「申請内容を確認」ボタン押下時のイベント
+    onClickConfirm = function () {
+        //nfw.common.submitForm("paramForm", "skf/Skf2060Sc001/Init");
         showConfirm(W_GFK_0001.replace('{0}', '申請内容を確認'), function() {
-         var taikyoSyataku = false;
-         var taikyoCar = false;
+            var taikyoSyataku = false;
+            var taikyoCar = false;
 
-         $('input:checkbox[name="taikyo_type"]:checked').each(function() {
-             if ($(this).val() == 'syataku') {
-                 taikyoSyataku = true;
-             } else {
-                 taikyoCar = true;
-             }
-            
-         });
-         if (taikyoSyataku === false && taikyoCar == true) {
-             $.StandardPost("../../skf/Skf2040_Sc002/init");
-         } else if (taikyoSyataku === true && taikyoCar === false) {
-             $.StandardPost("../../skf/Skf2040_Sc002/init");
-         } else if (taikyoSyataku === true && taikyoCar === true) {
-             $.StandardPost("../../skf/Skf2040_Sc002/init");
-         } else {
-             showWarning(E_GFK_0001);
-         }
-        });
+            $('input:checkbox[name="taikyo_type"]:checked').each(function() {
+                if ($(this).val() == 'syataku') {
+                    taikyoSyataku = true;
+                } else {
+                    taikyoCar = true;
+                }
+               
+            });
+            if (taikyoSyataku === false && taikyoCar == true) {
+                $.StandardPost("../../skf/Skf2040_Sc002/init");
+            } else if (taikyoSyataku === true && taikyoCar === false) {
+                $.StandardPost("../../skf/Skf2040_Sc002/init");
+            } else if (taikyoSyataku === true && taikyoCar === true) {
+                $.StandardPost("../../skf/Skf2040_Sc002/init");
+            } else {
+                showWarning(E_GFK_0001);
+            }
+           });
     }
-    /**
-     * 一つ前の画面へ戻る
-     */
-    function back1() {
-        showConfirm(W_GFK_0002, function() {
-            history.back()
-        });
-    }
-    /**
-     * TOP画面へ遷移する。
-     */
-    function TOP() {
-        showConfirm(W_GFK_0007, function() {
-            $.StandardPost("../common/top.html");
-        });
-    }
+    
+    // 退居する社宅または返還する自動車保管場所のチェック選択時のイベント
+    // TODO
+    
+	// 退居(返還)理由変更時のイベント
+	$("#taikyoRiyuKbn").bind('change', function() {
+		//その他が選択された場合、その他ボックスを活性化する
+		var selTaikyoRiyuKbnCd = $('#taikyoRiyuKbn option:selected').val();
+		if(selTaikyoRiyuKbnCd == "9"){
+			$('#taikyoRiyu').prop('disabled', false);
+		}else{
+			$('#taikyoRiyu').prop('disabled', true);
+			$('#taikyoRiyu').val("")
+		}
+	});	
+
+  })(jQuery);
 </script>
 
-    <!-- コンテンツエリア -->
-    <div class="imui-form-container-wide" width="1350px" style="width: 100%; max-width: 1350px;">
+<!-- コンテンツエリア-->
+<!-- 代行ログイン時のみ表示-->
+<jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
+<nfwui:Form id="form" name="form" modelAttribute="form">
+    <div class="imui-form-container-wide">
         <table class="imui-form-search-condition">
-        
             <tbody>
                 <tr>
                     <td style="width: 70%; border: none;background-color: #fdfdff;">
@@ -110,121 +93,193 @@
                         
                         <div class="imui-form-container-wide" >
                         <table class="imui-form-search-condition">
-                        <div class="imui-chapter-title" style="margin-bottom: 10px;">
-                            <h2>申請内容</h2>
-                        </div>
-
+                        <nfwui:Title id="searchTitle" code="<%= MessageIdConstant.SKF2040_SC001_APPL_INFO %>" titleLevel="2" />
                             <tbody>
+                                <!-- 機関 -->
                                 <tr>
-                                    <th colspan="3" style="width: 30%;"><label>機関</label></th>
+                                    
+                                    <th colspan="3" style="width: 30%;">
+                                        <nfwui:LabelBox id="lblHeadAgency" code="<%= MessageIdConstant.SKF2040_SC001_AGENCY %>" />
+                                    </th>
                                     <td colspan="2">
-                                        八王子
+                                        ${f:h(form.agencyName)}
                                     </td>
                                 </tr>
+                                <!-- 部等 -->
                                 <tr>
-                                    <th colspan="3"><label>部等</label></th>
+                                    <th colspan="3">
+                                        <nfwui:LabelBox id="lblHeadAffiliation1" code="<%= MessageIdConstant.SKF2020_SC002_AFFLIATION1 %>" />
+								    </th>
                                     <td colspan="2">
-                                        保全・サービス事業部
+                                        ${f:h(form.affiliation1Name)}
                                     </td>
                                 </tr>
+                                <!-- 室、チーム又は課 -->
                                 <tr>
-                                    <th colspan="3"><label>室、チーム又は課</label></th>
+                                    <th colspan="3">
+                                        <nfwui:LabelBox id="lblHeadAffiliation2" code="<%= MessageIdConstant.SKF2020_SC002_AFFLIATION2 %>" />
+									</th>
                                     <td colspan="2">
-                                        道路管理センター
+                                        ${f:h(form.affiliation2Name)}
                                     </td>
                                 </tr>
+                                <!-- 保有住宅名 -->
                                 <tr>
-                                    <th colspan="3"><label>保有住宅名</label></th>
+                                    <th colspan="3">
+                                        <nfwui:LabelBox id="lblHeadNowShatakuName" code="<%= MessageIdConstant.SKF2040_SC001_NOW_SHATAKU_NAME %>" />
+                                    </th>
                                     <td colspan="2">
-                                        <select>
-                                            <option>すずかけ台3</option>
-                                            <option>つくし野1</option>
+                                        <imui:select id="nowShatakuName" name="nowShatakuName" list="${form.ddlNowShatakuNameList}" 
+													 value="" disabled="true" tabindex="45"/>
+                                    </td>
+                                </tr>
+                                <!-- 現住所 -->
+                                <tr>
+                                    <th colspan="3">
+                                        <nfwui:LabelBox id="lblHeadNowAddress" code="<%= MessageIdConstant.SKF2040_SC001_NOW_ADDRESS %>" />
+                                    </th>
+                                    <td colspan="2">
+                                            ${f:h(form.nowAddress)}
                                         </select>
                                     </td>
                                 </tr>
+                                <!-- 氏名 -->
                                 <tr>
-                                    <th colspan="3"><label>現住所</label></th>
+                                    <th colspan="3">
+                                        <nfwui:LabelBox id="lblHeadName" code="<%= MessageIdConstant.SKF2040_SC001_NAME %>" />
+                                    </th>
                                     <td colspan="2">
-                                            東京都〇〇市△△△町
+                                            ${f:h(form.name)}
                                         </select>
                                     </td>
                                 </tr>
+                                <!-- 性別 -->
                                 <tr>
-                                    <th colspan="3"><label>氏名</label></th>
+                                    <th colspan="3">
+                                        <nfwui:LabelBox id="lblHeadGender" code="<%= MessageIdConstant.SKF2040_SC001_GENDER %>" />
+                                    </th>
                                     <td colspan="2">
-                                            中日本 0010
+                                            ${f:h(form.gender)}
                                         </select>
                                     </td>
                                 </tr>
+                                <!-- 駐車場1台目保管場所 -->
                                 <tr>
-                                    <th colspan="3"><label>性別</label></th>
+                                    <th rowspan="2">
+                                        <nfwui:LabelBox id="lblHeadGender" code="<%= MessageIdConstant.SKF2040_SC001_PERKING %>" />
+                                    </th>
+                                    <th width="70">
+                                        <nfwui:LabelBox id="lblHeadGender" code="<%= MessageIdConstant.SKF2040_SC001_PARKING_1ST %>" />
+                                    </th>
+                                    <th>
+                                        <nfwui:LabelBox id="lblHeadGender" code="<%= MessageIdConstant.SKF2040_SC001_PERKING_PLACE %>" />
+                                    </th>
                                     <td colspan="2">
-                                            男
-                                        </select>
+                                        <span id="parking1stPlace">${f:h(form.parking1stPlace)} </span>
                                     </td>
                                 </tr>
+                                <!-- 駐車場2台目保管場所 -->
                                 <tr>
-                                    <th rowspan="2"><label>駐車場</label></th>
-                                    <th width="70"><label>1台目</label></th>
-                                    <th><label>保管場所</label></th>
+                                     <th width="70">
+                                        <nfwui:LabelBox id="lblHeadGender" code="<%= MessageIdConstant.SKF2040_SC001_PARKING_2ND %>" />
+                                    </th>
+                                    <th>
+                                        <nfwui:LabelBox id="lblHeadGender" code="<%= MessageIdConstant.SKF2040_SC001_PERKING_PLACE %>" />
+                                    </th>
                                     <td colspan="2">
-                                        01234567
+                                        <span id="parking2stPlace">${f:h(form.parking2ndPlace)} </span>
                                     </td>
                                 </tr>
+                                <!-- 退居(返還)日 -->
                                 <tr>
-                                    <th width="70"><label>2台目</label></th>
-                                    <th><label>保管場所</label></th>
+                                    <th colspan="3">
+                                        <nfwui:LabelBox id="lblHeadTaikyoHenkanDate" code="<%= MessageIdConstant.SKF2040_SC001_TAIKYO_HENKAN_DATE %>" />
+                                    </th>
                                     <td colspan="2">
-                                        01234567
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th colspan="3"><label>退居(返還)日</label></th>
-                                    <td colspan="2">
+                                        <nfwui:DateBox id="taikyoHenkanDate" name="taikyoHenkanDate" value="${f:h(form.taikyoHenkanDate)}"
+                                               cssClass="${f:h(form.taikyoHenkanDateErr)}" tabindex="1" cssStyle="width:100px"/>
                                         <input type="text" name="cal001" id="cal001" value="9999/99/99"/>
                                     </td>
                                 </tr>
-
+                                <!-- 退居(返還)する社宅又は、自動車の保管場所 -->
                                 <tr>
-                                    <th colspan="3"><label>退居(返還)する社宅又は、<br>自動車の保管場所</label></th>
+                                    <th colspan="3">
+                                        <nfwui:LabelBox id="lblHeadHenkanTarget" code="<%= MessageIdConstant.SKF2040_SC001_TAIKYO_HENKAN_TARGET %>" />
+                                    </th>
                                     <td colspan="2">
-                                        <input type="checkbox" name="taikyo_type" value="syataku">社宅を退居する
-                                        <input type="checkbox" name="taikyo_type" value="car1">駐車場1を返還する
-                                        <input type="checkbox" name="taikyo_type" value="car2">駐車場2を返還する
+										<nfwui:CheckBoxGroupTag id="taikyoType">
+										<table class="${f:h(form.taikyoTypeErr)}">
+		                                    <tr style="height: 25px;">
+		                                        <td>
+			                                        <nfwui:CheckBox id="taikyoType01" name="taikyoType"
+			                                                value="<%= CodeConstant.STATUS_KAKUNIN_IRAI %>" label="社宅を退居する" tabindex="7"
+			                                                disabled="${form.nowShatakuTaikyoDisabled}" />
+			                                    </td>
+			                                    <td>
+			                                        <nfwui:CheckBox id="taikyoType02" name="taikyoType"
+			                                                value="<%= CodeConstant.STATUS_KAKUNIN_IRAI %>" label="駐車場1を返還する" tabindex="7"
+			                                                disabled="${form.nowPerking1TaikyoDisabled}" />
+			                                    </td>
+			                                    <td>
+			                                        <nfwui:CheckBox id="taikyoType03" name="taikyoType"
+			                                                value="<%= CodeConstant.STATUS_KAKUNIN_IRAI %>" label="駐車場2を返還する" tabindex="7"
+			                                                disabled="${form.nowPerking2TaikyoDisabled}" />
+		                                        </td>
+		                                    </tr>
+		                                </table>
+		                                </nfwui:CheckBoxGroupTag>
                                     </td>
                                 </tr>
-
+                                <!-- 退居(返還)理由 -->
                                 <tr>
-                                    <th colspan="3"><label>退居(返還)理由</label></th>
+                                    <th colspan="3">
+                                        <nfwui:LabelBox id="lblHeadTaikyoHenkanRiyu" code="<%= MessageIdConstant.SKF2040_SC001_TAIKYO_HENKAN_RIYU %>" />
+                                    </th>
                                     <td colspan="2">
                                         <select style="width:90%">
                                             <option>転勤</option>
                                             <option>同居</option>
                                         </select>
+                                        <imui:select id="taikyoRiyuKbn" name="taikyoRiyuKbn"  style="width: 50%;" 
+                                                     css="${f:h(form.taikyoRiyuKbnErr)}"
+													 list="${form.ddlTaikyoRiyuKbnList}"  disabled="true" tabindex="50"/>
                                         <br>
-                                        <textarea rows="4" style="width: 90%" placeholder="例  自宅購入のため"></textarea>
-                                        
+                                        <imui:textArea id="taikyoRiyu" name="taikyoRiyu"
+												       value="${f:h(form.taikyoHenkanRiyu)}" style="width: 90%;" 
+												       css="${f:h(form.taikyoHenkanRiyuErr)}"
+												       placeholder="例 自宅購入のため" disabled="true" tabindex="51" />
                                     </td>
-                                </tr>                                
-
+                                </tr>
+                                <!-- 社宅の状態 -->
                                 <tr>
-                                    <th colspan="3"><label>社宅の状態</label></th>
+                                    <th colspan="3">
+                                        <nfwui:LabelBox id="lblHeadShatakuStatus" code="<%= MessageIdConstant.SKF2040_SC001_SHATAKU_STATUS %>" />
+                                    </th>
                                     <td colspan="2">
-                                        <textarea rows="4" style="width: 90%" placeholder="例  壁に破損あり"></textarea>
-                                        
+                                        <imui:textArea id="shatakuStatus" name="shatakuStatus"
+												       value="${f:h(form.shatakuJyotai)}" style="width: 90%;" 
+												       css="${f:h(form.shatakuJyotaiErr)}"
+												       placeholder="例  壁紙に破損あり" disabled="true" tabindex="51" />
                                     </td>
-                                </tr>    
-
+                                </tr>
+                                <!-- 退居後の連絡先 -->
                                 <tr>
-                                    <th colspan="3"><label>退居後の連絡先</label></th>
+                                    <th colspan="3">
+                                        <nfwui:LabelBox id="lblHeadTaikyogoRenrakuSaki" code="<%= MessageIdConstant.SKF2040_SC001_TAIKYOGO_RENRAKU_SAKI %>" />
+                                    </th>
                                     <td colspan="2">
+                                        <imui:textArea id="taikyogoRenrakuSaki" name="taikyogoRenrakuSaki" 
+													   value="${f:h(form.taikyogoRenrakuSaki)}" style="width: 90%;" 
+													   css="${f:h(form.taikyogoRenrakuSakiErr)}"
+													   placeholder="例 090-0000-0000" disabled="true" tabindex="52"/>
                                         <textarea rows="4" style="width: 90%" placeholder="例  090-0000-0000"></textarea>
                                     </td>
                                 </tr>
-
+                                <!-- 返却備品 -->
                                 <tr>
-                                    <th colspan="3"><label>返却備品</label></th>
+                                    <th colspan="3">
+                                        <nfwui:LabelBox id="lblHeadReturnEquipment" code="<%= MessageIdConstant.SKF2040_SC001_RETURN_EQUIPMENT %>" />
+                                    </th>
                                     <td colspan="2">
                                         <table>
                                         <tr>
@@ -247,139 +302,105 @@
                                         
                                         </table>
                                     </td>
-                                </tr>                                    
-
-                               <tr>
-                                    <th colspan="3"><label>返却立合希望日</label></th>
-                                    <td colspan="2">
-                                        <input type="text" name="cal002" id="cal002" value="9999/99/99"/>
-                                        <select>
-                                            <option>12:00～15:00</option>
-                                            <option>15:00～18:00</option>
-                                        </select>
-                                    </td>
                                 </tr>
-                                
+                                <!-- 返却立合希望日 -->
                                 <tr>
-                                    <th colspan="3"><label>連絡先</label></th>
+                                    <th colspan="3">
+                                        <nfwui:LabelBox id="lblHeadReturnWitnessRequestDate" code="<%= MessageIdConstant.SKF2040_SC001_RETURN_WITNESS_REQUEST_DATE %>" />
+                                    </th>
                                     <td colspan="2">
-                                        <input type="text" maxlenght="13" value="000-0000-0000"></input>
-                                        <span style="color:red;">※搬出業者から連絡がありますので、連絡先は必ず入力してください。</span>
+                                        <nfwui:DateBox id="sessionDay" name="sessionDay" value="${f:h(form.sessionDay)}"
+                                        			   cssClass="${f:h(form.sessionDayErr)}"
+													   tabindex="53" disabled="${form.sessionDayDisabled}"/>	
+													   <!-- disabled="${form.sessionDayDisabled}"  -->
+										<imui:select id="sessionTime" name="sessionTime" 
+													 css="${f:h(form.sessionTimeErr)}"
+													 list="${form.ddlReturnWitnessRequestDateList}" disabled="${form.sessionTimeDisabled}" tabindex="54" />
                                     </td>
                                 </tr>
-
+                                <!-- 連絡先 -->
+                                <tr>
+                                    <th colspan="3">
+                                        <nfwui:LabelBox id="lblHeadRenrakuSaki" code="<%= MessageIdConstant.SKF2040_SC001_RENRAKU_SAKI %>" />
+                                    </th>
+                                    <td colspan="2">
+                                        <imui:textbox id="renrakuSaki" name="renrakuSaki" 
+											          value="${f:h(form.renrakuSaki)}" style="width: 90%;" placeholder="例 090-0000-0000"  
+											          css="${f:h(form.renrakuSakiErr)}"
+											          disabled="${form.renrakuSakiDisabled}" tabindex="55" />
+										<br>
+										<span style="color:red;">
+											<nfwui:LabelBox id="lblExplanationRenrakuSaki" code="<%= MessageIdConstant.SKF2040_SC001_EXPLANATION_RENRAKU_SAKI %>" />
+										</span>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         </div>
                     </td>
-                    
+                    <!-- 右側の操作ガイドの部分 -->
                     <td style="width: 30%; border: none;background-color: #fdfdff;">
-                      <table >
-                        <!-- 右側の操作ガイドの部分 -->
                         <div class="imui-form-container-wide" >
-                        <div class="imui-chapter-title" style="margin-bottom: 10px;">
-                            <h2>操作ガイド</h2>
+                        <div style="margin-left: 20px; background-color:#eeeeee;">
+                            <nfwui:Title id="lblControlGuide" code="<%= MessageIdConstant.SKF2040_SC001_OPERATION_GUIDE %>" titleLevel="2" />
+                            <div style="overflow-y:scroll; height:99%; margin-left: 20px;">
+                                <span style="font-size: 100%; heigth:90%;">
+                                    ${form.operationGuide}
+                                </span>
+                            </div>
                         </div>
-                        <div>
-                        <div style="overflow-y:scroll;height:99%">
-                            <span style="font-size: 100%; heigth:90%;">
-                            
-                            ■社宅等の退居及び駐車場の返還の場合に使用する申請書類です。<br>
-                            ①申請対象の「保有住宅名」を選択してください。<br>
-                            ②「退居（返還）日」を入力してください。<br>
-                            ③「退居（返還）する社宅又は、自動車の保管場所」を選択してください。<br>
-                            ④「退居（返還）理由」を選択してください。<br>
-                            ⑤「社宅の状態」がありましたら、入力してください。<br>
-                            ⑥「退居後の連絡先」を入力してください。<br>
-                            ⑦退居に伴う備品の返却確認を行って、備品の返却がある場合には返却立会希望日時、連絡先を入力してください。<br>
-                            ※地域により希望時間指定ができない場合があります。<br>
-
-                            ボタン操作ガイド<br>
-                            ◆<span style="font-weight: bold;color:green;">「入力内容をクリア」</span>をクリックすると、現在の入力内容をクリアすることができます。<br/><br/>
-                            ◆<span style="font-weight: bold;color:green;">「資料を添付」</span>をクリックすると、申請時に必要な付帯資料を添付することができます。<br/><br/>
-                            ◆<span style="font-weight: bold;color:green;">「一時保存」</span>をクリックすると、現在の入力内容を保存することができます。<br/><br/>
-                            ◆<span style="font-weight: bold;color:green;">「申請内容を確認」</span>をクリックすると、現在の入力内容で申請書類を作成します。この段階では申請は行われません。<br/>
-                            次の申請書類確認画面で「申請」を行うことで初めて申請されます。
-                            </span>
-                        </div>
-                      </table>
                     </td>
                 </tr>
             </tbody>
         </table>
-<div class="imui-box-layout">
-    <table style="width:100%;">
-    <tbody>
-
-<td align="left">
-      <input class="imui-medium-button check" type="button" value="入力内容をクリア" style="width:150px;">
-</td> 
-<td align="right">
-      <input class="imui-medium-button check" type="button" value="申請要件を確認" style="width:150px;">
-      <input class="imui-medium-button check" type="button" value="一時保存" style="width:150px;">
-</td>
-    </tbody>
-
-        <tbody>
-    
-<td align="left">
-      <input class="imui-medium-button check" type="button" value="前の画面へ" style="width:150px;" onclick="back1()">
-</td>
-<br>
-<td align="right">
-     <!-- <input class="imui-medium-button check" type="button" value="資料を添付" style="width:150px;" onclick="openAddFileSelectWindow()"> -->
-      <input class="imui-medium-button check" type="button" value="申請内容を確認" style="width:150px;"  onclick="confreq()">
-</td>
-
-    </tbody>
-
-    </table>
-
-
     </div>
+	<!-- フッターエリア -->
+	<div class="imui-box-layout" style="width:100%; margin:0 auto;">
+		<table>
+			<tr>
+				<!-- 左エリア -->
+				<div class="btnLeft">
+	 				<!-- 入力内容をクリア -->
+					<nfwui:ConfirmButton cssStyle="width:150px;" id="clearBtn" formId="form" value="入力内容をクリア" 
+						cssClass="imui-medium-button" title="<%= MessageIdConstant.SKF2040_SC001_CONFIRM_TITLE %>" 
+						message="<%= MessageIdConstant.I_SKF_2004 %>" 
+						url="skf/Skf2040Sc001/Clear"/>	
+	 			</div>
+				<!-- 右エリア -->
+	 			<div class="btnRight">
+	 				<!-- 申請要件を確認 -->
+					<nfwui:Button cssStyle="width:150px;" id="download" name="download" value="申請要件を確認" 
+						formID="form" cssClass="imui-medium-button" url="skf/Skf2040Sc001/Download" />   	 
+					<!-- 一時保存 -->
+					<nfwui:Button cssStyle="width:150px;" id="saveBtn" formId="form" value="一時保存"
+						cssClass="imui-medium-button" disabled="${form.btnSaveDisabled}"
+						url="skf/Skf2040Sc001/Save"/>
+	 			</div>
+	 		</tr>
+	 		<tr>
+	 			<!-- 左エリア -->
+	 			<div class="btnLeft">
+					<!-- 前の画面へ -->
+	 				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" />
+					<!-- コメントボタン -->
+					<c:if test="${form.commentViewFlag == 'true'}">
+					<nfwui:PopupButton id="commentPop" value="コメント表示" 
+					cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
+					modalMode="false" popupWidth="1350" popupHeight="550"
+					parameter="applNo:applNo"
+					screenUrl="skf/Skf2010Sc010/init" use="popup" />
+					</c:if>
+	 			</div>
+	 			<!-- 右エリア -->
+	 			<div id="dCheck1" class="btnRight">
+	 				<!-- 申請内容を確認 -->
+	 				  <imui:button id="checkBtn" value="申請内容を確認" class="imui-medium-button" 
+	 				  	style="width: 150px" onclick="onClickConfirm()"  disabled="${form.btnCheckDisabled}"/> 
+	 			</div>
+	 		</tr>	
+	 	</table>
+	</div>
+<!-- NFWUIフォーム終了位置 -->
+</nfwui:Form>
 
-    </div>
-
-    <!-- メッセージを表示するためのJavaScript（モック時はコメント）
-    <script type="text/javascript">
-        $(function() {
-            showWarningDialog('', 'true');
-        });
-
-(function($){ $.imDateUtil.setOffset(540); $(function () { $("#jikoHaseiYmd").imuiCalendar({
-"altField":"#jikoHaseiYmd","buttonText":"カレンダー","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"USA_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); 
-})(jQuery);
-
-    
-    </script>
--->    
-
-    
-<script type="text/javascript">
-    <!-- カレンダー出力用スクリプト -->
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal001").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal002").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal003").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal004").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal005").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal006").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal007").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal008").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);      
-      (function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal009").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-    
-</script>
-
-<script type="text/javascript">
-function openAddFileSelectWindow(){
-  info = 'toolbar=no,location=no,directories=no,status=no,menubar=no,' +
-   'scrollbars=no,left=0,top=0,resizable=yes,width=650px,height=630px,title=no';
-  var window1 = window.open("../pop/pop_AddFileSelect.html","window1",info);
-  window1.moveTo(0, 0);
-  window.opener = self;
-}
-
-</script>
-
-
-</div>
-	<!-- コンテンツエリア　ここまで -->
+<!-- コンテンツエリア　ここまで -->
