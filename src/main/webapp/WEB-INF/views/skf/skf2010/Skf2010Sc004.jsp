@@ -11,6 +11,9 @@
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
+<%@ page import="jp.co.c_nexco.skf.skf2010.app.skf2010sc004.Skf2010Sc004Form" %>
+<%  Skf2010Sc004Form form = (Skf2010Sc004Form)request.getAttribute("form"); %>
+
 
 <%-- コンテンツエリア --%>
 <style type="text/css">
@@ -279,13 +282,13 @@ ${form.operationGuide }
            <!-- 取下げボタン -->
            <nfwui:ConfirmButton id="cancelBtn" name="cancelBtn" value="取下げ" 
            cssClass="imui-medium-button" cssStyle="width: 150px" 
-           title="<%= MessageIdConstant.SKF2010_SC006_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2017 %>"
+           title="<%= MessageIdConstant.SKF2010_SC006_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2002 %>"
            url="skf/Skf2010Sc004/Cancel" formId="form" removePatterns="PTN_B,PTN_C"
            remove="${form.representBtnFlg }" />
            <!-- 同意するボタン -->
            <nfwui:ConfirmButton id="douiBtn" name="douiBtn" value="同意する" 
            cssClass="imui-medium-button" cssStyle="width: 150px" 
-           title="<%= MessageIdConstant.SKF2010_SC006_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2012 %>"
+           title="<%= MessageIdConstant.SKF2010_SC006_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2016 %>"
            url="skf/Skf2010Sc004/Agree" formId="form" removePatterns="PTN_A,PTN_C"
            remove="${form.representBtnFlg }" />
            <!-- 同意しないボタン -->
