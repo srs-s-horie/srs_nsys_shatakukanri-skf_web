@@ -121,6 +121,8 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 	// 画面表示時に定義される処理
 	$(document).ready(function(){
 		
+		document.getElementById('txtShainNo').focus();
+		
 		$(window).bind('resize', function(){			
 			$('#mainList').setGridWidth($('#listTableArea').width(), true);		
 		}).trigger('resize');			
