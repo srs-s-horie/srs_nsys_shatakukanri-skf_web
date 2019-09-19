@@ -21,7 +21,7 @@
     shainInfoCallback = function(param){
         if( param != null && typeof param == 'object' && param.name != null){
             $("#presentedName").val(param.name);
-            $("#presentedNo").val(param.shainNo);
+            $("#shainNo").val(param.shainNo);
             
             nfw.common.submitForm("form", "skf/Skf2060Sc001/support");
         }
@@ -31,16 +31,14 @@
 
 
 <!-- コンテンツエリア -->
-<div class="imui-form-container-wide" >
+<div style ="width:100%; ">
 <nfwui:Form id="form" name="form" modelAttribute="form" encType="multipart/form-data" >
-<input type="hidden" name="presentedNo" id="presentedNo" value="${form.presentedNo}" />
-<input type="hidden" name="updateDate" id="updateDate" value="${form.updateDate}" />
 <table align="center" style="width:100%;">
     <tr>
         <td>
             <div class="imui-form-container-wide" style="width:95%;">
                 <table>
-                    <td class="imui-form-container-wide" style="width:40%; border:none;" >
+                    <td class="imui-form-container-wide" style="width:35%; border:none;" >
                        <div class="imui-chapter-title" style="margin-bottom: 10px;" >
                             <h2>借上提示先情報</h2>
                         </div>
@@ -54,11 +52,11 @@
                                             cssClass="imui-small-button" use="popup"
                                             screenUrl="skf/Skf2010Sc001/init"
                                             popupWidth="650" popupHeight="700"
-                                            modalMode="false" disabled="${form.supportDisabled}"/>
+                                            modalMode="false" disabled="${form.supportDisabled}" tabindex="1" />
                                         </nobr>   
                                         </th>
                                         <td colspan="2">
-                                        <imui:textbox style="width:95%;" id="presentedName" name="presentedName" value="${f:h(form.presentedName)}" readonly="readonly" />
+                                        <imui:textbox style="width:95%;" id="presentedName" name="presentedName" value="${f:h(form.presentedName)}" readonly="readonly" tabindex="2" />
                                         </td>
                                     </tr>   
 
@@ -95,8 +93,8 @@
                                         <th style="width: 17.5%;" colspan="2">
                                             <nfwui:LabelBox id="shatakuNamelbl" code="<%= MessageIdConstant.SKF2060_SC001_SHATAKU_NAME %>" style="float:left" />
                                         </th>
-                                        <td style="width: 50%;">
-                                        <imui:textbox style="width:30%;" id="shatakuName" name="shatakuName" value="${f:h(form.shatakuName)}" class="${form.shatakuNameError}" />
+                                        <td>
+                                        <imui:textbox style="width:30%;" id="shatakuName" name="shatakuName" value="${f:h(form.shatakuName)}" class="${form.shatakuNameError}" tabindex="3" />
                                         </td>
                                     </tr>   
 
@@ -108,10 +106,10 @@
                                             <nfwui:LabelBox id="postalCdlbl" code="<%= MessageIdConstant.SKF2060_SC001_POSTAL_CD %>" style="float:left" />
                                             
                                         </th>
-                                        <td style="width: 50%;">
-                                        <imui:textbox style="width:30%;" id="postalCd" name="postalCd" value="${f:h(form.postalCd)}" class="${form.postalCdError}" />
+                                        <td>
+                                        <imui:textbox style="width:30%;" id="postalCd" name="postalCd" value="${f:h(form.postalCd)}" class="${form.postalCdError}" tabindex="4" />
                                        <!--  <input tabindex="19" name="imui-8euruuk15dn9qtq" id="submit0" type="button" value="住所検索" class="imui-small-button" > -->
-                                       <nfwui:Button id="searchAddress" name="searchAddress" formId="form" value="住所検索" cssClass="imui-small-button" url="skf/Skf2060Sc001/searchAddress"/>
+                                       <nfwui:Button id="searchAddress" name="searchAddress" formId="form" value="住所検索" cssClass="imui-small-button" url="skf/Skf2060Sc001/searchAddress" tabindex="5" />
                                         </td>
 
                                    </tr>   
@@ -121,8 +119,8 @@
                                             <nfwui:LabelBox id="adresslbl" code="<%= MessageIdConstant.SKF2060_SC001_ADRESS %>" style="float:left" />
                                             
                                         </th>
-                                        <td style="width: 50%;">
-                                        <imui:textArea style="width:100%;" rows="3" id="address" name="address" value="${f:h(form.address)}" class="${form.addressError}" /></input>
+                                        <td>
+                                        <imui:textArea style="width:100%;" rows="3" id="address" name="address" value="${f:h(form.address)}" class="${form.addressError}" tabindex="6" /></input>
                                         </td>
 
                                     </tr>   
@@ -132,7 +130,8 @@
                             <!--</form>-->
 
                          <div class="align-L">	
-                             <nfwui:Button id="insert" name="insert" formId="form" value="追加" cssClass="imui-small-button" url="skf/Skf2060Sc001/insertKariage"/>
+                             <!--<nfwui:Button id="insert" name="insert" formId="form" value="追加" cssClass="imui-small-button" url="skf/Skf2060Sc001/insertKariage"/>-->
+                             <imui:button id="insert" name="insert" value="追加" class="imui-small-button" tabindex="7" />
                          </div>
                          </td>
 </table>
@@ -158,6 +157,7 @@
     $.imui.util.loadCSS("ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
   })(jQuery);
 </script>
+				<div id="listTableArea">
 				<nfwui:CheckBoxGroupTag id="teijiVal">
 					 <imui:listTable id="kariageCandidateList" process="java" autoEncode="false" autoWidth="true" rowNumbers="true"
 						autoResize="true" onCellSelect="onCellSelect"
@@ -168,18 +168,19 @@
 						<col name="teiji" caption="提示" width="35" sortable="false" align="center" />
 						<col name="insertDate" caption="登録日" width="90" sortable="false" />
 						<col name="candidateDate" caption="提示日" width="90" sortable="false" />
-						<col name="shatakuName" caption="借上社宅名" width="150" sortable="false" />
-						<col name="address" caption="社宅所在地" width="250" sortable="false" />
-						<col name="attachedName" caption="添付ファイル"　width="250" sortable="false" />
-						<col name="attachedFile" caption="ファイルの添付/削除" width="135" sortable="false" align="center" >
-						<showIcon iconClass="im-ui-icon-menu-24-document" />
+						<col name="shatakuName" caption="借上社宅名" width="150" sortable="false" wrap="true" />
+						<col name="address" caption="社宅所在地" width="250" sortable="false" wrap="true" />
+						<col name="attachedName" caption="添付ファイル"　width="150" sortable="false" />
+						<col name="attachedFile" caption="ファイルの添付/削除" width="100" sortable="false" align="center" >
+						<showIcon iconClass="im-ui-icon-common-16-attachment" />
 						</col>
-						<col name="deleteBukken" caption="物件削除" width="70" sortable="false" align="center" />
+						<col name="deleteBukken" caption="物件削除" width="50" sortable="false" align="center" />
 						<col name="companyCd" caption="会社コード" hidden="true" />
 						<col name="candidateNo" caption="借上候補物件番号" hidden="true" />
 						</cols>
 					</imui:listTable> 
 				</nfwui:CheckBoxGroupTag>
+				</div>
 <br>
   <!--</form> -->
 
@@ -200,11 +201,30 @@
             <tr  >
                 <th style="width: 20%"><nfwui:LabelBox id="applicantCommentlbl" code="<%= MessageIdConstant.SKF2060_SC001_APPLICANT_COMMENT %>" style="float:left" /></th>
             <td>
-            	<imui:textArea style="width:100%;" rows="3" id="comment" name="comment" value="${f:h(form.comment)}" placeholder="例 物件の再提示を行います。" />
+            	<imui:textArea style="width:100%;" rows="3" id="comment" name="comment" value="${f:h(form.comment)}" placeholder="例 物件の再提示を行います。" tabindex="8" />
                 <!-- <textarea style="height:50px;width:99%;" placeholder="例 物件の再提示を行います。"></textarea>-->
            </td>
            </tr>
         </table>
+        <br>
+        <div class="align-L float-L">
+      <imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="9" />
+<imart:condition validity="<%= String.valueOf(form.isCommentViewFlag()) %>" >
+          <nfwui:PopupButton id="commentPop" value="コメント表示" 
+          cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
+          modalMode="false" popupWidth="1350" popupHeight="550"
+          parameter="applNo:applNo" formId="form"
+          screenUrl="skf/Skf2010Sc010/init" use="popup" tabindex="10" />
+</imart:condition>
+</div> 
+
+
+
+<div class="align-R">
+     <nfwui:ConfirmButton style="width:150px;" id="download" name="download" value="CSV出力"  formId="form" cssClass="imui-medium-button" 
+     					title="<%=MessageIdConstant.SKF2060_SC001_CONFIRM_TITLE %>" message="<%=MessageIdConstant.I_SKF_2008 %>" url="skf/Skf2060Sc001/download" tabindex="11" />
+      <nfwui:Button style="width:150px;" id="candidate" name="candidate" formId="form" value="提示" cssClass="imui-medium-button" url="skf/Skf2060Sc001/candidate" tabindex="12" />
+</div> 
     </div>
 
 
@@ -215,24 +235,13 @@
 
 <br>
 
-<div class="align-L float-L">
-      <imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()"  />
-<imart:condition validity="<%= String.valueOf(form.isCommentViewFlag()) %>" >
-          <nfwui:PopupButton id="commentPop" value="コメント表示" 
-          cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
-          modalMode="false" popupWidth="1350" popupHeight="550"
-          parameter="applNo:applNo" formId="form"
-          screenUrl="skf/Skf2010Sc010/init" use="popup" />
-</imart:condition>
-</div> 
+<!-- 隠し項目 -->
+<input type="hidden" name="shainNo" id="shainNo" value="${form.shainNo}" /> <!-- 提示対象者の社員番号 -->
+<input type="hidden" name="updateDate" id="updateDate" value="${form.updateDate}" /> <!-- 更新日時 -->
+<input type="hidden" name="applNo" id="applNo" value="${form.applNo}" />　<!-- 申請書類管理番号 -->
+<!-- 申請書類ステータス(いらない？？？） -->
+<!-- 隠し項目終わり -->
 
-
-
-<div class="align-R">
-     <nfwui:ConfirmButton style="width:150px;" id="download" name="download" value="CSV出力"  formId="form" cssClass="imui-medium-button" 
-     					title="<%=MessageIdConstant.SKF2060_SC001_CONFIRM_TITLE %>" message="<%=MessageIdConstant.I_SKF_2008 %>" url="skf/Skf2060Sc001/download" />
-      <nfwui:Button style="width:150px;" id="candidate" name="candidate" formId="form" value="提示" cssClass="imui-medium-button" url="skf/Skf2060Sc001/candidate"/>
-</div> 
 </nfwui:Form>
 
 　<script type="text/javascript">
@@ -243,6 +252,8 @@
     	var url = "skf/Skf2060Sc004/init?SKF2060_SC004&tokenCheck=0";
     	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
     }
+    
+    
 
 </script>
 
@@ -256,40 +267,43 @@
 					<script src="scripts/skf/skfCommon.js"></script>
 					<script type="text/javascript">
 					(function($) {
+						//画面表示時
 						$(document).ready(function(){
 							
-							//リンククリック時
+							//添付ファイルリンククリック時
 							$("a[id^='attached_']").click(function(){
 								downloadKariageBukkenFile(this);
 								
 							});
+							
+							//ウィンドウリサイズ時
+							$(window).bind('resize',function(){
+								$('#kariageCandidateList').setGridWidth($('#listTableArea').width(),true);
+							}).trigger('resize');
 						
 						onCellSelect = function(rowId,iCol,cellcontent,e) {
+							//削除アイコンクリック時
 							if ($(cellcontent).hasClass('im-ui-icon-common-16-trashbox')) {
 								// リストテーブル情報取得
 								var grid = $("#kariageCandidateList");
 								// 行番号から選択した行の情報を取得
 								var row = grid.getRowData(rowId);
-								// companyCd:会社コード
-								var companyCd = row.companyCd;
+
 								// candidateNo:借上候補物件番号
 								var candidateNo = row.candidateNo;
 								
-								$("#sendCompanyCd").val(companyCd);
 								$("#sendCandidateNo").val(candidateNo);
-								
-								
-								//nfw.common.submitForm("form2", "skf/Skf2060Sc001/delete");
 								
 								var dialogMessage = '<%=MessageIdConstant.I_SKF_3005 %>';
 								var dialogTitle = '<%=MessageIdConstant.SKF2060_SC001_CONFIRM_TITLE %>';
 								var formId = "form2";
 								var url = "skf/Skf2060Sc001/delete";
 								
-								nfw.common.confirmPopup("削除します。よろしいですか？", "確認", formId, url, "OK", "キャンセル", this, true);
+								nfw.common.confirmPopup("削除します。よろしいですか？", "確認", formId, url, "ok", "キャンセル", this, true);
 							}
 							
-							if ($(cellcontent).hasClass('im-ui-icon-menu-24-document')) {
+							//添付ファイルアイコンクリック時
+							if ($(cellcontent).hasClass('im-ui-icon-common-16-attachment')) {
 								// リストテーブル情報取得
 								var grid = $("#kariageCandidateList");
 								// 行番号から選択した行の情報を取得
@@ -314,7 +328,7 @@
 							}
 						}
 						});
-						
+						//添付資料入力支援ポップアップ画面閉じたとき
 						updateAttachedFileArea = function(res) {
 							var map = new Object();
 							map['candidateNo'] = $("#sendCandidateNo").val();
@@ -327,6 +341,7 @@
 									var grid = $("#kariageCandidateList");
 									grid.setRowData(rowId, {attachedName:data.attachedFileLink});
 									
+									//添付ファイルリンククリック時
 									$("a[id^='attached_']").bind("click",function(){
 										downloadKariageBukkenFile(this);
 										
@@ -335,8 +350,9 @@
 								}
 							});
 						}
-						
+						//添付ファイルリンククリック時呼び出し先
 						downloadKariageBukkenFile = function(data) {
+							//リンクタグのidから借上候補物件番号と添付ファイル番号を取得
 							var id = $(data).attr("id");
 							var url = "skf/Skf2060Sc001/AttachedDownload";
 							var list = id.split('_');
@@ -349,6 +365,27 @@
 							skf.common.submitForm("form2", url, this);
 							
 						}
+						
+						$("#insert").click(function(){
+							var map = new Object();
+							map['shatakuName'] = $("#shatakuName").val();
+							map['address'] = $("#address").val();
+							
+							nfw.common.doAjaxAction("skf/Skf2060Sc001/CheckAsync", map, true, function(data){
+								var formId = "form";
+								var url = "skf/Skf2060Sc001/insertKariage";
+								if(data.dialogFlg){
+									var shainName = data.dialogShainName;
+									var message = "入力した借上候補物件は"+shainName+"さんに提示し完了しています。登録してもよろしいですか？";
+									
+									nfw.common.confirmPopup(message, "確認", formId, url, "ok", "キャンセル", this, true);
+								}else{
+									nfw.common.submitForm(formId, url, this);
+								}
+									
+							});
+							
+						});
 						
 					})(jQuery);	
 					</script>

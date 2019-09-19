@@ -21,135 +21,208 @@
 </style>
 <script type="text/javascript">
 
-//リストテーブルの入退去予定作成区分の文字色変更
-function onCellAttr(rowId,val,rawObject,cm,rdata){
-	  var style;
-	  switch (val) {
-	  case '作成済':
-	      style = 'style="color:blue;"';
-	      break;
-	  case '未作成':
-	      style = 'style="color:red;"';
-	      break;	  
-	  default:
-	      style = 'style="color:black;"';
-    break;
-	  }
-    return style;
-}
-
+jQuery(function ($) {
+	$("#closeBtnTest").click(function() {
+		window.open('about:blank','_self').close();
+	});
+});
 </script>
 
 <!-- コンテンツエリア -->
-<div id="imui-container" style="width:650px;min-width:650px;max-width: 1000px;">
-<!-- コンテンツエリア -->
-<div class="imui-form-container-wide" width="550px" style="width:100%; min-width:550px;max-width: 550px;">
-<div style="height:30px; bottom:10px">現在の社宅入居状況です。</div>
-	<nfwui:Title code="<%= MessageIdConstant.SKF2010_SC001_SEARCH_TITLE %>" titleLevel="2" />
-	<nfwui:Form id="searchForm" name="searchForm" modelAttribute="form" >
+<nfwui:Form id="form" name="form" modelAttribute="form">
+<div style="width:100%;" >
+	<div class="imui-form-container-wide">
+		<div style="height:30px; bottom:10px">現在の社宅入居状況です。</div>
+
+		<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3020_SC001 %>" />
+
+		<!-- 社員情報 -->
+		<div class="imui-chapter-title"><h2>社員情報</h2></div>
 		<nfwui:Table use="search">
 			<tbody>
 				<tr>
-					<th style="width: 7%;">
-					  <nfwui:LabelBox id="lblShainNo" code="<%= MessageIdConstant.SKF2010_SC001_SHAIN_NO %>" />
+					<!-- 社員番号 -->
+					<th style="width: 20%;">
+						<nfwui:LabelBox id="lblShainNoTitle" code="<%=MessageIdConstant.SKF3020_SC001_LBL_SHAIN_NUMBER %>" />
 					</th>
-					<td style="width: 10%;">
-					    <imui:textbox id="shainNo" name="shainNo" style="width:260px;" value="${form.shainNo}" class="${form.errShainNo}" />
+					<td>
+						<label>${form.shainNo}<label>
+					</td>
+					<!-- 社員氏名 -->
+					<th style="width: 20%;">
+						<nfwui:LabelBox id="lblShainNameTitle" code="<%=MessageIdConstant.SKF3020_SC001_LBL_SHAIN_NAME %>" />
+					</th>
+					<td>
+						<label>${form.shainName}<label>
 					</td>
 				</tr>
-				<tr>
-					<th style="width: 7%;">
-					  <nfwui:LabelBox id="lblName" code="<%= MessageIdConstant.SKF2010_SC001_NAME %>" />
-					</th>
-					<td style="width: 10%;">
-					  <imui:textbox id="name" name="name" style="width:260px;" value="${form.name}" class="${form.errName}" />
-					</td>
-				</tr>
-					<th style="width: 7%;">
-					  <nfwui:LabelBox id="lblNameKk" code="<%= MessageIdConstant.SKF2010_SC001_NAME_KK %>" />
-					</th>
-					<td style="width: 10%;">
-					  <imui:textbox id="nameKk" name="nameKk" style="width:260px;" value="${form.nameKk}" class="${form.errNameKk}" />
-					</td>
-				</tr>
-				<tr>
-					<th style="width: 7%;">
-					  <nfwui:LabelBox id="lblGenShozoku" code="<%= MessageIdConstant.SKF2010_SC001_AGENCY %>" />
-					</th>
-					<td style="width: 10%;">
-					  <imui:textbox id="agency" name="agency" style="width:260px;" value="${form.agency}" class="${form.errAgency}" />
-					</td>
-				</tr>
-
 			</tbody>
 		</nfwui:Table>
-	</nfwui:Form>
-	<div class="align-L">	
-	    <nfwui:Button id="search" name="search" value="検索"
-	    cssClass="imui-small-button" url="skf/Skf2010Sc001/Search"
-	    formId="searchForm" />
-		<!--<input type="button" value="クリア" class="imui-small-button" >-->
-				</div>
-<br>
-			<!-- 明細＆細目未満 -->
-	<!-- 明細部 -->
-	<nfwui:Form id="sampleList1" name="sampleList1" modelAttribute="form" secureToken="false">
-	    <nfwui:Title code="<%= MessageIdConstant.SKF2010_SC001_SEARCH_RESULT %>" titleLevel="2" />
-		<script type="text/javascript">
-			(function($){
-			$.imui.util.loadCSS("../../ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
-			})(jQuery);
-		</script>
 
-		<imui:listTable id="shainList" name="shainList"
-		data="${form.listTableList}" onCellSelect="onCellSelect"
-		width="550" height="200" multiSelect="false">
-		<pager rowNum="1000" />
-		<cols>
-		  <col name="shainNo" width="100" sortable="false" caption="社員番号" />
-		  <col name="name" width="200" sortable="false" caption="氏名" />
-		  <col name="nameKk" hidden="true" />
-		  <col name="agency" width="255" sortable="false" caption="現所属" />
-		</cols>
-		</imui:listTable>
+		<!-- 社宅入居状況 -->
+		<div class="imui-chapter-title"><h2>社宅入居状況</h2></div>
+		<nfwui:Table use="search">
+			<tbody>
+				<tr>
+					<!-- 居住者区分 -->
+					<th style="width: 20%;">
+						<nfwui:LabelBox id="lblKyojyuKbnTitle" code="<%=MessageIdConstant.SKF3020_SC001_LBL_KYOJYU_KBN %>" />
+					</th>
+					<td>
+						<label>${form.jyukyoKbn}<label>
+					</td>
+				</tr>
+				<tr>
+					<!-- 社宅区分 -->
+					<th style="width: 20%;">
+						<nfwui:LabelBox id="lblShatakuKbnTitle" code="<%=MessageIdConstant.SKF3020_SC001_LBL_SHATAKU_KBN %>" />
+					</th>
+					<td>
+						<label>${form.shatakuKbn}<label>
+					</td>
+				</tr>
+				<tr>
+					<!-- 社宅名 -->
+					<th style="width: 20%;">
+						<nfwui:LabelBox id="lblShatakuNameTitle" code="<%=MessageIdConstant.SKF3020_SC001_LBL_SHATAKU_NAME %>" />
+					</th>
+					<td>
+						<label>${form.shatakuName}<label>
+					</td>
+				</tr>
+				<tr>
+					<!-- 住所 -->
+					<th style="width: 20%;">
+						<nfwui:LabelBox id="lblAddressTitle" code="<%=MessageIdConstant.SKF3020_SC001_LBL_ADDRESS %>" />
+					</th>
+					<td>
+						<label>${form.address}<label>
+					</td>
+				</tr>
+				<tr>
+					<!-- 部屋番号 -->
+					<th style="width: 20%;">
+						<nfwui:LabelBox id="lblRoomNoTitle" code="<%=MessageIdConstant.SKF3020_SC001_LBL_ROOMNO %>" />
+					</th>
+					<td>
+						<label>${form.roomNo}<label>
+					</td>
+				</tr>
+				<tr>
+					<!-- 用途 -->
+					<th style="width: 20%;">
+						<nfwui:LabelBox id="lblOriginalAuseTitle" code="<%=MessageIdConstant.SKF3020_SC001_LBL_ORIGINALAUSE %>" />
+					</th>
+					<td>
+						<label>${form.ause}<label>
+					</td>
+				</tr>
+				<tr>
+					<!-- 規格 -->
+					<th style="width: 20%;">
+						<nfwui:LabelBox id="lblKikakuTitle" code="<%=MessageIdConstant.SKF3020_SC001_LBL_NOW_ROOM_KIKAKU %>" />
+					</th>
+					<td>
+						<label>${form.kikaku}<label>
+					</td>
+				</tr>
+				<tr>
+					<!-- 面積 -->
+					<th style="width: 20%;">
+						<nfwui:LabelBox id="lblMensekiTitle" code="<%=MessageIdConstant.SKF3020_SC001_LBL_NOW_ROOM_MENSEKI %>" />
+					</th>
+					<td>
+						<label>${form.menseki}<label>
+					</td>
+				</tr>
+			</tbody>
+		</nfwui:Table>
 
-		<style type="text/css">  
-			<!--
-				/* ヘッダテキスト中央寄せ */
-				.ui-jqgrid .ui-jqgrid-htable th div {
-					display:table-cell;
-				    height: 32px;
-					text-align:center;
-					vertical-align:middle;
-				}
-				/** 1行間隔で網掛け挑戦
-				.testcss {
-					border: 1px solid #a6c9e2;
-					background-color: #e6e6fa ;
-					color: #222222;
-				}
+		<nfwui:Table use="search" remove="${form.remove}">
+			<tbody>
+				<tr>
+					<!-- 居住者区分 -->
+					<th style="width: 20%;">
+						<nfwui:LabelBox id="lblKyojyuKbnTitle2" code="<%=MessageIdConstant.SKF3020_SC001_LBL_KYOJYU_KBN %>" />
+					</th>
+					<td>
+						<label>${form.jyukyoKbn2}<label>
+					</td>
+				</tr>
+				<tr>
+					<!-- 社宅区分 -->
+					<th style="width: 20%;">
+						<nfwui:LabelBox id="lblShatakuKbnTitle2" code="<%=MessageIdConstant.SKF3020_SC001_LBL_SHATAKU_KBN %>" />
+					</th>
+					<td>
+						<label>${form.shatakuKbn2}<label>
+					</td>
+				</tr>
+				<tr>
+					<!-- 社宅名 -->
+					<th style="width: 20%;">
+						<nfwui:LabelBox id="lblShatakuNameTitle2" code="<%=MessageIdConstant.SKF3020_SC001_LBL_SHATAKU_NAME %>" />
+					</th>
+					<td>
+						<label>${form.shatakuName2}<label>
+					</td>
+				</tr>
+				<tr>
+					<!-- 住所 -->
+					<th style="width: 20%;">
+						<nfwui:LabelBox id="lblAddressTitle2" code="<%=MessageIdConstant.SKF3020_SC001_LBL_ADDRESS %>" />
+					</th>
+					<td>
+						<label>${form.address2}<label>
+					</td>
+				</tr>
+				<tr>
+					<!-- 部屋番号 -->
+					<th style="width: 20%;">
+						<nfwui:LabelBox id="lblRoomNoTitle2" code="<%=MessageIdConstant.SKF3020_SC001_LBL_ROOMNO %>" />
+					</th>
+					<td>
+						<label>${form.roomNo2}<label>
+					</td>
+				</tr>
+				<tr>
+					<!-- 用途 -->
+					<th style="width: 20%;">
+						<nfwui:LabelBox id="lblOriginalAuseTitle2" code="<%=MessageIdConstant.SKF3020_SC001_LBL_ORIGINALAUSE %>" />
+					</th>
+					<td>
+						<label>${form.ause2}<label>
+					</td>
+				</tr>
+				<tr>
+					<!-- 規格 -->
+					<th style="width: 20%;">
+						<nfwui:LabelBox id="lblKikakuTitle2" code="<%=MessageIdConstant.SKF3020_SC001_LBL_NOW_ROOM_KIKAKU %>" />
+					</th>
+					<td>
+						<label>${form.kikaku2}<label>
+					</td>
+				</tr>
+				<tr>
+					<!-- 面積 -->
+					<th style="width: 20%;">
+						<nfwui:LabelBox id="lblMensekiTitle2" code="<%=MessageIdConstant.SKF3020_SC001_LBL_NOW_ROOM_MENSEKI %>" />
+					</th>
+					<td>
+						<label>${form.menseki2}<label>
+					</td>
+				</tr>
+			</tbody>
+		</nfwui:Table>
+		<div class="align-R">
+			<!-- 画面を閉じる ボタン -->
+			<nfwui:PopupButton id="closeBtn" value="画面を閉じる" cssClass="imui-medium-button" modalMode="true" use="cancel" />				
+		</div>
 
-				.ui-row-even {
-					background-color: #e6e6fa ;
-				}
-				*/
-
-				/* データ行の改行許容 */
-				#shainList tr td{
-					white-space:normal;
-				}
-			-->
-		</style>
-	</nfwui:Form>
-	<br>
-<div class="align-R">
-	<imui:button id="closeBtn" name="closeBtn" value="画面を閉じる" style="width:100px;" class="imui-small-button" />
-	<imui:button id="selectBtn" name="selectBtn" value="選択" style="width:100px;" class="imui-small-button" />
-	<!--<input style="width:100px;" id="" type="button" value="キャンセル" class="imui-small-button"  onclick="window.close()"/>-->
-	<input type="hidden" id="targetRowId" value="" />
+	</div>
 </div>
-</div>
-</div>
+</br>
+</nfwui:Form>
 <!-- コンテンツエリア　ここまで -->
 
 

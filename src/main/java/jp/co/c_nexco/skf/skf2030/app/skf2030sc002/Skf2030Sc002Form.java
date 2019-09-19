@@ -1,4 +1,4 @@
-package jp.co.c_nexco.skf.skf2030.app.skf2030sc001;
+package jp.co.c_nexco.skf.skf2030.app.skf2030sc002;
 
 import jp.co.c_nexco.skf.skf2030.app.Skf2030common.Skf2030CommonForm;
 import java.util.*;
@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 
 @lombok.Data
 @EqualsAndHashCode(callSuper = true)
-public class Skf2030Sc001Form extends Skf2030CommonForm {
+public class Skf2030Sc002Form extends Skf2030CommonForm {
 
 	private static final long serialVersionUID = 5285848663756806913L;
 
@@ -18,11 +18,22 @@ public class Skf2030Sc001Form extends Skf2030CommonForm {
 	private boolean status24Flag;
 	// 備品申請ラジオボタンフラグ
 	private String bihinCheckFlag;
+	// 提示可能フラグ
+	private boolean createCompleteFlag;
+	// 「搬入完了日」表示フラグ
+	private boolean completionDayVisible;
+	// ボタン表示モードレベル
+	private int dispMode;
+	// CSS折り返し埋め込み用変数
+	private String floatL;
+	// 更新内容
+	private String updateType;
 
 	// 希望時間ドロップダウンリスト
 	private List<Map<String, Object>> ddlWishTime;
 
 	// 備品希望設定
+	private List<Map<String, String>> bihinList;
 	// 洗濯機
 	private String bihinAppl11;
 	private String bihinApplText11;
@@ -81,4 +92,10 @@ public class Skf2030Sc001Form extends Skf2030CommonForm {
 	// コメント
 	private String commentNote;
 	private boolean commentBtnVisibled;
+	private boolean commentViewFlag;
+
+	// ボタン非活性フラグ
+	// 「提示」ボタン非活性フラグ
+	private boolean presentBtnDisabled = false;
+
 }

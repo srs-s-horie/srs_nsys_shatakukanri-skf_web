@@ -65,21 +65,17 @@ function back() {
                                             <nfwui:LabelBox id="lblApplDater" code="<%= MessageIdConstant.SKF2010_SC003_APPL_DATER %>" />
                                         </th>
                                         <td colspan="2">
-                                            <imui:textbox name="applDateFrom" id="applDateFrom" value="${f:h(form.applDateFrom)}" class="${form.applDateFromErr}" style="width:100px" />&nbsp;～&nbsp;<imui:textbox name="applDateTo" id="applDateTo" value="${form.applDateTo}" style="width:100px" class="${form.applDateToErr}" />
+                                        	<nfwui:DateBox name="applDateFrom" id="applDateFrom" cssStyle="width:100px" />&nbsp;～&nbsp;<nfwui:DateBox name="applDateTo" id="applDateTo" cssStyle="width:100px" />
                                         </td>
                                     </tr>
-                                    <im:calendar floatable="true" altField="#applDateFrom" />
-                                    <im:calendar floatable="true" altField="#applDateTo" />
                                     <tr>
                                       <th style="width: 120px;">
                                           <nfwui:LabelBox id="agreDate" code="<%= MessageIdConstant.SKF2010_SC003_AGRE_DATE %>" />
                                       </th>
                                       <td colspan="2">
-                                          <imui:textbox name="agreDateFrom" id="agreDateFrom" value="${f:h(form.agreDateFrom)}" style="width:100px" class="${form.agreDateFromErr}"/>&nbsp;～&nbsp;<imui:textbox name="agreDateTo" id="agreDateTo" value="${form.agreDateTo}" class="${form.agreDateToErr}" style="width:100px"/>
+                                          <nfwui:DateBox name="agreDateFrom" id="agreDateFrom" cssStyle="width:100px"/>&nbsp;～&nbsp;<nfwui:DateBox name="agreDateTo" id="agreDateTo" cssStyle="width:100px"/>
                                       </td>
                                     </tr>
-                    				<im:calendar floatable="true" altField="#agreDateFrom" />
-                                    <im:calendar floatable="true" altField="#agreDateTo" />
                                     <tr>
                                         <th style="width: 120px;">
                                             <nfwui:LabelBox id="lblApplName" code="<%= MessageIdConstant.SKF2010_SC003_APPL_NAME %>" />
@@ -293,7 +289,8 @@ height="232">
     	
 	    	if ($(cellContent).hasClass('im-ui-icon-common-16-update')) {
 	    		// 表示
-	    		if (applId != "R0106" && !((applStatus == "<%= CodeConstant.STATUS_ICHIJIHOZON %>" || applStatus == "<%= CodeConstant.STATUS_SASHIMODOSHI %>"))) {
+	    		if ((applId == "R0100" || applId == "R0103") 
+	    				&& !((applStatus == "<%= CodeConstant.STATUS_ICHIJIHOZON %>" || applStatus == "<%= CodeConstant.STATUS_SASHIMODOSHI %>"))) {
 	    			url = "skf/Skf2010Sc004/init";
 	    		} else {
 		    		switch (applId) {
