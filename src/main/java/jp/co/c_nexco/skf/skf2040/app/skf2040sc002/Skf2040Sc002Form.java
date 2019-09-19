@@ -24,6 +24,9 @@ public class Skf2040Sc002Form extends Skf2040CommonForm {
 	/*
 	 * 退居（自動車の保管場所返還）届
 	 */
+
+	private String taiyoHituyo;
+
 	// 社宅管理番号
 	private String shatakuKanriNo;
 	// 氏名
@@ -66,33 +69,33 @@ public class Skf2040Sc002Form extends Skf2040CommonForm {
 	/*
 	 * 返却備品設定
 	 */
-	// 洗濯機
-	private String bihinState11;
-	private String bihinReturn11;
-	// 冷蔵庫
-	private String bihinState12;
-	private String bihinReturn12;
-	// オーブンレンジ
-	private String bihinState13;
-	private String bihinReturn13;
-	// 掃除機
-	private String bihinState14;
-	private String bihinReturn14;
-	// 電子炊飯ジャー
-	private String bihinState15;
-	private String bihinReturn15;
-	// テレビ
-	private String bihinState16;
-	private String bihinReturn16;
-	// テレビ台
-	private String bihinState17;
-	private String bihinReturn17;
-	// 座卓（こたつ）
-	private String bihinState18;
-	private String bihinReturn18;
-	// キッチンキャビネット
-	private String bihinState19;
-	private String bihinReturn19;
+	// // 洗濯機
+	// private String bihinState11;
+	// private String bihinReturn11;
+	// // 冷蔵庫
+	// private String bihinState12;
+	// private String bihinReturn12;
+	// // オーブンレンジ
+	// private String bihinState13;
+	// private String bihinReturn13;
+	// // 掃除機
+	// private String bihinState14;
+	// private String bihinReturn14;
+	// // 電子炊飯ジャー
+	// private String bihinState15;
+	// private String bihinReturn15;
+	// // テレビ
+	// private String bihinState16;
+	// private String bihinReturn16;
+	// // テレビ台
+	// private String bihinState17;
+	// private String bihinReturn17;
+	// // 座卓（こたつ）
+	// private String bihinState18;
+	// private String bihinReturn18;
+	// // キッチンキャビネット
+	// private String bihinState19;
+	// private String bihinReturn19;
 
 	// コメント
 	private String commentNote;
