@@ -17,7 +17,7 @@
 <% // 代行ログイン時CSS読み込み箇所ここまで %>
 
 <!-- コンテンツエリア -->
-<div class="imui-form-container-wide" width="1350px" style="width: 100%; max-width: 1350px;">
+<div class="imui-form-container-wide" width="1350px" style="width: 95%; max-width: 1350px;">
    	<!-- 代行ログイン時のみ表示されるメッセージ -->
    	<jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
 	<!-- 状況、資料ヘッダ -->

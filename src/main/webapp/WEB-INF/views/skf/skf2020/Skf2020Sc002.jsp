@@ -712,8 +712,11 @@
 						</div> 
 					</td>     
 					<!-- ステータス -->
+					<nfwui:Hidden id="applNo" name="applNo" />
+				    <nfwui:Hidden id="applId" name="applId" />
+				    <nfwui:Hidden id="shainNo" name="shainNo" />
 					<input type="hidden" name="hdnShainNo" id="hdnShainNo" value="${form.shainNo}" />
-					<input type="hidden" name="hdnstatus" id="hdnstatus" value="${form.hdnstatus}" />		
+					<input type="hidden" name="status" id="status" value="${form.hdnstatus}" />		
 					<input type="hidden" name="hdnSelectedNowShatakuName" id="hdnSelectedNowShatakuName" value="${form.hdnSelectedNowShatakuName}" />
 					<input type="hidden" name="hdnParking1stNumber" id="hdnParking1stNumber" value="${form.hdnParking1stNumber}"/>			
 					<input type="hidden" name="hdnParking2stNumber" id="hdnParking2stNumber" value="${form.hdnParking2stNumber}"/>
@@ -1458,7 +1461,16 @@ function mesDisplayControl(isHide){
 	 * ひとつ前の画面に戻る
 	 */
     function back1() {
-    	var url = "skf/Skf2010Sc007/init?SKF2010_SC007&tokenCheck=0";
+    	var prePageId = $("#prePageId").val();
+    	var url = "";
+    	//前の画面のＵＲＬ判定
+    		if(prePageId=="Skf2010Sc007"){
+    			//入居希望等調書申請
+    			url = "skf/Skf2010Sc007/init?SKF2010_SC007&tokenCheck=0";
+    		}else if(prePageId=="Skf2010Sc003"){
+    			//申請条件一覧
+    			url="skf/Skf2010Sc003/init?SKF2010_SC003";
+    		}
     	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。編集内容を保存する場合は「一時保存」をクリックして下さい。");
     }  
 	
