@@ -33,7 +33,9 @@ public class Skf2010Sc002Form extends Skf2010NyukyoCommonForm {
 	/**
 	 * 画面表示
 	 */
+
 	// 申請状況
+	private String status;
 	private String applStatusText;
 
 	/**
