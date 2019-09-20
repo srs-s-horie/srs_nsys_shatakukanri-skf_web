@@ -146,7 +146,7 @@
 
                     <tr>
                         <th>
-                            <a href="http://localhost:8080/imart/skf/Skf2010Sc007/init?confirmationKbn=1" class="imui-accent" style="margin-left: 8px">社宅入居希望等調書</a>
+                            <a href="/imart/skf/Skf2010Sc007/init?confirmationKbn=1" class="imui-accent" style="margin-left: 8px">社宅入居希望等調書</a>
                         </th>
                         <td style="width: 60%;">
                             <font>社宅・寮に入居したい場合に作成する申請書類です。(※併せて退居が発生する場合、退居届も自動で作成されます。)</font>
@@ -166,7 +166,7 @@
                     
                     <tr>
                         <th>
-                            <a href="http://localhost:8080/imart/skf/Skf2010Sc007/init?confirmationKbn=2" class="imui-accent" style="margin-left: 8px">社宅（自動車保管場所）退居届</a>
+                            <a href="/imart/skf/Skf2010Sc007/init?confirmationKbn=2" class="imui-accent" style="margin-left: 8px">社宅（自動車保管場所）退居届</a>
                         </th>
                         <td style="width: 60%;">
                             <font>社宅・寮を退居する場合及び駐車場を返還する場合に作成する申請書類です。</font>
@@ -174,7 +174,7 @@
                      </tr> 
                      <tr>
                       <th>
-                            <a href="http://localhost:8080/imart/skf/Skf2010Sc003/init?menuFlg=1" class="imui-accent" style="margin-left: 8px">社宅申請状況一覧</a>
+                            <a href="/imart/skf/Skf2010Sc003/init?menuFlg=1" class="imui-accent" style="margin-left: 8px">社宅申請状況一覧</a>
                         </th>
                         <td style="width: 60%;">
                             <font>申請書類を確認します。<br>　　　</font>
@@ -199,7 +199,7 @@
                      
                       <imart:condition validity="${form.level2_1}" negative> 
                      <th>
-                          <a href="http://localhost:8080/imart/skf/Skf2010Sc005/init" class="imui-accent" style="margin-left: 8px">申請書類を承認する</a>
+                          <a href="/imart/skf/Skf2010Sc005/init" class="imui-accent" style="margin-left: 8px">申請書類を承認する</a>
                       </th>
                       <td style="width: 60%;">
                           <font>申請者への提示、および申請書類の承認を行います。<br>　　　</font>
@@ -226,7 +226,7 @@
                     <tr>
                         <imart:condition validity="${form.level2_2}" negative> 
                         <th>
-                            <a href="http://localhost:8080/imart/skf/Skf3010Sc001/init" class="imui-accent" style="margin-left: 8px">社宅を管理する</a>
+                            <a href="/imart/skf/Skf3010Sc001/init" class="imui-accent" style="margin-left: 8px">社宅を管理する</a>
                         </th>
                         <td style="width: 60%;">
                             <font>社宅の登録を行います。<br>　　</font>
@@ -234,7 +234,7 @@
                     </tr>
                     <tr>
                         <th>
-                            <a href="http://localhost:8080/imart/skf/Skf3020Sc004/init" class="imui-accent" style="margin-left: 8px">転任者情報を管理する</a>
+                            <a href="/imart/skf/Skf3020Sc004/init" class="imui-accent" style="margin-left: 8px">転任者情報を管理する</a>
                         </th>
                         <td style="width: 60%;">
                             <font >転任者情報の登録、一覧を表示します。<br>また、転任者調書(Excel)の取込を行います。</font>
@@ -243,7 +243,7 @@
 
                     <tr>
                         <th>
-                            <a href="http://localhost:8080/imart/skf/Skf3021Sc001/init" class="imui-accent" style="margin-left: 8px">入退居情報を管理する</a>
+                            <a href="/imart/skf/Skf3021Sc001/init" class="imui-accent" style="margin-left: 8px">入退居情報を管理する</a>
                         </th>
                         <td style="width: 60%;">
                             <font >入退居予定の一覧を表示します。<br>　　　</font>
@@ -251,7 +251,7 @@
                     </tr>
                     <tr>
                         <th>
-                            <a href="http://localhost:8080/imart/skf/Skf3022Sc005/init" class="imui-accent" style="margin-left: 8px">提示データを作成する</a>
+                            <a href="/imart/skf/Skf3022Sc005/init" class="imui-accent" style="margin-left: 8px">提示データを作成する</a>
                      </th>
                         <td style="width: 60%;">
                             <font >提示データの作成を行います。<br>　　　</font>
@@ -259,7 +259,7 @@
                     </tr>
                     <tr>
                         <th>
-                            <a href="http://localhost:8080/imart/skf/Skf2060Sc004/init" class="imui-accent" style="margin-left: 8px">借上候補物件を提示する</a>
+                            <a href="/imart/skf/Skf2060Sc004/init" class="imui-accent" style="margin-left: 8px">借上候補物件を提示する</a>
                         </th>
                         <td style="width: 60%;">
                             <font >借上候補物件の提示情報の完了、および申請者への提示を行います。</font><br/><br/>
@@ -267,7 +267,7 @@
                     </tr>
                     <tr>
                         <th>
-                            <a href="http://localhost:8080/imart/skf/Skf3030Sc001/init" class="imui-accent" style="margin-left: 8px">社宅管理台帳を確認する</a>
+                            <a href="/imart/skf/Skf3030Sc001/init" class="imui-accent" style="margin-left: 8px">社宅管理台帳を確認する</a>
                         
                         </th>
                         <td style="width: 60%;">
@@ -277,7 +277,7 @@
 
                      <tr>
                         <th>
-                            <a href="http://localhost:8080/imart/skf/Skf3050Sc001/init" class="imui-accent" style="margin-left: 8px">社員情報を一括更新する</a>
+                            <a href="/imart/skf/Skf3050Sc001/init" class="imui-accent" style="margin-left: 8px">社員情報を一括更新する</a>
                         </th>
                         <td style="width: 60%;">
                             <font >社員番号の一括設定を行います。<br>　　　</font>
@@ -288,7 +288,7 @@
                     <tr>  
                     <imart:condition validity="${form.level2_3}" negative>
                         <th>
-                            <a href="http://localhost:8080/imart/skf/Skf3050Sc002/init" class="imui-accent" style="margin-left: 8px">月締め処理を行う</a>
+                            <a href="/imart/skf/Skf3050Sc002/init" class="imui-accent" style="margin-left: 8px">月締め処理を行う</a>
                         </th>
                         <td style="width: 60%;">
                             <font >月次の運用管理を行います。<br>　　　</font>
@@ -305,7 +305,7 @@
                     <tr>
                     <imart:condition validity="${form.level2_4}" negative>
                         <th>
-                            <a href="http://localhost:8080/imart/skf/Skf3040Sc001/init" class="imui-accent" style="margin-left: 8px">レンタル備品指示書を作成する</a>
+                            <a href="/imart/skf/Skf3040Sc001/init" class="imui-accent" style="margin-left: 8px">レンタル備品指示書を作成する</a>
                         
                         </th>
                         <td style="width: 60%;">
@@ -316,7 +316,7 @@
                     <!---->
                     <tr>
                         <th>
-                            <a href="http://localhost:8080/imart/skf/Skf3040Sc002/init" class="imui-accent" style="margin-left: 8px">備品搬入・搬出確認リストを作成する</a>
+                            <a href="/imart/skf/Skf3040Sc002/init" class="imui-accent" style="margin-left: 8px">備品搬入・搬出確認リストを作成する</a>
                         
                         </th>
                         <td style="width: 60%;">
@@ -333,7 +333,7 @@
                     <tr>
                     <imart:condition validity="${form.level2_5}" negative>
                         <th>
-                            <a href="http://localhost:8080/imart/skf/Skf3070Sc001/init" class="imui-accent" style="margin-left: 8px">法定調書データを管理する</a>
+                            <a href="/imart/skf/Skf3070Sc001/init" class="imui-accent" style="margin-left: 8px">法定調書データを管理する</a>
                         </th>
                         <td style="width: 60%;">
                             <font >法定調書を作成するに当たり、必要な情報の管理、出力を行います。</font><br/><br/>
@@ -343,7 +343,7 @@
                     <tr>
                     <imart:condition validity="${form.level2_6}" negative>
                         <th>
-                            <a href="http://localhost:8080/imart/skf/Skf3060Sc001/init" class="imui-accent" style="margin-left: 8px">年齢による使用料の変更通知</a>                        
+                            <a href="/imart/skf/Skf3060Sc001/init" class="imui-accent" style="margin-left: 8px">年齢による使用料の変更通知</a>                        
                         </th>
                         <td style="width: 60%;">
                             <font >年齢による社宅の使用料の変更通知の設定を行います。<br>　　　</font>
@@ -369,7 +369,7 @@
                     <tr>
 
                         <th>
-                            <a href="http://localhost:8080/imart/skf/Skf2010Sc008/init" class="imui-accent" style="margin-left: 8px">代行ログイン</a>
+                            <a href="/imart/skf/Skf2010Sc008/init" class="imui-accent" style="margin-left: 8px">代行ログイン</a>
                         </th>
                         <td style="width: 60%;">
                             <font >代行ログインを行います。<br>　　　</font>
@@ -378,7 +378,7 @@
                     
                     <tr name="daikoHide">
                         <th>
-                            <a href="http://localhost:8080/imart/skf/Skf3090Sc008/init" class="imui-accent" style="margin-left: 8px">お知らせマスタメンテナンス</a>
+                            <a href="/imart/skf/Skf3090Sc008/init" class="imui-accent" style="margin-left: 8px">お知らせマスタメンテナンス</a>
                         </th>
                         <td style="width: 60%;">
                             <font >システムに関するお知らせ欄の管理を行います。<br>　　　</font>
@@ -387,7 +387,7 @@
 
                     <tr name="daikoHide">
                       <th>
-                          <a href="http://localhost:8080/imart/skf/Skf3090Sc004/init" class="imui-accent" style="margin-left: 8px">従業員マスタメンテナンス</a>
+                          <a href="/imart/skf/Skf3090Sc004/init" class="imui-accent" style="margin-left: 8px">従業員マスタメンテナンス</a>
                       </th>
                       <td style="width: 60%;">
                           <font >社宅利用者の従業員マスタを管理します。<br>　　　</font>
@@ -396,9 +396,7 @@
                     
                     <tr name="daikoHide">
                       <th>
-                          <a href="http://localhost:8080/imart/skf/Skf3090Sc006/init" class="imui-accent" style="margin-left: 8px">
-                          	組織マスタメンテナンス
-                          </a>
+                          <a href="/imart/skf/Skf3090Sc006/init" class="imui-accent" style="margin-left: 8px">組織マスタメンテナンス </a>
                       </th>
                       <td style="width: 60%;">
                           <font >社宅申請システム利用者の組織を管理します。<br>　　　</font>
@@ -417,7 +415,7 @@
                     
                     <tr name="daikoHide">
                       <th>
-                            <a href="http://localhost:8080/imart/skf/Skf3090Sc001/init" class="imui-accent" style="margin-left: 8px">現物支給価額マスタメンテナンス</a>
+                            <a href="/imart/skf/Skf3090Sc001/init" class="imui-accent" style="margin-left: 8px">現物支給価額マスタメンテナンス</a>
                         </th>
                         <td style="width: 60%;">
                             <font >現物支給価額の管理を行います。<br>　　　</font>
@@ -426,7 +424,7 @@
                     
                     <tr name="daikoHide">
                         <th>
-                            <a href="http://localhost:8080/imart/skf/Skf3090Sc003/init" class="imui-accent" style="margin-left: 8px">事業領域マスタメンテナンス</a>                        
+                            <a href="/imart/skf/Skf3090Sc003/init" class="imui-accent" style="margin-left: 8px">事業領域マスタメンテナンス</a>                        
                         </th>
                         <td style="width: 60%;">
                             <font >事業領域の管理を行います。<br>　　　</font>
@@ -489,9 +487,7 @@
                                                         社宅入居希望等調書の申請が無い入居情報があります。督促メールを送信してください。
                                                     </td>
                                                     <td style="text-align:center;"   colspan="5" >
-                                                        <a href="" class="imui-accent" style="margin-left: 8px;text-align:center;">
-                                                        0件
-                                                        </a>
+                                                       ${form.nyutaikyoCount1}件
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -499,9 +495,7 @@
                                                         退居届の申請が無い退居情報があります。督促メールを送信してください。
                                                     </td>
                                                     <td style="text-align:center;"   colspan="5" >
-                                                        <a href="" class="imui-accent" style="margin-left: 8px;text-align:center;">
-                                                        0件
-                                                        </a>
+                                                       ${form.nyutaikyoCount2}件
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -534,29 +528,19 @@
                                                         社宅入居希望等調書の申請があります。<br>申請内容を確認してください。
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.nyukyoApplicationHonsya}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.nyukyoApplicationTokyo}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.nyukyoApplicationHatiouzi}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.nyukyoApplicationNagoya}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.nyukyoApplicationKanazawa}件
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -564,29 +548,19 @@
                                                         入居希望者に社宅提示が完了していないデータあります。<br>社宅を提示してください。
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.nyukyoUnfinishedTipsHonsya}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                     	${form.nyukyoUnfinishedTipsTokyo}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                         ${form.nyukyoUnfinishedTipsHatiouzi}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                         ${form.nyukyoUnfinishedTipsNagoya}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                         ${form.nyukyoUnfinishedTipsKanazawa}件
                                                     </td>
 
                                                 </tr>
@@ -595,29 +569,19 @@
                                                         提示社宅の本人確認が完了していないデータがあります。<br>督促メールを送信してください。
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.nyukyoUnfinishedCheckHonsya}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.nyukyoUnfinishedCheckTokyo}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.nyukyoUnfinishedCheckHatiouzi}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.nyukyoUnfinishedCheckNagoya}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.nyukyoUnfinishedCheckKanazawa}件
                                                     </td>
 
                                                 </tr>
@@ -626,29 +590,19 @@
                                                         入居希望者の同意済のデータがあります。<br>承認してください。
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.nyukyoAgreedHonsya}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.nyukyoAgreedTokyo}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.nyukyoAgreedHatiouzi}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.nyukyoAgreedNagoya}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.nyukyoAgreedKanazawa}件
                                                     </td>
 
                                                 </tr>
@@ -657,29 +611,19 @@
                                                         入居希望者の同意されなかったデータがあります。<br>社宅を提示してください。
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.nyukyoDisagreedHonsya}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.nyukyoDisagreedTokyo}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.nyukyoDisagreedHatiouzi}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.nyukyoDisagreedNagoya}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.nyukyoDisagreedKanazawa}件
                                                     </td>
 
                                                 </tr>
@@ -688,29 +632,19 @@
                                                         退居届の申請があります。<br>申請内容を確認してください。
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.taikyoApplicationHonsya}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.taikyoApplicationTokyo}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.taikyoApplicationHatiouzi}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.taikyoApplicationNagoya}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.taikyoApplicationKanazawa}件
                                                     </td>
 
                                                 </tr>
@@ -719,29 +653,19 @@
                                                         備品希望の申請が無い入居情報があります。<br>督促メールを送信してください。
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinNotApplicationHonsya}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinNotApplicationTokyo}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinNotApplicationHatiouzi}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinNotApplicationNagoya}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinNotApplicationKanazawa}件
                                                     </td>
 
                                                 </tr>
@@ -750,29 +674,19 @@
                                                         備品希望の提示が完了していないデータがあります。<br>備品内容を提示してください。
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinKiboUnfinishedTipsHonsya}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinKiboUnfinishedTipsTokyo}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinKiboUnfinishedTipsHatiouzi}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinKiboUnfinishedTipsNagoya}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinKiboUnfinishedTipsKanazawa}件
                                                     </td>
 
                                                 </tr>
@@ -781,34 +695,19 @@
                                                         備品希望の搬入が完了していないデータがあります。<br>督促メールを送信してください。
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                        
+                                                        ${form.bihinKiboUnfinishedEmplacementHonsya}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                        
+                                                        ${form.bihinKiboUnfinishedEmplacementTokyo}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                        
+                                                        ${form.bihinKiboUnfinishedEmplacementHatiouzi}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                        
+                                                        ${form.bihinKiboUnfinishedEmplacementNagoya}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                        
+                                                        ${form.bihinKiboUnfinishedEmplacementKanazawa}件
                                                     </td>
 
                                                 </tr>
@@ -817,29 +716,19 @@
                                                         備品返却の提示が完了していないデータがあります。<br>備品返却対象を提示してください。
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinHenkyakuUnfinishedTipsHonsya}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinHenkyakuUnfinishedTipsTokyo}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinHenkyakuUnfinishedTipsHatiouzi}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinHenkyakuUnfinishedTipsNagoya}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinHenkyakuUnfinishedTipsKanazawa}件
                                                     </td>
 
                                                 </tr>
@@ -848,29 +737,19 @@
                                                         備品返却提示の本人確認が完了していないデータがあります。<br>督促メールを送信してください。
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinHenkyakuUnfinishedCheckHonsya}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinHenkyakuUnfinishedCheckTokyo}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinHenkyakuUnfinishedCheckHatiouzi}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinHenkyakuUnfinishedCheckNagoya}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinHenkyakuUnfinishedCheckKanazawa}件
                                                     </td>
 
                                                 </tr>
@@ -879,29 +758,19 @@
                                                         備品返却提示の同意済のデータがあります。<br>内容を確認してください。
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinHenkyakuAgreedHonsya}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinHenkyakuAgreedTokyo}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinHenkyakuAgreedHatiouzi}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinHenkyakuAgreedNagoya}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinHenkyakuAgreedKanazawa}件
                                                     </td>
 
                                                 </tr>
@@ -910,29 +779,21 @@
                                                         備品の搬出が完了していないデータがあります。<br>督促メールを送信してください。
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinUnfinishedMovementHonsya}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinUnfinishedMovementTokyo}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinUnfinishedMovementHatiouzi}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        ${form.bihinUnfinishedMovementNagoya}件
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                    <nfwui:Link id="bihinUnfinishedMovementKanazawa" name="bihinUnfinishedMovementKanazawa" label="${form.bihinUnfinishedMovementKanazawa}件" use="anchor" href="/imart/skf/Skf3090Sc006/init">
+                                                     			   
+                                                    </nfwui:Link>    
                                                     </td>
 
                                                 </tr>
