@@ -151,20 +151,15 @@
 			<td class="vertical-top" style="vertical-align:top">
 				<div class="align-R">
 					<!-- 提示ボタン -->
-					<imart:condition validity="${form.presenBtnViewFlg}" >
 						<nfwui:Button id="PresenBtn" name="PresenBtn"
 							value="提示" cssClass="imui-medium-button" cssStyle="width: 150px" 
 							title="<%= MessageIdConstant.SKF2010_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2011 %>"
-							url="skf/Skf2010Sc002/Presentation" formId="form" removePatterns="LV1"
-							remove="${form.presenBtnViewFlg }" />
-					</imart:condition>
+							url="skf/Skf2010Sc002/Presentation" formId="form" removePatterns="1" />
 					<!--　申請ボタン -->
-					<imart:condition validity="${form.applyBtnViewFlg}" >
 						<nfwui:ConfirmButton id="ApplyBtn" name="ApplyBtn" value="申請"
 							cssClass="imui-medium-button" cssStyle="width: 150px" 
 							title="<%= MessageIdConstant.SKF2010_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2003 %>"
-							url="skf/Skf2010Sc002/Apply" formId="form" removePatterns="LV2" />
-					</imart:condition>
+							url="skf/Skf2010Sc002/Apply" formId="form" removePatterns="2" />
 				</div>
 			</td>
 		</tr>
@@ -189,7 +184,7 @@ function back1() {
 		}else if(prePageId=="Skf2020Sc002"){
 			//退居届
 			url="skf/Skf2040Sc001/init?SKF2040_SC001&tokenCheck=0";
-		}else if(prePageId=="Skf2020Sc003"){
+		}else if(prePageId=="Skf2010Sc005"){
 			//入居希望等調書申請アウトソース
 			url="skf/Skf2020Sc003/init?SKF2020_SC003&&tokenCheck=0";
 		}
