@@ -85,6 +85,7 @@ function back1() {
     </div>
 
     <!-- コンテンツエリア -->
+<c:if test="${form.displayLevel < 3}">
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;" height="100px">
        <nfwui:Title id="operationGuide" code="<%= MessageIdConstant.SKF2010_SC004_OPERATION_GUIDE %>" titleLevel="2" />
        <table>
@@ -96,6 +97,7 @@ ${form.operationGuide }
         </table>
 
     </div>
+</c:if>
 
     <!-- コンテンツエリア -->
 <c:if test="${form.displayLevel == 4}">
