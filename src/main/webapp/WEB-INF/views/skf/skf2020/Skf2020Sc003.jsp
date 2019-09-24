@@ -134,8 +134,8 @@ $(function() {
 </script>
 
     <!-- コンテンツエリア -->
-    <div class="imui-form-container-wide" >
-                    <table class="imui-form-search-condition">
+    <div class="imui-form-container-wide" style="width: 95%" >
+                    <table class="imui-form-search-condition" >
                        <tr>
                             <th width="100px"><nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2020_SC003_APPL_STATUS %>" /></th>
                             <td width="100px"><label>${form.applStatusText }</label></td>
@@ -842,7 +842,7 @@ $(function() {
                         <colgroup span="1" style= "width:140px;">
                             <tbody>
                                 <tr>
-                                    <th colspan="3"><nfwui:LabelBox id="lblBihinName" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_KIBO %>" /></th>
+                                    <th colspan="3"></th>
                                     <th colspan="1"><nfwui:LabelBox id="lblBihinStatus" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_STATUS %>" /></th>
                                     <th colspan="1"><nfwui:LabelBox id="lblBihinWish" code="<%= MessageIdConstant.SKF2020_SC003_BIHIN_WISH %>" /></th>
                                 </tr>
@@ -933,7 +933,7 @@ $(function() {
        url="skf/Skf2020Sc003/Remand" />
       <nfwui:Button id="confirmBtn" name="confirmBtn" value="提示内容を確認"
        cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
-       url="skf/Skf2020Sc003/Confirm" disabledPatterns="TeijiNG" />
+       url="skf/Skf2010Sc002/init" disabledPatterns="TeijiNG" />
 </td>
 </tr>
     </tbody>

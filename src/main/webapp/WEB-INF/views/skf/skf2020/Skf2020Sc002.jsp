@@ -35,23 +35,21 @@
 <!-- 代行ログイン時のみ表示-->
 <jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
 	<nfwui:Form id="form" name="form" modelAttribute="form">
-		<div id="mainArea">
-			<table class="imui-form-search-condition">
-				<tbody style="background-color: #33333;">
-					<tr>
-						<!-- 左側の入力域の部分 -->
-						<!-- <td style="width:70%; border: none;background-color:#fdfdff;" class="imui-form-container "> -->
-						<td style="width:70%; border: none; background-color:#fdfdff;" class="imui-form-container ">
-							<!--  <div class="imui-form-container-wide">-->
-								<table class="imui-form-search-condition">
-									<colgroup>
-										<col style="width: 10%;">
-										<col style="width: 10%;">
-										<col style="width: 10%;">
-										<col style="width: 20%;">
-										<col style="width: 10%;">
-										<col style="width: 10%;">
-									</colgroup>
+		<table class="imui-form-search-condition">
+			<tbody style="background-color: #33333;">
+				<tr>
+					<!-- 左側の入力域の部分 -->
+					<td style="width:70%; border: none;background-color:#fdfdff;" class="imui-form-container ">
+						<div class="imui-form-container-wide">
+							<table class="imui-form-search-condition">
+								<colgroup>
+									<col style="width: 10%;">
+									<col style="width: 10%;">
+									<col style="width: 10%;">
+									<col style="width: 20%;">
+									<col style="width: 10%;">
+									<col style="width: 10%;">
+								</colgroup>
 									<!-- タイトル（申請内容） -->
 									<nfwui:Title id="searchTitle" code="<%= MessageIdConstant.SKF2020_SC002_SHINSEI_TITLE %>" titleLevel="2" />
 									<tbody>
@@ -711,11 +709,14 @@
 										</c:if>                           	                                                              
 							   		</tbody>                     	
 						   		</table>
-						<!-- </div>  -->
+						</div> 
 					</td>     
 					<!-- ステータス -->
+					<nfwui:Hidden id="applNo" name="applNo" />
+				    <nfwui:Hidden id="applId" name="applId" />
+				    <nfwui:Hidden id="shainNo" name="shainNo" />
 					<input type="hidden" name="hdnShainNo" id="hdnShainNo" value="${form.shainNo}" />
-					<input type="hidden" name="hdnstatus" id="hdnstatus" value="${form.hdnstatus}" />		
+					<input type="hidden" name="status" id="status" value="${form.hdnstatus}" />		
 					<input type="hidden" name="hdnSelectedNowShatakuName" id="hdnSelectedNowShatakuName" value="${form.hdnSelectedNowShatakuName}" />
 					<input type="hidden" name="hdnParking1stNumber" id="hdnParking1stNumber" value="${form.hdnParking1stNumber}"/>			
 					<input type="hidden" name="hdnParking2stNumber" id="hdnParking2stNumber" value="${form.hdnParking2stNumber}"/>
@@ -726,70 +727,67 @@
 					<input type="hidden" name="hdnApplHistroyApplDate" id="hdnApplHistroyApplDate" value="${form.hdnApplHistroyApplDate}" />
 					<input type="hidden" name="hdnParkingFullFlg" id="hdnParkingFullFlg" value="${form.parkingFullFlg}" />
 					<!-- 右側の入力ガイドの部分 -->
-					<!-- <td style="width: 30%; border: none;background-color: #fdfdff;"> -->
-					<td style="width: 30%; border: none; background-color: #fdfdff;;">
-						<div style="overflow-y:scroll; max-height:1500px; height:1500px; margin-left: 20px; background-color:#eeeeee;">
-						<!-- <div class="imui-form-container-wide"> -->
+					<td style="width: 30%; border: none;background-color: #fdfdff;">
+						<div class="imui-form-container-wide">
+							<table >
 								<nfwui:Title id="lblControlGuide" code="<%= MessageIdConstant.SKF2020_SC002_OPERATION_GUIDE %>" titleLevel="2" />
-								<div style="margin-left: 20px">
+								<div>
 									${form.operationGuide}
 								</div>
-						<!-- </div> -->
-						</div> 
+							</table>
+						</div>
 					</td>      
 				</tr>
-			</tbody>
+			</tbody>	
 		</table>
-	</div>
-	</nfwui:Form>
-
 	<!-- フッターエリア　ボタン -->
-<div class="imui-box-layout" style="width:100%; margin:0 auto;">
-	<table>
-		<tr>
-			<!-- 左エリア -->
-			<div class="btnLeft">
- 				<!-- 入力内容をクリア -->
-				<nfwui:ConfirmButton cssStyle="width:150px;" id="clearBtn" formId="form" value="入力内容をクリア" 
-					cssClass="imui-medium-button" title="<%= MessageIdConstant.SKF2020_SC002_CONFIRM_TITLE %>" 
-					message="<%= MessageIdConstant.I_SKF_2004 %>" 
-					url="skf/Skf2020Sc002/Clear"/>	
- 			</div>
-			<!-- 右エリア -->
- 			<div class="btnRight">
- 				<!-- 申請要件を確認 -->
-				<nfwui:Button cssStyle="width:150px;" id="download" name="download" value="申請要件を確認" 
-					formID="form" cssClass="imui-medium-button" url="skf/Skf2020Sc002/Download" />   	 
-				<!-- 一時保存 -->
-				<nfwui:Button cssStyle="width:150px;" id="saveBtn" formId="form" value="一時保存"
-					cssClass="imui-medium-button" disabled="${form.btnSaveDisabeld}"
-					url="skf/Skf2020Sc002/Save"/>
- 			</div>
- 		</tr>
- 		<tr>
- 			<!-- 左エリア -->
- 			<div class="btnLeft">
-				<!-- 前の画面へ -->
- 				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" />
-				<!-- コメントボタン -->
-				<c:if test="${form.commentViewFlag == 'true'}">
-				<nfwui:PopupButton id="commentPop" value="コメント表示" 
-				cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
-				modalMode="false" popupWidth="1350" popupHeight="550"
-				parameter="applNo:applNo"
-				screenUrl="skf/Skf2010Sc010/init" use="popup" />
-				</c:if>
- 			</div>
- 			<!-- 右エリア -->
- 			<div id="dCheck1" class="btnRight">
- 				<!-- 申請内容を確認 -->
- 				  <imui:button id="checkBtn" value="申請内容を確認" class="imui-medium-button" 
- 				  	style="width: 150px" onclick="checkConfrirm()"  disabled="${form.btnCheckDisabled}"/> 
- 			</div>
- 		</tr>	
- 	</table>
-</div>		
-
+	<div class="imui-box-layout" style="width:100%; margin:0 auto;">
+		<table>
+			<tr>
+				<!-- 左エリア -->
+				<div class="btnLeft">
+	 				<!-- 入力内容をクリア -->
+					<nfwui:ConfirmButton cssStyle="width:150px;" id="clearBtn" formId="form" value="入力内容をクリア" 
+						cssClass="imui-medium-button" title="<%= MessageIdConstant.SKF2020_SC002_CONFIRM_TITLE %>" 
+						message="<%= MessageIdConstant.I_SKF_2004 %>" 
+						url="skf/Skf2020Sc002/Clear"/>	
+	 			</div>
+				<!-- 右エリア -->
+	 			<div class="btnRight">
+	 				<!-- 申請要件を確認 -->
+					<nfwui:Button cssStyle="width:150px;" id="download" name="download" value="申請要件を確認" 
+						formID="form" cssClass="imui-medium-button" url="skf/Skf2020Sc002/Download" />   	 
+					<!-- 一時保存 -->
+					<nfwui:Button cssStyle="width:150px;" id="saveBtn" formId="form" value="一時保存"
+						cssClass="imui-medium-button" disabled="${form.btnSaveDisabeld}"
+						url="skf/Skf2020Sc002/Save"/>
+	 			</div>
+	 		</tr>
+	 		<tr>
+	 			<!-- 左エリア -->
+	 			<div class="btnLeft">
+					<!-- 前の画面へ -->
+	 				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" />
+					<!-- コメントボタン -->
+					<c:if test="${form.commentViewFlag == 'true'}">
+					<nfwui:PopupButton id="commentPop" value="コメント表示" 
+					cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
+					modalMode="false" popupWidth="1350" popupHeight="550"
+					parameter="applNo:applNo"
+					screenUrl="skf/Skf2010Sc010/init" use="popup" />
+					</c:if>
+	 			</div>
+	 			<!-- 右エリア -->
+	 			<div id="dCheck1" class="btnRight">
+	 				<!-- 申請内容を確認 -->
+	 				  <imui:button id="checkBtn" value="申請内容を確認" class="imui-medium-button" 
+	 				  	style="width: 150px" onclick="checkConfrirm()"  disabled="${form.btnCheckDisabled}"/> 
+	 			</div>
+	 		</tr>	
+	 	</table>
+		</nfwui:Form>
+	</div>
+	</div>		
 
 <!-- コンテンツエリア  text/JavaSclipt -->
 <script type="text/javascript">
@@ -1463,7 +1461,16 @@ function mesDisplayControl(isHide){
 	 * ひとつ前の画面に戻る
 	 */
     function back1() {
-    	var url = "skf/Skf2010Sc007/init?SKF2010_SC007&tokenCheck=0";
+    	var prePageId = $("#prePageId").val();
+    	var url = "";
+    	//前の画面のＵＲＬ判定
+    		if(prePageId=="Skf2010Sc007"){
+    			//入居希望等調書申請
+    			url = "skf/Skf2010Sc007/init?SKF2010_SC007&tokenCheck=0";
+    		}else if(prePageId=="Skf2010Sc003"){
+    			//申請条件一覧
+    			url="skf/Skf2010Sc003/init?SKF2010_SC003";
+    		}
     	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。編集内容を保存する場合は「一時保存」をクリックして下さい。");
     }  
 	

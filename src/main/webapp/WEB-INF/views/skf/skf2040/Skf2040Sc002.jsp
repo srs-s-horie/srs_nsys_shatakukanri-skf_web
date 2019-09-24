@@ -117,7 +117,7 @@
 				       cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
 				       title="<%= MessageIdConstant.SKF2040_SC002_CONFIRM_TITLE %>"
 				       message="<%= MessageIdConstant.SKF2040_SC002_REVISION_MSG %>"
-				       url="skf/Skf2040Sc002/Revision" removePatterns="PTN_A,PTN_B,PTN_D,PTN_E"/>
+				       url="skf/Skf2040Sc002/Revision" removePatterns="PTN_A,PTN_B,PTN_D,PTN_F"/>
  			</div>
  		</tr>
  		<tr>
@@ -145,27 +145,27 @@
 						cssClass="imui-medium-button" cssStyle="width: 150px" 
 						use="popup" popupWidth="750" popupHeight="600"
 						parameter="applNo:applNo,applId:applId" modalMode="false" 
-						screenUrl="skf/Skf2010Sc009/init" formId="form" removePatterns="PTN_A,PTN_B,PTN_D,PTN_E"
+						screenUrl="skf/Skf2010Sc009/init" formId="form" removePatterns="PTN_A,PTN_B,PTN_D,PTN_F"
 						callbackFunc="updateAttachedFileArea" />
 					<!-- 差戻しボタン -->
 						<nfwui:ConfirmButton id="remandBtn" name="remandBtn" value="差戻し"
 						cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
 						title="<%= MessageIdConstant.SKF2040_SC002_CONFIRM_TITLE %>"
 						message="<%= MessageIdConstant.SKF2040_SC002_REMAND_MSG %>"
-						removePatterns="PTN_A,PTN_B,PTN_D,PTN_E"
+						removePatterns="PTN_A,PTN_B,PTN_D,PTN_F"
 						url="skf/Skf2040Sc002/Remand"/>
 					<!-- 提示ボタン --> 
-						<nfwui:Button id="PresentBtn" name="PresentBtn"
+						<nfwui:Button id="presentBtn" name="presentBtn"
 							value="提示" cssClass="imui-medium-button" cssStyle="width: 150px" 
 							title="<%= MessageIdConstant.SKF2040_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2011 %>"
 							url="skf/Skf2040Sc002/Presentation" formId="form"  
-							removePatterns="PTN_B,PTN_E"
+							removePatterns="PTN_B,PTN_E,PTN_F"
 							disabled="${form.btnPresentDisabeld}"/>
 					<!-- 承認ボタン -->
 						<nfwui:Button id="approveBtn" name="approveBtn"
 							value="承認" cssClass="imui-medium-button" cssStyle="width: 150px" 
 							title="<%= MessageIdConstant.SKF2040_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2011 %>"
-							url="skf/Skf2040Sc002/Approval" formId="form" removePatterns="PTN_A,PTN_C,PTN_D,PTN_E"
+							url="skf/Skf2040Sc002/Approval" formId="form" removePatterns="PTN_A,PTN_C,PTN_D,PTN_F"
 							disabled="${form.btnApproveDisabled}"/>
  			</div>
  		</tr>	

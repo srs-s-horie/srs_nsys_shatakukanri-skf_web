@@ -291,7 +291,7 @@
 							// 新規（保有・区分）
 							case 1:
 								// 社宅区分に「保有」を指定
-								$('#form2 [name=hdnShatakuKbn]').val($("1").val());
+								$('#form2 [name=hdnRowShatakuKbn]').val("1");
 								// 保有社宅登録画面
 								url = "skf/Skf3010Sc002/init";
 								$("#form2").attr("action", url);
@@ -300,7 +300,7 @@
 							// 新規（借上）
 							case 2:
 								// 社宅区分に「借上」を指定
-								$('#form2 [name=hdnShatakuKbn]').val($("2").val());
+								$('#form2 [name=hdnRowShatakuKbn]').val("2");
 								// 借上社宅登録画面
 								url = "skf/Skf3010Sc006/init";
 								$("#form2").attr("action", url);
@@ -350,7 +350,7 @@
 							// 新規(一棟)
 							case 4:
 								// 社宅区分に「一棟」を指定
-								$('#form2 [name=hdnShatakuKbn]').val($("4").val());
+								$('#form2 [name=hdnRowShatakuKbn]').val("4");
 								// 保有社宅登録画面
 								url = "skf/Skf3010Sc002/init";
 								$("#form2").attr("action", url);
