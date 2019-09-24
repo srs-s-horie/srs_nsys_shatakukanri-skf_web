@@ -135,7 +135,7 @@ $(function() {
 
     <!-- コンテンツエリア -->
     <div class="imui-form-container-wide" style="width: 95%" >
-                    <table class="imui-form-search-condition">
+                    <table class="imui-form-search-condition" >
                        <tr>
                             <th width="100px"><nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2020_SC003_APPL_STATUS %>" /></th>
                             <td width="100px"><label>${form.applStatusText }</label></td>
