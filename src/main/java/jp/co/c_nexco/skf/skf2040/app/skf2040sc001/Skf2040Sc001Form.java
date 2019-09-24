@@ -75,9 +75,9 @@ public class Skf2040Sc001Form extends BaseForm {
     // 社宅を必要としますか？ 「社宅を退居する」ラジオボタン
     private String nowShatakuTaikyoDisabled;
     // 社宅を必要としますか？ 「駐車場１を返還する」ラジオボタン
-    private String nowPerking1TaikyoDisabled;
+    private String nowParking1TaikyoDisabled;
     // 社宅を必要としますか？ 「駐車場２を返還する」ラジオボタン
-    private String nowPerking2TaikyoDisabled;
+    private String nowParking2TaikyoDisabled;
     
 
     // 現保有の社宅（退居予定）
@@ -174,5 +174,33 @@ public class Skf2040Sc001Form extends BaseForm {
     // 連絡先
     private String renrakuSakiErr;
 
+    /**
+     * hidden
+     */
+
+    // 社宅管理部屋番号
+    private long hdnShatakuRoomKanriNo;
+    // 社宅管理番号
+    private long hdnShatakuKanriNo;
+    // 現居住社宅部屋管理番号
+    private long hdnNowShatakuRoomKanriNo;
+    // 現居住社宅管理番号
+    private long hdnNowShatakuKanriNo;
+    // 備品返却有無
+    private String hdnBihinHenkyakuUmu;
+    // 現在の位置番号
+    private String hdnParking1stNumber;
+    // 現在の保管場所
+    private String hdnParking1stPlace;
+    // 現在の位置番号2
+    private String hdnParking2ndNumber;
+    // 現在の保管場所2
+    private String hdnParking2ndPlace;
+    // 選択社宅名
+    private String hdnSelectedNowShatakuName;
+    // 可否フラグ
+    private String hdnConfirmFlg;
+    // ステータス
+    private String hdnstatus;
 
 }

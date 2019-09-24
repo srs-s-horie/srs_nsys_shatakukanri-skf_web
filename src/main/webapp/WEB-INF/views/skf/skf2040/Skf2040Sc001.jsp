@@ -9,6 +9,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 
+<% // 代行ログイン時CSS読み込み箇所ここから  %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
+<% // 代行ログイン時CSS読み込み箇所ここまで %>
+
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
 
@@ -28,10 +32,25 @@
 </style>
 <%-- コンテンツエリア --%>
 <script type="text/javascript">
-  (function($){
+	/**
+	 * ひとつ前の画面に戻る
+	 */
+	function back1() {
+		var url = "skf/Skf2010Sc007/init?SKF2010_SC007&tokenCheck=0";
+		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。編集内容を保存する場合は「一時保存」をクリックして下さい。");
+	}  
+
+(function($){
     // 画面表示時に定義される処理
     $(document).ready(function(){
-
+    	if($("#hdnBihinHenkyakuUmu").val()=="0"){
+    	//返却希望立会日　非活性
+			$('#sessionDayDiv').prop('disabled', true);	
+			$('#sessionDay').prop('disabled', true);			
+		}else{
+			$('#sessionDayDiv').prop('disabled', false);
+			$('#sessionDay').prop('disabled', false);	
+		}
     });
 
 
@@ -42,7 +61,7 @@
             var taikyoSyataku = false;
             var taikyoCar = false;
 
-            $('input:checkbox[name="taikyo_type"]:checked').each(function() {
+            $('input:checkbox[name="taikyoType"]:checked').each(function() {
                 if ($(this).val() == 'syataku') {
                     taikyoSyataku = true;
                 } else {
@@ -50,24 +69,18 @@
                 }
                
             });
-            if (taikyoSyataku === false && taikyoCar == true) {
-                $.StandardPost("../../skf/Skf2040_Sc002/init");
-            } else if (taikyoSyataku === true && taikyoCar === false) {
-                $.StandardPost("../../skf/Skf2040_Sc002/init");
-            } else if (taikyoSyataku === true && taikyoCar === true) {
-                $.StandardPost("../../skf/Skf2040_Sc002/init");
+            if (taikyoSyataku === false && taikyoCar == false) {
+            	showWarning(E_GFK_0001);
             } else {
-                showWarning(E_GFK_0001);
+            	nfw.common.submitForm("paramForm", "skf/Skf2040Sc001/Clear")
+                $.StandardPost("../../skf/Skf2040_Sc001/init");
             }
-           });
+       });
     }
     
-    // 退居する社宅または返還する自動車保管場所のチェック選択時のイベント
-    // TODO
-    
-	// 退居(返還)理由変更時のイベント
-	$("#taikyoRiyuKbn").bind('change', function() {
-		//その他が選択された場合、その他ボックスを活性化する
+ 	// 退居(返還)理由変更時のイベント
+    onChangeTaikyoRiyuKbn = function () {
+    	//その他が選択された場合、その他ボックスを活性化する
 		var selTaikyoRiyuKbnCd = $('#taikyoRiyuKbn option:selected').val();
 		if(selTaikyoRiyuKbnCd == "9"){
 			$('#taikyoRiyu').prop('disabled', false);
@@ -75,9 +88,44 @@
 			$('#taikyoRiyu').prop('disabled', true);
 			$('#taikyoRiyu').val("")
 		}
-	});	
-
-  })(jQuery);
+    }
+    
+ 	// 「社宅を退居する」チェック時のイベント
+    onClickTaikyoType01 = function () {
+    	var isTaikyoChecked = $('#taikyoType01').prop('checked');
+		if(isTaikyoChecked){
+			// 「社宅を退居する」チェック時
+			
+			// 駐車場１，２がチェックされていない場合はチェックする
+			if (!$('#taikyoType02').prop('disabled')) {
+				$('#taikyoType02').prop('checked', true);
+			}
+			if (!$('#taikyoType03').prop('disabled')) {
+				$('#taikyoType03').prop('checked', true);
+			}
+			
+			$('#shatakuStatus').prop('disabled', false);
+			$('#taikyogoRenrakuSaki').prop('disabled', false);
+			
+			// 備品返却関連
+			$('#sessionDayDiv').removeClass("wj-state-disabled");
+			$('#sessionDayDiv').prop('disabled', false);
+			$('#sessionDay').prop('disabled', false);
+			$('#sessionTime').prop('disabled', false);
+			$('#renrakuSaki').prop('disabled', false);
+		}else{
+			// 「社宅を退居する」チェック外し時
+			$('#shatakuStatus').prop('disabled', true);
+			$('#taikyogoRenrakuSaki').prop('disabled', true);
+			
+			// 備品返却関連
+			$('#sessionDayDiv').prop('disabled', true);
+			$('#sessionDay').prop('disabled', true);
+			$('#sessionTime').prop('disabled', true);
+			$('#renrakuSaki').prop('disabled', true);
+		}
+    }
+})(jQuery);
 </script>
 
 <!-- コンテンツエリア-->
@@ -198,7 +246,6 @@
                                     <td colspan="2">
                                         <nfwui:DateBox id="taikyoHenkanDate" name="taikyoHenkanDate" value="${f:h(form.taikyoHenkanDate)}"
                                                cssClass="${f:h(form.taikyoHenkanDateErr)}" tabindex="1" cssStyle="width:100px"/>
-                                        <input type="text" name="cal001" id="cal001" value="9999/99/99"/>
                                     </td>
                                 </tr>
                                 <!-- 退居(返還)する社宅又は、自動車の保管場所 -->
@@ -212,18 +259,19 @@
 		                                    <tr style="height: 25px;">
 		                                        <td>
 			                                        <nfwui:CheckBox id="taikyoType01" name="taikyoType"
-			                                                value="<%= CodeConstant.STATUS_KAKUNIN_IRAI %>" label="社宅を退居する" tabindex="7"
-			                                                disabled="${form.nowShatakuTaikyoDisabled}" />
+			                                                value="shataku_checked" label="社宅を退居する" tabindex="7"
+			                                                disabled="${form.nowShatakuTaikyoDisabled}"
+			                                                onclick="onClickTaikyoType01();" />
 			                                    </td>
 			                                    <td>
 			                                        <nfwui:CheckBox id="taikyoType02" name="taikyoType"
-			                                                value="<%= CodeConstant.STATUS_KAKUNIN_IRAI %>" label="駐車場1を返還する" tabindex="7"
-			                                                disabled="${form.nowPerking1TaikyoDisabled}" />
+			                                                value="park1_checked" label="駐車場1を返還する" tabindex="7"
+			                                                disabled="${form.nowParking1TaikyoDisabled}" />
 			                                    </td>
 			                                    <td>
 			                                        <nfwui:CheckBox id="taikyoType03" name="taikyoType"
-			                                                value="<%= CodeConstant.STATUS_KAKUNIN_IRAI %>" label="駐車場2を返還する" tabindex="7"
-			                                                disabled="${form.nowPerking2TaikyoDisabled}" />
+			                                                value="park2_checked" label="駐車場2を返還する" tabindex="7"
+			                                                disabled="${form.nowParking2TaikyoDisabled}" />
 		                                        </td>
 		                                    </tr>
 		                                </table>
@@ -236,13 +284,9 @@
                                         <nfwui:LabelBox id="lblHeadTaikyoHenkanRiyu" code="<%= MessageIdConstant.SKF2040_SC001_TAIKYO_HENKAN_RIYU %>" />
                                     </th>
                                     <td colspan="2">
-                                        <select style="width:90%">
-                                            <option>転勤</option>
-                                            <option>同居</option>
-                                        </select>
                                         <imui:select id="taikyoRiyuKbn" name="taikyoRiyuKbn"  style="width: 50%;" 
-                                                     css="${f:h(form.taikyoRiyuKbnErr)}"
-													 list="${form.ddlTaikyoRiyuKbnList}"  disabled="true" tabindex="50"/>
+                                                     css="${f:h(form.taikyoRiyuKbnErr)}" onchange="onChangeTaikyoRiyuKbn();"
+													 list="${form.ddlTaikyoRiyuKbnList}" tabindex="50"/>
                                         <br>
                                         <imui:textArea id="taikyoRiyu" name="taikyoRiyu"
 												       value="${f:h(form.taikyoHenkanRiyu)}" style="width: 90%;" 
@@ -272,7 +316,6 @@
 													   value="${f:h(form.taikyogoRenrakuSaki)}" style="width: 90%;" 
 													   css="${f:h(form.taikyogoRenrakuSakiErr)}"
 													   placeholder="例 090-0000-0000" disabled="true" tabindex="52"/>
-                                        <textarea rows="4" style="width: 90%" placeholder="例  090-0000-0000"></textarea>
                                     </td>
                                 </tr>
                                 <!-- 返却備品 -->
@@ -310,9 +353,8 @@
                                     </th>
                                     <td colspan="2">
                                         <nfwui:DateBox id="sessionDay" name="sessionDay" value="${f:h(form.sessionDay)}"
-                                        			   cssClass="${f:h(form.sessionDayErr)}"
-													   tabindex="53" disabled="${form.sessionDayDisabled}"/>	
-													   <!-- disabled="${form.sessionDayDisabled}"  -->
+                                        			   cssClass="${f:h(form.sessionDayErr)}" cssStyle="width:100px"
+													   tabindex="53" disabled="${form.sessionDayDisabled}"/>
 										<imui:select id="sessionTime" name="sessionTime" 
 													 css="${f:h(form.sessionTimeErr)}"
 													 list="${form.ddlReturnWitnessRequestDateList}" disabled="${form.sessionTimeDisabled}" tabindex="54" />
