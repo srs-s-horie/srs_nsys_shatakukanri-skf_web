@@ -49,7 +49,7 @@
 		</div>
 	<br><br><br><br><br><br><br><br><br>
 		<!-- 下部ボタン -->
-		<table width="100%">
+		<table width="95%">
 			<div class="align-L float-L">
 	   			<nfwui:Button id="doSendBack" name="doSendBack" formId="form" cssStyle="width:150px;"
 	   				value="前の画面へ" cssClass="imui-medium-button" url="skf/Skf1010Sc001/init" />  
