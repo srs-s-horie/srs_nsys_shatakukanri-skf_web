@@ -99,8 +99,8 @@
 	<nfwui:Hidden id="shainNo" name="shainNo" />
 	<nfwui:Hidden id="applUpdateDate" name="applUpdateDate" />
 	<nfwui:Hidden id="prePageId" name="prePageId" value="${form.prePageId}" />
+	<nfwui:Hidden id="hdnBihinHenkyakuApplNo" name="hdnBihinHenkyakuApplNo" value="${form.hdnBihinHenkyakuApplNo}" />
 	<input type="hidden" id="attachedNo" name="attachedNo" value="" />
-	<input type="hidden" id="hdnBihinHenkyakuApplNo" name="hdnBihinHenkyakuApplNo" value="${hdnBihinHenkyakuApplNo}"/>
 
 <!-- フッターエリア　ボタン -->
 <div class="imui-box-layout">
@@ -154,19 +154,21 @@
 						message="<%= MessageIdConstant.SKF2040_SC002_REMAND_MSG %>"
 						removePatterns="PTN_A,PTN_B,PTN_D,PTN_F"
 						url="skf/Skf2040Sc002/Remand"/>
-					<!-- 提示ボタン --> 
-						<nfwui:Button id="presentBtn" name="presentBtn"
-							value="提示" cssClass="imui-medium-button" cssStyle="width: 150px" 
-							title="<%= MessageIdConstant.SKF2040_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2011 %>"
-							url="skf/Skf2040Sc002/Presentation" formId="form"  
-							removePatterns="PTN_B,PTN_E,PTN_F"
-							disabled="${form.btnPresentDisabeld}"/>
+					<!-- 提示ボタン --> 							
+						<nfwui:ConfirmButton id="presentBtn" name="presentBtn" value="提示"
+						cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
+						title="<%= MessageIdConstant.SKF2040_SC002_CONFIRM_TITLE %>"
+						message="<%= MessageIdConstant.I_SKF_2011 %>"
+						removePatterns="PTN_B,PTN_E,PTN_F"
+						url="skf/Skf2040Sc002/Present" disabled="${form.btnPresentDisabeld}"/>															
 					<!-- 承認ボタン -->
-						<nfwui:Button id="approveBtn" name="approveBtn"
-							value="承認" cssClass="imui-medium-button" cssStyle="width: 150px" 
+						<nfwui:ConfirmButton id="approveBtn" name="approveBtn"
+							value="承認" cssClass="imui-medium-button check" cssStyle="width: 150px" 
 							title="<%= MessageIdConstant.SKF2040_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2011 %>"
-							url="skf/Skf2040Sc002/Approval" formId="form" removePatterns="PTN_A,PTN_C,PTN_D,PTN_F"
+							url="skf/Skf2040Sc002/Approval" formId="form" 
+							removePatterns="PTN_A,PTN_C,PTN_D,PTN_F"
 							disabled="${form.btnApproveDisabled}"/>
+							
  			</div>
  		</tr>	
  	</table>
