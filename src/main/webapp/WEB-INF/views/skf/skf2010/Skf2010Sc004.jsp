@@ -65,10 +65,10 @@ function back1() {
 </script>
 
 <!-- コンテンツエリア -->
- <div class="imui-form-container-wide" width="1350px" style="width: 100%; max-width: 1350px;">
+ <div class="imui-form-container-wide" style="width: 95%;">
 
     <!-- 状況、資料ヘッダ -->
-    <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;border:none;" height="100px">
+    <div class="imui-form-container-wide" style="border: currentColor; border-image: none; width: 80%; padding-left: 0px; margin-left: 100px;">
                     <table class="imui-form-search-condition">
                        <tr>
                             <th width="100px"><nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2010_SC006_LBL_APPL_STATUS %>" /></th>
@@ -85,6 +85,7 @@ function back1() {
     </div>
 
     <!-- コンテンツエリア -->
+<c:if test="${form.displayLevel < 3}">
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;" height="100px">
        <nfwui:Title id="operationGuide" code="<%= MessageIdConstant.SKF2010_SC004_OPERATION_GUIDE %>" titleLevel="2" />
        <table>
@@ -96,6 +97,7 @@ ${form.operationGuide }
         </table>
 
     </div>
+</c:if>
 
     <!-- コンテンツエリア -->
 <c:if test="${form.displayLevel == 4}">
@@ -243,7 +245,7 @@ ${form.operationGuide }
             <tr  style="width: 100%; max-width: 1000px;text-align:center;">
                 <th style="width: 200px; max-width: 200px;"><label>承認者へのコメント</label></th>
             <td>
-                <imui:textArea id="commentNote" name="commentNote" style="height:50px;width:100%;" placeholder="例 添付資料が間違っています。" />
+                <imui:textArea id="commentNote" name="commentNote" style="height:80px;width:100%;" placeholder="例 添付資料が間違っています。" />
            </td>
            </tr>
         </table>
