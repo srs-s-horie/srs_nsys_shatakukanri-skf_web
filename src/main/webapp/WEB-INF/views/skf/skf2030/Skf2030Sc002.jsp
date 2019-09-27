@@ -257,7 +257,7 @@ function back1() {
       <nfwui:ConfirmButton id="applyBtn" name="applyBtn"
       value="承認" cssClass="imui-medium-button" cssStyle="width: 150px" 
       title="<%= MessageIdConstant.SKF2030_SC002_REVISION %>" message="<%= MessageIdConstant.I_SKF_2006 %>"
-      url="skf/Skf2030Sc002/Apply" formId="form" disabledPatterns="NONADMIN" />
+      url="skf/Skf2030Sc002/Approve" formId="form" disabledPatterns="NONADMIN" />
 	</div>  
 </imart:decision>  
 <script type="text/javascript">
