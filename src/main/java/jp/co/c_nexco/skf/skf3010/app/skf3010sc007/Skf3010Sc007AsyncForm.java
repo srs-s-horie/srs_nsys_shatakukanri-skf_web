@@ -33,6 +33,8 @@ public class Skf3010Sc007AsyncForm extends AsyncBaseForm {
 	private Long contractPropertyId;
 	//契約番号リスト
 	private List<Map<String, Object>> contractPropertyIdList;
+	//リスト用文字列
+	private String contractPropertyIdListData;
 	//契約形態リスト
 	private List<Map<String, Object>> parkingContractTypeList;
 	private String parkingContractType;

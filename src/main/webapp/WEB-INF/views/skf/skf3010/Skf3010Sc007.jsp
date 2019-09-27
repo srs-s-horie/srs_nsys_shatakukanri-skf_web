@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%-- 共通JSP --%>
-<%@ include file="/WEB-INF/views/nfw/framework/common/CommonWithOutGrid.jsp" %>
+<%@ include file="/WEB-INF/views/nfw/framework/common/CommonWithGrid.jsp" %>
 <%@ taglib prefix="nfwui" uri="/WEB-INF/tld/nfw/framework/nfwFramework" %>
 <%@ taglib prefix="imui" uri="http://www.intra-mart.co.jp/taglib/imui" %>
 <%@ taglib prefix="imart" uri="http://www.intra-mart.co.jp/taglib/core/standard" %>
@@ -23,9 +23,41 @@ function back1() {
 }
 </script>
 		<!-- コンテンツエリア -->
-		<div class="imui-form-container-wide">
-			<nfwui:Form id="form" name="form" modelAttribute="form">
-					<nfwui:Table use="search">
+
+
+	<nfwui:Form id="form2" name="form2" action="/skf/Skf3010Sc007/selectList" modelAttribute="form">
+	<div class="imui-form-container-wide" >
+
+				<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC007 %>" />
+				<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="${form.hdnShatakuKanriNo}" />
+				<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="${form.hdnShatakuName}" />
+				<input type="hidden" name="hdnAreaKbn" id="hdnAreaKbn" value="${form.hdnAreaKbn}" />
+				<input type="hidden" name="hdnShatakuKbn" id="hdnShatakuKbn" value="${form.hdnShatakuKbn}" />
+				<input type="hidden" name="hdnListData" id="hdnListData" value="${form.hdnListData}" />
+				<input type="hidden" name="hdnParkingBlock" id="sendParkingBlock" value="${form.hdnParkingBlock}" />
+				<input type="hidden" name="hdnBackupContractPropertyId" id="hdnBackupContractPropertyId" value="${form.hdnBackupContractPropertyId}" />
+				<input type="hidden" name="hdnBackupMaxContractPropertyId" id="hdnBackupMaxContractPropertyId" value="${form.hdnBackupMaxContractPropertyId}" />
+				<input type="hidden" name="hdnRegistContractPropertyId" id="hdnRegistContractPropertyId" value="${form.hdnRegistContractPropertyId}" />
+				<input type="hidden" name="hdnBackupParkingContractType" id="hdnBackupParkingContractType" value="${form.hdnBackupParkingContractType}" />
+				<input type="hidden" name="hdnBackupｓOwnerName" id="hdnBackupOwnerName" value="${form.hdnBackupOwnerName}" />
+				<input type="hidden" name="hdnBackupOwnerNo" id="hdnBackupOwnerNo" value="${form.hdnBackupOwnerNo}" />
+				<input type="hidden" name="hdnBackupParkingZipCd" id="hdnBackupParkingZipCd" value="${form.hdnBackupParkingZipCd}" />
+				<input type="hidden" name="hdnBackupParkingAddress" id="hdnBackupParkingAddress" value="${form.hdnBackupParkingAddress}" />
+				<input type="hidden" name="hdnBackupParkingName" id="hdnBackupParkingName" value="${form.hdnBackupParkingName}" />
+				<input type="hidden" name="hdnBackupAssetRegisterNo" id="hdnBackupAssetRegisterNo" value="${form.hdnBackupAssetRegisterNo}" />
+				<input type="hidden" name="hdnBackupParkinglendKbn" id="hdnBackupParkinglendKbn" value="${form.hdnBackupParkinglendKbn}" />
+				<input type="hidden" name="hdnBackupContractStartDate" id="hdnBackupContractStartDate" value="${form.hdnBackupContractStartDate}" />
+				<input type="hidden" name="hdnBackupContractEndDate" id="hdnBackupContractEndDate" value="${form.hdnBackupContractEndDate}" />
+				<input type="hidden" name="hdnBackupLandRent" id="hdnBackupLandRent" value="${form.hdnBackupLandRent}" />
+				<input type="hidden" name="hdnBackupBiko" id="hdnBackupBiko" value="${form.hdnBackupBiko}" />
+				<input type="hidden" name="contractPropertyId" id="sendContractPropertyId" value="" />
+				<input type="hidden" name="parkingContractType" id="sendParkingContractType" value="" />
+				<input type="hidden" name="parkingKanriNo" id="sendParkingKanriNo" value="${form.parkingKanriNo}" />
+				<input type="hidden" name="selectMode" id="selectMode" value="${form.selectMode}" />
+				<input type="hidden" name="hdnDelInfoFlg" id="hdnDelInfoFlg" value="${form.hdnDelInfoFlg}" />
+				<input type="hidden" name="ownerNo" id="sendOwnerNo" value="${form.ownerNo}" />
+				<input type="hidden" name="contractPropertyIdListData" id="contractPropertyIdListData" value="${form.contractPropertyIdListData}" />
+				<nfwui:Table use="search">
 						<tbody>
 							<tr>
 								<th style="width: 5%;">
@@ -57,48 +89,16 @@ function back1() {
 						</tbody>
 					</nfwui:Table>
 			
-		</nfwui:Form>
 		<br>
 			<!-- 明細＆細目未満 -->
 				<!-- 明細部 -->
-			<nfwui:Form id="form2" name="form2" action="/skf/Skf3010Sc007/selectList" modelAttribute="form">
-				<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC007 %>" />
-					<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="${form.hdnShatakuKanriNo}" />
-					<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="${form.hdnShatakuName}" />
-					<input type="hidden" name="hdnAreaKbn" id="hdnAreaKbn" value="${form.hdnAreaKbn}" />
-					<input type="hidden" name="hdnShatakuKbn" id="hdnShatakuKbn" value="${form.hdnShatakuKbn}" />
-					<input type="hidden" name="hdnListData" id="hdnListData" value="${form.hdnListData}" />
-					<input type="hidden" name="hdnParkingBlock" id="sendParkingBlock" value="${form.hdnParkingBlock}" />
-					<input type="hidden" name="hdnBackupContractPropertyId" id="hdnBackupContractPropertyId" value="${form.hdnBackupContractPropertyId}" />
-					<input type="hidden" name="hdnBackupMaxContractPropertyId" id="hdnBackupMaxContractPropertyId" value="${form.hdnBackupMaxContractPropertyId}" />
-					<input type="hidden" name="hdnRegistContractPropertyId" id="hdnRegistContractPropertyId" value="${form.hdnRegistContractPropertyId}" />
-					<input type="hidden" name="hdnBackupParkingContractType" id="hdnBackupParkingContractType" value="${form.hdnBackupParkingContractType}" />
-					<input type="hidden" name="hdnBackupｓOwnerName" id="hdnBackupOwnerName" value="${form.hdnBackupOwnerName}" />
-					<input type="hidden" name="hdnBackupOwnerNo" id="hdnBackupOwnerNo" value="${form.hdnBackupOwnerNo}" />
-					<input type="hidden" name="hdnBackupParkingZipCd" id="hdnBackupParkingZipCd" value="${form.hdnBackupParkingZipCd}" />
-					<input type="hidden" name="hdnBackupParkingAddress" id="hdnBackupParkingAddress" value="${form.hdnBackupParkingAddress}" />
-					<input type="hidden" name="hdnBackupParkingName" id="hdnBackupParkingName" value="${form.hdnBackupParkingName}" />
-					<input type="hidden" name="hdnBackupAssetRegisterNo" id="hdnBackupAssetRegisterNo" value="${form.hdnBackupAssetRegisterNo}" />
-					<input type="hidden" name="hdnBackupParkinglendKbn" id="hdnBackupParkinglendKbn" value="${form.hdnBackupParkinglendKbn}" />
-					<input type="hidden" name="hdnBackupContractStartDate" id="hdnBackupContractStartDate" value="${form.hdnBackupContractStartDate}" />
-					<input type="hidden" name="hdnBackupContractEndDate" id="hdnBackupContractEndDate" value="${form.hdnBackupContractEndDate}" />
-					<input type="hidden" name="hdnBackupLandRent" id="hdnBackupLandRent" value="${form.hdnBackupLandRent}" />
-					<input type="hidden" name="hdnBackupBiko" id="hdnBackupBiko" value="${form.hdnBackupBiko}" />
-					<input type="hidden" name="contractPropertyId" id="sendContractPropertyId" value="" />
-					<input type="hidden" name="parkingContractType" id="sendParkingContractType" value="" />
-					<input type="hidden" name="parkingKanriNo" id="sendParkingKanriNo" value="${form.parkingKanriNo}" />
-					<input type="hidden" name="selectMode" id="selectMode" value="${form.selectMode}" />
-					<input type="hidden" name="hdnDelInfoFlg" id="hdnDelInfoFlg" value="${form.hdnDelInfoFlg}" />
-					<input type="hidden" name="ownerNo" id="sendOwnerNo" value="${form.ownerNo}" />
-
-					
 					<script type="text/javascript">
 						(function($){
 						$.imui.util.loadCSS("../../ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
 						})(jQuery);
 					</script>
 					<div id="listTableArea">
-					<imui:listTable id="mainList" process="jssp" autoEncode="true" autoWidth="true" rowNumbers="true"
+					<imui:listTable id="mainList" process="jssp" autoEncode="true" autoWidth="false" rowNumbers="true"
 						autoResize="true" onCellSelect="onCellSelect"
 						multiSelect="false" data="${form.listTableData }"
 						style="max-height: 800px" tabindex="1">
@@ -116,12 +116,9 @@ function back1() {
 						<col name="colLandRent" caption="地代" width="70" sortable="false" align="right" wrap="true"/>
 						<col name="colBiko" caption="備考" width="80" sortable="false" align="left" wrap="true"/>
 						<col name="colParkingKanriNo" caption="駐車場管理番号" hidden="true"/>
-						
 						</cols>
 					</imui:listTable>
-					
-					<table name="imui-8eqlrzst4hv6std" id="sampleListTable1"></table>
-					<div id="sampleListTable1-pager"></div>
+					</div>
 					<script type="text/javascript">
 						(function($) {
 							onCellSelect = function(rowId,iCol,cellcontent,e) {
@@ -149,9 +146,9 @@ function back1() {
 							})(jQuery);
 
 					</script>	
-					</div>
-		</div>
-		<div class="imui-form-container-wide">
+	</div>
+
+	<div class="imui-form-container-wide">
 		<table class="imui-form-search-condition">
           <tbody>
            <tr>
@@ -199,12 +196,19 @@ function back1() {
                </th>
                <td colspan="3">
 <%--                		<imui:textbox id="txtOwnerName" name="ownerName" style="width:130px;" value="${f:h(form.ownerName)}" class="${form.ownerNameError}" disabled="${form.contractInfoDisabled}" maxlength="30" tabindex="5" readonly /> --%>
+<!-- TODO テスト用になっているので賃貸人支援呼び出しに修正必要 -->
                		<imui:textbox id="txtOwnerName" name="ownerName" style="width:130px;" value="${f:h(form.ownerName)}" class="${form.ownerNameError}" disabled="${form.contractInfoDisabled}" maxlength="30" tabindex="5" />
                		<nfwui:PopupButton id="ownerShien" name="ownerShien" value="支援" use="popup" 
-               		cssClass="imui-small-button" popupWidth="650" popupHeight="550" 
-               		modalMode="false" screenUrl="skf/Skf2010Sc001/init" 
-               		parameter="parkinglendKbn:nyukyoFlag" disabled="${form.contractInfoDisabled}" 
-               		callbackFunc="shainInfoCallback" tabindex="6"/>
+                		cssClass="imui-small-button" popupWidth="650" popupHeight="550"  
+                		modalMode="false" screenUrl="skf/Skf2010Sc001/init"  
+                		parameter="parkinglendKbn:nyukyoFlag" disabled="${form.contractInfoDisabled}"  
+                		callbackFunc="shainInfoCallback" tabindex="6"/> 
+<%--                	<nfwui:PopupButton id="cShien" name="cShien" value="駐車支援" use="popup"  --%>
+<%--                		cssClass="imui-small-button" popupWidth="650" popupHeight="700"  --%>
+<%--                		modalMode="true" screenUrl="skf/Skf3022Sc002/init"  --%>
+<%--                		parameter="hdnShatakuKanriNo:hdnShatakuKanriNo,hdnShatakuName:hdnShatakuName,hdnBackupContractStartDate:hdnRiyouStartDay" disabled="${form.contractInfoDisabled}"  --%>
+<%--                		mappingArray="{'txtOwnerName':'resultList.colParkingBlock'}" --%>
+<%--                		 tabindex="6"/> --%>
                </td>
                </tr>
 
@@ -267,17 +271,22 @@ function back1() {
               		<nfwui:LabelBox id="lblContractStartDate" code="<%=MessageIdConstant.SKF3010_SC007_CONTRACT_START_DATE %>" />
                </th>
                <td>
-                 <imui:textbox name="contractStartDate" id="contractStartDate" value="${f:h(form.contractStartDate)}" class="${form.contractStartDateError}" disabled="${form.contractInfoDisabled}" style="width:100px"  tabindex="13"/>
+               		<nfwui:DateBox id="contractStartDate" name="contractStartDate" value="${f:h(form.contractStartDate)}"
+                                               cssClass="${f:h(form.contractStartDateError)}" tabindex="13" cssStyle="width:100px" disabled="${form.contractInfoDisabled}"/>
+               
+<%--                  <imui:textbox name="contractStartDate" id="contractStartDate" value="${f:h(form.contractStartDate)}" class="${form.contractStartDateError}" disabled="${form.contractInfoDisabled}" style="width:100px"  tabindex="13"/> --%>
                </td>
                <th style="width: 150px;">
 <!--                <label>契約終了日<label> -->
                		<nfwui:LabelBox id="lblContractEndDate" code="<%=MessageIdConstant.SKF3010_SC007_CONTRACT_END_DATE %>" />
                </th>
                     <td>
-                       <imui:textbox name="contractEndDate" id="contractEndDate" value="${f:h(form.contractEndDate)}" class="${form.contractEndDateError}" disabled="${form.contractInfoDisabled}" style="width:100px"  tabindex="14"/>
+                    <nfwui:DateBox id="contractEndDate" name="contractEndDate" value="${f:h(form.contractEndDate)}"
+                                               cssClass="${f:h(form.contractEndDateError)}" tabindex="14" cssStyle="width:100px" disabled="${form.contractInfoDisabled}"/>
+<%--                        <imui:textbox name="contractEndDate" id="contractEndDate" value="${f:h(form.contractEndDate)}" class="${form.contractEndDateError}" disabled="${form.contractInfoDisabled}" style="width:100px"  tabindex="14"/> --%>
                     </td>
-				<im:calendar floatable="true" altField="#contractStartDate" disabled="${form.contractInfoDisabled}"/>
-				<im:calendar floatable="true" altField="#contractEndDate" disabled="${form.contractInfoDisabled}"/>
+<%-- 				<im:calendar floatable="true" altField="#contractStartDate" disabled="${form.contractInfoDisabled}"/> --%>
+<%-- 				<im:calendar floatable="true" altField="#contractEndDate" disabled="${form.contractInfoDisabled}"/> --%>
              </tr>
 
              <tr>
@@ -286,8 +295,8 @@ function back1() {
                		<nfwui:LabelBox id="lblLandRent" code="<%=MessageIdConstant.SKF3010_SC007_LAND_RENT %>" />
                </th>
                     <td colspan="3">
-                         <imui:textbox name="landRent" id="landRent" value="${f:h(form.landRent)}" class="${form.landRentError}" disabled="${form.contractInfoDisabled}" style="text-align: right;ime-mode: disabled;width:100px" placeholder="例　半角数字" maxlength="6" tabindex="15"/> 
-<%--                          <nfwui:NumberBox name="landRentnumber" id="landRentnumber" value="${form.landRentnumber}" cssClass="${form.landRentError}" disabled="${form.contractInfoDisabled}" cssStyle="width:100px;" inputFormat="n0" maxlength="7" tabindex="15"/>  --%>
+<%--                          <imui:textbox name="landRent" id="landRent" value="${f:h(form.landRent)}" class="${form.landRentError}" disabled="${form.contractInfoDisabled}" style="text-align: right;ime-mode: disabled;width:100px" placeholder="例　半角数字" maxlength="6" tabindex="15"/>  --%>
+                         <nfwui:NumberBox name="landRent" id="landRent" value="${form.landRent}" cssClass="${form.landRentError}" disabled="${form.contractInfoDisabled}" cssStyle="width:100px;" inputFormat="n0" maxlength="7" tabindex="15"/> 
                         &nbsp;円
                     </td>
                </tr>
@@ -301,22 +310,8 @@ function back1() {
                     <imui:textbox name="biko" id="biko" value="${f:h(form.biko)}" disabled="${form.contractInfoDisabled}" style="width:500px" maxlength="100" tabindex="16"/>
                </td>             
                </tr>
-		</table>	
-			<br />
-
-			<div class="align-R">
-				<imui:button id="regist" name="regist" value="登録" class="imui-medium-button" style="width: 150px" onclick="registOnClick()" tabindex="17" disabled="${form.registButtonDisabled}"/>
-				<imui:button id="cancel" name="cancel" value="キャンセル" class="imui-medium-button" style="width: 150px" onclick="cancelOnClick()" tabindex="18" disabled="${form.cancelButtonDisabled}"/>
-			
-			</div>
-			<br>
-		
-			<div class="align-L">	
-				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="19" />
-			</div>
-		</div>
-
-		<script type="text/javascript">
+		</table>
+				<script type="text/javascript">
 				(function($) {
 					// 画面表示時に定義される処理
 				    $(document).ready(function(){
@@ -342,6 +337,7 @@ function back1() {
 							map['hdnBackupContractEndDate'] = $("#hdnBackupContractEndDate").val();
 							map['hdnBackupLandRent'] = $("#hdnBackupLandRent").val();
 							map['hdnBackupBiko'] = $("#hdnBackupBiko").val();
+							map['contractPropertyIdListData'] = $("#contractPropertyIdListData").val();
 
 							map['parkingContractType'] = $("#parkingContractType").val();
 							map['ownerName'] = $("#txtOwnerName").val();
@@ -457,12 +453,15 @@ function back1() {
 				            }
 				    		
 				    	}
+				    	//TODO 賃貸人に修正が必要
 				    	shainInfoCallback = function(param) {
 				            if( param != null && typeof param == 'object' && param.name != null && param.shainNo != null){
 				                $("#txtOwnerName").val(param.name);
 				                $("#sendOwnerNo").val(param.shainNo);
 				            }
-				    		
+				    	}
+				    	testCallback = function() {
+				    	        nfw.common.showReserveMessage("info", "test!");
 				    	}
 				    	
 				    	backOnClick = function () {
@@ -500,7 +499,21 @@ function back1() {
 					
 				})(jQuery);
 				</script>
-		</nfwui:Form>
+
+			<br />
+
+			<div class="align-R">
+				<imui:button id="regist" name="regist" value="登録" class="imui-medium-button" style="width: 150px" onclick="registOnClick()" tabindex="17" disabled="${form.registButtonDisabled}"/>
+				<imui:button id="cancel" name="cancel" value="キャンセル" class="imui-medium-button" style="width: 150px" onclick="cancelOnClick()" tabindex="18" disabled="${form.cancelButtonDisabled}"/>
+			</div>
+			<br>		
+			<div class="align-L">	
+				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="19" />
+			</div>
+
+	</div>
+	</nfwui:Form>
+
 
 	
 	<!-- コンテンツエリア　ここまで -->
