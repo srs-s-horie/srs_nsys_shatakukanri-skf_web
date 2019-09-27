@@ -73,6 +73,7 @@
 			</nfwui:Accordion>
 		</div>
 	</imart:condition>
+	<!-- 退居届 -->
 	<imart:condition validity="${form.level3}">
 		<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
 			<nfwui:Accordion id="taikyoView" >
@@ -115,6 +116,7 @@
 		<br>
 		<nfwui:Hidden id="applNo" name="applNo" />
 		<nfwui:Hidden id="applId" name="applId" />
+		<nfwui:Hidden id="applStatus" name="applStatus" />
 		<nfwui:Hidden id="shainNo" name="shainNo" />
 		<nfwui:Hidden id="applUpdateDate" name="applUpdateDate" />
 		<nfwui:Hidden id="prePageId" name="prePageId" value="${form.prePageId}" />
@@ -149,10 +151,10 @@
 			<td class="vertical-top" style="vertical-align:top">
 				<div class="align-R">
 					<!-- 提示ボタン -->
-						<nfwui:Button id="PresenBtn" name="PresenBtn"
+						<nfwui:ConfirmButton id="PresenBtn" name="PresenBtn"
 							value="提示" cssClass="imui-medium-button" cssStyle="width: 150px" 
 							title="<%= MessageIdConstant.SKF2010_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2011 %>"
-							url="skf/Skf2010Sc002/Presentation" formId="form" removePatterns="1,3" />
+							url="skf/Skf2010Sc002/Present" formId="form" removePatterns="1,3" />
 					<!--　申請ボタン -->
 						<nfwui:ConfirmButton id="ApplyBtn" name="ApplyBtn" value="申請"
 							cssClass="imui-medium-button" cssStyle="width: 150px" 

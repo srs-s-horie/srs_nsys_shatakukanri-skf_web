@@ -6,8 +6,6 @@
 	<tbody>
 		<imart:condition validity="${form.henkyakuBihinNothing}" negative>
 			<nfwui:Title id="searchTitle" code="<%= MessageIdConstant.SKF2040_SC002_BIHIN %>" titleLevel="2" />
-		</imart:condition>
-		<imart:condition validity="${form.henkyakuBihinNothing}" negative>
 					<tr>
 						<th></th>
 						<th><nfwui:LabelBox id="lblBihinAppl" code="<%= MessageIdConstant.SKF2040_SC002_BIHIN_STATE %>" /></th>
@@ -21,7 +19,6 @@
 	                        <td colspan="1"><label>${f:h(bihinObj.bihinReturnText)}</label></td>
 	                    </tr>
 					</c:forEach>
-
 		</imart:condition>
 		<imart:condition validity="${form.shatakuJyotaiViewFlg}">	
                 <imart:condition validity="${form.shatakuJyotaiViewFlg}">	

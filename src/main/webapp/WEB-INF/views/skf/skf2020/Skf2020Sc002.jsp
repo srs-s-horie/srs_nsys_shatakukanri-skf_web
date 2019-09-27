@@ -716,7 +716,7 @@
 				    <nfwui:Hidden id="applId" name="applId" />
 				    <nfwui:Hidden id="shainNo" name="shainNo" />
 					<input type="hidden" name="hdnShainNo" id="hdnShainNo" value="${form.shainNo}" />
-					<input type="hidden" name="status" id="status" value="${form.hdnstatus}" />		
+					<input type="hidden" name="applStatus" id="applStatus" value="${form.applStatus}" />			
 					<input type="hidden" name="hdnSelectedNowShatakuName" id="hdnSelectedNowShatakuName" value="${form.hdnSelectedNowShatakuName}" />
 					<input type="hidden" name="hdnParking1stNumber" id="hdnParking1stNumber" value="${form.hdnParking1stNumber}"/>			
 					<input type="hidden" name="hdnParking2stNumber" id="hdnParking2stNumber" value="${form.hdnParking2stNumber}"/>
