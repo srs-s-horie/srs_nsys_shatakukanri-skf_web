@@ -61,19 +61,17 @@
 <!-- コンテンツエリア -->
 <nfwui:Form id="form" name="form" modelAttribute="form">
 <div style="width:100%;">
-
-
-    <!-- コンテンツエリア -->
-                          <table class="imui-form-search-condition" style="width:20%; margin-left:2%;">
-                       <tr>
-                            <th style="width: 50%;">
-                            <nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2060_SC002_APPL_STATUS %>" />
-                            </th>
-                            <td style="width: 50%;">
-                            ${f:h(form.applStatus)}
-                            </td>
-                      </tr>
-                    </table>
+    	<!-- コンテンツエリア -->
+     		<table class="imui-form-search-condition" style="width:20%; margin-left:2%;">
+       			<tr>
+         			<th style="width: 50%;">
+         				<nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2060_SC002_APPL_STATUS %>" />
+         			</th>
+         			<td style="width: 50%;">
+          				${f:h(form.applStatus)}
+      				</td>
+        		 </tr>
+     		</table>
 
             <div class="imui-form-container-wide" style="width:95%;">
                 <table class="imui-form-search-condition">
@@ -191,35 +189,35 @@
                                                     <nfwui:LabelBox id="lblAttachedFile" code="<%= MessageIdConstant.SKF2060_SC002_ATTACHED_FILE %>" />
                                                     </th>
                                                 </tr>
-<c:forEach var="kariageObject" items="${form.kariageTeijiList}">
+												<c:forEach var="kariageObject" items="${form.kariageTeijiList}">
+	                                                <tr>
+	                                                    <td style="text-align:center;">
+	                                                    <input type="radio" id="radioCandidateNo_${f:h(kariageObject.candidateNo)}" name="radioCandidateNo" value="${f:h(kariageObject.candidateNo)}" tabindex="1" />     
+	                                                    </td>
+	                                                    <td style="text-align:left;">
+	                                                        ${f:h(kariageObject.shatakuName)}
+	                                                    </td>
+	                                                    <td style="text-align:left;">
+	                                                        ${f:h(kariageObject.shatakuNameAddress)}
+	                                                    </td>
+	                                                    <td style="text-align:left;">
+	                                                        ${kariageObject.attachedFile}
+	                                                    </td>
+	                                                </tr>
+												</c:forEach>                
                                                 <tr>
                                                     <td style="text-align:center;">
-                                                    <input type="radio" id="radioCandidateNo_${f:h(kariageObject.candidateNo)}" name="radioCandidateNo" value="${f:h(kariageObject.candidateNo)}" disabled="${form.radioCandidateNoDisabled}" />     
+                                                    <input type="radio" id="radioCandidateNoNone" name="radioCandidateNo" value="0" tabindex="1" />
                                                     </td>
                                                     <td style="text-align:left;">
-                                                        ${f:h(kariageObject.shatakuName)}
-                                                    </td>
-                                                    <td style="text-align:left;">
-                                                        ${f:h(kariageObject.shatakuNameAddress)}
-                                                    </td>
-                                                    <td style="text-align:left;">
-                                                        ${kariageObject.attachedFile}
-                                                    </td>
-                                                </tr>
-</c:forEach>                
-                                                <tr>
-                                                    <td style="text-align:center;">
-                                                    <input type="radio" id="radioCandidateNoNone" name="radioCandidateNo" value="0" disabled="${form.radioCandidateNoDisabled}" />
-                                                    </td>
-                                                    <td style="text-align:left;">
-                                                        選択しない
+														選択しない
                                                     </td>
                                                     <td style="text-align:left;" colspan="3">
                                                     <span style="font-weight: bold;color:red;">※選択しない理由を入力してください</span>
                                                     <br>
-                                                    <imui:select id="riyuDropdown" name="riyuDropdown" width="185" list="${form.riyuList}" disabled="${form.riyuDropdownDisabled}" />
+                                                    <imui:select id="riyuDropdown" name="riyuDropdown" width="185" list="${form.riyuList}" disabled="${form.riyuDropdownDisabled}" tabindex="2" />
                                                     <br>
-                                                    <imui:textArea style="width:100%;" rows="2" id="biko" name="biko" value="${f:h(form.biko)}" disabled="${form.bikoDisabled}" />
+                                                    <imui:textArea style="width:100%;" rows="2" id="biko" name="biko" value="${f:h(form.biko)}" disabled="${form.bikoDisabled}" tabindex="3" />
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -229,29 +227,43 @@
 
   </table>
   <br>
+
   <div class="align-L float-L">
-      <imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" />
+      <imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="5" />
 <imart:condition validity="<%= String.valueOf(form.isCommentViewFlag()) %>" >
           <nfwui:PopupButton id="commentPop" value="コメント表示" 
           cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
           modalMode="false" popupWidth="1350" popupHeight="550"
           parameter="applNo:applNo" formId="form"
-          screenUrl="skf/Skf2010Sc010/init" use="popup" tabindex="10" />
+          screenUrl="skf/Skf2010Sc010/init" use="popup" tabindex="4" />
 </imart:condition>
 </div> 
 
-<div class="align-R">
+<div class="align-R float-R">
 <imart:condition validity="<%= String.valueOf(form.isSelectViewFlag()) %>" >
       <nfwui:ConfirmButton style="width:150px;" id="select" name="select" value="選択"  formId="form" cssClass="imui-medium-button" 
-     					title="<%=MessageIdConstant.SKF2060_SC002_CONFIRM_TITLE %>" message="<%=MessageIdConstant.I_SKF_3053 %>" url="skf/Skf2060Sc002/Select" />
+     					title="<%=MessageIdConstant.SKF2060_SC002_CONFIRM_TITLE %>" message="<%=MessageIdConstant.I_SKF_3053 %>" url="skf/Skf2060Sc002/Select" tabindex="6" />
 </imart:condition>
 </div> 
-  
+<br>
+<br>
+</div>
 </div>
 
-</div>
+<script type="text/javascript">
+    /**
+     * 一つ前の画面へ戻る
+     */
+    function back1() {
+    	var url = "skf/Skf2010Sc003/init?SKF2060_SC004&tokenCheck=0";
+    	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
+    }
+</script>
+
 <!-- 隠し項目 -->
+<!-- 前画面からの値取得用 -->
 <input type="hidden" name="applNo" id="applNo" value="${form.applNo}" />　<!-- 申請書類管理番号 -->
+<!-- 前画面からの値取得用終わり -->
 <input type="hidden" name="teijiKaisu" id="teijiKaisu" value="${form.teijiKaisu}" />　<!-- 提示回数 -->
 <input type="hidden" name="hdnCandidateNo" id="sendCandidateNo" value="" /><!-- 添付ファイルダウンロード用借上候補物件番号 -->
 <input type="hidden" name="hdnAttachedNo" id="sendAttachedNo" value="" /><!-- 添付ファイルダウンロード用添付ファイル番号 -->
