@@ -13,7 +13,6 @@
 
 <% // 代行ログイン時CSS読み込み箇所ここから  %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
-
 <% // 代行ログイン時CSS読み込み箇所ここまで %>
 
 <!-- コンテンツエリア -->
@@ -74,7 +73,7 @@
 			</nfwui:Accordion>
 		</div>
 	</imart:condition>
-	<!-- Todo 退居届-->
+	<!-- 退居届 -->
 	<imart:condition validity="${form.level3}">
 		<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
 			<nfwui:Accordion id="taikyoView" >
@@ -117,6 +116,7 @@
 		<br>
 		<nfwui:Hidden id="applNo" name="applNo" />
 		<nfwui:Hidden id="applId" name="applId" />
+		<nfwui:Hidden id="applStatus" name="applStatus" />
 		<nfwui:Hidden id="shainNo" name="shainNo" />
 		<nfwui:Hidden id="applUpdateDate" name="applUpdateDate" />
 		<nfwui:Hidden id="prePageId" name="prePageId" value="${form.prePageId}" />
@@ -151,15 +151,15 @@
 			<td class="vertical-top" style="vertical-align:top">
 				<div class="align-R">
 					<!-- 提示ボタン -->
-						<nfwui:Button id="PresenBtn" name="PresenBtn"
+						<nfwui:ConfirmButton id="PresenBtn" name="PresenBtn"
 							value="提示" cssClass="imui-medium-button" cssStyle="width: 150px" 
 							title="<%= MessageIdConstant.SKF2010_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2011 %>"
-							url="skf/Skf2010Sc002/Presentation" formId="form" removePatterns="1" />
+							url="skf/Skf2010Sc002/Present" formId="form" removePatterns="1,3" />
 					<!--　申請ボタン -->
 						<nfwui:ConfirmButton id="ApplyBtn" name="ApplyBtn" value="申請"
 							cssClass="imui-medium-button" cssStyle="width: 150px" 
 							title="<%= MessageIdConstant.SKF2010_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2003 %>"
-							url="skf/Skf2010Sc002/Apply" formId="form" removePatterns="2" />
+							url="skf/Skf2010Sc002/Apply" formId="form" removePatterns="2,3" />
 				</div>
 			</td>
 		</tr>
@@ -181,11 +181,11 @@ function back1() {
 		if(prePageId=="Skf2020Sc002"){
 			//入居希望等調書申請
 			url = "skf/Skf2020Sc002/init?SKF2020_SC002&tokenCheck=0";
-		}else if(prePageId=="Skf2020Sc002"){
+		}else if(prePageId=="Skf2040Sc001"){
 			//退居届
 			url="skf/Skf2040Sc001/init?SKF2040_SC001&tokenCheck=0";
 		}else if(prePageId=="Skf2010Sc005"){
-			//入居希望等調書申請アウトソース
+			//入居希望等調書申請アウトソース(承認一覧からの遷移)
 			url="skf/Skf2020Sc003/init?SKF2020_SC003&&tokenCheck=0";
 		}
 		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
