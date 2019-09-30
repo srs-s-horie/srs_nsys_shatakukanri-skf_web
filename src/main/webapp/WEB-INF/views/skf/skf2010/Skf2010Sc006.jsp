@@ -62,7 +62,7 @@ $(function() {
 </script>
 
 <!-- コンテンツエリア -->
- <div class="imui-form-container-wide" width="1350px" style="width: 100%; max-width: 1350px;">
+ <div class="imui-form-container-wide" style="width: 95%;">
 
     <!-- 状況、資料ヘッダ -->
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;border:none;" height="100px">

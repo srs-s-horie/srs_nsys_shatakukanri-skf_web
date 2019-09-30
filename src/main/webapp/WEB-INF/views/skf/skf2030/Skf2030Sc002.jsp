@@ -241,7 +241,7 @@ function back1() {
       <nfwui:ConfirmButton id="presentBtn" name="presentBtn"
       value="提示" cssClass="imui-medium-button" cssStyle="width: 150px" 
       title="<%= MessageIdConstant.SKF2030_SC002_PRESENT %>" message="<%= MessageIdConstant.I_SKF_2011 %>"
-      url="skf/Skf2030Sc002/Present" formId="form" disabledPatterns="NONADMIN" />
+      url="skf/Skf2030Sc002/Present" formId="form" disabledPatterns="NONADMIN" disabled="${form.presentBtnDisabled}" />
 </imart:condition>
 <imart:condition validity="<%= form.getBihinCheckFlag() %>" negative>      
       <input class="imui-medium-button check" type="button" value="承認" style="width:150px;"  onclick="teiji()">
