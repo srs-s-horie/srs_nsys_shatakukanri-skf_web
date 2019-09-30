@@ -32,7 +32,7 @@
 </script>
 
 <style>
-#applName, #txtApplDateFrom, #txtAgreDateFrom {
+#lblApplName, #txtApplDateFrom, #txtAgreDateFrom {
 	float: left;
 }
 .imui-box-warning .imui-box-caution {
@@ -120,7 +120,7 @@
                     
                                     <tr>
                                         <th style="width: 100px;">
-                                        	<nfwui:LabelBox id="applName" code="<%= MessageIdConstant.SKF2010_SC005_APPLICANT_NAME %>" style="float:left" />
+                                        	<nfwui:LabelBox id="lblApplName" code="<%= MessageIdConstant.SKF2010_SC005_APPLICANT_NAME %>" style="float:left" />
                                             &nbsp;&nbsp;
                                             <nfwui:PopupButton id="support" name="support" value="支援"
                                             cssClass="imui-small-button" use="popup"
@@ -136,7 +136,7 @@
                     
                                     <tr>
                                         <th style="width: 100px;">
-                                            <nfwui:LabelBox id="lblApplName" code="<%= MessageIdConstant.SKF2010_SC005_APPL_NAME %>" />
+                                            <nfwui:LabelBox id="lblApplName2" code="<%= MessageIdConstant.SKF2010_SC005_APPL_NAME %>" />
                                         </th>
                                         <td style="width: 180px;" colspan="2">
                                         <imui:textbox id="applName" name="applName" value="${form.applName}" placeholder="例 入居" />
