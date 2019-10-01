@@ -243,14 +243,14 @@
 					map['agencyCd'] = "";
 					// ドロップダウンチェンジイベント
 					nfw.common.doAjaxAction("skf/Skf3010Sc001/ChangeDropDownAsync",map,true,function(data) {
-							$("#selectedCompanyCd").imuiSelect('replace', data.manageCompanyList);
-							$("#agencyCd").imuiSelect('replace', data.manageAgencyList);
-							// 外部機関判定
-							if ($("#selectedCompanyCd").val()!='ZZZZ') {
-								$("#agencyCd").prop('disabled', false);
-							} else {
-								$("#agencyCd").prop('disabled', true);
-							}
+						$("#selectedCompanyCd").imuiSelect('replace', data.manageCompanyList);
+						$("#agencyCd").imuiSelect('replace', data.manageAgencyList);
+						// 外部機関判定
+						if ($("#selectedCompanyCd").val()!='ZZZZ') {
+							$("#agencyCd").prop('disabled', false);
+						} else {
+							$("#agencyCd").prop('disabled', true);
+						}
 					});
 				});
 
@@ -403,7 +403,7 @@
 			<input type="hidden" name="hdnRowEmptyRoomCount" id="hdnRowEmptyRoomCount" value="" />
 			<!-- 選択行:空き駐車場数 -->
 			<input type="hidden" name="hdnRowEmptyParkingCount" id="hdnRowEmptyParkingCount" value="" />
-			<imui:button id="csv" name="csv" value="契約情報出力" class="imui-medium-button" onclick="preButtonEvent(0)" tabindex="11" />
+			<imui:button id="excel" name="excel" value="契約情報出力" class="imui-medium-button" onclick="preButtonEvent(0)" tabindex="11" />
 			<imui:button id="newRental" name="newRental" value="新規（借上）" class="imui-medium-button" onclick="preButtonEvent(2)" tabindex="12" />
 			<imui:button id="copy" name="copy" value="複写（借上）" class="imui-medium-button" onclick="preButtonEvent(3)" tabindex="13" />
 			<imui:button id="newItto" name="newItto" value="新規（一棟）" class="imui-medium-button" onclick="preButtonEvent(4)" tabindex="14" />
