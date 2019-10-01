@@ -194,37 +194,32 @@ ${form.operationGuide }
       <tr style="width: 100%; max-width: 1000px;text-align:center;">
         <th><nfwui:LabelBox id="lblNowTaikyoDate" code="<%= MessageIdConstant.SKF2010_SC004_NOW_TAIKYO_DATE %>" /></th>
         <td align="left">
-          <imui:textbox id="taikyobi" name="taikyobi" value="${form.taikyobi }" class="${form.taikyobiErr }" />
+			<nfwui:DateBox id="taikyobi" name="taikyobi" />
         </td>
         <th><nfwui:LabelBox id="lblNewShatakuNyukyo" code="<%= MessageIdConstant.SKF2010_SC004_NEW_SHATAKU_NYUKYO %>" /></th>
         <td align="left">
-          <imui:textbox id="nyukyobi" name="nyukyobi" value="${form.nyukyobi }" class="${form.nyukyobiErr }" />
+			<nfwui:DateBox id="nyukyobi" name="nyukyobi" />
         </td>
       </tr>
       <tr style="width: 100%; max-width: 1000px;text-align:center;">
         <th><nfwui:LabelBox id="lblNowCarSpaceHenkan" code="<%= MessageIdConstant.SKF2010_SC004_NOW_CAR_SPACE_HENKAN %>" /></th>
         <td align="left">
-          <imui:textbox id="henkanbi" name="henkanbi" value="${form.henkanbi }" class="${form.henkanbiErr }" />
+          <nfwui:DateBox id="henkanbi" name="henkanbi" />
         </td>
         <th><nfwui:LabelBox id="lblNewCarSpaceStart" code="<%= MessageIdConstant.SKF2010_SC004_NEW_CAR_SPACE_START %>" /></th>
         <td align="left">
-            <imui:textbox id="shiyobi" name="shiyobi" value="${form.shiyobi }" class="${form.shiyobiErr }" />
+          <nfwui:DateBox id="shiyobi" name="shiyobi" />
         </td>
       </tr>
-      <im:calendar floatable="true" altField="#taikyobi" />
-      <im:calendar floatable="true" altField="#nyukyobi" />
-      <im:calendar floatable="true" altField="#henkanbi" />
-      <im:calendar floatable="true" altField="#shiyobi" />
 <c:if test="${form.carNoInputFlg2 != null }">
       <tr style="width: 100%; max-width: 1000px;text-align:center;">
         <td style="border: none"></td>
         <td style="border: none"></td>
         <th><nfwui:LabelBox id="lblNewCarSpaceStart2" code="<%= MessageIdConstant.SKF2010_SC004_NEW_CAR_SPACE_START %>" /></th>
         <td align="left">
-          <imui:textbox id="shiyobi2" name="shiyobi2" value="${form.shiyobi2 }" />
+          <nfwui:DateBox id="shiyobi2" name="shiyobi2" />
         </td>
       </tr>
-      <im:calendar floatable="true" altField="#shiyobi2" />
 </c:if>
       <tr>
         <td  style="color: red;border: none;" colspan="4">
