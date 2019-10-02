@@ -43,7 +43,6 @@
 			</tr>
 		</table>
 	</div>
-
 	<!-- アコーディオンエリア -->
 	<imart:condition validity="${form.level2}" >
 		<!-- 貸与社宅などのご案内 -->
@@ -138,7 +137,6 @@
 						<input name="doDelRow1" id="doDelRow1" type="button" value="退居（自動車の保管場所変換）届PDF出力ボタン" class="imui-medium-button" onclick="" />
 					</imart:condition>
 					<imart:condition validity="${form.commentViewFlag}" >
-						<br>
 						<nfwui:PopupButton id="commentPop" value="コメント表示" 
 							cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
 							modalMode="false" popupWidth="1350" popupHeight="550"
@@ -184,8 +182,8 @@ function back1() {
 		}else if(prePageId=="Skf2040Sc001"){
 			//退居届
 			url="skf/Skf2040Sc001/init?SKF2040_SC001&tokenCheck=0";
-		}else if(prePageId=="Skf2010Sc005"){
-			//入居希望等調書申請アウトソース(承認一覧からの遷移)
+		}else if(prePageId=="Skf2020Sc003"){
+			//入居希望等調書申請アウトソース
 			url="skf/Skf2020Sc003/init?SKF2020_SC003&&tokenCheck=0";
 		}
 		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
