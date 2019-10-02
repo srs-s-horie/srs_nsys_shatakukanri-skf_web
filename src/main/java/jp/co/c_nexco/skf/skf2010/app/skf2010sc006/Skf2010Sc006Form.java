@@ -13,4 +13,6 @@ public class Skf2010Sc006Form extends Skf2010NyukyoCommonForm {
 	private String taikyoTorikeshiFlag;
 	// 自動車の保管場所返還取消線フラグ
 	private String parkingHenkanTorikeshiFlag;
+	// コメント欄表示フラグ
+	private boolean commentAreaVisibled = true;
 }
