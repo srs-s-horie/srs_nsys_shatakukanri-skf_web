@@ -37,10 +37,18 @@ public class Skf2040Sc001Form extends BaseForm {
     private long shatakuNo;
     // 現住所
     private String nowAddress;
+    // 社員番号
+    private String shainNo;
     // 氏名
     private String name;
     // 性別
     private String gender;
+    // 性別名称
+    private String genderName;
+    // ユーザＩＤ
+    private String userId;
+    // 等級
+    private String Tokyu;
 
     // 駐車場1台目
     private String parking1stPlace;
