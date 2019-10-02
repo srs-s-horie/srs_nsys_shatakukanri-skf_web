@@ -933,7 +933,7 @@ $(function() {
        url="skf/Skf2020Sc003/Remand" />
       <nfwui:Button id="confirmBtn" name="confirmBtn" value="提示内容を確認"
        cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
-       url="skf/Skf2010Sc002/init" disabledPatterns="TeijiNG" />
+       url="skf/Skf2020Sc003/Confirm" disabledPatterns="TeijiNG" />
 </td>
 </tr>
     </tbody>
