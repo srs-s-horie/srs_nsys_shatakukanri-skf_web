@@ -10,259 +10,254 @@
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
+<script src="scripts/skf/skfCommon.js"></script>
 
 <%-- コンテンツエリア --%>
 <style type="text/css">
-  .imui-box-warning, .imui-box-caution {
+  .imui-box-warning, .imui-box-caution, .imui-box-success{
     min-width: 70%;
     position: absolute!important;
     z-index: 1;
     margin-left: 12%;
   }
-  #imui-container {
-    width:650px;
-    min-width:650px;
-    max-width: 1000px;
-  }
+/*   #imui-container { */
+/*     width:650px; */
+/*     min-width:650px; */
+/*     max-width: 1000px; */
+/*   } */
 </style>
-<div id="imui-container" style="width:650px;min-width:650px;max-width: 1000px;">
+
 <!-- コンテンツエリア -->
-<div class="imui-form-container-wide" width="550px" style="width:100%; min-width:550px;max-width: 550px;">
+<nfwui:Form id="form" name="form" modelAttribute="form" >
+<div class="imui-form-container-wide">
 	<div style="height:30px; bottom:10px">検索条件を指定して、<font color="green">「検索」</font>をクリックしてください。</div>
-		<div class="imui-chapter-title"><h2>検索条件</h2></div>
-		<form id="form" class="target_form mt-10" action="" method="POST">
-			<table class="imui-form-search-condition">
+	<nfwui:Title code="<%= MessageIdConstant.SKF3022_SEARCH_TITLE %>" titleLevel="2" />
+		<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="${form.hdnShatakuKanriNo}" />
+		<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="${form.hdnShatakuName}" />
+		<input type="hidden" name="hdnRiyouStartDay" id="hdnRiyouStartDay" value="${form.hdnRiyouStartDay}" />
+		<nfwui:Table use="search">
 				<tbody>
 					<tr>
 						<th style="width: 15%;">
-							<label>社宅名</label>
+<!-- 							<label>社宅名</label> -->
+							<nfwui:LabelBox id="lblShatakuName" code="<%= MessageIdConstant.SKF3022_SC002_SHATAKU_NAME %>" />
 						</th>
 						<td  colspan="3">
-							新石川寮
+							<label>${form.shatakuName}</label>
 						</td>
 					</tr>
 					<tr>
 						<th style="width: 10%;">
-							<label>使用者</label>
+<!-- 							<label>使用者</label> -->
+							<nfwui:LabelBox id="lblShiyosha" code="<%= MessageIdConstant.SKF3022_SC002_SHIYOSYA %>" />
 						</th>
-						<td  >
-							<input style="width:150px;" type="text" value="" placeholder="例　中日本　太郎">
+						<td>
+							<imui:textbox id="shiyosha" name="shiyosha" style="width:150px;" value="${form.shiyosha}" placeholder="例  中日本  太郎" tabindex="51" />
 						</td>
 						<th style="width: 15%;">
-							<label>駐車場</label>
+<!-- 							<label>駐車場</label> -->
+							<nfwui:LabelBox id="lblChushajo" code="<%= MessageIdConstant.SKF3022_SC002_AKI_PARKING %>" />
 						</th>
-						<td  >
-							<input type="checkbox" checked/><label>空き駐車場</label>
+						<td>
+						<input type="checkbox" name="akiParkingchk" id="akiParkingchk" value="1" checked="checked" tabindex="52"/>空き駐車場
+<%-- 						<nfwui:CheckBoxGroupTag id="akiParking"> --%>
+<%-- 							<nfwui:CheckBox id="akiParking1" name="akiParking" value="1" label="空き駐車場" tabindex="52"/> --%>
+<%-- 						</nfwui:CheckBoxGroupTag> --%>
 						</td>
 					</tr>
+					<tr>
 						<th style="width: 10%;">
-							<label>備考</label>
+<!-- 							<label>備考</label> -->
+							<nfwui:LabelBox id="lblBiko" code="<%= MessageIdConstant.SKF3022_SC002_BIKO %>" />
 						</th>
 						<td colspan="3">
-							<input style="width:80%;" type="text" value="" >
+							<imui:textbox id="parkingBiko" name="parkingBiko" style="width:80%;" value="${form.parkingBiko}" tabindex="53" />
 						</td>
 					</tr>
-
-
 				</tbody>
-			</table>
-		</form>
-		<div class="align-L">	
-			<input type="button" value="検索" class="imui-small-button" >
-			<!--<input type="button" value="クリア" class="imui-small-button" >-->
-				</div>
+		</nfwui:Table>
+		<div class="align-L">
+<%-- 		<imui:button id="search" name="search" value="検索" class="imui-small-button" onclick="searchOnClick()" tabindex="4" /> --%>
+			<nfwui:Button id="searchBtn" name="searchBtn" code="<%=MessageIdConstant.SKF3010_SC004_BUTTON_SEARCH %>"  tabindex="54"
+			preOnClick="refreshGridData();return false;" cssClass="imui-small-button" />
+<%-- 			<nfwui:TextBox id="setName" name="setName" value="" remove/> --%>
+		</div>
 <br>
-			<!-- 明細＆細目未満 -->
+		<!-- 明細＆細目未満 -->
 		<!-- 明細部 -->
-		<form id="sampleList1">
-			<div class="imui-chapter-title"><h2>検索結果一覧</h2></div>
+		<nfwui:Title code="<%= MessageIdConstant.SKF3022_SEARCH_RESULT %>" titleLevel="2" />
 			<script type="text/javascript">
 				(function($){
 				$.imui.util.loadCSS("../../ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
 				})(jQuery);
 			</script>
+		<imui:listTable id="resultList" name="resultList"
+			data="${form.listTableList}" onCellSelect="onCellSelectPop" onBeforeSelectRow="onBeforeSelectRow" 
+			width="550" height="200" multiSelect="false">
+		<pager rowNum="${form.maxCount}" />
+		<cols>
+			<col name="colSelect" width="20" sortable="false" caption="" />
+			<col name="colParkingBlock" width="150" sortable="false" align="left" caption="区画番号" />
+			<col name="colLendKbn" width="60" sortable="false" align="center" caption="貸与区分" />
+			<col name="collendJokyo" width="60" sortable="false" align="center" caption="貸与状況" />
+			<col name="colShiyosha" width="150" sortable="false" align="left" caption="使用者" />
+			<col name="colBiko" width="80" sortable="false" align="left" caption="備考" />
+			<col name="colParkRentalAsjust" hidden="true" />
+			<col name="colParkingKanriNo" hidden="true" />
+			<col name="colhdnEndDate1" hidden="true" />
+			<col name="colhdnEndDate2" hidden="true" />
+			<col name="colhdnEndDate3" hidden="true" />
+			<col name="colhdnEndDate" hidden="true" />
+			<col name="colhdnSelect"  hidden="true"  />
+		</cols>
+		</imui:listTable>
+		<script type="text/javascript">
+		(function($) {
+			onBeforeSelectRow = function(rowId,e) {
+				//選択可の行がクリックされた場合のみTrueにする
+				// リストテーブル情報取得		                        
+                      var grid = $("#resultList");
+		        var rowData = grid.getRowData(rowId);
+		        //選択可フラグ
+		        var hdnSelect = rowData.colhdnSelect;
+                      if(hdnSelect === '1'){
+                      	return true;
+                      }else{
+                      	return false;
+                      }
 
-			<table name="imui-8eqlrzst4hv6std" id="sampleListTable1"></table>
-
-			<div id="sampleListTable1-pager"></div>
-
-			<script type="text/javascript">
-				function selRow(id) {
-					if (id) {
-						$("#sampleListTable1").jqGrid('setSelection', id);
+			}
+			
+			onCellSelectPop = function(rowId, iCol, cellcontent, e) {
+				$("#targetRowId").val(rowId);
+				$("#setName").val(rowId);
+				
+				// 現在の選択行を取得
+				var row = $("#resultList").jqGrid('getGridParam', 'selrow');
+				//nfw.common.showReserveMessage("info", "row:"+ rowId);
+				// 行IDを取得
+				var ids = $("#resultList").jqGrid('getDataIDs');
+				for (var i = 0; i < ids.length; i++) {
+					//nfw.common.showReserveMessage("info", "ids[i]:"+ ids[i]);
+				    if (rowId == ids[i]){
+				        break;    // 行IDが一致したので抜ける
 					}
 				}
+				if (i < ids.length) {
+				    id = i + 1;
+				    var obj = document.getElementById("rbtn" + id);
+				    if(obj)
+				        obj.checked = true;
+				}
 
-				(function() {
-					function imuiListTable() {
-						var grid = jQuery('#sampleListTable1');
-						var parameter = {
-							"multiselect":false,
-							"pager":"#sampleListTable1-pager",
-							"colNames":[
-								"",
-								"区画番号",				
-								"貸与区分",							
-								"貸与状況",
-								"使用者",
-								"備考",						
-							],
-							"datatype":"local",
-							"errorCell":function(xhr) { imuiShowErrorMessage($(xhr.responseText).find('dt').text()); },
-							"rowNum":1000,
-							"width":"550",
-							"shrinkToFit":"true",
-							"cellsubmit":"clientArray",
-							"loadonce":true,
-							"colModel":[
-							<!-- {"hidden":true,"name":"id","key":true},-->
-								{index:'rb',"name":"rb", "width":"20","align":"center",  formatter:rbtnFmatter}
-								,{"name":"A001","width":"150","align":"left"}<!-- 区画番号 -->
-								,{"name":"A002","width":"60","align":"center"}<!-- 貸与区分 -->
-								,{"name":"A003","width":"60","align":"center"}<!-- 貸与状況 -->
-								,{"name":"A004","width":"150","align":"left"}<!-- 使用者 -->
-								,{"name":"A005","width":"80","align":"left"}<!-- 備考 -->
-							],
-							// 行の選択でラジオボタンも選択
-							onSelectRow: function(id)
-							{
-								// 現在の選択行を取得
-								var row = $("#sampleListTable1").jqGrid('getGridParam', 'selrow');
-								// 行IDを取得
-								var ids = $("#sampleListTable1").jqGrid('getDataIDs');
-								for (var i = 0; i < ids.length; i++) {
-									if (row == ids[i])
-										break;  // 行IDが一致したので抜ける
-								}
-								if (i < ids.length) {
-									id = i + 1;
-									var obj = document.getElementById("rbtn" + id);
-									if(obj)
-										obj.checked = true;
-								}
-							},
+			}
 
-							"rownumbers":false,
-							"height":"200"
-						};
-
-
-						parameter.data = [
-							{
-								"id":1,
-								"A001":"01",
-								"A002":"貸与可",
-								"A003":"なし",
-								"A004":"1R",
-								"A005":"空き",
-							},
-							{
-								"id":2,
-								"A001":"02",
-								"A002":"貸与可",
-								"A003":"退居予定",
-								"A004":"中日本 6985",
-								"A005":"",
-							},									
-
-							{
-								"id":3,
-								"A001":"04",
-								"A002":"貸与可",
-								"A003":"なし",
-								"A004":"",
-								"A005":"",
-							},
-							{
-								"id":4,
-								"A001":"05",
-								"A002":"貸与可",
-								"A003":"なし",
-								"A004":"",
-								"A005":"予備",
-							},								
-							];
-
-						grid.jqGrid(parameter);
-
-
-						grid.jqGrid('navGrid','#sampleListTable1-pager',{
-							edit: false,
-							add: false,
-							del: false,
-							search: false,
-						});
-
-						var gboxGridId     = 'gbox_sampleListTable1';
-						var gboxGrid       = jQuery('#' + gboxGridId);
-						var parentWidthOld = Number.MIN_VALUE;
-					}
-
-					(function($) {
-						$(document).ready(function() {
-							imuiListTable();
-						});
-						
-					})(jQuery);
-
-				})();
-				function rbtnFmatter(cellvalue, options, rowObject)
-						{
-						// ラジオボタンの input タグをリターンする
-						var rbtn = '<input type="radio" name="rbtn" id="rbtn' + options['rowId'] + '" ' +
-						'onclick="selRow(\'' + options['rowId'] + '\')"/>';
-						return rbtn;
-						}
-			</script>
-			<style type="text/css">  
-				<!--
-					/* ヘッダテキスト中央寄せ */
-					.ui-jqgrid .ui-jqgrid-htable th div {
-						display:table-cell;
-					    height: 32px;
-						text-align:center;
-						vertical-align:middle;
-					}
-					/** 1行間隔で網掛け挑戦
-					.testcss {
-						border: 1px solid #a6c9e2;
-						background-color: #e6e6fa ;
-						color: #222222;
-					}
-
-					.ui-row-even {
-						background-color: #e6e6fa ;
-					}
-					*/
-
-					/* データ行の改行許容 */
-					#sampleListTable1 tr td{
-						white-space:normal;
-					}
-				-->
-			</style>
-		</form>
-		<br>
+			})(jQuery);
+		</script>
+		<br/>	
 	<div class="align-R">
-		<input style="width:100px;" id="" type="button" value="画面を閉じる" class="imui-small-button"  onclick="window.close()"/>
-		<input style="width:100px;" id="selectBtn" type="button" value="選択する" class="imui-small-button" />
-		<!--<input style="width:100px;" id="" type="button" value="キャンセル" class="imui-small-button"  onclick="window.close()"/>-->
+		<nfwui:PopupButton id="closebtn" value="画面を閉じる" cssStyle="width:100px;" cssClass="imui-small-button" modalMode="true" use="cancel"  tabindex="55"/>
+		<nfwui:PopupButton id="selectBtn" value="選択する" cssStyle="width:100px;" cssClass="imui-small-button" modalMode="true" use="ok" 
+		 preOnClick="if(!check()){return(false)};"  tabindex="56" />
+<%-- 		<imui:button id="selectBtn" name="selectBtn" value="選択" style="width:100px;" class="imui-small-button" /> --%>
+		<input type="hidden" id="targetRowId" value="" />
 		
 	</div>
+
 	<script type="text/javascript">
-	jQuery(function ($) {
-		$("#selectBtn").click (function() {
-			alert("1");
-			var array = [];
-		    $('area-selected:true').each(function() {
-		        array.push($(this).attr('id'));
-		        alert($(this).attr('id'));
-		    });
-
-			//alert(array);
-		});			  
-	});
-
+		function refreshGridData() {
+			//入力内容チェック
+			var map = new Object();
+			map['shatakuNo'] = $("#hdnShatakuKanriNo").val();
+			map['shiyosha'] = $("#shiyosha").val();
+			map['parkingBiko'] = $("#parkingBiko").val();
+			//map['akiParking'] =  $("#akiParking1").val();
+			var element = document.getElementById( "akiParkingchk" ) ;
+		
+			if ( element.checked ) {
+				// チェックされている
+				map['akiParking'] =  "1";
+			} else {
+				// チェックされていない
+				map['akiParking'] =  "0";
+			}
+			map['kaisiDate'] = $("#hdnRiyouStartDay").val();
+		
+			nfw.common.doAjaxAction("skf/Skf3022Sc002/searchAsync",map,true,function(data) {
+				$("#resultList").jqGrid("clearGridData");
+				$("#targetRowId").val("");
+				var result = data.dataCount;
+				// リストテーブル情報更新
+				var grid = $("#resultList");
+		
+				 $("#resultList").jqGrid("setGridParam",{
+			            data : data.listTableList,
+			        }).trigger("reloadGrid");
+		// 		if(result == 0){
+		// 			nfw.common.showReserveMessage("warning", "検索結果がありません。抽出条件を変更してください。");
+		// 			return;
+		// 		}else if(result == -1){
+		// 			nfw.common.showReserveMessage("error", "検索結果が100件を超えました。抽出条件を変更してください。");
+		// 			return;
+		// 		}
+				if(result > 0){
+		// 			for(var i=0; i < data.listTableList.length; i++ ){
+		// 				grid.addRowData(undefined, data.listTableList[i]);
+		// 			}
+					var ids = $("#resultList").jqGrid('getDataIDs');
+		            for(var i = 0; i < ids.length; i++) {
+		                j = i + 1;
+		                var rowData = grid.getRowData(ids[i]);
+				        
+				        var selectbool = rowData.colSelect;
+				        //nfw.common.showReserveMessage("info", "sel:"+ selectbool);
+				        //チェックボックス設定
+				        var rbtn;
+				        if(selectbool=='1'){
+		                	rbtn = '<input type="radio" name="rbtn" id="rbtn' + j + '" ' +
+		                            'onclick="selRow(\'' + ids[i] + '\')"/>';
+		                }else{
+		                	rbtn = '<input type="radio" name="rbtn" id="rbtn' + j + '" ' +
+		                    'onclick="selRow(\'' + ids[i] + '\')" disabled/>';
+		                }
+		                grid.setRowData(ids[i], {colSelect:rbtn});
+		            }
+				}
+				
+			});
+			
+		};
+		
+		function selRow(id) {
+		    if (id) {
+		        // ラジオボタンの行を選択する
+		        $("#resultList").jqGrid('setSelection', id);
+		        $("#targetRowId").val(id);
+		    }
+		};
+		
+		function check(){
+			var rowId = $("#targetRowId").val();
+			if (rowId == null || rowId == "") {
+				nfw.common.showReserveMessage("warning", "駐車場を選択してください");
+				return false;
+			}else{
+				var grid = $("#resultList");
+		        var rowData = grid.getRowData(rowId);
+		        //JSONデータ作成
+				var parkingData = {
+						"parkNo": rowData.colParkingKanriNo,
+						"parkBlock": rowData.colParkingBlock,
+						"parkRentalAsjust": rowData.colParkRentalAsjust,
+						"endDay": rowData.colhdnEndDate
+				}
+				//親画面に値設定(今は仮)
+		 		$("#txtOwnerName").val(parkingData.parkBlock);
+				$("#sendOwnerNo").val(parkingData.parkNo);
+				return true;
+			}
+		};
 	</script>
-	</div>
 </div>
+</nfwui:Form>
