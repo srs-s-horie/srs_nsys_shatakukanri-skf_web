@@ -286,7 +286,7 @@
 								dialogTitle = "確認";
 								dialogMessage = "契約情報を出力します。よろしいですか？";
 								url = "skf/Skf3010Sc001/contractDownLoad";
-								nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form2", url, "OK", "CANCEL", this, true);
+								nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form2", url, "ok", "キャンセル", this, true);
 								break;
 							// 新規（保有・区分）
 							case 1:
@@ -308,27 +308,6 @@
 								break;
 							// 複写(借上)
 							case 3:
-/**
-								// リストテーブル情報取得
-								grid = $("#mainList");
-	//							var ids = grid.getGridParam("selarrrow"); // ←複数行
-								// 行番号取得
-								id = grid.getGridParam("selrow"); // ←1行
-								// 選択行がある場合
-								if( id != null )
-								{
-									// 行データ取得
-									row = grid.getRowData(id);
-									// 社宅区分取得
-									shatakuKbn = row.hdnShatakuKbn;
-									// 社宅区分判定
-									if (shatakuKbn != "2") {
-										// nfw.common.showReserveMessage("warning", "<%= MessageIdConstant.W_SKF_3002 %>");
-										nfw.common.showReserveMessage("warning", "社宅区分が「借上」ではないため複写できません。");
-										break;
-									}
-								}
-*/
 								/** パラメータ設定 */
 								// 選択行:社宅区分
 								$('#form2 [name=hdnRowShatakuKbn]').val($("#hdnRowShatakuKbn").val());
