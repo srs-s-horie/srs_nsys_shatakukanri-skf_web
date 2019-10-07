@@ -8,1014 +8,1377 @@
 <%@ taglib prefix="workflow" uri="http://www.intra-mart.co.jp/taglib/imw/workflow" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
-
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
 
 <%-- コンテンツエリア --%>
-<style type="text/css">
+<style type="text/css"></style>
+<script type="text/javascript">
+	function back1() {
+		var url="skf/Skf3010Sc001/init?SKF3010_SC001&tokenCheck=0"
+		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
+	}
+</script>
 
-</style>
-
-<!-- コンテンツエリア:モックのまま -->
-<!-- 以下ツールバー -->
-		<div class="imui-toolbar-wrap">
-			<div class="imui-toolbar-inner">
-				<!-- ツールバー左側 -->
-				<ul class="imui-list-toolbar">
-					<!-- 戻る -->
-					<li>
-						<a class="imui-toolbar-icon" title="戻る" tabindex="23" onclick="back1()" href="javascript:void(0);">
-							<span class="im-ui-icon-common-16-back"></span>
-						</a>
-					</li>
-				</ul>
-				<!-- ツールバー右側 -->
-				<ul class="imui-list-box-toolbar-utility">
-					<li>
-						<a onclick="back()" class="imui-toolbar-icon" tabindex="16">
-							<span class="im-ui-icon-common-16-home"></span>
-							社宅TOP
-						</a>
-					</li>
-
-				</ul>
-			</div>
-		</div>
-		<script type="text/javascript">
-			/**
-			* 一つ前の画面へ戻る
-			*/
-			function back1() {
-				showConfirm(W_GFK_0002, function() {
-					history.back()
-				});
-			}
-
-			/**
-			* メニュー画面へ遷移する。
-			*/
-			function back() {
-				showConfirm(W_GFK_0007, function() {
-					$.StandardPost("../common/top.html");
-				});
-			}
-		</script>
-
-		<div class="alertDiv imui-box-warning" style="padding: 15px;margin-top: 10px;text-align:left;" id="errMainDiv">
-			<div class="alert-errorIcon alert" style="margin:0;padding:0;margin-right:10px;">
-			</div> 
-		</div>
-
-		<!-- コンテンツエリア -->
-		<div class="imui-form-container-wide" width="1350px" style="width: 100%; min-width:1300px;max-width: 1350px;">
-			<table class="imui-form-search-condition">
-				<tbody>
-					<tr>
-						<th style="width: 5%;">
-							<label style="width:120px;">社宅名</label>
-						</th>
-						<td style="width: 10%;">
-							<input style="width:200px;" type="text" value=""  placeholder="例　社宅名">
-						</td>
-						<th style="width: 5%;">
-							<label style="width:100px;">地域区分</label>
-						</th>
-						<td style="width: 5%;">
-							<select style="width:100px;">
-								<option value="0"></option>
-								<option value="1">特</option>
-								<option value="2">甲</option>
-								<option value="3">乙</option>
-								<option value="4">他</option>
-							</select>
-						</td>
-						<th style="width: 5%;">
-							<label style="width:100px;">社宅区分</label>
-						</th>
-						<td style="width: 5%;">
-							<select style="width:100px;">
-								<option value="0" ></option>
-								<option value="1" >保有</option>
-								<option value="2" >区分所有</option>
-								<!--
-								<option value="3" >一棟借上</option>
-								-->
-							</select>
-						</td>
-						<th style="width: 6%;">
-							<label style="width:100px;">空き部屋数</label>
-						</th>
-						<td style="width: 5%;">
-						</td>
-						<th style="width: 7%;">
-							<label style="width:100px;">空き駐車場数</label>
-						</th>
-						<td style="width: 5%;"></td>
-					</tr>
-				</tbody>
-			</table>
-			<div id="tabs">
-				<ul>
-					<li><a href="#kihon_info">基本情報</a></li>
-					<li><a href="#parking_info">駐車場情報</a></li>
-					<li><a href="#bihin_info">備品情報</a></li>
-					<li><a href="#admin_info">管理者情報</a></li>
-					
-				</ul>
-				<div id="kihon_info">
-					<table class="imui-form-search-condition">
-						<tbody>
-							<!--利用区分-->
-							<tr>
-								<th colspan="2"  style="width:12.5%;">
-									<label style="width:140px;">利用区分</label>
-								</th>
-								<td colspan="4" style="width:37.5%">
-									<select style="width:90px">
-										<option value="1">使用中</option>
-										<option value="2">廃止</option>
-										<option value="3">解約済</option>
-									</select>
-								</td>
-							</tr>
-							<!--管理会社-->
-							<tr>
-								<th colspan="2">
-									<label>管理会社</label>
-								</th>
-								<td colspan="4" style="width:37.5%">
-									<select style="width:160px">
-										<option value="0"></option>
-										<option value="1">NEXCO中日本</option>
-										<option value="2">NEXCO東日本</option>
-										<option value="4">NEXCO西日本</option>
-										<option value="5">高速道路総合研究所</option>
-										<option value="6">外部機関</option>
-									</select>
-								</td>
-							</tr>
-							<!--管理機関-->
-							<tr>
-								<th colspan="2">
-									<label>管理機関</label>
-								</th>
-								<td colspan="4" style="width:37.5%">
-									<select style="width:160px">
-										<option value="0"></option>
-										<option value="1"></option>
-										<option value="2"></option>
-										<option value="3"></option>
-										<option value="4"></option>
-										<option value="5"></option>
-									</select>
-								</td>
-							</tr>
-							<!--管理事業領域-->
-							<tr>
-								<th colspan="2">
-									<label>管理事業領域</label>
-								</th>
-								<td colspan="4" style="width:37.5%">
-									<select style="width:160px">
-										<option value="0"></option>
-										<option value="1"></option>
-										<option value="2"></option>
-										<option value="3"></option>
-										<option value="4"></option>
-										<option value="5"></option>
-									</select>
-								</td>
-							</tr>
+<!-- コンテンツエリア -->
+<div class="imui-form-container-wide" >
+	<nfwui:Form id="form" name="form" modelAttribute="form"  enctype="multipart/form-data" >
+		<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC002 %>" />
+		<input type="hidden" name="ittoFlg" id="ittoFlg" value="${form.ittoFlg }" />
+		<input type="hidden" name="oldBuildDate" id="oldBuildDate" value="${f:h(form.buildDate)}" />
+		<input type="hidden" name="lendKbnSelectListString" id="lendKbnSelectListString" value="${f:h(form.lendKbnSelectListString)}" />
+		<input type="hidden" name="defaultParkingLendStatus" id="defaultParkingLendStatus" value="${f:h(form.defaultParkingLendStatus)}" />
+		<input type="hidden" name="contractOwnerNo" id="contractOwnerNo" value="${form.contractOwnerNo}" />
+		<input type="hidden" name="nowParkingInfoListTableData" id="nowParkingInfoListTableData" />
+		<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="${form.hdnShatakuKanriNo }"/>
+		<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="${form.hdnShatakuName }"/>
+		<input type="hidden" name="hdnAreaKbn" id="hdnAreaKbn" value="${form.hdnAreaKbn }"/>
+		<input type="hidden" name="hdnShatakuKbn" id="hdnShatakuKbn" value="${form.hdnShatakuKbn }"/>
+		<input type="hidden" name="hdnEmptyRoomCount" id="hdnEmptyRoomCount" value="${form.hdnEmptyRoomCount }"/>
+		<input type="hidden" name="hdnEmptyParkingCount" id="hdnEmptyParkingCount" value="${form.hdnEmptyParkingCount }"/>
+		<!-- 編集フラグ(編集中は「true」 -->
+		<input type="hidden" name="onChangeFlag" id="onChangeFlag" value="false"/>
+		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc002/init"/>
+		
+		<nfwui:Table use="input">
+			<tbody>
+				<tr>
+					<th style="width: 5%;">
+						<!-- 社宅名 -->
+						<nfwui:LabelBox id="lblShatakuName" code="<%=MessageIdConstant.SKF3010_SC002_LBL_SHATAKU_NAME %>" />
+					</th>
+					<td style="width: 10%;">
+						<imui:textbox id="shatakuName" name="shatakuName" style="width:200px;" maxlength="30"
+							class="${form.shatakuNameErr}" value="${form.shatakuName}" placeholder="例　社宅名" tabindex="1" />
+					</td>
+					<th style="width: 5%;">
+						<!-- 地域区分 -->
+						<nfwui:LabelBox id="lblAreaKbn" code="<%=MessageIdConstant.SKF3010_SC002_LBL_AREA_KBN %>" />
+					</th>
+					<td style="width: 5%;">
+						<imui:select id="areaKbn" name="areaKbn" width="100" list="${form.areaKbnList}" class="${form.areaKbnErr}" tabindex="2" />
+					</td>
+					<th style="width: 5%;">
+						<!-- 社宅区分 -->
+						<nfwui:LabelBox id="lblShatakuKbn" code="<%=MessageIdConstant.SKF3010_SC002_LBL_SHATAKU_KBN %>" />
+					</th>
+					<td style="width: 5%;">
+						<!-- 一棟なら一棟のラベル、一棟以外ならプルダウン -->
+						<c:if test="${form.ittoFlg == 'false'}">
+							<!-- 社宅区分リスト -->
+							<imui:select id="shatakuKbn" name="shatakuKbn" width="100" list="${form.shatakuKbnList}" class="${form.shatakuKbnErr}" tabindex="3" />
+						</c:if>
+						<c:if test="${form.ittoFlg == 'true'}">
+							<!-- 社宅区分ラベル -->
+							<label>${form.shatakuKbn}</label>
+						</c:if>
+					</td>
+					<th style="width: 6%;">
+						<!-- 空き部屋数 -->
+						<nfwui:LabelBox id="lblEmptyRoomCount" code="<%=MessageIdConstant.SKF3010_SC002_LBL_EMPTY_ROOM_COUNT %>" />
+					</th>
+					<td style="width: 5%;">
+						<!-- 空き部屋数値 -->
+						<label>${form.emptyRoomCount}</label>
+					</td>
+					<th style="width: 7%;">
+						<!-- 空き駐車場数 -->
+						<nfwui:LabelBox id="lblEmptyParkingCount" code="<%=MessageIdConstant.SKF3010_SC002_LBL_EMPTY_PARKING_COUNT %>" />
+					</th>
+					<td style="width: 5%;">
+						<!-- 空き駐車場数値 -->
+						<label>${form.emptyParkingCount}</label>
+					</td>
+				</tr>
+			</tbody>
+		</nfwui:Table>
+		<div id="tabs">
+			<ul>
+				<li><a href="#kihon_info">基本情報</a></li>
+				<li><a href="#parking_info">駐車場情報</a></li>
+				<li><a href="#bihin_info">備品情報</a></li>
+				<li><a href="#admin_info">管理者情報</a></li>
+				<!-- 契約情報タブ表示判定 -->
+				<c:if test="${form.ittoFlg == 'true'}">
+					<li><a href="#keiyaku_info">契約情報</a></li>
+				</c:if>
+			</ul>
+			<div id="kihon_info">
+				<nfwui:Table use="input">
+					<tbody>
+						<!--利用区分-->
+						<tr>
+							<th colspan="2">
+								<!-- 利用区分 -->
+								<nfwui:LabelBox id="lblUseKbn" code="<%=MessageIdConstant.SKF3010_SC002_LBL_USE_KBN %>" />
+							</th>
+							<td colspan="3">
+								<imui:select id="useKbn" name="useKbn" width="90" list="${form.useKbnList}" class="${form.useKbnKbnErr}" tabindex="4" />
+							</td>
+						</tr>
+						<!--管理会社-->
+						<tr>
+							<th colspan="2">
+								<nfwui:LabelBox id="lblManageCompany" code="<%=MessageIdConstant.SKF3010_SC002_LBL_MANAGE_COMPANY %>" />
+							</th>
+							<td colspan="3">
+								<imui:select id="manageCompany" name="manageCompany" width="160"
+									list="${form.manageCompanyList}" class="${form.manageCompanyErr}" tabindex="5" />
+							</td>
+						</tr>
+						<!--管理機関-->
+						<tr>
+							<th colspan="2">
+								<nfwui:LabelBox id="lblManageAgency" code="<%=MessageIdConstant.SKF3010_SC002_LBL_MANAGE_AGENCY %>" />
+							</th>
+							<td colspan="3">
+								<imui:select id="manageAgency" name="manageAgency" width="160"
+									list="${form.manageAgencyList}" class="${form.manageAgencyErr}" tabindex="6" />
+							</td>
+						</tr>
+						<!--管理事業領域-->
+						<tr>
+							<th colspan="2">
+								<nfwui:LabelBox id="lblManageBusinessArea" code="<%=MessageIdConstant.SKF3010_SC002_LBL_MANAGE_BUSINESS_AREA %>" />
+							</th>
+							<td colspan="3">
+								<imui:select id="manageBusinessArea" name="manageBusinessArea" width="160"
+									list="${form.manageBusinessAreaList}" class="${form.manageBusinessAreaErr}" tabindex="7" />
+							</td>
+						</tr>
+						<!--所在地-->
+						<tr>
+							<!--所在地-->
+							<th rowspan="2" style="width:7%;">
+								<nfwui:LabelBox id="lblAddress" code="<%=MessageIdConstant.SKF3010_SC002_LBL_ADDRESS %>" />
+							</th>
 							<!--郵便番号-->
+							<th style="width:10%;">
+								<nfwui:LabelBox id="lblZipCd" code="<%=MessageIdConstant.SKF3010_SC002_LBL_ZIP_CD %>" />
+							</th>
+							<td colspan="3">
+								<imui:textbox id="zipCd" name="zipCd" style="ime-mode: disabled;width:85px;" value="${form.zipCd}"
+													class="${form.zipCdErr}" placeholder="例　4600003" maxlength="7" tabindex="8"/>
+								<imui:button id="addressSearch" name="addressSearch" value="住所検索"
+										class="imui-small-button" onclick="addressSearchClick()" tabindex="9" />
+							</td>
+						</tr>
+						<!--住所-->
+						<tr>
+							<th>
+								<nfwui:LabelBox id="lblAddressDetail" code="<%=MessageIdConstant.SKF3010_SC002_LBL_ADDRESS_DETAIL %>" />
+							</th>
+							<td colspan="3">
+								<!-- 都道府県リスト -->
+								<imui:select id="pref" name="pref" width="90" list="${form.prefList}" class="${form.prefErr}" tabindex="10" />
+								<imui:textbox id="shatakuAddress" name="shatakuAddress" style="width:615px;" maxlength="100"
+								value="${form.shatakuAddress}" placeholder="例　名古屋市中区錦2-18-19" class="${form.shatakuAddressErr}" tabindex="11" />
+							</td>
+						</tr>
+						<!--社宅構造-->
+						<tr>
+							<th colspan="2">
+								<nfwui:LabelBox id="lblStructure" code="<%=MessageIdConstant.SKF3010_SC002_LBL_STRUCTURE %>" />
+							</th>
+							<td colspan="3">
+								<!-- 構造リスト -->
+								<imui:select id="shatakuStructure" name="shatakuStructure" width="90"
+									list="${form.shatakuStructureList}" class="${form.shatakuStructureErr}" tabindex="12" />
+								<imui:textbox id="shatakuStructureDetail" name="shatakuStructureDetail" style="width:360px;"
+									maxlength="30" value="${form.shatakuStructureDetail}" placeholder="例　RC3F" tabindex="13" />
+							</td>
+						</tr>
+						<!--エレベーター-->
+						<tr>
+							<th colspan="2">
+								<nfwui:LabelBox id="lblElevator" code="<%=MessageIdConstant.SKF3010_SC002_LBL_ELEVATOR %>" />
+							</th>
+							<td colspan="3">
+								<!-- エレベーターリスト -->
+								<imui:select id="elevator" name="elevator" width="90" list="${form.elevatorList}" tabindex="14" />
+							</td>
+						</tr>
+						<!--建築年月日-->
+						<tr>
+							<div>
+							<th colspan="2">
+								<nfwui:LabelBox id="lblBuildDate" code="<%=MessageIdConstant.SKF3010_SC002_LBL_BUILD_DATE %>" />
+							</th>
+							<td>
+								<nfwui:DateBox id="buildDate" name="buildDate" value="${f:h(form.buildDate)}" cssStyle="width:100px" tabindex="15"/>
+							</td>
+							<th>
+								<nfwui:LabelBox id="lblRealYearCount" code="<%=MessageIdConstant.SKF3010_SC002_LBL_REAL_YEAR_COUNT %>" />
+							</th>
+							<td style="width:13%;">
+								<label id="realYearCount" name="realYearCount">
+									${form.jituAge }
+								</label>
+							</td>
+							</div>
+						</tr>
+						<!--次回算定年月日-->
+						<tr>
+							<th colspan="2">
+								<nfwui:LabelBox id="lblNextCalculateDate" code="<%=MessageIdConstant.SKF3010_SC002_LBL_NEXT_CALCULATE_DATE %>" />
+							</th>
+							<td >
+								<label id="nextCalculateDate" name="nextCalculateDate">
+									${form.nextCalcDate }
+								</label>
+							</td>
+							<th>
+								<nfwui:LabelBox id="lblAging" code="<%=MessageIdConstant.SKF3010_SC002_LBL_AGING %>" />
+							</th>
+							<td>
+								<label id="aging" name="aging">
+									${form.aging }
+								</label>
+							</td>
+						</tr>
+						<!--社宅補足-->
+						<tr>
+							<th rowspan="3" colspan="2">
+								<nfwui:LabelBox id="lblShatakuSupplement" code="<%=MessageIdConstant.SKF3010_SC002_LBL_SHATAKU_SUPPLEMENT %>" />
+							</th>
+							<td>
+								<a id="${form.shatakuHosokuLink1 }" tabindex="16">${form.shatakuHosokuFileName1 }</a>
+							</td>
+							<td colspan="2">
+								<!-- 参照 -->
+								<imui:button id="impShatakuHosoku1" name="impShatakuHosoku1" value="参照" class="imui-small-button" tabindex="17" onclick="fileSelect()"/>
+								<nfwui:FileBox remove="true" id="tmpFileBox" name="tmpFileBox" />
+								<!-- 削除 -->
+								<imui:button id="delShatakuHosoku1" name="delShatakuHosoku1" value="削除" class="imui-small-button" tabindex="18" />
+							</td>
+						</tr>
+						<!--社宅補足-->
+						<tr style="display:table-row;">
+							<td>
+								<a id="${form.shatakuHosokuLink2 }" tabindex="19">${form.shatakuHosokuFileName2 }</a>
+							</td>
+							<td colspan="2">
+								<!-- 参照 -->
+								<imui:button id="impShatakuHosoku2" name="impShatakuHosoku2" value="参照" class="imui-small-button" tabindex="20" />
+								<!-- 削除 -->
+								<imui:button id="delShatakuHosoku2" name="delShatakuHosoku2" value="削除" class="imui-small-button" tabindex="21" />
+							</td>
+						</tr>
+						<!--社宅補足-->
+						<tr style="display:table-row;">
+							<td>
+								<a id="${form.shatakuHosokuLink3 }">${form.shatakuHosokuFileName3 }</a>
+							</td>
+							<td colspan="2">
+								<!-- 参照 -->
+								<imui:button id="impShatakuHosoku3" name="impShatakuHosoku3" value="参照" class="imui-small-button" tabindex="23" />
+								<!-- 削除 -->
+								<imui:button id="delShatakuHosoku3" name="delShatakuHosoku3" value="削除" class="imui-small-button" tabindex="24" />
+							</td>
+						</tr>
+						<!--備考-->
+						<tr>
+							<th rowspan="3" colspan="2">
+								<nfwui:LabelBox id="lblBiko" code="<%=MessageIdConstant.SKF3010_SC002_LBL_BIKO %>" />
+							</th>
+							<td rowspan="3" colspan="3">
+								<imui:textArea id="biko" name="biko" rows="3" style="width:715px;" maxlength="400" value="${form.biko}" tabindex="25" />
+							</td>
+							<td style="width: 30%;border:none;background-color:white;"></td>
+						</tr>
+					</tbody>
+				</nfwui:Table>
+			</div>
+			<div id="parking_info">
+				<nfwui:Table use="input">
+					<tbody>
+						<!--駐車場構造-->
+						<tr >
+							<th style="width:7%;">
+								<nfwui:LabelBox id="lblParkingStructureKbn" code="<%=MessageIdConstant.SKF3010_SC002_LBL_PARKING_STRUCTURE_KBN %>" />
+							</th>
+							<td style="width:5%;">
+								<!-- 駐車場構造リスト -->
+								<imui:select id="parkingStructure" name="parkingStructure" width="120"
+								list="${form.parkingStructureList}" class="${form.parkingStructureErr}" tabindex="26" />
+							</td>
+						</tr>
+						<!--駐車場基本使用料-->
+						<tr>
+							<th>
+								<nfwui:LabelBox id="lblParkingRental" code="<%=MessageIdConstant.SKF3010_SC002_LBL_PARKING_RENTAL %>" />
+							</th>
+							<td>
+								<label id="parkingBasicRent" name="parkingBasicRent">
+									${form.parkingRent }&nbsp;円
+								</label>
+							</td>
+							<th rowspan="3" style="width:7%;">
+								<nfwui:LabelBox id="lblParkingSupplement" code="<%=MessageIdConstant.SKF3010_SC002_LBL_PARKING_SUPPLEMENT %>" />
+							</th>
+							<td style="width:10%;">
+								<a id="${form.parkingHosokuLink1 }" tabindex="27">${form.parkingHosokuFileName1 }</a>
+							</td>
+							<!--駐車場補足1-->
+							<td style="width:20%;">
+								<!-- 参照 -->
+								<imui:button id="impParkingHosoku1" name="impParkingHosoku1" value="参照" class="imui-small-button" tabindex="28" />
+								<!-- 削除 -->
+								<imui:button id="delParkingHosoku1" name="delParkingHosoku1" value="削除" class="imui-small-button" tabindex="29" />
+							</td>
+						</tr>
+						<tr>
+							<th>
+								<!-- 駐車場台数 -->
+								<nfwui:LabelBox id="lblParkingBlockCount" code="<%=MessageIdConstant.SKF3010_SC002_LBL_PARKING_BLOCK_COUNT %>" />
+							</th>
+							<td>
+								<label id="parkingBlockCount" name="parkingBlockCount">
+									${form.parkingBlockCount }&nbsp;台
+								</label>
+							</td>
+							<td>
+								<a id="${form.parkingHosokuLink2 }" tabindex="30">${form.parkingHosokuFileName2 }</a>
+							</td>
+							<!--駐車場補足2-->
+							<td>
+								<!-- 参照 -->
+								<imui:button id="impParkingHosoku2" name="impParkingHosoku2" value="参照" class="imui-small-button" tabindex="31" />
+								<!-- 削除 -->
+								<imui:button id="delParkingHosoku2" name="delParkingHosoku2" value="削除" class="imui-small-button" tabindex="32" />
+							</td>
+						</tr>
+						<tr>
+							<th>
+								<!-- 貸与可能総数 -->
+								<nfwui:LabelBox id="lblLendPossibleCount" code="<%=MessageIdConstant.SKF3010_SC002_LBL_LEND_POSSIBLE_COUNT %>" />
+							</th>
+							<td>
+								<label id="lendPossibleCount" name="lendPossibleCount">
+									${form.lendPossibleCount }&nbsp;台
+								</label>
+							</td>
+							<td>
+								<a id="${form.parkingHosokuLink3 }" tabindex="33">${form.parkingHosokuFileName3 }</a>
+							</td>
+							<!--駐車場補足3-->
+							<td>
+								<!-- 参照 -->
+								<imui:button id="impParkingHosoku3" name="impParkingHosoku3" value="参照" class="imui-small-button" tabindex="34" />
+								<!-- 削除 -->
+								<imui:button id="delParkingHosoku3" name="delParkingHosoku3" value="削除" class="imui-small-button" tabindex="35" />
+							</td>
+						</tr>
+					</tbody>
+				</nfwui:Table>
+				<br />
+				<div class="align-L"><!--  -->
+					<!-- 追加 -->
+					<imui:button id="addParkingBlock" name="addParkingBlock" value="追加" class="imui-small-button"
+											onclick="addParkingBlockClick()" style="margin-bottom: 3px;" tabindex="36" />
+				</div>
+				<div>
+				<imui:listTable id="parkingInfoList" process="jssp" autoEncode="false" autoWidth="false" rowNumbers="true" autoResize="false"
+					onCellSelect="onCellSelect" multiSelect="false" data="${form.parkingInfoListTableData }" style="max-height: 800px;" tabindex="37">
+					<cols sortable="false">
+						<col name="rId" caption="RelativeID" hidden="true" key="true"/>
+						<col name="parkingKanriNo" caption="駐車場管理番号" hidden="true" />
+						<col name="parkingBlockNo" caption="区画番号" width="165" sortable="false" align="center" wrap="true" />
+						<col name="parkingLendKbn" caption="貸与区分" width="95" sortable="false" align="center" wrap="true" />
+						<col name="parkingLendStatus" caption="貸与状況" hidden="true" />
+						<col name="userName" caption="使用者" width="140" sortable="false" align="left" wrap="true" />
+						<col name="parkingRentalAdjust" caption="駐車場調整金額" width="100" sortable="false" align="right" wrap="true" />
+						<col name="parkingMonthRental" caption="駐車場月額使用料" width="120" sortable="false" align="right" wrap="true" />
+						<col name="parkingBlockBiko" caption="備考" width="230" sortable="false" align="center" wrap="true" />
+						<col name="parkingBlockDelete" caption="削除" width="50" sortable="false" align="center" wrap="true">
+							<showIcon iconClass="im-ui-icon-common-16-trashbox" align="center" />
+						</col>
+						<col name="updateDate" caption="更新日時" hidden="true" />
+					</cols>
+				</imui:listTable>
+				</div>
+				<br />
+				<div>
+					<!--備考-->
+					<nfwui:Table use="input">
+						<tbody>
+							<!--備考-->
 							<tr>
-								<th rowspan="2">
-									<label>所在地</label>
+								<th rowspan="3" style="width:12%;">
+									<nfwui:LabelBox id="lblParkingBiko" code="<%=MessageIdConstant.SKF3010_SC002_LBL_PARKING_BIKO %>" />
 								</th>
-								<th>
-									<label>郵便番号</label>
-								</th>
-								<td colspan="4">
-									<input class="ime-off" style="width:85px;" type="text" value="" placeholder="例　4600003">
-									<input type="button" value="住所検索" class="imui-small-button"/>
+								<td rowspan="2" style="width:61%" colspan="4">
+									<imui:textArea id="parkingBiko" name="parkingBiko" rows="3" maxlength="400" style="width:650px;" value="${form.parkingBiko}" tabindex="42" />
 								</td>
 							</tr>
+							<tr />
+							<tr />
+						</tbody>
+					</nfwui:Table>
+				</div>
+			</div>
+			<div id="bihin_info">
+				<imui:listTable id="bihinInfoList" process="jssp" autoEncode="false" autoWidth="false" rowNumbers="true" autoResize="false" 
+						onCellSelect="onCellSelect" multiSelect="false" data="${form.bihinInfoListTableData }" style="max-height: 800px;" height="auto" tabinex="43">
+					<cols sortable="false">
+						<col name="bihinCode" caption="備品コード" hidden="true" />
+						<col name="bihinName" caption="備品名称" width="165" sortable="false" align="left" wrap="true" />
+						<col name="bihinStatus" caption="備付状況" width="110" sortable="false" align="center" wrap="true" />
+						<col name="updateDate" caption="更新日時" hidden="true" />
+					</cols>
+				</imui:listTable>
+			</div>
+			<div id="admin_info">
+				<nfwui:Table use="input">
+					<tbody>
+						<tr >
+							<td style="width:15%;"/>
+							<th style="width:20%;">
+								<!-- 寮長・自治会長 -->
+								<nfwui:LabelBox id="lblDormitoryLeader" code="<%=MessageIdConstant.SKF3010_SC002_LBL_DORMITORY_LEADER %>" />
+							</th>
+							<th style="width:20%;">
+								<!-- 鍵管理者 -->
+								<nfwui:LabelBox id="lblKeyManager" code="<%=MessageIdConstant.SKF3010_SC002_LBL_KEY_MANAGER %>" />
+							</th>
+							<th style="width:20%;">
+								<!-- 寮母・管理会社 -->
+								<nfwui:LabelBox id="lblMatron" code="<%=MessageIdConstant.SKF3010_SC002_LBL_MATRON %>" />
+							</th>
+						</tr>
+						<tr>
+							<!--部屋番号-->
+							<th>
+								<nfwui:LabelBox id="lblManageShatakuNo" code="<%=MessageIdConstant.SKF3010_SC002_LBL_MANAGE_SHATAKU_NO %>" />
+							</th>
+							<td>
+								<!-- 寮長・自治会長 -->
+								<imui:textbox id="dormitoryLeaderRoomNo" name="dormitoryLeaderRoomNo" style="width:150px;"
+								maxlength="30" value="${form.dormitoryLeaderRoomNo}" placeholder="例　101（半角）" tabindex="44" />
+							</td>
+							<td>
+								<!-- 鍵管理者 -->
+								<imui:textbox id="keyManagerRoomNo" name="keyManagerRoomNo" style="width:150px;"
+								maxlength="30" value="${form.keyManagerRoomNo}" placeholder="例　101（半角）" tabindex="51" />
+							</td>
+							<td>
+								<!-- 寮母・管理会社 -->
+								<imui:textbox id="matronRoomNo" name="matronRoomNo" style="width:150px;"
+								maxlength="30" value="${form.matronRoomNo}" placeholder="例　101（半角）" tabindex="58" />
+							</td>
+						</tr>
+						<tr>
+							<!-- 氏名 -->
+							<th>
+								<nfwui:LabelBox id="lblManageName" code="<%=MessageIdConstant.SKF3010_SC002_LBL_MANAGE_NAME %>" />
+							</th>
+							<td>
+								<!-- 寮長・自治会長 -->
+								<imui:textbox id="dormitoryLeaderName" name="dormitoryLeaderName" style="width:150px;"
+								maxlength="30" value="${form.dormitoryLeaderName}" placeholder="例　中日本　太郎" tabindex="45" />
+								<!-- 社員入力支援 -->
+								<nfwui:PopupButton id="leaderInputSupportShain" name="leaderInputSupportShain" value="社員入力支援" use="popup"
+									cssClass="imui-small-button" popupWidth="650" popupHeight="700"
+									modalMode="false" screenUrl="skf/Skf2010Sc001/init"
+									parameter="shainNo:shainNo"
+									callbackFunc="leaderShainInfoCallback" tabindex="46"/> 
+<%--                	<nfwui:PopupButton id="cShien" name="cShien" value="駐車支援" use="popup"  --%>
+<%--                		cssClass="imui-small-button" popupWidth="650" popupHeight="700"  --%>
+<%--                		modalMode="true" screenUrl="skf/Skf3022Sc002/init"  --%>
+<%--                		parameter="hdnShatakuKanriNo:hdnShatakuKanriNo,hdnShatakuName:hdnShatakuName,hdnBackupContractStartDate:hdnRiyouStartDay" disabled="${form.contractInfoDisabled}"  --%>
+<%--                		mappingArray="{'txtOwnerName':'resultList.colParkingBlock'}" --%>
+<%--                		 tabindex="6"/> --%>
+							</td>
+							<td>
+								<!-- 鍵管理者 -->
+								<imui:textbox id="keyManagerName" name="keyManagerName" style="width:150px;" maxlength="30"
+								value="${form.keyManagerName}" placeholder="例　中日本　太郎" tabindex="52" />
+								<!-- 社員入力支援 -->
+								<nfwui:PopupButton id="keyManagerInputSupportShain" name="keyManagerInputSupportShain" value="社員入力支援" use="popup"
+									cssClass="imui-small-button" popupWidth="650" popupHeight="700"
+									modalMode="false" screenUrl="skf/Skf2010Sc001/init"
+									parameter="shainNo:shainNo"
+									callbackFunc="keyManagerShainInfoCallback" tabindex="53"/> 
+							</td>
+							<td>
+								<!-- 寮母・管理会社 -->
+								<imui:textbox id="matronName" name="matronName" style="width:150px;"
+								maxlength="30" value="${form.matronName}" placeholder="例　中日本　太郎" tabindex="59" />
+							</td>
+						</tr>
+						<tr>
+							<!-- 電子メールアドレス -->
+							<th>
+								<nfwui:LabelBox id="lblManageMailAddress" code="<%=MessageIdConstant.SKF3010_SC002_LBL_MANAGE_MAIL_ADDRESS %>" />
+							</th>
+							<td>
+								<!-- 寮長・自治会長 -->
+								<imui:textbox id="dormitoryLeaderMailAddress" name="dormitoryLeaderMailAddress" style="width:260px;"
+								maxlength="50" value="${form.dormitoryLeaderMailAddress}" placeholder="例　t.nakanihon.aa@" tabindex="47" />
+							</td>
+							<td>
+								<!-- 鍵管理者 -->
+								<imui:textbox id="keyManagerMailAddress" name="keyManagerMailAddress" style="width:260px;"
+								maxlength="50" value="${form.keyManagerMailAddress}" placeholder="例　t.nakanihon.aa@" tabindex="54" />
+							</td>
+							<td>
+								<!-- 寮母・管理会社 -->
+								<imui:textbox id="matronMailAddress" name="matronMailAddress" style="width:260px;"
+								maxlength="30" value="${form.matronMailAddress}" placeholder="例　t.nakanihon.aa@" tabindex="60" />
+							</td>
+						</tr>
+						<tr>
+							<!-- 電話番号 -->
+							<th>
+								<nfwui:LabelBox id="lblManageTelNo" code="<%=MessageIdConstant.SKF3010_SC002_LBL_MANAGE_TEL_NO %>" />
+							</th>
+							<td>
+								<!-- 寮長・自治会長 -->
+								<imui:textbox id="dormitoryLeaderTelNumber" name="dormitoryLeaderTelNumber" style="width:150px;height:98%"
+								maxlength="15" value="${form.dormitoryLeaderTelNumber}" placeholder="例　052-999-9999" tabindex="48" />
+							</td>
+							<td>
+								<!-- 鍵管理者 -->
+								<imui:textbox id="keyManagerTelNumber" name="keyManagerTelNumber" style="width:150px;height:98%"
+								maxlength="15" value="${form.keyManagerTelNumber}" placeholder="例　052-999-9999" tabindex="55" />
+							</td>
+							<td>
+								<!-- 寮母・管理会社 -->
+								<imui:textbox id="matronTelNumber" name="matronTelNumber" style="width:150px;height:98%"
+								maxlength="15" value="${form.matronTelNumber}" placeholder="例　052-999-9999" tabindex="61" />
+							</td>
+						</tr>
+						<tr>
+							<!-- 内線番号 -->
+							<th>
+								<nfwui:LabelBox id="lblManageExtensionNo" code="<%=MessageIdConstant.SKF3010_SC002_LBL_MANAGE_EXTENSION_NO %>" />
+							</th>
+							<td>
+								<!-- 寮長・自治会長 -->
+								<imui:textbox id="dormitoryLeaderExtentionNo" name="dormitoryLeaderExtentionNo" style="width:150px;height:98%"
+								maxlength="15" value="${form.dormitoryLeaderExtentionNo}" placeholder="例　0000" tabindex="49" />
+							</td>
+							<td>
+								<!-- 鍵管理者 -->
+								<imui:textbox id="keyManagerExtentionNo" name="keyManagerExtentionNo" style="width:150px;height:98%"
+								maxlength="15" value="${form.keyManagerExtentionNo}" placeholder="例　0000" tabindex="56" />
+							</td>
+							<td>
+								<!-- 寮母・管理会社 -->
+								<imui:textbox id="matronExtentionNo" name="matronExtentionNo" style="width:150px;height:98%"
+								maxlength="15" value="${form.matronExtentionNo}" placeholder="例　0000" tabindex="62" />
+							</td>
+						</tr>
+						<tr>
+							<!--備考-->
+							<th rowspan="4">
+								<nfwui:LabelBox id="lblManageBiko" code="<%=MessageIdConstant.SKF3010_SC002_LBL_MANAGE_BIKO %>" />
+							</th>
+							<td rowspan="4">
+								<!-- 寮長・自治会長 -->
+								<imui:textArea id="dormitoryLeaderBiko" name="dormitoryLeaderBiko" rows="4" maxlength="400"
+														style="width:260px;" value="${form.dormitoryLeaderBiko}" tabindex="50" />
+							</td>
+							<td rowspan="4">
+								<!-- 鍵管理者 -->
+								<imui:textArea id="keyManagerBiko" name="keyManagerBiko" rows="4" maxlength="400"
+														style="width:260px;" value="${form.keyManagerBiko}" tabindex="57" />
+							</td>
+							<td rowspan="4">
+								<!-- 寮母・管理会社 -->
+								<imui:textArea id="matronBiko" name="matronBiko" rows="4" maxlength="400"
+														style="width:260px;" value="${form.matronBiko}" tabindex="63" />
+							</td>
+						</tr>
+						<tr />
+						<tr />
+						<tr />
+					</tbody>
+				</nfwui:Table>
+			</div>
+			<div id="keiyaku_info">
+				<nfwui:Table use="input">
+					<tbody>
+						<tr>
+							<th rowspan="13" style="width:5%" >
+								<!-- 社宅 -->
+								<nfwui:LabelBox id="lblContractShataku" code="<%=MessageIdConstant.SKF3010_SC002_LBL_CONTRACT_SHATAKU %>" />
+							</th>
+							<th colspan="2"  style="width:10%;">
+								<!-- 契約番号 -->
+								<nfwui:LabelBox id="lblContractNumber" code="<%=MessageIdConstant.SKF3010_SC002_LBL_CONTRACT_NUMBER %>" />
+							</th>
+							<td  style="width:35%">
+								<!-- 契約番号リスト -->
+								<imui:select id="contractNo" name="contractNo" width="200" list="${form.contractNoList}"
+																			tabindex="64" disabled="${form.contractDelDisableFlg }"/>
+								<!-- 追加ボタン -->
+								<imui:button id="contractAdd" name="contractAdd" value="追加" class="imui-small-button" 
+												disabled="${form.contractAddDisableFlg}" onclick="contractAddClick()" tabindex="65" />
+								<!-- 削除ボタン -->
+								<imui:button id="contractDell" name="contractDell" value="削除" class="imui-small-button" 
+												disabled="${form.contractDelDisableFlg}" onclick="contractDelClick()" tabindex="66" />
+							</td>
+							<td style="border:none;width:30%;" rowspan="11">
+								<font size="2">
+									別契約の駐車場がある場合&nbsp;&nbsp;
+									<imui:button id="contractParkingInfo" name="contractParkingInfo" value="駐車場契約情報" class="imui-medium-button"
+														onclick="contractParkingInfoClick()" disabled="${form.contractDelDisableFlg }" tabindex="76" />
+								</font>
+								<br/>
+								<br/>
+								<font size="2">
+									※駐車場の区画情報は駐車場情報タブにて登録後に
+									<br/>
+									&nbsp;&nbsp;&nbsp;&nbsp;駐車場契約情報を登録してください。
+								</font>
+							</td>
+						</tr>
+						<tr>
+							<th colspan="2">
+								<!-- 賃貸人（代理人） -->
+								<nfwui:LabelBox id="lblContractOwner" code="<%=MessageIdConstant.SKF3010_SC002_LBL_CONTRACT_OWNER %>" />
+							</th>
+							<td>
+								<!-- 賃貸人（代理人）テキストボックス -->
+								<imui:textbox readonly="true" id="contractOwnerName" name="contractOwnerName"
+									style="width:150px;height:98%" value="${form.contractOwnerName}" disabled="${form.contractDelDisableFlg }" tabindex="67" />
+								<!-- 支援ボタン -->
+								<nfwui:PopupButton id="contractSupport" name="contractSupport" value="支援" use="popup"
+									cssClass="imui-small-button" popupWidth="650" popupHeight="700"
+									modalMode="false" screenUrl="skf/Skf2010Sc001/init"
+									parameter="parkinglendKbn:nyukyoFlag"  disabled="${form.contractDelDisableFlg }"
+									callbackFunc="contractOwnerInfoCallback" tabindex="68"/>
+<%--                	<nfwui:PopupButton id="cShien" name="cShien" value="駐車支援" use="popup"  --%>
+<%--                		cssClass="imui-small-button" popupWidth="650" popupHeight="700"  --%>
+<%--                		modalMode="true" screenUrl="skf/Skf3022Sc002/init"  --%>
+<%--                		parameter="hdnShatakuKanriNo:hdnShatakuKanriNo,hdnShatakuName:hdnShatakuName,hdnBackupContractStartDate:hdnRiyouStartDay" disabled="${form.contractInfoDisabled}"  --%>
+<%--                		mappingArray="{'txtOwnerName':'resultList.colParkingBlock'}" --%>
+<%--                		 tabindex="6"/> --%>
+							</td>
+						</tr>
+						<tr>
+							<th rowspan="2">
+								<!-- 所在地 -->
+								<nfwui:LabelBox id="lblContractAddress" code="<%=MessageIdConstant.SKF3010_SC002_LBL_CONTRACT_ADDRESS %>" />
+							</th>
+							<th>
+								<!-- 郵便番号 -->
+								<nfwui:LabelBox id="lblContractPostNumber" code="<%=MessageIdConstant.SKF3010_SC002_LBL_CONTRACT_POST_NUMBER %>" />
+							</th>
+							<td>
+								<label id="contractZipCd" name="contractZipCd" />
+							</td>
+						</tr>
 							<!--住所-->
-							<tr>
-								<th>
-									<label>住所</label>
-								</th>
-								<td colspan="4">
-									<select style="width:90px">
-										<option value="0"></option>
-										<option value="1">北海道</option>
-										<option value="2">青森県</option>
-										<option value="3">岩手県</option>
-										<option value="4">宮城県</option>
-										<option value="5">秋田県</option>
-										<option value="6">山形県</option>
-										<option value="7">福島県</option>
-										<option value="8">茨城県</option>
-										<option value="9">栃木県</option>
-										<option value="10">群馬県</option>
-										<option value="11">埼玉県</option>
-										<option value="12">千葉県</option>
-										<option value="13">東京都</option>
-										<option value="14">神奈川県</option>
-										<option value="15">新潟県</option>
-										<option value="16">富山県</option>
-										<option value="17">石川県</option>
-										<option value="18">福井県</option>
-										<option value="19">山梨県</option>
-										<option value="20">長野県</option>
-										<option value="21">岐阜県</option>
-										<option value="22">静岡県</option>
-										<option value="23">愛知県</option>
-										<option value="24">三重県</option>
-										<option value="25">滋賀県</option>
-										<option value="26">京都府</option>
-										<option value="27">大阪府</option>
-										<option value="28">兵庫県</option>
-										<option value="29">奈良県</option>
-										<option value="30">和歌山県</option>
-										<option value="31">鳥取県</option>
-										<option value="32">島根県</option>
-										<option value="33">岡山県</option>
-										<option value="34">広島県</option>
-										<option value="35">山口県</option>
-										<option value="36">徳島県</option>
-										<option value="37">香川県</option>
-										<option value="38">愛媛県</option>
-										<option value="39">高知県</option>
-										<option value="40">福岡県</option>
-										<option value="41">佐賀県</option>
-										<option value="42">長崎県</option>
-										<option value="43">熊本県</option>
-										<option value="44">大分県</option>
-										<option value="45">宮崎県</option>
-										<option value="46">鹿児島県</option>
-										<option value="47">沖縄県</option>
-										<option value="48">その他</option>
-									</select>
-									<input style="width:616px;" type="text" value="" placeholder="例　名古屋市中区錦2-18-19">
-								</td>
-							</tr>
-							<!--構造-->
-							<tr>
-								<th colspan="2">
-									<label>構造</label>
-								</th>
-								<td colspan="4">
-									<select style="width:90px">
-										<option value="0"></option>
-										<option value="1">木造</option>
-										<option value="2">組積</option>
-										<option value="3">鉄筋</option>
-									</select>
-									<input style="width:360px;" type="text" value="" placeholder="例　RC3F">
-								</td>
-							</tr>
-							<!--エレベーター-->
-							<tr>
-								<th colspan="2">
-									<label>エレベーター</label>
-								</th>
-								<td colspan="4">
-									<select style="width:90px">
-										<option value="0"></option>
-										<option value="1">なし</option>
-										<option value="2">あり</option>
-									</select>
-								</td>
-							</tr>
+						<tr>
+							<th>
+								<!-- 住所 -->
+								<nfwui:LabelBox id="lblContractDetailAddress" code="<%=MessageIdConstant.SKF3010_SC002_LBL_CONTRACT_DETAIL_ADDRESS %>" />
+							</th>
+							<td>
+ 								<label id="contractAddress" name="contractAddress" />
+							</td>
+						</tr>
+						<tr></tr>
+						<tr>
+							<th colspan="2">
+								<!-- 経理連携用管理番号 -->
+								<nfwui:LabelBox id="lblContractAssetRegisterNo" code="<%=MessageIdConstant.SKF3010_SC002_LBL_CONTRACT_ASSET_REGISTER_NO %>" />
+							</th>
+							<td>
+								<imui:textbox id="assetRegisterNo" name="assetRegisterNo" style="ime-mode:disabled;width:150px;" maxlength="13"
+									value="${form.assetRegisterNo}" placeholder="例　A001002003004" disabled="${form.contractDelDisableFlg }" tabindex="69" />
+							</td>
+						</tr>
+						<tr>
+							<th colspan="2">
+								<!-- 契約開始日 -->
+								<nfwui:LabelBox id="lblContractStartDay" code="<%=MessageIdConstant.SKF3010_SC002_LBL_CONTRACT_START_DAY %>" />
+							</th>
+							<td>
+							<!--
+								<imui:textbox style="ime-mode:disabled; width:95px;" id="contractStartDay" name="contractStartDay"
+									maxlength="10" value="${form.contractStartDay}" placeholder="例　2020/09/01" tabindex="70" />
+								<im:calendar floatable="true" altField="#contractStartDay"/>
+							-->
+								<nfwui:DateBox id="contractStartDay" name="contractStartDay"
+									value="${f:h(form.contractStartDay)}" cssStyle="width:100px" disabled="${form.contractDelDisableFlg }" tabindex="70"/>
+							</td>
+						</tr>
+						<tr>
+							<th colspan="2">
+								<!-- 契約終了日 -->
+								<nfwui:LabelBox id="lblContractEndtDay" code="<%=MessageIdConstant.SKF3010_SC002_LBL_CONTRACT_END_DAY %>" />
+							</th>
+							<td>
+							<!--
+								<imui:textbox style="ime-mode:disabled; width:95px;" id="contractEndDay" name="contractEnDay"
+									maxlength="10" value="${form.contractEndDay}" placeholder="例　2020/09/30" tabindex="71" />
+								<im:calendar floatable="true" altField="#contractEndDay"/>
+							-->
+								<nfwui:DateBox id="contractEndDay" name="contractEndDay"
+									value="${f:h(form.contractEndDay)}" cssStyle="width:100px" disabled="${form.contractDelDisableFlg }" tabindex="71"/>
+							</td>
+						</tr>
+						<tr>
+							<th colspan="2">
+								<!-- 家賃 -->
+								<nfwui:LabelBox id="lblContractRent" code="<%=MessageIdConstant.SKF3010_SC002_LBL_CONTRACT_RENT %>" />
+							</th>
+							<td>
+								<nfwui:NumberBox id="contractRent" name="contractRent" max="99999999" min="0" cssClass="nfw-default-width" cssStyle="width: 100px;"
+									maxlength="10" value="${form.contractRent}" disabled="${form.contractDelDisableFlg }" tabindex="72" />&nbsp;円
+							</td>
+						</tr>
+						<tr>
+							<th colspan="2">
+								<!-- 共益費 -->
+								<nfwui:LabelBox id="lblContractKyoekihi" code="<%=MessageIdConstant.SKF3010_SC002_LBL_CONTRACT_KYOEKIHI %>" />
+							</th>
+							<td>
+								<nfwui:NumberBox id="contractKyoekihi" name="contractKyoekihi" max="99999999" min="0" cssClass="nfw-default-width" cssStyle="width: 100px;"
+									maxlength="10" value="${form.contractKyoekihi}" disabled="${form.contractDelDisableFlg }" tabindex="73" />&nbsp;円
+							</td>
 
-							<!--建築年月日-->
-							<tr>
-								<th colspan="2">
-									<label>建築年月日</label>
-								</th>
-								<td colspan="2" style="width:15%">
-									<input class="ime-off" type="text" id="hoge777" value="2005/04/02"/>
-									<script type="text/javascript">
-										(function($){
-											$.imDateUtil.setOffset(540);
-											$(function () {
-												$("#hoge777").imuiCalendar({
-													"altField":"#hoge777",
-													"nextText":"来月",
-													"format":"yyyy\/MM\/dd",
-													"dayNames":[
-														"日曜日",
-														"月曜日",
-														"火曜日",
-														"水曜日",
-														"木曜日",
-														"金曜日",
-														"土曜日"
-													],
-													"dayNamesShort":["日","月","火","水","木","金","土"],
-													"prevText":"先月",
-													"url":"calendar\/tag\/caljson",
-													"currentText":"現在",
-													"calendarId":"JPN_CAL",
-													"firstDay":0,
-													"closeText":"閉じる",
-													"dayNamesMin":["日","月","火","水","木","金","土"],
-													"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],
-													"monthNames":[
-														"1月",
-														"2月",
-														"3月",
-														"4月",
-														"5月",
-														"6月",
-														"7月",
-														"8月",
-														"9月",
-														"10月",
-														"11月",
-														"12月"
+						</tr> 
+						<tr>
+							<th colspan="2">
+								<!-- 駐車場料（地代） -->
+								<nfwui:LabelBox id="lblContractLandRent" code="<%=MessageIdConstant.SKF3010_SC002_LBL_CONTRACT_LAND_RENT %>" />
+							</th>
+							<td>
+								<nfwui:NumberBox id="contractLandRent" name="contractLandRent" max="99999999" min="0" cssClass="nfw-default-width" cssStyle="width: 100px;"
+									maxlength="10" value="${form.contractLandRent}" disabled="${form.contractDelDisableFlg }" tabindex="74" />&nbsp;円
+							</td>
+						</tr>
+						<tr>
+							<th rowspan ="2" colspan="2">
+								<!-- 備考 -->
+								<nfwui:LabelBox id="lblContractBiko" code="<%=MessageIdConstant.SKF3010_SC002_LBL_CONTRACT_BIKO %>" />
+							</th>
+							<td rowspan="2">
+								<imui:textArea id="contractBiko" name="contractBiko" rows="5" clols="35" maxlength="400"
+									style="width:475px;" value="${form.contractBiko}" disabled="${form.contractDelDisableFlg }" tabindex="75" />
+							</td>
+						</tr>
+					</tbody>
+				</nfwui:Table>
+			</div>
+			<script type="text/javascript">
+				(function($) {
+					// 画面表示時に定義される処理
+					$(document).ready(function(){
+						if ($("#ittoFlg").val() != "true") {
+							// 一棟借上以外は非表示
+							$('#tabs div[id=keiyaku_info]').hide();
+						}
+						// 契約情報タブの郵便番号を基本情報タブの郵便番号に設定
+						$('#contractZipCd').text($('#zipCd').val());
+						// 契約情報タブの住所を基本情報タブの県名 + 住所に設定
+						$('#contractAddress').text($('#pref option:selected').text() + $('#shatakuAddress').val());
+
+						/** クリックイベント */
+						fileSelect = function() {
+							$('#tmpFileBox').trigger("click");
+						}
+						// 登録ボタン句陸
+						enterClick = function() {
+							alert("それはダメ！");
+						}
+						// 登録ボタン句陸
+						deleteClick = function() {
+							alert("まだダメｯ！");
+						}
+						// 住所検索押下時のイベント
+						addressSearchClick = function() {
+//						$("#addressSearch").click(function () {
+							var map = new Object();
+							map['zipCd'] = $("#zipCd").val();
+							// 住所検索
+							nfw.common.doAjaxAction("skf/Skf3010Sc002/AddressSearchAsync", map, true, function(data) {
+								// 結果判定
+								if ("" != data.zipCdErr) {
+									$("#zipCd").prop('class', data.zipCdErr);
+								} else {
+									$("#pref").imuiSelect('replace', data.prefList);
+									$("#shatakuAddress").val(data.shatakuAddress);
+								}
+								// 編集フラグを「true」に設定
+								$("#onChangeFlag").val("true");
+							});
+						}
+						// 駐車場区画追加ボタンクリック時のイベント
+						addParkingBlockClick = function() {
+//						$("#addParkingBlock").click(function(){
+							// リストデータ取得
+							var arrrows = $("#parkingInfoList").getRowData();
+							// 現在の最大のRID番号取得
+							var maxRid = 0;
+							for (i = 0; i < arrrows.length; i++) {
+								var cur = parseInt(arrrows[i].rId);
+								if (maxRid < cur) {
+									maxRid = cur;
+								}
+							}
+							// 次設定RID
+							var nextRid = maxRid + 1;
+							// 駐車場基本使用料
+							var parkingMonthRental = $("#parkingBasicRent").text().trim();
+							// 駐車場状況初期値
+							var defaultParkingLendStatus = $("#defaultParkingLendStatus").val().trim();
+
+							var addRowData = {
+								"rId": nextRid,
+								"parkingKanriNo":"",
+								"parkingBlockNo":"<input id='parkingBlockNo" + nextRid + "' name='parkingBlockNo" + nextRid + "' type='text' value='' placeholder='例 01(半角)' style='width:140px;' maxlength='30'/>",
+								"parkingLendKbn":"<select id='parkingLendKbn" + nextRid + "' name='parkingLendKbn" + nextRid + " 'style='width:90px;'>" + $("#lendKbnSelectListString").val() + "</select>",
+								"parkingLendStatus":defaultParkingLendStatus,
+								"userName":"",
+								"parkingRentalAdjust":"<input id='parkingRentalAdjust" + nextRid + "' name='parkingRentalAdjust" + nextRid + "' type='text' class='ime-off' value='0' style='width:65px;text-align: right;' maxlength='6'/> 円",
+								"parkingMonthRental":"<label id='parkingMonthRental" + nextRid + "' name='parkingMonthRental" + nextRid + "' >" + parkingMonthRental + "</label>",
+								"parkingBlockBiko":"<input id='parkingBlockBiko" + nextRid + "' name='parkingBlockBiko" + nextRid + "' type='text' value='' style='width:215px;' maxlength='100'/>",
+								"parkingBlockDelete":"",
+								"updateDate":""
+							};
+							// 駐車場に1区画追加
+							$("#parkingInfoList").addRowData(undefined, addRowData);
+							// 編集フラグを「true」に設定
+							$("#onChangeFlag").val("true");
+							// 駐車場台数を加算
+							var parkingBlockCount = parseInt($("#parkingBlockCount").text().replace("台", "").trim()) + 1;
+							$("#parkingBlockCount").text(parkingBlockCount + " 台");
+							// 貸与可能総数を減算
+							var lendPossibleCount = parseInt($("#lendPossibleCount").text().replace("台", "").trim()) + 1;
+							$("#lendPossibleCount").text(lendPossibleCount + " 台");
+						}
+						// 契約情報追加ボタンクリック
+						contractAddClick = function() {
+							// I-SKF-3108
+							$("<div>社宅の契約情報を追加します。よろしいですか？</div>").imuiMessageDialog({
+								iconType : 'question',
+								title : '確認',
+								modal : true,
+								buttons: [
+									{
+										'id': 'contractAddOk',
+										'text': 'ok',
+										'click': function() {
+											// 編集フラグ判定
+											if ($("#onChangeFlag").val() != "true") {
+												url = "skf/Skf3010Sc002/addContractList";
+												$("#form").attr("action", url);
+												$("#form").submit();
+											} else {
+												$(this).imuiMessageDialog('close');
+												$("<div>入力内容が無効になります。破棄してもよろしいですか？</div>").imuiMessageDialog({
+													iconType : 'question',
+													title : '確認',
+													modal : true,
+													buttons: [
+														{
+															'id': 'contractChangeAddOk',
+															'text': 'ok',
+															'click': function() {
+																url = "skf/Skf3010Sc002/addContractList";
+																$("#form").attr("action", url);
+																$("#form").submit();
+															}
+														},
+														{
+															'text': 'キャンセル',
+															'click': function() {
+																$(this).imuiMessageDialog('close');
+																// 変更前選択プルダウンに戻す
+																$("#contractNo").val($("#hdnDispContractSelectedIndex").val());
+															}
+														}
 													]
 												});
-											});
-										})(jQuery);
-									</script>
-								</td>
-								<th style="width:1%;">
-									<label>実年数</label>
-								</th>
-								<td>
-									13年
-								</td>
-							</tr>
-							<!--次回算定年月日-->
-							<tr>
-								<th colspan="2">
-									<label>次回算定年月日</label>
-								</th>
-								<td colspan="2">
-									2018/04/01
-								</td>
-								<th>
-									<label>経年</label>
-								</th>
-								<td>
-									10年
-								</td>
-							</tr>
-							<!--社宅補足-->
-							<tr>
-								<th rowspan="3" colspan="2">
-									<label>社宅補足</label>
-								</th>
-								<td colspan="2">
-									<a href="">周辺地図.xlsx</a>
-								</td>
-								<td colspan="2">
-									<input type="button" value="参照" class="imui-small-button" />
-									<input type="button" value="削除" class="imui-small-button" />
-								</td>
-							</tr>
-							<tr>
-								<td colspan="2"></td>
-								<td colspan="2">
-									<input type="button" value="参照" class="imui-small-button" />
-									<input type="button" value="削除" class="imui-small-button" />
-								</td>
-							</tr>
-							<tr>
-								<td colspan="2"></td>
-								<td colspan="2">
-									<input type="button" value="参照" class="imui-small-button" />
-									<input type="button" value="削除" class="imui-small-button" />
-								</td>
-							</tr>
-							<!--備考-->
-							<tr>
-								<th rowspan="3" colspan="2">
-									<label>備考</label>
-								</th>
-								<td rowspan="3" colspan="4">
-									<textarea style="width:710px;" rows="3"></textarea>
-								</td>
-								<td style="width: 30%;border:none;"></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div id="parking_info">
-					<table class="imui-form-search-condition">
-						<tbody>
-							<!--駐車場構造-->
-							<tr >
-								<th style="width:7%;">
-									<label style="width:170px">駐車場構造</label>
-								</th>
-								<td style="width:5%;">
-									<select style="width:90px;">
-										<option value="0"></option>
-										<option value="1">平地</option>
-										<option value="2">宿舎一体</option>
-										<option value="3">複数階（屋内）</option>
-										<option value="4">複数階（屋外）</option>
-										<option value="5">なし</option>
-									</select>
-								</td>
-							</tr>
-							<!--駐車場基本使用料-->
-							<tr>
-								<th>
-									<label>駐車場基本使用料</label>
-								</th>
-								<td>
-									3,275円
-								</td>
-								<th rowspan="3" style="width:7%;">
-									<label style="width:170px">駐車場補足</label>
-								</th>
-								<td style="width:10%;">
-									<a  style="width:120px;" href="">区画マップ.xlsx</a>
-								</td>
-								<td style="width:10%;">
-									<input type="button" value="参照" class="imui-small-button" />
-									<input type="button" value="削除" class="imui-small-button" />
-								</td>
-							</tr>
-							<tr>
-								<th>
-									<label>駐車場台数</label>
-								</th>
-								<td>
-									5台
-								</td>
-								<td></td>
-								<td>
-									<input type="button" value="参照" class="imui-small-button" />
-									<input type="button" value="削除" class="imui-small-button" />
-								</td>
-							</tr>
-							<tr>
-								<th>
-									<label>貸与可能総数</label>
-								</th>
-								<td>
-									5台
-								</td>
-								<td></td>
-								<td>
-									<input type="button" value="参照" class="imui-small-button" />
-									<input type="button" value="削除" class="imui-small-button" />
-								</td>
-								<td style="width:9.2%;border:none;"></td>
-							</tr>
-						</tbody>
-					</table>
-					<br />
-					<div class="align-L">	
-						<input style="margin-bottom: 3px;" type="button" value="追加" class="imui-small-button" >
-					</div>
-					<!-- 明細部 -->
-					<form id="sampleList1">
-						<script type="text/javascript">
-							(function($){
-							$.imui.util.loadCSS("ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
-							})(jQuery);
-						</script>
-
-						<table name="imui-8eqlrzst4hv6std" id="sampleListTable1"></table>
-
-						<div id="sampleListTable1-pager"></div>
-
-						<script type="text/javascript">
-							(function() {
-								function imuiListTable() {
-									var grid = jQuery('#sampleListTable1');
-									var parameter = {
-										"multiselect":false,
-//											"pager":"#sampleListTable1-pager",
-										"colNames":[
-											"区画番号",
-											"貸与区分",				
-											"使用者",							
-											"駐車場<br/>調整金額",						
-											"駐車場<br/>月額使用料",				
-											"備考",						
-											"削除",			
-										],
-										"datatype":"local",
-										"errorCell":function(xhr) { imuiShowErrorMessage($(xhr.responseText).find('dt').text()); },
-//										"rowNum":10,
-										"width":"1060",
-										"shrinkToFit":"true",
-										"cellsubmit":"clientArray",
-										"loadonce":true,
-										"colModel":[
-											{"name":"kukaku_no","width":"165","align":"center"}<!-- 区画番号 -->
-											,{"name":"taiyo_kubun","width":"110","align":"center"}<!-- 貸与区分 -->
-											,{"name":"shiyousya","width":"160","align":"left"}<!-- 使用者 -->
-											,{"name":"parking_adustMoney","width":"120","align":"right"}<!-- 駐車場調整金額 -->
-											,{"name":"parking_monthlyRate","width":"155","align":"right"}<!-- 駐車場月額使用料 -->
-											,{"name":"note","width":"228","align":"center"}<!-- 備考 -->
-											,{"name":"delete","width":"70","align":"center"}<!-- 削除 -->
-										],
-										"rownumbers":false,
-										"height":"300"
-									};
-									parameter.data = [
-										{
-											"kukaku_no":"<input type='text' value='０１' style='width:95%;'/>",
-											"taiyo_kubun":"<select style='width:95%;'><option value='0'></option><option value='1' selected>貸与可</option><option value='2'>貸与不可</option></select>",
-											"shiyousya":"",
-											"parking_adustMoney":"<input class='ime-off' type='text' value='0' style='width:80%;text-align: right;'/>円",
-											"parking_monthlyRate":"3,275円",
-											"note":"<input type='text' value='' style='width:95%;'/>",
-											"delete":"<input type='button' value='削除' class='imui-small-button'/>"
-										},{
-											"kukaku_no":"<input type='text' value='０２' style='width:95%;'/>",
-											"taiyo_kubun":"<select style='width:95%;'><option value='0'></option><option value='1' selected>貸与可</option><option value='2'>貸与不可</option></select>",
-											"shiyousya":"",
-											"parking_adustMoney":"<input class='ime-off' type='text' value='0' style='width:80%;text-align: right;'/>円",
-											"parking_monthlyRate":"3,275円",
-											"note":"<input type='text' value='' style='width:95%;'/>",
-											"delete":"<input type='button' value='削除' class='imui-small-button'/>"
-										},{
-											"kukaku_no":"<input type='text' value='０３' style='width:95%;'/>",
-											"taiyo_kubun":"<select style='width:95%;'><option value='0'></option><option value='1' selected>貸与可</option><option value='2'>貸与不可</option></select>",
-											"shiyousya":"",
-											"parking_adustMoney":"<input class='ime-off' type='text' value='0' style='width:80%;text-align: right;'/>円",
-											"parking_monthlyRate":"3,275円",
-											"note":"<input type='text' value='' style='width:95%;'/>",
-											"delete":"<input type='button' value='削除' class='imui-small-button'/>"
-										},{
-											"kukaku_no":"<input type='text' value='０４' style='width:95%;'/>",
-											"taiyo_kubun":"<select style='width:95%;'><option value='0'></option><option value='1' selected>貸与可</option><option value='2'>貸与不可</option></select>",
-											"shiyousya":"",
-											"parking_adustMoney":"<input class='ime-off' type='text' value='0' style='width:80%;text-align: right;'/>円",
-											"parking_monthlyRate":"3,275円",
-											"note":"<input type='text' value='' style='width:95%;'/>",
-											"delete":"<input type='button' value='削除' class='imui-small-button'/>"
-										},{
-											"kukaku_no":"<input type='text' value='０５' style='width:95%;'/>",
-											"taiyo_kubun":"<select style='width:95%;' disabled><option value='0'></option><option value='1'>貸与可</option><option value='2' selected>貸与不可</option></select>",
-											"shiyousya":"",
-											"parking_adustMoney":"<input class='ime-off' type='text' value='-100' style='width:80%;text-align: right;'/>円",
-											"parking_monthlyRate":"3,175円",
-											"note":"<input type='text' value='縦列' style='width:95%;'/>",
-											"delete":"<input type='button' value='削除' class='imui-small-button'/>"
-										},{
-											"kukaku_no":"<input type='text' value='０６' style='width:95%;'/>",
-											"taiyo_kubun":"<select style='width:95%;'><option value='0'></option><option value='1' selected>貸与可</option><option value='2'>貸与不可</option></select>",
-											"shiyousya":"",
-											"parking_adustMoney":"<input class='ime-off' type='text' value='0' style='width:80%;text-align: right;'/>円",
-											"parking_monthlyRate":"3,275円",
-											"note":"<input type='text' value='来客用' style='width:95%;'/>",
-											"delete":"<input type='button' value='削除' class='imui-small-button'/>"
-										},{
-											"kukaku_no":"<input type='text' value='０７' style='width:95%;'/>",
-											"taiyo_kubun":"<select style='width:95%;'><option value='0'></option><option value='1' selected>貸与可</option><option value='2'>貸与不可</option></select>",
-											"shiyousya":"",
-											"parking_adustMoney":"<input class='ime-off' type='text' value='100' style='width:80%;text-align: right;'/>円",
-											"parking_monthlyRate":"3,375円",
-											"note":"<input type='text' value='' style='width:95%;'/>",
-											"delete":"<input type='button' value='削除' class='imui-small-button'/>"
-										},{
-											"kukaku_no":"<input type='text' value='０８' style='width:95%;'/>",
-											"taiyo_kubun":"<select style='width:95%;'><option value='0'></option><option value='1' selected>貸与可</option><option value='2'>貸与不可</option></select>",
-											"shiyousya":"",
-											"parking_adustMoney":"<input class='ime-off' type='text' value='0' style='width:80%;text-align: right;'/>円",
-											"parking_monthlyRate":"3,275円",
-											"note":"<input type='text' value='' style='width:95%;'/>",
-											"delete":"<input type='button' value='削除' class='imui-small-button'/>"
-										},{
-											"kukaku_no":"<input type='text' value='０９' style='width:95%;'/>",
-											"taiyo_kubun":"<select style='width:95%;'><option value='0'></option><option value='1' selected>貸与可</option><option value='2'>貸与不可</option></select>",
-											"shiyousya":"",
-											"parking_adustMoney":"<input class='ime-off' type='text' value='0' style='width:80%;text-align: right;'/>円",
-											"parking_monthlyRate":"3,275円",
-											"note":"<input type='text' value='' style='width:95%;'/>",
-											"delete":"<input type='button' value='削除' class='imui-small-button'/>"
-										},{
-											"kukaku_no":"<input type='text' value='１０' style='width:95%;'/>",
-											"taiyo_kubun":"<select style='width:95%;'><option value='0'></option><option value='1' selected>貸与可</option><option value='2'>貸与不可</option></select>",
-											"shiyousya":"",
-											"parking_adustMoney":"<input class='ime-off' type='text' value='0' style='width:80%;text-align: right;'/>円",
-											"parking_monthlyRate":"3,275円",
-											"note":"<input type='text' value='' style='width:95%;'/>",
-											"delete":"<input type='button' value='削除' class='imui-small-button'/>"
+											}
 										}
-									];
-
-									grid.jqGrid(parameter);
-
-									// ヘッダ結合
-									grid.jqGrid('setGroupHeaders', {
-										useColSpanStyle: true,
-										groupHeaders:[
-											{startColumnName: 'kihon', numberOfColumns: 2,  titleText: 'メンテナンス'},
-										]
-									});
-
-// as
-//											// 1行づつ網掛け挑戦
-//											jQuery('#sampleListTable1').jqGrid({
-//												loadComplete: function () {
-//													var rowIDs = jQuery('#sampleListTable1').getDataIDs(); 
-//													$.each(rowIDs, function (i, item) {
-//														if (i % 2 == 0) {
-//															$('#'+item).removeClass('ui-widget-content');
-//															$('#'+item).addClass('testcss');
-//														}
-//													});
-//												},
-//											});
-//											jQuery('#sampleListTable1').jqGrid({
-//												gridComplete: function () {
-//													$('tbody > tr:even', this).addClass('ui-row-even');
-//												}
-//											});
-// ae
-
-									grid.jqGrid('navGrid','#sampleListTable1-pager',{
-										edit: false,
-										add: false,
-										del: false,
-										search: false,
-									});
-
-									var gboxGridId     = 'gbox_sampleListTable1';
-									var gboxGrid       = jQuery('#' + gboxGridId);
-									var parentWidthOld = Number.MIN_VALUE;
-								}
-
-								(function($) {
-									$(document).ready(function() {
-										imuiListTable();
-									});
-								})(jQuery);
-
-							})();
-						</script>
-						<style type="text/css">  
-							<!--
-								/* ヘッダテキスト中央寄せ */
-								.ui-jqgrid .ui-jqgrid-htable th {
-									display:table-cell;
-								    height: 32px;
-									text-align:center;
-									vertical-align:middle;
-								}
-								.ui-jqgrid .ui-jqgrid-htable th div {
-									display:table-cell;
-								    height: 32px;
-									text-align:center;
-									vertical-align:middle;
-								}
-								/** 1行間隔で網掛け挑戦
-								.testcss {
-									border: 1px solid #a6c9e2;
-									background-color: #e6e6fa ;
-									color: #222222;
-								}
-
-								.ui-row-even {
-									background-color: #e6e6fa ;
-								}
-								*/
-
-								/* データ行の改行許容 */
-								#sampleListTable1 tr td{
-									white-space:normal;
-								}
-							-->
-						</style>
-					</form>
-					<br />
-					<div>
-						<!--備考-->
-						<table class="imui-form-search-condition">
-							<tbody>
-								<!--備考-->
-								<tr>
-									<th rowspan="3" style="width:12%;">
-										<label>備考</label>
-									</th>
-									<td rowspan="2" style="width:61%" colspan="4">
-										<textarea style="width:98%;" rows="3"></textarea>
-									</td>
-									<td style="width:17%;border:none;"></td>
-								</tr>
-								<tr />
-								<tr />
-							</tbody>
-						</table>
-					</div>
-				</div>
-				<div id="bihin_info">
-					<script type="text/javascript">
-						(function($){
-						$.imui.util.loadCSS("../../ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
-						})(jQuery);
-					</script>
-
-					<table name="imui-8eqlrzst4hv6std" id="bihinListTable1"></table>
-
-					<div id="bihinListTable1-pager"></div>
-
-					<script type="text/javascript">
-						(function() {
-							function imuiListTable() {
-								var grid = jQuery('#bihinListTable1');
-								var parameter = {
-									"multiselect":false,
-//											"pager":"#bihinListTable1-pager",
-									"colNames":[
-										"備品名称",
-										"備付状況",
-									],
-									"datatype":"local",
-									"errorCell":function(xhr) { imuiShowErrorMessage($(xhr.responseText).find('dt').text()); },
-//									"rowNum":13,
-									"width":"290",
-									"shrinkToFit":"true",
-									"cellsubmit":"clientArray",
-									"loadonce":true,
-									"colModel":[
-										{"name":"bihin_name","width":"180","align":"left"}<!-- 備品名称 -->
-										,{"name":"sonaetsuke_status","width":"100","align":"center"}<!-- 備付状況 -->
-									],
-									"rownumbers":false,
-									"height":"400"
-								};
-								parameter.data = [
+									},
 									{
-										"bihin_name":"洗濯機",
-										"sonaetsuke_status":"<select style='width:95%;'><option value='1'>なし</option><option value='2'>会社保有</option><option value='3'>レンタル</option><option value='4'>備付</option><option value='5' selected>共有</option></select>"
-									},{
-										"bihin_name":"冷蔵庫",
-										"sonaetsuke_status":"<select style='width:95%;'><option value='1'>なし</option><option value='2'>会社保有</option><option value='3'>レンタル</option><option value='4'>備付</option><option value='5' selected>共有</option></select>"
-									},{
-										"bihin_name":"オーブンレンジ",
-										"sonaetsuke_status":"<select style='width:95%;'><option value='1' selected>なし</option><option value='2'>会社保有</option><option value='3'>レンタル</option><option value='4'>備付</option><option value='5'>共有</option></select>"
-									},{
-										"bihin_name":"掃除機",
-										"sonaetsuke_status":"<select style='width:95%;'><option value='1' selected>なし</option><option value='2'>会社保有</option><option value='3'>レンタル</option><option value='4'>備付</option><option value='5'>共有</option></select>"
-									},{
-										"bihin_name":"電子炊飯ジャー",
-										"sonaetsuke_status":"<select style='width:95%;'><option value='1' selected>なし</option><option value='2'>会社保有</option><option value='3'>レンタル</option><option value='4'>備付</option><option value='5'>共有</option></select>"
-									},{
-										"bihin_name":"テレビ",
-										"sonaetsuke_status":"<select style='width:95%;'><option value='1' selected>なし</option><option value='2'>会社保有</option><option value='3'>レンタル</option><option value='4'>備付</option><option value='5'>共有</option></select>"
-									},{
-										"bihin_name":"テレビ台",
-										"sonaetsuke_status":"<select style='width:95%;'><option value='1' selected>なし</option><option value='2'>会社保有</option><option value='3'>レンタル</option><option value='4'>備付</option><option value='5'>共有</option></select>"
-									},{
-										"bihin_name":"座卓(こたつ)",
-										"sonaetsuke_status":"<select style='width:95%;'><option value='1' selected>なし</option><option value='2'>会社保有</option><option value='3'>レンタル</option><option value='4'>備付</option><option value='5'>共有</option></select>"
-									},{
-										"bihin_name":"キッチンキャビネット",
-										"sonaetsuke_status":"<select style='width:95%;'><option value='1' selected>なし</option><option value='2'>会社保有</option><option value='3'>レンタル</option><option value='4'>備付</option><option value='5'>共有</option></select>"
-									},{
-										"bihin_name":"ルームエアコン",
-										"sonaetsuke_status":"<select style='width:95%;'><option value='1' selected>なし</option><option value='2'>会社保有</option><option value='3'>レンタル</option><option value='4'>備付</option><option value='5'>共有</option></select>"
-									},{
-										"bihin_name":"カーテン",
-										"sonaetsuke_status":"<select style='width:95%;'><option value='1' selected>なし</option><option value='2'>会社保有</option><option value='3'>レンタル</option><option value='4'>備付</option><option value='5'>共有</option></select>"
-									},{
-										"bihin_name":"照明器具",
-										"sonaetsuke_status":"<select style='width:95%;'><option value='1' selected>なし</option><option value='2'>会社保有</option><option value='3'>レンタル</option><option value='4'>備付</option><option value='5'>共有</option></select>"
-									},{
-										"bihin_name":"ガステーブル",
-										"sonaetsuke_status":"<select style='width:95%;'><option value='1' >なし</option><option value='2'>会社保有</option><option value='3'>レンタル</option><option value='4' selected>備付</option><option value='5'>共有</option></select>"
+										'text': 'キャンセル',
+										'click': function() {
+											$(this).imuiMessageDialog('close');
+										}
 									}
-								];
-
-								grid.jqGrid(parameter);
-
-
-// as
-//											// 1行づつ網掛け挑戦
-//											jQuery('#bihinListTable1').jqGrid({
-//												loadComplete: function () {
-//													var rowIDs = jQuery('#bihinListTable1').getDataIDs(); 
-//													$.each(rowIDs, function (i, item) {
-//														if (i % 2 == 0) {
-//															$('#'+item).removeClass('ui-widget-content');
-//															$('#'+item).addClass('testcss');
-//														}
-//													});
-//												},
-//											});
-//											jQuery('#bihinListTable1').jqGrid({
-//												gridComplete: function () {
-//													$('tbody > tr:even', this).addClass('ui-row-even');
-//												}
-//											});
-// ae
-
-//										grid.jqGrid('navGrid','#bihinListTable1-pager',{
-//											edit: false,
-//											add: false,
-//											del: false,
-//											search: false,
-//										});
-
-								var gboxGridId     = 'gbox_bihinListTable1';
-								var gboxGrid       = jQuery('#' + gboxGridId);
-								var parentWidthOld = Number.MIN_VALUE;
-							}
-
-							(function($) {
-								$(document).ready(function() {
-									imuiListTable();
+								]
+							});
+						}
+						// 契約情報削除ボタンクリック
+						contractDelClick = function() {
+//							// 削除済み契約番号バックアップ
+//							var deletedContractNo = $("#hdnDeleteContractSelectedValue").val();
+							if ($("#contractNo").text().indexOf('契約開始日') != -1) {
+								// 契約番号リスト取得
+								var contractNoOptions = $("#contractNo")[0].options;
+								// 契約番号リスト最大値取得
+								var maxContractNo = contractNoOptions[contractNoOptions.length - 1];
+								// 契約番号の最大値か確認
+								var selectContractNo = $("#contractNo").val();
+								// 契約番号の最大値か確認
+								if ($("#contractNo").val() != maxContractNo.value) {
+									var map = new Object();
+									map['hdnShatakuKanriNo'] = $("#hdnShatakuKanriNo").val();
+									// 「最新の契約情報でないため、削除できません。」を出力
+									nfw.common.doAjaxAction("skf/Skf3010Sc002/DeleteContractErrAsync", map, true, function(data) {});
+									return;
+								}
+								//MessageIdConstant.：I-SKF-3109
+								$("<div>社宅の契約情報を削除します。よろしいですか？</div>").imuiMessageDialog({
+									iconType : 'question',
+									title : '確認',
+									modal : true,
+									buttons: [
+										{
+											'id': 'contractDelOk1',
+											'text': 'ok',
+											'click': function() {
+												// 選択値設定(削除済み契約番号)
+												$("#hdnDeleteContractSelectedValue").val($("#contractNo").val());
+												url = "skf/Skf3010Sc002/delContractList";
+												$("#form").attr("action", url);
+												$("#form").submit();
+											}
+										},
+										{
+											'text': 'キャンセル',
+											'click': function() {
+												$(this).imuiMessageDialog('close');
+											}
+										}
+									]
 								});
-							})(jQuery);
+							} else {
+								//MessageIdConstant.：I-SKF-2024
+								$("<div>入力内容が無効になります。破棄してもよろしいですか？</div>").imuiMessageDialog({
+									iconType : 'question',
+									title : '確認',
+									modal : true,
+									buttons: [
+										{
+											'id': 'contractDelOk2',
+											'text': 'ok',
+											'click': function() {
+												// 選択値設定(削除済み契約番号)
+												$("#hdnDeleteContractSelectedValue").val($("#contractNo").val());
+												url = "skf/Skf3010Sc002/delContractList";
+												$("#form").attr("action", url);
+												$("#form").submit();
+											}
+										},
+										{
+											'text': 'キャンセル',
+											'click': function() {
+												$(this).imuiMessageDialog('close');
+											}
+										}
+									]
+								});
+							}
+						}
+						// 駐車場契約情報ボタンクリック
+						contractParkingInfoClick = function() {
+							var dialogTitle = "確認";
+							//MessageIdConstant.：I-SKF-3110
+							var dialogMessage = "社宅情報は登録済みでしょうか。確認後、駐車場契約情報登録を行ってください。";
+							nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc007/init", "ok", "キャンセル", this, true);
+						}
+						
+						// 社員入力支援コールバック(寮長・自治会長)
+						shainInfoCallback = function(param) {
+//						leaderShainInfoCallback = function(param) {
+							if( param != null && typeof param == 'object' && param.name != null){
+								$("#dormitoryLeaderName").val(param.name);
+								$("#keyManagerName").val(param.name);	// ← 後で削除
+								$("#contractOwnerName").val(param.name);	// ← 後で削除
+								// 編集フラグを「true」に設定
+								$("#onChangeFlag").val("true");
+							}
+						}
+						// 社員入力支援コールバック(鍵管理者)
+						keyManagerShainInfoCallback = function(param) {
+							if( param != null && typeof param == 'object' && param.name != null){
+								$("#keyManagerName").val(param.name);
+								// 編集フラグを「true」に設定
+								$("#onChangeFlag").val("true");
+							}
+						}
+						// 賃貸人入力支援コールバック
+						contractOwnerInfoCallback = function(param) {
+							if( param != null && typeof param == 'object' && param.name != null){
+								$("#contractOwnerName").val(param.name);
+								$("#contractOwnerNo").val(param.shainNo);
+								// 編集フラグを「true」に設定
+								$("#onChangeFlag").val("true");
+							}
+						}
+						/** ドロップダウンチェンジイベント */
+						// 管理会社ドロップダウンチェンジ
+						$("#manageCompany").bind('change', function() {
+							var map = new Object();
+							map['selectedCompanyCd'] = $("#manageCompany").val();
+							map['agencyCd'] = "";
+							map['manageBusinessAreaCd'] = "";
+							// ドロップダウンチェンジイベント
+							nfw.common.doAjaxAction("skf/Skf3010Sc002/ChangeMngDrpDwnAsync", map, true, function(data) {
+									$("#manageCompany").imuiSelect('replace', data.manageCompanyList);
+									$("#manageAgency").imuiSelect('replace', data.manageAgencyList);
+									$("#manageBusinessArea").imuiSelect('replace', data.manageBusinessAreaList);
+							});
+						});
+						// 管理機関ドロップダウンチェンジ
+						$("#manageAgency").bind('change', function() {
+							var map = new Object();
+							map['selectedCompanyCd'] = $("#manageCompany").val();
+							map['agencyCd'] = $("#manageAgency").val();
+							map['manageBusinessAreaCd'] = "";
+							// ドロップダウンチェンジイベント
+							nfw.common.doAjaxAction("skf/Skf3010Sc002/ChangeMngDrpDwnAsync", map, true, function(data) {
+									$("#manageCompany").imuiSelect('replace', data.manageCompanyList);
+									$("#manageAgency").imuiSelect('replace', data.manageAgencyList);
+									$("#manageBusinessArea").imuiSelect('replace', data.manageBusinessAreaList);
+							});
+						});
+						// 社宅構造ドロップダウンチェンジ
+						$("#shatakuStructure").bind('change', function() {
+							// テキスト内容判定
+							if ("" != $("#buildDate").val()) {
+								var map = new Object();
+								map['buildDate'] = $("#buildDate").val();
+								map['areaKbnCd'] = $("#areaKbn").val();
+								map['structureKbn'] = $("#shatakuStructure").val();
+								// ドロップダウンチェンジイベント
+								nfw.common.doAjaxAction("skf/Skf3010Sc002/ChangeStructureDrpDwnAsync", map, true, function(data) {
+									$("#realYearCount").text(data.jituAge);
+									$("#nextCalculateDate").text(data.nextCalcDate);
+									$("#aging").text(data.aging);
+								});
+							}
+						});
+						// 地域区分ドロップダウンチェンジ
+						$("#areaKbn").bind('change', function() {
+							var map = new Object();
+							map['nextCalcDate'] = $("#nextCalculateDate").text();
+							map['jituAge'] = $("#realYearCount").text();
+							map['aging'] = $("#aging").text();
+							map['buildDate'] = $("#buildDate").val();
+							map['areaKbnCd'] = $("#areaKbn").val();
+							map['structureKbn'] = $("#shatakuStructure").val();
+							map['parkingStructure'] = $("#parkingStructure").val();
+							// リストテーブル情報取得
+							var arrrows = $("#parkingInfoList").getRowData();
+							// 行数取得
+							var rowNum = arrrows.length;
+							var parkingRentalAdjusts = new Array();
+							// 駐車場区画調整金額リスト作成
+							for (var i = 0; i < rowNum; i++) {
+								parkingRentalAdjusts.push($("#parkingRentalAdjust" + arrrows[i].rId).val());
+							}
+							map['parkingRentalAdjusts'] = parkingRentalAdjusts;
+							nfw.common.doAjaxAction("skf/Skf3010Sc002/ChangeAreaDrpDwnAsync", map, true, function(data) {
+								// 次回算定年月日設定
+								$("#nextCalculateDate").text(data.nextCalcDate);
+								// 実年数設定
+								$("#realYearCount").text(data.jituAge);
+								// 経年設定
+								$("#aging").text(data.aging);
+								// 駐車場基本使用料設定
+								$("#parkingBasicRent").text(data.parkingBasicRent + " 円");
+								// 駐車場区画使用料設定
+								for (var i = 0; i < rowNum; i++) {
+									$("#parkingMonthRental" + arrrows[i].rId).text(data.parkingBlockRentManys[i]);
+								}
+							});
+						});
+						// 駐車場構造ドロップダウンチェンジ
+						$("#parkingStructure").bind('change', function() {
+							var map = new Object();
+							map['buildDate'] = $("#buildDate").val();
+							map['areaKbnCd'] = $("#areaKbn").val();
+							map['structureKbn'] = $("#shatakuStructure").val();
+							map['parkingStructure'] = $("#parkingStructure").val();
+							// リストテーブル情報取得
+							var arrrows = $("#parkingInfoList").getRowData();
+							// 行数取得
+							var rowNum = arrrows.length;
+							var parkingRentalAdjusts = new Array();
+							// 駐車場区画調整金額リスト作成
+							for (var i = 0; i < rowNum; i++) {
+								parkingRentalAdjusts.push($("#parkingRentalAdjust" + arrrows[i].rId).val());
+							}
+							map['parkingRentalAdjusts'] = parkingRentalAdjusts;
+							// ドロップダウンチェンジイベント
+							nfw.common.doAjaxAction("skf/Skf3010Sc002/ChangeParkingStructureDrpDwnAsync", map, true, function(data) {
+								// 駐車場基本使用料設定
+								$("#parkingBasicRent").text(data.parkingBasicRent + " 円");
+								// 駐車場区画使用料設定
+								for (var i = 0; i < rowNum; i++) {
+									$("#parkingMonthRental" + arrrows[i].rId).text(data.parkingBlockRentManys[i]);
+								}
+							});
+						});
+						// 契約番号ドロップダウンチェンジ
+						$("#contractNo").bind('change', function() {
+							// 変更後選択値取得
+							$("#hdnChangeContractSelectedIndex").val($("#contractNo").val());
+							// 編集フラグ判定
+							if ($("#onChangeFlag").val() != "true") {
+								url = "skf/Skf3010Sc002/changeContractDrpDwn";
+								$("#form").attr("action", url);
+								$("#form").submit();
+							} else {
+								$("<div>入力内容が無効になります。破棄してもよろしいですか？</div>").imuiMessageDialog({
+									iconType : 'question',
+									title : '確認',
+									modal : true,
+									buttons: [
+										{
+											'id': 'contractChangeOk',
+											'text': 'ok',
+											'click': function() {
+												url = "skf/Skf3010Sc002/changeContractDrpDwn";
+												$("#form").attr("action", url);
+												$("#form").submit();
+											}
+										},
+										{
+											'text': 'キャンセル',
+											'click': function() {
+												$(this).imuiMessageDialog('close');
+												// 変更前選択プルダウンに戻す
+												$("#contractNo").val($("#hdnDispContractSelectedIndex").val());
+											}
+										}
+									]
+								});
+							}
+						});
+						/** テキストチェンジイベント */
+						// 建築年月日チェンジ
+						$("#buildDate").bind('change', function() {
+							// テキスト内容判定
+							if ("" != $("#buildDate").val()) {
+								var map = new Object();
+								map['buildDate'] = $("#buildDate").val();
+								map['areaKbnCd'] = $("#areaKbn").val();
+								map['structureKbn'] = $("#shatakuStructure").val();
+								map['nextCalcDate'] = $("#nextCalculateDate").text();
+								map['jituAge'] = $("#realYearCount").text();
+								map['aging'] = $("#aging").text();
+								// テキストチェンジイベント
+								nfw.common.doAjaxAction("skf/Skf3010Sc002/ChangeStructureDrpDwnAsync", map, true, function(data) {
+									// 結果判定
+									if ("99999999" != data.buildDate) {
+										$("#buildDate").val(data.buildDate);
+										$("#realYearCount").text(data.jituAge);
+										$("#nextCalculateDate").text(data.nextCalcDate);
+										$("#aging").text(data.aging);
+										$("#oldBuildDate").val(data.buildDate)
+									} else {
+										$("#buildDate").val($("#oldBuildDate").val());
+									}
+								});
+							}
+						});
 
-						})();
-					</script>
-					<style type="text/css">  
-						<!--
-							/* ヘッダテキスト中央寄せ */
-							.ui-jqgrid .ui-jqgrid-htable th {
-								display:table-cell;
-							    height: 32px;
-								text-align:center;
-								vertical-align:middle;
-							}
-							.ui-jqgrid .ui-jqgrid-htable th div {
-								display:table-cell;
-							    height: 32px;
-								text-align:center;
-								vertical-align:middle;
-							}
-							/** 1行間隔で網掛け挑戦
-							.testcss {
-								border: 1px solid #a6c9e2;
-								background-color: #e6e6fa ;
-								color: #222222;
-							}
-
-							.ui-row-even {
-								background-color: #e6e6fa ;
-							}
-							*/
-
-							/* データ行の改行許容 */
-							#bihinListTable1 tr td{
-								white-space:normal;
-							}
-						-->
-					</style>
-				</div>
-				<div id="admin_info">
-					<table class="imui-form-search-condition">
-						<colgroup>
-							<col style="width:10%;"/>
-							<col/>
-							<col/>
-							<col/>
-							<col/>
-							<col/>
-						</colgroup>
-						<tbody>
-							<!--駐車場構造-->
-							<tr >
-								<td style="width:15%;background-color:white;"/>
-								<th style="width:20%;">
-									<label style="width:165px;">寮長・自治会長</label>
-								</th>
-								<th style="width:20%;">
-									<label style="width:165px;">鍵管理者</label>
-								</th>
-								<th style="width:20%;">
-									<label style="width:165px;">寮母・管理会社</label>
-								</th>
-								<td style="width:20%;border:none;"></td>
-							</tr>
-							<!--部屋番号-->
-							<tr>
-								<th>
-									<label style="width:185px">部屋番号</label>
-								</th>
-								<td>
-									<input style="width:150px;" type="text" value="101" />
-								</td>
-								<td>
-									<input style="width:150px;" type="text" value="202" />
-								</td>
-								<td>
-									<input style="width:150px;" type="text" value="303" />
-								</td>
-							</tr>
-							<tr>
-								<th>
-									<label>氏名</label>
-								</th>
-								<td>
-									<input style="width:150px;" type="text" value="川田　太郎" />
-									<input type='button' value='社員入力支援' class='imui-small-button'/>
-								</td>
-								<td>
-									<input style="width:150px;" type="text" value="海田　次郎" />
-									<input type='button' value='社員入力支援' class='imui-small-button'/>
-								</td>
-								<td>
-									<input style="width:150px;" type="text" value="山田　花子" />
-									<input type='button' value='社員入力支援' class='imui-small-button' style="visibility:hidden;"/>
-								</td>
-							</tr>
-							<tr>
-								<th>
-									<label>電子メールアドレス</label>
-								</th>
-								<td>
-									<input class="ime-off" style="width:260px;" type="text" value="tarou@kawada.com" />
-								</td>
-								<td>
-									<input class="ime-off" style="width:260px;" type="text" value="jirou@umida.net" />
-								</td>
-								<td>
-									<input class="ime-off" style="width:260px;" type="text" value="hanako@yamada.jp" />
-								</td>
-							</tr>
-							<tr>
-								<th>
-									<label>電話番号</label>
-								</th>
-								<td>
-									<input class="ime-off" style="width:150px;height:98%" type="text" value="045-123-4567" />
-								</td>
-								<td>
-									<input class="ime-off" style="width:150px;height:98%" type="text" value="080-9876-5432" />
-								</td>
-								<td>
-									<input class="ime-off" style="width:150px;height:98%" type="text" value="090-1234-5678" />
-								</td>
-							</tr>
-							<tr>
-								<th>
-									<label>内線番号</label>
-								</th>
-								<td>
-									<input class="ime-off" style="width:150px;height:98%" type="text" value="12-3456" />
-								</td>
-								<td>
-									<input class="ime-off" style="width:150px;height:98%" type="text" value="12-9876" />
-								</td>
-								<td>
-									<input class="ime-off" style="width:150px;height:98%" type="text" value="12-0001" />
-								</td>
-							</tr>
-							<!--備考-->
-							<tr>
-								<th rowspan="4">
-									<label>備考</label>
-								</th>
-								<td rowspan="4">
-									<textarea style="width:260px;" rows="4"></textarea>
-								</td>
-								<td rowspan="4">
-									<textarea style="width:260px;" rows="4"></textarea>
-								</td>
-								<td rowspan="4">
-									<textarea style="width:260px;" rows="4">寮母</textarea>
-								</td>
-							</tr>
-							<tr />
-							<tr />
-							<tr />
-						</tbody>
-					</table>
-				</div>
-
-			</div>
-			<script>
-				$(function() {
-					$( "#tabs" ).tabs();
-				});
+						// 参考にしようと思って残してるやつ
+						//添付ファイルリンククリック時
+						$("a[id^='attached_']").click(function(){
+							downloadShatakuHosokuFile(this);
+						});
+					});
+					// 何かが変わったときのイベント
+					jQuery(document).on("change", function(data) {
+						$("#onChangeFlag").val("true");
+					});
+					// 動的に作成したコントロールのイベント
+					// 駐車場調整金額チェンジ
+					jQuery(document).on("change", "input[id^='parkingRentalAdjust']", function(data) {
+						var map = new Object();
+						// 駐車場基本使用料取得
+						var parkingBasicRent = $("#parkingBasicRent").text().replace("円", "").replace(",", "").trim();
+						// リストテーブル情報取得
+						var grid = $("#parkingInfoList");
+						// RelativeID取得
+						var rId = data.target.id.replace("parkingRentalAdjust", "");
+						// 駐車場調整金額取得
+						var parkingRentalAdjust = $("#parkingRentalAdjust" + rId).val();
+						// パラメータ設定
+						var parkingRentalAdjusts = new Array();
+						parkingRentalAdjusts.push(parkingRentalAdjust);
+						map['parkingBasicRent'] = parkingBasicRent;
+						map['parkingRentalAdjusts'] = parkingRentalAdjusts;
+						// ドロップダウンチェンジイベント
+						nfw.common.doAjaxAction("skf/Skf3010Sc002/ChangeParkingRentalAdustsTextAsync", map, true, function(data) {
+							$("#parkingMonthRental" + rId).text(data.parkingBlockRentManys[0]);
+						});
+					});
+					// 駐車場貸与区分ドロップダウンチェンジ
+					jQuery(document).on("change", "select[id^='parkingLendKbn']", function(data) {
+						// RelativeID取得
+						var rId = data.target.id.replace("parkingLendKbn", "");
+						// 行データ取得
+						var rowData = $("#parkingInfoList").getRowData(rId);
+						// 駐車場貸与区分取得
+						var lendKbn = $("#parkingLendKbn" + rId).val();
+						// 駐車場貸与状況取得
+						var lendStatus = rowData.parkingLendStatus;
+						// 駐車場台数取得
+						var parkingBlockCount = $("#parkingBlockCount").text().replace("台", "").trim();
+						// 貸与可能総数取得
+						var lendPossibleCount = $("#lendPossibleCount").text().replace("台", "").trim();
+						// パラメータ設定
+						var parkingBlockRowData = new Array();
+						parkingBlockRowData.push(lendKbn);
+						parkingBlockRowData.push(lendStatus);
+						var map = new Object();
+						map['parkingBlockRowData'] = parkingBlockRowData;
+						map['parkingBlockCount'] = parkingBlockCount;
+						map['lendPossibleCount'] = lendPossibleCount;
+						// ドロップダウンチェンジイベント
+						nfw.common.doAjaxAction("skf/Skf3010Sc002/ChangeParkingLendKbnDrpDwnAsync", map, true, function(data) {
+							$("#parkingBlockCount").text(data.parkingBlockCount);
+							$("#lendPossibleCount").text(data.lendPossibleCount);
+						});
+					});
+					// 参考にしようと思って残してるやつ
+					//添付ファイルリンククリック時
+//					$("a[id^='attached_']").click(function(){ ←これぢゃだめなの？？
+					//添付ファイルリンククリック時の参考にどうぞ
+					downloadKariageBukkenFile = function(data) {
+						//リンクタグのidから借上候補物件番号と添付ファイル番号を取得
+						var id = $(data).attr("id");
+						var url = "skf/Skf2060Sc001/AttachedDownload";
+						var list = id.split('_');
+						var candidateNo = list[1];
+						var attachedNo = list[2];
+						
+						$("#sendCandidateNo").val(candidateNo);
+						$("#sendAttachedNo").val(attachedNo);
+						
+						skf.common.submitForm("form2", url, this);
+						
+					}
+					// ↓削除ボタンと添付ボタンクリック時の参考にどうぞ
+					onCellSelect = function(rowId,iCol,cellcontent,e) {
+						//削除アイコンクリック時
+						if ($(cellcontent).hasClass('im-ui-icon-common-16-trashbox')) {
+							var map = new Object();
+							// 行番号から選択した行の情報を取得
+							var rowData = $("#parkingInfoList").getRowData(rowId);
+							// 駐車場管理番号取得
+							var parkingKanriNo = rowData.parkingKanriNo;
+							// RID取得
+							var rId = rowData.rId;
+							// 駐車場貸与区分取得
+							var lendKbn = $("#parkingLendKbn" + rId).val();
+							// 駐車場区画番号取得
+							var parkingBlockNo = $("#parkingBlockNo" + rId).val();
+							// 駐車場貸与状況取得
+							var lendStatus = rowData.parkingLendStatus;
+							// 駐車場台数取得
+							var parkingBlockCount = $("#parkingBlockCount").text().replace("台", "").trim();
+							// 貸与可能総数取得
+							var lendPossibleCount = $("#lendPossibleCount").text().replace("台", "").trim();
+							// パラメータ設定
+							var parkingBlockRowData = new Array();
+							parkingBlockRowData.push(lendKbn);
+							parkingBlockRowData.push(lendStatus);
+							map['parkingBlockRowData'] = parkingBlockRowData;
+							map['parkingBlockCount'] = parkingBlockCount;
+							map['lendPossibleCount'] = lendPossibleCount;
+							map['hdnShatakuKanriNo'] = $("#hdnShatakuKanriNo").val();
+							map['deleteParkingKanriNo'] = parkingKanriNo;
+							map['deleteParkingBlockNo'] = parkingBlockNo;
+							// 削除ボタン押下イベント
+							nfw.common.doAjaxAction("skf/Skf3010Sc002/DeleteParkingBlockAsync", map, true, function(data) {
+								$("#parkingBlockCount").text(data.parkingBlockCount);
+								$("#lendPossibleCount").text(data.lendPossibleCount);
+								// 駐車場区画削除判定
+								if(data.parkingBlockDeleteFlg) {
+									// 駐車場を1区画削除
+									$("#parkingInfoList").delRowData(rowId);
+									// 編集フラグを「true」に設定
+									$("#onChangeFlag").val("true");
+								}
+							});
+						}
+						
+						//添付ファイルアイコンクリック時の参考にどうぞ
+						if ($(cellcontent).hasClass('im-ui-icon-common-16-attachment')) {
+							// リストテーブル情報取得
+							var grid = $("#kariageCandidateList");
+							// 行番号から選択した行の情報を取得
+							var row = grid.getRowData(rowId);
+							
+							var map = new Object();
+							
+							// companyCd:会社コード
+							var companyCd = row.companyCd;
+							// candidateNo:借上候補物件番号
+							var candidateNo = row.candidateNo;
+							
+							$("#sendCompanyCd").val(companyCd);
+							$("#sendCandidateNo").val(candidateNo);
+							$("#rowId").val(rowId);
+							
+							map['applId'] = "R0106";
+							map['candidateNo'] = candidateNo;
+							
+							var popupUrl = "skf/Skf2010Sc009/init";
+							nfw.common.modelessPopup(popupUrl, null, map, 750, 600);
+						}
+					}
+				})(jQuery);
 			</script>
-			<br />
-			<div class="align-L float-L">
-				<input style="width:150px;" type="button" value="前の画面へ" class="imui-medium-button" onclick="back1()"/>
-			</div>
-			<div class="align-R">
-				<input style="width:150px;" type="button" value="登録" class="imui-medium-button" />
-				<input style="width:150px;" type="button" value="削除" class="imui-medium-button" disabled/>
-			</div>
 		</div>
-	</div>
-	<br><br><br>
-	<script type="text/javascript">
-function ImageUp() {
-window.open("../pop/pop_ShainSentaku.html","window1","width=650px,height=600px","menubar=no,resizable=yes");
-}
+		<br />
+		<div class="align-L float-L">
+			<input style="width:150px;" type="button" value="前の画面へ" class="imui-medium-button" onclick="back1()" tabindex="77"/>
+		</div>
+		<div class="align-R">
+			<!-- 登録 -->
+			<imui:button id="enter" name="enter" value="登録" class="imui-medium-button" style="width:150px;" onclick="enterClick()" tabindex="78" />
+			<!-- 削除 -->
+			<imui:button id="delete" name="delete" value="削除" class="imui-medium-button" style="width:150px;"
+											onclick="deleteClick()" tabindex="79" disabled="${form.newShatakuFlg }"/>
+		</div>
+		<!-- 現在表示中タブインデックス -->
+		<input type="hidden" name="hdnNowSelectTabIndex" id="hdnNowSelectTabIndex" value="${form.hdnNowSelectTabIndex}" />
+		<!-- 初期表示契約情報プルダウンインデックス -->
+		<input type="hidden" name="hdnDispContractSelectedIndex" id="hdnDispContractSelectedIndex" value="${form.hdnDispContractSelectedIndex}" />
+		<!-- 現在表示中契約情報プルダウンインデックス -->
+		<input type="hidden" name="hdnChangeContractSelectedIndex" id="hdnChangeContractSelectedIndex" value="${form.hdnDispContractSelectedIndex}" />
+		<!-- 現在表示中契約情報削除プルダウンインデックス -->
+		<input type="hidden" name="hdnDeleteContractSelectedValue" id="hdnDeleteContractSelectedValue" value="${form.hdnDeleteContractSelectedValue}" />
+		<script type="text/javascript">
+			$(function() {
+				$( "#tabs" ).tabs();
 
-function openWindow(){
-  info = 'toolbar=no,location=no,directories=no,status=no,menubar=no,' +
-   'scrollbars=no,left=0,top=0,resizable=yes,width=650px,height=680px,title=no';
-  var window1 = window.open("../pop/pop_ShainSentaku.html","window1",info);
-  window1.moveTo(0, 0);
-  window.opener = self;
-}
-
-
-</script>
-	<!-- コンテンツエリア　ここまで -->
+				$("#tabs").tabs({
+					selected:parseInt(${form.hdnNowSelectTabIndex}),
+					activate: function(event, ui) {
+						// 選択タブインデックスを保存
+						$("#hdnNowSelectTabIndex").val(ui.newTab.index());
+						// 契約情報タブの郵便番号を基本情報タブの郵便番号に設定
+						$('#contractZipCd').text($('#zipCd').val());
+						// 契約情報タブの住所を基本情報タブの県名 + 住所に設定
+						$('#contractAddress').text($('#pref option:selected').text() + $('#shatakuAddress').val());
+					},
+					select: function(event, ui){
+						// 選択タブインデックスを保存
+						$("#hdnNowSelectTabIndex").val(ui.index);
+						// 契約情報タブの郵便番号を基本情報タブの郵便番号に設定
+						$('#contractZipCd').text($('#zipCd').val());
+						// 契約情報タブの住所を基本情報タブの県名 + 住所に設定
+						$('#contractAddress').text($('#pref option:selected').text() + $('#shatakuAddress').val());
+					}
+				});
+			});
+		</script>
+	</nfwui:Form>
+</div>
+<!-- コンテンツエリア　ここまで -->
