@@ -34,9 +34,14 @@
 					<nfwui:LabelBox id="lblAttachedFile" code="<%= MessageIdConstant.SKF2010_SC006_LBL_ATTACHED_FILE %>" />
 				</th>
 				<td>
-					<div id="attachedFileAreaDiv">
+					<div id="shatakuAttachedFileAreaDiv" style="float:left;">
+						<c:forEach var="objShataku" items="${form.shatakuAttachedFileList }">
+							<a id="attached_${f:h(objShataku.attachedNo)}">${f:h(objShataku.attachedName)}</a>&nbsp;
+						</c:forEach>
+					</div>
+                    <div id="attachedFileAreaDiv">
 						<c:forEach var="obj" items="${form.attachedFileList }">
-							<a id="attached_${obj.attachedNo}">${obj.attachedName }</a>&nbsp;
+                            <a id="attached_${f:h(obj.attachedNo)}">${f:h(obj.attachedName)}</a>&nbsp;
 						</c:forEach>
 					</div>
 				</td>
@@ -149,15 +154,15 @@
 			<td class="vertical-top" style="vertical-align:top">
 				<div class="align-R">
 					<!-- 提示ボタン -->
-						<nfwui:ConfirmButton id="PresenBtn" name="PresenBtn"
+						<nfwui:ConfirmButton id="presentBtn" name="presentBtn"
 							value="提示" cssClass="imui-medium-button" cssStyle="width: 150px" 
 							title="<%= MessageIdConstant.SKF2010_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2011 %>"
-							url="skf/Skf2010Sc002/Present" formId="form" removePatterns="1,3" />
+							url="skf/Skf2010Sc002/Present" formId="form" removePatterns="shinsei,none" />
 					<!--　申請ボタン -->
 						<nfwui:ConfirmButton id="ApplyBtn" name="ApplyBtn" value="申請"
 							cssClass="imui-medium-button" cssStyle="width: 150px" 
 							title="<%= MessageIdConstant.SKF2010_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2003 %>"
-							url="skf/Skf2010Sc002/Apply" formId="form" removePatterns="2,3" />
+							url="skf/Skf2010Sc002/Apply" formId="form" removePatterns="teiji,none" />
 				</div>
 			</td>
 		</tr>
@@ -200,6 +205,7 @@ function back1() {
 		
 	});
 	
+	// 添付ファイルリンクからのファイルダウンロード処理
 	attachedFileDownload = function(obj) {
 		var id = $(obj).attr("id");
 		var url = "skf/Skf2010Sc002/Download";
