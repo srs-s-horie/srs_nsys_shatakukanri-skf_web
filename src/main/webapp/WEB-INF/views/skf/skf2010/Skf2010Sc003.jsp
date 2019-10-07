@@ -215,6 +215,9 @@ ${form.operationGuide}
 <!-- 明細＆細目未満 -->
   <!-- 明細部 -->
   <nfwui:Form id="listTableForm" name="listTableForm" modelAttribute="form">
+					    <input type="hidden" id="applNo" name="applNo" value="" />
+					    <input type="hidden" id="applId" name="applId" value="" />
+					    <input type="hidden" id="applStatusVal" name="sendApplStatus" value="" />
         
     <div style="width:100%;"><nfwui:Title id="resultListTitle" code="<%= MessageIdConstant.SKF2010_SC003_GRV_APPL_LIST %>" titleLevel="2" /></div>
 
@@ -222,7 +225,7 @@ ${form.operationGuide}
 id="ltResultListTable" name="ltResultListTable"
 autoResize="true" autoWidth="true"
 rowNumbers="true" onCellSelect="onCellSelect"
-height="232">
+height="232" onGridComplete="gridComplete">
 <cols>
   <col name="detail" caption="表示" width="90" align="center">
      <showIcon iconClass="im-ui-icon-common-16-update" />
@@ -248,6 +251,14 @@ height="232">
 
 <script type="text/javascript">
 (function() {
+	// listTable完成直後の処理
+    gridComplete = function() {
+    	var grid = $("#ltResultListTable");
+    	
+    	grid[0].grid.headers[8].el.innerHTML = "承認日／<br />　　修正依頼日";
+    }
+
+	
     // 申請状況の「全選択」ボタン押下時のイベント
     $("#allCheck").click(function() {
     	$("input[name='applStatus']").prop("checked", true);
@@ -302,6 +313,9 @@ height="232">
 		    			break;
 		    		case "R0104":
 		    			url = "skf/Skf2030Sc001/init";
+		    			break;
+		    		case "R0105":
+		    			url = "skf/Skf2050Sc001/init";
 		    			break;
 		    		case "R0106":
 		    			url = "skf/Skf2060Sc002/init";
