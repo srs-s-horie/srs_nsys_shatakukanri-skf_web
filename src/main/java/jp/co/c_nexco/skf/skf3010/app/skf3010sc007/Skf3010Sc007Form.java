@@ -56,11 +56,13 @@ public class Skf3010Sc007Form extends BaseForm {
 	private String parkinglendKbn;
 	//契約開始日
 	private String contractStartDate;
+	private String setContractStartDate;
 	//契約終了日
 	private String contractEndDate;
+	private String setContractEndDate;
 	//駐車場料（地代） 
 	private String landRent;
-	private String landRentnumber;
+	private String landRentNum;
 	//備考
 	private String biko;
 	//駐車場管理番号

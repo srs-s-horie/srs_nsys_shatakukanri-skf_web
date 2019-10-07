@@ -14,11 +14,22 @@
 
 <%-- コンテンツエリア --%>
 <script type="text/javascript">
-
+function back1() {
+	var url="skf/Skf3022Sc005/init?SKF3022_SC005&tokenCheck=0"
+	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？");
+}
 </script>
 
 	<!-- コンテンツエリア -->
 	<nfwui:Form id="form" name="form" modelAttribute="form">
+		<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3022_SC006 %>" />
+		<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="${form.hdnShatakuKanriNo}" />
+		<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="${form.shatakuName}" />
+		<input type="hidden" name="hdnParkingShienParkNo" id="hdnParkingShienParkNo" value="" />
+		<input type="hidden" name="hdnParkingShienParkBlock" id="hdnParkingShienParkBlock" value="" />
+		<input type="hidden" name="hdnParkingShienParkRentalAsjust" id="hdnParkingShienParkRentalAsjust" value="" />
+		<input type="hidden" name="hdnParkingShienEndDay" id="hdnParkingShienEndDay" value="" />
+	
 		<div class="imui-form-container-wide" width="1350px" style="width: 100%; min-width:1300px;max-width: 1350px;">
 			<table class="imui-form-search-condition">
 				<tbody>
@@ -135,7 +146,11 @@
 								<th rowspan="5">
 									<label style="width:100px;">区画1</label>
 									&nbsp;
-									<input type="button" value="支援" class="imui-small-button" onclick="openWindow2()"/>
+									<nfwui:PopupButton id="parkingShien1" name="parkingShien1" value="支援" use="popup" 
+											cssClass="imui-small-button" popupWidth="650" popupHeight="700"  
+											modalMode="true" screenUrl="skf/Skf3022Sc002/init" 
+											parameter="hdnShatakuKanriNo:hdnShatakuKanriNo,hdnShatakuName:hdnShatakuName,hoge777:hdnRiyouStartDay" disabled="" 
+											 callbackFunc="parkingShienCallback1()" tabindex="6"/> 
 									&nbsp;
 									<input type="button" value="クリア" class="imui-small-button" />
 								</th>
@@ -144,7 +159,7 @@
 								</th>
 								<td>
 									<div style="width:185px;">
-										A12
+										<span id="park1blockNo">A12</span>
 									</div>
 								</td>
 								<td style="width:38%;border:none;"></td>
@@ -407,14 +422,18 @@
 								<th rowspan="5">
 									<label>区画2</label>
 									&nbsp;
-									<input type="button" value="支援" class="imui-small-button" onclick="openWindow2()"/>
+									<nfwui:PopupButton id="parkingShien2" name="parkingShien2" value="支援" use="popup" 
+											cssClass="imui-small-button" popupWidth="650" popupHeight="700"  
+											modalMode="true" screenUrl="skf/Skf3022Sc002/init" 
+											parameter="hdnShatakuKanriNo:hdnShatakuKanriNo,hdnShatakuName:hdnShatakuName,hoge781:hdnRiyouStartDay" 
+											 callbackFunc="parkingShienCallback2()" tabindex="6"/> 
 									&nbsp;
 									<input type="button" value="クリア" class="imui-small-button" />
 								</th>
 								<th>
 									<label>区画番号</label>
 								</th>
-								<td></td>
+								<td><span id="park2blockNo"></span></td>
 							</tr>
 							<!--貸与規格-->
 							<tr>
@@ -806,34 +825,6 @@
 												];
 
 												grid.jqGrid(parameter);
-
-
-				// as
-				//											// 1行づつ網掛け挑戦
-				//											jQuery('#bihinListTable1').jqGrid({
-				//												loadComplete: function () {
-				//													var rowIDs = jQuery('#bihinListTable1').getDataIDs(); 
-				//													$.each(rowIDs, function (i, item) {
-				//														if (i % 2 == 0) {
-				//															$('#'+item).removeClass('ui-widget-content');
-				//															$('#'+item).addClass('testcss');
-				//														}
-				//													});
-				//												},
-				//											});
-				//											jQuery('#bihinListTable1').jqGrid({
-				//												gridComplete: function () {
-				//													$('tbody > tr:even', this).addClass('ui-row-even');
-				//												}
-				//											});
-				// ae
-
-				//										grid.jqGrid('navGrid','#bihinListTable1-pager',{
-				//											edit: false,
-				//											add: false,
-				//											del: false,
-				//											search: false,
-				//										});
 
 												var gboxGridId     = 'gbox_bihinListTable1';
 												var gboxGrid       = jQuery('#' + gboxGridId);
@@ -1496,7 +1487,7 @@
 			</div>
 			<br />
 			<div class="align-L float-L">	
-				<input style="width:150px;" type="button" value="前の画面へ" class="imui-medium-button" onclick="back1()"/>
+				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="5" />
 			</div>
 			<div class="align-R">
 				<input style="width:150px;" type="button" value="運用ガイド" class="imui-medium-button" />
@@ -1517,7 +1508,22 @@
 
 	</div>
 	<br><br><br>
+<script type="text/javascript">
+				(function($) {
+					// 画面表示時に定義される処理
+				    $(document).ready(function(){
+				    	parkingShienCallback1 = function() {
+				    		document.getElementById('park1blockNo').innerHTML = $("#hdnParkingShienParkBlock").val();
+				    	}
+				    	parkingShienCallback2 = function() {
+				    		document.getElementById('park2blockNo').innerHTML = $("#hdnParkingShienParkBlock").val();
+				    	}
+				    });
+					
 
+					
+				})(jQuery);
+				</script>
 	<script type="text/javascript">
 function ImageUp() {
 window.open("../pop/pop_ShatakuHeyaNyuryokuShien.html","window1","width=650px,height=600px","menubar=no,resizable=yes");
@@ -1554,5 +1560,5 @@ function openWindow4(){
 
 
 </script>
-	</nfwui:Form>
+</nfwui:Form>
 <!-- コンテンツエリア　ここまで -->
