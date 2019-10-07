@@ -43,6 +43,7 @@ public class Skf2010Sc002Form extends Skf2010NyukyoCommonForm {
 	 * 添付ファイル
 	 */
 	private List<Map<String, Object>> attachedFileList;
+	private List<Map<String, Object>> shatakuAttachedFileList;
 
 	// 添付資料番号
 	private String attachedNo;
