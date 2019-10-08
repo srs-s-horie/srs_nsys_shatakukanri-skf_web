@@ -179,7 +179,7 @@
 						<showIcon iconClass="im-ui-icon-common-16-update" />
 					</col>
 					<col name="col12" caption="部屋" width="50" sortable="false" align="center" >
-						<showIcon iconClass="im-ui-icon-common-16-settings" />
+						<showIcon iconClass="im-ui-icon-common-16-update" />
 					</col>
 					<col name="hdnShatakuKbn" caption="対象行の社宅区分" hidden="true" />
 					<col name="hdnShatakuKanriNo" caption="対象行の社宅管理番号" hidden="true" />
@@ -218,7 +218,7 @@
 					$("#hdnRowEmptyParkingCount").val(row.hdnEmptyParkingCount);
 
 					// クリックアイコン判定
-					if ($(cellcontent).hasClass('im-ui-icon-common-16-update')) {
+					if ($(cellcontent).hasClass('im-ui-icon-common-16-update') && iCol == 11) {
 						/** 基本 */
 						// 社宅区分判定
 						if (shatakuKbn != "2") {
@@ -230,7 +230,7 @@
 						}
 						$("#listTableForm").attr("action", url);
 						$("#listTableForm").submit();
-					} else if ($(cellcontent).hasClass('im-ui-icon-common-16-settings')) {
+					} else if ($(cellcontent).hasClass('im-ui-icon-common-16-update') && iCol == 12) {
 						/** 部屋 */
 						url = "skf/Skf3010Sc004/init";
 						$("#listTableForm").attr("action", url);
