@@ -623,7 +623,7 @@
 								<font size="2">
 									別契約の駐車場がある場合&nbsp;&nbsp;
 									<imui:button id="contractParkingInfo" name="contractParkingInfo" value="駐車場契約情報" class="imui-medium-button"
-														onclick="contractParkingInfoClick()" disabled="${form.contractDelDisableFlg }" tabindex="76" />
+														onclick="contractParkingInfoClick()" disabled="${form.parkingContractDisableFlg }" tabindex="76" />
 								</font>
 								<br/>
 								<br/>
