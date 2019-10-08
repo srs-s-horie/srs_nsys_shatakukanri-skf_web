@@ -238,6 +238,8 @@ public class Skf3010Sc002Form extends GridForm {
 	private Boolean contractAddDisableFlg;
 	// 契約情報削除ボタン(非活性：true, 活性:false)
 	private Boolean contractDelDisableFlg;
+	// 駐車場契約情報ボタン(非活性：true, 活性:false)
+	private Boolean parkingContractDisableFlg;
 
 	/** エラー系 **/
 	// 社宅名
