@@ -284,7 +284,6 @@ height="232" onGridComplete="gridComplete">
 	    		// 削除
 	    		url = url + "Delete";
 	    	}
-			//nfw.common.confirmPopup(dialogTitle, dialogMessage, "OK", "CANCEL");
     		
     		var grid = $("#ltResultListTable");		// リストテーブル情報取得
     		var rowData = grid.getRowData(rowId);	// 行情報取得
@@ -300,31 +299,7 @@ height="232" onGridComplete="gridComplete">
     	
 	    	if ($(cellContent).hasClass('im-ui-icon-common-16-update')) {
 	    		// 表示
-	    		if ((applId == "R0100" || applId == "R0103") 
-	    				&& !((applStatus == "<%= CodeConstant.STATUS_ICHIJIHOZON %>" || applStatus == "<%= CodeConstant.STATUS_SASHIMODOSHI %>"))) {
-	    			url = "skf/Skf2010Sc004/init";
-	    		} else {
-		    		switch (applId) {
-		    		case "R0100":
-		    			url = "skf/Skf2020Sc002/init";
-		    			break;
-		    		case "R0103":
-		    			url = "skf/Skf2040Sc001/init";
-		    			break;
-		    		case "R0104":
-		    			url = "skf/Skf2030Sc001/init";
-		    			break;
-		    		case "R0105":
-		    			url = "skf/Skf2050Sc001/init";
-		    			break;
-		    		case "R0106":
-		    			url = "skf/Skf2060Sc002/init";
-		    			break;
-		    		default:
-		    			url = "skf/Skf2010Sc004/init";
-		    			break;
-		    		}
-	    		}
+	    		url = url + "Transfer";
 	    	} else if ($(cellContent).hasClass('im-ui-icon-common-16-ng')) {
 	    		// 取下げ
 	    		url = url + "Cancel";
@@ -340,7 +315,6 @@ height="232" onGridComplete="gridComplete">
 	    	} else {
 	    		nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "CANCEL", this, true);
 	    	}
-	    	//$("#form").submit();
     	}
     }
 })(jQuery);
