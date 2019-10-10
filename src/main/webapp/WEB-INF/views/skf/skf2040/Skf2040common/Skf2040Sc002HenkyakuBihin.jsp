@@ -20,8 +20,8 @@
 	                    </tr>
 					</c:forEach>
 		</imart:condition>
-		<imart:condition validity="${form.shatakuJyotaiViewFlg}">	
-                <imart:condition validity="${form.shatakuJyotaiViewFlg}">	
+		<imart:condition validity="${f:h(form.shatakuJyotaiViewFlg)}">	
+                <imart:condition validity="${f:h(form.shatakuJyotaiViewFlg)}">	
 	                <tr>
 		                <th><nfwui:LabelBox id="lblShatakuJyotai" code="<%= MessageIdConstant.SKF2040_SC002_SHATAKU_STATUS %>" /></th>
 		                <td colspan="2">
@@ -29,7 +29,7 @@
 		                </td>
 	                </tr>
                 </imart:condition>
-				<imart:condition validity="${form.henkyakuBihinNothing}" negative>
+				<imart:condition validity="${f:h(form.henkyakuBihinNothing)}" negative>
 	                <tr>
 		                <th><nfwui:LabelBox id="lblSessionDay" code="<%= MessageIdConstant.SKF2040_SC002_RETURN_WITNESS_REQUEST_DATE %>" /></th>
 		                <td colspan="2">
