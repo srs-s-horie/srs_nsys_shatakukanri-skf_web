@@ -360,4 +360,7 @@ public class Skf2020Sc002AsyncForm extends AsyncBaseForm {
 	// 駐車場2台フラグ
 	private String parkingFullFlg;
 
+	// ユーザＩＤ
+	private String userId;
+
 }

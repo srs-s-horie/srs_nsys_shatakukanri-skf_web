@@ -68,4 +68,9 @@ public class Skf2010Sc002Form extends Skf2010NyukyoCommonForm {
 
 	private String prePageId;
 
+	// 退居日日付変更フラグ
+	private String taikyoDateFlg;
+	// 駐車場日付変更フラグ
+	private String parkingEDateFlg;
+
 }
