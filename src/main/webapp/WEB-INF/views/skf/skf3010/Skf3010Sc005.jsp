@@ -304,7 +304,7 @@ function back1() {
 							dialogTitle = "確認";
 							//MessageIdConstant.I_SKF_3035[{0}を登録します。よろしいですか？]
 							dialogMessage = "社宅部屋情報を登録します。よろしいですか？";
-					    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc005/regist", "OK", "CANCEL", this, true);						    	
+					    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc005/regist", "ok", "キャンセル", this, true);						    	
 					    }
 					    deleteOnClick = function () {
 					    	var shatakuname = $("#dialogShatakuName").val();
@@ -313,13 +313,13 @@ function back1() {
 							dialogTitle = "確認";
 							//MessageIdConstant.I_SKF_3004[（{0}・{1}）の削除処理を実行します。よろしいですか？]
 							dialogMessage = "(" + shatakuname + "・" + roomNo + ")の削除処理を実行します。よろしいですか？";
-					    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc005/delete", "OK", "CANCEL", this, true);	
+					    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc005/delete", "ok", "キャンセル", this, true);	
 					    }
 					    backOnClick = function () {
 					    	//確認メッセージ
 							dialogTitle = "確認";
 							dialogMessage = "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。";
-					    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc004/init", "OK", "CANCEL", this, true);	
+					    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc004/init", "ok", "キャンセル", this, true);	
 					    }
 				    });
 				})(jQuery);

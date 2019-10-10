@@ -252,9 +252,11 @@
 						"parkRentalAsjust": rowData.colParkRentalAsjust,
 						"endDay": rowData.colhdnEndDate
 				}
-				//親画面に値設定(今は仮)
-		 		$("#txtOwnerName").val(parkingData.parkBlock);
-				$("#sendOwnerNo").val(parkingData.parkNo);
+				//親画面に値設定(親画面に以下の非表示項目を作成する)
+		 		$("#hdnParkingShienParkBlock").val(parkingData.parkBlock);
+				$("#hdnParkingShienParkNo").val(parkingData.parkNo);
+				$("#hdnParkingShienParkRentalAsjust").val(parkingData.parkRentalAsjust);
+				$("#hdnParkingShienEndDay").val(parkingData.endDay);
 				return true;
 			}
 		};
