@@ -13,6 +13,8 @@ public class Skf2010Sc004Form extends Skf2010NyukyoCommonForm {
 	private String shonin1ShainNo;
 	// 承認ボタン表示フラグ（true:表示、false:非表示）
 	private String shoninBtnViewFlag;
+	// ダイアログ表示フラグ
+	private boolean dialogFlg;
 
 	private int displayLevel;
 	private String commentViewFlag;

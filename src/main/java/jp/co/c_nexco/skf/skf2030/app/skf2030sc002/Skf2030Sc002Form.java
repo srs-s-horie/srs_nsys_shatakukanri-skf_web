@@ -26,6 +26,8 @@ public class Skf2030Sc002Form extends Skf2030CommonForm {
 	private int dispMode;
 	// CSS折り返し埋め込み用変数
 	private String floatL;
+	// 更新内容
+	private String updateType;
 
 	// 希望時間ドロップダウンリスト
 	private List<Map<String, Object>> ddlWishTime;
@@ -90,9 +92,12 @@ public class Skf2030Sc002Form extends Skf2030CommonForm {
 	// コメント
 	private String commentNote;
 	private boolean commentBtnVisibled;
+	private boolean commentViewFlag;
 
 	// ボタン非活性フラグ
 	// 「提示」ボタン非活性フラグ
 	private boolean presentBtnDisabled = false;
+	// コメント欄非活性フラグ
+	private String commentDisabled = "false";
 
 }

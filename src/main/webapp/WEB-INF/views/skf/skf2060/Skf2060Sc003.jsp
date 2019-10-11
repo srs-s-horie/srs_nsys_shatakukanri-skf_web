@@ -12,51 +12,13 @@
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
 
-<%@ page import="jp.co.c_nexco.skf.skf2060.app.skf2060sc002.Skf2060Sc002Form" %>
-<%  Skf2060Sc002Form form = (Skf2060Sc002Form)request.getAttribute("form"); %>
+<%@ page import="jp.co.c_nexco.skf.skf2060.app.skf2060sc003.Skf2060Sc003Form" %>
+<%  Skf2060Sc003Form form = (Skf2060Sc003Form)request.getAttribute("form"); %>
 
 <%-- コンテンツエリア --%>
 <style type="text/css">
 
 </style>
-<script type="text/javascript">
-	
-	/**
-	 * 一つ前の画面へ戻る
-	 */
-	function back1() {
-		var url = "skf/Skf2010Sc003/init?SKF2010_SC003&tokenCheck=0";
-		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
-	}
-	
-    /**
-     * メニュー画面へ遷移する。
-     */
-    function back() {
-        showConfirm(W_GFK_0002, function() {
-            $.StandardPost("../common/top.html");
-        });
-    }
-    
-    
-    /**
-     * 「同意する」ボタン押下時
-     */
-    function confreq() {
-        showConfirm(W_GFK_0001.replace('{0}', '選択'), function() {
-         $.StandardPost("../../skf/Skf2010_Sc003/init");
-        });
-    }
-        /**
-     * TOP画面へ遷移する。
-     */
-    function TOP() {
-        showConfirm(W_GFK_0007, function() {
-            $.StandardPost("../common/top.html");
-        });
-    }
-    
-</script>
 
 <!-- コンテンツエリア -->
 <nfwui:Form id="form" name="form" modelAttribute="form">
@@ -65,7 +27,7 @@
      		<table class="imui-form-search-condition" style="width:20%; margin-left:2%;">
        			<tr>
          			<th style="width: 50%;">
-         				<nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2060_SC002_APPL_STATUS %>" />
+         				<nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2060_SC003_APPL_STATUS %>" />
          			</th>
          			<td style="width: 50%;">
           				${f:h(form.applStatus)}
@@ -76,14 +38,14 @@
             <div class="imui-form-container-wide" style="width:95%;">
                 <table class="imui-form-search-condition">
                     <td class="imui-form-container-wide" style="width: 50%; border: none;background-color: #fdfdff;" >
-                       <nfwui:Title id="candidatePersonInfoTitle" code="<%= MessageIdConstant.SKF2060_SC002_CANDIDATE_PERSON_INFO %>" titleLevel="2" />
+                       <nfwui:Title id="candidatePersonInfoTitle" code="<%= MessageIdConstant.SKF2060_SC003_CANDIDATE_PERSON_INFO %>" titleLevel="2" />
                                 <table class="imui-form-search-condition">
                                     <tr>
                                         <th style="width: 25%;" rowspan="4">
-                                            <nfwui:LabelBox id="lblShozoku" code="<%= MessageIdConstant.SKF2060_SC002_SHOZOKU %>" />
+                                            <nfwui:LabelBox id="lblShozoku" code="<%= MessageIdConstant.SKF2060_SC003_SHOZOKU %>" />
                                         </th>
                                         <th style="width: 25%;">
-                                            <nfwui:LabelBox id="lblAgency" code="<%= MessageIdConstant.SKF2060_SC002_AGENCY %>" />
+                                            <nfwui:LabelBox id="lblAgency" code="<%= MessageIdConstant.SKF2060_SC003_AGENCY %>" />
                                         </th>
                                         <td colspan="2">
 											${f:h(form.agency)}
@@ -92,7 +54,7 @@
 
                                     <tr>
                                         <th style="width: 25%;">
-                                            <nfwui:LabelBox id="lblAffiliation1" code="<%= MessageIdConstant.SKF2060_SC002_AFFILIATION1 %>" />
+                                            <nfwui:LabelBox id="lblAffiliation1" code="<%= MessageIdConstant.SKF2060_SC003_AFFILIATION1 %>" />
                                         </th>
                                         <td colspan="2">
 											${f:h(form.affiliation1)}
@@ -101,7 +63,7 @@
 
                                     <tr>
                                         <th style="width: 25%;">
-                                            <nfwui:LabelBox id="lblAffiliation2" code="<%= MessageIdConstant.SKF2060_SC002_AFFILIATION2 %>" />
+                                            <nfwui:LabelBox id="lblAffiliation2" code="<%= MessageIdConstant.SKF2060_SC003_AFFILIATION2 %>" />
                                         </th>
                                         <td colspan="2">
 											${f:h(form.affiliation2)}
@@ -110,7 +72,7 @@
 
                                     <tr>
                                         <th style="width: 25%;">
-                                            <nfwui:LabelBox id="lblTel" code="<%= MessageIdConstant.SKF2060_SC002_TEL %>" />                                       
+                                            <nfwui:LabelBox id="lblTel" code="<%= MessageIdConstant.SKF2060_SC003_TEL %>" />                                       
                                         </th>
                                         <td colspan="2">
 											${f:h(form.tel)}
@@ -119,10 +81,10 @@
 
                                     <tr>
                                         <th style="width: 25%;" rowspan="4">
-                                            <nfwui:LabelBox id="lblCandidate_person" code="<%= MessageIdConstant.SKF2060_SC002_CANDIDATE_PERSON %>" />
+                                            <nfwui:LabelBox id="lblCandidate_person" code="<%= MessageIdConstant.SKF2060_SC003_CANDIDATE_PERSON %>" />
                                         </th>
                                         <th style="width: 25%;">
-                                            <nfwui:LabelBox id="lblShainNo" code="<%= MessageIdConstant.SKF2060_SC002_SHAIN_NO %>" />
+                                            <nfwui:LabelBox id="lblShainNo" code="<%= MessageIdConstant.SKF2060_SC003_SHAIN_NO %>" />
                                         </th>
                                         <td colspan="2">
                                             ${f:h(form.shainNo)}
@@ -130,7 +92,7 @@
                                     </tr>
                                     <tr>
                                         <th style="width: 25%;">
-                                            <nfwui:LabelBox id="lblName" code="<%= MessageIdConstant.SKF2060_SC002_NAME %>" />
+                                            <nfwui:LabelBox id="lblName" code="<%= MessageIdConstant.SKF2060_SC003_NAME %>" />
                                         </th>
                                         <td colspan="2">
 											${f:h(form.name)}
@@ -139,7 +101,7 @@
 
                                     <tr>
                                         <th style="width: 25%;">
-                                            <nfwui:LabelBox id="lblTokyu" code="<%= MessageIdConstant.SKF2060_SC002_TOKYU %>" />
+                                            <nfwui:LabelBox id="lblTokyu" code="<%= MessageIdConstant.SKF2060_SC003_TOKYU %>" />
                                         </th>
                                         <td colspan="2">
 											${f:h(form.tokyu)}
@@ -147,7 +109,7 @@
                                     </tr>
                                     <tr>
                                         <th style="width: 25%;">
-                                            <nfwui:LabelBox id="lblGender" code="<%= MessageIdConstant.SKF2060_SC002_GENDER %>" />
+                                            <nfwui:LabelBox id="lblGender" code="<%= MessageIdConstant.SKF2060_SC003_GENDER %>" />
                                         </th>
                                         <td colspan="2">
 											${f:h(form.gender)}
@@ -158,7 +120,7 @@
             <!-- 操作ガイド -->
                 <td style="width: 45%; border: none;background-color: #fdfdff;">
                     <div style="overflow-y:scroll; max-height:200px; height:200px; margin-left: 20px; background-color:#eeeeee;">
-                        <nfwui:Title id="lblControlGuide" code="<%= MessageIdConstant.SKF2060_SC002_OPERATION_GUIDE %>" titleLevel="2" />
+                        <nfwui:Title id="lblControlGuide" code="<%= MessageIdConstant.SKF2060_SC003_OPERATION_GUIDE %>" titleLevel="2" />
                         <div style="margin-left: 20px;">
                             ${form.operationGuide}
                         </div>
@@ -177,16 +139,19 @@
                                             <tbody>
                                                 <tr>
                                                     <th  style="width:10%;">
-                                                    <nfwui:LabelBox id="lblSelect" code="<%= MessageIdConstant.SKF2060_SC002_SELECT %>" />
-                                                    </th>
-                                                    <th style="width:25%;">
-                                                    <nfwui:LabelBox id="lblShatakuName" code="<%= MessageIdConstant.SKF2060_SC002_SHATAKU_NAME %>" />
-                                                    </th>
-                                                    <th style="width:45%;">
-                                                    <nfwui:LabelBox id="lblShatakuAddressName" code="<%= MessageIdConstant.SKF2060_SC002_SHATAKU_ADDRESS_NAME %>" />
+                                                    <nfwui:LabelBox id="lblSelect" code="<%= MessageIdConstant.SKF2060_SC003_SELECT %>" />
                                                     </th>
                                                     <th style="width:20%;">
-                                                    <nfwui:LabelBox id="lblAttachedFile" code="<%= MessageIdConstant.SKF2060_SC002_ATTACHED_FILE %>" />
+                                                    <nfwui:LabelBox id="lblShatakuName" code="<%= MessageIdConstant.SKF2060_SC003_SHATAKU_NAME %>" />
+                                                    </th>
+                                                    <th style="width:30%;">
+                                                    <nfwui:LabelBox id="lblShatakuAddressName" code="<%= MessageIdConstant.SKF2060_SC003_SHATAKU_ADDRESS_NAME %>" />
+                                                    </th>
+                                                    <th style="width:20%;">
+                                                    <nfwui:LabelBox id="lblShatakuAddressName" code="<%= MessageIdConstant.SKF2060_SC003_BIKO %>" />
+                                                    </th>
+                                                    <th style="width:20%;">
+                                                    <nfwui:LabelBox id="lblAttachedFile" code="<%= MessageIdConstant.SKF2060_SC003_ATTACHED_FILE %>" />
                                                     </th>
                                                 </tr>
 												<c:forEach var="kariageObject" items="${form.kariageTeijiList}">
@@ -201,25 +166,13 @@
 	                                                        ${f:h(kariageObject.shatakuNameAddress)}
 	                                                    </td>
 	                                                    <td style="text-align:left;">
+	                                                        ${kariageObject.biko}
+	                                                    </td>
+	                                                    <td style="text-align:left;">
 	                                                        ${kariageObject.attachedFile}
 	                                                    </td>
 	                                                </tr>
 												</c:forEach>                
-                                                <tr>
-                                                    <td style="text-align:center;">
-                                                    <input type="radio" id="radioCandidateNoNone" name="radioCandidateNo" value="0" tabindex="1" />
-                                                    </td>
-                                                    <td style="text-align:left;">
-														選択しない
-                                                    </td>
-                                                    <td style="text-align:left;" colspan="3">
-                                                    <span style="font-weight: bold;color:red;">※選択しない理由を入力してください</span>
-                                                    <br>
-                                                    <imui:select id="riyuDropdown" name="riyuDropdown" width="185" list="${form.riyuList}" disabled="${form.riyuDropdownDisabled}" tabindex="2" />
-                                                    <br>
-                                                    <imui:textArea style="width:100%;" rows="2" id="biko" name="biko" value="${f:h(form.biko)}" disabled="${form.bikoDisabled}" tabindex="3" />
-                                                    </td>
-                                                </tr>
                                             </tbody>
                                         </table>
                                     </td>
@@ -229,20 +182,22 @@
   <br>
 
   <div class="align-L float-L">
-      <imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="5" />
+      <imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="2" />
 <imart:condition validity="<%= String.valueOf(form.isCommentViewFlag()) %>" >
           <nfwui:PopupButton id="commentPop" value="コメント表示" 
           cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
           modalMode="false" popupWidth="1350" popupHeight="550"
           parameter="applNo:applNo" formId="form"
-          screenUrl="skf/Skf2010Sc010/init" use="popup" tabindex="4" />
+          screenUrl="skf/Skf2010Sc010/init" use="popup" tabindex="1" />
 </imart:condition>
 </div> 
 
 <div class="align-R float-R">
-<imart:condition validity="<%= String.valueOf(form.isSelectViewFlag()) %>" >
-      <nfwui:ConfirmButton style="width:150px;" id="select" name="select" value="選択"  formId="form" cssClass="imui-medium-button" 
-     					title="<%=MessageIdConstant.SKF2060_SC002_CONFIRM_TITLE %>" message="<%=MessageIdConstant.I_SKF_3053 %>" url="skf/Skf2060Sc002/Select" tabindex="6" />
+<imart:condition validity="<%= String.valueOf(form.isButtonViewFlag()) %>" >
+    <imui:button style="width:150px;" id="reCandidate" name="reCandidate" value="再提示" class="imui-medium-button" onclick="onClickReCandidate()" tabindex="3" />
+    <imui:button style="width:150px;" id="complete" name="complete" value="完了" class="imui-medium-button" onclick="onClickComplete()" tabindex="4" />
+	<%-- <nfwui:ConfirmButton style="width:150px;" id="complete" name="complete" value="完了"  formId="form" cssClass="imui-medium-button" 
+     					title="<%=MessageIdConstant.SKF2060_SC003_CONFIRM_TITLE %>" message="<%=MessageIdConstant.I_SKF_1001 %>" url="skf/Skf2060Sc003/Complete" tabindex="4" /> --%>
 </imart:condition>
 </div> 
 <br>
@@ -255,7 +210,7 @@
      * 一つ前の画面へ戻る
      */
     function back1() {
-    	var url = "skf/Skf2010Sc003/init?SKF2060_SC004&tokenCheck=0";
+    	var url = "skf/Skf2060Sc004/init?SKF2060_SC004&tokenCheck=0";
     	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
     }
 </script>
@@ -264,39 +219,50 @@
 <!-- 前画面からの値取得用 -->
 <input type="hidden" name="applNo" id="applNo" value="${form.applNo}" />　<!-- 申請書類管理番号 -->
 <!-- 前画面からの値取得用終わり -->
-<input type="hidden" name="teijiKaisu" id="teijiKaisu" value="${form.teijiKaisu}" />　<!-- 提示回数 -->
+<!-- 遷移先画面への値送る用 -->
+<input type="hidden" name="shainNo" id="shainNo" value="${form.shainNo}" />　<!-- 社員番号 -->
+<!-- 遷移先画面への値送る用終わり -->
+<input type="hidden" name="checkCandidateNo" id="checkCandidateNo" value="${form.checkCandidateNo}" />　<!-- 選択物件番号 -->
 <input type="hidden" name="hdnCandidateNo" id="sendCandidateNo" value="" /><!-- 添付ファイルダウンロード用借上候補物件番号 -->
 <input type="hidden" name="hdnAttachedNo" id="sendAttachedNo" value="" /><!-- 添付ファイルダウンロード用添付ファイル番号 -->
 <!-- 隠し項目終わり -->
 
 <script src="scripts/skf/skfCommon.js"></script>
 <script type="text/javascript">
-(function($) {	
-	$(document).ready(function() {
-		//ラジオボタンがservice側で非活性にできないよう(´・ω・｀)
+(function($) {		
+	$(document).ready(function() {	
 		var applStatus = '<%= form.getApplStatus() %>';
-		var kakuninIrai = '確認依頼';
-		if(applStatus == kakuninIrai){
-			$("[name=radioCandidateNo]").prop('disabled', false);
-		}else{
-			$("[name=radioCandidateNo]").prop('disabled', true);
+		var sentakuZumi = '選択済';
+		var sentakuShinai = '選択しない';
+		var checkCandidateNo = $("#checkCandidateNo").val();
+		//選択物件番号の行のラジオボタンをチェックする
+		if(applStatus == sentakuZumi || applStatus == sentakuShinai){
+			$("#radioCandidateNo_"+checkCandidateNo).prop('checked', true);
 		}
+		//ラジオボタンを入力不可能にする
+		$("[name=radioCandidateNo]").prop('disabled', true);
 	});
+	
+	//「再提示」ボタンクリック時
+    onClickReCandidate = function () {
+		var dialogTitle = "確認";
+		var dialogMessage = "再提示します。よろしいですか？";
+		var url = "skf/Skf2060Sc001/init";
+		nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+    }
+	
+	//「完了」ボタンクリック時
+    onClickComplete = function () {
+		var dialogTitle = "確認";
+		var dialogMessage = "完了された借上候補物件の提示を完了します。よろしいですか？";
+		var url = "skf/Skf2060Sc003/complete";
+		nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+    }
 	
 	//添付ファイルリンククリック時
 	$("a[id^='attached_']").click(function(){
 		downloadKariageBukkenFile(this);
 		
-	});
-	
-	//ドロップダウン非同期処理
-	$("#riyuDropdown").bind('change', function() {
-		var riyuValue = $("#riyuDropdown").val();
-		if(riyuValue == <%= CodeConstant.FUYO_RIYU_OTHERS %>){
-			$("#biko").prop('disabled', false);
-		}else{
-			$("#biko").prop('disabled', true);
-		}
 	});
 	
 	//添付ファイルリンククリック時呼び出し先
@@ -306,7 +272,7 @@
 		var list = id.split('_');
 		var candidateNo = list[1];
 		var attachedNo = list[2];
-		var url = "skf/Skf2060Sc002/AttachedDownload";
+		var url = "skf/Skf2060Sc003/AttachedDownload";
 		
 		$("#sendCandidateNo").val(candidateNo);
 		$("#sendAttachedNo").val(attachedNo);

@@ -10,408 +10,415 @@
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
+
+<script src="scripts/skf/skfCommon.js"></script>
 
 <%-- コンテンツエリア --%>
 <style type="text/css">
 
 </style>
+<script type="text/javascript">
 
-		<!-- 以下ツールバー -->
-		<div class="imui-toolbar-wrap">
-			<div class="imui-toolbar-inner">
-				<!-- ツールバー左側 -->
-				<ul class="imui-list-toolbar">
-					<!-- 戻る -->
-					<li>
-						<a class="imui-toolbar-icon" title="戻る" tabindex="23" onclick="back1()" href="javascript:void(0);">
-							<span class="im-ui-icon-common-16-back"></span>
-						</a>
-					</li>
+    $('#addManageCompany').imuiSelect({"width":"200px"});
 
-				</ul>
-				<!-- ツールバー右側 -->
-				<ul class="imui-list-box-toolbar-utility">
-					<li>
-						<a onclick="back()" class="imui-toolbar-icon" tabindex="16">
-							<span class="im-ui-icon-common-16-home"></span>
-							社宅TOP
-						</a>
-					</li>
-					<li>
-						<a class="imui-toolbar-icon" title="最新情報"  tabindex="26">
-							<span class="im-ui-icon-common-16-refresh" onclick="refresh()"></span>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<script type="text/javascript">
-			/**
-			* 一つ前の画面へ戻る
-			*/
-			function back1() {
-				showConfirm(W_GFK_0002, function() {
-					history.back()
-				});
+(function($) {
+	onCellSelect = function(rowId,iCol,cellcontent,e) {
+		
+		$("#hdnAddCompanyCd").val($("#addManageCompany").val());
+		// 事業領域コード
+		$("#hdnAddBusinessAreaCd").val($("#addBusinessAreaCd").val());
+		// 事業領域名
+		$("#hdnAddBusinessAreaName").val($("#addBusinessAreaName").val());
+		// 管理機関
+		$("#hdnAddAgencyCd").val($("#addaAency").val());
+		
+		// リストテーブル情報取得
+		var grid = $("#mainList");
+		// 行番号から選択した行の情報を取得
+		var row = grid.getRowData(rowId);
+		
+		// 行番号
+		var rowNo = rowId - 1;
+		
+		// 管理会社コード
+		$("#hdnRowCompanyCd").val(row.col2);
+		// 事業領域コード
+		$("#hdnRowBusinessAreaCd").val(row.col3);
+		// 事業領域名
+		var divCol4 = document.createElement('div');
+		divCol4.style.display = 'none';
+		divCol4.innerHTML = row.col4;
+		document.body.appendChild(divCol4); //bodyに追加
+		var bAreaName = document.getElementById("businessAreaName"+rowNo).value;
+		document.body.removeChild(divCol4); //bodyから削除								
+		$("#hdnRowBusinessAreaName").val(bAreaName);
+		// 管理機関
+		var divCol6 = document.createElement('div');
+		divCol6.style.display = 'none';
+		divCol6.innerHTML = row.col6;
+		document.body.appendChild(divCol6); //bodyに追加
+		var agencyCd = document.getElementById("agency"+rowNo).value;
+		document.body.removeChild(divCol6); //bodyから削除			
+		$("#hdnRowAgencyCd").val(agencyCd);
+		// 更新日時
+		$("#hdnRowUpdateDate").val(row.col9);
+		
+		// リストテーブル情報取得
+		var datas = grid.getGridParam("data");//全行
+		
+		if( datas.length > 0 )
+		{	
+			var row2 = grid.getRowData(datas);
+			var strs = [];
+			for( var i=0; i<datas.length; ++i ){
+				var rowList = datas[i];
+
+				var divCol4List = document.createElement('div');
+				divCol4List.style.display = 'none';
+				divCol4List.innerHTML = rowList.col4;
+				document.body.appendChild(divCol4List); //bodyに追加
+				var bAreaNameList = document.getElementById("businessAreaName"+i).value;
+				document.body.removeChild(divCol4List); //bodyから削除								
+
+				var divCol6List = document.createElement('div');
+				divCol6List.style.display = 'none';
+				divCol6List.innerHTML = rowList.col6;
+				document.body.appendChild(divCol6List); //bodyに追加
+				var agencyCdList = document.getElementById("agency"+i).value;
+				document.body.removeChild(divCol6List); //bodyから削除								
+				
+				var tempStr = [];
+				tempStr.push(bAreaNameList); 		// 現在入力されている事業領域名
+				tempStr.push(agencyCdList);			// 現在選択されている管理機関コード
+				strs.push(tempStr.join("/--separater--/"));	//配列で格納
 			}
+			//$("#registEditData").val(strs.join(";"));
+			$("#registEditData").val(strs.join("EndOfEditData"));
+		}
+		
+		if($(cellcontent).hasClass('im-ui-icon-common-16-trashbox')){
+			// 削除ボタン押下
+			dialogTitle = "確認";
+			dialogMessage = "事業領域情報を削除します。よろしいですか？";
+			var url = "skf/Skf3090Sc003/delete";
+			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "CANCEL", this, true);
+		}else{
+			// 何もしない
+		}
+	}
 
-			/**
-			* メニュー画面へ遷移する。
-			*/
-			function back() {
-				showConfirm(W_GFK_0007, function() {
-					$.StandardPost("../common/top.html");
-				});
-			}
-		</script>
+	onCellAddSelect = function(rowId,iCol,cellcontent,e) {
+		
+		if($(cellcontent).hasClass('im-ui-icon-common-16-plus')){
 
-<!-- 		<div class="alertDiv imui-box-warning" style="padding: 15px;margin-top: 10px;text-align:left;" id="errMainDiv"> -->
-<!-- 			<div class="alert-errorIcon alert" style="margin:0;padding:0;margin-right:10px;"> -->
-<!-- 			</div>  -->
-<!-- 		</div> -->
-
-		<!-- コンテンツエリア -->
-<!--
-			<div class="imui-form-container-wide"  style="width:1280px;">
-				<div class="imui-chapter-title"><h2>検索条件</h2></div>
-				-->
-<!--
-			</div>
-			-->
-			<!-- 明細＆細目未満 -->
-			<div class="imui-form-container-wide"  style="width:1280px;">
+			// 管理会社コード
+			$("#hdnAddCompanyCd").val($("#addManageCompany").val());
+			// 事業領域コード
+			$("#hdnAddBusinessAreaCd").val($("#addBusinessAreaCd").val());
+			document.getElementById("addBusinessAreaCd").value = $("#addBusinessAreaCd").val();
+			// 事業領域名
+			$("#hdnAddBusinessAreaName").val($("#addBusinessAreaName").val());
+			// 管理機関
+			$("#hdnAddAgencyCd").val($("#addaAency").val());
 			
-				<table class="imui-form-search-condition">
+			// リストテーブル情報取得
+			var grid = $("#mainList");					
+			var datas = grid.getGridParam("data");//全行
+			
+			if( datas.length > 0 )
+			{	
+				var row2 = grid.getRowData(datas);
+				var strs = [];
+				for( var i=0; i<datas.length; ++i ){
+					var row = datas[i];
+
+					var divCol4 = document.createElement('div');
+					divCol4.style.display = 'none';
+					divCol4.innerHTML = row.col4;
+					document.body.appendChild(divCol4); //bodyに追加
+					var bAreaName = document.getElementById("businessAreaName"+i).value;
+					document.body.removeChild(divCol4); //bodyから削除								
+
+					var divCol6 = document.createElement('div');
+					divCol6.style.display = 'none';
+					divCol6.innerHTML = row.col6;
+					document.body.appendChild(divCol6); //bodyに追加
+					var agencyCd = document.getElementById("agency"+i).value;
+					document.body.removeChild(divCol6); //bodyから削除								
+					
+					var tempStr = [];
+					tempStr.push(bAreaName); 		// 現在入力されている事業領域名
+					tempStr.push(agencyCd);			// 現在選択されている管理機関コード
+					strs.push(tempStr.join("/--separater--/"));	//配列で格納
+				}
+				//$("#registEditData").val(strs.join(";"));
+				$("#registEditData").val(strs.join("EndOfEditData"));
+			}
+			
+			// 追加ボタン押下
+			dialogTitle = "確認";
+			dialogMessage = "事業領域情報を追加します。よろしいですか？";
+			var url = "skf/Skf3090Sc003/AddRegist";
+			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "CANCEL", this, true);
+		}else{
+			// 何もしない
+		}
+	}
+
+	$("span .im-ui-icon-common-16-update").mouseover(
+			function(e) {
+				$(this).css("cursor","pointer");
+			}).mouseleave(
+			function(e) {
+				$(this).css("cursor","default");
+			}
+	);
+	
+	// 画面表示時に定義される処理
+	$(document).ready(function(){
+		
+		document.getElementById('selectedManageCompanyCd').focus();
+		
+		$(window).bind('resize', function(){			
+			$('#mainList').setGridWidth($('#listTableArea').width(), true);		
+			$('#mainAddList').setGridWidth($('#listAddTableArea').width(), true);		
+		}).trigger('resize');			
+		
+		// 下部ボタン押下時のイベント
+		preButtonEvent = function (mode) {
+			var dialogTitle = "";
+			var dialogMessage = "";
+			var url = "";
+			var grid = null;
+			var row = null;
+			var id = null;
+			var shatakuKbn = null;
+
+			switch (mode) {
+				// 登録
+				case 0:
+					
+					// 管理会社コード
+					$("#hdnAddCompanyCd").val($("#addManageCompany").val());
+					// 事業領域コード
+					$("#hdnAddBusinessAreaCd").val($("#addBusinessAreaCd").val());
+					document.getElementById("addBusinessAreaCd").value = $("#addBusinessAreaCd").val();
+					// 事業領域名
+					$("#hdnAddBusinessAreaName").val($("#addBusinessAreaName").val());
+					// 管理機関
+					$("#hdnAddAgencyCd").val($("#addaAency").val());
+					
+					// リストテーブル情報取得
+					var grid = $("#mainList");					
+					var datas = grid.getGridParam("data");//全行
+					
+					if( datas.length > 0 )
+					{	
+						var row2 = grid.getRowData(datas);
+						var strs = [];
+						for( var i=0; i<datas.length; ++i ){
+							var row = datas[i];
+
+							var divCol4 = document.createElement('div');
+							divCol4.style.display = 'none';
+							divCol4.innerHTML = row.col4;
+							document.body.appendChild(divCol4); //bodyに追加
+							var bAreaName = document.getElementById("businessAreaName"+i).value;
+							document.body.removeChild(divCol4); //bodyから削除								
+
+							var divCol6 = document.createElement('div');
+							divCol6.style.display = 'none';
+							divCol6.innerHTML = row.col6;
+							document.body.appendChild(divCol6); //bodyに追加
+							var agencyCd = document.getElementById("agency"+i).value;
+							document.body.removeChild(divCol6); //bodyから削除								
+							
+							var tempStr = [];
+							tempStr.push(bAreaName); 		// 現在入力されている事業領域名
+							tempStr.push(agencyCd);			// 現在選択されている管理機関コード
+							strs.push(tempStr.join("/--separater--/"));	//配列で格納
+						}
+						//$("#registEditData").val(strs.join(";"));
+						$("#registEditData").val(strs.join("EndOfEditData"));
+					}
+					
+					dialogTitle = "登録";
+					dialogMessage = "上書き登録処理を実行します。よろしいですか？";
+					url = "skf/Skf3090Sc003/registe";
+					nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "CANCEL", this, true);
+					break;
+				// 検索
+				case 1:
+					$("#hdnAddCompanyCd").val($("#addManageCompany").val());
+					// 事業領域コード
+					$("#hdnAddBusinessAreaCd").val($("#addBusinessAreaCd").val());
+					// 事業領域名
+					$("#hdnAddBusinessAreaName").val($("#addBusinessAreaName").val());
+					// 管理機関
+					$("#hdnAddAgencyCd").val($("#addaAency").val());
+
+					url = "skf/Skf3090Sc003/search";
+					$("#form").attr("action", url);
+					$("#form").submit();
+					break;
+				default:
+					nfw.common.showReserveMessage("warning", "未サポート(未実装機能)です。");
+					break;
+			};
+		}
+	});
+	
+	
+})(jQuery);
+
+</script>
+<!-- コンテンツエリア -->
+<nfwui:Form id="form" name="form" modelAttribute="form">
+	<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3090_SC003 %>" />
+	<input type="hidden" name="hdnSelectedCompanyCd" id="hdnSelectedCompanyCd" value="${form.hdnSelectedCompanyCd}" />
+	<input type="hidden" name="hdnBusinessAreaCd" id="hdnBusinessAreaCd" value="${form.hdnBusinessAreaCd}" />
+	<input type="hidden" name="hdnBusinessAreaName" id="hdnBusinessAreaName" value="${form.hdnBusinessAreaName}" />
+	
+	<input type="hidden" name="listTableData" id="listTableData" value="${form.listTableData}" />
+	
+	<!-- 検索結果一覧部 -->
+	<input type="hidden" name="hdnRowCompanyCd" id="hdnRowCompanyCd" value="" />
+	<input type="hidden" name="hdnRowBusinessAreaCd" id="hdnRowBusinessAreaCd" value="" />
+	<input type="hidden" name="hdnRowBusinessAreaName" id="hdnRowBusinessAreaName" value="" />
+	<input type="hidden" name="hdnRowAgencyCd" id="hdnRowAgencyCd" value="" />
+	<input type="hidden" name="hdnRowUpdateDate" id="hdnRowUpdateDate" value="" />
+	<input type="hidden" name="registEditData" id="registEditData" value="" />
+	<!-- 追加領域部 -->
+	<input type="hidden" name="hdnAddCompanyCd" id="hdnAddCompanyCd" value="" />
+	<input type="hidden" name="hdnAddBusinessAreaCd" id="hdnAddBusinessAreaCd" value="" />
+	<input type="hidden" name="hdnAddBusinessAreaName" id="hdnAddBusinessAreaName" value="" />
+	<input type="hidden" name="hdnAddAgencyCd" id="hdnAddAgencyCd" value="" />
+
+	<div style="width:100%;" >
+		<div class="imui-form-container-wide">
+			<div class="imui-chapter-title"><h2>検索条件</h2></div>
+			<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3090_SC003 %>" />
+				<nfwui:Table use="search">
 					<tbody>
 						<tr>
-							<th style="width:10%;">
-								<label>管理会社</label>
+							<th style="width: 12%;">
+								<nfwui:LabelBox id="lblNyutaikyoYoteiSakuseiKubun" code="<%=MessageIdConstant.SKF3090_SC003_MANAGE_COMPANY %>" />
 							</th>
-							<td style="width:23%">
-								<select style="width:95%">
-									<option value="A"></option>
-									<option value="B">NEXCO中日本</option>
-									<option value="C">NEXCO東日本</option>
-									<option value="D">NEXCO西日本</option>
-									<option value="E">高速道路総合研究所</option>
-									<option value="F">外部機関</option>
-								</select>
+							<td>
+								<imui:select id="selectedManageCompanyCd" name="selectedManageCompanyCd" 
+									width="200px" list="${form.manageCompanyList}" tabindex="1" />
 							</td>
-							<th style="width:10%">
-								<label>事業領域コード</label>
+							<th style="width: 12%;">
+								<nfwui:LabelBox id="lblBusinessAreaCd" code="<%=MessageIdConstant.SKF3090_SC003_BUSINESS_CODE %>" />
 							</th>
-							<td style="width:23%">
-							<input style="width: 60%;" placeholder="例 A001"></input>
+							<td>
+								<imui:textbox id="txtBusinessAreaCd" name="businessAreaCd" style="ime-mode: disabled;width:100px;" placeholder="例 A001" value="${form.businessAreaCd}" tabindex="2" maxlength="4"/>
 							</td>
-							<th style="width:10%;">
-								<label style="width:80px;">事業領域名</label>
+							<th style="width: 12%;">
+								<nfwui:LabelBox id="lblBusinessAreaName" code="<%=MessageIdConstant.SKF3090_SC003_BUSINESS_NAME %>" />
 							</th>
-							<td style="width:95%">
-								<input style="width: 60%;" placeholder="例 本社 〇〇部1"></input>
+							<td>
+								<imui:textbox id="txtBusinessAreaName" name="businessAreaName" style="width:300px;" placeholder="例 本社 〇〇部" value="${form.businessAreaName}" tabindex="3" maxlength="255"/>
 							</td>
-						</tr>
-
-						<tr>
-						<td style="border:none">
-							<input type="button" value="検索" class="imui-small-button" onclick="location.href='S9003_JigyoRyouikiMasrerTouroku_after.html'"/>
-						</td>
 						</tr>
 					</tbody>
-					</table>
-					
-				<script type="text/javascript">
-				  (function($){
-				    $.imui.util.loadCSS("../../ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
-				  })(jQuery);
-				</script>
-
-				<!-- 明細部 -->
-				<form id="sampleList1">
-					<div class="imui-chapter-title" ><h2>検索結果</h2></div>
-					<script type="text/javascript">
-					  (function($){
-					    $.imui.util.loadCSS("ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
-					  })(jQuery);
-					</script>
-
-					<table name="imui-8eqlrzst4hv6std" id="sampleListTable1"></table>
-
-					<div id="sampleListTable1-pager"></div>
-
-					<script type="text/javascript">
-						(function() {
-							function imuiListTable() {
-								var grid = jQuery('#sampleListTable1');
-								var parameter = {
-									"multiselect":false,
-									"pager":false,
-									"colNames":[
-										"",
-										"管理会社",
-										"事業領域コード",
-										"事業領域名",
-										"管理機関",
-										"削除"
-									],
-									"datatype":"local",
-									"errorCell":function(xhr) { imuiShowErrorMessage($(xhr.responseText).find('dt').text()); },
-									"rowNum":12,
-									"width":"1200	",
-									"shrinkToFit":"true",
-									"cellsubmit":"clientArray",
-									"loadonce":true,
-									"colModel":[
-										{"hidden":true,"name":"id","key":true}
-										,{"name":"A001","width":"250","align":"left"}<!-- 管理会社 -->
-										,{"name":"A002","width":"160","align":"left"}<!-- 事業領域コード -->
-										,{"name":"A003","width":"300","align":"left"}<!-- 事業領域名 -->
-										,{"name":"A004","width":"300","align":"left"}<!-- 管理機関 -->
-										,{"name":"A005","width":"080","align":"center"}<!-- 削除 -->
-									],
-									"rownumbers":false,
-									"height":"352"
-								};
-								parameter.data = [
-									{
-										"id":1,
-										"A001":"NEXCO中日本",
-										"A002":"A001",
-										"A003":"<input style=\"width: 95%;\" placeholder='例 本社 〇〇部' value='本社 監査役室'></input>",
-										"A004":"<select style=\"width:95%\"><option value='A'></option><option value='B' selected='selected'>本社</option></option><option value='C'>東京支社</option></option><option value='D'>八王子支社</option></option><option value='E'>名古屋支社</option></option><option value='F'>金沢支社</option>",
-										"A005":"<a hidden>削除</a><input type='button' value='削除' class='imui-small-button' onclick=\"location.href=''\">",
-									},
-									{
-										"id":2,
-										"A001":"NEXCO中日本",
-										"A002":"A002",
-										"A003":"<input style=\"width: 95%;\" placeholder='例 本社 〇〇部' value='本社 監査室'></input>",
-										"A004":"<select style=\"width:95%\"><option value='A'></option><option value='B' selected='selected'>本社</option></option><option value='C'>東京支社</option></option><option value='D'>八王子支社</option></option><option value='E'>名古屋支社</option></option><option value='F'>金沢支社</option>",
-										"A005":"<a hidden>削除</a><input type='button' value='削除' class='imui-small-button' onclick=\"location.href=''\">",
-									},
-									{
-										"id":3,
-										"A001":"NEXCO中日本",
-										"A002":"A003",
-										"A003":"<input style=\"width: 95%;\" placeholder='例 本社 〇〇部' value='本社 契約審査部'></input>",
-										"A004":"<select style=\"width:95%\"><option value='A'></option><option value='B' selected='selected'>本社</option></option><option value='C'>東京支社</option></option><option value='D'>八王子支社</option></option><option value='E'>名古屋支社</option></option><option value='F'>金沢支社</option>",
-										"A005":"<a hidden>削除</a><input type='button' value='削除' class='imui-small-button' onclick=\"location.href=''\">",
-									},
-									{
-										"id":4,
-										"A001":"NEXCO中日本",
-										"A002":"A004",
-										"A003":"<input style=\"width: 95%;\" placeholder='例 本社 〇〇部' value='本社 経営企画部'></input>",
-										"A004":"<select style=\"width:95%\"><option value='A'></option><option value='B' selected='selected'>本社</option></option><option value='C'>東京支社</option></option><option value='D'>八王子支社</option></option><option value='E'>名古屋支社</option></option><option value='F'>金沢支社</option>",
-										"A005":"<a hidden>削除</a><input type='button' value='削除' class='imui-small-button' onclick=\"location.href=''\">",
-									},
-									{
-										"id":5,
-										"A001":"NEXCO中日本",
-										"A002":"A005",
-										"A003":"<input style=\"width: 95%;\" placeholder='例 本社 〇〇部' value='本社 総務部'></input>",
-										"A004":"<select style=\"width:95%\"><option value='A'></option><option value='B' selected='selected'>本社</option></option><option value='C'>東京支社</option></option><option value='D'>八王子支社</option></option><option value='E'>名古屋支社</option></option><option value='F'>金沢支社</option>",
-										"A005":"<a hidden>削除</a><input type='button' value='削除' class='imui-small-button' onclick=\"location.href=''\">",
-									},
-									{
-										"id":6,
-										"A001":"NEXCO中日本",
-										"A002":"A006",
-										"A003":"<input style=\"width: 95%;\" placeholder='例 本社 〇〇部' value='本社 広報部'></input>",
-										"A004":"<select style=\"width:95%\"><option value='A'></option><option value='B' selected='selected'>本社</option></option><option value='C'>東京支社</option></option><option value='D'>八王子支社</option></option><option value='E'>名古屋支社</option></option><option value='F'>金沢支社</option>",
-										"A005":"<a hidden>削除</a><input type='button' value='削除' class='imui-small-button' onclick=\"location.href=''\">",
-									},
-									{
-										"id":7,
-										"A001":"NEXCO中日本",
-										"A002":"A007",
-										"A003":"<input style=\"width: 95%;\" placeholder='例 本社 〇〇部' value='本社 経理部'></input>",
-										"A004":"<select style=\"width:95%\"><option value='A'></option><option value='B' selected='selected'>本社</option></option><option value='C'>東京支社</option></option><option value='D'>八王子支社</option></option><option value='E'>名古屋支社</option></option><option value='F'>金沢支社</option>",
-										"A005":"<a hidden>削除</a><input type='button' value='削除' class='imui-small-button' onclick=\"location.href=''\">",
-									},
-									{
-										"id":8,
-										"A001":"NEXCO中日本",
-										"A002":"A008",
-										"A003":"<input style=\"width: 95%;\" placeholder='例 本社 〇〇部' value='本社 情報システム部'></input>",
-										"A004":"<select style=\"width:95%\"><option value='A'></option><option value='B' selected='selected'>本社</option></option><option value='C'>東京支社</option></option><option value='D'>八王子支社</option></option><option value='E'>名古屋支社</option></option><option value='F'>金沢支社</option>",
-										"A005":"<a hidden>削除</a><input type='button' value='削除' class='imui-small-button' onclick=\"location.href=''\">",
-									},
-									{
-										"id":9,
-										"A001":"NEXCO中日本",
-										"A002":"A009",
-										"A003":"<input style=\"width: 95%;\" placeholder='例 本社 〇〇部' value='本社 人事部'></input>",
-										"A004":"<select style=\"width:95%\"><option value='A'></option><option value='B' selected='selected'>本社</option></option><option value='C'>東京支社</option></option><option value='D'>八王子支社</option></option><option value='E'>名古屋支社</option></option><option value='F'>金沢支社</option>",
-										"A005":"<a hidden>削除</a><input type='button' value='削除' class='imui-small-button' onclick=\"location.href=''\">",
-									},
-									{
-										"id":10,
-										"A001":"NEXCO中日本",
-										"A002":"A010",
-										"A003":"<input style=\"width: 95%;\" placeholder='例 本社 〇〇部' value='本社 建設事業部'></input>",
-										"A004":"<select style=\"width:95%\"><option value='A'></option><option value='B' selected='selected'>本社</option></option><option value='C'>東京支社</option></option><option value='D'>八王子支社</option></option><option value='E'>名古屋支社</option></option><option value='F'>金沢支社</option>",
-										"A005":"<a hidden>削除</a><input type='button' value='削除' class='imui-small-button' onclick=\"location.href=''\">",
-									},
-									{
-										"id":11,
-										"A001":"NEXCO中日本",
-										"A002":"A011",
-										"A003":"<input style=\"width: 95%;\" placeholder='例 本社 〇〇部' value='本社 契約審査部'></input>",
-										"A004":"<select style=\"width:95%\"><option value='A'></option><option value='B' selected='selected'>本社</option></option><option value='C'>東京支社</option></option><option value='D'>八王子支社</option></option><option value='E'>名古屋支社</option></option><option value='F'>金沢支社</option>",
-										"A005":"<a hidden>削除</a><input type='button' value='削除' class='imui-small-button' onclick=\"location.href=''\">",
-									},
-								];
-
-								grid.jqGrid(parameter);
-
-								grid.jqGrid('navGrid','#sampleListTable1-pager',{
-									edit: false,
-									add: false,
-									del: false,
-									search: false,
-								});
-
-								var gboxGridId     = 'gbox_sampleListTable1';
-								var gboxGrid       = jQuery('#' + gboxGridId);
-								var parentWidthOld = Number.MIN_VALUE;
-							}
-
-							(function($) {
-								$(document).ready(function() {
-									imuiListTable();
-								});
-							})(jQuery);
-
-						})();
-					</script>
-					<style type="text/css">  
-						<!--
-							/* ヘッダテキスト中央寄せ */
-							.ui-jqgrid .ui-jqgrid-htable th div {
-								display:table-cell;
-							    height: 32px;
-								text-align:center;
-								vertical-align:middle;
-							}
-						-->
-					</style>
-				</form>
-			<br>
-			<br>
-			
-				<table class="imui-form-search-condition">
-				<tbody>
-				<!-- 明細部 -->
-				<!-- 明細部 -->
-				<form id="sampleList2">
-					<script type="text/javascript">
-					  (function($){
-						    $.imui.util.loadCSS("ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
-						  })(jQuery);
-					</script>
-
-					<table name="imui-8eqlrzst4hv6std" id="sampleListTable2"></table>
-
-					<div id="sampleListTable2-pager"></div>
-
-					<script type="text/javascript">
-						(function() {
-							function imuiListTable() {
-								var grid = jQuery('#sampleListTable2');
-								var parameter = {
-									"multiselect":false,
-									"pager":false,
-									"colNames":[
-										"",
-										"管理会社",
-										"事業領域コード",
-										"事業領域名",
-										"管理機関",
-										"追加"
-									],
-									"datatype":"local",
-									"errorCell":function(xhr) { imuiShowErrorMessage($(xhr.responseText).find('dt').text()); },
-									"rowNum":12,
-									"width":"1200	",
-									"shrinkToFit":"true",
-									"cellsubmit":"clientArray",
-									"loadonce":true,
-									"colModel":[
-										{"hidden":true,"name":"id","key":true}
-										,{"name":"A001","width":"250","align":"left"}<!-- 管理会社 -->
-										,{"name":"A002","width":"160","align":"center"}<!-- 事業領域コード -->
-										,{"name":"A003","width":"300","align":"left"}<!-- 事業領域名 -->
-										,{"name":"A004","width":"300","align":"left"}<!-- 管理機関 -->
-										,{"name":"A005","width":"080","align":"center"}<!-- 追加 -->
-									],
-									"rownumbers":false,
-									"height":"37"
-								};
-								parameter.data = [
-									{
-										"id":1,
-										"A001":"<select style='width:97%'><option value='A'></option><option value='B'>NEXCO中日本</option><option value='C'>NEXCO東日本</option><option value='D'>NEXCO西日本</option><option value='E'>高速道路総合研究所</option><option value='F'>外部機関</option></select>",
-										"A002":"<input style=\"width: 97%;\" placeholder='例 A001'></input>",
-										"A003":"<input style=\"width: 97%;\" placeholder='例 本社 〇〇部'></input>",
-										"A004":"<select style=\"width:97%\"><option value='A'></option><option value='B'>本社</option></option><option value='C'>東京支社</option></option><option value='D'>八王子支社</option></option><option value='E'>名古屋支社</option></option><option value='F'>金沢支社</option>",
-										"A005":"<a hidden>追加</a><input type='button' value='追加' class='imui-small-button' onclick=\"location.href=''\">",
-									},
-								];
-
-								grid.jqGrid(parameter);
-
-								grid.jqGrid('navGrid','#sampleListTable1-pager',{
-									edit: false,
-									add: false,
-									del: false,
-									search: false,
-								});
-
-								var gboxGridId     = 'gbox_sampleListTable1';
-								var gboxGrid       = jQuery('#' + gboxGridId);
-								var parentWidthOld = Number.MIN_VALUE;
-							}
-
-							(function($) {
-								$(document).ready(function() {
-									imuiListTable();
-								});
-							})(jQuery);
-
-						})();
-					</script>
-					<style type="text/css">  
-						<!--
-							/* ヘッダテキスト中央寄せ */
-							.ui-jqgrid .ui-jqgrid-htable th div {
-								display:table-cell;
-							    height: 32px;
-								text-align:center;
-								vertical-align:middle;
-							}
-						-->
-					</style>
-				</form>
-				</tbody>
-			</table>
-			<!--
+				</nfwui:Table>
 			<div class="align-L">	
-				<input type="button" value="CSV取込" class="imui-small-button" onclick="location.href='../../skf/Skf3020_Sc003/init'"/>
-				<input type="button" value="取込状況を確認" class="imui-small-button" onclick="location.href='../../skf/Skf3020_Sc003/init'"/>
-			</div>
-			<br /><br /><br />
-			
-			<div class="align-L">
-				<input style="width:150px;" type="button" value="前の画面へ" class="imui-medium-button" onclick="back1()"/>
-			</div>
-			-->
-			<br>
-			<div class="align-R">
-				<input style="width:150px;" type="button" value="登録" class="imui-medium-button" onclick=""/>
+				<imui:button id="search" name="search" value="検索" class="imui-small-button" onclick="preButtonEvent(1)" tabindex="4" />
 			</div>
 		</div>
+		<!-- 明細＆細目未満 -->
+		<div class="imui-form-container-wide">
+			<!-- 明細部 -->
+				<div class="imui-chapter-title" ><h2>検索結果一覧</h2></div>
+				<script type="text/javascript">
+					(function($){
+					$.imui.util.loadCSS("../../ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
+					})(jQuery);
+				</script>
+				<div id="listTableArea">
+					<imui:listTable id="mainList" process="jssp" autoEncode="false" autoWidth="true" rowNumbers="true"
+						autoResize="true" onCellSelect="onCellSelect"
+						multiSelect="false" data="${form.listTableData }"
+						style="max-height: 100px" >
+						<pager rowNum="${form.listTableMaxRowCount }" />
+						<cols sortable="false">
+							<col name="col1" caption="管理会社" width="200" sortable="false" align="left" wrap="true"/>
+							<col name="col2" caption="管理会社(隠し)" width="200" sortable="false" align="left" hidden="true" />
+							<col name="col3" caption="事業領域コード" width="100" sortable="false" align="left" wrap="true"/>
+							<col name="col4" caption="事業領域名" width="300" sortable="false" align="left"/>
+							<col name="col5" caption="事業領域名(隠し)" width="300" sortable="false" align="left" hidden="true" />
+							<col name="col6" caption="管理機関" width="200" sortable="false" align="left" wrap="true"/>
+							<col name="col7" caption="管理機関(隠し)" width="200" sortable="false" align="left" wrap="true" hidden="true" />
+							<col name="col8" caption="削除" width="45" sortable="false" align="center" tabindex="5">
+								<showIcon iconClass="im-ui-icon-common-16-trashbox" align="center" />
+							</col>
+							<col name="col9" caption="更新日時" hidden="true" />
+						</cols>
+					</imui:listTable>
+				</div>
 			<br />
-
-					</div>
+			<!-- 追加データ入力部 -->
+			<div id="listAddTableArea">
+					<imui:listTable id="mainAddList" process="jssp" autoEncode="false" autoWidth="true" rowNumbers="true"
+						autoResize="true" onCellSelect="onCellAddSelect"
+						multiSelect="false" data="${form.listAddTableData }"
+						style="max-height: 35px" height="auto" >
+						<cols sortable="false">
+							<col name="colAdd1" caption="管理会社" width="200" sortable="false" align="left" wrap="true" tabindex="6"/>
+							<col name="colAdd2" caption="事業領域コード" width="100" sortable="false" align="left" wrap="true" tabindex="7"/>
+							<col name="colAdd3" caption="事業領域名" width="300" sortable="false" align="left" tabindex="8"/>
+							<col name="colAdd4" caption="管理機関" width="200" sortable="false" align="left" wrap="true" tabindex="9"/>
+							<col name="colAdd5" caption="追加" width="45" sortable="false" align="center" tabindex="10">
+								<showIcon iconClass="im-ui-icon-common-16-plus" align="center" />
+							</col>
+							<col name="colAdd6" caption="" width="8" sortable="false" align="center"/>
+						</cols>
+					</imui:listTable>
+			</div>
+			<br />
+			<div class="align-R">
+				<!-- 登録 ボタン -->
+				<imui:button id="regist" name="regist" value="登録" disabled="${form.registButtonDisabled }" class="imui-medium-button" onclick="preButtonEvent(0)" tabindex="11" />
+			</div>
+		</div>
 	</div>
-	<!-- コンテンツエリア　ここまで -->
+		<script type="text/javascript">
+				(function($) {
+					$(document).ready(function(){
+						$("#addManageCompany").bind('change', function() {
+					        var str = $(this).val();
+							var map = new Object();
+							map['selectedAddManageCompanyCd'] = $("#addManageCompany").val();
+							var selectBefor = document.getElementById('addaAency');
+							var options = selectBefor.options;
+							for (var i = options.length - 1; 0 <= i; --i) {
+								selectBefor.remove(i);
+							}							
+							if($("#addManageCompany").val() == ""){
+						        let op = document.createElement("option");
+						        op.text = "";  //value値
+						        op.value = "";   //テキスト値						        	
+						        selectBefor.appendChild(op);							        
+							}else{
+								// ドロップダウンチェンジイベント
+								nfw.common.doAjaxAction("skf/Skf3090Sc003/ChangeDropDownAsync",map,true,function(data) {
+								        var optionList = data.addManageAgencyList;
+								    	var select = document.getElementById('addaAency');
+								        for(var i=0; i<optionList.length; i++){
+									        let op = document.createElement("option");
+									        op.text = optionList[i].label;  //value値
+									        op.value = optionList[i].value;   //テキスト値						        	
+									        select.appendChild(op);							        
+								        }
+								});
+							}
+						});
+					});
+				})(jQuery);
+			</script>	
+</nfwui:Form>
+
+<!-- コンテンツエリア　ここまで -->
+

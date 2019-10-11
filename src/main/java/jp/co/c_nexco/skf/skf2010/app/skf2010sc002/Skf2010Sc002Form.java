@@ -33,13 +33,17 @@ public class Skf2010Sc002Form extends Skf2010NyukyoCommonForm {
 	/**
 	 * 画面表示
 	 */
+
 	// 申請状況
+	private String status;
+	private String applStatus;
 	private String applStatusText;
 
 	/**
 	 * 添付ファイル
 	 */
 	private List<Map<String, Object>> attachedFileList;
+	private List<Map<String, Object>> shatakuAttachedFileList;
 
 	// 添付資料番号
 	private String attachedNo;
@@ -63,5 +67,10 @@ public class Skf2010Sc002Form extends Skf2010NyukyoCommonForm {
 	private String commentDisplayLevel;
 
 	private String prePageId;
+
+	// 退居日日付変更フラグ
+	private String taikyoDateFlg;
+	// 駐車場日付変更フラグ
+	private String parkingEDateFlg;
 
 }

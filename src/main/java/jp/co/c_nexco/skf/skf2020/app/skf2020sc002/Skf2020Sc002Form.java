@@ -333,9 +333,6 @@ public class Skf2020Sc002Form extends NfwfileScDwdForm {
 	// 申請書類履歴テーブル 申請日hidden値
 	private Date hdnApplHistroyApplDate;
 
-	// ステータス
-	private String hdnstatus;
-
 	/**
 	 * 制御用
 	 */
@@ -533,7 +530,7 @@ public class Skf2020Sc002Form extends NfwfileScDwdForm {
 	// 添付書類有無フラグ
 	private Integer applTacFlg;
 	// ステータス
-	private String status;
+	private String applStatus;
 
 	/**
 	 * 添付ファイル作業
@@ -571,6 +568,9 @@ public class Skf2020Sc002Form extends NfwfileScDwdForm {
 
 	// 代行ログインフラグ
 	private String alterLoginFlg;
+	
+	// ユーザＩＤ
+	private String userId;
 
 	/**
 	 * データダウンロード処理。

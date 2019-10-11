@@ -13,11 +13,10 @@
 
 <% // 代行ログイン時CSS読み込み箇所ここから  %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
-
 <% // 代行ログイン時CSS読み込み箇所ここまで %>
 
 <!-- コンテンツエリア -->
-<div class="imui-form-container-wide" width="1350px" style="width: 100%; max-width: 1350px;">
+<div class="imui-form-container-wide" width="1350px" style="width: 95%; max-width: 1350px;">
    	<!-- 代行ログイン時のみ表示されるメッセージ -->
    	<jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
 	<!-- 状況、資料ヘッダ -->
@@ -35,16 +34,20 @@
 					<nfwui:LabelBox id="lblAttachedFile" code="<%= MessageIdConstant.SKF2010_SC006_LBL_ATTACHED_FILE %>" />
 				</th>
 				<td>
-					<div id="attachedFileAreaDiv">
+					<div id="shatakuAttachedFileAreaDiv" style="float:left;">
+						<c:forEach var="objShataku" items="${form.shatakuAttachedFileList }">
+							<a id="attached_${f:h(objShataku.attachedNo)}">${f:h(objShataku.attachedName)}</a>&nbsp;
+						</c:forEach>
+					</div>
+                    <div id="attachedFileAreaDiv">
 						<c:forEach var="obj" items="${form.attachedFileList }">
-							<a id="attached_${obj.attachedNo}">${obj.attachedName }</a>&nbsp;
+                            <a id="attached_${f:h(obj.attachedNo)}">${f:h(obj.attachedName)}</a>&nbsp;
 						</c:forEach>
 					</div>
 				</td>
 			</tr>
 		</table>
 	</div>
-
 	<!-- アコーディオンエリア -->
 	<imart:condition validity="${form.level2}" >
 		<!-- 貸与社宅などのご案内 -->
@@ -74,7 +77,7 @@
 			</nfwui:Accordion>
 		</div>
 	</imart:condition>
-	<!-- Todo 退居届-->
+	<!-- 退居届 -->
 	<imart:condition validity="${form.level3}">
 		<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
 			<nfwui:Accordion id="taikyoView" >
@@ -117,6 +120,7 @@
 		<br>
 		<nfwui:Hidden id="applNo" name="applNo" />
 		<nfwui:Hidden id="applId" name="applId" />
+		<nfwui:Hidden id="applStatus" name="applStatus" />
 		<nfwui:Hidden id="shainNo" name="shainNo" />
 		<nfwui:Hidden id="applUpdateDate" name="applUpdateDate" />
 		<nfwui:Hidden id="prePageId" name="prePageId" value="${form.prePageId}" />
@@ -138,7 +142,6 @@
 						<input name="doDelRow1" id="doDelRow1" type="button" value="退居（自動車の保管場所変換）届PDF出力ボタン" class="imui-medium-button" onclick="" />
 					</imart:condition>
 					<imart:condition validity="${form.commentViewFlag}" >
-						<br>
 						<nfwui:PopupButton id="commentPop" value="コメント表示" 
 							cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
 							modalMode="false" popupWidth="1350" popupHeight="550"
@@ -151,20 +154,15 @@
 			<td class="vertical-top" style="vertical-align:top">
 				<div class="align-R">
 					<!-- 提示ボタン -->
-					<imart:condition validity="${form.presenBtnViewFlg}" >
-						<nfwui:Button id="PresenBtn" name="PresenBtn"
+						<nfwui:ConfirmButton id="presentBtn" name="presentBtn"
 							value="提示" cssClass="imui-medium-button" cssStyle="width: 150px" 
 							title="<%= MessageIdConstant.SKF2010_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2011 %>"
-							url="skf/Skf2010Sc002/Presentation" formId="form" removePatterns="LV1"
-							remove="${form.presenBtnViewFlg }" />
-					</imart:condition>
+							url="skf/Skf2010Sc002/Present" formId="form" removePatterns="shinsei,none" />
 					<!--　申請ボタン -->
-					<imart:condition validity="${form.applyBtnViewFlg}" >
 						<nfwui:ConfirmButton id="ApplyBtn" name="ApplyBtn" value="申請"
 							cssClass="imui-medium-button" cssStyle="width: 150px" 
 							title="<%= MessageIdConstant.SKF2010_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2003 %>"
-							url="skf/Skf2010Sc002/Apply" formId="form" removePatterns="LV2" />
-					</imart:condition>
+							url="skf/Skf2010Sc002/Apply" formId="form" removePatterns="teiji,none" />
 				</div>
 			</td>
 		</tr>
@@ -186,7 +184,7 @@ function back1() {
 		if(prePageId=="Skf2020Sc002"){
 			//入居希望等調書申請
 			url = "skf/Skf2020Sc002/init?SKF2020_SC002&tokenCheck=0";
-		}else if(prePageId=="Skf2020Sc002"){
+		}else if(prePageId=="Skf2040Sc001"){
 			//退居届
 			url="skf/Skf2040Sc001/init?SKF2040_SC001&tokenCheck=0";
 		}else if(prePageId=="Skf2020Sc003"){
@@ -207,6 +205,7 @@ function back1() {
 		
 	});
 	
+	// 添付ファイルリンクからのファイルダウンロード処理
 	attachedFileDownload = function(obj) {
 		var id = $(obj).attr("id");
 		var url = "skf/Skf2010Sc002/Download";
