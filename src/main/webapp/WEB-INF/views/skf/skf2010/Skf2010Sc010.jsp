@@ -8,8 +8,10 @@
 <%@ taglib prefix="workflow" uri="http://www.intra-mart.co.jp/taglib/imw/workflow" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
-
+<%@ page import="jp.co.c_nexco.skf.skf2010.app.skf2010sc010.Skf2010Sc010Form" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
+<%  Skf2010Sc010Form form = (Skf2010Sc010Form)request.getAttribute("form"); %>
 
 <style>
 .main-area {
@@ -27,7 +29,7 @@
 }
 </style>
  <!-- コンテンツエリア -->
-    <div class="imui-form-container-wide" width="1250px" style="width: 100%; max-width: 1250px;">
+    <div class="imui-form-container-wide" style="width: 90%; height: 100%;">
 
     <!-- コンテンツエリア -->
       
@@ -45,11 +47,11 @@
 <c:forEach var="obj" items="${form.commentList}" >
                        <div class="imui-form-container-wide comment-area" style="width: 98%; border: none">
                           <div class="imui-chapter-title" style="margin-bottom: 10px;">
-  <c:if test="${obj.applStatusCd == '01' }">
-                            <h2>${f:h(obj.commentName)}　さんから　承認者　へのコメント</h2>
+  <c:if test="${obj.isShouninTitle == 'true' }">
+                            <h2>${f:h(obj.titleCommentName)}　さんから　承認者　へのコメント</h2>
   </c:if>
-  <c:if test="${obj.applStatusCd != '01' }">
-                            <h2>承認者　から　${f:h(obj.applShainName)}　さんへのコメント</h2>
+  <c:if test="${obj.isShouninTitle == 'false' }">
+                            <h2>承認者　から　${f:h(obj.titleCommentName)}　さんへのコメント</h2>
   </c:if>
                         </div>
                         <table>
