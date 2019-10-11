@@ -28,9 +28,13 @@ public class Skf2040Sc001AsyncForm extends AsyncBaseForm {
     private String nowShataku;
     // 保有社宅名
     private String nowShatakuName;
+    // 社宅管理ID
+    private long shatakuKanriId;
 
     // 社員番号
     private String shainNo;
+    // 現住所
+    private String nowAddress;
     /**
      * 駐車場情報
      */
@@ -56,7 +60,7 @@ public class Skf2040Sc001AsyncForm extends AsyncBaseForm {
     // 退居後の連絡先
     private String taikyogoRenrakuSaki;
 
-    // 返却備品
+    // 返却備品HTML
     private String returnEquipment;
     // 返却立会希望日
     private String sessionDay;
