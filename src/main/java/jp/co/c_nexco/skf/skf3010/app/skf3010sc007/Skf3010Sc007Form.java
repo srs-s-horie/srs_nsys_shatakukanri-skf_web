@@ -1,3 +1,6 @@
+/*
+ * Copyright(c) 2020 NEXCO Systems company limited All rights reserved.
+ */
 package jp.co.c_nexco.skf.skf3010.app.skf3010sc007;
 
 import jp.co.c_nexco.nfw.webcore.app.BaseForm;
@@ -7,6 +10,11 @@ import java.util.Map;
 
 import lombok.EqualsAndHashCode;
 
+/**
+ * Skf3010Sc007Form 駐車場契約情報登録Form
+ *
+ * @author NEXCOシステムズ
+ */
 @lombok.Data
 @EqualsAndHashCode(callSuper = true)
 public class Skf3010Sc007Form extends BaseForm {
@@ -48,11 +56,13 @@ public class Skf3010Sc007Form extends BaseForm {
 	private String parkinglendKbn;
 	//契約開始日
 	private String contractStartDate;
+	private String setContractStartDate;
 	//契約終了日
 	private String contractEndDate;
+	private String setContractEndDate;
 	//駐車場料（地代） 
 	private String landRent;
-	private String landRentnumber;
+	private String landRentNum;
 	//備考
 	private String biko;
 	//駐車場管理番号

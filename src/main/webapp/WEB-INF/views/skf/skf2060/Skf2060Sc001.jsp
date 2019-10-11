@@ -52,11 +52,11 @@
                                             cssClass="imui-small-button" use="popup"
                                             screenUrl="skf/Skf2010Sc001/init"
                                             popupWidth="650" popupHeight="700"
-                                            modalMode="false" disabled="${form.supportDisabled}" tabindex="1" />
+                                            modalMode="false" disabled="${form.supportDisabled}" tabindex="3" />
                                         </nobr>   
                                         </th>
                                         <td colspan="2">
-                                        <imui:textbox style="width:95%;" id="presentedName" name="presentedName" value="${f:h(form.presentedName)}" readonly="readonly" tabindex="2" />
+                                        <imui:textbox style="width:95%;" id="presentedName" name="presentedName" value="${f:h(form.presentedName)}" readonly="readonly" tabindex="4" />
                                         </td>
                                     </tr>   
 
@@ -94,7 +94,7 @@
                                             <nfwui:LabelBox id="shatakuNamelbl" code="<%= MessageIdConstant.SKF2060_SC001_SHATAKU_NAME %>" style="float:left" />
                                         </th>
                                         <td>
-                                        <imui:textbox style="width:30%;" id="shatakuName" name="shatakuName" value="${f:h(form.shatakuName)}" class="${form.shatakuNameError}" tabindex="3" />
+                                        <imui:textbox style="width:30%;" id="shatakuName" name="shatakuName" value="${f:h(form.shatakuName)}" class="${form.shatakuNameError}" tabindex="5" />
                                         </td>
                                     </tr>   
 
@@ -107,9 +107,8 @@
                                             
                                         </th>
                                         <td>
-                                        <imui:textbox style="width:30%;" id="postalCd" name="postalCd" value="${f:h(form.postalCd)}" class="${form.postalCdError}" tabindex="4" />
-                                       <!--  <input tabindex="19" name="imui-8euruuk15dn9qtq" id="submit0" type="button" value="住所検索" class="imui-small-button" > -->
-                                       <nfwui:Button id="searchAddress" name="searchAddress" formId="form" value="住所検索" cssClass="imui-small-button" url="skf/Skf2060Sc001/searchAddress" tabindex="5" />
+                                        <imui:textbox style="width:30%;" id="postalCd" name="postalCd" value="${f:h(form.postalCd)}" class="${form.postalCdError}" tabindex="6" />
+                                       <nfwui:Button id="searchAddress" name="searchAddress" formId="form" value="住所検索" cssClass="imui-small-button" url="skf/Skf2060Sc001/searchAddress" tabindex="7" />
                                         </td>
 
                                    </tr>   
@@ -120,7 +119,7 @@
                                             
                                         </th>
                                         <td>
-                                        <imui:textArea style="width:100%;" rows="3" id="address" name="address" value="${f:h(form.address)}" class="${form.addressError}" tabindex="6" /></input>
+                                        <imui:textArea style="width:100%;" rows="3" id="address" name="address" value="${f:h(form.address)}" class="${form.addressError}" tabindex="8" /></input>
                                         </td>
 
                                     </tr>   
@@ -131,7 +130,7 @@
 
                          <div class="align-L">	
                              <!--<nfwui:Button id="insert" name="insert" formId="form" value="追加" cssClass="imui-small-button" url="skf/Skf2060Sc001/insertKariage"/>-->
-                             <imui:button id="insert" name="insert" value="追加" class="imui-small-button" tabindex="7" />
+                             <imui:button id="insert" name="insert" value="追加" class="imui-small-button" tabindex="9" />
                          </div>
                          </td>
 </table>
@@ -177,6 +176,7 @@
 						<col name="deleteBukken" caption="物件削除" width="50" sortable="false" align="center" />
 						<col name="companyCd" caption="会社コード" hidden="true" />
 						<col name="candidateNo" caption="借上候補物件番号" hidden="true" />
+						<col name="lastUpdateDate" caption="更新日時" hidden="true" />
 						</cols>
 					</imui:listTable> 
 				</nfwui:CheckBoxGroupTag>
@@ -201,20 +201,20 @@
             <tr  >
                 <th style="width: 20%"><nfwui:LabelBox id="applicantCommentlbl" code="<%= MessageIdConstant.SKF2060_SC001_APPLICANT_COMMENT %>" style="float:left" /></th>
             <td>
-            	<imui:textArea style="width:100%;" rows="3" id="comment" name="comment" value="${f:h(form.comment)}" placeholder="例 物件の再提示を行います。" tabindex="8" />
+            	<imui:textArea style="width:100%;" rows="3" id="comment" name="comment" value="${f:h(form.comment)}" placeholder="例 物件の再提示を行います。" tabindex="10" />
                 <!-- <textarea style="height:50px;width:99%;" placeholder="例 物件の再提示を行います。"></textarea>-->
            </td>
            </tr>
         </table>
         <br>
         <div class="align-L float-L">
-      <imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="9" />
+      <imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="11" />
 <imart:condition validity="<%= String.valueOf(form.isCommentViewFlag()) %>" >
           <nfwui:PopupButton id="commentPop" value="コメント表示" 
           cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
           modalMode="false" popupWidth="1350" popupHeight="550"
           parameter="applNo:applNo" formId="form"
-          screenUrl="skf/Skf2010Sc010/init" use="popup" tabindex="10" />
+          screenUrl="skf/Skf2010Sc010/init" use="popup" tabindex="12" />
 </imart:condition>
 </div> 
 
@@ -222,8 +222,8 @@
 
 <div class="align-R">
      <nfwui:ConfirmButton style="width:150px;" id="download" name="download" value="CSV出力"  formId="form" cssClass="imui-medium-button" 
-     					title="<%=MessageIdConstant.SKF2060_SC001_CONFIRM_TITLE %>" message="<%=MessageIdConstant.I_SKF_2008 %>" url="skf/Skf2060Sc001/download" tabindex="11" />
-      <nfwui:Button style="width:150px;" id="candidate" name="candidate" formId="form" value="提示" cssClass="imui-medium-button" url="skf/Skf2060Sc001/candidate" tabindex="12" />
+     					title="<%=MessageIdConstant.SKF2060_SC001_CONFIRM_TITLE %>" message="<%=MessageIdConstant.I_SKF_2008 %>" url="skf/Skf2060Sc001/download" tabindex="13" />
+      <nfwui:Button style="width:150px;" id="candidate" name="candidate" formId="form" value="提示" cssClass="imui-medium-button" url="skf/Skf2060Sc001/candidate" tabindex="14" />
 </div> 
     </div>
 
