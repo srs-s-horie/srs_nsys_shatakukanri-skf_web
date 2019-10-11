@@ -568,6 +568,9 @@ public class Skf2020Sc002Form extends NfwfileScDwdForm {
 
 	// 代行ログインフラグ
 	private String alterLoginFlg;
+	
+	// ユーザＩＤ
+	private String userId;
 
 	/**
 	 * データダウンロード処理。

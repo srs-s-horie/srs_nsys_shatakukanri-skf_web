@@ -34,16 +34,20 @@
 					<nfwui:LabelBox id="lblAttachedFile" code="<%= MessageIdConstant.SKF2010_SC006_LBL_ATTACHED_FILE %>" />
 				</th>
 				<td>
-					<div id="attachedFileAreaDiv">
+					<div id="shatakuAttachedFileAreaDiv" style="float:left;">
+						<c:forEach var="objShataku" items="${form.shatakuAttachedFileList }">
+							<a id="attached_${f:h(objShataku.attachedNo)}">${f:h(objShataku.attachedName)}</a>&nbsp;
+						</c:forEach>
+					</div>
+                    <div id="attachedFileAreaDiv">
 						<c:forEach var="obj" items="${form.attachedFileList }">
-							<a id="attached_${obj.attachedNo}">${obj.attachedName }</a>&nbsp;
+                            <a id="attached_${f:h(obj.attachedNo)}">${f:h(obj.attachedName)}</a>&nbsp;
 						</c:forEach>
 					</div>
 				</td>
 			</tr>
 		</table>
 	</div>
-
 	<!-- アコーディオンエリア -->
 	<imart:condition validity="${form.level2}" >
 		<!-- 貸与社宅などのご案内 -->
@@ -138,7 +142,6 @@
 						<input name="doDelRow1" id="doDelRow1" type="button" value="退居（自動車の保管場所変換）届PDF出力ボタン" class="imui-medium-button" onclick="" />
 					</imart:condition>
 					<imart:condition validity="${form.commentViewFlag}" >
-						<br>
 						<nfwui:PopupButton id="commentPop" value="コメント表示" 
 							cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
 							modalMode="false" popupWidth="1350" popupHeight="550"
@@ -151,15 +154,15 @@
 			<td class="vertical-top" style="vertical-align:top">
 				<div class="align-R">
 					<!-- 提示ボタン -->
-						<nfwui:ConfirmButton id="PresenBtn" name="PresenBtn"
+						<nfwui:ConfirmButton id="presentBtn" name="presentBtn"
 							value="提示" cssClass="imui-medium-button" cssStyle="width: 150px" 
 							title="<%= MessageIdConstant.SKF2010_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2011 %>"
-							url="skf/Skf2010Sc002/Present" formId="form" removePatterns="1,3" />
+							url="skf/Skf2010Sc002/Present" formId="form" removePatterns="shinsei,none" />
 					<!--　申請ボタン -->
 						<nfwui:ConfirmButton id="ApplyBtn" name="ApplyBtn" value="申請"
 							cssClass="imui-medium-button" cssStyle="width: 150px" 
 							title="<%= MessageIdConstant.SKF2010_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2003 %>"
-							url="skf/Skf2010Sc002/Apply" formId="form" removePatterns="2,3" />
+							url="skf/Skf2010Sc002/Apply" formId="form" removePatterns="teiji,none" />
 				</div>
 			</td>
 		</tr>
@@ -184,8 +187,8 @@ function back1() {
 		}else if(prePageId=="Skf2040Sc001"){
 			//退居届
 			url="skf/Skf2040Sc001/init?SKF2040_SC001&tokenCheck=0";
-		}else if(prePageId=="Skf2010Sc005"){
-			//入居希望等調書申請アウトソース(承認一覧からの遷移)
+		}else if(prePageId=="Skf2020Sc003"){
+			//入居希望等調書申請アウトソース
 			url="skf/Skf2020Sc003/init?SKF2020_SC003&&tokenCheck=0";
 		}
 		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
@@ -202,6 +205,7 @@ function back1() {
 		
 	});
 	
+	// 添付ファイルリンクからのファイルダウンロード処理
 	attachedFileDownload = function(obj) {
 		var id = $(obj).attr("id");
 		var url = "skf/Skf2010Sc002/Download";

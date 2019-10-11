@@ -9,10 +9,9 @@ import jp.co.c_nexco.nfw.webcore.app.AsyncBaseForm;
 import lombok.EqualsAndHashCode;
 
 /**
- * 社宅部屋登録非同期処理Form
- * 
- * @author k.takagi
+ * Skf3010Sc007AsyncForm 駐車場契約情報登録非同期Form
  *
+ * @author NEXCOシステムズ
  */
 @lombok.Data
 @EqualsAndHashCode(callSuper = true)
