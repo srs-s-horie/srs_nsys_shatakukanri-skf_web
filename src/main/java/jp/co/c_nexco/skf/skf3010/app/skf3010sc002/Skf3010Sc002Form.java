@@ -185,8 +185,6 @@ public class Skf3010Sc002Form extends GridForm {
 	/** ドロップダウンリスト */
 	// 地域区分リスト
 	private List<Map<String, Object>> areaKbnList;
-	// 地域区分選択値コード
-	private String areaKbnCd;
 	// 社宅区分リスト
 	private List<Map<String, Object>> shatakuKbnList;
 	// 利用区分リスト
@@ -201,14 +199,35 @@ public class Skf3010Sc002Form extends GridForm {
 	private List<Map<String, Object>> prefList;
 	// 社宅構造リスト
 	private List<Map<String, Object>> shatakuStructureList;
-	// 社宅構造選択値コード
-	private String structureKbnCd;
 	// エレベーターリスト
 	private List<Map<String, Object>> elevatorList;
 	// 駐車場構造リスト
 	private List<Map<String, Object>> parkingStructureList;
 	// 契約番号リスト
 	private List<Map<String, Object>> contractNoList;
+
+//	/** ドロップダウンリスト選択値 */
+//	// 地域区分選択値コード
+//	private String areaKbnCd;
+//	// 利用区分コード選択値
+//	private String useKbnCd;
+//	// 管理会社コード選択値
+//	private String selectedCompanyCd;
+//	// 管理機関コード選択値
+//	private String agencyCd;
+//	// 管理事業領域コード選択値
+//	private String manageBusinessAreaCd;
+//	// 都道府県コード選択値
+//	private String prefCd;
+//	// 社宅構造区分コード選択値
+//	private String structureKbn;
+//	// エレベーター区分選択値
+//	private String elevatorKbn;
+//	// 駐車場構造区分コード選択値
+//	private String parkingStructure;
+	// 都道府県コード
+	private String pref;
+
 	// 貸与区分選択値リスト文字列(追加ボタン押下用)
 	private String lendKbnSelectListString;
 	// デフォルト貸与状況(追加ボタン押下用)
@@ -241,6 +260,27 @@ public class Skf3010Sc002Form extends GridForm {
 	// 駐車場契約情報ボタン(非活性：true, 活性:false)
 	private Boolean parkingContractDisableFlg;
 
+	/** JSON(連携用) */
+	// JSON駐車場区画情報 リスト
+	private String jsonParking;
+	// JSON備品情報 リスト
+	private String jsonBihin;
+	// ドロップダウン選択値リスト
+	private String jsonDrpDwnList;
+	// 可変ラベルリスト
+	private String jsonLabelList;
+
+	/** データ比較用 */
+	// 建築年月日
+	private String startingBuildDate;
+	// 社宅構造
+	private String startingShatakuStructure;
+	// 駐車場構造リスト
+	private String startingParkingStructure;
+	// 地域区分
+	private String startingAreaKbn;
+
+
 	/** エラー系 **/
 	// 社宅名
 	private String shatakuNameErr;
@@ -268,7 +308,38 @@ public class Skf3010Sc002Form extends GridForm {
 	private String buildDateErr;
 	// 駐車場構造
 	private String parkingStructureErr;
-	// リストテーブル内の区画番号
-	private String listBlockNo;
+	// 寮長・自治会長 メールアドレス
+	private String dormitoryLeaderMailAddressErr;
+	// 鍵管理者 メールアドレス
+	private String keyManagerMailAddressErr;
+	// 寮母・管理会社 メールアドレス
+	private String matronMailAddressErr;
+	// 寮長・自治会長 電話番号
+	private String dormitoryLeaderTelNumberErr;
+	// 鍵管理者 電話番号
+	private String keyManagerTelNumberErr;
+	// 寮母・管理会社 電話番号
+	private String matronTelNumberErr;
+	// 寮長・自治会長 内線番号
+	private String dormitoryLeaderExtentionNoErr;
+	// 鍵管理者 内線番号
+	private String keyManagerExtentionNoErr;
+	// 寮母・管理会社 内線番号
+	private String matronExtentionNoErr;
+	// 賃貸人（代理人）名
+	private String contractOwnerNameErr;
+	// 経理連携用管理番号
+	private String assetRegisterNoErr;
+	// 契約開始日
+	private String contractStartDayErr;
+	// 契約終了日
+	private String contractEndDayErr;
+	// 家賃
+	private String contractRentErr;
+	// 共益費
+	private String contractKyoekihiErr;
+	// 駐車場料（地代）
+	private String contractLandRentErr;
+	
 
 }
