@@ -194,6 +194,11 @@
 
 		<script type="text/javascript">
 			(function($) {
+				// テキストボックス、テキストエリアにフォーカス時、入力済み文字列全選択
+				jQuery(document).on("focus click", "input,textarea", function() {
+					$(this).select();
+					return false;
+				});
 				onCellSelect = function(rowId,iCol,cellcontent,e) {
 					// リストテーブル情報取得
 					var grid = $("#mainList");
