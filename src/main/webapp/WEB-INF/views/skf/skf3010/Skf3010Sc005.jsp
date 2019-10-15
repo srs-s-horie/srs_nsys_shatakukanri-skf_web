@@ -86,7 +86,7 @@ function back1() {
 					<li><a href="#bihin_info">備品情報</a></li>
 				</ul>
 				<div id="room_info">
-					<table class="imui-form-search-condition">
+					<table class="imui-form">
 						<tbody>
 							<!--部屋番号-->
 							<tr>
@@ -208,13 +208,13 @@ function back1() {
 								<td style="height:24px">
 									<span id="spbarnMensekiAdjust">${form.barnMensekiAdjust}</span>㎡
 								</td>
-								<td style="width:33.4%;border:none;"></td>
+								<td style="width:33.4%;border:none;background-color:#ffffff;box-shadow:none;"></td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 				<div id="bihin_info">
-					<table class="imui-form-search-condition">
+					<table class="imui-form">
 					<!-- 明細部 -->
 					<form id="bihinList">
 					<imui:listTable id="bihinList" process="jssp" autoEncode="false" autoWidth="false" rowNumbers="true"
