@@ -28,6 +28,18 @@
     div.btnRight{
         text-align: right;
     }
+    
+    .imui-form-search-condition {
+      height: auto; /*操作ガイド領域の高さに入力領域の高さが左右されないようにする*/
+      width: 100%;
+      border: 0px;
+      margin-bottom: 10px;
+      border-collapse: collapse;
+      -webkit-box-shadow: 0px 1px 1px #ffffff;
+      -moz-box-shadow: 0px 1px 1px #ffffff;
+      box-shadow: 0px 1px 1px #ffffff;
+      color: #333333;
+    }
 }
 </style>
 <!-- コンテンツエリア-->
@@ -88,8 +100,7 @@
                                         <nfwui:LabelBox id="lblHeadNowAddress" code="<%= MessageIdConstant.SKF2040_SC001_NOW_ADDRESS %>" />
                                     </th>
                                     <td colspan="2">
-                                            ${f:h(form.nowAddress)}
-                                        </select>
+                                        <span id="nowAddress">${f:h(form.nowAddress)}</span>
                                     </td>
                                 </tr>
                                 <!-- 氏名 -->
@@ -98,8 +109,7 @@
                                         <nfwui:LabelBox id="lblHeadName" code="<%= MessageIdConstant.SKF2040_SC001_NAME %>" />
                                     </th>
                                     <td colspan="2">
-                                            ${f:h(form.name)}
-                                        </select>
+                                        ${f:h(form.name)}
                                     </td>
                                 </tr>
                                 <!-- 性別 -->
@@ -108,20 +118,19 @@
                                         <nfwui:LabelBox id="lblHeadGender" code="<%= MessageIdConstant.SKF2040_SC001_GENDER %>" />
                                     </th>
                                     <td colspan="2">
-                                            ${f:h(form.gender)}
-                                        </select>
+                                        ${f:h(form.genderName)}
                                     </td>
                                 </tr>
                                 <!-- 駐車場1台目保管場所 -->
                                 <tr>
                                     <th rowspan="2">
-                                        <nfwui:LabelBox id="lblHeadGender" code="<%= MessageIdConstant.SKF2040_SC001_PERKING %>" />
+                                        <nfwui:LabelBox id="lblHeadParking" code="<%= MessageIdConstant.SKF2040_SC001_PERKING %>" />
                                     </th>
                                     <th width="70">
-                                        <nfwui:LabelBox id="lblHeadGender" code="<%= MessageIdConstant.SKF2040_SC001_PARKING_1ST %>" />
+                                        <nfwui:LabelBox id="lblHeadParking1st" code="<%= MessageIdConstant.SKF2040_SC001_PARKING_1ST %>" />
                                     </th>
                                     <th>
-                                        <nfwui:LabelBox id="lblHeadGender" code="<%= MessageIdConstant.SKF2040_SC001_PERKING_PLACE %>" />
+                                        <nfwui:LabelBox id="lblHeadParking1stPlace" code="<%= MessageIdConstant.SKF2040_SC001_PERKING_PLACE %>" />
                                     </th>
                                     <td colspan="2">
                                         <span id="parking1stPlace">${f:h(form.parking1stPlace)} </span>
@@ -130,13 +139,13 @@
                                 <!-- 駐車場2台目保管場所 -->
                                 <tr>
                                      <th width="70">
-                                        <nfwui:LabelBox id="lblHeadGender" code="<%= MessageIdConstant.SKF2040_SC001_PARKING_2ND %>" />
+                                        <nfwui:LabelBox id="lblHeadParking2nd" code="<%= MessageIdConstant.SKF2040_SC001_PARKING_2ND %>" />
                                     </th>
                                     <th>
-                                        <nfwui:LabelBox id="lblHeadGender" code="<%= MessageIdConstant.SKF2040_SC001_PERKING_PLACE %>" />
+                                        <nfwui:LabelBox id="lblHeadParking2ndPlace" code="<%= MessageIdConstant.SKF2040_SC001_PERKING_PLACE %>" />
                                     </th>
                                     <td colspan="2">
-                                        <span id="parking2stPlace">${f:h(form.parking2ndPlace)} </span>
+                                        <span id="parking2ndPlace">${f:h(form.parking2ndPlace)} </span>
                                     </td>
                                 </tr>
                                 <!-- 退居(返還)日 -->
@@ -156,7 +165,7 @@
                                     </th>
                                     <td colspan="2">
                                         <nfwui:CheckBoxGroupTag id="taikyoType">
-                                        <table class="${f:h(form.taikyoTypeErr)}">
+                                        <table id="taikyoTypeTable">
                                             <tr style="height: 25px;">
                                                 <td>
                                                     <nfwui:CheckBox id="taikyoType01" name="taikyoType"
@@ -167,12 +176,14 @@
                                                 <td>
                                                     <nfwui:CheckBox id="taikyoType02" name="taikyoType"
                                                             value="park1_checked" label="駐車場1を返還する" tabindex="7"
-                                                            disabled="${form.nowParking1TaikyoDisabled}" />
+                                                            disabled="${form.nowParking1TaikyoDisabled}"
+                                                            onclick="onClickTaikyoType02();" />
                                                 </td>
                                                 <td>
                                                     <nfwui:CheckBox id="taikyoType03" name="taikyoType"
                                                             value="park2_checked" label="駐車場2を返還する" tabindex="7"
-                                                            disabled="${form.nowParking2TaikyoDisabled}" />
+                                                            disabled="${form.nowParking2TaikyoDisabled}"
+                                                            onclick="onClickTaikyoType03();" />
                                                 </td>
                                             </tr>
                                         </table>
@@ -189,8 +200,8 @@
                                                      css="${f:h(form.taikyoRiyuKbnErr)}" onChange="onChangeTaikyoRiyuKbn();"
                                                      list="${form.ddlTaikyoRiyuKbnList}" tabindex="50"/>
                                         <br>
-                                        <imui:textArea id="taikyoRiyu" name="taikyoRiyu"
-                                                       value="${f:h(form.taikyoHenkanRiyu)}" style="width: 90%;" 
+                                        <imui:textArea id="taikyoHenkanRiyu" name="taikyoHenkanRiyu"
+                                                       value="${form.taikyoHenkanRiyu}" style="width: 90%;" 
                                                        css="${f:h(form.taikyoHenkanRiyuErr)}"
                                                        placeholder="例 自宅購入のため" disabled="true" tabindex="51" />
                                     </td>
@@ -202,7 +213,7 @@
                                     </th>
                                     <td colspan="2">
                                         <imui:textArea id="shatakuJyotai" name="shatakuJyotai"
-                                                       value="${f:h(form.shatakuJyotai)}" style="width: 90%;" 
+                                                       value="${form.shatakuJyotai}" style="width: 90%;" 
                                                        css="${f:h(form.shatakuJyotaiErr)}"
                                                        placeholder="例  壁紙に破損あり" disabled="true" tabindex="51" />
                                     </td>
@@ -214,7 +225,7 @@
                                     </th>
                                     <td colspan="2">
                                         <imui:textArea id="taikyogoRenrakuSaki" name="taikyogoRenrakuSaki" 
-                                                       value="${f:h(form.taikyogoRenrakuSaki)}" style="width: 90%;" 
+                                                       value="${form.taikyogoRenrakuSaki}" style="width: 90%;" 
                                                        css="${f:h(form.taikyogoRenrakuSakiErr)}"
                                                        placeholder="例 090-0000-0000" disabled="true" tabindex="52"/>
                                     </td>
@@ -226,27 +237,6 @@
                                     </th>
                                     <td colspan="2">
                                         <span id="returnEquipments">${form.returnEquipment)} </span>
-
-                                        <table>
-                                        <tr>
-                                        <td>・洗濯機</td>
-                                        <td>・冷蔵庫</td>
-                                        </tr>
-                                        <tr>
-                                        <td>・オーブンレンジ&nbsp;&nbsp;&nbsp;</td>
-                                        <td>・掃除機</td>
-                                        </tr>
-                                        <tr>
-                                        <td>・電子炊飯ジャー</td>
-                                        <td>・テレビ</td>
-                                        </tr>
-                                        <tr>
-                                        <td>・テレビ台</td>
-                                        <td>・座卓(こたつ)</td>
-                                        </tr>
-                                        <tr></tr>
-                                        
-                                        </table>
                                     </td>
                                 </tr>
                                 <!-- 返却立合希望日 -->
@@ -287,6 +277,12 @@
                     <nfwui:Hidden id="applId" name="applId" />
                     <nfwui:Hidden id="shainNo" name="shainNo" />
                     <input type="hidden" name="hdnShainNo" id="hdnShainNo" value="${form.shainNo}" />
+                    <input type="hidden" name="hdnSelectedNowShatakuName" id="hdnSelectedNowShatakuName" value="${form.hdnSelectedNowShatakuName}" />
+                    <input type="hidden" name="hdnParking1stNumber" id="hdnParking1stNumber" value="${form.hdnParking1stNumber}"/>            
+                    <input type="hidden" name="hdnParking2ndNumber" id="hdnParking2ndNumber" value="${form.hdnParking2ndNumber}"/>
+                    <input type="hidden" name="hdnNowShatakuKanriNo" id="hdnNowShatakuKanriNo" value="${form.hdnNowShatakuKanriNo}"/>
+                    <input type="hidden" name="hdnNowShatakuRoomKanriNo" id="hdnNowShatakuRoomKanriNo" value="${form.hdnNowShatakuRoomKanriNo}"/>
+                    <input type="hidden" name="hdnBihinHenkyakuUmu" id="hdnBihinHenkyakuUmu" value="${form.hdnBihinHenkyakuUmu}"/>
                     <!-- 右側の操作ガイドの部分 -->
                     <td style="width: 30%; border: none;background-color: #fdfdff;">
                         <div style="margin-left: 20px; background-color:#eeeeee;">
@@ -311,7 +307,7 @@
                      <!-- 入力内容をクリア -->
                     <nfwui:ConfirmButton cssStyle="width:150px;" id="clearBtn" formId="form" value="入力内容をクリア" 
                         cssClass="imui-medium-button" title="<%= MessageIdConstant.SKF2040_SC001_CONFIRM_TITLE %>" 
-                        message="<%= MessageIdConstant.I_SKF_2004 %>" 
+                        message="<%= MessageIdConstant.I_SKF_2004 %>" remove="${form.btnClearRemoved} }"
                         url="skf/Skf2040Sc001/Clear"/>    
                  </div>
                 <!-- 右エリア -->
@@ -353,6 +349,19 @@
 
 <script type="text/javascript">
     /**
+     * 日付型変換
+     * <p>
+     * 文字列をスラッシュを除いて日付に変換        
+     * </p>
+     * 
+     * return 選択された値
+     */ 
+    function toDate (str, delim) {
+          var arr = str.split(delim)
+          return new Date(arr[0], arr[1] - 1, arr[2]);
+    };    
+    
+    /**
      * ひとつ前の画面に戻る
      */
     function back1() {
@@ -377,6 +386,9 @@
                 isDispDialog = true;
             }
         }
+        
+        // チェックボックスのエラー色をクリア
+        $('#taikyoTypeTable').removeClass('nfw-validation-error');
         
         // 入力チェック判定用の値設定を行う        
         var map = new Object();
@@ -414,53 +426,48 @@
                 "skf/Skf2040Sc001/checkAsync",
                 map,
                 true,
-                callbackCheckComplete(isDispDialog)
+                function(data) {
+                    // エラーが存在しない場合の処理
+                    var form = "form";
+                    var url = "skf/Skf2040Sc001/Confirm"; //遷移先サービス
+                    if (isDispDialog) {
+                    //退居予定日と返却希望立会日の確認ダイアログが必要な場合
+                        //ダイアログ
+                        skf.common.confirmPopup(
+                                "返却立会希望日が退居予定日以降で入力されています。申請してもよろしいですか？",
+                                "確認", form, url, "ok", "キャンセル", this
+                        );
+                    } else {
+                        //退居予定日と返却希望立会日の確認ダイアログが不要な場合
+                        nfw.common.submitForm(form,url,"checkBtn");
+                    }
+                }
         );
     }
     
-    /**
-     * 入力内容チェックで問題が無かった場合に呼ばれるコールバック
-     */
-    function callbackCheckComplete(isDispDialog){
-        var form = "form";
-        var url = "skf/Skf2040Sc001/Confirm"; //遷移先サービス
-        if (isDispDialog) {
-        //退居予定日と返却希望立会日の確認ダイアログが必要な場合
-            //ダイアログ
-            skf.common.confirmPopup(
-                    "返却立会希望日が退居予定日以降で入力されています。申請してもよろしいですか？",
-                    "確認", form, url, "ok", "キャンセル", this
-            );
-        } else {
-            //退居予定日と返却希望立会日の確認ダイアログが不要な場合
-            nfw.common.submitForm(form,url,"checkBtn");
+    function onChangeTaikyoRiyuKbn() {
+        //その他が選択された場合、その他ボックスを活性化する
+        var selTaikyoRiyuKbnCd = $('#taikyoRiyuKbn option:selected').val();
+        if(selTaikyoRiyuKbnCd == "9"){
+            $('#taikyoHenkanRiyu').prop('disabled', false);
+        }else{
+            $('#taikyoHenkanRiyu').prop('disabled', true);
+            $('#taikyoHenkanRiyu').val("")
         }
     }
 
 (function($){
-    // 画面表示時に定義される処理
-    $(document).ready(function(){
-        if($("#hdnBihinHenkyakuUmu").val()=="0"){
-        //返却希望立会日　非活性
-            $('#sessionDayDiv').prop('disabled', true);
-            $('#sessionDay').prop('disabled', true);
-        }else{
-            $('#sessionDayDiv').prop('disabled', false);
-            $('#sessionDay').prop('disabled', false);
-        }
-    });
-    
     // 退居(返還)理由変更時のイベント
-    $("#taikyoRiyuKbn").bind('change', function() {
+    $("#taikyoRiyuKbn").bind('change', function(){
         //その他が選択された場合、その他ボックスを活性化する
         var selTaikyoRiyuKbnCd = $('#taikyoRiyuKbn option:selected').val();
         if(selTaikyoRiyuKbnCd == "9"){
-            $('#taikyoRiyu').prop('disabled', false);
+            $('#taikyoHenkanRiyu').prop('disabled', false);
         }else{
-            $('#taikyoRiyu').prop('disabled', true);
-            $('#taikyoRiyu').val("")
-        }            
-    });    
+            $('#taikyoHenkanRiyu').prop('disabled', true);
+            $('#taikyoHenkanRiyu').val("")
+        }
+    });
 
     //社宅プルダウン
     $("#nowShatakuName").bind('change', function() {
@@ -471,13 +478,16 @@
 
         nfw.common.doAjaxAction("skf/Skf2040Sc001/ChangeDropDownAsync",map,true,function(data) {
             //値の変更
-            document.getElementById('parking1stPlace').innerHTML = data.parking1stPlace;
-            document.getElementById('parking2stPlace').innerHTML = data.parking2stPlace;
-            document.getElementById('returnEquipments').innerHTML = data.returnEquipment;
+            $('#nowAddress').html( data.nowAddress );
+            $('#parking1stPlace').html( data.parking1stPlace );
+            $('#parking2ndPlace').html( data.parking2ndPlace );
+            $('#returnEquipments').html( data.returnEquipment );
 
             //値の設定
+            $('#hdnSelectedNowShatakuName').val(data.hdnSelectedNowShatakuName);
+            $('#hdnParking1stNumber').val(data.hdnParking1stNumber);
+            $('#hdnParking2ndNumber').val(data.hdnParking2ndNumber);
             $('#hdnBihinHenkyakuUmu').val(data.hdnBihinHenkyakuUmu);
-            //$('#hdnParkingFullFlg').val(data.parkingFullFlg);
 
             //画面制御
             var bihinHenkyakuUmu = data.hdnBihinHenkyakuUmu;
@@ -493,6 +503,19 @@
                 $('#sessionDay').prop('disabled', false);
                 $('#sessionTime').prop('disabled', false);
                 $('#renrakuSaki').prop('disabled', false);
+            }
+            
+            if(data.parking1stPlace == ""){
+                // 駐車場1を借りていない場合
+                $('#taikyoType02').prop('disabled', true);
+            }else{
+                $('#taikyoType02').prop('disabled', false);
+            }
+            if(data.parking2ndPlace == ""){
+                // 駐車場2を借りていない場合
+                $('#taikyoType03').prop('disabled', true);
+            }else{
+                $('#taikyoType03').prop('disabled', false);
             }
         });
     });
@@ -515,11 +538,14 @@
             $('#taikyogoRenrakuSaki').prop('disabled', false);
             
             // 備品返却関連
-            $('#sessionDayDiv').removeClass("wj-state-disabled");
-            $('#sessionDayDiv').prop('disabled', false);
-            $('#sessionDay').prop('disabled', false);
-            $('#sessionTime').prop('disabled', false);
-            $('#renrakuSaki').prop('disabled', false);
+            if($("#hdnBihinHenkyakuUmu").val()!="0"){
+                // 返還すべき物品が存在する場合、備品返却関連項目を活性化
+                $('#sessionDayDiv').removeClass("wj-state-disabled");
+                $('#sessionDayDiv').prop('disabled', false);
+                $('#sessionDay').prop('disabled', false);
+                $('#sessionTime').prop('disabled', false);
+                $('#renrakuSaki').prop('disabled', false);
+            }
         }else{
             // 「社宅を退居する」チェック外し時
             $('#shatakuJyotai').prop('disabled', true);
@@ -532,6 +558,87 @@
             $('#renrakuSaki').prop('disabled', true);
         }
     }
+    
+    // 「駐車場1を返還する」チェック時のイベント
+    onClickTaikyoType02 = function () {
+        var isTaikyoChecked = $('#taikyoType01').prop('checked');
+        if(isTaikyoChecked){
+            // 「社宅を退居する」がチェックされている場合、
+            // 駐車場1を返還するのチェックを外せないようにする
+            if (!$('#taikyoType02').prop('disabled')) {
+                $('#taikyoType02').prop('checked', true);
+            }
+        }
+     }
+     
+    // 「駐車場2を返還する」チェック時のイベント
+    onClickTaikyoType03 = function () {
+        var isTaikyoChecked = $('#taikyoType01').prop('checked');
+        if(isTaikyoChecked){
+            // 「社宅を退居する」がチェックされている場合、
+            // 駐車場2を返還するのチェックを外せないようにする
+            if (!$('#taikyoType03').prop('disabled')) {
+                $('#taikyoType03').prop('checked', true);
+            }
+        }
+     }
+    
+    // 画面表示時に定義される処理
+    $(document).ready(function(){
+        if($("#hdnBihinHenkyakuUmu").val()=="0"){
+        //返却希望立会日　非活性
+            $('#sessionDayDiv').prop('disabled', true);
+            $('#sessionDay').prop('disabled', true);
+        }else{
+            $('#sessionDayDiv').prop('disabled', false);
+            $('#sessionDay').prop('disabled', false);
+        }
+        
+        var isTaikyoChecked = $('#taikyoType01').prop('checked');
+        if(isTaikyoChecked){
+            // 「社宅を退居する」チェック時
+            
+            // 駐車場１，２がチェックされていない場合はチェックする
+            if (!$('#taikyoType02').prop('disabled')) {
+                $('#taikyoType02').prop('checked', true);
+            }
+            if (!$('#taikyoType03').prop('disabled')) {
+                $('#taikyoType03').prop('checked', true);
+            }
+            
+            $('#shatakuJyotai').prop('disabled', false);
+            $('#taikyogoRenrakuSaki').prop('disabled', false);
+            
+            // 備品返却関連
+            if($("#hdnBihinHenkyakuUmu").val()!="0"){
+                // 返還すべき物品が存在する場合、備品返却関連項目を活性化
+                $('#sessionDayDiv').removeClass("wj-state-disabled");
+                $('#sessionDayDiv').prop('disabled', false);
+                $('#sessionDay').prop('disabled', false);
+                $('#sessionTime').prop('disabled', false);
+                $('#renrakuSaki').prop('disabled', false);
+            }
+        }else{
+            // 「社宅を退居する」チェック外し時
+            $('#shatakuJyotai').prop('disabled', true);
+            $('#taikyogoRenrakuSaki').prop('disabled', true);
+            
+            // 備品返却関連
+            $('#sessionDayDiv').prop('disabled', true);
+            $('#sessionDay').prop('disabled', true);
+            $('#sessionTime').prop('disabled', true);
+            $('#renrakuSaki').prop('disabled', true);
+        }
+        
+     	//その他が選択された場合、その他ボックスを活性化する
+        var selTaikyoRiyuKbnCd = $('#taikyoRiyuKbn option:selected').val();
+        if(selTaikyoRiyuKbnCd == "9"){
+            $('#taikyoHenkanRiyu').prop('disabled', false);
+        }else{
+            $('#taikyoHenkanRiyu').prop('disabled', true);
+            $('#taikyoHenkanRiyu').val("")
+        }
+    });
 })(jQuery);
 </script>
 <!-- コンテンツエリア　ここまで -->
