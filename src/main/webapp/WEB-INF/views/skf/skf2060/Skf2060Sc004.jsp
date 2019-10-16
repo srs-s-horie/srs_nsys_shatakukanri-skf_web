@@ -156,10 +156,10 @@
                             </th>
                             <td colspan="2">
                                 <nfwui:DateBox id="candidateDateFrom" name="candidateDateFrom" value="${f:h(form.candidateDateFrom)}"
-                                               cssClass="${f:h(form.candidateDateFromErr)}" tabindex="1" cssStyle="width:100px"/>
+                                               cssClass="${f:h(form.candidateDateFromErr)}" tabindex="3" cssStyle="width:100px"/>
                                 &nbsp;～&nbsp;
                                 <nfwui:DateBox id="candidateDateTo" name="candidateDateTo" value="${f:h(form.candidateDateTo)}"
-                                               cssClass="${f:h(form.candidateDateToErr)}" tabindex="2" cssStyle="width:100px"/>
+                                               cssClass="${f:h(form.candidateDateToErr)}" tabindex="4" cssStyle="width:100px"/>
                             </td>
                         </tr>
                         <tr>
@@ -169,7 +169,7 @@
                                         cssClass="imui-small-button" use="popup"
                                         screenUrl="skf/Skf2010Sc001/init"
                                         popupWidth="650" popupHeight="700"
-                                        modalMode="false"  tabindex="3"/>
+                                        modalMode="false"  tabindex="5"/>
                                 </div>
                                 <nfwui:LabelBox id="lblCandidatePersonName" code="<%= MessageIdConstant.SKF2060_SC004_CANDIDATE_PERSON_NAME %>"/>
                                 &nbsp;&nbsp;
@@ -178,7 +178,7 @@
                             <td colspan="2">
                                 <input type="hidden" name="candidatePersonNo" id="candidatePersonNo" value="${form.candidatePersonNo}" />
                                 <input name="candidatePersonName" id="candidatePersonName" placeholder="例 中日本　一郎"
-                                       value="${form.candidatePersonName}" readonly="readonly" tabindex="4" onKeyDown="candidateName_KeyDown(event)" ></input>
+                                       value="${form.candidatePersonName}" readonly="readonly" tabindex="6" onKeyDown="candidateName_KeyDown(event)" ></input>
                             </td>
                         </tr>
                         <tr>
@@ -186,7 +186,7 @@
                                 <nfwui:LabelBox id="lblShatakuName" code="<%= MessageIdConstant.SKF2060_SC004_SHATAKU_NAME %>" />
                             </th>
                             <td colspan="2">
-                                <input name="shatakuName" id="shatakuName" placeholder="例 厚木宿舎" value="${form.shatakuName}"  tabindex="5"></input>
+                                <input name="shatakuName" id="shatakuName" placeholder="例 厚木宿舎" value="${form.shatakuName}"  tabindex="7"></input>
                             </td>
                         </tr>
 
@@ -195,7 +195,7 @@
                                 <nfwui:LabelBox id="lblShatakuAddressName" code="<%= MessageIdConstant.SKF2060_SC004_SHATAKU_ADDRESS_NAME %>"/>
                             </th>
                             <td colspan="2">
-                                <input name="shatakuAddressName" id="shatakuAddressName" placeholder="例 神奈川県厚木市恩名" value="${form.shatakuAddressName}" tabindex="6"></input>
+                                <input name="shatakuAddressName" id="shatakuAddressName" placeholder="例 神奈川県厚木市恩名" value="${form.shatakuAddressName}" tabindex="8"></input>
                             </td>
                         </tr>   
 
@@ -209,19 +209,19 @@
                                     <tr style="height: 25px;">
                                         <td>
                                             <nfwui:CheckBox id="candidateStatus01" name="candidateStatus"
-                                                value="<%= CodeConstant.STATUS_KAKUNIN_IRAI %>" label="確認依頼" tabindex="7" />
+                                                value="<%= CodeConstant.STATUS_KAKUNIN_IRAI %>" label="確認依頼" tabindex="8" />
                                         </td>
                                         <td>
                                             <nfwui:CheckBox id="candidateStatus02" name="candidateStatus"
-                                                value="<%= CodeConstant.STATUS_SENTAKU_ZUMI %>" label="選択済" tabindex="8" />
+                                                value="<%= CodeConstant.STATUS_SENTAKU_ZUMI %>" label="選択済" tabindex="10" />
                                         </td>
                                         <td>
                                             <nfwui:CheckBox id="candidateStatus03" name="candidateStatus"
-                                                value="<%= CodeConstant.STATUS_SENTAKU_SHINAI %>" label="選択しない" tabindex="9" />
+                                                value="<%= CodeConstant.STATUS_SENTAKU_SHINAI %>" label="選択しない" tabindex="11" />
                                         </td>
                                         <td>
                                             <nfwui:CheckBox id="candidateStatus04" name="candidateStatus"
-                                                value="<%= CodeConstant.STATUS_KANRYOU %>" label="完了" tabindex="10" />
+                                                value="<%= CodeConstant.STATUS_KANRYOU %>" label="完了" tabindex="12" />
                                         </td>
                                     </tr>
                                 </table>
@@ -231,7 +231,7 @@
                     </table>
                     <div class="align-L">
                         <nfwui:Button id="search" name="search" value="検索" cssClass="imui-small-button" 
-                            url="skf/Skf2060Sc004/search" formId="form" tabindex="11" />
+                            url="skf/Skf2060Sc004/search" formId="form" tabindex="13" />
                     </div>
                 </div>
                 <!-- 操作ガイド -->
@@ -289,13 +289,13 @@
     <br>
     <div class="align-R">
         <imui:button id="newCandidate" name="newCandidate" value="新規提示" class="imui-medium-button"
-                     onclick="onClickNewCandidate()" tabindex="14" />
+                     onclick="onClickNewCandidate()" tabindex="97" />
         
         <imui:button id="sendMail" name="sendMail" value="督促メール送信" class="imui-medium-button"
-                     onclick="onClickSendMail()" tabindex="15" />
+                     onclick="onClickSendMail()" tabindex="98" />
         
         <imui:button id="bulkComplete" name="bulkComplete" value="一括完了" class="imui-medium-button"
-                     onclick="onClickBulkComplete()" tabindex="16" />
+                     onclick="onClickBulkComplete()" tabindex="99" />
     </div>
 </div>
 

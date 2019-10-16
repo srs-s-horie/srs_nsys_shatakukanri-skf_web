@@ -34,31 +34,48 @@
 <!-- コンテンツエリア -->
 <div class="imui-form-container-wide" width="1350px" style="width: 95%; max-width: 1350px;">
 	<!-- 状況、資料ヘッダ -->
-	<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;border:none;" height="100px">
 	<nfwui:Form id="form" name="form" modelAttribute="form">
-		<table class="imui-form-search-condition">
-			<tr>
-				<th width="100px">
-					<nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2010_SC006_LBL_APPL_STATUS %>" />
-				</th>
-				<td width="100px">
-					${form.applStatusText }
-				</td>
-				<imart:condition validity="${form.tenpViewFlg}">
+	<!-- 添付資料表示あり -->
+	<imart:condition validity="${form.tenpViewFlg}" >
+		<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;border:none;" height="100px">
+			<table class="imui-form-search-condition">
+				<tr>
+					<th width="100px">
+						<nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2010_SC006_LBL_APPL_STATUS %>" />
+					</th>
+					<td width="100px">
+						<label>${f:h(form.applStatusText) }</label>
+					</td>
 					<th width="100px">
 						<nfwui:LabelBox id="lblAttachedFile" code="<%= MessageIdConstant.SKF2040_SC002_LBL_ATTACHED_FILE %>" />
 					</th>
 					<td>
 						<div id="attachedFileAreaDiv">
-							<c:forEach var="obj" items="${form.attachedFileList }">
+							<c:forEach var="obj" items="${form.attachedFileList}">
 								<a id="attached_${obj.attachedNo}">${obj.attachedName }</a>&nbsp;
 							</c:forEach>
 						</div>
 					</td>
-				</imart:condition>
-			</tr>
-		</table>
-	</div>
+				</tr>
+			</table>
+		</div>
+	</imart:condition>
+	<!-- 添付資料表示なし -->
+	<imart:condition validity="${form.tenpViewFlg}" negative>
+	<div class="imui-form-container-wide" width="300px" style="width: 90%; max-width: 300px;border:none;margin: 0px;" height="100px">
+		<!--  <div style="max-width: 300px;margin: 0px;">-->
+			<table class="imui-form-search-condition">
+			   <tr>
+			   	<th style="width: 5%;">
+			   		<nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2030_SC002_APPL_STATUS %>" />
+			   	</th>
+				<td style="width: 10%;">
+					<label>${f:h(form.applStatusText) }</label>
+				</td>
+			  </tr>
+			</table>
+		</div>
+	</imart:condition>
 	<!-- アコーディオンエリア -->
 	<!-- 退居届-->
 	<imart:condition validity="${form.taikyoViewFlg}">
@@ -99,8 +116,8 @@
 	<nfwui:Hidden id="shainNo" name="shainNo" />
 	<nfwui:Hidden id="applUpdateDate" name="applUpdateDate" />
 	<nfwui:Hidden id="prePageId" name="prePageId" value="${form.prePageId}" />
+	<nfwui:Hidden id="hdnBihinHenkyakuApplNo" name="hdnBihinHenkyakuApplNo" value="${form.hdnBihinHenkyakuApplNo}" />
 	<input type="hidden" id="attachedNo" name="attachedNo" value="" />
-	<input type="hidden" id="hdnBihinHenkyakuApplNo" name="hdnBihinHenkyakuApplNo" value="${hdnBihinHenkyakuApplNo}"/>
 
 <!-- フッターエリア　ボタン -->
 <div class="imui-box-layout">
@@ -117,7 +134,7 @@
 				       cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
 				       title="<%= MessageIdConstant.SKF2040_SC002_CONFIRM_TITLE %>"
 				       message="<%= MessageIdConstant.SKF2040_SC002_REVISION_MSG %>"
-				       url="skf/Skf2040Sc002/Revision" removePatterns="PTN_A,PTN_B,PTN_D,PTN_E"/>
+				       url="skf/Skf2040Sc002/Revision" removePatterns="PTN_A,PTN_B,PTN_D,PTN_F"/>
  			</div>
  		</tr>
  		<tr>
@@ -145,28 +162,30 @@
 						cssClass="imui-medium-button" cssStyle="width: 150px" 
 						use="popup" popupWidth="750" popupHeight="600"
 						parameter="applNo:applNo,applId:applId" modalMode="false" 
-						screenUrl="skf/Skf2010Sc009/init" formId="form" removePatterns="PTN_A,PTN_B,PTN_D,PTN_E"
+						screenUrl="skf/Skf2010Sc009/init" formId="form" removePatterns="PTN_A,PTN_B,PTN_D,PTN_F"
 						callbackFunc="updateAttachedFileArea" />
 					<!-- 差戻しボタン -->
 						<nfwui:ConfirmButton id="remandBtn" name="remandBtn" value="差戻し"
 						cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
 						title="<%= MessageIdConstant.SKF2040_SC002_CONFIRM_TITLE %>"
 						message="<%= MessageIdConstant.SKF2040_SC002_REMAND_MSG %>"
-						removePatterns="PTN_A,PTN_B,PTN_D,PTN_E"
+						removePatterns="PTN_A,PTN_B,PTN_D,PTN_F"
 						url="skf/Skf2040Sc002/Remand"/>
-					<!-- 提示ボタン --> 
-						<nfwui:Button id="PresentBtn" name="PresentBtn"
-							value="提示" cssClass="imui-medium-button" cssStyle="width: 150px" 
-							title="<%= MessageIdConstant.SKF2040_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2011 %>"
-							url="skf/Skf2040Sc002/Presentation" formId="form"  
-							removePatterns="PTN_B,PTN_E"
-							disabled="${form.btnPresentDisabeld}"/>
+					<!-- 提示ボタン --> 							
+						<nfwui:ConfirmButton id="presentBtn" name="presentBtn" value="提示"
+						cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
+						title="<%= MessageIdConstant.SKF2040_SC002_CONFIRM_TITLE %>"
+						message="<%= MessageIdConstant.I_SKF_2011 %>"
+						removePatterns="PTN_B,PTN_E,PTN_F"
+						url="skf/Skf2040Sc002/Present" disabled="${form.btnPresentDisabeld}"/>															
 					<!-- 承認ボタン -->
-						<nfwui:Button id="approveBtn" name="approveBtn"
-							value="承認" cssClass="imui-medium-button" cssStyle="width: 150px" 
-							title="<%= MessageIdConstant.SKF2040_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2011 %>"
-							url="skf/Skf2040Sc002/Approval" formId="form" removePatterns="PTN_A,PTN_C,PTN_D,PTN_E"
+						<nfwui:ConfirmButton id="approveBtn" name="approveBtn"
+							value="承認" cssClass="imui-medium-button check" cssStyle="width: 150px" 
+							title="<%= MessageIdConstant.SKF2040_SC002_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2006 %>"
+							url="skf/Skf2040Sc002/Approval" formId="form" 
+							removePatterns="PTN_A,PTN_C,PTN_D,PTN_F"
 							disabled="${form.btnApproveDisabled}"/>
+							
  			</div>
  		</tr>	
  	</table>

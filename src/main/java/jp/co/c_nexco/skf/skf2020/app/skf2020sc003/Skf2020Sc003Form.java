@@ -98,6 +98,8 @@ public class Skf2020Sc003Form extends Skf2020CommonForm {
 	private String parking2StartDate;
 
 	// 備品希望設定
+	// 備品リスト
+	private List<Map<String, Object>> bihinShinseiList;
 	// 必要社宅
 	private String bihinHitsuyoShataku;
 	// 洗濯機

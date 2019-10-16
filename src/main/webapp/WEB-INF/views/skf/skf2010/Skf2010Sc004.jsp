@@ -11,6 +11,9 @@
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
+<%@ page import="jp.co.c_nexco.skf.skf2010.app.skf2010sc004.Skf2010Sc004Form" %>
+<%  Skf2010Sc004Form form = (Skf2010Sc004Form)request.getAttribute("form"); %>
+
 
 <%-- コンテンツエリア --%>
 <style type="text/css">
@@ -62,10 +65,10 @@ function back1() {
 </script>
 
 <!-- コンテンツエリア -->
- <div class="imui-form-container-wide" width="1350px" style="width: 100%; max-width: 1350px;">
+ <div class="imui-form-container-wide" style="width: 95%;">
 
     <!-- 状況、資料ヘッダ -->
-    <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;border:none;" height="100px">
+    <div class="imui-form-container-wide" style="border: currentColor; border-image: none; width: 80%; padding-left: 0px; margin-left: 100px;">
                     <table class="imui-form-search-condition">
                        <tr>
                             <th width="100px"><nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2010_SC006_LBL_APPL_STATUS %>" /></th>
@@ -82,6 +85,7 @@ function back1() {
     </div>
 
     <!-- コンテンツエリア -->
+<imart:condition validity="<%= String.valueOf((form.getDisplayLevel() < 3)) %>"> 
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;" height="100px">
        <nfwui:Title id="operationGuide" code="<%= MessageIdConstant.SKF2010_SC004_OPERATION_GUIDE %>" titleLevel="2" />
        <table>
@@ -93,6 +97,7 @@ ${form.operationGuide }
         </table>
 
     </div>
+</imart:condition>
 
     <!-- コンテンツエリア -->
 <c:if test="${form.displayLevel == 4}">
@@ -189,37 +194,32 @@ ${form.operationGuide }
       <tr style="width: 100%; max-width: 1000px;text-align:center;">
         <th><nfwui:LabelBox id="lblNowTaikyoDate" code="<%= MessageIdConstant.SKF2010_SC004_NOW_TAIKYO_DATE %>" /></th>
         <td align="left">
-          <imui:textbox id="taikyobi" name="taikyobi" value="${form.taikyobi }" class="${form.taikyobiErr }" />
+			<nfwui:DateBox id="taikyobi" name="taikyobi" />
         </td>
         <th><nfwui:LabelBox id="lblNewShatakuNyukyo" code="<%= MessageIdConstant.SKF2010_SC004_NEW_SHATAKU_NYUKYO %>" /></th>
         <td align="left">
-          <imui:textbox id="nyukyobi" name="nyukyobi" value="${form.nyukyobi }" class="${form.nyukyobiErr }" />
+			<nfwui:DateBox id="nyukyobi" name="nyukyobi" />
         </td>
       </tr>
       <tr style="width: 100%; max-width: 1000px;text-align:center;">
         <th><nfwui:LabelBox id="lblNowCarSpaceHenkan" code="<%= MessageIdConstant.SKF2010_SC004_NOW_CAR_SPACE_HENKAN %>" /></th>
         <td align="left">
-          <imui:textbox id="henkanbi" name="henkanbi" value="${form.henkanbi }" class="${form.henkanbiErr }" />
+          <nfwui:DateBox id="henkanbi" name="henkanbi" />
         </td>
         <th><nfwui:LabelBox id="lblNewCarSpaceStart" code="<%= MessageIdConstant.SKF2010_SC004_NEW_CAR_SPACE_START %>" /></th>
         <td align="left">
-            <imui:textbox id="shiyobi" name="shiyobi" value="${form.shiyobi }" class="${form.shiyobiErr }" />
+          <nfwui:DateBox id="shiyobi" name="shiyobi" />
         </td>
       </tr>
-      <im:calendar floatable="true" altField="#taikyobi" />
-      <im:calendar floatable="true" altField="#nyukyobi" />
-      <im:calendar floatable="true" altField="#henkanbi" />
-      <im:calendar floatable="true" altField="#shiyobi" />
 <c:if test="${form.carNoInputFlg2 != null }">
       <tr style="width: 100%; max-width: 1000px;text-align:center;">
         <td style="border: none"></td>
         <td style="border: none"></td>
         <th><nfwui:LabelBox id="lblNewCarSpaceStart2" code="<%= MessageIdConstant.SKF2010_SC004_NEW_CAR_SPACE_START %>" /></th>
         <td align="left">
-          <imui:textbox id="shiyobi2" name="shiyobi2" value="${form.shiyobi2 }" />
+          <nfwui:DateBox id="shiyobi2" name="shiyobi2" />
         </td>
       </tr>
-      <im:calendar floatable="true" altField="#shiyobi2" />
 </c:if>
       <tr>
         <td  style="color: red;border: none;" colspan="4">
@@ -240,7 +240,7 @@ ${form.operationGuide }
             <tr  style="width: 100%; max-width: 1000px;text-align:center;">
                 <th style="width: 200px; max-width: 200px;"><label>承認者へのコメント</label></th>
             <td>
-                <imui:textArea id="commentNote" name="commentNote" style="height:50px;width:100%;" placeholder="例 添付資料が間違っています。" />
+                <imui:textArea id="commentNote" name="commentNote" style="height:80px;width:100%;" placeholder="例 添付資料が間違っています。" />
            </td>
            </tr>
         </table>
@@ -279,13 +279,13 @@ ${form.operationGuide }
            <!-- 取下げボタン -->
            <nfwui:ConfirmButton id="cancelBtn" name="cancelBtn" value="取下げ" 
            cssClass="imui-medium-button" cssStyle="width: 150px" 
-           title="<%= MessageIdConstant.SKF2010_SC006_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2017 %>"
+           title="<%= MessageIdConstant.SKF2010_SC006_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2002 %>"
            url="skf/Skf2010Sc004/Cancel" formId="form" removePatterns="PTN_B,PTN_C"
            remove="${form.representBtnFlg }" />
            <!-- 同意するボタン -->
            <nfwui:ConfirmButton id="douiBtn" name="douiBtn" value="同意する" 
            cssClass="imui-medium-button" cssStyle="width: 150px" 
-           title="<%= MessageIdConstant.SKF2010_SC006_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2012 %>"
+           title="<%= MessageIdConstant.SKF2010_SC006_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2016 %>"
            url="skf/Skf2010Sc004/Agree" formId="form" removePatterns="PTN_A,PTN_C"
            remove="${form.representBtnFlg }" />
            <!-- 同意しないボタン -->

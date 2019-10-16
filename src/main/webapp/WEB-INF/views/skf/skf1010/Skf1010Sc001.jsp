@@ -129,27 +129,29 @@
 
     <!-- コンテンツエリア -->
     
-<div class="imui-form-container-wide" width="1350px" style="width: 100%; max-width: 1350px;">
+<div class="imui-form-container-wide" style="width: 95%;">
 <!-- 代行ログイン時のみ表示されるメッセージ -->
 <jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
 
-<table class="imui-form-search-condition" width="1100px">
+<nfwui:Form id="form" name="form" modelAttribute="form">
+<table class="imui-form-search-condition" style="width: 100%; ">
             <td style="width: 50%; border: none;;background-color: #fdfdff;">
             
-                <div class="imui-form-container-wide"style="width: 650px; max-width: 650px;">
+<imart:condition validity="${form.level1}" negative >
+                <div class="imui-form-container-wide"style="width: 93%;">
                 
      <!-- 申請者 -->
-        <div class='imui-chapter-title' style='margin-bottom: 10px;'>
-            <h2>申請</h2>
-        </div>
+            <nfwui:Title id="applicationTitle" code="<%= MessageIdConstant.SKF1010_SC001_APPLICATION_TITLE %>" titleLevel="2" />
         <table class="imui-form-search-condition">
 
                     <tr>
-                        <th width="20%">
-                            <a href="http://localhost:8080/imart/skf/Skf2010Sc007/init?confirmationKbn=1" class="imui-accent" style="margin-left: 8px">社宅入居希望等調書</a>
+                        <th>
+                            <a href="/imart/skf/Skf2010Sc007/init?confirmationKbn=1" class="imui-accent" style="margin-left: 8px">
+                            	<nfwui:LabelBox id="syatakuNyukyoKibotouTyousyo" code="<%= MessageIdConstant.SKF1010_SC001_SYATAKU_NYUKYO_KIBOTOU_TYOUSYO %>" />
+                            </a>
                         </th>
-                        <td width="30%">
-                            <font>社宅・寮に入居したい場合に作成する申請書類です。(※併せて退居が発生する場合、退居届も自動で作成されます。)</font>
+                        <td style="width: 60%;">
+                           <nfwui:LabelBox id="syatakuNyukyoKibotouTyousyoMessage" code="<%= MessageIdConstant.SKF1010_SC001_SYATAKU_NYUKYO_KIBOTOU_TYOUSYO_MESSAGE %>" />
                         </td>
                     </tr> 
                     
@@ -165,45 +167,53 @@
                     -->
                     
                     <tr>
-                        <th width="20%">
-                            <a href="http://localhost:8080/imart/skf/Skf3090Sc004/init?menuFlg=1" class="imui-accent" style="margin-left: 8px">社宅（自動車保管場所）退居届</a>
+                        <th>
+                            <a href="/imart/skf/Skf2010Sc007/init?confirmationKbn=2" class="imui-accent" style="margin-left: 8px">
+                            	<nfwui:LabelBox id="syatakuTaikyo" code="<%= MessageIdConstant.SKF1010_SC001_SYATAKU_TAIKYO %>" />
+                            </a>
                         </th>
-                        <td width="30%">
-                            <font>社宅・寮を退居する場合及び駐車場を返還する場合に作成する申請書類です。</font>
+                        <td style="width: 60%;">
+                            <nfwui:LabelBox id="syatakuTaikyoMessage" code="<%= MessageIdConstant.SKF1010_SC001_SYATAKU_TAIKYO_MESSAGE %>" />
                         </td>
                      </tr> 
                      <tr>
-                      <th width="20%">
-                            <a href="../S0008/S0008_ShinseiJokyoIchiran_IppanUserVer.html" class="imui-accent" style="margin-left: 8px">社宅申請状況一覧</a>
+                      <th>
+                            <a href="/imart/skf/Skf2010Sc003/init" class="imui-accent" style="margin-left: 8px">
+                            	<nfwui:LabelBox id="syatakuSinseiZyokyoItiran" code="<%= MessageIdConstant.SKF1010_SC001_SYATAKU_SINSEI_ZYOKYO_ITIRAN %>" />
+                            </a>
                         </th>
-                        <td width="30%">
-                            <font>申請書類を確認します。<br>　　　</font>
+                        <td style="width: 60%;">
+                            <nfwui:LabelBox id="syatakuSinseiZyokyoItiranMessage" code="<%= MessageIdConstant.SKF1010_SC001_SYATAKU_SINSEI_ZYOKYO_ITIRAN_MESSAGE %>" /><br>
                        </td>
 
                      </tr>
                      
         </table>
+</imart:condition>
 </div>
 
 <div name="daikoHide">
-<div class="imui-form-container-wide" style="width: 650px; max-width: 650px;">
+<imart:condition validity="${form.level2}" negative>
+<div class="imui-form-container-wide" style="width: 93%;">
        <!-- 社宅窓口 -->
-        <div class='imui-chapter-title' style='margin-bottom: 0px;'>
-            <h2>窓口</h2>
-        </div>  
+            <nfwui:Title id="windowTitle" code="<%= MessageIdConstant.SKF1010_SC001_WINDOW_TITLE %>" titleLevel="2" />
           
         <table class="imui-form-search-condition">
 
                     <ul class='imui-list-link-side'>
                      <tr>
-                     <th width="20%">
-                          <a href="../S0010/S0010_ShatakuSearchPage_UnderButton.html" class="imui-accent" style="margin-left: 8px">申請書類を承認する</a>
+                     
+                      <imart:condition validity="${form.level2_1}" negative> 
+                     <th>
+                          <a href="/imart/skf/Skf2010Sc005/init" class="imui-accent" style="margin-left: 8px">
+                          	<nfwui:LabelBox id="sinseiSyoruiSyonin" code="<%= MessageIdConstant.SKF1010_SC001_SINSEI_SYORUI_SYONIN %>" />
+                          </a>
                       </th>
-                      <td width="30%">
-                          <font>申請者への提示、および申請書類の承認を行います。<br>　　　</font>
+                      <td style="width: 60%;">
+                          <nfwui:LabelBox id="sinseiSyoruiSyoninMessage" code="<%= MessageIdConstant.SKF1010_SC001_SINSEI_SYORUI_SYONIN_MESSAGE %>" /><br>
                       </td>
+                      </imart:condition>
                     </tr>
-                    
                     <!--
                     <tr>
                       <th width="20%">
@@ -222,72 +232,92 @@
                     </tr>
 
                     <tr>
-                        <th width="20%">
-                            <a href="../S1001/S1001_ShatakuSearchPage.html" class="imui-accent" style="margin-left: 8px">社宅を管理する</a>
+                        <imart:condition validity="${form.level2_2}" negative> 
+                        <th>
+                            <a href="/imart/skf/Skf3010Sc001/init" class="imui-accent" style="margin-left: 8px">
+                            	<nfwui:LabelBox id="syatakuKanri" code="<%= MessageIdConstant.SKF1010_SC001_SYATAKU_KANRI %>" />
+                            </a>
                         </th>
-                        <td width="30%">
-                            <font>社宅の登録を行います。<br>　　</font>
+                        <td style="width: 60%;">
+                            <nfwui:LabelBox id="syatakuKanriMessage" code="<%= MessageIdConstant.SKF1010_SC001_SYATAKU_KANRI_MESSAGE %>" /><br>
                         </td>
                     </tr>
                     <tr>
-                        <th width="20%">
-                            <a href="../S2003/S2003_TenninshaSearchPage.html" class="imui-accent" style="margin-left: 8px">転任者情報を管理する</a>
+                        <th>
+                            <a href="/imart/skf/Skf3020Sc004/init" class="imui-accent" style="margin-left: 8px">
+                            	<nfwui:LabelBox id="tenninsyaZyohoKanri" code="<%= MessageIdConstant.SKF1010_SC001_TENNINSYA_ZYOHO_KANRI %>" />
+                            </a>
                         </th>
-                        <td width="30%">
-                            <font >転任者情報の登録、一覧を表示します。<br>また、転任者調書(Excel)の取込を行います。</font>
+                        <td style="width: 60%;">
+                            <nfwui:LabelBox id="tenninsyaZyohoKanriMessage" code="<%= MessageIdConstant.SKF1010_SC001_TENNINSYA_ZYOHO_KANRI_MESSAGE %>" />
                         </td>
                     </tr>
 
                     <tr>
-                        <th width="20%">
-                            <a href="../S2005/S2005_NyutaikyoYoteiSearchPage.html" class="imui-accent" style="margin-left: 8px">入退居情報を管理する</a>
+                        <th>
+                            <a href="/imart/skf/Skf3021Sc001/init" class="imui-accent" style="margin-left: 8px">
+                            	<nfwui:LabelBox id="nyutaikyoZyohoKanri" code="<%= MessageIdConstant.SKF1010_SC001_NYUTAIKYO_ZYOHO_KANRI %>" />
+                            </a>
                         </th>
-                        <td width="30%">
-                            <font >入退居予定の一覧を表示します。<br>　　　</font>
+                        <td style="width: 60%;">
+                            <nfwui:LabelBox id="nyutaikyoZyohoKanriMessage" code="<%= MessageIdConstant.SKF1010_SC001_NYUTAIKYO_ZYOHO_KANRI_MESSAGE %>" /><br>
                         </td>
                     </tr>
                     <tr>
-                        <th width="20%">
-                            <a href="../S2006/S2006_TeijiDataSearchPage.html" class="imui-accent" style="margin-left: 8px">提示データを作成する</a>
+                        <th>
+                            <a href="/imart/skf/Skf3022Sc005/init" class="imui-accent" style="margin-left: 8px">
+                            	<nfwui:LabelBox id="teijiDataSakusei" code="<%= MessageIdConstant.SKF1010_SC001_TEIJI_DATA_SAKUSEI %>" />
+                            </a>
                      </th>
-                        <td width="30%">
-                            <font >提示データの作成を行います。<br>　　　</font>
+                        <td style="width: 60%;">
+                            <nfwui:LabelBox id="teijiDataSakuseiMessage" code="<%= MessageIdConstant.SKF1010_SC001_TEIJI_DATA_SAKUSEI_MESSAGE %>" /><br>
                         </td>
                     </tr>
                     <tr>
-                        <th width="20%">
-                            <a href="../S0025/S0025_KariageKouhoBukkenJokyoIchiran.html" class="imui-accent" style="margin-left: 8px">借上候補物件を提示する</a>
+                        <th>
+                            <a href="/imart/skf/Skf2060Sc004/init" class="imui-accent" style="margin-left: 8px">
+                            	<nfwui:LabelBox id="kariageKohoBukkenTeiji" code="<%= MessageIdConstant.SKF1010_SC001_KARIAGE_KOHO_BUKKEN_TEIJI %>" />
+                            </a>
                         </th>
-                        <td width="30%">
-                            <font >借上候補物件の提示情報の完了、および申請者への提示を行います。</font><br/><br/>
+                        <td style="width: 60%;">
+                            <nfwui:LabelBox id="kariageKohoBukkenTeijiMessage" code="<%= MessageIdConstant.SKF1010_SC001_KARIAGE_KOHO_BUKKEN_TEIJI_MESSAGE %>" />
                         </td>
                     </tr>
                     <tr>
-                        <th width="20%">
-                            <a href="../S3001/S3001_ShatakuKanriDaichoSearchPage.html" class="imui-accent" style="margin-left: 8px">社宅管理台帳を確認する</a>
+                        <th>
+                            <a href="/imart/skf/Skf3030Sc001/init" class="imui-accent" style="margin-left: 8px">
+                            	<nfwui:LabelBox id="syatakuKanriDaityoKakunin" code="<%= MessageIdConstant.SKF1010_SC001_SYATAKU_KANRI_DAITYO_KAKUNIN %>" />
+                            </a>
                         
                         </th>
-                        <td width="30%">
-                            <font >社宅管理台帳の確認を行います。<br>　　　　</font>
+                        <td style="width: 60%;">
+                            <nfwui:LabelBox id="syatakuKanriDaityoKakuninMessage" code="<%= MessageIdConstant.SKF1010_SC001_SYATAKU_KANRI_DAITYO_KAKUNIN_MESSAGE %>" /><br>
                         </td>
                      </tr> 
 
                      <tr>
-                        <th width="20%">
-                            <a href="../S5001/S5001_SyainBangouIkkatsuSettei.html" class="imui-accent" style="margin-left: 8px">社員情報を一括更新する</a>
+                        <th>
+                            <a href="/imart/skf/Skf3050Sc001/init" class="imui-accent" style="margin-left: 8px">
+                            	<nfwui:LabelBox id="syainZyohoKosin" code="<%= MessageIdConstant.SKF1010_SC001_SYAIN_ZYOHO_KOSIN %>" />
+                            </a>
                         </th>
-                        <td width="30%">
-                            <font >社員番号の一括設定を行います。<br>　　　</font>
+                        <td style="width: 60%;">
+                            <nfwui:LabelBox id="syainZyohoKosinMessage" code="<%= MessageIdConstant. SKF1010_SC001_SYAIN_ZYOHO_KOSIN_MESSAGE%>" /><br>
                         </td>
+                         </imart:condition>
                     </tr>                
 
                     <tr>  
-                        <th width="20%">
-                            <a href="../S5002/S5002_GetsujiUnyouKanri.html" class="imui-accent" style="margin-left: 8px">月締め処理を行う</a>
+                    <imart:condition validity="${form.level2_3}" negative>
+                        <th>
+                            <a href="/imart/skf/Skf3050Sc002/init" class="imui-accent" style="margin-left: 8px">
+                            	<nfwui:LabelBox id="tukizimeSyori" code="<%= MessageIdConstant.SKF1010_SC001_TUKIZIME_SYORI %>" />
+                            </a>
                         </th>
-                        <td width="30%">
-                            <font >月次の運用管理を行います。<br>　　　</font>
+                        <td style="width: 60%;">
+                            <nfwui:LabelBox id="tukizimeSyoriMessage" code="<%= MessageIdConstant.SKF1010_SC001_TUKIZIME_SYORI_MESSAGE %>" /><br>
                         </td>
+                        </imart:condition>
                     </tr>  
 
                     <!-- スペース-->
@@ -297,26 +327,31 @@
                     </tr>
 
                     <tr>
-                        <th width="20%">
-                            <a href="../S4001/S4001_RentalBihinShijishoPage.html" class="imui-accent" style="margin-left: 8px">レンタル備品指示書を作成する</a>
+                    <imart:condition validity="${form.level2_4}" negative>
+                        <th>
+                            <a href="/imart/skf/Skf3040Sc001/init" class="imui-accent" style="margin-left: 8px">
+                            	<nfwui:LabelBox id="rentaruBihinSizisyoSakusei" code="<%= MessageIdConstant.SKF1010_SC001_RENTARU_BIHIN_SIZISYO_SAKUSEI %>" />
+                            </a>
                         
                         </th>
-                        <td width="30%">
-                            <font >レンタル備品指示書を出力します。<br>　　</font>
+                        <td style="width: 60%;">
+                            <nfwui:LabelBox id="rentaruBihinSizisyoSakuseiMessage" code="<%= MessageIdConstant.SKF1010_SC001_RENTARU_BIHIN_SIZISYO_SAKUSEI_MESSAGE %>" /><br>
                         </td>
                     </tr>
                     
                     <!---->
                     <tr>
-                        <th width="20%">
-                            <a href="../S4002/S4002_BihinHannyuHanshutsuCheckListPage.html" class="imui-accent" style="margin-left: 8px">備品搬入・搬出確認リストを作成する</a>
+                        <th>
+                            <a href="/imart/skf/Skf3040Sc002/init" class="imui-accent" style="margin-left: 8px">
+                            	<nfwui:LabelBox id="bihinHannyuHansyutuKakunin" code="<%= MessageIdConstant.SKF1010_SC001_BIHIN_HANNYU_HANSYUTU_KAKUNIN %>" />
+                            </a>
                         
                         </th>
-                        <td width="30%">
-                            <font >備品搬入・搬出確認リストを出力します。<br>　　</font>
+                        <td style="width: 60%;">
+                            <nfwui:LabelBox id="bihinHannyuHansyutuKakuninMessage" code="<%= MessageIdConstant.SKF1010_SC001_BIHIN_HANNYU_HANSYUTU_KAKUNIN_MESSAGE %>" /><br>
                         </td>
                     </tr>
-
+					</imart:condition>
                     <!-- スペース-->
                     <tr style="border:none">
                        <td style="border:none">
@@ -324,21 +359,28 @@
                     </tr>
 
                     <tr>
-                        <th width="20%">
-                            <a href="../所有者情報一覧・詳細/S0000_ShoyushaJouhouIchiran.html" class="imui-accent" style="margin-left: 8px">法定調書データを管理する</a>
+                    <imart:condition validity="${form.level2_5}" negative>
+                        <th>
+                            <a href="/imart/skf/Skf3070Sc001/init" class="imui-accent" style="margin-left: 8px">
+                            	<nfwui:LabelBox id="hoteiTyosyoDataKanri" code="<%= MessageIdConstant.SKF1010_SC001_HOTEI_TYOSYO_DATA_KANRI %>" />
+                            </a>
                         </th>
-                        <td width="30%">
-                            <font >法定調書を作成するに当たり、必要な情報の管理、出力を行います。</font><br/><br/>
+                        <td style="width: 60%;">
+                            <nfwui:LabelBox id="hoteiTyosyoDataKanriMessage" code="<%= MessageIdConstant.SKF1010_SC001_HOTEI_TYOSYO_DATA_KANRI_MESSAGE %>" />
                         </td>
+                    </imart:condition>
                     </tr>
-                    
                     <tr>
-                        <th width="20%">
-                            <a href="../S6001/S6001_AgeKasanSearchPage.html" class="imui-accent" style="margin-left: 8px">年齢による使用料の変更通知</a>                        
+                    <imart:condition validity="${form.level2_6}" negative>
+                        <th>
+                            <a href="/imart/skf/Skf3060Sc001/init" class="imui-accent" style="margin-left: 8px">
+                            	<nfwui:LabelBox id="nenreiSiyoryoHenkoTuti" code="<%= MessageIdConstant.SKF1010_SC001_NENREI_SIYORYO_HENKO_TUTI %>" />
+                            </a>                        
                         </th>
-                        <td width="30%">
-                            <font >年齢による社宅の使用料の変更通知の設定を行います。<br>　　　</font>
+                        <td style="width: 60%;">
+                            <nfwui:LabelBox id="nenreiSiyoryoHenkoTutiMessage" code="<%= MessageIdConstant.SKF1010_SC001_NENREI_SIYORYO_HENKO_TUTI_MESSAGE %>" /><br>
                         </td>
+                    </imart:condition>
                     </tr>
 
                     </ul>
@@ -347,49 +389,57 @@
         
         </div>
         </div>
-        <div class="imui-form-container-wide" style="width: 650px; max-width: 650px;">
+</imart:condition>        
+<imart:condition validity="${form.level3}" negative>      
+        <div class="imui-form-container-wide" style="width: 93%;">
 
        <!-- 管理者 --><!-- 次の内容はIM共通機能利用で、不要になるかも　操作ログメンテナンス、代行ログイン、お知らせ管理画面、メニューメンテナンス、機能権限マスタメンテナンス-->
-        <div class='imui-chapter-title' style='margin-bottom: 0px;'>
-            <h2>管理者</h2>
-        </div>
+            <nfwui:Title id="administratorTitle" code="<%= MessageIdConstant.SKF1010_SC001_ADMINISTRATOR_TITLE %>" titleLevel="2" />
         <table class="imui-form-search-condition">
          <ul class='imui-list-link-side'>
     
                     <tr>
 
-                        <th width="20%">
-                            <a href="http://localhost:8080/imart/skf/Skf2010Sc008/init" class="imui-accent" style="margin-left: 8px">代行ログイン</a>
+                        <th>
+                            <a href="/imart/skf/Skf2010Sc008/init" class="imui-accent" style="margin-left: 8px">
+                            	<nfwui:LabelBox id="daikoLogin" code="<%= MessageIdConstant.SKF1010_SC001_DAIKO_LOGIN %>" />
+                            </a>
                         </th>
-                        <td width="30%">
-                            <font >代行ログインを行います。<br>　　　</font>
+                        <td style="width: 60%;">
+                            <nfwui:LabelBox id="daikoLoginMessage" code="<%= MessageIdConstant.SKF1010_SC001_DAIKO_LOGIN_MESSAGE %>" /><br>
                         </td>
                     </tr>
                     
                     <tr name="daikoHide">
-                        <th width="20%">
-                            <a href="../S9110/S9110_OshiraseMasterMaintenance.html" class="imui-accent" style="margin-left: 8px">お知らせマスタメンテナンス</a>
+                        <th>
+                            <a href="/imart/skf/Skf3090Sc008/init" class="imui-accent" style="margin-left: 8px">
+                            	<nfwui:LabelBox id="osiraseMasutaMaintenance" code="<%= MessageIdConstant.SKF1010_SC001_OSIRASE_MASUTA_MAINTENANCE %>" />
+                            </a>
                         </th>
-                        <td width="30%">
-                            <font >システムに関するお知らせ欄の管理を行います。<br>　　　</font>
+                        <td style="width: 60%;">
+                            <nfwui:LabelBox id="osiraseMasutaMaintenanceMessage" code="<%= MessageIdConstant.SKF1010_SC001_OSIRASE_MASUTA_MAINTENANCE_MESSAGE %>" /><br>
                         </td>
                     </tr>
 
                     <tr name="daikoHide">
-                      <th width="20%">
-                          <a href="../S9004/S9004_UserMasterIchiran.html" class="imui-accent" style="margin-left: 8px">従業員マスタメンテナンス</a>
+                      <th>
+                          <a href="/imart/skf/Skf3090Sc004/init" class="imui-accent" style="margin-left: 8px">
+                          	<nfwui:LabelBox id="zyugyoinMasutaMaintenance" code="<%= MessageIdConstant.SKF1010_SC001_ZYUGYOIN_MASUTA_MAINTENANCE %>" />
+                          </a>
                       </th>
-                      <td width="30%">
-                          <font >社宅利用者の従業員マスタを管理します。<br>　　　</font>
+                      <td style="width: 60%;">
+                          <nfwui:LabelBox id="zyugyoMasutaMaintenanceMessage" code="<%= MessageIdConstant.SKF1010_SC001_ZYUGYOIN_MASUTA_MAINTENANCE_MESSAGE %>" /><br>
                       </td>
                     </tr>
                     
                     <tr name="daikoHide">
-                      <th width="20%">
-                          <a href="../S9006/S9006_SohikiMasterIchiran.html" class="imui-accent" style="margin-left: 8px">組織マスタメンテナンス</a>
+                      <th>
+                          <a href="/imart/skf/Skf3090Sc006/init" class="imui-accent" style="margin-left: 8px">
+                          	<nfwui:LabelBox id="soshikiMasutaMaintenance" code="<%= MessageIdConstant.SKF1010_SC001_SOSHIKI_MASUTA_MAINTENANCE %>" /> 
+                          </a>
                       </th>
-                      <td width="30%">
-                          <font >社宅申請システム利用者の組織を管理します。<br>　　　</font>
+                      <td style="width: 60%;">
+                          <nfwui:LabelBox id="soshikiMasutaMaintenanceMessage"  code="<%= MessageIdConstant.SKF1010_SC001_SOSHIKI_MASUTA_MAINTENANCE_MESSAGE %>" /><br>
                       </td>
                     </tr>
                     <!--
@@ -404,89 +454,96 @@
                     -->
                     
                     <tr name="daikoHide">
-                      <th width="20%">
-                            <a href="../S9001/S9001_GenbutsuShikyukagakuMasterIchiran.html" class="imui-accent" style="margin-left: 8px">現物支給価額マスタメンテナンス</a>
+                      <th>
+                            <a href="/imart/skf/Skf3090Sc001/init" class="imui-accent" style="margin-left: 8px">
+                            	<nfwui:LabelBox id="genbutuSikyuKagakuMasutaMaintenance" code="<%= MessageIdConstant.SKF1010_SC001_GENBUTU_SIKYU_KAGAKU_MASUTA_MAINTENANCE %>" />
+                            </a>
                         </th>
-                        <td width="30%">
-                            <font >現物支給価額の管理を行います。<br>　　　</font>
+                        <td style="width: 60%;">
+                            <nfwui:LabelBox id="genbutuSikyuKagakuMasuatMaintenanceMessage" code="<%= MessageIdConstant.SKF1010_SC001_GENBUTU_SIKYU_KAGAKU_MASUTA_MAINTENANCE_MESSAGE %>" /><br>
                       </td>
                     </tr>
                     
                     <tr name="daikoHide">
-                        <th width="20%">
-                            <a href="../S9003/S9003_JigyoRyouikiMasrerTouroku_before.html" class="imui-accent" style="margin-left: 8px">事業領域マスタメンテナンス</a>                        
+                        <th>
+                            <a href="/imart/skf/Skf3090Sc003/init" class="imui-accent" style="margin-left: 8px">
+                            	<nfwui:LabelBox id="zigyoRyoikiMasutaMaintenance" code="<%= MessageIdConstant.SKF1010_SC001_ZIGYO_RYOIKI_MASUTA_MAINTENANCE %>" />
+                            </a>                        
                         </th>
-                        <td width="30%">
-                            <font >事業領域の管理を行います。<br>　　　</font>
+                        <td style="width: 60%;">
+                            <nfwui:LabelBox id="zigyoRyoikiMasutaMaintenanceMessage" code="<%= MessageIdConstant.SKF1010_SC001_ZIGYO_RYOIKI_MASUTA_MAINTENANCE_MESSAGE %>" /><br>
                         </td>
                     </tr>
          </ul>
         </table>
         </div>
-<div class="imui-form-container-wide" style="width: 650px; max-width: 650px;">
-        <div class='imui-chapter-title' style='margin-bottom: 0px;'>
-            <h2>操作方法に困ったときは</h2>
-        </div>
+</imart:condition>  
+<imart:condition validity="${form.level4}" negative>      
+<div class="imui-form-container-wide" style="width: 93%;">
+            <nfwui:Title id="difficultOperationTitle" code="<%= MessageIdConstant.SKF1010_SC001_DIFFICULT_OPERATION_TITLE %>" titleLevel="2" />
         <table class="imui-table">
             <tr>
 
                     <ul class='imui-list-link-side'>
                     <tr style="width: 100px; max-width:100px;" >
                         <th>
-                            <a href="../S0000/S0010_ShinseiJokenKakunin.html" class="imui-accent" style="margin-left: 8px">マニュアル(一般)</a>
+                            <a href="../S0000/S0010_ShinseiJokenKakunin.html" class="imui-accent" style="margin-left: 8px">
+                            	<nfwui:LabelBox id="manyuaruIppan" code="<%= MessageIdConstant.SKF1010_SC001_MANYUARU_IPPAN %>" />
+                            </a>
                         </th>
                     </tr>
-                    
                     <tr>
-
+                    <imart:condition validity="${form.level4_1}" negative> 
                         <th>
-                            <a href="../S0000/S0010_SyatakuNyukyoKibouChoushoPage_UnderButton.html" class="imui-accent" style="margin-left: 8px">マニュアル(管理)</a>
+                            <a href="../S0000/S0010_SyatakuNyukyoKibouChoushoPage_UnderButton.html" class="imui-accent" style="margin-left: 8px">
+                            	<nfwui:LabelBox id="manyuaruKanri" code="<%= MessageIdConstant.SKF1010_SC001_MANYUARU_KANRI %>" />
+                            </a>
                         </td>
-
+					 </imart:condition>
                      <tr> 
                     </ul>
             </tr>
         </table>
+</imart:condition>
     </div>
 
     </div>
                 </div>  
             </td>
 
-            <td style="width: 50%; border: none;;background-color: #fdfdff;">
-
-
+            <td style="width: 49%; border: none;;background-color: #fdfdff;">
+<imart:condition validity="${form.level5}" negative> 
             <!-- 未処理情報 -->
             <div name="daikoHide">
-                <div class="imui-form-container-wide" width="100%" style="width: 100%; max-width: 600px;">
+                <div class="imui-form-container-wide" style="width: 94%;">
                     <table>
-                        <div class="imui-chapter-title" style="margin-bottom: 10px;"><h2>未処理情報</h2></div>
+                    <nfwui:Title id="rawInformation" code="<%= MessageIdConstant.SKF1010_SC001_RAW_INFORMATION_TITLE %>" titleLevel="2" />
                                 <tr>
                                                                         <table class="imui-form-search-condition" style="width:100%;">
                                             <tbody>
                                                 <tr>
-                                                    <th style="width:520px;"><label>メッセージ</label></th>
-                                                    <th style="width:80px;text-align:center"><label>件数</label></th>
+                                                    <th style="width:520px;">
+                                                    <nfwui:LabelBox id="lblMessage1" code="<%= MessageIdConstant.SKF1010_SC001_MESSAGE %>" />
+                                                    </th>
+                                                    <th style="width:80px;text-align:center">
+                                                    <nfwui:LabelBox id="lblNumber" code="<%= MessageIdConstant.SKF1010_SC001_NUMBER %>" />
+                                                    </th>
 
                                                 </tr>
                                                 <tr>
                                                     <td style="text-align:left;">
-                                                        社宅入居希望等調書の申請が無い入居情報があります。督促メールを送信してください。
+                                                    	<nfwui:LabelBox id="syatakuNyukyoNotKibo" code="<%= MessageIdConstant.SKF1010_SC001_SYATAKU_NYUKYO_NOT_KIBO %>" />
                                                     </td>
                                                     <td style="text-align:center;"   colspan="5" >
-                                                        <a href="" class="imui-accent" style="margin-left: 8px;text-align:center;">
-                                                        0件
-                                                        </a>
+                                                     <nfwui:Link id="nyutaikyoCount1" name="nyutaikyoCount1" label="${form.nyutaikyoCount1}件" use="anchor" href="/imart/skf/Skf3022Sc005/init" />
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="text-align:left;">
-                                                        退居届の申請が無い退居情報があります。督促メールを送信してください。
+                                                        <nfwui:LabelBox id="taikyoTodokeNotSinsei" code="<%= MessageIdConstant.SKF1010_SC001_TAIKYO_TODOKE_NOT_SINSEI %>" />
                                                     </td>
                                                     <td style="text-align:center;"   colspan="5" >
-                                                        <a href="" class="imui-accent" style="margin-left: 8px;text-align:center;">
-                                                        0件
-                                                        </a>
+                                                     <nfwui:Link id="nyutaikyoCount2" name="nyutaikyoCount2" label="${form.nyutaikyoCount2}件" use="anchor" href="/imart/skf/Skf3022Sc005/init" />
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -494,490 +551,146 @@
                                         <table class="imui-form-search-condition" style="width:100%;">
                                             <tbody>
                                                 <tr>
-                                                    <th style="width:520px;"><label>メッセージ</label></th>
-                                                    <th style="width:40px;text-align:center"><label>本社</label></th>
-                                                    <th style="width:40px;text-align:center"><label>東京</label></th>
-                                                    <th style="width:40px;text-align:center"><label>八王子</label></th>
-                                                    <th style="width:40px;text-align:center"><label>名古屋</label></th>
-                                                    <th style="width:40px;text-align:center"><label>金沢</label></th>
+                                                    <th style="width:520px;">
+                                                    <nfwui:LabelBox id="lblMessage2" code="<%= MessageIdConstant.SKF1010_SC001_MESSAGE %>" />
+                                                    </th>
+                                                    <th style="width:40px;text-align:center">
+                                                    <nfwui:LabelBox id="lblHonsya" code="<%= MessageIdConstant.SKF1010_SC001_HONSYA %>" />
+                                                    </th>
+                                                    <th style="width:40px;text-align:center">
+                                                    <nfwui:LabelBox id="lblTokyo" code="<%= MessageIdConstant.SKF1010_SC001_TOKYO %>" />
+                                                    </th>
+                                                    <th style="width:40px;text-align:center">
+                                                    <nfwui:LabelBox id="lblHatiouzi" code="<%= MessageIdConstant.SKF1010_SC001_HATIOUZI %>" />
+                                                    </th>
+                                                    <th style="width:40px;text-align:center">
+                                                    <nfwui:LabelBox id="lblNagoya" code="<%= MessageIdConstant.SKF1010_SC001_NAGOYA %>" />
+                                                    </th>
+                                                    <th style="width:40px;text-align:center">
+                                                    <nfwui:LabelBox id="lblKanazawa" code="<%= MessageIdConstant.SKF1010_SC001_KANAZAWA %>" />
+                                                    </th>
                                                 </tr>
 
+										<c:forEach var="nyutaikyoInformation" items="${form.nyutaikyoInformationList}">                                                    
                                                 <tr>
                                                     <td style="text-align:left;">
-                                                        社宅入居希望等調書の申請があります。<br>申請内容を確認してください。
+                                                    <nfwui:LabelBox id="syatakuNyukyoAppl${nyutaikyoInformation.index }" code="${nyutaikyoInformation.label}" />
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                    <nfwui:Link id="honsha${nyutaikyoInformation.index}" name="honsha${nyutaikyoInformation.index}" label="${nyutaikyoInformation.nyutaikyoHonsha}件" use="anchor" href="${nyutaikyoInformation.link}" />
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                    <nfwui:Link id="tokyo${nyutaikyoInformation.index}" name="tokyo${nyutaikyoInformation.index}" label="${nyutaikyoInformation.nyutaikyoTokyo}件" use="anchor" href="${nyutaikyoInformation.link}" />
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                    <nfwui:Link id="hatiouzi${nyutaikyoInformation.index}" name="hatiouzi${nyutaikyoInformation.index}" label="${nyutaikyoInformation.nyutaikyoHatiouzi}件" use="anchor" href="${nyutaikyoInformation.link}" />
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                    <nfwui:Link id="nagoya${nyutaikyoInformation.index}" name="nagoya${nyutaikyoInformation.index}" label="${nyutaikyoInformation.nyutaikyoNagoya}件" use="anchor" href="${nyutaikyoInformation.link}" />
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                    <nfwui:Link id="kanazawa${nyutaikyoInformation.index}" name="kanazawa${nyutaikyoInformation.index}" label="${nyutaikyoInformation.nyutaikyoKanazawa}件" use="anchor" href="${nyutaikyoInformation.link}" />
                                                     </td>
                                                 </tr>
+ 										</c:forEach>                                                   
+										<c:forEach var="bihinKiboInformation"  items="${form.bihinKiboInformationList}">                                              
                                                 <tr>
                                                     <td style="text-align:left;">
-                                                        入居希望者に社宅提示が完了していないデータあります。<br>社宅を提示してください。
+                                                    <nfwui:LabelBox id="bihinKibo${bihinKiboInformation.index}" code="${bihinKiboInformation.label}" />    
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                    <nfwui:Link id="honsha${bihinKiboInformation.index}" name="honsha${bihinKiboInformation.index}" label="${bihinKiboInformation.bihinKiboHonsha}件" use="anchor" href="${bihinKiboInformation.link}" />
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                    <nfwui:Link id="tokyo${bihinKiboInformation.index}" name="tokyo${bihinKiboIformation.index}" label="${bihinKiboInformation.bihinKiboTokyo}件" use="anchor" href="${bihinKiboInformation.link}" />
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                    <nfwui:Link id="hatiouzi${bihinKiboInformation.index}" name="hatiouzi${bihinKiboInformation.index}" label="${bihinKiboInformation.bihinKiboHatiouzi}件" use="anchor" href="${bihinKiboInformation.link}" />
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                    <nfwui:Link id="nagoya${bihinKiboInformation.index}" name="nagoya${bihinKiboInformation.index}" label="${bihinKiboInformation.bihinKiboNagoya}件" use="anchor" href="${bihinKiboInformation.link}" />
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                    <nfwui:Link id="kanazawa${bihinKiboInformation.index}" name="kanazawa${bihinKiboInformation.index}" label="${bihinKiboInformation.bihinKiboKanazawa}件" use="anchor" href="${bihinKiboInformation.link}" />
                                                     </td>
 
                                                 </tr>
+										</c:forEach>                                                
                                                 <tr>
                                                     <td style="text-align:left;">
-                                                        提示社宅の本人確認が完了していないデータがあります。<br>督促メールを送信してください。
+                                                      <nfwui:LabelBox id="bihinHenkyakuUnfinisheedTips" code="<%= MessageIdConstant.SKF1010_SC001_BIHIN_HENKYAKU_UNFINISHED_TIPS %>" />
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        <nfwui:Link id="bihinHenkyakuUnfinishedTipsHonsha" name="bihinHenkyakuUnfinishedTipsHonsha" label="${form.bihinHenkyakuUnfinishedTipsHonsha}件" use="anchor" href="/imart/skf/Skf3022Sc005/init" />
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        <nfwui:Link id="bihinHenkyakuUnfinishedTipsTokyo" name="bihinHenkyakuUnfinishedTipsTokyo" label="${form.bihinHenkyakuUnfinishedTipsTokyo}件" use="anchor" href="/imart/skf/Skf3022Sc005/init" />
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        <nfwui:Link id="bihinHenkyakuUnfinishedTipsHatiouzi" name="bihinHenkyakuUnfinishedTipsHatiouzi" label="${form.bihinHenkyakuUnfinishedTipsHatiouzi}件" use="anchor" href="/imart/skf/Skf3022Sc005/init" />
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        <nfwui:Link id="bihinHenkyakuUnfinishedTipsNagoya" name="bihinHenkyakuUnfinishedTipsNagoya" label="${form.bihinHenkyakuUnfinishedTipsNagoya}件" use="anchor" href="/imart/skf/Skf3022Sc005/init" />
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                    <nfwui:Link id="bihinHenkyakuUnfinishedTipsKanazawa" name="bihinHenkyakuUnfinishedTipsKanazawa" label="${form.bihinHenkyakuUnfinishedTipsKanazawa}件" use="anchor" href="/imart/skf/Skf3022Sc005/init" />
                                                     </td>
 
                                                 </tr>
+                                         <c:forEach var="bihinHenkyakuInformation"  items="${form.bihinHenkyakuInformationList}">
                                                 <tr>
                                                     <td style="text-align:left;">
-                                                        入居希望者の同意済のデータがあります。<br>承認してください。
+                                                    <nfwui:LabelBox id="bihinHenkyaku${bihinHenkyakuInformation.index}" code="${bihinHenkyakuInformation.label}" />
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        <nfwui:Link id="honsha${bihinHenkyakuInformation.index}" name="honsha${bihinHenkyakuInformation.index}" label="${bihinHenkyakuInformation.bihinHenkyakuHonsha}件" use="anchor" href="${bihinHenkyakuInformation.link}" />
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                    	<nfwui:Link id="tokyo${bihinHenkyakuInformation.index}" name="tokyo${bihinHenkyakuInformation.index}" label="${bihinHenkyakuInformation.bihinHenkyakuTokyo}件" use="anchor" href="${bihinHenkyakuInformation.link}" />
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        <nfwui:Link id="hatiouzi${bihinHenkyakuInformation.index}" name="hatiouzi${bihinHenkyakuInformation.index}" label="${bihinHenkyakuInformation.bihinHenkyakuHatiouzi}件" use="anchor" href="${bihinHenkyakuInformation.link}" />
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                        <nfwui:Link id="nagoya${bihinHenkyakuInformation.index}" name="nagoya${bihinHenkyakuInformation.index}" label="${bihinHenkyakuInformation.bihinHenkyakuNagoya}件" use="anchor" href="${bihinHenkyakuInformation.link}" />
                                                     </td>
                                                     <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
+                                                    	<nfwui:Link id="kanazawa${bihinHenkyakuInformation.index}" name="kanazawa${bihinHenkyakuInformation.index}" label="${bihinHenkyakuInformation.bihinHenkyakuKanazawa}件" use="anchor" href="${bihinHenkyakuInformation.link}" />
                                                     </td>
 
                                                 </tr>
-                                                <tr>
-                                                    <td style="text-align:left;">
-                                                        入居希望者の同意されなかったデータがあります。<br>社宅を提示してください。
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td style="text-align:left;">
-                                                        退居届の申請があります。<br>申請内容を確認してください。
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td style="text-align:left;">
-                                                        備品希望の申請が無い入居情報があります。<br>督促メールを送信してください。
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td style="text-align:left;">
-                                                        備品希望の提示が完了していないデータがあります。<br>備品内容を提示してください。
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td style="text-align:left;">
-                                                        備品希望の搬入が完了していないデータがあります。<br>督促メールを送信してください。
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                        
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                        
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                        
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                        
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                        
-                                                    </td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td style="text-align:left;">
-                                                        備品返却の提示が完了していないデータがあります。<br>備品返却対象を提示してください。
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td style="text-align:left;">
-                                                        備品返却提示の本人確認が完了していないデータがあります。<br>督促メールを送信してください。
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td style="text-align:left;">
-                                                        備品返却提示の同意済のデータがあります。<br>内容を確認してください。
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td style="text-align:left;">
-                                                        備品の搬出が完了していないデータがあります。<br>督促メールを送信してください。
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-                                                    <td style="text-align:right;">
-                                                        <a href="" class="imui-accent" style="margin-left: 8px">
-                                                        0件
-                                                        </a>
-                                                    </td>
-
-                                                </tr>
+                                         </c:forEach>
                                             </tbody>
                                         </table>
                 </div>  
              </div>
+</imart:condition>              
             <!-- 個人に関するお知らせ -->
             <div name="daikoHide">
-                <div class="imui-form-container-wide" width="100%" style="width: 100%; max-width:600px;">
-                    <table >
-                        <div class="imui-chapter-title" style="margin-bottom: 10px;">
-                            <h2>〇〇△△△さんに関するお知らせ</h2>
-                        </div>
-                        <div style="overflow-y:scroll;height:280px;max-height: 280px;">
-                            2018/11/01「社宅入居希望等調書」&nbsp;の案内が通知されましたので内容を確認して下さい。<br>
-                            2018/11/01名古屋支社&nbsp;建設事業部&nbsp;中日本3906(00903906)さんが「社宅入居希望等調書」に同意しました。内容を確認後承認してください。<br>
-                            2018/11/01名古屋支社&nbsp;建設事業部&nbsp;中日本3906(00903906)さんが「社宅入居希望等調書」に同意しました。内容を確認後承認してください。<br>
-                            2018/11/01名古屋支社&nbsp;建設事業部&nbsp;中日本3906(00903906)さんが「社宅入居希望等調書」に同意しました。内容を確認後承認してください。<br>
-                            2018/11/01名古屋支社&nbsp;建設事業部&nbsp;中日本3906(00903906)さんが「社宅入居希望等調書」に同意しました。内容を確認後承認してください。<br>
-                            2018/11/01名古屋支社&nbsp;建設事業部&nbsp;中日本3906(00903906)さんが「社宅入居希望等調書」に同意しました。内容を確認後承認してください。<br>
-                            2018/11/01名古屋支社&nbsp;建設事業部&nbsp;中日本3906(00903906)さんが「社宅入居希望等調書」に同意しました。内容を確認後承認してください。<br>
-                            2018/11/01名古屋支社&nbsp;建設事業部&nbsp;中日本3906(00903906)さんが「社宅入居希望等調書」に同意しました。内容を確認後承認してください。<br>
-                            2018/11/01名古屋支社&nbsp;建設事業部&nbsp;中日本3906(00903906)さんが「社宅入居希望等調書」に同意しました。内容を確認後承認してください。<br>
-                            2018/11/01名古屋支社&nbsp;建設事業部&nbsp;中日本3906(00903906)さんが「社宅入居希望等調書」に同意しました。内容を確認後承認してください。<br>
-                            2018/11/01名古屋支社&nbsp;建設事業部&nbsp;中日本3906(00903906)さんが「社宅入居希望等調書」に同意しました。内容を確認後承認してください。<br>
-                            2018/11/01名古屋支社&nbsp;建設事業部&nbsp;中日本3906(00903906)さんが「社宅入居希望等調書」に同意しました。内容を確認後承認してください。<br>
-                            2018/11/01名古屋支社&nbsp;建設事業部&nbsp;中日本3906(00903906)さんが「社宅入居希望等調書」に同意しました。内容を確認後承認してください。<br>
-
-                        </div>
+                <div class="imui-form-container-wide" style="width: 94%;">
+                    <table>
+                            <nfwui:Title id="personalInformationTitle" code="<%= MessageIdConstant.SKF1010_SC001_PERSONAL_INFORMATION_TITLE %>" titleLevel="2"  />
+                        		<div style="overflow-y:scroll;height:280px;max-height: 280px;" id="personalOshirase">
+                           			<c:forEach var="oshiraseList"  items="${form.oshiraseList}">
+                          				 ${oshiraseList.message} <br>
+                           			</c:forEach>
+                        		</div>
                     </table>
-                </div> 
-             </div> 
-
+                </div>
+             </div>
+</nfwui:Form>
               <!-- システムに関するお知らせ -->
               <div name="daikoHide">
-                <div class="imui-form-container-wide" width="100%" style="width: 100%; max-width: 600px;">
-                    <table >
-                        <div class="imui-chapter-title" style="margin-bottom: 10px;">
-                            <h2>システムに関するお知らせ</h2>
-                        </div>
-                        <div style="overflow-y:scroll;height:280px;max-height: 280px;">
-                                【お問い合わせ先】
-                                <br>
-                                ・システムに関するご質問は、本社ヘルプデスク(℡052-222-3592、内線84-5662、5664)
-                                <br><br>
-                                ≪社宅関係≫℡052-222-9951
-                                <br>　　本社、名古屋、金沢支社：94-6107、東京、八王子支社:94-6109
-                                <br><br>
-                                ・赴任旅費に関するご質問は、各所属の総務担当
-                                <br><br>
-                                ・その他、ご意見などは、本社人事チーム℡052-222-3708、内線84-5564
-                                <br><br>
-                                【システムメンテナンス時間】
-                                <br><br>
-                                <ul><li>
-                                <font color="red">
-                                毎週水曜日、18:00～18:30の間において定期マスタメンテナンスのためシステムがご利用いただけません。
-                                あらかじめご了承ください。
-                                </font>
-                                </li></ul>
-                        </div>
-                      </table>
+                <div class="imui-form-container-wide" style="width: 94%;">
+                    <table style="width: 100%;">
+                            <nfwui:Title id="sysytemAnnouncementsTitle" code="<%= MessageIdConstant.SKF1010_SC001_SYSTEM_ANNOUNCEMENTS_TITLE %>" titleLevel="2" />
+                        		<div style="overflow-y:scroll;height:280px;max-height: 280px;">
+                            		${form.note}
+                        		</div>
+                    </table>
                 </div>
              </div>
 
-                                    </td>
-                                </tr>
-                      </table>
-
-            </td>
-            
 </table>
     </div>
     

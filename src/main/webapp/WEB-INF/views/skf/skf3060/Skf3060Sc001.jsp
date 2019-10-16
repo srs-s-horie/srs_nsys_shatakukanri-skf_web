@@ -10,800 +10,578 @@
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
 
+<script src="scripts/skf/skfCommon.js"></script>
 <%-- コンテンツエリア --%>
 <style type="text/css">
 
 </style>
+<script type="text/javascript">
+(function($) {
+	
+	// チェックボックスの前状態保持リスト
+	let checkBoxBeforStatus = [];
+	
+	// 検索結果一覧に表示する最大行数
+	var maxRowCount = 0;
+	
+    // jqGrid読み込み時のイベント
+    onGridComplete = function(rowId, iCol, cellContent, e) {
 
-<!-- コンテンツエリア:モックのまま -->
-<!-- 以下ツールバー -->
-		<div class="imui-toolbar-wrap">
-			<div class="imui-toolbar-inner">
-				<!-- ツールバー左側 -->
-				<ul class="imui-list-toolbar">
-					<!-- 戻る -->
-					<li>
-						<a class="imui-toolbar-icon" title="戻る" tabindex="23" onclick="back1()" href="javascript:void(0);">
-							<span class="im-ui-icon-common-16-back"></span>
-						</a>
-					</li>
+    	// テキストボックス、テキストエリアにフォーカス時、入力済み文字列全選択
+    	document.getElementById("txtShainNo").addEventListener('click', function(){
+    		$(this).select();
+    		return false;
+    	}, false);    	
 
-				</ul>
-				<!-- ツールバー右側 -->
-				<ul class="imui-list-box-toolbar-utility">
-					<li>
-						<a onclick="back()" class="imui-toolbar-icon" tabindex="16">
-							<span class="im-ui-icon-common-16-home"></span>
-							社宅TOP
-						</a>
-					</li>
-					<li>
-						<a class="imui-toolbar-icon" title="最新情報"  tabindex="26">
-							<span class="im-ui-icon-common-16-refresh" onclick="refresh()"></span>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
+    	// テキストボックス、テキストエリアにフォーカス時、入力済み文字列全選択
+    	document.getElementById("txtName").addEventListener('click', function(){
+    		$(this).select();
+    		return false;
+    	}, false);    	
+    	
+    	
+    	// ヘッダ行を変更
+    	var $list = $('#mainList');
+    	$list[0].grid.headers[1].el.innerHTML = "メール\n" + "<div id=\"jqgh_mainList_cb\"><input class=\"cbox\" id=\"cb_mainList\" role=\"checkbox\" type=\"checkbox\" onchange=\"onSelectCheckBoxAll()\"><span class=\"s-ico\" style=\"display: none;\"><span class=\"ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr\" sort=\"asc\"></span><span class=\"ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr\" sort=\"desc\"></span></span></div>";
+    	$list[0].grid.headers[1].el.style.textAlign = "center";
+    	$('#mainList_cb').width("40px");
+    	// データ行のチェックボックス列の幅を設定
+		$list[0].tBodies[0].rows[0].children[1].style.width = "41px";
+
+    	// 現在のページ番号
+		var pageNo = $('#mainList').getGridParam('page'); 
+    	
+    	// 検索結果一覧に表示する最大行数を再設定（Serviceからもらった値で置き換える）
+    	//alert($("#mainList").getGridParam("rowNum"));
+    	maxRowCount = $("#mainList").getGridParam("rowNum");
+    	
+		// 全データ行の設定
+		var grid = $("#mainList");					
+		var datas = grid.getGridParam("data");//全行
+		if( datas.length > 0 )
+		{	
+			var row2 = grid.getRowData(datas);
+			
+			// ページング範囲設定
+			var iMin = 0;
+			var iMax = 0;
+			if(pageNo == 1){
+				if(datas.length > maxRowCount){
+					iMin = 0;
+					iMax = maxRowCount;
+				}else{
+					iMin = 0;
+					iMax = datas.length ;
+				}
+			}else{
+				// 2ページ以降
+				var pageNoCalc = pageNo - 1;
+				if(datas.length > (maxRowCount * pageNo)){
+					// 指定ページよりもデータ数の方が多い
+					iMin = maxRowCount * pageNoCalc;
+					iMax = maxRowCount * pageNo;
+				}else{
+					iMin = maxRowCount * pageNoCalc;
+					iMax = datas.length ;
+				}
+			}
+			
+			for( var i=iMin; i<iMax; ++i ){
+
+			//for( var i=0; i<datas.length; ++i ){
+
+				// チェックボックスの前状態保持リストをすべて「False」へ
+				checkBoxBeforStatus[i] = "false";
+				// 行データの取り出し
+				var row = datas[i];
+				var rowNo = i + 1;
+				let targetName = "jqg_mainList_" + rowNo;
+				let targetI = i;
+				
+				if(row.col18 == "true"){
+					// 仮社員番号のものはチェックボックス非活性状態とする
+			    	$('input:checkbox[name=' + targetName + ']').prop({'disabled':true});
+				}else{
+					// チェックボックス用のイベントを追加（チェックボックス自体をクリックされた場合）
+			    	document.getElementById(targetName).addEventListener('click', function(){
+			    		// チェックボックスの前状態保持リストのデータをもとに判別
+			    		if(checkBoxBeforStatus[targetI] == "false"){
+			    			// 前状態がfalse(チェックなし)　→　現状態をfalse(チェックなし)で再設定（再設定しないとチェックが入った状態でoncellectが呼ばれてしまう）
+					    	$('input[name=' + targetName + ']').prop("checked",false);
+			    		}else{
+			    			// 前状態がtrue(チェックあり)　→　現状態をtrue(チェックあり)で再設定（再設定しないとチェックがない状態でoncellectが呼ばれてしまう）
+					    	$('input[name=' + targetName + ']').prop("checked",true);
+			    		}
+					}, false);
+				}
+				// データ行の背景色スタイルをクリア
+				var colorId = "#" + rowNo;
+				$(colorId).children('td, th').css('background-color','');
+			}
+		}
+    }	
+	
+    onPaging = function(pgButton){
+
+    	const result = document.getElementsByClassName('ui-pg-input');
+    	var test =result.item(0).value;
+    	//var test = $("#sp_1_mainList-pager").val;
+    	//alert(test);
+    }
+    
+	// 使ってないけど、とりあえず残しておく
+    onBeforeSelectRow = function(rowId, iCol, cellContent, e) {
+		// リストテーブル情報取得
+		var grid = $("#mainList");
+		// 行番号から選択した行の情報を取得
+		var row = grid.getRowData(rowId);
+
+		if(row.col18 == "true"){
+			// 仮社員番号の場合はチェックを外す
+			return false;
+		}else{
+			return true;	
+		}
+    }
+    
+ 	// jqGridセル選択時のイベント
+    onCellSelect = function(rowId, iCol, cellContent, e) {
+    	
+		// リストテーブル情報取得
+		var grid = $("#mainList");
+		// 行番号から選択した行の情報を取得
+		var row = grid.getRowData(rowId);
+    	var rowNo = rowId;
+		var targetName = "jqg_mainList_" + rowNo;
+
+		// 行選択情報をクリア（未選択状態へ）
+		$("#mainList").jqGrid("setGridParam", { selarrrow: null }, true);
+		
+		// ヘッダのチェックボックスチェック（いらないかも？）
+    	if ($("#cb_mainList").prop("checked") == true){
+			// 全選択チェックボックスにチェックが入っていた　→　チェックを外す
+	    	$('input[id=cb_mainList]').prop("checked",false);
+    	}
+		
+    	// チェックボックスの状態を変更し、選択セルの1行分の背景色変更
+    	var targetId = "#jqg_mainList_" + rowNo;
+    	if ($(targetId).prop("checked") == true){
+    		// チェックが入っている場合、チェックを外す
+	    	$('input[name=' + targetName + ']').prop("checked",false);
+	    	// 背景色のスタイルをクリア（行全体）
+			var colorId = "#" + rowNo;
+			$(colorId).children('td, th').css('background-color','');
+    	}else{
+    		// チェックが入っていない場合、チェックをつける
+	    	$('input[name=' + targetName + ']').prop("checked",true);
+	    	// 背景色のスタイルを設定（行全体）
+			var colorId = "#" + rowNo;
+			$(colorId).children('td, th').css('background-color','#fbec88');
+    	}
+    	
+    	if(row.col18 == "true"){
+			// 仮社員番号の場合はチェックを外す
+	    	$('input[name=' + targetName + ']').prop("checked",false);
+		}
+    	
+    	// 行選択情報を再設定するために全行チェック
+		var datas = grid.getGridParam("data");//全行
+		if( datas.length > 0 )
+		{	
+			var rowData = grid.getRowData(datas);
+
+    		var strs = [];
+			for( var i=0; i<datas.length; ++i ){
+				var targetRow = i + 1;
+				var strNo = "" + targetRow + ""; // 数値を文字列へ変換
+				var targetRowId = "#jqg_mainList_" + targetRow;
+				if(targetRow == rowId){
+					// 選択行
+					if($(targetRowId).prop("checked") == false){
+						// 行選択情報に格納する行番号をPush
+				    	strs.push(strNo);
+				    	checkBoxBeforStatus[i] = "false";				    	
+					}else{
+				    	checkBoxBeforStatus[i] = "true";				    	
+					}
+				}else{
+					// 選択行以外	
+					if($(targetRowId).prop("checked") == true){
+						// 行選択情報に格納する行番号をPush
+				    	strs.push(strNo);
+				    	checkBoxBeforStatus[i] = "true";				    	
+					}else{
+				    	checkBoxBeforStatus[i] = "false";				    	
+					}
+				}
+			}
+			// 行選択情報を詰め替え
+	    	$("#mainList").jqGrid("setGridParam", { selarrrow: strs }, true);
+			var test = grid.getGridParam("selarrrow");
+		}
+    }
+ 	
+	// ヘッダ行のチェックボックスクリック時の処理（jqGridのメソッドではなく、自作メソッド）   
+    onSelectCheckBoxAll = function(rowId, iCol, cellContent, e) {
+		var grid = $("#mainList");					
+		var datas = grid.getGridParam("data");//全行
+		
+		var test2 = grid.getGridParam("selarrrow");
+    	
+		if( datas.length > 0 )
+		{	
+			var row2 = grid.getRowData(datas);
+
+	    	if ($("#cb_mainList").prop("checked") == true){
+	    		// 全選択チェックがTrue（チェックされた）
+	    		var strs = [];
+				for( var i=0; i<datas.length; ++i ){
+					var row = datas[i];
+					var rowNo = i + 1;
+					var targetName = "jqg_mainList_" + rowNo; // 文字列に変換
+					if(row.col18 == "true"){
+						// 仮社員番号のものはチェックを外す
+						// (念のため)非活性にする
+				    	$('input:checkbox[name=' + targetName + ']').prop({'disabled':true});
+						// チェックを外す
+				    	$('input[name=' + targetName + ']').prop("checked",false);
+				    	// チェックボックスの前状態保持リストのデータをfalse（チェックなし）に変更
+				    	checkBoxBeforStatus[i] = "false";
+					}else{
+						// チェックをつける
+				    	$('input[name=' + targetName + ']').prop("checked",true);
+						// 背景色を選択色へ
+						var colorId = "#" + rowNo;
+						$(colorId).children('td, th').css('background-color','#fbec88');
+						// チェックボックスの前状態保持リストのデータをtrue（チェックあり）に変更
+				    	checkBoxBeforStatus[i] = "true";
+				    	// 行選択情報に格納する行番号をPush
+						var strNo = "" + rowNo + ""; 
+				    	strs.push(strNo);
+					}
+				}
+
+				// 行選択情報を詰め替え
+		    	$("#mainList").jqGrid("setGridParam", { selarrrow: strs }, true);
+				var test = grid.getGridParam("selarrrow");
+	    	} else{
+				for( var i=0; i<datas.length; ++i ){
+					var row = datas[i];
+					var rowNo = i + 1;
+					var targetName = "jqg_mainList_" + rowNo;// 文字列に変換
+					
+					if(row.col18 == "true"){
+						// 仮社員番号のものはチェックを外す
+						// (念のため)非活性にする
+				    	$('input:checkbox[name=' + targetName + ']').prop({'disabled':true});
+						// チェックを外す
+				    	$('input[name=' + targetName + ']').prop("checked",false);
+					}else{
+						// チェックを外す
+				    	$('input[name=' + targetName + ']').prop("checked",false);
+					}
+					// 背景色をクリア
+					var colorId = "#" + rowNo;
+					$(colorId).children('td, th').css('background-color','#ffffff');
+					// チェックボックスの前状態保持リストのデータをfalse（チェックなし）に変更
+			    	checkBoxBeforStatus[i] = "false";
+				}
+				//行選択情報を詰め替え（クリア）
+		    	$("#mainList").jqGrid("setGridParam", { selarrrow: null }, true);
+				var test = grid.getGridParam("selarrrow");
+	    	}
+		}
+    }
+    
+	// jqGridの全選択チェックボックス(multiselect)をクリックした際のイベント
+	// とりあえず残しておく。。。
+    onSelectAll = function(rowId, iCol, cellContent, e) {
+		var grid = $("#mainList");					
+		var datas = grid.getGridParam("data");//全行
+    	
+		if( datas.length > 0 )
+		{	
+			var row2 = grid.getRowData(datas);
+			
+			for( var i=0; i<datas.length; ++i ){
+				var row = datas[i];
+				
+				if(row.col18 == "true"){
+					// 仮社員番号のものはチェックを外す
+					var rowNo = i + 1;
+					var targetName = "jqg_mainList_" + rowNo;
+					// (念のため)非活性にする
+			    	$('input:checkbox[name=' + targetName + ']').prop({'disabled':true});
+					// チェックを外す
+			    	$('input[name=' + targetName + ']').prop("checked",false);
+				}
+				
+			}
+			
+		}
+    }
+    
+	// 画面表示時に定義される処理
+	$(document).ready(function(){
+
+		// フォーカスを合わせる（nfwui:DateBoxを使うと、指定したID+"Div"が新しいidになる模様
+		document.getElementById('baseTermFromDiv').focus();
+
+		// リサイズ処理は組み込まない
+		/*
+			$(window).bind('resize', function(){			
+				$('#mainList').setGridWidth($('#listTableArea').width(), true);		
+			}).trigger('resize');		
+		*/
+
+		// ボタン押下時のイベント
+		preButtonEvent = function (mode) {
+			var dialogTitle = "";
+			var dialogMessage = "";
+			var url = "";
+			var grid = null;
+			var row = null;
+			var id = null;
+			var shatakuKbn = null;
+
+			switch (mode) {
+				// 検索
+				case 0:
+					url = "skf/Skf3060Sc001/search";
+					$("#form").attr("action", url);
+					$("#form").submit();
+					break;
+				// CSV出力
+				case 1:
+					$("#hdnBaseTermFrom").val($("#baseTermFrom").val());
+					$("#hdnBaseTermTo").val($("#baseTermTo").val());
+
+					$("#baseTermFrom").val($("#baseTermFrom").val());
+					$("#baseTermTo").val($("#baseTermTo").val());
+					
+					// 日付入力域のスタイルをもとに戻す（サーバ側では戻せない？）
+					document.getElementById('baseTermFrom').className = "";
+					document.getElementById('baseTermTo').className = "";
+					
+					// WARNINGメッセージ領域を削除
+					$('.imui-box-warning').css('display','none');
+					
+					dialogTitle = "確認";
+					dialogMessage = "年齢加算対象者一覧CSVを出力します。よろしいですか？";
+					url = "skf/Skf3060Sc001/download";
+					nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+					break;
+				// メール送信
+				case 2:
+					// 検索結果一覧の中からチェックの行データを取得する
+			        var grid = jQuery("#mainList");
+					var datas = grid.getGridParam("data");//全行
+					
+					var ids = grid.getGridParam("selarrrow");
+					
+					var strs = [];
+					for( var i=0; i<datas.length; ++i ){
+						var row = datas[i];
+						if(row.col18 == "false"){
+							// 仮社員番号のものはチェックを外す
+							var rowNo = i + 1;
+							var targetName = "#jqg_mainList_" + rowNo;
+							if($(targetName).prop("checked") == true){
+								var tempStr = [];
+								tempStr.push(rowNo);
+								strs.push(tempStr.join(","));	//配列で格納
+							}
+						}
+					}
+					/*
+					for( var i=0; i<ids.length; ++i )
+					{
+						var row2 = datas[i];
+						if(row2.col18 == "false"){
+							
+							var id = ids[i];
+							var row = grid.getRowData(id);
+							
+							var tempStr = [];
+							tempStr.push(id);
+							strs.push(tempStr.join(","));	//配列で格納
+						}
+					}
+					*/
+					
+					$("#mailSendData").val(strs.join(";"));
+
+					// 日付入力域のスタイルをもとに戻す（サーバ側では戻せない？）
+					document.getElementById('baseTermFrom').className = "";
+					document.getElementById('baseTermTo').className = "";
+					
+					dialogTitle = "確認";
+					dialogMessage = "年齢加算対象の電子メールを送信します。よろしいですか？";
+					url = "skf/Skf3060Sc001/sendMail";
+					nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+					break;
+				default:
+					nfw.common.showReserveMessage("warning", "未サポート(未実装機能)です。");
+					break;
+			};
+		}
+	});
+})(jQuery);
+</script>
+<nfwui:Form id="form" name="form" modelAttribute="form" enctype="multipart/form-data">
+	<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3060_SC001 %>" />
+	<input type="hidden" name="hdnBaseTermFrom" id="hdnBaseTermFrom" value="${form.hdnBaseTermFrom}" />
+	<input type="hidden" name="hdnBaseTermTo" id="hdnBaseTermTo" value="${form.hdnBaseTermTo}" />
+	<input type="hidden" name="hdnShainNo" id="hdnShainNo" value="${form.hdnShainNo}" />
+	<input type="hidden" name="hdnName" id="hdnName" value="${form.hdnName}" />
+	<input type="hidden" name="hdnOriginalCompanyCd" id="hdnOriginalCompanyCd" value="${form.hdnOriginalCompanyCd}" />
+	<input type="hidden" name="hdnSalaryCompanyCd" id="hdnSalaryCompanyCd" value="${form.hdnSalaryCompanyCd}" />
+	<input type="hidden" name="hdnSendMailStatus" id="hdnSendMailStatus" value="${form.hdnSendMailStatus}" />
+
+	<input type="hidden" name="mailSendData" id="mailSendData" value="" />
+	<input type="hidden" name="listTableMaxRowCount" id="listTableMaxRowCount" value="${form.listTableMaxRowCount}" />
+
+    <div class="imui-form-container-wide">
+        <table class="imui-form-search-condition" width="100%" style="border: none;" >
+            <td style="width: 59%; border: none;" >
+	            <!-- 左側の検索部分 -->
+                <div>
+					<div class="imui-chapter-title"><h2>検索条件</h2></div>
+                    <table class="imui-form-search-condition">
+						<tr>
+							<!-- 基準期間 -->
+							<th style="width: 11%;">
+								<nfwui:LabelBox id="lblBaseTerm" code="<%=MessageIdConstant.SKF3060_SC001_BASE_TERM %>" />
+							</th>
+							<td colspan="2" style="width: 410px;">
+                                <nfwui:DateBox id="baseTermFrom" name="baseTermFrom" value="${f:h(form.baseTermFrom)}"
+                                               cssClass="${f:h(form.baseTermFromErr)}" tabindex="3" cssStyle="width:100px"/>
+								&nbsp;～&nbsp;
+                                <nfwui:DateBox id="baseTermTo" name="baseTermTo" value="${f:h(form.baseTermTo)}"
+                                               cssClass="${f:h(form.baseTermToErr)}" tabindex="4" cssStyle="width:100px"/>
+                                               <!-- 
+                                <nfwui:DateBox id="baseTermFrom" name="baseTermFrom"
+                                               cssClass="${f:h(form.baseTermFromErr)}" tabindex="1" cssStyle="width:100px"/>
+								&nbsp;～&nbsp;
+                                <nfwui:DateBox id="baseTermTo" name="baseTermTo"
+                                               cssClass="${f:h(form.baseTermToErr)}" tabindex="2" cssStyle="width:100px"/>
+
+                                                -->
+								<!-- 
+								<nfwui:DateBox name="baseTermFrom" id="baseTermFrom" cssStyle="width:100px" tabindex="1"/>
+								<nfwui:DateBox name="baseTermTo" id="baseTermTo" cssStyle="width:100px" tabindex="2"/>					
+								 -->	
+							</td>
+							<!-- 原籍会社 -->
+							<th style="width: 16%;">
+								<nfwui:LabelBox id="lblOriginalCompanyCd" code="<%=MessageIdConstant.SKF3060_SC001_ORIGINAL_COMPANY_CD %>" />
+							</th>
+							<td>
+								<imui:select id="selectedOriginalCompanyCd" name="selectedOriginalCompanyCd" 
+									width="200px" list="${form.originalCompanyCdList}" tabindex="7" />
+							</td>
+						</tr>
+						<tr>
+							<!-- 社員番号 -->
+							<th style="width: 11%;">
+								<nfwui:LabelBox id="lblShainNo" code="<%=MessageIdConstant.SKF3060_SC001_SHAIN_NO %>" />
+							</th>
+							<td colspan="2">
+								<imui:textbox id="txtShainNo" name="shainNo" style="ime-mode: disabled;width:150px;" placeholder="例  00123456(半角)" value="${form.shainNo}" tabindex="5" maxlength="8"/>
+							</td>
+							<!-- 給与支給会社名 -->
+							<th style="width: 16%;">
+								<nfwui:LabelBox id="lblSalaryCompanyCd" code="<%=MessageIdConstant.SKF3060_SC001_SALARY_COMPANY_CD %>" />
+							</th>
+							<td>
+								<imui:select id="selectedSalaryCompanyCd" name="selectedSalaryCompanyCd" 
+									width="200px" list="${form.salaryCompanyCdList}" tabindex="8" />
+							</td>
+						</tr>
+						<tr>
+							<!-- 社員名 -->
+							<th style="width: 11%;">
+								<nfwui:LabelBox id="lblName" code="<%=MessageIdConstant.SKF3060_SC001_NAME %>" />
+							</th>
+							<td colspan="2">
+								<imui:textbox id="txtName" name="name" style="disabled;width:150px;" placeholder="例  中日本　太郎" value="${form.name}" tabindex="6" maxlength="20"/>
+							</td>
+							<!-- 送信状態 -->
+							<th style="width: 16%;">
+								<nfwui:LabelBox id="lblSendMailStatus" code="<%=MessageIdConstant.SKF3060_SC001_SEND_MAIL_STATUS %>" />
+							</th>
+							<td>
+								<imui:select id="selectedSendMailStatus" name="selectedSendMailStatus" 
+									width="100px" list="${form.sendMailStatusList}" tabindex="9" />
+							</td>
+						</tr>
+					</table>    
+					<div class="align-L">	
+						<imui:button id="search" name="search" value="検索" class="imui-small-button" onclick="preButtonEvent(0)" tabindex="10" />
+					</div>
+                </div>
+                <!-- 操作ガイド -->
+                <td style="width: 45%; border: none;background-color: #fdfdff;">
+                    <div style="overflow-y:scroll; max-height:140px; height:140px; margin-left: 20px; background-color:#eeeeee;">
+                        <div class="imui-chapter-title" style="margin-bottom: 10px;"><h2>操作ガイド</h2></div>
+                        <div style="margin-left: 20px;">
+                            ${form.operationGuide}
+                        </div>
+                    </div>  
+                </td>
+            </td>
+	    </table>
+    </div>
+
+	<!-- 明細＆細目未満 -->
+	<div class="imui-form-container-wide">
+		<!-- 明細部 -->
+		<div class="imui-chapter-title" ><h2>検索結果一覧</h2></div>
 		<script type="text/javascript">
-			/**
-			* 一つ前の画面へ戻る
-			*/
-			function back1() {
-				showConfirm(W_GFK_0002, function() {
-					history.back()
-				});
-			}
-
-			/**
-			* メニュー画面へ遷移する。
-			*/
-			function back() {
-				showConfirm(W_GFK_0007, function() {
-					$.StandardPost("../common/top.html");
-				});
-			}
-			/**
-			* 「CSV出力」ボタン押下時
-			*/
-			function confreqCsv() {
-				showConfirm(W_GFK_0008, function() {
-				//$.StandardPost("../common/top.html");
-				
-					$.StandardPost("../../skf/Skf3060_Sc001/init");
-							
-					var INFO="処理が正常に終了しました。"
-					
-					if(INFO!=""){
-						imuiShowSuccessMessage(INFO);
-					}
-
-									
-				});
-			}
-			    /**
-			* 「メール送信」ボタン押下時
-			*/
-			function confreq() {
-				showConfirm(W_GFK_0009, function() {
-				//$.StandardPost("../common/top.html");
-				
-					$.StandardPost("../../skf/Skf3060_Sc001/init");
-							
-					var INFO="処理が正常に終了しました。"
-					
-					if(INFO!=""){
-						imuiShowSuccessMessage(INFO);
-					}
-
-									
-				});
-			}
+			(function($){
+			$.imui.util.loadCSS("../../ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
+			})(jQuery);
 		</script>
-
-<!-- 		<div class="alertDiv imui-box-warning" style="padding: 15px;margin-top: 10px;text-align:left;" id="errMainDiv"> -->
-<!-- 			<div class="alert-errorIcon alert" style="margin:0;padding:0;margin-right:10px;"> -->
-<!-- 			</div>  -->
-<!-- 		</div> -->
-
-		<!-- コンテンツエリア -->
-		<div class="imui-form-container-wide" width="1350px" style="width: 100%; max-width: 1350px; min-width: 1350px">
-				
-			<table >
-				<tr>
-					<td>
-						<div>
-							<table class="imui-form-search-condition" >
-								<td  style=" border: none;background-color: #fdfdff;" >
-									<div class="imui-form-container-wide" style="width:780px;height:160px;">										
-										<div class="imui-chapter-title">
-											<h2>検索条件</h2>
-										</div>
-										<div>
-										<table class="imui-form-search-condition">
-											<tbody>
-												<tr>
-													<th style="width: 100px;">
-														<label>基準期間</label>
-													</th>
-													<td colspan="2">
-														<input class="ime-off" type="text" style="text-align: right;" name="cal001" id="cal001" value="2018/04/02"/>&nbsp;～&nbsp;&nbsp;<input class="ime-off" type="text" style="text-align: right;" name="cal002" id="cal002" value="2019/04/01"/>
-													</td>
-													<th>
-														<label style="width:60px;">原籍会社名</label>
-													</th>
-													<td>
-														<select style="width:200px;">
-															<option value="0"></option>
-															<option value="1">NEXCO中日本</option>
-															<option value="2">NEXCO東日本</option>
-															<option value="3">NEXCO西日本</option>
-															<option value="4">高速道路総合研究所</option>
-															<option value="5">外部機関</option>
-														</select>
-													</td>
-												</tr>
-												<tr>
-													<th>
-														<label style="width:60px;">社員番号</label>
-													</th>
-													<td colspan="2">
-														<input class="ime-off" style="width:200px;" type="text" placeholder="例　00123456（半角）"/>
-													</td>
-													<th>
-														<label style="width:90px;">給与支給会社名</label>
-													</th>
-													<td>
-														<select style="width:200px;">
-															<option value="0"></option>
-															<option value="1">NEXCO中日本</option>
-															<option value="2">NEXCO東日本</option>
-															<option value="3">NEXCO西日本</option>
-															<option value="4">高速道路総合研究所</option>
-															<option value="5">外部機関</option>
-														</select>
-													</td>
-												</tr>
-												<tr>
-													<th>
-														<label>社員名</label>
-													</th>
-													<td colspan="2">
-														<input style="width:200px;" type="text" placeholder="例　中日本　太郎"/>
-													</td>
-													<th>
-														<label style="width:90px;">送信状態</label>
-													</th>
-													<td>
-														<select style="width:120px;">
-															<option value="0"></option>
-															<option value="1"selected="selected">未送付</option>
-															<option value="2">送付済</option>
-														</select>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-										</div>
-											<div class="align-L">	
-												<input type="button" value="検索" class="imui-small-button" >
-											</div>
-									</div>							 
-								</td>
-							                        
-    <!-- カレンダー出力用スクリプト -->
-    <script type="text/javascript">
-		(function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal001").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-		(function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal002").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-		(function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal003").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-		(function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal004").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-		(function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal005").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-		(function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal006").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-		(function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal007").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-		(function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal008").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);      
-		(function($){ $.imDateUtil.setOffset(540); $(function () { $("#cal009").imuiCalendar({"altField":"#hoge777","nextText":"来月","format":"yyyy\/MM\/dd","dayNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"dayNamesShort":["日","月","火","水","木","金","土"],"prevText":"先月","url":"calendar\/tag\/caljson","currentText":"現在","calendarId":"JPN_CAL","firstDay":0,"closeText":"閉じる","dayNamesMin":["日","月","火","水","木","金","土"],"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],"monthNames":["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]}); }); })(jQuery);
-	  </script>
-								<td style="border: none;;background-color: #fdfdff;">
-									<div class="imui-form-container-wide"  style="width: 450px;height:160px;">
-									<div >
-										<table >
-											<div class="imui-chapter-title" style="margin-bottom:10px;">
-												<h2>操作ガイド</h2>
-											</div>
-											<div>
-													<tr>
-														<td>
-															基準期間
-														</td>
-														<td>
-															：
-														</td>
-														<td>
-															基準期間中に40歳または50歳の誕生日を迎える社員を検索します。
-														</td>
-													</tr>
-													<tr>
-														<td>
-															CSV出力
-														</td>
-														<td>
-															：
-														</td>
-														<td>
-															年齢加算対象者一覧をCSV形式のファイルに出力します。
-														</td>
-													</tr>
-													<tr>
-														<td>
-															メール送信
-														</td>
-														<td>
-															：
-														</td>
-														<td>
-															チェックした社員に年齢加算前/後の使用料をメールにて送信します。
-														</td>
-													</tr>												
-											</div>
-										</table>
-									</div>
-									</div>
-								</td>
-							</table>
-						</div>
-
-					</td>
-					</tr>
-					<tr>
-						<td>
-			<!-- 明細＆細目未満 -->
-			<div class="imui-form-container-wide"  style="width:1280px;">
-				<!-- 明細部 -->
-				<form id="sampleList1">
-					<div class="imui-chapter-title" ><h2>検索結果一覧</h2></div>
-					<script type="text/javascript">
-					  (function($){
-					    $.imui.util.loadCSS("ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
-					  })(jQuery);
-					</script>
-
-					<table name="imui-8eqlrzst4hv6std" id="sampleListTable1"></table>
-
-					<div id="sampleListTable1-pager"></div>
-
-					<script type="text/javascript">
-						(function() {
-							function imuiListTable() {
-								var grid = jQuery('#sampleListTable1');
-								var parameter = {
-									"multiselect":false,
-									"pager":"#sampleListTable1-pager",
-									"colNames":[
-										"",
-										"メール<br /><INPUT type='checkbox'>",
-										"原籍会社名",
-										"給与支給<br />会社名",
-										"社員番号",
-										"氏名",
-										"生年月日",
-										"年齢",
-										"社宅名",
-										"部屋番号",
-										"現使用料",
-										"年齢加算<br />使用料",
-										"送信状況<br />（送信日）",
-										"入居日",
-										"退居日",
-										"用途",
-										"役員区分",
-										"所属",
-									],
-									"datatype":"local",
-									"errorCell":function(xhr) { imuiShowErrorMessage($(xhr.responseText).find('dt').text()); },
-									"rowNum":1000,
-									"width":"1280",
-									"shrinkToFit":"true",
-									"cellsubmit":"clientArray",
-									"loadonce":true,
-									"colModel":[
-										{"hidden":true,"name":"id","key":true}
-										,{"name":"sentaku_flg","width":"40","align":"center"}<!-- 選択 -->
-										,{"name":"original_kaisha","width":"100","align":"left"}<!-- 原籍会社名 -->
-										,{"name":"kyuyosikyu_kaisha","width":"100","align":"left"}<!-- 給与支給会社名 -->
-										,{"name":"syain_no","width":"100","align":"left"}<!-- 社員番号 -->
-										,{"name":"shain_name","width":"100","align":"left"}<!-- 氏名 -->
-										,{"name":"birthday","width":"70","align":"center"}<!-- 生年月日 -->
-										,{"name":"age","width":"40","align":"center"}<!-- 年齢 -->
-										,{"name":"shataku_name","width":"150","align":"left"}<!-- 社宅名 -->
-										,{"name":"room_no","width":"70","align":"left"}<!-- 部屋番号 -->
-										,{"name":"shiyoryo_now","width":"70","align":"right"}<!-- 現使用料 -->
-										,{"name":"shiyoryo_agekasan","width":"70","align":"right"}<!-- 年齢加算使用料 -->
-										,{"name":"send_mail_date","width":"70","align":"center"}<!-- 送信状況（送信日） -->
-										,{"name":"nyukyo_date","width":"70","align":"center"}<!-- 入居日 -->
-										,{"name":"taikyo_date","width":"70","align":"center"}<!-- 退居日-->
-										,{"name":"yoto","width":"50","align":"center"}<!-- 用途 -->
-										,{"name":"yakuin_kbn","width":"70","align":"center"}<!-- 役員区分 -->
-										,{"name":"shozoku","width":"400","align":"left"}<!-- 所属 -->
-									],
-									"rownumbers":false,
-									"height":"400"
-								};
-								parameter.data = [
-									{
-										"id":1,
-										"sentaku_flg":"<input type='checkbox'></input>",
-										"original_kaisha":"NEXCO中日本",
-										"kyuyosikyu_kaisha":"NEXCO中日本",
-										"syain_no":"00016500",
-										"shain_name":"中日本 2148",
-										"birthday":"1969/02/17",
-										"age":"50",
-										"shataku_name":"浅間寮(ｴﾊﾞｰｸﾞﾘｰﾝ)",
-										"room_no":"103",
-										"shiyoryo_now":"17,707円",
-										"shiyoryo_agekasan":"20,658円",
-										"send_mail_date":"",
-										"nyukyo_date":"2018/07/20",
-										"taikyo_date":"",
-										"yoto":"世帯",
-										"yakuin_kbn":"",
-										"shozoku":"本社技術・建設本部・技術管理部 技術管理T"
-									},{
-										"id":2,
-										"sentaku_flg":"<input type='checkbox'></input>",
-										"original_kaisha":"NEXCO中日本",
-										"kyuyosikyu_kaisha":"NEXCO中日本",
-										"syain_no":"00017099",
-										"shain_name":"中日本 7099",
-										"birthday":"1968/05/07",
-										"age":"50",
-										"shataku_name":"稲沢B棟",
-										"room_no":"807",
-										"shiyoryo_now":"34,535円",
-										"shiyoryo_agekasan":"40,291円",
-										"send_mail_date":"",
-										"nyukyo_date":"2009/04/02",
-										"taikyo_date":"",
-										"yoto":"世帯",
-										"yakuin_kbn":"",
-										"shozoku":"金沢支社 福井保全・サービスセンター（保全担当）"
-									},{
-										"id":3,
-										"sentaku_flg":"<input type='checkbox'></input>",
-										"original_kaisha":"NEXCO中日本",
-										"kyuyosikyu_kaisha":"NEXCO中日本",
-										"syain_no":"00017246",
-										"shain_name":"中日本 7246",
-										"birthday":"1968/11/10",
-										"age":"50",
-										"shataku_name":"稲沢B棟",
-										"room_no":"506",
-										"shiyoryo_now":"34,535円",
-										"shiyoryo_agekasan":"40,291円",
-										"send_mail_date":"",
-										"nyukyo_date":"2003/11/07",
-										"taikyo_date":"",
-										"yoto":"世帯",
-										"yakuin_kbn":"",
-										"shozoku":"名古屋支社 保全・サービス事業部 保全計画T"
-									},{
-										"id":4,
-										"sentaku_flg":"<input type='checkbox'></input>",
-										"original_kaisha":"NEXCO中日本",
-										"kyuyosikyu_kaisha":"NEXCO中日本",
-										"syain_no":"00018373",
-										"shain_name":"中日本 8373",
-										"birthday":"1978/12/21",
-										"age":"40",
-										"shataku_name":"稲沢B棟",
-										"room_no":"409",
-										"shiyoryo_now":"28,778円",
-										"shiyoryo_agekasan":"34,535円",
-										"send_mail_date":"",
-										"nyukyo_date":"2011/11/01",
-										"taikyo_date":"",
-										"yoto":"世帯",
-										"yakuin_kbn":"",
-										"shozoku":"名古屋支社 総務企画部 企画調整T"									
-									},{
-										"id":5,
-										"sentaku_flg":"<input type='checkbox'></input>",
-										"original_kaisha":"NEXCO中日本",
-										"kyuyosikyu_kaisha":"NEXCO中日本",
-										"syain_no":"00043986",
-										"shain_name":"中日本 3986",
-										"birthday":"1968/05/08",
-										"age":"50",
-										"shataku_name":"ﾙ･ﾎﾞｱ平喜",
-										"room_no":"407",
-										"shiyoryo_now":"24,429円",
-										"shiyoryo_agekasan":"25,504円",
-										"send_mail_date":"",
-										"nyukyo_date":"2016/08/12",
-										"taikyo_date":"",
-										"yoto":"世帯",
-										"yakuin_kbn":"",
-										"shozoku":"東京支社 清水工事事務所"									
-									},{
-										"id":6,
-										"sentaku_flg":"<input type='checkbox'></input>",
-										"original_kaisha":"NEXCO中日本",
-										"kyuyosikyu_kaisha":"NEXCO中日本",
-										"syain_no":"00045599",
-										"shain_name":"中日本 5599",
-										"birthday":"1979/03/20",
-										"age":"40",
-										"shataku_name":"稲沢A棟",
-										"room_no":"407",
-										"shiyoryo_now":"28,419円",
-										"shiyoryo_agekasan":"30,518円",
-										"send_mail_date":"",
-										"nyukyo_date":"2016/04/05",
-										"taikyo_date":"",
-										"yoto":"世帯",
-										"yakuin_kbn":"",
-										"shozoku":"本社 保全企画本部 保全企画T"									
-									},{
-										"id":7,
-										"sentaku_flg":"<input type='checkbox'></input>",
-										"original_kaisha":"NEXCO中日本",
-										"kyuyosikyu_kaisha":"NEXCO中日本",
-										"syain_no":"00045616",
-										"shain_name":"中日本 5616",
-										"birthday":"1978/11/22",
-										"age":"40",
-										"shataku_name":"ﾒｿﾞﾝ･ﾄﾞ･ｱﾘｴﾙ",
-										"room_no":"202",
-										"shiyoryo_now":"22,543円",
-										"shiyoryo_agekasan":"27,051円",
-										"send_mail_date":"",
-										"nyukyo_date":"2016/08/01",
-										"taikyo_date":"",
-										"yoto":"世帯",
-										"yakuin_kbn":"",
-										"shozoku":"東京支社 沼津工事事務所 御殿場西工事区"									
-									},{
-										"id":8,
-										"sentaku_flg":"<input type='checkbox'></input>",
-										"original_kaisha":"高速道路総合研究所",
-										"kyuyosikyu_kaisha":"NEXCO中日本",
-										"syain_no":"00073578",
-										"shain_name":"中日本 6642",
-										"birthday":"1978/07/20",
-										"age":"40",
-										"shataku_name":"ｵｰｸﾗﾝﾄ八王子",
-										"room_no":"403",
-										"shiyoryo_now":"29,282円",
-										"shiyoryo_agekasan":"35,138円",
-										"send_mail_date":"",
-										"nyukyo_date":"2014/04/03",
-										"taikyo_date":"",
-										"yoto":"世帯",
-										"yakuin_kbn":"",
-										"shozoku":"東京支社 総務企画部 企画調整T"									
-									},{
-										"id":9,
-										"sentaku_flg":"<input type='checkbox'></input>",
-										"original_kaisha":"NEXCO中日本",
-										"kyuyosikyu_kaisha":"NEXCO中日本",
-										"syain_no":"00073578",
-										"shain_name":"中日本 3578",
-										"birthday":"1968/11/23",
-										"age":"50",
-										"shataku_name":"Raffine泉",
-										"room_no":"305",
-										"shiyoryo_now":"17,543円",
-										"shiyoryo_agekasan":"23,386円",
-										"send_mail_date":"",
-										"nyukyo_date":"2016/07/03",
-										"taikyo_date":"",
-										"yoto":"独身",
-										"yakuin_kbn":"",
-										"shozoku":"東京支社 浜松保全・サービスセンター"									
-									},{
-										"id":10,
-										"sentaku_flg":"<input type='checkbox'></input>",
-										"original_kaisha":"NEXCO中日本",
-										"kyuyosikyu_kaisha":"NEXCO中日本",
-										"syain_no":"00074618",
-										"shain_name":"中日本 4618",
-										"birthday":"1978/05/26",
-										"age":"40",
-										"shataku_name":"稲沢A棟",
-										"room_no":"410",
-										"shiyoryo_now":"22,877円",
-										"shiyoryo_agekasan":"22,877円",
-										"send_mail_date":"",
-										"nyukyo_date":"2010/04/02",
-										"taikyo_date":"",
-										"yoto":"世帯",
-										"yakuin_kbn":"",
-										"shozoku":"名古屋支社　保全・サービス事業部 構造技術T"									
-									}
-,{
-										"id":11,
-										"sentaku_flg":"<input type='checkbox'></input>",
-										"original_kaisha":"NEXCO中日本",
-										"kyuyosikyu_kaisha":"NEXCO中日本",
-										"syain_no":"00122551",
-										"shain_name":"中日本 2551",
-										"birthday":"1969/03/09",
-										"age":"50",
-										"shataku_name":"ｵｰｸﾗﾝﾄ八王子",
-										"room_no":"401",
-										"shiyoryo_now":"35,138円",
-										"shiyoryo_agekasan":"40,995円",
-										"send_mail_date":"",
-										"nyukyo_date":"2015/09/02",
-										"taikyo_date":"",
-										"yoto":"世帯",
-										"yakuin_kbn":"",
-										"shozoku":"八王子支社 保全・サービス事業部 道路管制センター・交通規制T"									
-									}
-,{
-										"id":12,
-										"sentaku_flg":"<input type='checkbox'></input>",
-										"original_kaisha":"NEXCO中日本",
-										"kyuyosikyu_kaisha":"NEXCO中日本",
-										"syain_no":"00122593",
-										"shain_name":"中日本 2593",
-										"birthday":"1968/12/12",
-										"age":"50",
-										"shataku_name":"ｿﾚｲﾕﾚｳﾞｧﾝ",
-										"room_no":"604",
-										"shiyoryo_now":"24,543円",
-										"shiyoryo_agekasan":"29,068円",
-										"send_mail_date":"",
-										"nyukyo_date":"2016/11/01",
-										"taikyo_date":"",
-										"yoto":"世帯",
-										"yakuin_kbn":"",
-										"shozoku":"名古屋支社 飯田保全・サービスセンター"									
-									}
-,{
-										"id":13,
-										"sentaku_flg":"<input type='checkbox'></input>",
-										"original_kaisha":"NEXCO中日本",
-										"kyuyosikyu_kaisha":"NEXCO中日本",
-										"syain_no":"00122870",
-										"shain_name":"中日本 2870",
-										"birthday":"1968/10/22",
-										"age":"50",
-										"shataku_name":"百合ヶ丘",
-										"room_no":"102",
-										"shiyoryo_now":"53,543円",
-										"shiyoryo_agekasan":"56,936円",
-										"send_mail_date":"",
-										"nyukyo_date":"2016/08/01",
-										"taikyo_date":"",
-										"yoto":"世帯",
-										"yakuin_kbn":"",
-										"shozoku":"東京支社 保全・サービス事業部 構造技術T"									
-									}
-,{
-										"id":14,
-										"sentaku_flg":"<input type='checkbox'></input>",
-										"original_kaisha":"NEXCO中日本",
-										"kyuyosikyu_kaisha":"NEXCO中日本",
-										"syain_no":"00124542",
-										"shain_name":"中日本 4542",
-										"birthday":"1979/02/22",
-										"age":"40",
-										"shataku_name":"稲沢B棟",
-										"room_no":"606",
-										"shiyoryo_now":"28,779円",
-										"shiyoryo_agekasan":"34,535円",
-										"send_mail_date":"",
-										"nyukyo_date":"2016/07/01",
-										"taikyo_date":"",
-										"yoto":"世帯",
-										"yakuin_kbn":"",
-										"shozoku":"本社 保全企画本部 施設T"									
-									}
-,{
-										"id":15,
-										"sentaku_flg":"<input type='checkbox'></input>",
-										"original_kaisha":"NEXCO中日本",
-										"kyuyosikyu_kaisha":"NEXCO中日本",
-										"syain_no":"00158927",
-										"shain_name":"中日本 8927",
-										"birthday":"1968/04/02",
-										"age":"50",
-										"shataku_name":"知立",
-										"room_no":"241",
-										"shiyoryo_now":"18,696円",
-										"shiyoryo_agekasan":"21,812円",
-										"send_mail_date":"",
-										"nyukyo_date":"2014/08/01",
-										"taikyo_date":"",
-										"yoto":"世帯",
-										"yakuin_kbn":"",
-										"shozoku":"東京支社 横浜保全・サービスセンター（保全担当）"									
-									}
-,{
-										"id":16,
-										"sentaku_flg":"<input type='checkbox'></input>",
-										"original_kaisha":"NEXCO中日本",
-										"kyuyosikyu_kaisha":"NEXCO中日本",
-										"syain_no":"00159559",
-										"shain_name":"中日本 9559",
-										"birthday":"1968/11/21",
-										"age":"50",
-										"shataku_name":"ﾌｨｵｰﾚN",
-										"room_no":"203",
-										"shiyoryo_now":"22,545円",
-										"shiyoryo_agekasan":"30,051円",
-										"send_mail_date":"",
-										"nyukyo_date":"2014/07/01",
-										"taikyo_date":"",
-										"yoto":"世帯",
-										"yakuin_kbn":"",
-										"shozoku":"名古屋支社 豊田保全・サービスセンター"									
-									}
-,{
-										"id":17,
-										"sentaku_flg":"<input type='checkbox'></input>",
-										"original_kaisha":"NEXCO中日本",
-										"kyuyosikyu_kaisha":"NEXCO中日本",
-										"syain_no":"00159924",
-										"shain_name":"中日本 9924",
-										"birthday":"1968/11/22",
-										"age":"50",
-										"shataku_name":"忠生",
-										"room_no":"402",
-										"shiyoryo_now":"30,043円",
-										"shiyoryo_agekasan":"31,550円",
-										"send_mail_date":"",
-										"nyukyo_date":"2008/08/01",
-										"taikyo_date":"",
-										"yoto":"世帯",
-										"yakuin_kbn":"",
-										"shozoku":"名古屋支社 羽島保全・サービスセンター（総務企画担当）"									
-									}
-,{
-										"id":18,
-										"sentaku_flg":"<input type='checkbox'></input>",
-										"original_kaisha":"NEXCO中日本",
-										"kyuyosikyu_kaisha":"NEXCO中日本",
-										"syain_no":"00160025",
-										"shain_name":"中日本 0025",
-										"birthday":"1968/06/11",
-										"age":"50",
-										"shataku_name":"ﾄﾞﾘｰﾑｸﾞﾗﾝﾃﾞ",
-										"room_no":"207",
-										"shiyoryo_now":"13,653円",
-										"shiyoryo_agekasan":"21,251円",
-										"send_mail_date":"",
-										"nyukyo_date":"2013/08/02",
-										"taikyo_date":"",
-										"yoto":"世帯",
-										"yakuin_kbn":"",
-										"shozoku":"本社 技術･建設本部･環境･技術企画部 技術企画･開発T（在町田）"									
-									}
-,{
-										"id":19,
-										"sentaku_flg":"<input type='checkbox'></input>",
-										"original_kaisha":"NEXCO中日本",
-										"kyuyosikyu_kaisha":"NEXCO中日本",
-										"syain_no":"00161556",
-										"shain_name":"中日本 1556",
-										"birthday":"1978/05/19",
-										"age":"40",
-										"shataku_name":"MK下宮地",
-										"room_no":"201",
-										"shiyoryo_now":"16,010円",
-										"shiyoryo_agekasan":"24,016円",
-										"send_mail_date":"",
-										"nyukyo_date":"2015/04/01",
-										"taikyo_date":"",
-										"yoto":"世帯",
-										"yakuin_kbn":"",
-										"shozoku":"金沢支社 総務企画部 企画調整T"									
-									}
-,{
-										"id":20,
-										"sentaku_flg":"<input type='checkbox'></input>",
-										"original_kaisha":"NEXCO中日本",
-										"kyuyosikyu_kaisha":"NEXCO中日本",
-										"syain_no":"00163521",
-										"shain_name":"中日本 3521",
-										"birthday":"1978/06/09",
-										"age":"40",
-										"shataku_name":"ﾋﾞﾊﾞｺｰﾄ暁C",
-										"room_no":"5-A",
-										"shiyoryo_now":"11,245円",
-										"shiyoryo_agekasan":"11,121円",
-										"send_mail_date":"",
-										"nyukyo_date":"2013/08/04",
-										"taikyo_date":"",
-										"yoto":"世帯",
-										"yakuin_kbn":"",
-										"shozoku":"東京支社 沼津工事事務所 御殿場西工事区"									
-									}
-								];
-
-								grid.jqGrid(parameter);
-
-
-
-// as
-//									// 1行づつ網掛け挑戦
-//									jQuery('#sampleListTable1').jqGrid({
-//										loadComplete: function () {
-//											var rowIDs = jQuery('#sampleListTable1').getDataIDs(); 
-//											$.each(rowIDs, function (i, item) {
-//												if (i % 2 == 0) {
-//													$('#'+item).removeClass('ui-widget-content');
-//													$('#'+item).addClass('testcss');
-//												}
-//											});
-//										},
-//									});
-//									jQuery('#sampleListTable1').jqGrid({
-//										gridComplete: function () {
-//											$('tbody > tr:even', this).addClass('ui-row-even');
-//										}
-//									});
-// ae
-
-								grid.jqGrid('navGrid','#sampleListTable1-pager',{
-									edit: false,
-									add: false,
-									del: false,
-									search: false,
-								});
-
-								var gboxGridId     = 'gbox_sampleListTable1';
-								var gboxGrid       = jQuery('#' + gboxGridId);
-								var parentWidthOld = Number.MIN_VALUE;
-							}
-
-							(function($) {
-								$(document).ready(function() {
-									imuiListTable();
-								});
-							})(jQuery);
-
-						})();
-					</script>
-					<style type="text/css">  
-						<!--
-							/* ヘッダテキスト中央寄せ */
-							.ui-jqgrid .ui-jqgrid-htable th div {
-								display:table-cell;
-							    height: 32px;
-								text-align:center;
-								vertical-align:middle;
-							}
-							/** 1行間隔で網掛け挑戦
-							.testcss {
-								border: 1px solid #a6c9e2;
-								background-color: #e6e6fa ;
-								color: #222222;
-							}
-
-							.ui-row-even {
-								background-color: #e6e6fa ;
-							}
-							*/
-
-							/* データ行の改行許容 */
-							#sampleListTable1 tr td{
-								white-space:normal;
-							}
-						-->
-					</style>
-				</form>
-			</div>
-		</td>
-		</tr>
-		</table>
-			<br />
-			<div class="align-R">
-				<input style="width:150px;" type="button" value="CSV出力" class="imui-medium-button" onclick="confreqCsv()"/>
-				<input style="width:150px;" type="button" value="メール送信" class="imui-medium-button" onclick="confreq()"/>
-			</div>
+		<div id="listTableArea">
+			<imui:listTable id="mainList" process="jssp" autoEncode="false" autoWidth="true" rowNumbers="true"
+				autoResize="true" onGridComplete="onGridComplete" onSelectAll="onSelectAll" onCellSelect="onCellSelect" onPaging="onPaging"
+				multiSelect="true" onBeforeSelectRow="onBeforeSelectRow" data="${form.listTableData }"
+				style="max-height: 100px" 
+				shrinkToFit="false">
+				<pager rowNum="${form.listTableMaxRowCount }" />
+				<cols sortable="false">
+					<!-- 
+					<col name="col1" caption="メール" width="200" sortable="false" align="center" wrap="true"　tabindex="9"/>
+					 -->
+					<col name="col2" caption="原籍会社名" width="110" sortable="false" align="left" wrap="true"/>
+					<col name="col3" caption="給与支給会社名" width="110" sortable="false" align="left" wrap="true"/>
+					<col name="col4" caption="社員番号" width="70" sortable="false" align="left" wrap="true"/>
+					<col name="col5" caption="氏名" width="100" sortable="false" align="left" wrap="true"/>
+					<col name="col6" caption="生年月日" width="80" sortable="false" align="center" wrap="true"　/>
+					<col name="col7" caption="年齢" width="30" sortable="false" align="center" wrap="true"　/>
+					<col name="col8" caption="社宅名" width="200" sortable="false" align="left" wrap="true"/>
+					<col name="col9" caption="部屋番号" width="60" sortable="false" align="left" wrap="true"/>
+					<col name="col10" caption="現使用料" width="100" sortable="false" align="right" wrap="true"/>
+					<col name="col11" caption="年齢加算使用料" width="100" sortable="false" align="right" wrap="true"/>
+					<col name="col12" caption="送信状況(送信日)" width="100" sortable="false" align="center" wrap="true"　/>
+					<col name="col13" caption="入居日" width="80" sortable="false" align="center" wrap="true"　/>
+					<col name="col14" caption="退居日" width="80" sortable="false" align="center" wrap="true"　/>
+					<col name="col15" caption="用途" width="50" sortable="false" align="center" wrap="true"　/>
+					<col name="col16" caption="役員区分" width="80" sortable="false" align="center" wrap="true"　/>
+					<col name="col17" caption="所属" width="400" sortable="false" align="left" wrap="true"　/>
+					<col name="col18" caption="仮社員フラグ" width="400" sortable="false" align="left" wrap="true"　hidden="true" />
+				</cols>
+			</imui:listTable>
+		</div>
+		<br />
+		<div class="align-R">
+			<!-- CSV出力 ボタン -->
+			<imui:button id="csvOut" name="csvOut" value="CSV出力" disabled="${form.csvOutButtonDisabled }" class="imui-medium-button" onclick="preButtonEvent(1)" tabindex="12" />
+			<!-- メール送信 ボタン -->
+			<imui:button id="sendMail" name="sendMail" value="メール送信" disabled="${form.sendMailButtonDisabled }"  class="imui-medium-button" onclick="preButtonEvent(2)" tabindex="13" />
 		</div>
 	</div>
+</nfwui:Form>
 <!-- コンテンツエリア　ここまで -->

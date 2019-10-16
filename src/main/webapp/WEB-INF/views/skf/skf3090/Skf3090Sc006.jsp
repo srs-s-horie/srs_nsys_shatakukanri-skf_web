@@ -27,14 +27,14 @@
 								</th>
 								<td style="width: 15%;">
 									<imui:select id="companyCd" name="companyCd"
-									width="185" list="${form.companyList}" tabindex="1" />
+									width="185" list="${form.companyList}" tabindex="3" />
 								</td>
 								<th style="width: 10%;">
 									<nfwui:LabelBox id="lblAgency" code="<%= MessageIdConstant.SKF3090_SC006_AGENCY %>" />
 								</th>
 								<td style="width: 15%;">
 									<imui:select id="agencyCd" name="agencyCd"
-									width="185" list="${form.agencyList}" tabindex="2" />
+									width="185" list="${form.agencyList}" tabindex="4" />
 								</td>
 
 								<th style="width: 10%;">
@@ -42,7 +42,7 @@
 								</th>
 								<td style="width: 15%;">
 									<imui:select id="businessAreaCd" name="businessAreaCd"
-									width="185" list="${form.businessAreaList}" tabindex="3" />
+									width="185" list="${form.businessAreaList}" tabindex="5" />
 								</td>
 							</tr>
 							<tr>
@@ -52,7 +52,7 @@
 								</th>
 								<td style="width: 15%;">
 									<imui:select id="affiliation1Cd" name="affiliation1Cd"
-									width="185" list="${form.affiliation1List}" tabindex="4" />
+									width="185" list="${form.affiliation1List}" tabindex="6" />
 								</td>
 
 								<th style="width: 10%;">
@@ -60,7 +60,7 @@
 								</th>
 								<td style="width: 15%;">
 									<imui:select id="affiliation2Cd" name="affiliation2Cd"
-									width="185" list="${form.affiliation2List}" tabindex="5" />
+									width="185" list="${form.affiliation2List}" tabindex="7" />
 								</td>
 
 							</tr>
@@ -70,7 +70,7 @@
 				</nfwui:Form>	
 				<div class="align-L">	
 					<nfwui:Button id="search" name="search" value="検索" cssClass="imui-small-button"
-						url="skf/Skf3090Sc006/search" formId="form" tabindex="6" />
+						url="skf/Skf3090Sc006/search" formId="form" tabindex="8" />
 				</div>
 				
 			</div>
@@ -121,7 +121,7 @@
 								<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3090_SC006 %>" />
 								<input type="hidden" name="updateFlag" id="updateFlag" value="0" />
 								<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3090Sc006/init" />
-								<nfwui:Button id="regist"  value="新規" cssClass="imui-medium-button" url="skf/Skf3090Sc007/init" formId="new" tabindex="7" />
+								<nfwui:Button id="regist"  value="新規" cssClass="imui-medium-button" url="skf/Skf3090Sc007/init" formId="new" tabindex="9" />
 							</nfwui:Form>
 					</div>
 

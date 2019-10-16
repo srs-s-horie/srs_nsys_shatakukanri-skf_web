@@ -65,21 +65,17 @@ function back() {
                                             <nfwui:LabelBox id="lblApplDater" code="<%= MessageIdConstant.SKF2010_SC003_APPL_DATER %>" />
                                         </th>
                                         <td colspan="2">
-                                            <imui:textbox name="applDateFrom" id="applDateFrom" value="${f:h(form.applDateFrom)}" class="${form.applDateFromErr}" style="width:100px" />&nbsp;～&nbsp;<imui:textbox name="applDateTo" id="applDateTo" value="${form.applDateTo}" style="width:100px" class="${form.applDateToErr}" />
+                                        	<nfwui:DateBox name="applDateFrom" id="applDateFrom" cssStyle="width:100px" />&nbsp;～&nbsp;<nfwui:DateBox name="applDateTo" id="applDateTo" cssStyle="width:100px" />
                                         </td>
                                     </tr>
-                                    <im:calendar floatable="true" altField="#applDateFrom" />
-                                    <im:calendar floatable="true" altField="#applDateTo" />
                                     <tr>
                                       <th style="width: 120px;">
                                           <nfwui:LabelBox id="agreDate" code="<%= MessageIdConstant.SKF2010_SC003_AGRE_DATE %>" />
                                       </th>
                                       <td colspan="2">
-                                          <imui:textbox name="agreDateFrom" id="agreDateFrom" value="${f:h(form.agreDateFrom)}" style="width:100px" class="${form.agreDateFromErr}"/>&nbsp;～&nbsp;<imui:textbox name="agreDateTo" id="agreDateTo" value="${form.agreDateTo}" class="${form.agreDateToErr}" style="width:100px"/>
+                                          <nfwui:DateBox name="agreDateFrom" id="agreDateFrom" cssStyle="width:100px"/>&nbsp;～&nbsp;<nfwui:DateBox name="agreDateTo" id="agreDateTo" cssStyle="width:100px"/>
                                       </td>
                                     </tr>
-                    				<im:calendar floatable="true" altField="#agreDateFrom" />
-                                    <im:calendar floatable="true" altField="#agreDateTo" />
                                     <tr>
                                         <th style="width: 120px;">
                                             <nfwui:LabelBox id="lblApplName" code="<%= MessageIdConstant.SKF2010_SC003_APPL_NAME %>" />
@@ -219,6 +215,9 @@ ${form.operationGuide}
 <!-- 明細＆細目未満 -->
   <!-- 明細部 -->
   <nfwui:Form id="listTableForm" name="listTableForm" modelAttribute="form">
+					    <input type="hidden" id="applNo" name="applNo" value="" />
+					    <input type="hidden" id="applId" name="applId" value="" />
+					    <input type="hidden" id="applStatusVal" name="sendApplStatus" value="" />
         
     <div style="width:100%;"><nfwui:Title id="resultListTitle" code="<%= MessageIdConstant.SKF2010_SC003_GRV_APPL_LIST %>" titleLevel="2" /></div>
 
@@ -226,7 +225,7 @@ ${form.operationGuide}
 id="ltResultListTable" name="ltResultListTable"
 autoResize="true" autoWidth="true"
 rowNumbers="true" onCellSelect="onCellSelect"
-height="232">
+height="232" onGridComplete="gridComplete">
 <cols>
   <col name="detail" caption="表示" width="90" align="center">
      <showIcon iconClass="im-ui-icon-common-16-update" />
@@ -252,6 +251,14 @@ height="232">
 
 <script type="text/javascript">
 (function() {
+	// listTable完成直後の処理
+    gridComplete = function() {
+    	var grid = $("#ltResultListTable");
+    	
+    	grid[0].grid.headers[8].el.innerHTML = "承認日／<br />　　修正依頼日";
+    }
+
+	
     // 申請状況の「全選択」ボタン押下時のイベント
     $("#allCheck").click(function() {
     	$("input[name='applStatus']").prop("checked", true);
@@ -277,7 +284,6 @@ height="232">
 	    		// 削除
 	    		url = url + "Delete";
 	    	}
-			//nfw.common.confirmPopup(dialogTitle, dialogMessage, "OK", "CANCEL");
     		
     		var grid = $("#ltResultListTable");		// リストテーブル情報取得
     		var rowData = grid.getRowData(rowId);	// 行情報取得
@@ -293,28 +299,7 @@ height="232">
     	
 	    	if ($(cellContent).hasClass('im-ui-icon-common-16-update')) {
 	    		// 表示
-	    		if ((applId == "R0100" || applId == "R0103") 
-	    				&& !((applStatus == "<%= CodeConstant.STATUS_ICHIJIHOZON %>" || applStatus == "<%= CodeConstant.STATUS_SASHIMODOSHI %>"))) {
-	    			url = "skf/Skf2010Sc004/init";
-	    		} else {
-		    		switch (applId) {
-		    		case "R0100":
-		    			url = "skf/Skf2020Sc002/init";
-		    			break;
-		    		case "R0103":
-		    			url = "skf/Skf2040Sc001/init";
-		    			break;
-		    		case "R0104":
-		    			url = "skf/Skf2030Sc001/init";
-		    			break;
-		    		case "R0106":
-		    			url = "skf/Skf2060Sc002/init";
-		    			break;
-		    		default:
-		    			url = "skf/Skf2010Sc004/init";
-		    			break;
-		    		}
-	    		}
+	    		url = url + "Transfer";
 	    	} else if ($(cellContent).hasClass('im-ui-icon-common-16-ng')) {
 	    		// 取下げ
 	    		url = url + "Cancel";
@@ -330,7 +315,6 @@ height="232">
 	    	} else {
 	    		nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "CANCEL", this, true);
 	    	}
-	    	//$("#form").submit();
     	}
     }
 })(jQuery);

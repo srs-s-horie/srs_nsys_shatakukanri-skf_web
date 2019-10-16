@@ -11,7 +11,7 @@
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
-
+<script src="scripts/skf/skfCommon.js"></script>
 <%-- コンテンツエリア --%>
 <style type="text/css">
 
@@ -22,11 +22,47 @@ function back1() {
 	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
 }
 </script>
-<!-- コンテンツエリア:モックのまま -->
-		<!-- コンテンツエリア -->
-		<div class="imui-form-container-wide">
-			<nfwui:Form id="form" name="form" modelAttribute="form">
-					<nfwui:Table use="search">
+
+	<!-- コンテンツエリア -->
+	<nfwui:Form id="form" name="form" action="/skf/Skf3010Sc007/selectList" modelAttribute="form">
+	<div >
+	<div class="imui-form-container-wide" >
+
+				<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC007 %>" />
+				<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="${form.hdnShatakuKanriNo}" />
+				<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="${form.hdnShatakuName}" />
+				<input type="hidden" name="hdnAreaKbn" id="hdnAreaKbn" value="${form.hdnAreaKbn}" />
+				<input type="hidden" name="hdnShatakuKbn" id="hdnShatakuKbn" value="${form.hdnShatakuKbn}" />
+				<input type="hidden" name="hdnListData" id="hdnListData" value="${form.hdnListData}" />
+				<input type="hidden" name="hdnParkingBlock" id="sendParkingBlock" value="${form.hdnParkingBlock}" />
+				<input type="hidden" name="hdnBackupContractPropertyId" id="hdnBackupContractPropertyId" value="${form.hdnBackupContractPropertyId}" />
+				<input type="hidden" name="hdnBackupMaxContractPropertyId" id="hdnBackupMaxContractPropertyId" value="${form.hdnBackupMaxContractPropertyId}" />
+				<input type="hidden" name="hdnRegistContractPropertyId" id="hdnRegistContractPropertyId" value="${form.hdnRegistContractPropertyId}" />
+				<input type="hidden" name="hdnBackupParkingContractType" id="hdnBackupParkingContractType" value="${form.hdnBackupParkingContractType}" />
+				<input type="hidden" name="hdnBackupｓOwnerName" id="hdnBackupOwnerName" value="${form.hdnBackupOwnerName}" />
+				<input type="hidden" name="hdnBackupOwnerNo" id="hdnBackupOwnerNo" value="${form.hdnBackupOwnerNo}" />
+				<input type="hidden" name="hdnBackupParkingZipCd" id="hdnBackupParkingZipCd" value="${form.hdnBackupParkingZipCd}" />
+				<input type="hidden" name="hdnBackupParkingAddress" id="hdnBackupParkingAddress" value="${form.hdnBackupParkingAddress}" />
+				<input type="hidden" name="hdnBackupParkingName" id="hdnBackupParkingName" value="${form.hdnBackupParkingName}" />
+				<input type="hidden" name="hdnBackupAssetRegisterNo" id="hdnBackupAssetRegisterNo" value="${form.hdnBackupAssetRegisterNo}" />
+				<input type="hidden" name="hdnBackupParkinglendKbn" id="hdnBackupParkinglendKbn" value="${form.hdnBackupParkinglendKbn}" />
+				<input type="hidden" name="hdnBackupContractStartDate" id="hdnBackupContractStartDate" value="${form.hdnBackupContractStartDate}" />
+				<input type="hidden" name="hdnBackupContractEndDate" id="hdnBackupContractEndDate" value="${form.hdnBackupContractEndDate}" />
+				<input type="hidden" name="hdnBackupLandRent" id="hdnBackupLandRent" value="${form.hdnBackupLandRent}" />
+				<input type="hidden" name="hdnBackupBiko" id="hdnBackupBiko" value="${form.hdnBackupBiko}" />
+				<input type="hidden" name="contractPropertyId" id="sendContractPropertyId" value="" />
+				<input type="hidden" name="parkingContractType" id="sendParkingContractType" value="" />
+				<input type="hidden" name="parkingKanriNo" id="sendParkingKanriNo" value="${form.parkingKanriNo}" />
+				<input type="hidden" name="selectMode" id="selectMode" value="${form.selectMode}" />
+				<input type="hidden" name="hdnDelInfoFlg" id="hdnDelInfoFlg" value="${form.hdnDelInfoFlg}" />
+				<input type="hidden" name="ownerNo" id="sendOwnerNo" value="${form.ownerNo}" />
+				<input type="hidden" name="landRentNum" id="sendLandRent" value="" />
+				<input type="hidden" name="setContractStartDate" id="sendContractStartDate" value="" />
+				<input type="hidden" name="setContractEndDate" id="sendContractEndDate" value="" />
+				
+				
+				<input type="hidden" name="contractPropertyIdListData" id="contractPropertyIdListData" value="${form.contractPropertyIdListData}" />
+				<nfwui:Table use="search">
 						<tbody>
 							<tr>
 								<th style="width: 5%;">
@@ -58,41 +94,9 @@ function back1() {
 						</tbody>
 					</nfwui:Table>
 			
-		</nfwui:Form>
 		<br>
 			<!-- 明細＆細目未満 -->
 				<!-- 明細部 -->
-				<nfwui:Form id="form2" name="form2" action="/skf/Skf3010Sc007/selectList" modelAttribute="form">
-				<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC007 %>" />
-					<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="${form.hdnShatakuKanriNo}" />
-					<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="${form.hdnShatakuName}" />
-					<input type="hidden" name="hdnAreaKbn" id="hdnAreaKbn" value="${form.hdnAreaKbn}" />
-					<input type="hidden" name="hdnShatakuKbn" id="hdnShatakuKbn" value="${form.hdnShatakuKbn}" />
-					<input type="hidden" name="hdnListData" id="hdnListData" value="${form.hdnListData}" />
-					<input type="hidden" name="hdnParkingBlock" id="sendParkingBlock" value="${form.hdnParkingBlock}" />
-					<input type="hidden" name="hdnBackupContractPropertyId" id="hdnBackupContractPropertyId" value="${form.hdnBackupContractPropertyId}" />
-					<input type="hidden" name="hdnBackupMaxContractPropertyId" id="hdnBackupMaxContractPropertyId" value="${form.hdnBackupMaxContractPropertyId}" />
-					<input type="hidden" name="hdnRegistContractPropertyId" id="hdnRegistContractPropertyId" value="${form.hdnRegistContractPropertyId}" />
-					<input type="hidden" name="hdnBackupParkingContractType" id="hdnBackupParkingContractType" value="${form.hdnBackupParkingContractType}" />
-					<input type="hidden" name="hdnBackupｓOwnerName" id="hdnBackupOwnerName" value="${form.hdnBackupOwnerName}" />
-					<input type="hidden" name="hdnBackupOwnerNo" id="hdnBackupOwnerNo" value="${form.hdnBackupOwnerNo}" />
-					<input type="hidden" name="hdnBackupParkingZipCd" id="hdnBackupParkingZipCd" value="${form.hdnBackupParkingZipCd}" />
-					<input type="hidden" name="hdnBackupParkingAddress" id="hdnBackupParkingAddress" value="${form.hdnBackupParkingAddress}" />
-					<input type="hidden" name="hdnBackupParkingName" id="hdnBackupParkingName" value="${form.hdnBackupParkingName}" />
-					<input type="hidden" name="hdnBackupAssetRegisterNo" id="hdnBackupAssetRegisterNo" value="${form.hdnBackupAssetRegisterNo}" />
-					<input type="hidden" name="hdnBackupParkinglendKbn" id="hdnBackupParkinglendKbn" value="${form.hdnBackupParkinglendKbn}" />
-					<input type="hidden" name="hdnBackupContractStartDate" id="hdnBackupContractStartDate" value="${form.hdnBackupContractStartDate}" />
-					<input type="hidden" name="hdnBackupContractEndDate" id="hdnBackupContractEndDate" value="${form.hdnBackupContractEndDate}" />
-					<input type="hidden" name="hdnBackupLandRent" id="hdnBackupLandRent" value="${form.hdnBackupLandRent}" />
-					<input type="hidden" name="hdnBackupBiko" id="hdnBackupBiko" value="${form.hdnBackupBiko}" />
-					<input type="hidden" name="contractPropertyId" id="sendContractPropertyId" value="" />
-					<input type="hidden" name="parkingContractType" id="sendParkingContractType" value="" />
-					<input type="hidden" name="parkingKanriNo" id="sendParkingKanriNo" value="${form.parkingKanriNo}" />
-					<input type="hidden" name="selectMode" id="selectMode" value="${form.selectMode}" />
-					<input type="hidden" name="hdnDelInfoFlg" id="hdnDelInfoFlg" value="${form.hdnDelInfoFlg}" />
-					<input type="hidden" name="ownerNo" id="ownerNo" value="${form.ownerNo}" />
-
-					
 					<script type="text/javascript">
 						(function($){
 						$.imui.util.loadCSS("../../ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
@@ -103,7 +107,7 @@ function back1() {
 						autoResize="true" onCellSelect="onCellSelect"
 						multiSelect="false" data="${form.listTableData }"
 						style="max-height: 800px" tabindex="1">
-						<pager rowNum="${form.listTableMaxRowCount }" />
+<%-- 						<pager rowNum="${form.listTableMaxRowCount}" /> --%>
 						<cols sortable="false">
 						<col name="colParkingBlock" caption="区画番号" width="65" sortable="false" align="left" />
 						<col name="colParkingContractType" caption="契約形態" width="100" sortable="false" align="left" wrap="true"/>
@@ -117,42 +121,41 @@ function back1() {
 						<col name="colLandRent" caption="地代" width="70" sortable="false" align="right" wrap="true"/>
 						<col name="colBiko" caption="備考" width="80" sortable="false" align="left" wrap="true"/>
 						<col name="colParkingKanriNo" caption="駐車場管理番号" hidden="true"/>
-						
 						</cols>
 					</imui:listTable>
-					
+					</div>
 					<table name="imui-8eqlrzst4hv6std" id="sampleListTable1"></table>
 					<div id="sampleListTable1-pager"></div>
 					<script type="text/javascript">
 						(function($) {
-							onCellSelect = function(rowId,iCol,cellcontent,e) {
-								
-								// リストテーブル情報取得
-								var grid = $("#mainList");
-								// 行番号から選択した行の情報を取得
-								var row = grid.getRowData(rowId);
-								
-								$("#sendParkingBlock").val(row.colParkingBlock);
-								$("#sendContractPropertyId").val(row.colContractPropertyId);
-								$("#sendParkingKanriNo").val(row.colParkingKanriNo);
-								if($("#selectMode").val() == 'init'){
-									$("#selectMode").val('mainlList');
+								onCellSelect = function(rowId,iCol,cellcontent,e) {
 									
-									url = "skf/Skf3010Sc007/selectList";
-									$("#form2").attr("action", url);
-									$("#form2").submit();
-								}else{
-									checkInput('mainList');		
+									// リストテーブル情報取得
+									var grid = $("#mainList");
+									// 行番号から選択した行の情報を取得
+									var row = grid.getRowData(rowId);
+									
+									$("#sendParkingBlock").val(row.colParkingBlock);
+									$("#sendContractPropertyId").val(row.colContractPropertyId);
+									$("#sendParkingKanriNo").val(row.colParkingKanriNo);
+									if($("#selectMode").val() == 'init'){
+										$("#selectMode").val('mainlList');
+										
+										url = "skf/Skf3010Sc007/selectList";
+										$("#form").attr("action", url);
+										$("#form").submit();
+									}else{
+										checkInput('mainList');	
+									}
+									
 								}
-								
-							}
 							
 							})(jQuery);
-
+					
 					</script>	
-					</div>
-		</div>
-		<div class="imui-form-container-wide">
+	</div>
+
+	<div class="imui-form-container-wide">
 		<table class="imui-form-search-condition">
           <tbody>
            <tr>
@@ -200,14 +203,15 @@ function back1() {
                </th>
                <td colspan="3">
 <%--                		<imui:textbox id="txtOwnerName" name="ownerName" style="width:130px;" value="${f:h(form.ownerName)}" class="${form.ownerNameError}" disabled="${form.contractInfoDisabled}" maxlength="30" tabindex="5" readonly /> --%>
+<!-- TODO テスト用になっているので賃貸人支援呼び出しに修正必要 -->
                		<imui:textbox id="txtOwnerName" name="ownerName" style="width:130px;" value="${f:h(form.ownerName)}" class="${form.ownerNameError}" disabled="${form.contractInfoDisabled}" maxlength="30" tabindex="5" />
                		<nfwui:PopupButton id="ownerShien" name="ownerShien" value="支援" use="popup" 
-               		cssClass="imui-small-button" popupWidth="650" popupHeight="550" 
-               		modalMode="false" screenUrl="skf/Skf2010Sc001/init" 
-               		parameter="parkinglendKbn:nyukyoFlag" disabled="${form.contractInfoDisabled}" 
-               		callbackFunc="updateOwnerName" tabindex="6"/>
+                		cssClass="imui-small-button" popupWidth="650" popupHeight="550"  
+                		modalMode="false" screenUrl="skf/Skf2010Sc001/init"  
+                		parameter="parkinglendKbn:nyukyoFlag" disabled="${form.contractInfoDisabled}"  
+                		callbackFunc="shainInfoCallback" tabindex="6"/> 
                </td>
-               </tr>           
+               </tr>
 
              <tr>
                <th rowspan="2">
@@ -220,7 +224,10 @@ function back1() {
                </th>
                <td colspan="3">
                	<imui:textbox id="txtParkingZipCd" name="parkingZipCd" style="ime-mode: disabled;width:130px;" value="${f:h(form.parkingZipCd)}" class="${form.parkingZipCdError}" disabled="${form.contractInfoDisabled}" placeholder="例　4600003" maxlength="7" tabindex="7"/>
-              	<nfwui:Button id="addressSearch" name="addressSearch" code="<%=MessageIdConstant.SKF3010_SC007_ADDRESS_SEARCH %>" cssClass="imui-small-button" url="skf/Skf3010Sc007/addressSearch" disabled="${form.contractInfoDisabled}" formId="form2"  tabindex="8"/>
+              	<imui:button id="addressSearch" name="addressSearch" value="住所検索" class="imui-small-button" disabled="${form.contractInfoDisabled}" onclick="addressOnClick()" tabindex="8" />
+               
+<%--               	<nfwui:Button id="addressSearch" name="addressSearch" code="<%=MessageIdConstant.SKF3010_SC007_ADDRESS_SEARCH %>" cssClass="imui-small-button"  --%>
+<%--               	url="skf/Skf3010Sc007/addressSearch" disabled="${form.contractInfoDisabled}" formId="form"  tabindex="8"/> --%>
              </tr>
 
              <tr>
@@ -268,17 +275,22 @@ function back1() {
               		<nfwui:LabelBox id="lblContractStartDate" code="<%=MessageIdConstant.SKF3010_SC007_CONTRACT_START_DATE %>" />
                </th>
                <td>
-                 <imui:textbox name="contractStartDate" id="contractStartDate" value="${f:h(form.contractStartDate)}" class="${form.contractStartDateError}" disabled="${form.contractInfoDisabled}" style="width:100px"  tabindex="13"/>
+               		<nfwui:DateBox id="contractStartDate" name="contractStartDate" value="${f:h(form.contractStartDate)}"
+                                               cssClass="${f:h(form.contractStartDateError)}" tabindex="13" cssStyle="width:100px" disabled="${form.contractInfoDisabled}"/>
+               
+<%--                  <imui:textbox name="contractStartDate" id="contractStartDate" value="${f:h(form.contractStartDate)}" class="${form.contractStartDateError}" disabled="${form.contractInfoDisabled}" style="width:100px"  tabindex="13"/> --%>
                </td>
                <th style="width: 150px;">
 <!--                <label>契約終了日<label> -->
                		<nfwui:LabelBox id="lblContractEndDate" code="<%=MessageIdConstant.SKF3010_SC007_CONTRACT_END_DATE %>" />
                </th>
                     <td>
-                       <imui:textbox name="contractEndDate" id="contractEndDate" value="${f:h(form.contractEndDate)}" class="${form.contractEndDateError}" disabled="${form.contractInfoDisabled}" style="width:100px"  tabindex="14"/>
+                    <nfwui:DateBox id="contractEndDate" name="contractEndDate" value="${f:h(form.contractEndDate)}"
+                                               cssClass="${f:h(form.contractEndDateError)}" tabindex="14" cssStyle="width:100px" disabled="${form.contractInfoDisabled}"/>
+<%--                        <imui:textbox name="contractEndDate" id="contractEndDate" value="${f:h(form.contractEndDate)}" class="${form.contractEndDateError}" disabled="${form.contractInfoDisabled}" style="width:100px"  tabindex="14"/> --%>
                     </td>
-				<im:calendar floatable="true" altField="#contractStartDate" disabled="${form.contractInfoDisabled}"/>
-				<im:calendar floatable="true" altField="#contractEndDate" disabled="${form.contractInfoDisabled}"/>
+<%-- 				<im:calendar floatable="true" altField="#contractStartDate" disabled="${form.contractInfoDisabled}"/> --%>
+<%-- 				<im:calendar floatable="true" altField="#contractEndDate" disabled="${form.contractInfoDisabled}"/> --%>
              </tr>
 
              <tr>
@@ -287,11 +299,11 @@ function back1() {
                		<nfwui:LabelBox id="lblLandRent" code="<%=MessageIdConstant.SKF3010_SC007_LAND_RENT %>" />
                </th>
                     <td colspan="3">
-                        <imui:textbox name="landRent" id="txtLandRent" value="${f:h(form.landRent)}" class="${form.landRentError}" disabled="${form.contractInfoDisabled}" style="text-align: right;ime-mode: disabled;width:100px" placeholder="例　半角数字" maxlength="6" tabindex="15"/>
-<%--                         <nfwui:NumberBox name="landRent" id="txtLandRent" value="${f:h(form.landRent)}" cssClass="${form.landRentError}" disabled="${form.contractInfoDisabled}" cssStyle="text-align: right;ime-mode: disabled;width:100px" maxlength="7" tabindex="15"/> --%>
-                        &nbsp;円
+<%--                          <imui:textbox name="landRent" id="landRent" value="${f:h(form.landRent)}" class="${form.landRentError}" disabled="${form.contractInfoDisabled}" style="text-align: right;ime-mode: disabled;width:100px" placeholder="例　半角数字" maxlength="6" tabindex="15"/>  --%>
+                         <nfwui:NumberBox name="landRent" id="landRent" cssClass="${form.landRentError}" disabled="${form.contractInfoDisabled}" cssStyle="width:100px;" inputFormat="n0" maxlength="8" tabindex="15"/> 
+					&nbsp;円
                     </td>
-               </tr>           
+               </tr>
                <tr>
 
                <th colspan="2">
@@ -300,24 +312,10 @@ function back1() {
                </th>
                <td colspan="3">
                     <imui:textbox name="biko" id="biko" value="${f:h(form.biko)}" disabled="${form.contractInfoDisabled}" style="width:500px" maxlength="100" tabindex="16"/>
-               </td>             
+               </td>
                </tr>
-		</table>	
-			<br />
-
-			<div class="align-R">
-				<imui:button id="regist" name="regist" value="登録" class="imui-medium-button" style="width: 150px" onclick="registOnClick()" tabindex="17" disabled="${form.registButtonDisabled}"/>
-				<imui:button id="cancel" name="cancel" value="キャンセル" class="imui-medium-button" style="width: 150px" onclick="cancelOnClick()" tabindex="18" disabled="${form.cancelButtonDisabled}"/>
-			
-			</div>
-			<br>
-		
-			<div class="align-L">	
-				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="19" />
-			</div>
-		</div>
-
-		<script type="text/javascript">
+		</table>
+				<script type="text/javascript">
 				(function($) {
 					// 画面表示時に定義される処理
 				    $(document).ready(function(){
@@ -343,7 +341,8 @@ function back1() {
 							map['hdnBackupContractEndDate'] = $("#hdnBackupContractEndDate").val();
 							map['hdnBackupLandRent'] = $("#hdnBackupLandRent").val();
 							map['hdnBackupBiko'] = $("#hdnBackupBiko").val();
-
+							map['contractPropertyIdListData'] = $("#contractPropertyIdListData").val();
+							//skf.common.setRawValue("form");
 							map['parkingContractType'] = $("#parkingContractType").val();
 							map['ownerName'] = $("#txtOwnerName").val();
 							map['parkingZipCd'] = $("#txtParkingZipCd").val();
@@ -353,7 +352,7 @@ function back1() {
 							map['parkinglendKbn'] = $("#parkinglendKbn").val();
 							map['contractStartDate'] = $("#contractStartDate").val();
 							map['contractEndDate'] = $("#contractEndDate").val();
-							map['landRent'] = $("#txtLandRent").val();
+							map['landRent'] = $("#landRent").val();
 							map['biko'] = $("#biko").val();
 							
 							map['hdnDelInfoFlg'] = $("#hdnDelInfoFlg").val();
@@ -369,13 +368,12 @@ function back1() {
 										var dialogTitle = "確認";
 										//MessageIdConstant.：I-SKF-2024
 										var dialogMessage = "入力内容が無効になります。破棄してもよろしいですか？";
-								    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form2", "skf/Skf3010Sc007/selectList", "OK", "CANCEL", this, true);
+								    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc007/selectList", "ok", "キャンセル", this, true);
 								}else{
 									
 									url = "skf/Skf3010Sc007/selectList";
-									$("#form2").attr("action", url);
-									$("#form2").submit();
-									//nfw.common.submitForm("form2",url,"checkBtn");
+									$("#form").attr("action", url);
+									$("#form").submit();
 								}
 								
 								
@@ -415,7 +413,7 @@ function back1() {
 								
 								//MessageIdConstant.：I-SKF-2024
 								var dialogMessage = "入力内容が無効になります。破棄してもよろしいですか？";
-						    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form2", "skf/Skf3010Sc007/selectList", "OK", "CANCEL", this, true);
+						    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc007/selectList", "ok", "キャンセル", this, true);
 				    		}else{
 				    			//登録済み情報の削除
 				    			$("#sendParkingBlock").val($("#sendParkingBlock").val());
@@ -425,8 +423,20 @@ function back1() {
 				    			
 								//MessageIdConstant.：I-SKF-3064
 								var dialogMessage = "駐車場の契約情報を削除します。よろしいですか？";
-						    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form2", "skf/Skf3010Sc007/selectList", "OK", "CANCEL", this, true);
+						    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc007/selectList", "ok", "キャンセル", this, true);
 				    		}
+				    	}
+				    	
+				    	addressOnClick = function () {
+							var map = new Object();
+							map['parkingZipCd'] = $("#txtParkingZipCd").val();
+							nfw.common.doAjaxAction("skf/Skf3010Sc007/AddressSearchAsync",map,true,function(data) {
+								if(data.parkingAddress != null && data.parkingAddress!=""){
+									$("#txtParkingAddress").val(data.parkingAddress);
+								}
+								$("#txtParkingZipCd").removeClass("nfw-validation-error");
+								$("#txtParkingZipCd").addClass(data.parkingZipCdError);
+							});
 				    	}
 				    	
 				    	cancelOnClick = function () {
@@ -437,7 +447,7 @@ function back1() {
 				    		
 			    			var dialogTitle = "確認";
 							var dialogMessage = "編集が無効になります。よろしいですか？";
-					    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form2", "skf/Skf3010Sc007/selectList", "OK", "CANCEL", this, true);
+					    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc007/selectList", "ok", "キャンセル", this, true);
 				    	}
 				    	
 				    	registOnClick = function () {
@@ -445,33 +455,93 @@ function back1() {
 							$("#sendContractPropertyId").val( $("#contractPropertyId").val());
 							$("#sendParkingContractType").val( $("#parkingContractType").val());
 							$("#selectMode").val('registButton');
+							
+							skf.common.setRawValue("form");
+							$("#sendLandRent").val($("#landRent").val());
+							$("#sendContractStartDate").val($("#contractStartDate").val());
+							$("#sendContractEndDate").val($("#contractEndDate").val());
 							//MessageIdConstant.I_SKF_3035[{0}を登録します。よろしいですか？]
 				    		
 			    			var dialogTitle = "確認";
 							var dialogMessage = "駐車場契約情報を登録します。よろしいですか？";
-					    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form2", "skf/Skf3010Sc007/regist", "OK", "CANCEL", this, true);
+					    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc007/regist", "ok", "キャンセル", this, true);
 				    	}
 				    	
 				    	updateOwnerName = function() {
 				            if( param != null && typeof param == 'object' && param.name != null && param.no != null){
 				                $("#txtOwnerName").val(param.name);
-				                $("#ownerNo").val(param.no);
+				                $("#sendOwnerNo").val(param.no);
 				            }
 				    		
+				    	}
+				    	//TODO 賃貸人に修正が必要
+				    	shainInfoCallback = function(param) {
+				            if( param != null && typeof param == 'object' && param.name != null && param.shainNo != null){
+				                $("#txtOwnerName").val(param.name);
+				                $("#sendOwnerNo").val(param.shainNo);
+				            }
 				    	}
 				    	
 				    	backOnClick = function () {
 					    	//確認メッセージ
 							dialogTitle = "確認";
 							dialogMessage = "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。";
-					    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc002/init", "OK", "CANCEL", this, true);	
+					    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc002/init", "ok", "キャンセル", this, true);	
 					    }
 				    	
 				    	//リサイズ時イベント
 				    	$(window).bind('resize', function(){
 				    		$('#mainList').setGridWidth($('#listTableArea').width(), true);	
 				    	}).trigger('resize');
-				    				
+				    	
+				    	
+				    	setDisabled = function(state){
+				    		$("#txtOwnerName").prop("disabled",state);
+				    		$("#txtOwnerName").val("");
+				    		$("#sendOwnerNo").val(null);
+							$("#txtParkingZipCd").prop("disabled",state);
+							$("#txtParkingZipCd").val("");
+							$("#txtParkingAddress").prop("disabled",state);
+							$("#txtParkingAddress").val("");
+							$("#txtParkingName").prop("disabled",state);
+							$("#txtParkingName").val("");
+							$("#txtAssetRegisterNo").prop("disabled",state);
+							$("#txtAssetRegisterNo").val("");
+							$("#parkinglendKbn").prop("disabled",state);
+							$("#contractStartDate").prop("disabled",state);
+							$("#contractStartDate").val("");
+							$("#contractEndDate").prop("disabled",state);
+							$("#contractEndDate").val("");							
+							$("#landRent").val(null);
+							wjObj = wijmo.Control.getControl('#landRentDiv');
+							wjObj.value = null;
+							$('#landRent').prop("value", "");
+							$("#landRent").prop("disabled",state);
+							$("#biko").prop("disabled",state);
+							$("#biko").val("");
+							$("#addressSearch").prop("disabled",state);
+							$("#ownerShien").prop("disabled",state);
+							
+							if(state){
+								$('#addressSearch').addClass("imui-disabled-button");
+								$('#ownerShien').addClass("imui-disabled-button");
+								//
+								$("#contractStartDateDiv").addClass("wj-state-disabled");
+								$("#contractEndDateDiv").addClass("wj-state-disabled");
+								$("#landRentDiv").addClass("wj-state-disabled");
+							}else{
+								$('#addressSearch').removeClass("imui-disabled-button");
+								$('#ownerShien').removeClass("imui-disabled-button");
+								$("#contractStartDateDiv").removeClass("wj-state-disabled");
+								$("#contractEndDateDiv").removeClass("wj-state-disabled");
+								$("#landRentDiv").removeClass("wj-state-disabled");
+ 								$("#contractStartDateDiv").prop("disabled",state);
+ 								$("#contractEndDateDiv").prop("disabled",state);
+ 								$("#landRentDiv").prop("disabled",state);
+							}
+							
+				    	}
+				    	
 				    });
 					
 					$("#contractPropertyId").bind('change', function() {
@@ -482,25 +552,48 @@ function back1() {
 						
 					});
 					
+					
+					
 					$("#parkingContractType").bind('change', function() {
 						//契約形態変更
 						$('#sendParkingContractType').val($("#parkingContractType").val());
-						// サービス呼び出し
-						url = "skf/Skf3010Sc007/changeContractType";
-						$("#form2").attr("action", url);
-						$("#form2").submit();
-					
-					
+						var map = new Object();
+						map['parkingContractType'] = $("#parkingContractType").val();
+						nfw.common.doAjaxAction("skf/Skf3010Sc007/ChangeContractTypeAsync",map,true,function(data) {
+							$("#parkinglendKbn").imuiSelect('replace', data.parkinglendKbnList);
+							$("#parkingContractType").imuiSelect('replace', data.parkingContractTypeList);
+							
+							if($("#parkingContractType").val()=="2"){
+								setDisabled(false);
+							}else{
+								setDisabled(true);
+							}
+							
+						});
+// 						// サービス呼び出し→非同期に変更
+// 						url = "skf/Skf3010Sc007/changeContractType";
+// 						$("#form").attr("action", url);
+// 						$("#form").submit();
 					});
 					
-					//txtOwnerName
-					$("#txtOwnerName").bind('click', function() {
-						
-						
-					});
 				})(jQuery);
 				</script>
-		</nfwui:Form>
+
+			<br />
+
+			<div class="align-R">
+				<imui:button id="regist" name="regist" value="登録" class="imui-medium-button" style="width: 150px" onclick="registOnClick()" tabindex="17" disabled="${form.registButtonDisabled}"/>
+				<imui:button id="cancel" name="cancel" value="キャンセル" class="imui-medium-button" style="width: 150px" onclick="cancelOnClick()" tabindex="18" disabled="${form.cancelButtonDisabled}"/>
+			</div>
+			<br>		
+			<div class="align-L">	
+				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="19" />
+			</div>
+
+	</div>
+	</div>
+	</nfwui:Form>
+
 
 	
 	<!-- コンテンツエリア　ここまで -->
