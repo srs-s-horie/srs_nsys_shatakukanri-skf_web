@@ -18,8 +18,7 @@ public class SkfComBatch1Form extends BaseForm {
 
 	private static final long serialVersionUID = 5285848663756806913L;
 
-	private String teijiNo;
-	private String yearMonth;
+	private String shainNo;
 	private String returnStatus;
 
 }
