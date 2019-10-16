@@ -24,7 +24,7 @@ function back1() {
 	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？");
 }
 
-//リストテーブルの入退去予定作成区分の文字色変更
+//リストテーブルの入退居予定作成区分の文字色変更
 function onCellAttr(rowId,val,rawObject,cm,rdata){
 	  var style;
 	  switch (val) {
@@ -42,6 +42,43 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 }
 
 (function($) {
+	/*
+	jQuery(document).on("focus click", "input,textarea", function() {
+		$(this).select();
+		return false;
+	});
+	*/
+	
+	onGridComplete = function(rowId,iCol,cellcontent,e) {
+		var $list = $('#mainList');
+		$list[0].grid.headers[12].el.innerText = "入退去予定\n作成区分";
+		$list[0].grid.headers[12].el.style.textAlign = "center";
+
+		// テキストボックス、テキストエリアにフォーカス時、入力済み文字列全選択
+	   	document.getElementById("txtShainNo").addEventListener('click', function(){
+	   		$(this).select();
+	   		return false;
+	   	}, false);    	
+		document.getElementById("txtShinShozoku").addEventListener('click', function(){
+	   		$(this).select();
+	   		return false;
+	   	}, false);    	
+		document.getElementById("txtShainMei").addEventListener('click', function(){
+	   		$(this).select();
+	   		return false;
+	   	}, false);    	
+		document.getElementById("txtGenShozoku").addEventListener('click', function(){
+	   		$(this).select();
+	   		return false;
+	   	}, false);    	
+		document.getElementById("txtBiko").addEventListener('click', function(){
+	   		$(this).select();
+	   		return false;
+	   	}, false);    	
+		
+	}
+	
+	
 	onCellSelect = function(rowId,iCol,cellcontent,e) {
 		// リストテーブル情報取得
 		var grid = $("#mainList");
@@ -52,7 +89,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 
 		// 入居
 		$("#hdnRowNyukyo").val(row.col1);
-		// 退去
+		// 退居
 		$("#hdnRowTaikyo").val(row.col2);
 		// 変更
 		$("#hdnRowHenko").val(row.col3);
@@ -72,7 +109,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 		$("#hdnRowBiko").val(row.col10);
 		// 取込日
 		$("#hdnRowTakingDate").val(row.col11);
-		// 入退去予定作成区分
+		// 入退居予定作成区分
 		$("#hdnRowNyutaikyoKbn").val(row.col12);
 		// 更新日時
 		$("#hdnRowUpdateDate").val(row.col16);
@@ -103,7 +140,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 			dialogTitle = "確認";
 			dialogMessage = "削除します。よろしいですか？";
 			var url = "skf/Skf3020Sc004/delete";
-			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form2", url, "OK", "CANCEL", this, true);
+			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form2", url, "ok", "キャンセル", this, true);
 		}else{
 			// 何もしない
 		}
@@ -143,7 +180,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 					dialogTitle = "確認";
 					dialogMessage = "仮社員番号の転任者調書データを一括削除します。よろしいですか？";
 					url = "skf/Skf3020Sc004/shainDelete";
-					nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "CANCEL", this, true);
+					nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
 					break;
 				// 転任者調書取込
 				case 1:
@@ -164,7 +201,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 					dialogTitle = "登録";
 					dialogMessage = "入居・退居情報を更新し、入退居予定データを作成します。よろしいですか？";
 					url = "skf/Skf3020Sc004/regist";
-					nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "CANCEL", this, true);
+					nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
 					break;
 				default:
 					nfw.common.showReserveMessage("warning", "未サポート(未実装機能)です。");
@@ -205,7 +242,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 							<nfwui:LabelBox id="lblShainNo" code="<%=MessageIdConstant.SKF3020_SC004_SHAIN_NUMBER %>" />
 						</th>
 						<td>
-							<imui:textbox id="txtShainNo" name="shainNo" style="ime-mode: disabled;width:150px;" placeholder="例　00123456（半角）" value="${form.shainNo}" tabindex="1" maxlength="8"/>         
+							<imui:textbox id="txtShainNo" name="shainNo" style="ime-mode: disabled;width:150px;" placeholder="例　00123456（半角）" value="${form.shainNo}" tabindex="3" maxlength="8"/>         
 						</td>
 						<th style="width: 8%;">
 							<nfwui:LabelBox id="lblNyukyoTaikyo" code="<%=MessageIdConstant.SKF3020_SC004_NYUKYO_TAIKYO %>" />
@@ -215,27 +252,27 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 						<!--  
 	                          --> 
 						 <nfwui:CheckBoxGroupTag id="nyukyo">                              	
-	                           	<nfwui:CheckBox id="nyukyo" name="nyukyo" value="1" label="入居" tabindex="3"/>&nbsp;
+	                           	<nfwui:CheckBox id="nyukyo" name="nyukyo" value="1" label="入居" tabindex="5"/>&nbsp;
 	 					 </nfwui:CheckBoxGroupTag>
 						 <nfwui:CheckBoxGroupTag id="taikyo">                              	
-	                           	<nfwui:CheckBox id="taikyo" name="taikyo" value="1" label="退去" tabindex="4"/>&nbsp;
+	                           	<nfwui:CheckBox id="taikyo" name="taikyo" value="1" label="退居" tabindex="6"/>&nbsp;
 	 					 </nfwui:CheckBoxGroupTag>
 						 <nfwui:CheckBoxGroupTag id="henko">                              	
-	                           	<nfwui:CheckBox id="henko" name="henko" value="1" label="変更" tabindex="5"/>
+	                           	<nfwui:CheckBox id="henko" name="henko" value="1" label="変更" tabindex="7"/>
 	 					 </nfwui:CheckBoxGroupTag>
 						</td>
 						<th style="width: 6%;">
 							<nfwui:LabelBox id="lblShinShozoku" code="<%=MessageIdConstant.SKF3020_SC004_SHIN_SHOZOKU %>" />
 						</th>
 						<td>
-							<imui:textbox id="txtShinShozoku" name="shinShozoku" style="width:155px;" placeholder="例 名古屋支社" value="${form.shinShozoku}" tabindex="7" maxlength="192"/>
+							<imui:textbox id="txtShinShozoku" name="shinShozoku" style="width:155px;" placeholder="例 名古屋支社" value="${form.shinShozoku}" tabindex="9" maxlength="192"/>
 						</td>
 						<th style="width: 12%;">
 							<nfwui:LabelBox id="lblNyutaikyoYoteiSakuseiKubun" code="<%=MessageIdConstant.SKF3020_SC004_YOTEI_SAKUSEI %>" />
 						</th>
 						<td>
 							<imui:select id="nyutaikyoYoteiSakuseiKubun" name="nyutaikyoYoteiSakuseiKubun" 
-								width="80px" list="${form.yoteiSakuseiList}" tabindex="9" />
+								width="80px" list="${form.yoteiSakuseiList}" tabindex="11" />
 						</td>
 					</tr>
 					<tr>
@@ -243,26 +280,26 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 							<nfwui:LabelBox id="lblShainMei" code="<%=MessageIdConstant.SKF3020_SC004_SHAIN_NAME %>" />
 						</th>
 						<td>
-							<imui:textbox id="txtShainMei" name="shainName" style="width:150px;" placeholder="例　中日本　太郎" value="${form.shainName}" tabindex="2" maxlength="20"/>
+							<imui:textbox id="txtShainMei" name="shainName" style="width:150px;" placeholder="例　中日本　太郎" value="${form.shainName}" tabindex="4" maxlength="20"/>
 						</td>
 						<th>
 							<nfwui:LabelBox id="lblGenShataku" code="<%=MessageIdConstant.SKF3020_SC004_GEN_SHATAKU %>" />
 						</th>
 						<td>
 							<imui:select id="genShatakuKubun" name="genShatakuKubun" 
-								width="80px" list="${form.genShatakuKubunList}" tabindex="6" />
+								width="80px" list="${form.genShatakuKubunList}" tabindex="8" />
 						</td>
 						<th>
 							<nfwui:LabelBox id="lblGenShozoku" code="<%=MessageIdConstant.SKF3020_SC004_GEN_SHOZOKU %>" />
 						</th>
 						<td>
-							<imui:textbox id="txtGenShozoku" name="genShozoku" style="width:155px;" placeholder="例 名古屋支社" value="${form.genShozoku}" tabindex="8" maxlength="192"/>			
+							<imui:textbox id="txtGenShozoku" name="genShozoku" style="width:155px;" placeholder="例 名古屋支社" value="${form.genShozoku}" tabindex="10" maxlength="192"/>			
 						</td>
 						<th>
 							<nfwui:LabelBox id="lblBiko" code="<%=MessageIdConstant.SKF3020_SC004_BIKO %>" />
 						</th>
 						<td colspan="2">
-							<imui:textbox id="txtBiko" name="biko" style="width:250px;" value="${form.biko}" tabindex="10"  maxlength="100"/>
+							<imui:textbox id="txtBiko" name="biko" style="width:250px;" value="${form.biko}" tabindex="12"  maxlength="100"/>
 						</td>
 					</tr>
 				</tbody>
@@ -270,7 +307,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 
 			<div class="align-L">	
 				<nfwui:Button id="search" name="search" code="<%=MessageIdConstant.SKF3020_SC004_BUTTON_SEARCH %>" cssClass="imui-small-button" 
-					url="skf/Skf3020Sc004/search" formId="form" tabindex="11" />
+					url="skf/Skf3020Sc004/search" formId="form" tabindex="13" />
 			</div>
 		</div>
 		<!-- 明細＆細目未満 -->
@@ -287,39 +324,39 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 				<nfwui:CheckBoxGroupTag id="taikyoChkVal">
 				<nfwui:CheckBoxGroupTag id="henkouChkVal">
 					<imui:listTable id="mainList" process="jssp" autoEncode="false" autoWidth="true" rowNumbers="true"
-						autoResize="true" onCellSelect="onCellSelect"
+						autoResize="true" onCellSelect="onCellSelect" onGridComplete="onGridComplete"
 						multiSelect="false" data="${form.listTableData }"
 						style="max-height: 800px" >
 						<pager rowNum="${form.listTableMaxRowCount }" />
 						<cols sortable="false">
-							<col name="col1" caption="入居" width="35" sortable="false" align="center" tabindex="12"/>
-							<col name="col2" caption="退去" width="35" sortable="false" align="center" tabindex="13"/>
-							<col name="col3" caption="変更" width="35" sortable="false" align="center" tabindex="14"/>
+							<col name="col1" caption="入居" width="35" sortable="false" align="center" tabindex="14"/>
+							<col name="col2" caption="退居" width="35" sortable="false" align="center" tabindex="15"/>
+							<col name="col3" caption="変更" width="35" sortable="false" align="center" tabindex="16"/>
 							<col name="col4" caption="社員番号" width="80" sortable="false" wrap="true"/>
 							<col name="col5" caption="社員氏名" width="100" sortable="false" wrap="true"/>
 							<col name="col6" caption="等級" width="35" sortable="false" wrap="true"/>
 							<col name="col7" caption="年齢" width="35" sortable="false" align="right" wrap="true"/>
 							<col name="col8" caption="新所属" width="185" sortable="false" wrap="true"/>
 							<col name="col9" caption="現所属" width="185" sortable="false" wrap="true" />
-							<col name="col10" caption="備考" width="93" sortable="false" wrap="true" />
+							<col name="col10" caption="備考" width="120" sortable="false" wrap="true" />
 							<col name="col11" caption="取込日" width="90" sortable="false" align="center" wrap="true"/>
-							<col name="col12" caption="入退去予定作成区分" width="130" sortable="false" align="center" onCellAttr="onCellAttr" wrap="true"/>
+							<col name="col12" caption="入退居予定作成区分" width="80" sortable="false" align="center" onCellAttr="onCellAttr" wrap="true"/>
 							<!-- 
 							<col name="col13" caption="現社宅" width="75" sortable="false" align="center" tabindex="15"/>
 							 -->
-							<col name="col13" caption="現社宅" width="46" sortable="false" align="center" tabindex="15">
+							<col name="col13" caption="現社宅" width="46" sortable="false" align="center" tabindex="17">
 								<showIcon iconClass="im-ui-icon-common-16-settings" align="center" />
 							</col>
 							<!-- 
 							<col name="col14" caption="詳細" width="70" sortable="false" align="center" tabindex="16"/>
 							 -->
-							<col name="col14" caption="詳細" width="45" sortable="false" align="center" tabindex="16">
+							<col name="col14" caption="詳細" width="45" sortable="false" align="center" tabindex="18">
 								<showIcon iconClass="im-ui-icon-common-16-update" align="center" />
 							</col>
 							<!-- 
 							<col name="col15" caption="削除" width="70" sortable="false" align="center" tabindex="17"/>
 							 -->
-							<col name="col15" caption="削除" width="45" sortable="false" align="center" tabindex="17">
+							<col name="col15" caption="削除" width="45" sortable="false" align="center" tabindex="19">
 								<showIcon iconClass="im-ui-icon-common-16-trashbox" align="center" />
 							</col>
 							<col name="col16" caption="更新日時" hidden="true" />
@@ -338,13 +375,13 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 				<!-- 現社宅照会表示ボタン（非表示） -->
 				<nfwui:PopupButton id="genshataku" style="visibility:hidden" value="a" cssClass="imui-medium-button" modalMode="true" popupWidth="580" popupHeight="650" parameter="hdnRowShainNo:hdnRowShainNo" screenUrl="skf/Skf3020Sc001/init" use="popup" />				
 				<!-- 仮社員番号のデータ削除 ボタン -->
-				<imui:button id="delete" name="delete" value="仮社員番号のデータ削除" class="imui-medium-button" onclick="preButtonEvent(0)" tabindex="18" />
+				<imui:button id="delete" name="delete" value="仮社員番号のデータ削除" class="imui-medium-button" onclick="preButtonEvent(0)" tabindex="20" />
 				<!-- 転入者取込 ボタン -->
-				<imui:button id="import" name="import" value="転入者調書取込" class="imui-medium-button" onclick="preButtonEvent(1)" tabindex="19" />
+				<imui:button id="import" name="import" value="転入者調書取込" class="imui-medium-button" onclick="preButtonEvent(1)" tabindex="21" />
 				<!-- 新規 ボタン -->
-				<imui:button id="new" name="new" value="新規" class="imui-medium-button" onclick="preButtonEvent(2)" tabindex="20" />
+				<imui:button id="new" name="new" value="新規" class="imui-medium-button" onclick="preButtonEvent(2)" tabindex="22" />
 				<!-- 登録 ボタン -->
-				<imui:button id="regist" name="regist" value="登録" class="imui-medium-button" onclick="preButtonEvent(3)" tabindex="21" />
+				<imui:button id="regist" name="regist" value="登録" class="imui-medium-button" onclick="preButtonEvent(3)" tabindex="23" />
 			</div>
 
 		</div>
@@ -372,7 +409,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 		<!-- 選択行 -->
 		<!-- 選択行:入居 -->
 		<input type="hidden" name="hdnRowNyukyo" id="hdnRowNyukyo" value="" />
-		<!-- 選択行:退去 -->
+		<!-- 選択行:退居 -->
 		<input type="hidden" name="hdnRowTaikyo" id="hdnRowTaikyo" value="" />
 		<!-- 選択行:変更 -->
 		<input type="hidden" name="hdnRowHenko" id="hdnRowHenko" value="" />
@@ -392,7 +429,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 		<input type="hidden" name="hdnRowBiko" id="hdnRowBiko" value="" />
 		<!-- 選択行:取込日 -->
 		<input type="hidden" name="hdnRowTakingDate" id="hdnRowTakingDate" value="" />
-		<!-- 選択行:入退去予定作成区分 -->
+		<!-- 選択行:入退居予定作成区分 -->
 		<input type="hidden" name="hdnRowNyutaikyoKbn" id="hdnRowNyutaikyoKbn" value="" />
 		<!-- 選択行:更新日時 -->
 		<input type="hidden" name="hdnRowUpdateDate" id="hdnRowUpdateDate" value="" />

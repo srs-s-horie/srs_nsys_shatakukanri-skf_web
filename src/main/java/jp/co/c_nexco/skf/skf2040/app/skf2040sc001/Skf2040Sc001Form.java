@@ -29,12 +29,29 @@ public class Skf2040Sc001Form extends BaseForm {
     // 室、チーム又は課
     private String affiliation2Name;
     
+    /**
+     * 現居住社宅
+     */
     // 現入居社宅
     private String nowShataku;
     // 保有社宅名
     private String nowShatakuName;
+    // 室番号
+    private String nowShatakuNo;
+    // 規格（間取り）
+    private String nowShatakuKikaku;
+    // 規格名称（間取り）
+    private String nowShatakuKikakuName;
+    // 面積
+    private String nowShatakuMenseki;
+    // 社宅管理ID
+    private long shatakuKanriId;
+    // 社宅名
+    private String shatakuName;
     // 社宅管理番号
     private long shatakuNo;
+    
+    
     // 現住所
     private String nowAddress;
     // 社員番号
@@ -98,6 +115,8 @@ public class Skf2040Sc001Form extends BaseForm {
     // 連絡先
     private String renrakuSakiDisabled;
 
+    // クリアボタン
+    private String btnClearRemoved;
     // 申請内容を確認ボタン
     private String btnCheckDisabled;
     // 一時保存ボタン
