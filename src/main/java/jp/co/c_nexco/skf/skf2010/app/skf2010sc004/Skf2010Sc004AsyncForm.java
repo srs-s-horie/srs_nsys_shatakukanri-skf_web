@@ -1,11 +1,11 @@
 package jp.co.c_nexco.skf.skf2010.app.skf2010sc004;
 
-import jp.co.c_nexco.skf.skf2010.app.skf2010common.Skf2010NyukyoCommonForm;
+import jp.co.c_nexco.skf.skf2010.app.skf2010common.Skf2010NyukyoCommonAsyncForm;
 import lombok.EqualsAndHashCode;
 
 @lombok.Data
 @EqualsAndHashCode(callSuper = true)
-public class Skf2010Sc004Form extends Skf2010NyukyoCommonForm {
+public class Skf2010Sc004AsyncForm extends Skf2010NyukyoCommonAsyncForm {
 
 	private static final long serialVersionUID = 5285848663756806913L;
 
@@ -29,6 +29,8 @@ public class Skf2010Sc004Form extends Skf2010NyukyoCommonForm {
 	private String shiyobi;
 	// 新社宅の駐車場使用開始日2
 	private String shiyobi2;
+	// 備品希望申請の申請管理番号
+	private String bihinApplNo;
 
 	// 各エラーClass設定
 	private String taikyobiErr;
@@ -38,7 +40,7 @@ public class Skf2010Sc004Form extends Skf2010NyukyoCommonForm {
 	private String shiyobi2Err;
 
 	// 再提示ボタンの表示非表示フラグ
-	private String representBtnFlg = "true";
+	private String representBtnFlg;
 
 	// 入力フォーム表示フラグ
 	private String inputAreaVisible;
