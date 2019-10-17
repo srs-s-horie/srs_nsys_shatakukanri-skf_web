@@ -280,7 +280,6 @@ public class Skf3010Sc002Form extends GridForm {
 	// 地域区分
 	private String startingAreaKbn;
 
-
 	/** エラー系 **/
 	// 社宅名
 	private String shatakuNameErr;

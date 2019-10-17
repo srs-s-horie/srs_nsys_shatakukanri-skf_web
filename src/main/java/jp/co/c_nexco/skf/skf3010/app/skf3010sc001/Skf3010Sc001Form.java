@@ -77,6 +77,8 @@ public class Skf3010Sc001Form extends GridForm {
 	private String hdnRowEmptyRoomCount;
 	// 対象行の空き駐車場数
 	private String hdnRowEmptyParkingCount;
+	// 複写フラグ
+	private String copyFlg;
 
 	/** hdn検索キー */
 	// 管理会社コード(検索キー)

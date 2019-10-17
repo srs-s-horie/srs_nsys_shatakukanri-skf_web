@@ -221,6 +221,8 @@
 					$("#hdnRowEmptyRoomCount").val(row.hdnEmptyRoomCount);
 					// 空き駐車場数
 					$("#hdnRowEmptyParkingCount").val(row.hdnEmptyParkingCount);
+					// 複写フラグ
+					$('#form2 [name=copyFlg]').val($("false").val());
 
 					// クリックアイコン判定
 					if ($(cellcontent).hasClass('im-ui-icon-common-16-update') && iCol == 11) {
@@ -326,6 +328,8 @@
 								$('#form2 [name=hdnRowEmptyRoomCount]').val($("#hdnRowEmptyRoomCount").val());
 								// 選択行:空き駐車場数
 								$('#form2 [name=hdnRowEmptyParkingCount]').val($("#hdnRowEmptyParkingCount").val());
+								// 複写フラグ
+								$('#form2 [name=copyFlg]').val($("true").val());
 								// 社宅一覧の借上(複写)ボタン処理
 								url = "skf/Skf3010Sc001/rentalCopyCheck";
 								$("#form2").attr("action", url);
@@ -387,6 +391,8 @@
 			<input type="hidden" name="hdnRowEmptyRoomCount" id="hdnRowEmptyRoomCount" value="" />
 			<!-- 選択行:空き駐車場数 -->
 			<input type="hidden" name="hdnRowEmptyParkingCount" id="hdnRowEmptyParkingCount" value="" />
+			<!-- 複写フラグ -->
+			<input type="hidden" name="copyFlg" id="copyFlg" value="" />
 			<imui:button id="excel" name="excel" value="契約情報出力" class="imui-medium-button" onclick="preButtonEvent(0)" tabindex="11" />
 			<imui:button id="newRental" name="newRental" value="新規（借上）" class="imui-medium-button" onclick="preButtonEvent(2)" tabindex="12" />
 			<imui:button id="copy" name="copy" value="複写（借上）" class="imui-medium-button" onclick="preButtonEvent(3)" tabindex="13" />
