@@ -116,11 +116,11 @@ public class Skf2040Sc001Form extends BaseForm {
     private String renrakuSakiDisabled;
 
     // クリアボタン
-    private String btnClearRemoved;
+    private boolean btnClearRemoved;
     // 申請内容を確認ボタン
-    private String btnCheckDisabled;
+    private boolean btnCheckDisabled;
     // 一時保存ボタン
-    private String btnSaveDisabled;
+    private boolean btnSaveDisabled;
     
     /**
      * ドロップダウン
@@ -159,10 +159,8 @@ public class Skf2040Sc001Form extends BaseForm {
     /**
      * フラグ
      */
-    // 退居情報エリア表示フラグ（true:表示、false:非表示）
-    private String taikyoViewFlag;
     // コメントボタン表示フラグ（true:表示、false:非表示）
-    private String commentViewFlag;
+    private boolean commentViewFlag;
     // 更新フラグ
     private String updateFlg;
     // 駐車場2台フラグ
