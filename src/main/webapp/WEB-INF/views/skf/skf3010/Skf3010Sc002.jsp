@@ -10,6 +10,7 @@
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
+<script src="scripts/skf/skfCommon.js"></script>
 
 <%-- コンテンツエリア --%>
 <style type="text/css"></style>
@@ -70,6 +71,11 @@
 		<!-- JSON可変ラベルリスト -->
 		<input type="hidden" name="jsonLabelList" id="jsonLabelList" />
 		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc002/init"/>
+		<!-- 補足ファイル -->
+		<input type="hidden" name="fileNo" id="fileNo"/>
+		<input type="hidden" name="hosokuType" id="hosokuType"/>
+		<input type="hidden" name="hdnHosoku" id="sendHosokuType"/>
+		<input type="hidden" name="hdnAttachedNo" id="sendAttachedNo"/>
 
 		<nfwui:Table use="input">
 			<tbody>
@@ -278,10 +284,10 @@
 							</td>
 							<td colspan="2">
 								<!-- 参照 -->
-								<imui:button id="impShatakuHosoku1" name="impShatakuHosoku1" value="参照" class="imui-small-button" tabindex="17" onclick="fileSelect()"/>
-								<nfwui:FileBox remove="true" id="tmpFileBox" name="tmpFileBox" />
+								<imui:button id="impShatakuHosoku1" name="impShatakuHosoku1" value="参照" class="imui-small-button" tabindex="17" onclick="fileSelect('1', 'shataku')"/>
+								<nfwui:FileBox cssStyle="display: none;" id="tmpFileBoxshataku1" name="tmpFileBoxshataku1" />
 								<!-- 削除 -->
-								<imui:button id="delShatakuHosoku1" name="delShatakuHosoku1" value="削除" class="imui-small-button" tabindex="18" />
+								<imui:button id="delShatakuHosoku1" name="delShatakuHosoku1" value="削除" class="imui-small-button" tabindex="18" onclick="fileDelete('1', 'shataku')"/>
 							</td>
 						</tr>
 						<!--社宅補足-->
@@ -291,9 +297,10 @@
 							</td>
 							<td colspan="2">
 								<!-- 参照 -->
-								<imui:button id="impShatakuHosoku2" name="impShatakuHosoku2" value="参照" class="imui-small-button" tabindex="20" />
+								<imui:button id="impShatakuHosoku2" name="impShatakuHosoku2" value="参照" class="imui-small-button" tabindex="20" onclick="fileSelect('2', 'shataku')"/>
+								<nfwui:FileBox cssStyle="display: none;" id="tmpFileBoxshataku2" name="tmpFileBoxshataku2" />
 								<!-- 削除 -->
-								<imui:button id="delShatakuHosoku2" name="delShatakuHosoku2" value="削除" class="imui-small-button" tabindex="21" />
+								<imui:button id="delShatakuHosoku2" name="delShatakuHosoku2" value="削除" class="imui-small-button" tabindex="21" onclick="fileDelete('2', 'shataku')"/>
 							</td>
 						</tr>
 						<!--社宅補足-->
@@ -303,9 +310,10 @@
 							</td>
 							<td colspan="2">
 								<!-- 参照 -->
-								<imui:button id="impShatakuHosoku3" name="impShatakuHosoku3" value="参照" class="imui-small-button" tabindex="23" />
+								<imui:button id="impShatakuHosoku3" name="impShatakuHosoku3" value="参照" class="imui-small-button" tabindex="23" onclick="fileSelect('3', 'shataku')"/>
+								<nfwui:FileBox cssStyle="display: none;" id="tmpFileBoxshataku3" name="tmpFileBoxshataku3" />
 								<!-- 削除 -->
-								<imui:button id="delShatakuHosoku3" name="delShatakuHosoku3" value="削除" class="imui-small-button" tabindex="24" />
+								<imui:button id="delShatakuHosoku3" name="delShatakuHosoku3" value="削除" class="imui-small-button" tabindex="24" onclick="fileDelete('3', 'shataku')"/>
 							</td>
 						</tr>
 						<!--備考-->
@@ -354,9 +362,10 @@
 							<!--駐車場補足1-->
 							<td style="width:20%;">
 								<!-- 参照 -->
-								<imui:button id="impParkingHosoku1" name="impParkingHosoku1" value="参照" class="imui-small-button" tabindex="28" />
+								<imui:button id="impParkingHosoku1" name="impParkingHosoku1" value="参照" class="imui-small-button" tabindex="28" onclick="fileSelect('1', 'parking')"/>
+								<nfwui:FileBox cssStyle="display: none;" id="tmpFileBoxparking1" name="tmpFileBoxparking1" />
 								<!-- 削除 -->
-								<imui:button id="delParkingHosoku1" name="delParkingHosoku1" value="削除" class="imui-small-button" tabindex="29" />
+								<imui:button id="delParkingHosoku1" name="delParkingHosoku1" value="削除" class="imui-small-button" tabindex="29" onclick="fileDelete('1', 'parking')"/>
 							</td>
 						</tr>
 						<tr>
@@ -375,9 +384,10 @@
 							<!--駐車場補足2-->
 							<td>
 								<!-- 参照 -->
-								<imui:button id="impParkingHosoku2" name="impParkingHosoku2" value="参照" class="imui-small-button" tabindex="31" />
+								<imui:button id="impParkingHosoku2" name="impParkingHosoku2" value="参照" class="imui-small-button" tabindex="31" onclick="fileSelect('2', 'parking')"/>
+								<nfwui:FileBox cssStyle="display: none;" id="tmpFileBoxparking2" name="tmpFileBoxparking2" />
 								<!-- 削除 -->
-								<imui:button id="delParkingHosoku2" name="delParkingHosoku2" value="削除" class="imui-small-button" tabindex="32" />
+								<imui:button id="delParkingHosoku2" name="delParkingHosoku2" value="削除" class="imui-small-button" tabindex="32" onclick="fileDelete('2', 'parking')"/>
 							</td>
 						</tr>
 						<tr>
@@ -396,9 +406,10 @@
 							<!--駐車場補足3-->
 							<td>
 								<!-- 参照 -->
-								<imui:button id="impParkingHosoku3" name="impParkingHosoku3" value="参照" class="imui-small-button" tabindex="34" />
+								<imui:button id="impParkingHosoku3" name="impParkingHosoku3" value="参照" class="imui-small-button" tabindex="34" onclick="fileSelect('3', 'parking')"/>
+								<nfwui:FileBox cssStyle="display: none;" id="tmpFileBoxparking3" name="tmpFileBoxparking3" />
 								<!-- 削除 -->
-								<imui:button id="delParkingHosoku3" name="delParkingHosoku3" value="削除" class="imui-small-button" tabindex="35" />
+								<imui:button id="delParkingHosoku3" name="delParkingHosoku3" value="削除" class="imui-small-button" tabindex="35" onclick="fileDelete('3', 'parking')"/>
 							</td>
 						</tr>
 					</tbody>
@@ -805,7 +816,6 @@
 					// テキストボックス、テキストエリアにフォーカス時、入力済み文字列全選択
 					jQuery(document).on("focus click", "input,textarea", function() {
 						$(this).select();
-						return false;
 					});
 					// 画面表示時に定義される処理
 					$(document).ready(function(){
@@ -977,9 +987,36 @@
 						}
 
 						/** クリックイベント */
-						fileSelect = function() {
-//							$('#tmpFileBox').trigger("click");
-							$('#tmpFileBox').click();
+						//補足資料参照ボタンクリック
+						fileSelect = function(no,type) {
+							var fileboxId = '#tmpFileBox'+ type + no;
+							//FileBoxを疑似的にクリック
+							$(fileboxId).trigger("click");
+
+							if($(fileboxId).val() != ""){
+								//ファイル番号設定
+								$("#fileNo").val(no);
+								$("#hosokuType").val(type);
+								//保存情報設定
+								backUpStatus();
+								url = "skf/Skf3010Sc002/attachedFileAdd";
+								$("#form").attr("action", url);
+								$("#form").submit();
+							}
+						}
+
+						//補足資料削除ボタンクリック
+						fileDelete = function(no,type) {
+								//ファイル番号設定
+								$("#fileNo").val(no);
+								$("#hosokuType").val(type);
+								//保存情報設定
+								backUpStatus();
+								
+								var dialogTitle = "確認";
+								//MessageIdConstant.：I-SKF-3005
+								var dialogMessage = "削除します。よろしいですか？";
+								nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc002/attachedFileDelete", "ok", "キャンセル", this, true);
 						}
 
 						// 登録ボタンクリック
@@ -1474,7 +1511,6 @@
 							}
 						});
 
-						// 参考にしようと思って残してるやつ
 						//添付ファイルリンククリック時
 						$("a[id^='attached_']").click(function(){
 							downloadShatakuHosokuFile(this);
@@ -1533,26 +1569,21 @@
 						});
 					});
 
-					// 参考にしようと思って残してるやつ
 					//添付ファイルリンククリック時
-//					$("a[id^='attached_']").click(function(){ ←これぢゃだめなの？？
-					//添付ファイルリンククリック時の参考にどうぞ
-					downloadKariageBukkenFile = function(data) {
-						//リンクタグのidから借上候補物件番号と添付ファイル番号を取得
+					downloadShatakuHosokuFile = function(data) {
+						//リンクタグのidから補足種別と添付ファイル番号を取得
 						var id = $(data).attr("id");
-						var url = "skf/Skf2060Sc001/AttachedDownload";
+						var url = "skf/Skf3010Sc002/AttachedDownload";
 						var list = id.split('_');
-						var candidateNo = list[1];
-						var attachedNo = list[2];
-						
-						$("#sendCandidateNo").val(candidateNo);
-						$("#sendAttachedNo").val(attachedNo);
-						
-						skf.common.submitForm("form2", url, this);
-						
+						var hosokuType = list[1];
+						var fileNo = list[3];
+						$("#sendHosokuType").val(hosokuType);
+						$("#sendAttachedNo").val(fileNo);
+						$("#form").attr("action", url);
+						$("#form").submit();
 					}
 
-					// ↓削除ボタンと添付ボタンクリック時の参考にどうぞ
+					// アイコンクリック
 					onCellSelect = function(rowId,iCol,cellcontent,e) {
 
 						// 駐車場削除アイコンクリック時
@@ -1595,31 +1626,6 @@
 								}
 							});
 							window.scrollTo(0, 0);
-						}
-
-						//添付ファイルアイコンクリック時の参考にどうぞ
-						if ($(cellcontent).hasClass('im-ui-icon-common-16-attachment')) {
-							// リストテーブル情報取得
-							var grid = $("#kariageCandidateList");
-							// 行番号から選択した行の情報を取得
-							var row = grid.getRowData(rowId);
-							
-							var map = new Object();
-							
-							// companyCd:会社コード
-							var companyCd = row.companyCd;
-							// candidateNo:借上候補物件番号
-							var candidateNo = row.candidateNo;
-							
-							$("#sendCompanyCd").val(companyCd);
-							$("#sendCandidateNo").val(candidateNo);
-							$("#rowId").val(rowId);
-							
-							map['applId'] = "R0106";
-							map['candidateNo'] = candidateNo;
-							
-							var popupUrl = "skf/Skf2010Sc009/init";
-							nfw.common.modelessPopup(popupUrl, null, map, 750, 600);
 						}
 					}
 				})(jQuery);
