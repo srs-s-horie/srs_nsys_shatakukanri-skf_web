@@ -189,7 +189,6 @@
                            <td>${f:h(form.bihinAdjust19) }</td>
                                                 </tr>
                                 </tr>
-<imart:condition validity="<%= String.valueOf(form.isStatus24Flag()) %>" negative>
 <tr style="border:none">
 <td style="border:none">
    </td>
@@ -200,6 +199,6 @@
                 <imui:textArea id="commentNote" name="commentNote" rows="4" placeholder="例  承認者へのコメント" style="width: 98%;"></imui:textArea></textarea>
             </td>
         </tr>
-</imart:condition>        
+        
     </tbody>
 </table>

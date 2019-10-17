@@ -10,10 +10,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 
-<%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
-<%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
-
 <%@ page import="jp.co.c_nexco.skf.skf2010.app.skf2010sc004.Skf2010Sc004Form" %>
 <%  Skf2010Sc004Form form = (Skf2010Sc004Form)request.getAttribute("form"); %>
 
@@ -26,7 +23,7 @@
 </style>
 
 <!-- コンテンツエリア:モックのまま -->
-<script src="scripts/skf/skfCommon.js"></script>
+
 <script type="text/javascript">
 function back1() {
 	var url="skf/Skf2010Sc003/Search"
@@ -40,30 +37,6 @@ function back1() {
 			attachedFileDownload(this);
 		});
 		
-		$("#douiBtn").click(function(){
-			skf.common.confirmPopupForCallback("提示内容に同意します。よろしいですか？", "確認", "form", "ok", "キャンセル", this, function(){
-				var map = new Object();
-				
-				map['applNo'] = $("#applNo").val();
-				map['applId'] = $("#applId").val();
-				map['applStatus'] = $("#applStatus").val();
-				map['shainNo'] = $("#hdnShainNo").val();
-				map['bihinKibo'] = $("#bihinKibo").val();
-				map['taikyobi'] = $("#taikyobi").val();
-				map['henkanbi'] = $("#henkanbi").val();
-				nfw.common.doAjaxAction("skf/Skf2010Sc004/AgreeAsync", map, true, function(res){
-					if (res.dialogFlg) {
-						var message = "続けて備品希望申請を行います。よろしいですか？";
-						$("#applId").val("<%= FunctionIdConstant.R0104 %>");
-						$("#applNo").val(res.bihinApplNo);
-						$("#applStatus").val("<%= CodeConstant.STATUS_ICHIJIHOZON %>");
-						skf.common.confirmPopup(message, "確認", "form", "skf/Skf2030Sc001/init",  "ok", "キャンセル", this);
-					} else {
-						skf.common.submitForm("form", "skf/Skf2010Sc003/init", this);
-					}
-				});
-			});
-		});
 	});
 	
 	attachedFileDownload = function(obj) {
@@ -93,7 +66,6 @@ function back1() {
 
 <!-- コンテンツエリア -->
  <div class="imui-form-container-wide" style="width: 95%;">
-   <jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
 
     <!-- 状況、資料ヘッダ -->
     <div class="imui-form-container-wide" style="border: currentColor; border-image: none; width: 80%; padding-left: 0px; margin-left: 100px;">
@@ -143,7 +115,7 @@ ${form.operationGuide }
     <!-- コンテンツエリア -->
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
 		<nfwui:Accordion id="seiyakusyoView" >
-		  <nfwui:AccordionItem id="seiyakusyoItem" code="<%= MessageIdConstant.SKF2010_SC004_SEIYAKUSYO %>"
+		  <nfwui:AccordionItem id="seiyakusyoItem" code="<%= MessageIdConstant.SKF2010_SC006_SEIYAKUSYO %>"
 		  defaultOpen="${form.level4Open }">
 <%@ include file="common/Skf2010Seiyakusyo.jsp" %>
 		  </nfwui:AccordionItem>
@@ -156,7 +128,7 @@ ${form.operationGuide }
 <c:if test="${form.displayLevel == 3}">
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
 		<nfwui:Accordion id="ketteiTsuchiView" >
-		  <nfwui:AccordionItem id="ketteiTsuchiItem" code="<%= MessageIdConstant.SKF2010_SC004_KETTEI_TSUCHI %>"
+		  <nfwui:AccordionItem id="ketteiTsuchiItem" code="<%= MessageIdConstant.SKF2010_SC006_KETTEI_TSUCHI %>"
 		  defaultOpen="${form.level3Open }">
 <%@ include file="common/Skf2010KetteiTsuchi.jsp" %>
 		  </nfwui:AccordionItem>
@@ -166,7 +138,7 @@ ${form.operationGuide }
 <c:if test="${form.carNoInputFlg2 != null}">
    <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
 		<nfwui:Accordion id="ketteiTsuchiView2" >
-		  <nfwui:AccordionItem id="ketteiTsuchiItem2" code="<%= MessageIdConstant.SKF2010_SC004_KETTEI_TSUCHI2 %>"
+		  <nfwui:AccordionItem id="ketteiTsuchiItem2" code="<%= MessageIdConstant.SKF2010_SC006_KETTEI_TSUCHI2 %>"
 		  defaultOpen="false">
 <%@ include file="common/Skf2010KetteiTsuchi2.jsp" %>
 		  </nfwui:AccordionItem>
@@ -181,7 +153,7 @@ ${form.operationGuide }
 <c:if test="${form.displayLevel >= 2 and form.displayLevel != 4}">
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
 		<nfwui:Accordion id="taiyoAnnaiView" >
-		  <nfwui:AccordionItem id="taiyoAnnaiItem" code="<%= MessageIdConstant.SKF2010_SC004_ANNAI %>"
+		  <nfwui:AccordionItem id="taiyoAnnaiItem" code="<%= MessageIdConstant.SKF2010_SC006_ANNAI %>"
 		  defaultOpen="${form.level2Open }">
 <%@ include file="common/Skf2010TaiyoAnnai.jsp" %>
 		  </nfwui:AccordionItem>
@@ -193,7 +165,7 @@ ${form.operationGuide }
     <!-- コンテンツエリア -->
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
 		<nfwui:Accordion id="seiyakusyoView" >
-		  <nfwui:AccordionItem id="seiyakusyoItem" code="<%= MessageIdConstant.SKF2010_SC004_SEIYAKUSYO %>"
+		  <nfwui:AccordionItem id="seiyakusyoItem" code="<%= MessageIdConstant.SKF2010_SC006_SEIYAKUSYO %>"
 		  defaultOpen="${form.level2Open }">
 <%@ include file="common/Skf2010Seiyakusyo.jsp" %>
 		  </nfwui:AccordionItem>
@@ -205,7 +177,7 @@ ${form.operationGuide }
     <!-- コンテンツエリア -->
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
 		<nfwui:Accordion id="nyukyoChoshoTsuchiView" >
-		  <nfwui:AccordionItem id="nyukyoChoshoTsuchiItem" code="<%= MessageIdConstant.SKF2010_SC004_NYUKYO_CHOSHO %>"
+		  <nfwui:AccordionItem id="nyukyoChoshoTsuchiItem" code="<%= MessageIdConstant.SKF2010_SC006_NYUKYO_CHOSHO %>"
 		  defaultOpen="${form.level1Open }">
 <%@ include file="common/Skf2010ShatakuNyukyo.jsp" %>
 		  </nfwui:AccordionItem>
@@ -311,9 +283,11 @@ ${form.operationGuide }
            url="skf/Skf2010Sc004/Cancel" formId="form" removePatterns="PTN_B,PTN_C"
            remove="${form.representBtnFlg }" />
            <!-- 同意するボタン -->
-<imart:condition validity="<%= form.getRepresentBtnFlg() %>">
-           <imui:button id="douiBtn" value="同意する" class="imui-medium-button" style="width: 150px" />
-</imart:condition>
+           <nfwui:ConfirmButton id="douiBtn" name="douiBtn" value="同意する" 
+           cssClass="imui-medium-button" cssStyle="width: 150px" 
+           title="<%= MessageIdConstant.SKF2010_SC006_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2016 %>"
+           url="skf/Skf2010Sc004/Agree" formId="form" removePatterns="PTN_A,PTN_C"
+           remove="${form.representBtnFlg }" />
            <!-- 同意しないボタン -->
            <nfwui:ConfirmButton id="douiShinaiBtn" name="douiShinaiBtn" value="同意しない"
            cssClass="imui-medium-button" cssStyle="width: 150px" 
