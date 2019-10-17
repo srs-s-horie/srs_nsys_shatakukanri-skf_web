@@ -835,11 +835,11 @@
 							// 変更チェック(賃貸人、経理連携用管理番号、契約開始日、契約終了日、家賃、共益費、駐車場料、備考)
 							if ($("#startingContractOwnerName").val() != $("#contractOwnerName").val()
 								|| $("#startingAssetRegisterNo").val() != $("#assetRegisterNo").val()
-								|| $("#startingContractStartDay").val() != $("#contractStartDay").val().replace(/\//g, "")
-								|| $("#startingContractEndDay").val() != $("#contractEndDay").val().replace(/\//g, "")
-								|| $("#startingContractRent").val() != $("#contractRent").val().replace(/,/g, "")
-								|| $("#startingContractKyoekihi").val() != $("#contractKyoekihi").val().replace(/,/g, "")
-								|| $("#startingContractLandRent").val() != $("#contractLandRent").val().replace(/,/g, "")
+								|| $("#startingContractStartDay").val().replace(/\//g, "") != $("#contractStartDay").val().replace(/\//g, "")
+								|| $("#startingContractEndDay").val().replace(/\//g, "") != $("#contractEndDay").val().replace(/\//g, "")
+								|| $("#startingContractRent").val().replace(/,/g, "") != $("#contractRent").val().replace(/,/g, "")
+								|| $("#startingContractKyoekihi").val().replace(/,/g, "") != $("#contractKyoekihi").val().replace(/,/g, "")
+								|| $("#startingContractLandRent").val().replace(/,/g, "") != $("#contractLandRent").val().replace(/,/g, "")
 								|| $("#startingContractBiko").val() != $("#contractBiko").val())
 							{
 								return true;
