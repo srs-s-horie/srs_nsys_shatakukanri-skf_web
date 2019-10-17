@@ -38,7 +38,7 @@ public class Skf2010Sc004Form extends Skf2010NyukyoCommonForm {
 	private String shiyobi2Err;
 
 	// 再提示ボタンの表示非表示フラグ
-	private String representBtnFlg = "true";
+	private String representBtnFlg;
 
 	// 入力フォーム表示フラグ
 	private String inputAreaVisible;
