@@ -23,6 +23,7 @@
     $('#addManageCompany').imuiSelect({"width":"200px"});
 
 (function($) {
+	
 	onCellSelect = function(rowId,iCol,cellcontent,e) {
 		
 		$("#hdnAddCompanyCd").val($("#addManageCompany").val());
@@ -102,12 +103,58 @@
 			dialogTitle = "確認";
 			dialogMessage = "事業領域情報を削除します。よろしいですか？";
 			var url = "skf/Skf3090Sc003/delete";
-			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "CANCEL", this, true);
+			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
 		}else{
 			// 何もしない
 		}
 	}
 
+	// 検索結果一覧に表示する最大行数
+	onGridComplete = function(rowId,iCol,cellcontent,e) {
+		// リストテーブル情報取得
+		var grid = $("#mainList");		
+		// 検索結果一覧に表示する最大行数を再設定
+		var maxRowCount = grid.getGridParam("rowNum");	
+    	// 現在のページ番号
+		var pageNo = grid.getGridParam('page'); 
+    	var datas = grid.getGridParam("data");//全行
+		if( datas.length > 0 )
+		{	
+			// ページング範囲
+			var iMin = 0;
+			var iMax = 0;
+			if(pageNo == 1){
+				if(datas.length > maxRowCount){
+					iMin = 0;
+					iMax = maxRowCount;
+				}else{
+					iMin = 0;
+					iMax = datas.length ;
+				}
+			}else{
+				// 2ページ以降
+				var pageNoCalc = pageNo - 1;
+				if(datas.length > (maxRowCount * pageNo)){
+					// 指定ページよりもデータ数の方が多い
+					iMin = maxRowCount * pageNoCalc;
+					iMax = maxRowCount * pageNo;
+				}else{
+					iMin = maxRowCount * pageNoCalc;
+					iMax = datas.length ;
+				}
+			}			
+			for( var i=iMin; i<iMax; ++i ){
+				var targetId = "businessAreaName"+ i; 
+		    	// テキストボックス、テキストエリアにフォーカス時、入力済み文字列全選択
+		    	document.getElementById(targetId).addEventListener('click', function(){
+		    		$(this).select();
+		    		return false;
+		    	}, false);    	
+			}
+		}
+	}
+	
+	
 	onCellAddSelect = function(rowId,iCol,cellcontent,e) {
 		
 		if($(cellcontent).hasClass('im-ui-icon-common-16-plus')){
@@ -160,12 +207,32 @@
 			dialogTitle = "確認";
 			dialogMessage = "事業領域情報を追加します。よろしいですか？";
 			var url = "skf/Skf3090Sc003/AddRegist";
-			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "CANCEL", this, true);
+			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
 		}else{
 			// 何もしない
 		}
 	}
 
+	onAddGridComplete = function(rowId,iCol,cellcontent,e) {
+    	// テキストボックス、テキストエリアにフォーカス時、入力済み文字列全選択
+    	document.getElementById("txtBusinessAreaCd").addEventListener('click', function(){
+    		$(this).select();
+    		return false;
+    	}, false);    	
+    	document.getElementById("txtBusinessAreaName").addEventListener('click', function(){
+    		$(this).select();
+    		return false;
+    	}, false);    	
+    	document.getElementById("addBusinessAreaCd").addEventListener('click', function(){
+    		$(this).select();
+    		return false;
+    	}, false);    	
+    	document.getElementById("addBusinessAreaName").addEventListener('click', function(){
+    		$(this).select();
+    		return false;
+    	}, false);    	
+	}
+	
 	$("span .im-ui-icon-common-16-update").mouseover(
 			function(e) {
 				$(this).css("cursor","pointer");
@@ -246,7 +313,7 @@
 					dialogTitle = "登録";
 					dialogMessage = "上書き登録処理を実行します。よろしいですか？";
 					url = "skf/Skf3090Sc003/registe";
-					nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "CANCEL", this, true);
+					nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
 					break;
 				// 検索
 				case 1:
@@ -307,25 +374,25 @@
 							</th>
 							<td>
 								<imui:select id="selectedManageCompanyCd" name="selectedManageCompanyCd" 
-									width="200px" list="${form.manageCompanyList}" tabindex="1" />
+									width="200px" list="${form.manageCompanyList}" tabindex="3" />
 							</td>
 							<th style="width: 12%;">
 								<nfwui:LabelBox id="lblBusinessAreaCd" code="<%=MessageIdConstant.SKF3090_SC003_BUSINESS_CODE %>" />
 							</th>
 							<td>
-								<imui:textbox id="txtBusinessAreaCd" name="businessAreaCd" style="ime-mode: disabled;width:100px;" placeholder="例 A001" value="${form.businessAreaCd}" tabindex="2" maxlength="4"/>
+								<imui:textbox id="txtBusinessAreaCd" name="businessAreaCd" style="ime-mode: disabled;width:100px;" placeholder="例 A001" value="${form.businessAreaCd}" tabindex="4" maxlength="4"/>
 							</td>
 							<th style="width: 12%;">
 								<nfwui:LabelBox id="lblBusinessAreaName" code="<%=MessageIdConstant.SKF3090_SC003_BUSINESS_NAME %>" />
 							</th>
 							<td>
-								<imui:textbox id="txtBusinessAreaName" name="businessAreaName" style="width:300px;" placeholder="例 本社 〇〇部" value="${form.businessAreaName}" tabindex="3" maxlength="255"/>
+								<imui:textbox id="txtBusinessAreaName" name="businessAreaName" style="width:300px;" placeholder="例 本社 〇〇部" value="${form.businessAreaName}" tabindex="5" maxlength="255"/>
 							</td>
 						</tr>
 					</tbody>
 				</nfwui:Table>
 			<div class="align-L">	
-				<imui:button id="search" name="search" value="検索" class="imui-small-button" onclick="preButtonEvent(1)" tabindex="4" />
+				<imui:button id="search" name="search" value="検索" class="imui-small-button" onclick="preButtonEvent(1)" tabindex="6" />
 			</div>
 		</div>
 		<!-- 明細＆細目未満 -->
@@ -339,7 +406,7 @@
 				</script>
 				<div id="listTableArea">
 					<imui:listTable id="mainList" process="jssp" autoEncode="false" autoWidth="true" rowNumbers="true"
-						autoResize="true" onCellSelect="onCellSelect"
+						autoResize="true" onCellSelect="onCellSelect" onGridComplete="onGridComplete"
 						multiSelect="false" data="${form.listTableData }"
 						style="max-height: 100px" >
 						<pager rowNum="${form.listTableMaxRowCount }" />
@@ -351,7 +418,7 @@
 							<col name="col5" caption="事業領域名(隠し)" width="300" sortable="false" align="left" hidden="true" />
 							<col name="col6" caption="管理機関" width="200" sortable="false" align="left" wrap="true"/>
 							<col name="col7" caption="管理機関(隠し)" width="200" sortable="false" align="left" wrap="true" hidden="true" />
-							<col name="col8" caption="削除" width="45" sortable="false" align="center" tabindex="5">
+							<col name="col8" caption="削除" width="45" sortable="false" align="center" tabindex="7">
 								<showIcon iconClass="im-ui-icon-common-16-trashbox" align="center" />
 							</col>
 							<col name="col9" caption="更新日時" hidden="true" />
@@ -362,15 +429,15 @@
 			<!-- 追加データ入力部 -->
 			<div id="listAddTableArea">
 					<imui:listTable id="mainAddList" process="jssp" autoEncode="false" autoWidth="true" rowNumbers="true"
-						autoResize="true" onCellSelect="onCellAddSelect"
+						autoResize="true" onCellSelect="onCellAddSelect" onGridComplete="onAddGridComplete"
 						multiSelect="false" data="${form.listAddTableData }"
 						style="max-height: 35px" height="auto" >
 						<cols sortable="false">
-							<col name="colAdd1" caption="管理会社" width="200" sortable="false" align="left" wrap="true" tabindex="6"/>
-							<col name="colAdd2" caption="事業領域コード" width="100" sortable="false" align="left" wrap="true" tabindex="7"/>
-							<col name="colAdd3" caption="事業領域名" width="300" sortable="false" align="left" tabindex="8"/>
-							<col name="colAdd4" caption="管理機関" width="200" sortable="false" align="left" wrap="true" tabindex="9"/>
-							<col name="colAdd5" caption="追加" width="45" sortable="false" align="center" tabindex="10">
+							<col name="colAdd1" caption="管理会社" width="200" sortable="false" align="left" wrap="true" tabindex="8"/>
+							<col name="colAdd2" caption="事業領域コード" width="100" sortable="false" align="left" wrap="true" tabindex="9"/>
+							<col name="colAdd3" caption="事業領域名" width="300" sortable="false" align="left" tabindex="10"/>
+							<col name="colAdd4" caption="管理機関" width="200" sortable="false" align="left" wrap="true" tabindex="11"/>
+							<col name="colAdd5" caption="追加" width="45" sortable="false" align="center" tabindex="12">
 								<showIcon iconClass="im-ui-icon-common-16-plus" align="center" />
 							</col>
 							<col name="colAdd6" caption="" width="8" sortable="false" align="center"/>
@@ -380,7 +447,7 @@
 			<br />
 			<div class="align-R">
 				<!-- 登録 ボタン -->
-				<imui:button id="regist" name="regist" value="登録" disabled="${form.registButtonDisabled }" class="imui-medium-button" onclick="preButtonEvent(0)" tabindex="11" />
+				<imui:button id="regist" name="regist" value="登録" disabled="${form.registButtonDisabled }" class="imui-medium-button" onclick="preButtonEvent(0)" tabindex="13" />
 			</div>
 		</div>
 	</div>
