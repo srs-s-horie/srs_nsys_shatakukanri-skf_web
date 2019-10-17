@@ -307,7 +307,7 @@
                      <!-- 入力内容をクリア -->
                     <nfwui:ConfirmButton cssStyle="width:150px;" id="clearBtn" formId="form" value="入力内容をクリア" 
                         cssClass="imui-medium-button" title="<%= MessageIdConstant.SKF2040_SC001_CONFIRM_TITLE %>" 
-                        message="<%= MessageIdConstant.I_SKF_2004 %>" remove="${form.btnClearRemoved} }"
+                        message="<%= MessageIdConstant.I_SKF_2004 %>" remove="${form.btnClearRemoved}"
                         url="skf/Skf2040Sc001/Clear"/>    
                  </div>
                 <!-- 右エリア -->
