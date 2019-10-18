@@ -57,9 +57,11 @@ function back1() {
 						$("#applId").val("<%= FunctionIdConstant.R0104 %>");
 						$("#applNo").val(res.bihinApplNo);
 						$("#applStatus").val("<%= CodeConstant.STATUS_ICHIJIHOZON %>");
-						skf.common.confirmPopup(message, "確認", "form", "skf/Skf2030Sc001/init",  "ok", "キャンセル", this);
+						skf.common.confirmPopupCancelCallBack(message, "確認", "form", "skf/Skf2030Sc001/init",  "ok", "キャンセル", this, null, function() {
+							skf.common.submitForm("form", "skf/Skf2010Sc004/transfer", this);
+						});
 					} else {
-						skf.common.submitForm("form", "skf/Skf2010Sc003/init", this);
+						skf.common.submitForm("form", "skf/Skf2010Sc004/transfer", this);
 					}
 				});
 			});
