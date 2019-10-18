@@ -113,7 +113,7 @@ skf.common.confirmPopupForCallback = function(message, title, formId, okText, ca
  * @param {Object} function 確定ボタンのコールバック関数
  * @param {Object} function キャンセルボタンのコールバック関数
  */
-skf.common.confirmPopupExecCancel = function(message, title, formId, url, okText, cancelText, button, callback, cancelCallBack) {
+skf.common.confirmPopupCancelCallBack = function(message, title, formId, url, okText, cancelText, button, callback, cancelCallBack) {
 	skf.common.confirmPopup(message, title, formId, url, okText, cancelText, button, false, callback, cancelCallBack);	
 }
 
