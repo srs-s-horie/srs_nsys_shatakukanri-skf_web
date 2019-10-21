@@ -138,7 +138,7 @@ skf.common.confirmPopup = function(message, title, formId, url, okText, cancelTe
 			'id': 'okbutton',
 			'text' : okText,
 			'click' : function() {
-			   $(this).imuiMessageDialog('close'); 
+			   $(this).remove(); 
 			   var preOkFunc = $(button).attr('preOnclick');
 			   if (preOkFunc) {
 				   // evalではreturn falseの記述はJavaScriptエラーとなるため削除して処理を分ける
@@ -163,7 +163,7 @@ skf.common.confirmPopup = function(message, title, formId, url, okText, cancelTe
 			'text' : cancelText,
 			'click' : function() {
 				if (cancelCallBack == null) {
-					$(this).imuiMessageDialog('close');
+					$(this).remove(); 
 				} else {
 					cancelCallBack();
 				}
