@@ -41,6 +41,7 @@
 					map['applId'] = $("#applId").val();
 					map['applStatus'] = $("#applStatus").val();
 					map['completionDay'] = $("#completionDay").val();
+					map['commentNote'] = $("#commentNote").val();
 					nfw.common.doAjaxAction("skf/Skf2050Sc001/CarryOutAsync", map, true, function(res){
 						if (res.showDialogFlag == "true") {
 							var message = "搬出完了日が退居日より後ですがよろしいですか？(退居日:" + res.dialogTaikyoDay + "）";
