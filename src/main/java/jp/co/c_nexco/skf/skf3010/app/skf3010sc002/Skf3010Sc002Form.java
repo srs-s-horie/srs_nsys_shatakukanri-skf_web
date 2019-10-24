@@ -3,6 +3,9 @@ package jp.co.c_nexco.skf.skf3010.app.skf3010sc002;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import jp.co.c_nexco.nfw.webcore.app.GridForm;
 import lombok.EqualsAndHashCode;
 
@@ -57,6 +60,18 @@ public class Skf3010Sc002Form extends GridForm {
 	private String shatakuHosokuLink2;
 	// 社宅補足リンク名3
 	private String shatakuHosokuLink3;
+	// 社宅補足サイズ1
+	private String shatakuHosokuSize1;
+	// 社宅補足サイズ2
+	private String shatakuHosokuSize2;
+	// 社宅補足サイズ3
+	private String shatakuHosokuSize3;
+	// 社宅補足ファイル1
+	private byte[] shatakuHosokuFile1;
+	// 社宅補足ファイル2
+	private byte[] shatakuHosokuFile2;
+	// 社宅補足ファイル3
+	private byte[] shatakuHosokuFile3;
 	// 備考
 	private String biko;
 	// 基本情報更新日時(排他用)
@@ -80,6 +95,18 @@ public class Skf3010Sc002Form extends GridForm {
 	private String parkingHosokuLink2;
 	// 駐車場補足リンク3
 	private String parkingHosokuLink3;
+	// 駐車場補足サイズ1
+	private String parkingHosokuSize1;
+	// 駐車場補足サイズ2
+	private String parkingHosokuSize2;
+	// 駐車場補足サイズ3
+	private String parkingHosokuSize3;
+	// 駐車場補足ファイル1
+	private byte[] parkingHosokuFile1;
+	// 駐車場補足ファイル2
+	private byte[] parkingHosokuFile2;
+	// 駐車場補足ファイル3
+	private byte[] parkingHosokuFile3;
 	// 駐車場備考
 	private String parkingBiko;
 	// 駐車場情報更新日時(排他用)
@@ -157,6 +184,23 @@ public class Skf3010Sc002Form extends GridForm {
 	private String hdnChangeContractSelectedIndex;
 	// 契約情報削除プルダウンインデックス
 	private String hdnDeleteContractSelectedValue;
+
+	/** 補足ファイル */
+	// 駐車場補足ファイル1
+	private String hdnHosoku;
+	private String hdnAttachedNo;
+	//ファイル番号
+	private String fileNo;
+	//種別
+	private String hosokuType;
+
+	/** ファイルボックス */
+	private MultipartFile tmpFileBoxshataku1;
+	private MultipartFile tmpFileBoxshataku2;
+	private MultipartFile tmpFileBoxshataku3;
+	private MultipartFile tmpFileBoxparking1;
+	private MultipartFile tmpFileBoxparking2;
+	private MultipartFile tmpFileBoxparking3;
 
 	/** 前画面からの連携用 */
 	// 対象行の社宅区分

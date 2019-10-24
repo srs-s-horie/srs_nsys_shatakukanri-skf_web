@@ -186,7 +186,7 @@ $(function() {
           <nfwui:PopupButton id="commentPop" value="コメント表示" 
           cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
           modalMode="false" popupWidth="1350" popupHeight="550"
-          parameter="applNo:applNo"  removePatterns="LV1,LV2"
+          parameter="applNo:applNo"  removePatterns="NON"
           screenUrl="skf/Skf2010Sc010/init" use="popup" />
 </c:if>
         </div>
@@ -198,20 +198,20 @@ $(function() {
            <nfwui:ConfirmButton id="teijiBtn" name="teijiBtn"
            value="再提示" cssClass="imui-medium-button" cssStyle="width: 150px" 
            title="<%= MessageIdConstant.SKF2010_SC006_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2017 %>"
-           url="skf/Skf2010Sc006/Represent" formId="form" removePatterns="LV1,LV2"
+           url="skf/Skf2010Sc006/Represent" formId="form" removePatterns="NON"
            remove="${form.representBtnFlg }" />
            <!-- 添付ボタン -->
            <nfwui:PopupButton id="shiryoBtn" name="shiryoBtn" value="資料を添付"
            cssClass="imui-medium-button" cssStyle="width: 150px" 
            use="popup" popupWidth="750" popupHeight="600"
            parameter="applNo:applNo,applId:applId" modalMode="false" 
-           screenUrl="skf/Skf2010Sc009/init" formId="form" removePatterns="LV1,LV2"
+           screenUrl="skf/Skf2010Sc009/init" formId="form" removePatterns="NON"
            callbackFunc="updateAttachedFileArea" />
            <!-- 承認ボタン -->
            <nfwui:ConfirmButton id="syouninBtn" name="syouninBtn" value="承認"
            cssClass="imui-medium-button" cssStyle="width: 150px" 
            title="<%= MessageIdConstant.SKF2010_SC006_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2006 %>"
-           url="skf/Skf2010Sc006/Update" formId="form" removePatterns="LV1,LV2" />
+           url="skf/Skf2010Sc006/Update" formId="form" removePatterns="NON" />
 </c:if>
         </div>
           </td>

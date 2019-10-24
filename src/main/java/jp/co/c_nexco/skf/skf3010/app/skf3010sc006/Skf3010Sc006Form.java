@@ -1,10 +1,9 @@
 package jp.co.c_nexco.skf.skf3010.app.skf3010sc006;
 
-
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import jp.co.c_nexco.nfw.webcore.app.GridForm;
-
-import java.util.*;
-
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.EqualsAndHashCode;
@@ -18,7 +17,7 @@ import lombok.EqualsAndHashCode;
 @lombok.Data
 @EqualsAndHashCode(callSuper = true)
 public class Skf3010Sc006Form extends GridForm {
-	
+
 	private static final long serialVersionUID = 5285848663756806913L;
 	/** 画面上部 */
 	// 社宅名
@@ -109,7 +108,7 @@ public class Skf3010Sc006Form extends GridForm {
 	//物置調整面積
 	private String hdnBarnMensekiAdjust;
 	//更新日時
-	private String roomUpadteDate;
+	private Date roomUpadteDate;
 	
 	/** 駐車場情報 */
 	//駐車場管理番号
@@ -148,12 +147,12 @@ public class Skf3010Sc006Form extends GridForm {
 	private String parkingRentalAdjust;
 	//駐車場月額使用料
 	private String parkingShiyoMonthFei;
-	// 更新日時
-	private String parkUpdateDate;
 	//駐車場区分情報更新日時
-	private String blockUpdateDate;
+	private Date blockUpdateDate;
 	//駐車場構造
 	private String parkingStructure;
+	//駐車場契約物件ID
+	private String parkingPropertyId;
 	
 	/** 管理者情報 */
 	/** 管理会社 */
@@ -184,6 +183,8 @@ public class Skf3010Sc006Form extends GridForm {
 	private Date keyManagerUpdateDate;
 
 	/** 契約情報 */
+	//契約番号
+	private String contractNo;
 	// 賃貸人（代理人）名
 	private String contractOwnerName;
 	// 賃貸人（代理人）番号
@@ -242,6 +243,14 @@ public class Skf3010Sc006Form extends GridForm {
 	private String parkingLandRent;
 	//備考
 	private String parkingContractBiko;
+	// 駐車場契約情報追加ボタン(非活性：true, 活性:false)
+	private Boolean parkingContractAddDisableFlg;
+	// 駐車場契約情報削除ボタン(非活性：true, 活性:false)
+	private Boolean parkingContractDelDisableFlg;
+	// 駐車場契約形態
+	private String parkingContractTypeDisabled;
+	// 駐車場契約情報
+	private String parkingContractInfoDisabled;
 	//駐車場契約選択インデックス
 	private String hdnDispParkingContractSelectedIndex;
 	// 契約情報選択プルダウンインデックス
@@ -264,6 +273,8 @@ public class Skf3010Sc006Form extends GridForm {
 	private String hdnRowEmptyParkingCount;
 	// 選択タブインデックス
 	private String hdnNowSelectTabIndex;
+	// 複写フラグ
+	private String copyFlg;
 
 	/** 駐車場契約情報への連携用 */
 	private String hdnShatakuKanriNo;
@@ -329,10 +340,6 @@ public class Skf3010Sc006Form extends GridForm {
 	private Boolean contractAddDisableFlg;
 	// 契約情報削除ボタン(非活性：true, 活性:false)
 	private Boolean contractDelDisableFlg;
-	// 駐車場契約情報追加ボタン(非活性：true, 活性:false)
-	private Boolean parkingContractAddDisableFlg;
-	// 駐車場契約情報削除ボタン(非活性：true, 活性:false)
-	private Boolean parkingContractDelDisableFlg;
 	
 	/** JSON(連携用) */
 	// JSON駐車場区画情報 リスト
@@ -404,26 +411,43 @@ public class Skf3010Sc006Form extends GridForm {
 	private String barnMensekiError;
 	//貸与区分（補助）
 	private String lendKbnHosokuError;
+	//駐車場区画
+	private String parkingBlockError;
 	//駐車場調整金額
 	private String parkingRentalAdjustError;
-	
-	//駐車場契約
-	private String parkingBlockError;
+	//賃貸人
 	private String parkingOwnerNameError;
+	//郵便番号
 	private String parkingZipCdError;
+	//所在地
 	private String parkingAddressError;
+	//駐車場名
 	private String parkingNameError;
+	//経理連携用管理番号
 	private String parkingAssetRegisterNoError;
+	//契約開始日
 	private String parkingContractStartDateError;
+	//契約終了日
 	private String parkingContractEndDateError;
-	private String landRentError;
+	//駐車場料
+	private String parkingLandRentError;
+	//契約形態
 	private String parkingContractTypeError;
+	// 会社名：管理会社
+	private String manageCompanyNameError;
+	// 担当者名：管理会社
+	private String manageNameError;
+	// 電子メールアドレス：管理会社
+	private String manageMailAddressError;
+	// 電話番号：管理会社
+	private String manageTelNumberError;
+	// 備考：管理会社
+	private String manageBikoError;
+
 	//駐車場契約情報選択モード
 	private String parkingSelectMode;
-	//駐車場契約形態
-	private String parkingContractTypeDisabled;
-	//駐車場契約情報
-	private String parkingContractInfoDisabled;
+	//駐車場契約編集中フラグ
+	private String parkingEditFlg;
 	
 	/** 社宅情報 */
 	private String areaKbn;
@@ -461,4 +485,16 @@ public class Skf3010Sc006Form extends GridForm {
 	private MultipartFile tmpFileBoxparking1;
 	private MultipartFile tmpFileBoxparking2;
 	private MultipartFile tmpFileBoxparking3;
+	
+	/** 契約情報編集チェック変数 **/
+	private String startingParkingContractType;
+	private String startingParkingContractOwnerName;
+	private String startingParkingAssetRegisterNo;
+	private String startingParkingContractStartDay;
+	private String startingParkingContractEndDay;
+	private String startingParkingZipCd;
+	private String startingParkingContractAddress;
+	private String startingParkingName;
+	private String startingParkingContractLandRent;
+	private String startingParkingContractBiko;
 }
