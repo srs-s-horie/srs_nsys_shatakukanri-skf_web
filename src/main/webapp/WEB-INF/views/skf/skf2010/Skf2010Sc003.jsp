@@ -46,6 +46,12 @@ function back() {
 }
 </script>
 
+<style>
+.ui-jqgrid .ui-jqgrid-htable th div{
+	height: 34px;
+    white-space:normal;
+}
+</style>
 <!-- コンテンツエリア -->
 <div style="width: 100%; margin: auto;">
 <table align="center">
@@ -234,8 +240,8 @@ height="232" onGridComplete="gridComplete">
   <col name="applStatus" hidden="true" />
   <col name="applDate" caption="申請日" width="100" align="center" />
   <col name="applStatusText" caption="申請状況" width="80" align="center" onCellAttr="onCellAttr" />
-  <col name="applNo" caption="申請書番号" width="200" align="center" />
-  <col name="applName" caption="申請書類名" width="440" align="left" />
+  <col name="applNo" caption="申請書番号" width="250" align="center" />
+  <col name="applName" caption="申請書類名" width="390" align="left" />
   <col name="agreDate" caption="承認日／修正依頼日" width="140" align="center" />
   <col name="cancel" caption="取下げ" width="90" align="center">
      <showIcon iconClass="im-ui-icon-common-16-ng" />
