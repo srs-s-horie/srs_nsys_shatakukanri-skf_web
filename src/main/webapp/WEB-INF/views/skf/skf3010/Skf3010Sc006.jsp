@@ -41,6 +41,52 @@
 		<input type="hidden" name="hdnEmptyParkingCount" id="hdnEmptyParkingCount" value="${form.hdnEmptyParkingCount}"/>
 		<input type="hidden" name="hdnBarnMensekiAdjust" id="hdnBarnMensekiAdjust" value="${form.hdnBarnMensekiAdjust}"/>
 		<input type="hidden" name="parkingSelectMode" id="parkingSelectMode" value="${form.parkingSelectMode}"/>
+		<input type="hidden" name="parkingEditFlg" id="parkingEditFlg" value="${form.parkingEditFlg}"/>
+		<!-- 建築年月日(初期画面起動時データ) -->
+		<input type="hidden" name="startingBuildDate" id="startingBuildDate" value="${form.startingBuildDate }"/>
+		<!-- 構造区分(初期画面起動時データ) -->
+		<input type="hidden" name="startingShatakuStructure" id="startingShatakuStructure" value="${form.startingShatakuStructure }"/>
+		<!-- 駐車場構造区分(初期画面起動時データ) -->
+		<input type="hidden" name="startingParkingStructure" id="startingParkingStructure" value="${form.startingParkingStructure }"/>
+		<!-- 地域区分(初期画面起動時データ) -->
+		<input type="hidden" name="startingAreaKbn" id="startingAreaKbn" value="${form.startingAreaKbn }"/>
+		<!-- 賃貸人(画面表示時データ) -->
+		<input type="hidden" name="startingContractOwnerName" id="startingContractOwnerName" value="${form.contractOwnerName }"/>
+		<!-- 経理連携用管理番号(画面表示時データ) -->
+		<input type="hidden" name="startingAssetRegisterNo" id="startingAssetRegisterNo" value="${form.assetRegisterNo }"/>
+		<!-- 契約開始日(画面表示時データ) -->
+		<input type="hidden" name="startingContractStartDay" id="startingContractStartDay" value="${form.contractStartDay }"/>
+		<!-- 契約終了日(画面表示時データ) -->
+		<input type="hidden" name="startingContractEndDay" id="startingContractEndDay" value="${form.contractEndDay }"/>
+		<!-- 家賃(画面表示時データ) -->
+		<input type="hidden" name="startingContractRent" id="startingContractRent" value="${form.contractRent }"/>
+		<!-- 共益費(画面表示時データ) -->
+		<input type="hidden" name="startingContractKyoekihi" id="startingContractKyoekihi" value="${form.contractKyoekihi }"/>
+		<!-- 駐車場料(画面表示時データ) -->
+		<input type="hidden" name="startingContractLandRent" id="startingContractLandRent" value="${form.contractLandRent }"/>
+		<!-- 備考(画面表示時データ) -->
+		<input type="hidden" name="startingContractBiko" id="startingContractBiko" value="${form.contractBiko }"/>
+		<!-- 賃貸人(画面表示時データ) -->
+		<input type="hidden" name="startingParkingContractOwnerName" id="startingParkingContractOwnerName" value="${form.startingParkingContractOwnerName }"/>
+		<!-- 経理連携用管理番号(画面表示時データ) -->
+		<input type="hidden" name="startingParkingAssetRegisterNo" id="startingParkingAssetRegisterNo" value="${form.startingParkingAssetRegisterNo }"/>
+		<!-- 契約開始日(画面表示時データ) -->
+		<input type="hidden" name="startingParkingContractStartDay" id="startingParkingContractStartDay" value="${form.startingParkingContractStartDay }"/>
+		<!-- 契約終了日(画面表示時データ) -->
+		<input type="hidden" name="startingParkingContractEndDay" id="startingParkingContractEndDay" value="${form.startingParkingContractEndDay }"/>
+		<!-- 郵便番号(画面表示時データ) -->
+		<input type="hidden" name="startingParkingZipCd" id="startingParkingZipCd" value="${form.startingParkingZipCd }"/>
+		<!-- 住所(画面表示時データ) -->
+		<input type="hidden" name="startingParkingContractAddress" id="startingParkingContractAddress" value="${form.startingParkingContractAddress }"/>
+		<!-- 駐車場名(画面表示時データ) -->
+		<input type="hidden" name="startingParkingName" id="startingParkingName" value="${form.startingParkingName }"/>
+		<!-- 駐車場料(画面表示時データ) -->
+		<input type="hidden" name="startingParkingContractLandRent" id="startingParkingContractLandRent" value="${form.startingParkingContractLandRent }"/>
+		<!-- 備考(画面表示時データ) -->
+		<input type="hidden" name="startingParkingContractBiko" id="startingParkingContractBiko" value="${form.startingParkingContractBiko }"/>
+		<!-- 備考(画面表示時データ) -->
+		<input type="hidden" name="startingParkingContractType" id="startingParkingContractType" value="${form.startingParkingContractType }"/>
+		
 		<!-- JSON備品情報 -->
 		<input type="hidden" name="jsonBihin" id="jsonBihin" />
 		<!-- JSONドロップダウン選択値リスト -->
@@ -49,7 +95,7 @@
 		<input type="hidden" name="jsonLabelList" id="jsonLabelList" />
 		<!-- 編集フラグ(編集中は「true」 -->
 		<input type="hidden" name="onChangeFlag" id="onChangeFlag" value="false"/>
-		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc006/init"/>
+
 		<!-- 補足ファイル -->
 		<input type="hidden" name="fileNo" id="fileNo"/>
 		<input type="hidden" name="hosokuType" id="hosokuType"/>
@@ -701,8 +747,8 @@
 								<imui:button id="parkingContractAdd" name="parkingContractAdd" value="追加" class="imui-small-button" 
 												disabled="${form.parkingContractAddDisableFlg}" onclick="parkingContractAddClick()" tabindex="74" />
 								<!-- 削除ボタン -->
-								<imui:button id="parkingContractDell" name="parkingContractDell" value="削除" class="imui-small-button" 
-												disabled="${form.parkingContractDelDisableFlg}" onclick="contractDelClick()" tabindex="75" />
+								<imui:button id="parkingContractDel" name="parkingContractDel" value="削除" class="imui-small-button" 
+												disabled="${form.parkingContractDelDisableFlg}" onclick="parkingContractDelClick()" tabindex="75" />
 							</td>
 						</tr>
 						<tr>
@@ -928,6 +974,45 @@
 						// 契約情報タブの住所を基本情報タブの県名 + 住所に設定
 						$('#contractAddress').text($('#pref option:selected').text() + $('#shatakuAddress').val());
 						
+						/** 契約情報変更チェック */
+						// 契約情報の「賃貸人、経理連携用管理番号、契約開始日、契約終了日、家賃、共益費、駐車場料、備考」のいづれかに変更があるかチェックする
+						// 戻り値：変更有り(true)、変更なし(false)
+						checkContractInfo = function() {
+							// 変更チェック(賃貸人、経理連携用管理番号、契約開始日、契約終了日、家賃、共益費、駐車場料、備考)
+							if ($("#startingContractOwnerName").val() != $("#contractOwnerName").val()
+								|| $("#startingAssetRegisterNo").val() != $("#assetRegisterNo").val()
+								|| $("#startingContractStartDay").val() != $("#contractStartDay").val().replace(/\//g, "")
+								|| $("#startingContractEndDay").val() != $("#contractEndDay").val().replace(/\//g, "")
+								|| $("#startingContractRent").val() != $("#contractRent").val().replace(/,/g, "")
+								|| $("#startingContractKyoekihi").val() != $("#contractKyoekihi").val().replace(/,/g, "")
+								|| $("#startingContractLandRent").val() != $("#contractLandRent").val().replace(/,/g, "")
+								|| $("#startingContractBiko").val() != $("#contractBiko").val())
+							{
+								return true;
+							}
+							return false;
+						}
+						/** 駐車場契約情報変更チェック */
+						// 駐車場契約情報に変更があるかチェックする
+						// 戻り値：変更有り(true)、変更なし(false)
+						checkParkingContractInfo = function() {
+							// 変更チェック
+							if ($("#startingParkingContractOwnerName").val() != $("#parkingOwnerName").val()
+								|| $("#startingParkingAssetRegisterNo").val() != $("#parkingAssetRegisterNo").val()
+								|| $("#startingParkingContractStartDay").val() != $("#parkingContractStartDay").val().replace(/\//g, "")
+								|| $("#startingParkingContractEndDay").val() != $("#parkingContractEndDay").val().replace(/\//g, "")
+								|| $("#startingParkingZipCd").val() != $("#parkingZipCd").val()
+								|| $("#startingParkingContractAddress").val() != $("#parkingContractAddress").val()
+								|| $("#startingParkingName").val() != $("#parkingName").val().replace(/,/g, "")
+								|| $("#startingParkingContractLandRent").val() != $("#parkingLandRent").val().replace(/,/g, "")
+								|| $("#startingParkingContractBiko").val() != $("#parkingContractBiko").val()
+								|| $("#startingParkingContractType").val() != $("#parkingContractType").val())
+							{
+								return true;
+							}
+							return false;
+						}
+						
 						// JSON備品リスト設定
 						// 備品リストをJSON文字列に変換し
 						// formのhidden変数「jsonBihin」に格納する
@@ -952,6 +1037,46 @@
 							// 備品情報リストをJSON文字列に変換
 							$('#jsonBihin').val(JSON.stringify(bihinArray));
 						}
+						
+						// JSONドロップダウン選択値設定
+						// ドロップダウン選択値をリスト形式にし、JSON文字列に変換後
+						// formのhidden変数「jsonDrpDwnList」に格納する
+						setDrpDwnList = function() {
+							// ドロップダウン選択値リスト
+							var drpDwnArray = new Array();
+							{
+								// ドロップダウン選択値リスト作成
+								var drpDwnMap = new Object();
+								// 地域区分
+								drpDwnMap['areaKbn'] = $('#areaKbn').val();
+								// 利用区分
+								drpDwnMap['useKbn'] = $('#useKbn').val();
+								// 管理会社
+								drpDwnMap['manageCompany'] = $("#manageCompany").val();
+								// 管理機関
+								drpDwnMap['manageAgency'] = $('#manageAgency').val();
+								// 管理事業領域
+								drpDwnMap['manageBusinessArea'] = $('#manageBusinessArea').val();
+								// 社宅住所(都道府県)
+								drpDwnMap['pref'] = $('#pref').val();
+								// 社宅構造
+								drpDwnMap['shatakuStructure'] = $('#shatakuStructure').val();
+								// エレベーター
+								drpDwnMap['elevator'] = $('#elevator').val();
+								// 駐車場構造
+								drpDwnMap['parkingStructure'] = $('#parkingStructure').val();
+								// 契約情報
+								drpDwnMap['contractNo'] = $('#contractNo').val();
+								drpDwnMap['contractText'] = $('#contractNo').children("option:selected").text().trim();
+								// 契約情報
+								drpDwnMap['parkingContractNo'] = $('#parkingContractNo').val();
+								drpDwnMap['parkingContractNoText'] = $('#parkingContractNo').children("option:selected").text().trim();
+								drpDwnArray.push(drpDwnMap);
+							}
+							// ドロップダウン選択値リストをJSON文字列に変換
+							$('#jsonDrpDwnList').val(JSON.stringify(drpDwnArray));
+						}
+						
 						// JSON可変ラベルリスト設定
 						// 可変値ラベルをリスト形式にし、JSON文字列に変換後
 						// formのhidden変数「jsonLabelList」に格納する
@@ -978,6 +1103,19 @@
 							// 可変ラベルリストをJSON文字列に変換
 							$('#jsonLabelList').val(JSON.stringify(labelArray));
 						}
+						// 現在状態バックアップ
+						// ドロップ選択値ダウンリスト、可変ラベルリスト、リストテーブルのバックアップを行う
+						backUpStatus = function() {
+							// JSON駐車場区画情報リスト設定
+							//setJsonParkingBlock();
+							// JSON備品リスト設定
+							setJsonBihinList();
+							// JSONドロップダウン選択値リスト設定
+							//setDrpDwnList();
+							// JSON可変ラベルリスト設定
+							setVariableLabelList();
+						}
+						
 						/** クリックイベント */
 						//補足資料参照ボタンクリック
 						fileSelect = function(no,type) {
@@ -1015,14 +1153,87 @@
 								nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc006/attachedFileDelete", "ok", "キャンセル", this, true);
 							
 						}
-						// 登録ボタン句陸
+						
+						// 登録ボタンクリック
 						enterClick = function() {
-							alert("それはダメ！");
+							//MessageIdConstant.I_SKF_3035[{0}を登録します。よろしいですか？]
+							dialogMessage = "保有社宅情報を登録します。よろしいですか？";
+							$("<div>保有社宅情報を登録します。よろしいですか？</div>").imuiMessageDialog({
+								iconType : 'question',
+								title : '確認',
+								modal : true,
+								buttons: [
+									{
+										'id': 'tourokuOk',
+										'text': 'ok',
+										'click': function() {
+											$(this).imuiMessageDialog('close');
+											// 登録処理
+											enterHoyuShataku();
+										}
+									},
+									{
+										'text': 'キャンセル',
+										'click': function() {
+											$(this).imuiMessageDialog('close');
+										}
+									}
+								]
+							});
 						}
-						// 登録ボタン句陸
+
+						// 登録処理
+						enterHoyuShataku = function() {
+							// 現在状態バックアップ
+							backUpStatus();
+							// 新規の場合は「地域区分」「建築年月日」「構造」「駐車場構造」更新チェック
+							if (($("#hdnShatakuKanriNo").val().length > 0)
+								&& ($("#startingBuildDate").val() != $("#buildDate").val().replace(/\//g, "")
+								|| $("#startingShatakuStructure").val() != $("#shatakuStructure").val()
+								|| $("#startingParkingStructure").val() != $("#parkingStructure").val()
+								|| $("#startingAreaKbn").val() != $("#areaKbn").val()))
+							{
+								//MessageIdConstant.：I-SKF-3033
+								$("<div>使用料計算に影響する項目が更新されました。登録処理を実行してよろしいですか？</div>").imuiMessageDialog({
+									iconType : 'question',
+									title : '確認',
+									modal : true,
+									buttons: [
+										{
+											'id': 'tourokuOk',
+											'text': 'ok',
+											'click': function() {
+												$(this).imuiMessageDialog('close');
+												url = "skf/Skf3010Sc006/regist";
+												$("#form").attr("action", url);
+												$("#form").submit();
+											}
+										},
+										{
+											'text': 'キャンセル',
+											'click': function() {
+												$(this).imuiMessageDialog('close');
+											}
+										}
+									]
+								});
+							} else {
+								url = "skf/Skf3010Sc006/regist";
+								$("#form").attr("action", url);
+								$("#form").submit();
+							}
+						}
+						
+						// 削除ボタンクリック
 						deleteClick = function() {
-							alert("まだダメｯ！");
+							// 現在状態バックアップ
+							backUpStatus();
+							var dialogTitle = "確認";
+							//MessageIdConstant.：I-SKF-3003
+							var dialogMessage = "社宅（" + $("#shatakuName").val() + "）の削除処理を実行します。よろしいですか？";
+							nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc006/delete", "ok", "キャンセル", this, true);
 						}
+						
 						// 住所検索押下時のイベント
 						addressSearchClick = function() {
 //						$("#addressSearch").click(function () {
@@ -1044,7 +1255,6 @@
 
 						// 契約情報追加ボタンクリック
 						contractAddClick = function() {
-							setJsonBihinList();
 							// I-SKF-3108
 							$("<div>社宅の契約情報を追加します。よろしいですか？</div>").imuiMessageDialog({
 								iconType : 'question',
@@ -1055,13 +1265,16 @@
 										'id': 'contractAddOk',
 										'text': 'ok',
 										'click': function() {
-											// 編集フラグ判定
-											if ($("#onChangeFlag").val() != "true") {
+											$(this).imuiMessageDialog('close');
+											// 契約情報変更チェック
+											if (!checkContractInfo()) {
+												// 現在状態バックアップ
+												backUpStatus();
+												// 契約情報変更なし
 												url = "skf/Skf3010Sc006/addContractList";
 												$("#form").attr("action", url);
 												$("#form").submit();
 											} else {
-												$(this).imuiMessageDialog('close');
 												$("<div>入力内容が無効になります。破棄してもよろしいですか？</div>").imuiMessageDialog({
 													iconType : 'question',
 													title : '確認',
@@ -1071,6 +1284,9 @@
 															'id': 'contractChangeAddOk',
 															'text': 'ok',
 															'click': function() {
+																$(this).imuiMessageDialog('close');
+																// 現在状態バックアップ
+																backUpStatus();
 																url = "skf/Skf3010Sc006/addContractList";
 																$("#form").attr("action", url);
 																$("#form").submit();
@@ -1098,11 +1314,10 @@
 								]
 							});
 						}
+
 						// 契約情報削除ボタンクリック
 						contractDelClick = function() {
-//							// 削除済み契約番号バックアップ
-//							var deletedContractNo = $("#hdnDeleteContractSelectedValue").val();
-							if ($("#contractNo").text().indexOf('契約開始日') != -1) {
+							if ($("#contractNo").children("option:selected").text().indexOf('契約開始日') != -1) {
 								// 契約番号リスト取得
 								var contractNoOptions = $("#contractNo")[0].options;
 								// 契約番号リスト最大値取得
@@ -1114,7 +1329,7 @@
 									var map = new Object();
 									map['hdnShatakuKanriNo'] = $("#hdnShatakuKanriNo").val();
 									// 「最新の契約情報でないため、削除できません。」を出力
-									nfw.common.doAjaxAction("skf/Skf3010Sc002/DeleteContractErrAsync", map, true, function(data) {});
+									nfw.common.doAjaxAction("skf/Skf3010Sc006/deleteContractErrAsync", map, true, function(data) {});
 									return;
 								}
 								//MessageIdConstant.：I-SKF-3109
@@ -1127,6 +1342,9 @@
 											'id': 'contractDelOk1',
 											'text': 'ok',
 											'click': function() {
+												$(this).imuiMessageDialog('close');
+												// 現在状態バックアップ
+												backUpStatus();
 												// 選択値設定(削除済み契約番号)
 												$("#hdnDeleteContractSelectedValue").val($("#contractNo").val());
 												url = "skf/Skf3010Sc006/delContractList";
@@ -1153,6 +1371,9 @@
 											'id': 'contractDelOk2',
 											'text': 'ok',
 											'click': function() {
+												$(this).imuiMessageDialog('close');
+												// 現在状態バックアップ
+												backUpStatus();
 												// 選択値設定(削除済み契約番号)
 												$("#hdnDeleteContractSelectedValue").val($("#contractNo").val());
 												url = "skf/Skf3010Sc006/delContractList";
@@ -1170,13 +1391,10 @@
 								});
 							}
 						}
+						
 						// 駐車場契約情報追加ボタンクリック
 						parkingContractAddClick = function() {
-							//保存情報設定
-							setJsonBihinList();
-							setVariableLabelList();
-							$("#parkingSelectMode").val("addParking");
-							// I-SKF-3108
+							// I-SKF-3063
 							$("<div>駐車場の契約情報を追加します。よろしいですか？</div>").imuiMessageDialog({
 								iconType : 'question',
 								title : '確認',
@@ -1186,13 +1404,17 @@
 										'id': 'contractAddOk',
 										'text': 'ok',
 										'click': function() {
-											// 編集フラグ判定
-											if ($("#onChangeFlag").val() != "true") {
-												url = "skf/Skf3010Sc006/addParkingContractList";
+											$(this).imuiMessageDialog('close');
+											// 契約情報変更チェック
+											if (!checkParkingContractInfo()) {
+												// 現在状態バックアップ
+												backUpStatus();
+												$("#parkingSelectMode").val("addParking");
+												// 契約情報変更なし
+												url = "skf/Skf3010Sc006/changeParkingContractList";
 												$("#form").attr("action", url);
 												$("#form").submit();
 											} else {
-												$(this).imuiMessageDialog('close');
 												$("<div>入力内容が無効になります。破棄してもよろしいですか？</div>").imuiMessageDialog({
 													iconType : 'question',
 													title : '確認',
@@ -1202,7 +1424,11 @@
 															'id': 'contractChangeAddOk',
 															'text': 'ok',
 															'click': function() {
-																url = "skf/Skf3010Sc006/addParkingContractList";
+																$(this).imuiMessageDialog('close');
+																// 現在状態バックアップ
+																backUpStatus();
+																$("#parkingSelectMode").val("addParking");
+																url = "skf/Skf3010Sc006/changeParkingContractList";
 																$("#form").attr("action", url);
 																$("#form").submit();
 															}
@@ -1230,13 +1456,8 @@
 							});
 						}
 						// 駐車場契約情報削除ボタンクリック
-						contractDelClick = function() {
-							//保存情報設定
-							setJsonBihinList();
-							setVariableLabelList();
-//							// 削除済み契約番号バックアップ
-//							var deletedContractNo = $("#hdnDeleteContractSelectedValue").val();
-							if ($("#parkingContractNo").text().indexOf('契約開始日') != -1) {
+						parkingContractDelClick = function() {
+							if (!checkParkingContractInfo() && $("#parkingEditFlg").val() != "true") {
 								// 契約番号リスト取得
 								var contractNoOptions = $("#parkingContractNo")[0].options;
 								// 契約番号リスト最大値取得
@@ -1251,7 +1472,7 @@
 									nfw.common.doAjaxAction("skf/Skf3010Sc002/DeleteContractErrAsync", map, true, function(data) {});
 									return;
 								}
-								//MessageIdConstant.：I-SKF-3109
+								//MessageIdConstant.：I-SKF-3064
 								$("<div>駐車場の契約情報を削除します。よろしいですか？</div>").imuiMessageDialog({
 									iconType : 'question',
 									title : '確認',
@@ -1261,10 +1482,13 @@
 											'id': 'contractDelOk1',
 											'text': 'ok',
 											'click': function() {
+												$(this).imuiMessageDialog('close');
+												// 現在状態バックアップ
+												backUpStatus();
 												$("#parkingSelectMode").val("delParking");
 												// 選択値設定(削除済み契約番号)
-												$("#hdnDeleteContractSelectedValue").val($("#parkingContractNo").val());
-												url = "skf/Skf3010Sc006/addParkingContractList";
+												$("#hdnDeleteParkingContractSelectedValue").val($("#parkingContractNo").val());
+												url = "skf/Skf3010Sc006/changeParkingContractList";
 												$("#form").attr("action", url);
 												$("#form").submit();
 											}
@@ -1288,10 +1512,13 @@
 											'id': 'contractDelOk2',
 											'text': 'ok',
 											'click': function() {
+												$(this).imuiMessageDialog('close');
+												// 現在状態バックアップ
+												backUpStatus();
 												$("#parkingSelectMode").val("delParking");
 												// 選択値設定(削除済み契約番号)
-												$("#hdnDeleteContractSelectedValue").val($("#parkingContractNo").val());
-												url = "skf/Skf3010Sc006/addParkingContractList";
+												$("#hdnDeleteParkingContractSelectedValue").val($("#parkingContractNo").val());
+												url = "skf/Skf3010Sc006/changeParkingContractList";
 												$("#form").attr("action", url);
 												$("#form").submit();
 											}
@@ -1306,6 +1533,7 @@
 								});
 							}
 						}
+						
 						// 駐車場契約情報ボタンクリック
 						contractParkingInfoClick = function() {
 							var dialogTitle = "確認";
@@ -1321,34 +1549,29 @@
 								$("#dormitoryLeaderName").val(param.name);
 								$("#keyManagerName").val(param.name);	// ← 後で削除
 								$("#contractOwnerName").val(param.name);	// ← 後で削除
-								// 編集フラグを「true」に設定
-								$("#onChangeFlag").val("true");
+								$("#contractOwnerNo").val(1);	// ← 後で削除
 							}
 						}
+
 						// 社員入力支援コールバック(鍵管理者)
 						keyManagerShainInfoCallback = function(param) {
 							if( param != null && typeof param == 'object' && param.name != null){
 								$("#keyManagerName").val(param.name);
-								// 編集フラグを「true」に設定
-								$("#onChangeFlag").val("true");
 							}
 						}
+
 						// 賃貸人入力支援コールバック
 						contractOwnerInfoCallback = function(param) {
 							if( param != null && typeof param == 'object' && param.name != null){
 								$("#contractOwnerName").val(param.name);
 								$("#contractOwnerNo").val(param.shainNo);
-								// 編集フラグを「true」に設定
-								$("#onChangeFlag").val("true");
 							}
 						}
 						// 賃貸人（駐車場）入力支援コールバック
 						parkingContractOwnerInfoCallback = function(param) {
 							if( param != null && typeof param == 'object' && param.name != null){
-								$("#contractOwnerName").val(param.name);
-								$("#contractOwnerNo").val(param.shainNo);
-								// 編集フラグを「true」に設定
-								$("#onChangeFlag").val("true");
+								$("#parkingContractOwnerName").val(param.name);
+								$("#parkingContractOwnerNo").val(param.shainNo);
 							}
 						}
 						//駐車場契約住所検索
@@ -1473,36 +1696,39 @@
 						
 						});
 						//駐車場契約
-						setDisabled = function(state){
+						setDisabled = function(state,reset){
 				    		$("#parkingOwnerName").prop("disabled",state);
-				    		$("#parkingOwnerName").val("");
-				    		$("#parkingOwnerNo").val(null);
 							$("#parkingZipCd").prop("disabled",state);
-							$("#parkingZipCd").val("");
 							$("#parkingContractAddress").prop("disabled",state);
-							$("#parkingContractAddress").val("");
 							$("#parkingName").prop("disabled",state);
-							$("#parkingName").val("");
 							$("#parkingAssetRegisterNo").prop("disabled",state);
-							$("#parkingAssetRegisterNo").val("");
 							$("#parkingContractStartDay").prop("disabled",state);
-							$("#parkingContractStartDay").val("");
 							$("#parkingContractEndDay").prop("disabled",state);
-							$("#parkingContractEndDay").val("");							
 							$("#parkingLandRent").val(null);
-							wjObj = wijmo.Control.getControl('#parkingLandRentDiv');
-							wjObj.value = null;
-							$('#parkingLandRent').prop("value", "");
 							$("#parkingLandRent").prop("disabled",state);
 							$("#parkingContractBiko").prop("disabled",state);
-							$("#parkingContractBiko").val("");
 							$("#parkingAddressSearch").prop("disabled",state);
 							$("#parkingContractSupport").prop("disabled",state);
+							
+							if(reset){
+								//入力値リセット
+								$("#parkingOwnerName").val("");
+								$("#parkingOwnerNo").val(null);
+								$("#parkingZipCd").val("");
+								$("#parkingContractAddress").val("");
+								$("#parkingName").val("");
+								$("#parkingAssetRegisterNo").val("");
+								$("#parkingContractStartDay").val("");
+								$("#parkingContractEndDay").val("");
+								wjObj = wijmo.Control.getControl('#parkingLandRentDiv');
+								wjObj.value = null;
+								$('#parkingLandRent').prop("value", "");
+								$("#parkingContractBiko").val("");
+							}
 							
 							if(state){
 								$('#parkingAddressSearch').addClass("imui-disabled-button");
 								$('#parkingContractSupport').addClass("imui-disabled-button");
-								//
 								$("#parkingContractStartDayDiv").addClass("wj-state-disabled");
 								$("#parkingContractEndDayDiv").addClass("wj-state-disabled");
 								$("#parkingLandRentDiv").addClass("wj-state-disabled");
@@ -1522,9 +1748,9 @@
 						$("#parkingContractType").bind('change', function() {
 							//契約形態変更
 							if($("#parkingContractType").val()=="2"){
-								setDisabled(false);
+								setDisabled(false,true);
 							}else{
-								setDisabled(true);
+								setDisabled(true,true);
 							}
 						});
 						
@@ -1552,11 +1778,19 @@
 								$("#parkingShiyoMonthFei").text(data.parkingShiyoMonthFei + " 円");
 								
 								if($("#parkingStructure").val() != "5" && $("#parkingStructure").val() != ""){
-									$("#parkingContractAdd").prop("disabled",false);
-									$('#parkingContractAdd').removeClass("imui-disabled-button");
+									//駐車場構造がなしまたは空以外
+									if($("#parkingEditFlg").val() != "true"){
+										//追加中でない
+										$("#parkingContractAdd").prop("disabled",false);
+										$('#parkingContractAdd').removeClass("imui-disabled-button");
+									}
 								}else{
 									$("#parkingContractAdd").prop("disabled",true);
 									$('#parkingContractAdd').addClass("imui-disabled-button");
+									$("#parkingContractDel").prop("disabled",true);
+									$('#parkingContractDel').addClass("imui-disabled-button");
+									$("#parkingContractType").prop("disabled",true);
+									setDisabled(true,false);
 								}
 								setParkingLendKbn($("#parkingStructure").val());
 							});
@@ -1567,9 +1801,12 @@
 						$("#contractNo").bind('change', function() {
 							// 変更後選択値取得
 							$("#hdnChangeContractSelectedIndex").val($("#contractNo").val());
-							// 編集フラグ判定
-							if ($("#onChangeFlag").val() != "true") {
-								url = "skf/Skf3010Sc002/changeContractDrpDwn";
+							// 契約情報変更チェック
+							if (!checkContractInfo() && ${form.contractAddDisableFlg} != true) {
+								// 変更なし
+								// 現在状態バックアップ
+								backUpStatus();
+								url = "skf/Skf3010Sc006/changeContractDrpDwn";
 								$("#form").attr("action", url);
 								$("#form").submit();
 							} else {
@@ -1582,7 +1819,10 @@
 											'id': 'contractChangeOk',
 											'text': 'ok',
 											'click': function() {
-												url = "skf/Skf3010Sc002/changeContractDrpDwn";
+												$(this).imuiMessageDialog('close');
+												// 現在状態バックアップ
+												backUpStatus();
+												url = "skf/Skf3010Sc006/changeContractDrpDwn";
 												$("#form").attr("action", url);
 												$("#form").submit();
 											}
@@ -1599,6 +1839,52 @@
 								});
 							}
 						});
+						
+						// 駐車場契約番号ドロップダウンチェンジ
+						$("#parkingContractNo").bind('change', function() {
+							// 変更後選択値取得
+							$("#hdnChangeParkingContractSelectedIndex").val($("#parkingContractNo").val());
+							// 契約情報変更チェック
+							if (!checkParkingContractInfo() && $("#parkingEditFlg").val() != "true") {
+								// 変更なし
+								// 現在状態バックアップ
+								backUpStatus();
+								$("#parkingSelectMode").val("changeParking");
+								url = "skf/Skf3010Sc006/changeParkingContractList";
+								$("#form").attr("action", url);
+								$("#form").submit();
+							} else {
+								$("<div>入力内容が無効になります。破棄してもよろしいですか？</div>").imuiMessageDialog({
+									iconType : 'question',
+									title : '確認',
+									modal : true,
+									buttons: [
+										{
+											'id': 'contractChangeOk',
+											'text': 'ok',
+											'click': function() {
+												$(this).imuiMessageDialog('close');
+												// 現在状態バックアップ
+												backUpStatus();
+												$("#parkingSelectMode").val("changeParking");
+												url = "skf/Skf3010Sc006/changeParkingContractList";
+												$("#form").attr("action", url);
+												$("#form").submit();
+											}
+										},
+										{
+											'text': 'キャンセル',
+											'click': function() {
+												$(this).imuiMessageDialog('close');
+												// 変更前選択プルダウンに戻す
+												$("#contractNo").val($("#hdnDispContractSelectedIndex").val());
+											}
+										}
+									]
+								});
+							}
+						});
+						
 						/** テキストチェンジイベント */
 						// 建築年月日チェンジ
 						$("#buildDate").bind('change', function() {
