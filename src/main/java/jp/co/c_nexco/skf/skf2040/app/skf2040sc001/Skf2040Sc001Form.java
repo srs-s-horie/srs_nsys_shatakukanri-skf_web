@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import jp.co.c_nexco.nfw.webcore.app.BaseForm;
+import jp.co.c_nexco.nfw.nfwfile.app.nfwfilescdwd.NfwfileScDwdForm;
 import lombok.EqualsAndHashCode;
 
 /**
@@ -18,7 +18,7 @@ import lombok.EqualsAndHashCode;
  */
 @lombok.Data
 @EqualsAndHashCode(callSuper = true)
-public class Skf2040Sc001Form extends BaseForm {
+public class Skf2040Sc001Form extends NfwfileScDwdForm {
 
     private static final long serialVersionUID = 5285848663756806913L;
 
