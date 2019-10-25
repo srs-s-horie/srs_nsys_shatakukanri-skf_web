@@ -157,7 +157,8 @@
 		<input type="hidden" name="hdnRowEmptyRoomCount" id="hdnRowEmptyRoomCount" value="" />
 		<!-- 選択行:空き駐車場数 -->
 		<input type="hidden" name="hdnRowEmptyParkingCount" id="hdnRowEmptyParkingCount" value="" />
-		
+		<!-- 複写フラグ -->
+		<input type="hidden" name="copyFlg" id="copyFlg" value="" />
 		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc001/init"/>
 		<div class="imui-chapter-title"><h2>検索結果一覧</h2></div>
 		<div id="listTable">

@@ -133,7 +133,7 @@
 				<div class="align-L float-L">
 					<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()"  />
 					<imart:condition validity="${form.level1}">
-						<input name="doDelRow1" id="doDelRow1" type="button" value="社宅入居希望等調書PDF出力" class="imui-medium-button" onclick="" />
+						<input name="doDelRow1" id="doDelRow1" type="button" value="社宅入居希望等調書PDF出力" class="imui-medium-button" onclick="onClickOutputPdfR0100();" />
 					</imart:condition>
 					<imart:condition validity="${form.level2}">
 						<input name="doDelRow1" id="doDelRow1" type="button" value="貸与（予定）社宅等のご案内PDF出力" class="imui-medium-button" onclick="" />
@@ -227,5 +227,10 @@ function back1() {
 			});
 		});
 	}
+	
+    // 「社宅入居希望等調書PDF出力」ボタン押下時のイベント
+    onClickOutputPdfR0100= function () {
+        nfw.common.submitForm("form", "skf/Skf2010Sc002/OutputPdfR0100");
+    }
 })(jQuery);
 </script>
