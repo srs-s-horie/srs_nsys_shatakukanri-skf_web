@@ -1011,14 +1011,12 @@ function returnEquipmentDisabled(ischecked){
 			$('#sessionDay').prop('disabled', true);
 			$('#sessionTime').prop('disabled', true);	
 			$('#renrakuSaki').prop('disabled', true);
-			alert("ino");
       } else {
 			$('#sessionDayDiv').removeClass("wj-state-disabled");
 			$('#sessionDayDiv').prop('disabled', false);
 			$('#sessionDay').prop('disabled', false);
 			$('#sessionTime').prop('disabled', false);	
 			$('#renrakuSaki').prop('disabled', false);
-			alert("zenitsu");
       }
 }
 
@@ -1033,12 +1031,10 @@ function sessionDayDisabled(ischecked){
 			$('#sessionDayDiv').addClass("wj-state-disabled");
 			$('#sessionDayDiv').prop('disabled', true);	
 			$('#sessionDay').prop('disabled', true);
-			alert("ta");
 		}else{					
 			$('#sessionDayDiv').removeClass("wj-state-disabled");
 			$('#sessionDayDiv').prop('disabled', false);
 			$('#sessionDay').prop('disabled', false);
-			alert("ti");
 		}
 }
 
@@ -1456,7 +1452,6 @@ function mesDisplayControl(isShow){
 		    		$('#sessionDayDiv').addClass("wj-state-disabled");
 					$('#sessionDayDiv').prop('disabled', true);	
 					$('#sessionDay').prop('disabled', true);
-					alert("ta");
 				}else{					
 					// 社宅を必要としますか？の「駐車場のみ」にチェックが入っている場合
 					if($("#rdoParkingOnly").prop('checked')) {
