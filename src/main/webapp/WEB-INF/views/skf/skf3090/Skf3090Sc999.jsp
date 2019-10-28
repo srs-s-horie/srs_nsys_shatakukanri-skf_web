@@ -79,6 +79,26 @@
 								<td style="border:none">
 								</td>
 							</tr>
+							<tr>
+								<th style="width: 15%;">
+									ユーザID
+								</th>
+								<td style="width: 20%;">
+								<imui:textbox id="userID" name="userID" style="width: 95%;" value="${form.userID}" placeholder="ユーザID"  tabindex="5" />
+								</td>
+								<td style="border:none">
+								</td>
+							</tr>
+							<tr>
+								<th style="width: 15%;">
+									画面ID
+								</th>
+								<td style="width: 20%;">
+								<imui:textbox id="pageID" name="pageID" style="width: 95%;" value="${form.pageID}" placeholder="画面ID"  tabindex="5" />
+								</td>
+								<td style="border:none">
+								</td>
+							</tr>
 							</tbody>
 							</nfwui:Table>
 

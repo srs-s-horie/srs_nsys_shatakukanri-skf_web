@@ -24,5 +24,7 @@ public class Skf2040Fc001Form extends BaseForm {
 	private String applStatus;
 	private String errorCodeID;
 	private String errorStrings;
+	private String userID;
+	private String pageID;
 
 }
