@@ -395,14 +395,14 @@ rowNumbers="true" onCellSelect="onCellSelect"
   <col name="applStatusCd" hidden="true" />
   <col name="chkAgree" hidden="true" />
   <col name="applStatus" caption="申請状況" width="60" align="center" onCellAttr="onCellAttr" /><!-- 申請状況 -->
-  <col name="applNo" caption="申請書番号" width="180" align="center" wrap="true" /><!-- 申請書番号 -->
-  <col name="applDate" caption="申請日" width="75" align="center" wrap="true" /><!-- 申請日 -->
+  <col name="applNo" caption="申請書番号" width="150" align="center" wrap="true" /><!-- 申請書番号 -->
+  <col name="applDate" caption="申請日" width="80" align="center" wrap="true" /><!-- 申請日 -->
   <col name="shainNo" caption="社員番号" width="80" align="left" wrap="true" /><!-- 社員番号 -->
   <col name="name" caption="申請者名" width="110" align="left" wrap="true" /><!-- 申請者名 -->
   <col name="applName" caption="申請書類名" width="200" align="left" wrap="true" /><!-- 申請書類名 -->
-  <col name="agreDate" caption="承認日／修正依頼日" width="75" align="center" wrap="true" /><!-- 承認日／修正依頼日 -->
-  <col name="agreName1" caption="承認者名1／修正依頼者名 "  width="130" wrap="true" align="left" /><!-- 承認者名1／修正依頼者名 -->
-  <col name="agreName2" caption="承認者名2／修正依頼者名"  width="130" wrap="true" align="left" /><!-- 承認者名2／修正依頼者名 -->
+  <col name="agreDate" caption="承認日／修正依頼日" width="80" align="center" wrap="true" /><!-- 承認日／修正依頼日 -->
+  <col name="agreName1" caption="承認者名1／修正依頼者名 "  width="110" wrap="true" align="left" /><!-- 承認者名1／修正依頼者名 -->
+  <col name="agreName2" caption="承認者名2／修正依頼者名"  width="110" wrap="true" align="left" /><!-- 承認者名2／修正依頼者名 -->
   <col name="detail" caption="確認" width="50" align="center">
   
     <showIcon iconClass="im-ui-icon-menu-24-document" />

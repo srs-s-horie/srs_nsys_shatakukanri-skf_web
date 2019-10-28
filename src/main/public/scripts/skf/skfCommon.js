@@ -76,10 +76,45 @@ skf.common.confirmPopup2 = function(message, title, formId, url, okText, cancelT
  * @param {Object} button this
  */
 skf.common.confirmPopup = function(message, title, formId, url, okText, cancelText, button) {
-	skf.common.confirmPopup(message, title, formId, url, okText, cancelText, button, false, null);
+	skf.common.confirmPopup(message, title, formId, url, okText, cancelText, button, false, null, null);
 }
+/**
+ * 確認用ポップアップ処理。確定ボタンでコールバック関数実行
+ * <p>
+ * ボタン押下時に確認用のポップアップを表示する。OKの際に画面遷移せずコールバック関数を実行する
+ * </p>
+ * 
+ * @param {string} message 確認用メッセージ
+ * @param {string} title ポップアップのタイトル
+ * @param {string} formId フォームID
+ * @param {string} okText 確定ボタンの文言
+ * @param {string} cancelText 閉じるボタンの文言
+ * @param {Object} button this
+ * @param {Object} function コールバック関数
+ */
 skf.common.confirmPopupForCallback = function(message, title, formId, okText, cancelText, button, callback) {
-	skf.common.confirmPopup(message, title, formId, null, okText, cancelText, button, false, callback);	
+	skf.common.confirmPopup(message, title, formId, null, okText, cancelText, button, false, callback, null);	
+}
+/**
+ * 確認用ポップアップ処理。キャンセルでコールバック関数実行
+ * <p>
+ * ボタン押下時に確認用のポップアップを表示する。キャンセルの際にコールバック関数を実行する。
+ * コールバック関数が設定されていなければ処理を終了する。
+ * なお、確定ボタンの方のコールバック関数は遷移先URLが設定されていない場合に実行する
+ * </p>
+ * 
+ * @param {string} message 確認用メッセージ
+ * @param {string} title ポップアップのタイトル
+ * @param {string} formId フォームID
+ * @param {string} url 確定ボタン押下時のアクション先
+ * @param {string} okText 確定ボタンの文言
+ * @param {string} cancelText 閉じるボタンの文言
+ * @param {Object} button this
+ * @param {Object} function 確定ボタンのコールバック関数
+ * @param {Object} function キャンセルボタンのコールバック関数
+ */
+skf.common.confirmPopupCancelCallBack = function(message, title, formId, url, okText, cancelText, button, callback, cancelCallBack) {
+	skf.common.confirmPopup(message, title, formId, url, okText, cancelText, button, false, callback, cancelCallBack);	
 }
 
 /**
@@ -97,13 +132,13 @@ skf.common.confirmPopupForCallback = function(message, title, formId, okText, ca
  * @param {Object} button this
  * @param {boolean} popupDownload ポップアップダウンロード
  */
-skf.common.confirmPopup = function(message, title, formId, url, okText, cancelText, button, popupDownload, callback) {
+skf.common.confirmPopup = function(message, title, formId, url, okText, cancelText, button, popupDownload, callback, cancelCallBack) {
 	var buttons = [ 
 		   {
 			'id': 'okbutton',
 			'text' : okText,
 			'click' : function() {
-			   $(this).imuiMessageDialog('close'); 
+			   $(this).remove(); 
 			   var preOkFunc = $(button).attr('preOnclick');
 			   if (preOkFunc) {
 				   // evalではreturn falseの記述はJavaScriptエラーとなるため削除して処理を分ける
@@ -126,7 +161,13 @@ skf.common.confirmPopup = function(message, title, formId, url, okText, cancelTe
 			}, 
 			{
 			'text' : cancelText,
-			'click' : function() {$(this).imuiMessageDialog('close');}
+			'click' : function() {
+				if (cancelCallBack == null) {
+					$(this).remove(); 
+				} else {
+					cancelCallBack();
+				}
+				}
 			} 
 		]
 		
@@ -137,7 +178,6 @@ skf.common.confirmPopup = function(message, title, formId, url, okText, cancelTe
 		buttons : buttons
 	});
 };
-
 
 /**
  * Formサブミットの共通処理。

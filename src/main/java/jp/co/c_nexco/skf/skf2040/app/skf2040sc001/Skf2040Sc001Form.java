@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import jp.co.c_nexco.nfw.webcore.app.BaseForm;
+import jp.co.c_nexco.nfw.nfwfile.app.nfwfilescdwd.NfwfileScDwdForm;
 import lombok.EqualsAndHashCode;
 
 /**
@@ -18,7 +18,7 @@ import lombok.EqualsAndHashCode;
  */
 @lombok.Data
 @EqualsAndHashCode(callSuper = true)
-public class Skf2040Sc001Form extends BaseForm {
+public class Skf2040Sc001Form extends NfwfileScDwdForm {
 
     private static final long serialVersionUID = 5285848663756806913L;
 
@@ -116,11 +116,11 @@ public class Skf2040Sc001Form extends BaseForm {
     private String renrakuSakiDisabled;
 
     // クリアボタン
-    private String btnClearRemoved;
+    private boolean btnClearRemoved;
     // 申請内容を確認ボタン
-    private String btnCheckDisabled;
+    private boolean btnCheckDisabled;
     // 一時保存ボタン
-    private String btnSaveDisabled;
+    private boolean btnSaveDisabled;
     
     /**
      * ドロップダウン
@@ -159,10 +159,8 @@ public class Skf2040Sc001Form extends BaseForm {
     /**
      * フラグ
      */
-    // 退居情報エリア表示フラグ（true:表示、false:非表示）
-    private String taikyoViewFlag;
     // コメントボタン表示フラグ（true:表示、false:非表示）
-    private String commentViewFlag;
+    private boolean commentViewFlag;
     // 更新フラグ
     private String updateFlg;
     // 駐車場2台フラグ

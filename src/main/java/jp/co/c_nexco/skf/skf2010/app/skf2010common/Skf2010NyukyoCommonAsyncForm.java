@@ -2,16 +2,14 @@ package jp.co.c_nexco.skf.skf2010.app.skf2010common;
 
 import java.util.List;
 import java.util.Map;
-import jp.co.c_nexco.nfw.nfwfile.app.nfwfilescdwd.NfwfileScDwdForm;
+import jp.co.c_nexco.nfw.webcore.app.AsyncBaseForm;
 import lombok.EqualsAndHashCode;
 
 @lombok.Data
 @EqualsAndHashCode(callSuper = true)
-public class Skf2010NyukyoCommonForm extends NfwfileScDwdForm {
+public class Skf2010NyukyoCommonAsyncForm extends AsyncBaseForm {
 
 	private static final long serialVersionUID = 5285848663756806913L;
-
-	private String pageMode = "0";
 
 	/** 基本データ **/
 	private String applNo;
@@ -32,7 +30,6 @@ public class Skf2010NyukyoCommonForm extends NfwfileScDwdForm {
 
 	/** 入居希望申請調書 **/
 	// 社宅必要可否
-	private String taiyoHitsuyo; // 社宅必要可否コード
 	private String taiyoHitsuyoTrue; // 必要
 	private String taiyoHitsuyoFalse; // 不要
 	private String taiyoHitsuyoParking; // 駐車場のみ

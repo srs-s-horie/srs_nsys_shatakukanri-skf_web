@@ -24,6 +24,7 @@ public class Skf3022Sc006Form extends BaseForm {
 	private String shatakuName;
 	
 	//非表示項目
+	// 社宅管理番号
 	private String hdnShatakuKanriNo;
 	
 	

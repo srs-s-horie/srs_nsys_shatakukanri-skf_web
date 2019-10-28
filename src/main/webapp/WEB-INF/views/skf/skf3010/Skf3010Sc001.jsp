@@ -45,7 +45,7 @@
 					</th>
 					<td style="width: 7%;">
 						<imui:select id="selectedCompanyCd" name="selectedCompanyCd" 
-						width="185" list="${form.manageCompanyList}" tabindex="1" />
+						width="185" list="${form.manageCompanyList}" tabindex="3" />
 					</td>
 					<th style="width: 5%;">
 						<!-- 社宅区分 -->
@@ -53,7 +53,7 @@
 					</th>
 					<td style="width: 5%;">
 						<imui:select id="shatakuKbnCd" name="shatakuKbnCd" 
-						width="128" list="${form.shatakuKbnList}" tabindex="3" />
+						width="128" list="${form.shatakuKbnList}" tabindex="5" />
 					</td>
 					<th style="width: 5%;">
 						<!-- 空き部屋 -->
@@ -61,7 +61,7 @@
 					</th>
 					<td style="width: 3%;">
 						<imui:select id="emptyRoomCd" name="emptyRoomCd" 
-						width="74" list="${form.emptyRoomList}" tabindex="5" />
+						width="74" list="${form.emptyRoomList}" tabindex="7" />
 					</td>
 					<th style="width: 7%;">
 						<!-- 社宅名 -->
@@ -69,7 +69,7 @@
 					</th>
 					<td style="width: 10%;">
 						<imui:textbox id="shatakuName" name="shatakuName" style="width:260px;"
-							maxlength="30" value="${form.shatakuName}" placeholder="例　社宅名" tabindex="7" />
+							maxlength="30" value="${form.shatakuName}" placeholder="例　社宅名" tabindex="9" />
 					</td>
 				</tr>
 				<tr>
@@ -81,11 +81,11 @@
 						<!-- 管理機関表示フラグ判定 -->
 						<c:if test="${form.agencyDispFlg == 'true'}">
 							<imui:select id="agencyCd" name="agencyCd" 
-							width="185" list="${form.manageAgencyList}" tabindex="2" />
+							width="185" list="${form.manageAgencyList}" tabindex="4" />
 						</c:if>
 						<c:if test="${form.agencyDispFlg == 'false'}">
 							<imui:select id="agencyCd" name="agencyCd" 
-							width="185" list="${form.manageAgencyList}" tabindex="2" disabled/>
+							width="185" list="${form.manageAgencyList}" tabindex="4" disabled/>
 						</c:if>
 					</td>
 					<th>
@@ -94,7 +94,7 @@
 					</th>
 					<td>
 						<imui:select id="useKbnCd" name="useKbnCd" 
-						width="128" list="${form.useKbnList}" tabindex="4" />
+						width="128" list="${form.useKbnList}" tabindex="6" />
 					</td>
 					<th>
 						<!-- 空き駐車場 -->
@@ -102,7 +102,7 @@
 					</th>
 					<td>
 						<imui:select id="emptyParkingCd" name="emptyParkingCd" 
-						width="74" list="${form.emptyParkingList}" tabindex="6" />
+						width="74" list="${form.emptyParkingList}" tabindex="8" />
 					</td>
 					<th>
 						<!-- 社宅住所 -->
@@ -110,7 +110,7 @@
 					</th>
 					<td>
 						<imui:textbox id="shatakuAddress" name="shatakuAddress" style="width:260px;" maxlength="100"
-								value="${form.shatakuAddress}" placeholder="例　愛知県名古屋市中区錦2-18-19" tabindex="8" />
+								value="${form.shatakuAddress}" placeholder="例　愛知県名古屋市中区錦2-18-19" tabindex="10" />
 					</td>
 				</tr>
 			</tbody>
@@ -118,7 +118,7 @@
 	</nfwui:Form>
 	<div class="align-L">
 		<nfwui:Button id="search" name="search" code="<%=MessageIdConstant.SKF3010_SC001_BTN_SEARCH %>" cssClass="imui-small-button" 
-			url="skf/Skf3010Sc001/search" formId="form" tabindex="9" />
+			url="skf/Skf3010Sc001/search" formId="form" tabindex="11" />
 	</div>
 </div>
 <!-- 明細＆細目未満 -->
@@ -157,12 +157,13 @@
 		<input type="hidden" name="hdnRowEmptyRoomCount" id="hdnRowEmptyRoomCount" value="" />
 		<!-- 選択行:空き駐車場数 -->
 		<input type="hidden" name="hdnRowEmptyParkingCount" id="hdnRowEmptyParkingCount" value="" />
-		
+		<!-- 複写フラグ -->
+		<input type="hidden" name="copyFlg" id="copyFlg" value="" />
 		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc001/init"/>
 		<div class="imui-chapter-title"><h2>検索結果一覧</h2></div>
 		<div id="listTable">
 			<imui:listTable id="mainList" process="jssp" autoEncode="true" autoWidth="true" rowNumbers="true" autoResize="true"
-				onCellSelect="onCellSelect" multiSelect="false" data="${form.listTableData }" style="max-height: 800px" tabindex="10">
+				onCellSelect="onCellSelect" multiSelect="false" data="${form.listTableData }" style="max-height: 800px" tabindex="12">
 				<pager rowNum="${form.listTableMaxRowCount }" />
 				<cols sortable="false">
 					<col name="companyName" caption="管理会社" width="115" sortable="false" align="left" wrap="true" />
@@ -197,7 +198,6 @@
 				// テキストボックス、テキストエリアにフォーカス時、入力済み文字列全選択
 				jQuery(document).on("focus click", "input,textarea", function() {
 					$(this).select();
-					return false;
 				});
 				onCellSelect = function(rowId,iCol,cellcontent,e) {
 					// リストテーブル情報取得
@@ -221,6 +221,8 @@
 					$("#hdnRowEmptyRoomCount").val(row.hdnEmptyRoomCount);
 					// 空き駐車場数
 					$("#hdnRowEmptyParkingCount").val(row.hdnEmptyParkingCount);
+					// 複写フラグ
+					$('#form2 [name=copyFlg]').val($("false").val());
 
 					// クリックアイコン判定
 					if ($(cellcontent).hasClass('im-ui-icon-common-16-update') && iCol == 11) {
@@ -326,6 +328,8 @@
 								$('#form2 [name=hdnRowEmptyRoomCount]').val($("#hdnRowEmptyRoomCount").val());
 								// 選択行:空き駐車場数
 								$('#form2 [name=hdnRowEmptyParkingCount]').val($("#hdnRowEmptyParkingCount").val());
+								// 複写フラグ
+								$('#form2 [name=copyFlg]').val($("true").val());
 								// 社宅一覧の借上(複写)ボタン処理
 								url = "skf/Skf3010Sc001/rentalCopyCheck";
 								$("#form2").attr("action", url);
@@ -387,11 +391,13 @@
 			<input type="hidden" name="hdnRowEmptyRoomCount" id="hdnRowEmptyRoomCount" value="" />
 			<!-- 選択行:空き駐車場数 -->
 			<input type="hidden" name="hdnRowEmptyParkingCount" id="hdnRowEmptyParkingCount" value="" />
-			<imui:button id="excel" name="excel" value="契約情報出力" class="imui-medium-button" onclick="preButtonEvent(0)" tabindex="11" />
-			<imui:button id="newRental" name="newRental" value="新規（借上）" class="imui-medium-button" onclick="preButtonEvent(2)" tabindex="12" />
-			<imui:button id="copy" name="copy" value="複写（借上）" class="imui-medium-button" onclick="preButtonEvent(3)" tabindex="13" />
-			<imui:button id="newItto" name="newItto" value="新規（一棟）" class="imui-medium-button" onclick="preButtonEvent(4)" tabindex="14" />
-			<imui:button id="newHoyu" name="newHoyu" value="新規（保有・区分）" class="imui-medium-button" onclick="preButtonEvent(1)" tabindex="15" />
+			<!-- 複写フラグ -->
+			<input type="hidden" name="copyFlg" id="copyFlg" value="" />
+			<imui:button id="excel" name="excel" value="契約情報出力" class="imui-medium-button" onclick="preButtonEvent(0)" tabindex="13" />
+			<imui:button id="newRental" name="newRental" value="新規（借上）" class="imui-medium-button" onclick="preButtonEvent(2)" tabindex="14" />
+			<imui:button id="copy" name="copy" value="複写（借上）" class="imui-medium-button" onclick="preButtonEvent(3)" tabindex="15" />
+			<imui:button id="newItto" name="newItto" value="新規（一棟）" class="imui-medium-button" onclick="preButtonEvent(4)" tabindex="16" />
+			<imui:button id="newHoyu" name="newHoyu" value="新規（保有・区分）" class="imui-medium-button" onclick="preButtonEvent(1)" tabindex="17" />
 		</nfwui:Form>
 	</div>
 </div>
