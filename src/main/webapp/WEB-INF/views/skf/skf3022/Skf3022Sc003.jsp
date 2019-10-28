@@ -15,17 +15,6 @@
 
 <%-- コンテンツエリア --%>
 <style type="text/css">
-  .imui-box-warning, .imui-box-caution, .imui-box-success{
-	min-width: 70%;
-	position: absolute!important;
-	z-index: 1;
-	margin-left: 12%;
-  }
-/*   #imui-container { */
-/*	 width:650px; */
-/*	 min-width:650px; */
-/*	 max-width: 1000px; */
-/*   } */
 </style>
 
 <!-- コンテンツエリア -->
@@ -126,7 +115,7 @@
 					</td>
 					<td>
 						<!-- 延べ面積テキストボックス -->
-						<imui:textbox id="sc003InputNobeMenseki" name="sc003InputNobeMenseki" style="width:100px; text-align:right;" maxlength="8"
+						<imui:textbox id="sc003InputNobeMenseki" name="sc003InputNobeMenseki" style="ime-mode: disabled;width:100px; text-align:right;" maxlength="8"
 						value="${form.sc003InputNobeMenseki}" placeholder="例　70.5" class="${form.sc003InputNobeMensekiErr}" tabindex="3"/>&nbsp;㎡
 					</td>
 				</tr>
@@ -286,11 +275,9 @@
 		<br>
 		<div class="align-R">
 			<nfwui:PopupButton id="sc003Closebtn" value="画面を閉じる" cssStyle="width:100px;"
-				 cssClass="imui-small-button" modalMode="true" use="cancel"  tabindex="4"/>
+									 cssClass="imui-small-button" modalMode="true" use="cancel"  tabindex="4"/>
 			<nfwui:PopupButton id="sc003SelectBtn" value="設定する" cssStyle="width:100px;"
 				 cssClass="imui-small-button" modalMode="true" use="ok" preOnClick="if(!checkSc003()){return(false)};" tabindex="5" />
-			<nfwui:PopupButton id="sc003SelectBtnDummy" value="設定する" cssStyle="display: none;"
-				 cssClass="imui-small-button" modalMode="true" use="ok" preOnClick="if(!resultReturn()){return(false)};" />
 		</div>
 		<script type="text/javascript">
 			(function($) {
@@ -300,6 +287,12 @@
 				});
 				// 画面表示時に定義される処理
 				$(document).ready(function(){
+					// テキストエリア、テキストボックス内でEnterKey押下でsubmitされないようにする
+					$('input,textarea[readonly]').not($('input[type="button"],input[type="submit"]')).keypress(function (e) {
+						if (!e) var e = window.event;
+						if (e.keyCode == 13) return false;
+					});
+
 					// 延べ面積チェンジ
 					$("#sc003InputNobeMenseki").bind('change', function() {
 						// パラメータ作成
@@ -316,7 +309,7 @@
 						// パラメータ作成
 						var map = new Object();
 						map['mapParam'] = createParam();
-						nfw.common.doAjaxAction("skf/Skf3022Sc003/changeInputNobeMensekiAsync",map,true,function(data) {
+						nfw.common.doAjaxAction("skf/Skf3022Sc003/changeYoutoDrpDwnAsync",map,true,function(data) {
 							// 非同期処理戻り値設定
 							setAsyncResult(data);
 						});
@@ -327,7 +320,7 @@
 			// 非同期パラメータ作成
 			function createParam() {
 				var map = new Object();
-				map['inputNobeMenseki'] = $("#sc003InputNobeMenseki").val();
+				map['inputNobeMenseki'] = $("#sc003InputNobeMenseki").val().replace(/,/g, "");
 				map['youtoSelect'] = $("#sc003YoutoSelect").val();
 				map['sunRoom'] = $("#sc003SunRoom").text().trim();
 				map['kaidan'] = $("#sc003Kaidan").text().trim();
@@ -348,7 +341,7 @@
 				map['hdnTeijiFlag'] = $("#sc003HdnTeijiFlag").val().trim();
 				map['hdnSyoruiKanriNo'] = $("#sc003HdnSyoruiKanriNo").val().trim();
 				return map;
-			}
+			};
 
 			// 非同期処理戻り値設定
 			function setAsyncResult(data) {
@@ -362,8 +355,9 @@
 				$("#sc003HdnRateShienTanka").val(data.sc003HdnRateShienTanka);
 				$("#sc003HdnRateShienKeinen").val(data.sc003HdnRateShienKeinen);
 				$("#sc003HdnRateShienKeinenZankaRitsu").val(data.sc003HdnRateShienKeinenZankaRitsu);
-			}
+			};
 
+			// 入力チェック
 			function checkSc003(){
 				// エラークリア
 				$("#sc003KikakuSelect").removeClass("nfw-validation-error");
@@ -380,24 +374,23 @@
 				/** 必須入力チェック */
 				// 規格
 				if (kikaku == null || kikaku == "") {
-					errMsg = "規格を選択してください。\n";
+					errMsg = "規格を選択してください。<br/>";
 					// 背景色設定
 					$("#sc003KikakuSelect").addClass("nfw-validation-error");
 				}
 				// 用途
 				if (youtoKbn == null || youtoKbn == "") {
-					errMsg += "①用途を選択してください。\n";
+					errMsg += "①用途を選択してください。<br/>";
 					// 背景色設定
 					$("#sc003YoutoSelect").addClass("nfw-validation-error");
 				}
 				// 延べ面積
 				if (nobeMenseki == null || nobeMenseki == "") {
-					errMsg += "②延べ面積が未入力です。\n";
+					errMsg += "②延べ面積が未入力です。<br/>";
 					// 背景色設定
 					$("#sc003InputNobeMenseki").addClass("nfw-validation-error");
-//				} else if (!nobeMenseki.match(/^([1-9]\d*|0)(\.\d+)?$/g)) {	// 延べ面積形式チェック
 				} else if (!nobeMenseki.match(/^([1-9]\d*|0)(\.\d+)?$/)) {	// 延べ面積形式チェック
-					errMsg += "②延べ面積は数字半角か「.」で入力してください。\n";
+					errMsg += "②延べ面積の形式が不正です。確認してください。";
 					// 背景色設定
 					$("#sc003InputNobeMenseki").addClass("nfw-validation-error");
 				}
@@ -410,37 +403,15 @@
 				var honraiMenseki = $("#sc003NobeMenseki").text().trim();	// 本来延べ面積
 				var honraiKikaku = $("#sc003Kikaku").text().trim();			// 本来規格
 				if (honraiMenseki != nobeMenseki && honraiKikaku == kikaku) {
-
-					$("<div>延べ面積が変更されていますが、規格が変更されていません。よろしいですか？</div>").imuiMessageDialog({
-						iconType : 'question',
-						title : '確認',
-						modal : true,
-						buttons: [
-							{
-								'id': 'sc003Ok',
-								'text': 'ok',
-								'click': function() {
-									$(this).imuiMessageDialog('close');
-									// 親画面へ値を設定
-									sc003SetResult();
-									$("#sc003SelectBtnDummy").trigger("click");
-									return true;
-								}
-							},
-							{
-								'text': 'キャンセル',
-								'click': function() {
-									$(this).imuiMessageDialog('close');
-								}
-							}
-						]
-					});
+					// 確認ダイアログ表示
+					skf.common.confirmPopupForCallback("延べ面積が変更されていますが、規格が変更されていません。よろしいですか？",
+															"確認", "rateShienform", "ok", "キャンセル", this, resultReturn);
 				} else {
 					sc003SetResult();
 					return true;
 				}
 				return false;
-			}
+			};
 
 			// 親画面へ値を設定
 			function sc003SetResult() {
@@ -448,7 +419,7 @@
 				$("#hdnRateShienKikakuName").val($('#sc003KikakuSelect').children("option:selected").text().trim());
 				$("#hdnRateShienYoto").val($('#sc003YoutoSelect').val().trim());
 				$("#hdnRateShienYotoName").val($('#sc003YoutoSelect').children("option:selected").text().trim());
-				$("#hdnRateShienNobeMenseki").val($("#sc003InputNobeMenseki").val().trim());
+				$("#hdnRateShienNobeMenseki").val($("#sc003InputNobeMenseki").val().replace(/,/g, "").trim());
 				$("#hdnRateShienSunroomMenseki").val($("#sc003SunRoom").text().trim());
 				$("#hdnRateShienKaidanMenseki").val($("#sc003Kaidan").text().trim());
 				$("#hdnRateShienMonookiMenseki").val($("#sc003Monooki").text().trim());
@@ -461,11 +432,13 @@
 				$("#hdnRateShienShatakuGetsugaku").val($("#sc003ShatakuShiyoryo2").text().trim());
 				$("#hdnRateShienKihonShiyoryo").val($("#sc003KijunTanka2").text().trim());
 				$("#hdnRateShienPatternName").val($("#sc003Kikaku").text().trim() + " 　⇒　" + $('#sc003KikakuSelect').children("option:selected").text().trim());
-			}
-			
+			};
+
+			// 親画面へ
 			function resultReturn() {
-				return true;
-			}
+				sc003SetResult();
+				nfw.common.modalPopupOk($('#Skf3022Sc003_popup_sc003SelectBtn'));
+			};
 		</script>
 	</div>
 </nfwui:Form>
