@@ -23,7 +23,7 @@
 <!-- コンテンツエリア -->
 <nfwui:Form id="form" name="form" modelAttribute="form">
 	<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3022_SC006 %>" />
-	<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="${form.hdnShatakuKanriNo}" />
+ 	<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="${form.hdnShatakuKanriNo}" />
 	<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="${form.shatakuName}" />
 	<input type="hidden" name="hdnParkingShienParkNo" id="hdnParkingShienParkNo" value="" />
 	<input type="hidden" name="hdnParkingShienParkBlock" id="hdnParkingShienParkBlock" value="" />
@@ -32,24 +32,26 @@
 
 	<!-- ** 使用料入力支援：パラメータ(下記以外に社宅管理番号もパラメータ) ** -->
 	<!-- 部屋管理番号 -->		<input type="hidden" name="hdnRoomKanriNo" id="hdnRoomKanriNo" value="1" />
-	<!-- 社員番号 -->			<!-- <input type="hidden" name="hdnShainNo" id="hdnShainNo" value="00001007" /> -->
-	<!-- 社員番号 -->			<input type="hidden" name="hdnShainNo" id="hdnShainNo" value="K0000089" />
+	<!-- 社員番号 -->			<input type="hidden" name="hdnShainNo" id="hdnShainNo" value="00001007" />
+	<!-- 社員番号 -->			<!-- <input type="hidden" name="hdnShainNo" id="hdnShainNo" value="K0000089" /> -->
 	<!-- 役員区分 -->			<input type="hidden" name="hdnYakuinKbn" id="hdnYakuinKbn" value="00" />
-	<!-- 社宅賃貸料 -->		<input type="hidden" name="hdnShatakuChintairyo" id="hdnShatakuChintairyo" value="" />
-	<!-- 提示データフラグ -->		<input type="hidden" name="hdnTeijiFlag" id="hdnTeijiFlag" value="true" />
-	<!-- 申請書類管理番号 -->	<input type="hidden" name="hdnSyoruiKanriNo" id="hdnSyoruiKanriNo" value="" />
+	<!-- 社宅賃貸料 -->		<input type="hidden" name="hdnShatakuChintairyo" id="hdnShatakuChintairyo" value="222222" />
+	<!-- 提示データフラグ -->		<input type="hidden" name="hdnTeijiFlag" id="hdnTeijiFlag" value="false" />
+	<!-- 申請書類管理番号 -->	<input type="hidden" name="hdnSyoruiKanriNo" id="hdnSyoruiKanriNo" value="R0100-00001863-20190121-01" />
+
+	<!-- ** 使用料入力支援：戻り値 & パラメータ(部屋情報) ** -->
+	<!-- 規格 -->				<input type="hidden" name="hdnRateShienKikaku" id="hdnRateShienKikaku" value="F3" />
+	<!-- 用途 -->				<input type="hidden" name="hdnRateShienYoto" id="hdnRateShienYoto" value="3" />
+	<!-- 延べ面積 -->			<input type="hidden" name="hdnRateShienNobeMenseki" id="hdnRateShienNobeMenseki" value="100.005" />
+	<!-- 基準面積 -->			<input type="hidden" name="hdnRateShienKijunMenseki" id="hdnRateShienKijunMenseki" value="110.005" /><!-- 基準使用料算定上延べ面積 -->
+	<!-- 社宅面積 -->			<input type="hidden" name="hdnRateShienShatakuMenseki" id="hdnRateShienShatakuMenseki" value="120.005" /><!-- 社宅使用料算定上延べ面積 -->
 
 	<!-- ** 使用料入力支援：戻り値 ** -->
-	<!-- 規格 -->				<input type="hidden" name="hdnRateShienKikaku" id="hdnRateShienKikaku" value="" />
 	<!-- 規格名 -->			<input type="hidden" name="hdnRateShienKikakuName" id="hdnRateShienKikakuName" value="" />
-	<!-- 用途 -->				<input type="hidden" name="hdnRateShienYoto" id="hdnRateShienYoto" value="" />
 	<!-- 用途名 -->			<input type="hidden" name="hdnRateShienYotoName" id="hdnRateShienYotoName" value="" />
-	<!-- 延べ面積 -->			<input type="hidden" name="hdnRateShienNobeMenseki" id="hdnRateShienNobeMenseki" value="" />
 	<!-- サンルーム面積 -->		<input type="hidden" name="hdnRateShienSunroomMenseki" id="hdnRateShienSunroomMenseki" value="" />
 	<!-- 階段面積 -->			<input type="hidden" name="hdnRateShienKaidanMenseki" id="hdnRateShienKaidanMenseki" value="" />
 	<!-- 物置面積 -->			<input type="hidden" name="hdnRateShienMonookiMenseki" id="hdnRateShienMonookiMenseki" value="" />
-	<!-- 基準面積 -->			<input type="hidden" name="hdnRateShienKijunMenseki" id="hdnRateShienKijunMenseki" value="" />
-	<!-- 社宅面積 -->			<input type="hidden" name="hdnRateShienShatakuMenseki" id="hdnRateShienShatakuMenseki" value="" />
 	<!-- 単価 -->				<input type="hidden" name="hdnRateShienTanka" id="hdnRateShienTanka" value="" />
 	<!-- 経年 -->				<input type="hidden" name="hdnRateShienKeinen" id="hdnRateShienKeinen" value="" />
 	<!-- 経年残価率 -->		<input type="hidden" name="hdnRateShienKeinenZankaRitsu" id="hdnRateShienKeinenZankaRitsu" value="" />
@@ -127,8 +129,8 @@
 						<nfwui:PopupButton id="shiyoryoShien" name="shiyoryoShien" value="使用料入力支援" use="popup" 
 								cssClass="imui-small-button" popupWidth="800" popupHeight="700"  
 								modalMode="true" screenUrl="skf/Skf3022Sc003/init" 
-								parameter="hdnShatakuKanriNo:hdnShatakuKanriNo,hdnRoomKanriNo:hdnRoomKanriNo,hdnShainNo:hdnShainNo,hdnYakuinKbn:hdnYakuinKbn,hdnShatakuChintairyo:hdnShatakuChintairyo,hdnTeijiFlag:hdnTeijiFlag" disabled="" 
-								callbackFunc="shiyoryoShienCallback()" /> 
+								parameter="hdnShatakuKanriNo:hdnShatakuKanriNo,hdnRoomKanriNo:hdnRoomKanriNo,hdnShainNo:hdnShainNo,hdnYakuinKbn:hdnYakuinKbn,hdnShatakuChintairyo:hdnShatakuChintairyo,hdnTeijiFlag:hdnTeijiFlag,hdnSyoruiKanriNo:hdnSyoruiKanriNo,hdnRateShienKikaku:hdnRateShienKikaku,hdnRateShienYoto:hdnRateShienYoto,hdnRateShienNobeMenseki:hdnRateShienNobeMenseki,hdnRateShienKijunMenseki:hdnRateShienKijunMenseki,hdnRateShienShatakuMenseki:hdnRateShienShatakuMenseki"
+								disabled="" callbackFunc="shiyoryoShienCallback()" /> 
 					</td>
 					<td style="border:none;"></td>
 					<td style="border:none;"></td>
