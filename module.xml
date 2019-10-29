@@ -8,8 +8,8 @@
   <description>${module.description}</description>
   <dependencies>
     <dependency>
-      <module-id>jp.co.intra_mart.vendor.jsonic</module-id>
-      <verified-version>1.2.11</verified-version>
+      <module-id>jp.co.c_nexco.skf_share</module-id>
+      <verified-version>1.0.0</verified-version>
     </dependency>
   </dependencies>
 </module>
