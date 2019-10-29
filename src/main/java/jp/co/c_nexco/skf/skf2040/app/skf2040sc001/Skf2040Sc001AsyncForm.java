@@ -68,5 +68,7 @@ public class Skf2040Sc001AsyncForm extends AsyncBaseForm {
     private String sessionTime;
     // 連絡先
     private String renrakuSaki;
+    // 備品返却有無
+    private String hdnBihinHenkyakuUmu;
 
 }
