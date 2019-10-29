@@ -26,7 +26,7 @@ public class Skf2040CommonForm extends Skf2010NyukyoCommonForm {
 	 * 社宅の状態
 	 */
 	// 社宅の状態
-	private String shatakuJyotai;
+	private String shatakuJotai;
 
 	/**
 	 * 返却立会希望日

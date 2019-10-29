@@ -219,7 +219,7 @@ public class Skf2020Sc002AsyncForm extends AsyncBaseForm {
 	 * 社宅の状態
 	 */
 	// 社宅の状態
-	private String shatakuJyotai;
+	private String shatakuJotai;
 
 	/**
 	 * 退居理由

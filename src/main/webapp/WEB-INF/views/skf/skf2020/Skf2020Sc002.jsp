@@ -639,8 +639,8 @@
 														remove="false"/>
 												</th>
 												<td colspan="3">
-													<imui:textArea id="shatakuJyotai" name="shatakuJyotai" 
-														value="${f:h(form.shatakuJyotai)}" style="width: 90%;" placeholder="例 壁紙に破損あり"
+													<imui:textArea id="shatakuJotai" name="shatakuJotai" 
+														value="${f:h(form.shatakuJotai)}" style="width: 90%;" placeholder="例 壁紙に破損あり"
 														  disabled="true" hidden="false"  tabindex="49"/>
 												</td>
 											</tr> 
@@ -978,7 +978,7 @@ function taikyoItemDisabled(ischecked){
 			$('#taikyoYoteiDateDiv').addClass("wj-state-disabled");
    			$('#taikyoYoteiDateDiv').prop('disabled', true);
 			$('#taikyoYoteiDate').prop('disabled', true);
-			$('#shatakuJyotai').prop('disabled', true);
+			$('#shatakuJotai').prop('disabled', true);
 			$('#taikyoRiyuKbn').prop('disabled', true);
 			$('#taikyoRiyu').prop('disabled', true);
 			$('#taikyogoRenrakuSaki').prop('disabled', true);
@@ -986,7 +986,7 @@ function taikyoItemDisabled(ischecked){
 			$('#taikyoYoteiDateDiv').removeClass("wj-state-disabled");
    			$('#taikyoYoteiDateDiv').prop('disabled', false);
 			$('#taikyoYoteiDate').prop('disabled', false);
-			$('#shatakuJyotai').prop('disabled', false);
+			$('#shatakuJotai').prop('disabled', false);
 			$('#taikyoRiyuKbn').prop('disabled', false);
 			var selTaikyoRiyuKbnCd = $('#taikyoRiyuKbn option:selected').val();
 			if(selTaikyoRiyuKbnCd　==　"9"){
@@ -1596,14 +1596,14 @@ function mesDisplayControl(isShow){
 			"1" : {
 					// 退居する
 					"enabled" : [ "taikyoYoteiDate",
-					              "shatakuJyotai", 
+					              "shatakuJotai", 
 					              "taikyoRiyuKbn", 
 					              "taikyogoRenrakuSaki"]
 				},
 			"2" : {
 					// 継続利用する
 						"disabled" : [ "taikyoYoteiDate",
-						               "shatakuJyotai",
+						               "shatakuJotai",
 						               "taikyoRiyuKbn",
 						               "taikyogoRenrakuSaki"]
 			}
@@ -1844,27 +1844,30 @@ function mesDisplayControl(isShow){
 	 * </p>
 	 * 
 	 */ 
-    function checkConfrirm() {	 
+    function checkConfrirm() {
 		 
-		//退居予定日と返却希望立会日の確認ダイアログ表示判定　yes:あり　no:なし
-			var sTaikyoYoteiDate = $("#taikyoYoteiDate").val(); //退居予定日
-			var sSessionDay = $("#sessionDay").val(); //返却希望立会日
-			if(sTaikyoYoteiDate != "" && sSessionDay != ""){
-			//退居予定日と返却希望立会日が空白じゃない場合		
-				var dTaikyoYoteiDate = toDate(sTaikyoYoteiDate, '/');	//退居予定日
-				var dSessionDay = toDate(sSessionDay, '/');				//返却希望立会日
-				
-				if(dSessionDay.getTime() > dTaikyoYoteiDate.getTime()){
-					//申請内容確認ボタン（ダイアログあり）を表示
-					dialogue　= "yes"
+		
+		 if(){ 
+			//退居予定日と返却希望立会日の確認ダイアログ表示判定　yes:あり　no:なし
+				var sTaikyoYoteiDate = $("#taikyoYoteiDate").val(); //退居予定日
+				var sSessionDay = $("#sessionDay").val(); //返却希望立会日
+				if(sTaikyoYoteiDate != "" && sSessionDay != ""){
+				//退居予定日と返却希望立会日が空白じゃない場合		
+					var dTaikyoYoteiDate = toDate(sTaikyoYoteiDate, '/');	//退居予定日
+					var dSessionDay = toDate(sSessionDay, '/');				//返却希望立会日
+					
+					if(dSessionDay.getTime() > dTaikyoYoteiDate.getTime()){
+						//申請内容確認ボタン（ダイアログあり）を表示
+						dialogue　= "yes"
+					}else{
+						//申請内容確認ボタン（ダイアログなし）を表示
+						dialogue　= "no"
+					}
 				}else{
 					//申請内容確認ボタン（ダイアログなし）を表示
 					dialogue　= "no"
 				}
-			}else{
-				//申請内容確認ボタン（ダイアログなし）を表示
-				dialogue　= "no"
-			}		
+		 	}
 		 
 		 		 
     	//入力チェック判定用の値設定を行う    	
@@ -1925,7 +1928,7 @@ function mesDisplayControl(isShow){
 		map['taikyoYotei'] = getTaikyoYotei();
     	map['taikyoYoteiDate'] = $("#taikyoYoteiDate").val();
 		map['tokushuJijo'] =  $("#tokushuJijo").val();
-		map['shatakuJyotai'] = $("#shatakuJyotai").val();	
+		map['shatakuJotai'] = $("#shatakuJotai").val();	
     	map['taikyoRiyuKbn'] = $("#taikyoRiyuKbn option:selected").val();
 		map['taikyoRiyu'] = $("#taikyoRiyu").val();
     	map['taikyogoRenrakuSaki'] = $("#taikyogoRenrakuSaki").val();
