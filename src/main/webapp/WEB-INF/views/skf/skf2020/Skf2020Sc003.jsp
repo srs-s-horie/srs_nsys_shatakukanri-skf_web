@@ -556,7 +556,7 @@ $(function() {
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblShatakuStatus" code="<%= MessageIdConstant.SKF2020_SC003_SHATAKU_STATUS %>" /></th>
                                     <td colspan="2">
-                                    ${f:h(form.shatakuJyotai)}
+                                    ${f:h(form.shatakuJotai)}
                                     </td>
                                 </tr>
                                 

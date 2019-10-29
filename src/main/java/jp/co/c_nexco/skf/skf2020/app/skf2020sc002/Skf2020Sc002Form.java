@@ -248,7 +248,7 @@ public class Skf2020Sc002Form extends NfwfileScDwdForm {
 	 * 社宅の状態
 	 */
 	// 社宅の状態
-	private String shatakuJyotai;
+	private String shatakuJotai;
 
 	/**
 	 * 退居理由
@@ -568,7 +568,7 @@ public class Skf2020Sc002Form extends NfwfileScDwdForm {
 
 	// 代行ログインフラグ
 	private String alterLoginFlg;
-	
+
 	// ユーザＩＤ
 	private String userId;
 
