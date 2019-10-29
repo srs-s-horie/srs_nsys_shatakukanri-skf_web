@@ -20,12 +20,12 @@
 	                    </tr>
 					</c:forEach>
 		</imart:condition>
-		<imart:condition validity="${f:h(form.shatakuJyotaiViewFlg)}">	
-                <imart:condition validity="${f:h(form.shatakuJyotaiViewFlg)}">	
+		<imart:condition validity="${f:h(form.shatakuJotaiViewFlg)}">	
+                <imart:condition validity="${f:h(form.shatakuJotaiViewFlg)}">	
 	                <tr>
-		                <th><nfwui:LabelBox id="lblShatakuJyotai" code="<%= MessageIdConstant.SKF2040_SC002_SHATAKU_STATUS %>" /></th>
+		                <th><nfwui:LabelBox id="lblShatakuJotai" code="<%= MessageIdConstant.SKF2040_SC002_SHATAKU_STATUS %>" /></th>
 		                <td colspan="2">
-		                    ${f:h(form.shatakuJyotai) }
+		                    ${f:h(form.shatakuJotai) }
 		                </td>
 	                </tr>
                 </imart:condition>

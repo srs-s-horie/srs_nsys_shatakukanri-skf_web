@@ -209,12 +209,12 @@
                                 <!-- 社宅の状態 -->
                                 <tr>
                                     <th colspan="3">
-                                        <nfwui:LabelBox id="lblHeadShatakuJyotai" code="<%= MessageIdConstant.SKF2040_SC001_SHATAKU_STATUS %>" />
+                                        <nfwui:LabelBox id="lblHeadShatakuJotai" code="<%= MessageIdConstant.SKF2040_SC001_SHATAKU_STATUS %>" />
                                     </th>
                                     <td colspan="2">
-                                        <imui:textArea id="shatakuJyotai" name="shatakuJyotai"
-                                                       value="${form.shatakuJyotai}" style="width: 90%;" 
-                                                       css="${f:h(form.shatakuJyotaiErr)}"
+                                        <imui:textArea id="shatakuJotai" name="shatakuJotai"
+                                                       value="${form.shatakuJotai}" style="width: 90%;" 
+                                                       css="${f:h(form.shatakuJotaiErr)}"
                                                        placeholder="例  壁紙に破損あり" disabled="true" tabindex="51" />
                                     </td>
                                 </tr>
@@ -411,7 +411,7 @@
         map['taikyoHenkanRiyu'] = $("#taikyoHenkanRiyu").val();
 
         // 社宅状態
-        map['shatakuJyotai'] = $("#shatakuJyotai").val();
+        map['shatakuJotai'] = $("#shatakuJotai").val();
         // 退居後の連絡先
         map['taikyogoRenrakuSaki'] = $("#taikyogoRenrakuSaki").val();
         // 返却立ち合い希望日
@@ -536,7 +536,7 @@
                 $('#taikyoType03').prop('checked', true);
             }
             
-            $('#shatakuJyotai').prop('disabled', false);
+            $('#shatakuJotai').prop('disabled', false);
             $('#taikyogoRenrakuSaki').prop('disabled', false);
             
             // 備品返却関連
@@ -550,7 +550,7 @@
             }
         }else{
             // 「社宅を退居する」チェック外し時
-            $('#shatakuJyotai').prop('disabled', true);
+            $('#shatakuJotai').prop('disabled', true);
             $('#taikyogoRenrakuSaki').prop('disabled', true);
             
             // 備品返却関連
@@ -608,7 +608,7 @@
                 $('#taikyoType03').prop('checked', true);
             }
             
-            $('#shatakuJyotai').prop('disabled', false);
+            $('#shatakuJotai').prop('disabled', false);
             $('#taikyogoRenrakuSaki').prop('disabled', false);
             
             // 備品返却関連
@@ -622,7 +622,7 @@
             }
         }else{
             // 「社宅を退居する」チェック外し時
-            $('#shatakuJyotai').prop('disabled', true);
+            $('#shatakuJotai').prop('disabled', true);
             $('#taikyogoRenrakuSaki').prop('disabled', true);
             
             // 備品返却関連

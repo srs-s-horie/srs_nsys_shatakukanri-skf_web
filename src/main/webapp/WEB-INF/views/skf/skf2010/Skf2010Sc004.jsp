@@ -112,10 +112,9 @@ function back1() {
 							</div>
                       </tr>
                     </table>
-    </div>
-
-    <!-- コンテンツエリア -->
-<imart:condition validity="<%= String.valueOf((form.getDisplayLevel() < 3)) %>"> 
+</div>
+<imart:condition validity="<%= String.valueOf((form.getDisplayLevel() < 3)) %>">
+　　<imart:condition validity="<%= String.valueOf((form.getOperationGuide() != null && form.getOperationGuide() != CodeConstant.NONE)) %>">
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;" height="100px">
        <nfwui:Title id="operationGuide" code="<%= MessageIdConstant.SKF2010_SC004_OPERATION_GUIDE %>" titleLevel="2" />
        <table>
@@ -125,14 +124,12 @@ ${form.operationGuide }
           </td>
         </tr>
         </table>
-
     </div>
+  </imart:condition>
 </imart:condition>
-
-    <!-- コンテンツエリア -->
 <c:if test="${form.displayLevel == 4}">
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
-		<nfwui:Accordion id="taikyoTodokeView" >
+       <nfwui:Accordion id="taikyoTodokeView" >
 		  <nfwui:AccordionItem id="taikyoTodokeItem" code="<%= MessageIdConstant.SKF2010_SC004_TAIKYO %>"
 		  defaultOpen="${form.level4Open }">
 <%@ include file="common/Skf2010TaikyoTodoke.jsp" %>
@@ -140,9 +137,6 @@ ${form.operationGuide }
 		</nfwui:Accordion>
         
     </div>
-
-
-    <!-- コンテンツエリア -->
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
 		<nfwui:Accordion id="seiyakusyoView" >
 		  <nfwui:AccordionItem id="seiyakusyoItem" code="<%= MessageIdConstant.SKF2010_SC004_SEIYAKUSYO %>"
@@ -153,8 +147,6 @@ ${form.operationGuide }
 	</div>
 </c:if>
 
-
-    <!-- コンテンツエリア -->
 <c:if test="${form.displayLevel == 3}">
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
 		<nfwui:Accordion id="ketteiTsuchiView" >
@@ -178,8 +170,6 @@ ${form.operationGuide }
 
 </c:if>
 
-
-    <!-- コンテンツエリア -->
 <c:if test="${form.displayLevel >= 2 and form.displayLevel != 4}">
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
 		<nfwui:Accordion id="taiyoAnnaiView" >
@@ -191,8 +181,6 @@ ${form.operationGuide }
         
     </div>
 
-
-    <!-- コンテンツエリア -->
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
 		<nfwui:Accordion id="seiyakusyoView" >
 		  <nfwui:AccordionItem id="seiyakusyoItem" code="<%= MessageIdConstant.SKF2010_SC004_SEIYAKUSYO %>"
@@ -204,7 +192,6 @@ ${form.operationGuide }
 </c:if>
 
 <c:if test="${form.displayLevel != 4 }" >
-    <!-- コンテンツエリア -->
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
 		<nfwui:Accordion id="nyukyoChoshoTsuchiView" >
 		  <nfwui:AccordionItem id="nyukyoChoshoTsuchiItem" code="<%= MessageIdConstant.SKF2010_SC004_NYUKYO_CHOSHO %>"
@@ -215,9 +202,9 @@ ${form.operationGuide }
     </div>
 </c:if>
 
-    <nfwui:Form id="form" name="form"  modelAttribute="form" encType="multipart/form-data">
+<nfwui:Form id="form" name="form"  modelAttribute="form" encType="multipart/form-data">
 <c:if test="${form.displayLevel == 2}" >
-	<input type="hidden" name="inputAreaVisible" value="true" />
+<input type="hidden" name="inputAreaVisible" value="true" />
     <!-- 日付け入力エリア -->
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;" height="100px">
       <table class="imui-form-search-condition">
