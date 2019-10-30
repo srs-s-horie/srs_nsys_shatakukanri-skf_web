@@ -12,6 +12,7 @@
 <%@ page import="jp.co.c_nexco.skf.skf2010.app.skf2010sc006.Skf2010Sc006Form" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.SkfCommonConstant" %>
 <%  Skf2010Sc006Form form = (Skf2010Sc006Form)request.getAttribute("form"); %>
 
 
@@ -20,6 +21,27 @@
 .vertical-top {
 	vertical-align:top;
 }
+
+<imart:decision case="${form.nyukyoDateFlg}" value="<%= SkfCommonConstant.DATE_CHANGE %>">
+#nyukyoKanoDate {
+	color : red;
+}
+</imart:decision>
+<imart:decision case="${form.parkingSDateFlg}" value="<%= SkfCommonConstant.DATE_CHANGE %>">
+#parkingKanoDate {
+	color : red;
+}
+</imart:decision>
+<imart:decision case="${form.taikyoDateFlg}" value="<%= SkfCommonConstant.DATE_CHANGE %>">
+#taikyoKanoDate {
+	color : red;
+}
+</imart:decision>
+<imart:decision case="${form.parkingEDateFlg}" value="<%= SkfCommonConstant.NOT_CHANGE %>">
+#parkingHenkanDate {
+	color : red;
+}
+</imart:decision>
 </style>
 
 <!-- コンテンツエリア:モックのまま -->
@@ -83,9 +105,6 @@ $(function() {
                       </tr>
                     </table>
     </div>
-
-
-
     <!-- コンテンツエリア -->
 <c:if test="${form.displayLevel == 3}">
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
