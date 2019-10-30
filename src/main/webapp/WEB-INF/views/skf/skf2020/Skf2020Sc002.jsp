@@ -28,6 +28,7 @@
 	div.btnRight{
     	text-align: right;
 	}
+	
 }
 </style>
 <!-- コンテンツエリア -->
@@ -632,7 +633,6 @@
 											</td>
 										</tr>
 										<!-- 社宅の状態 -->
-										<c:if test="${form.taikyoViewFlag == 'true'}">
 											<tr id="shatakuStatus">
 												<th colspan="3">
 													<nfwui:LabelBox id="lblHeadShatakuStatus" code="<%= MessageIdConstant.SKF2020_SC002_SHATAKU_STATUS %>"
@@ -643,7 +643,7 @@
 														value="${f:h(form.shatakuJotai)}" style="width: 90%;" placeholder="例 壁紙に破損あり"
 														  disabled="true" hidden="false"  tabindex="49"/>
 												</td>
-											</tr> 
+											</tr>											
 											<!-- 退居理由 -->                               	
 											<tr id="taikyoRiyuInfo">
 												<th colspan="3">
@@ -705,8 +705,8 @@
 														<nfwui:LabelBox id="lblExplanationRenrakuSaki" code="<%= MessageIdConstant.SKF2020_SC002_EXPLANATION_RENRAKU_SAKI %>" />
 													</span>
 												</td>
-											</tr> 
-										</c:if>                           	                                                              
+											</tr>
+											                     	                                                              
 							   		</tbody>                     	
 						   		</table>
 						</div> 
@@ -787,7 +787,7 @@
 	 	</table>
 		</nfwui:Form>
 	</div>
-	</div>		
+</div>		
 
 <!-- コンテンツエリア  text/JavaSclipt -->
 <script type="text/javascript">
@@ -1046,21 +1046,36 @@ function sessionDayDisabled(ischecked){
 function shatakuDisplayControl(isShow){
 	
     if(isShow == "yes"){
-			$('#shatakuStatus').show();
-			$('#taikyoRiyuInfo').show();
-			$('#trTaikyogoRenrakuSaki').show();
-			$('#returnEquipment').show();
-			$('#returnWitnessRequestDate').show();
-			$('#trRenrakuSaki').show();
-      } else {
-			$('#shatakuStatus').hide();
-			$('#taikyoRiyuInfo').hide();
-			$('#trTaikyogoRenrakuSaki').hide();
-			$('#returnEquipment').hide();
-			$('#returnWitnessRequestDate').hide();
-			$('#trRenrakuSaki').hide();
+		$('#shatakuStatus').show();
+		$('#taikyoRiyuInfo').show();
+		$('#trTaikyogoRenrakuSaki').show();
+		$('#returnEquipment').show();
+		$('#returnWitnessRequestDate').show();
+		$('#trRenrakuSaki').show();
+  } else {
+		$('#shatakuStatus').hide();
+		$('#taikyoRiyuInfo').hide();
+		$('#trTaikyogoRenrakuSaki').hide();
+		$('#returnEquipment').hide();
+		$('#returnWitnessRequestDate').hide();
+		$('#trRenrakuSaki').hide();
 
-      }
+  }    if(isShow == "yes"){
+		$('#shatakuStatus').show();
+		$('#taikyoRiyuInfo').show();
+		$('#trTaikyogoRenrakuSaki').show();
+		$('#returnEquipment').show();
+		$('#returnWitnessRequestDate').show();
+		$('#trRenrakuSaki').show();
+  } else {
+		$('#shatakuStatus').hide();
+		$('#taikyoRiyuInfo').hide();
+		$('#trTaikyogoRenrakuSaki').hide();
+		$('#returnEquipment').hide();
+		$('#returnWitnessRequestDate').hide();
+		$('#trRenrakuSaki').hide();
+
+  }
 }
 
 /**
@@ -1084,6 +1099,7 @@ function mesDisplayControl(isShow){
 	//表示制御
 	//退居届を促すメッセージの設定
 	$('#lblShatakuFuyouMsg').hide();
+	
 		
 	//クリックイベント		
 	//社宅を必要としますか-必要とする押下時
@@ -1444,7 +1460,7 @@ function mesDisplayControl(isShow){
 			}else{
 				$('#taikyoRiyu').prop('disabled', true);
 			}
-			
+						
 			//返却希望立会日
 			$(document).ready(function(){
 				if($("#hdnBihinHenkyakuUmu").val()=="0"){
@@ -1465,6 +1481,12 @@ function mesDisplayControl(isShow){
 						$('#sessionDay').prop('disabled', false);
 					}
 				}
+				
+				//社宅が不要の場合は、退去項目を非表示
+				if ($("#rdoFuyou").attr("checked")) {
+					$("#shatakuStatus,#taikyoRiyuInfo,#trTaikyogoRenrakuSaki,#returnEquipment,#returnWitnessRequestDate,#trRenrakuSaki").hide();	
+				}
+				
 			});
 	    								
 		})(jQuery);
@@ -1621,11 +1643,12 @@ function mesDisplayControl(isShow){
     function back1() {
     	var prePageId = $("#prePageId").val();
     	var url = "";
+    	alert(prePageId);
     	//前の画面のＵＲＬ判定
     		if(prePageId=="Skf2010Sc007"){
     			//入居希望等調書申請
     			url = "skf/Skf2010Sc007/init?SKF2010_SC007&tokenCheck=0";
-    		}else if(prePageId=="Skf2010Sc003"){
+    		}else if(prePageId=="Skf2010Sc002"){
     			//申請条件一覧
     			url="skf/Skf2010Sc003/init?SKF2010_SC003";
     		}
@@ -1846,9 +1869,8 @@ function mesDisplayControl(isShow){
 	 */ 
     function checkConfrirm() {
 		 
-		
-		 if(){ 
-			//退居予定日と返却希望立会日の確認ダイアログ表示判定　yes:あり　no:なし
+		 if($("#rdoHitsuyo").prop('checked')){ 
+			//社宅を必要とする場合のみ、退居予定日と返却希望立会日の確認ダイアログ表示判定　yes:あり　no:なし
 				var sTaikyoYoteiDate = $("#taikyoYoteiDate").val(); //退居予定日
 				var sSessionDay = $("#sessionDay").val(); //返却希望立会日
 				if(sTaikyoYoteiDate != "" && sSessionDay != ""){
@@ -1867,6 +1889,9 @@ function mesDisplayControl(isShow){
 					//申請内容確認ボタン（ダイアログなし）を表示
 					dialogue　= "no"
 				}
+		 	}else{
+				//申請内容確認ボタン（ダイアログなし）を表示
+				dialogue　= "no"
 		 	}
 		 
 		 		 
