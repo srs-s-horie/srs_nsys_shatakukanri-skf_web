@@ -119,7 +119,7 @@
 					</td>
 					<td>
 						<nfwui:PopupButton id="shayakuHeyaShien" name="shayakuHeyaShien" value="社宅入力支援" use="popup" 
-								cssClass="imui-small-button" popupWidth="650" popupHeight="700"  
+								cssClass="imui-small-button" popupWidth="650" popupHeight="650"  
 								modalMode="true" screenUrl="skf/Skf3022Sc001/init" callbackFunc="shatakuShienCallback()" tabindex="6"/> 
 					</td>
 					<th>
