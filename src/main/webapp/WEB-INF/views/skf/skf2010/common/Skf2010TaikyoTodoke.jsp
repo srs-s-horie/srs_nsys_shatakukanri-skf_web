@@ -183,7 +183,7 @@
 	        <font size="3" id="parkingHenkanDate" face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;${f:h(form.parkingHenkanDate )}</font>
         <br><br>
         <td width="150px">
-        	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;３．退居（返還）理由所</font>
+        	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;３．退居（返還）理由</font>
         </td>
         <br>
         <td width="150px">

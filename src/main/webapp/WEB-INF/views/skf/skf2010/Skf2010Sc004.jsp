@@ -72,6 +72,7 @@ function back1() {
 				map['bihinKibo'] = $("#bihinKibo").val();
 				map['taikyobi'] = $("#taikyobi").val();
 				map['henkanbi'] = $("#henkanbi").val();
+				map['commentNote'] = $("#commentNote").val();
 				nfw.common.doAjaxAction("skf/Skf2010Sc004/AgreeAsync", map, true, function(res){
 					if (res.dialogFlg) {
 						var message = "続けて備品希望申請を行います。よろしいですか？";
