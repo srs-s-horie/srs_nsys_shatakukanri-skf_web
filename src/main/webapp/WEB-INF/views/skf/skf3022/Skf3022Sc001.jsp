@@ -174,10 +174,10 @@
 				map['sc001KikakuSelecte'] = $("#sc001KikakuSelect").val();
 				map['sc001EmptyRoomSelect'] = $("#sc001EmptyRoomSelect").val();
 				map['sc001EmptyParkingSelect'] = $("#sc001EmptyParkingSelect").val();
+				$("#resultList").jqGrid("clearGridData");
+				$("#targetRowId").val("");
 
 				nfw.common.doAjaxAction("skf/Skf3022Sc001/searchAsync",map,true,function(data) {
-					$("#resultList").jqGrid("clearGridData");
-					$("#targetRowId").val("");
 					var result = data.dataCount;
 					// リストテーブル情報更新
 					var grid = $("#resultList");
@@ -220,6 +220,7 @@
 			function check(){
 				var rowId = $("#targetRowId").val();
 				if (rowId == null || rowId == "") {
+					// E-SKF-3056
 					nfw.common.showReserveMessage("warning", "社宅部屋を選択してください");
 					return false;
 				}else{
