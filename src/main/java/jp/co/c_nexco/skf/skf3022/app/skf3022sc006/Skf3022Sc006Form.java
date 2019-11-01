@@ -21,11 +21,16 @@ public class Skf3022Sc006Form extends BaseForm {
 	private static final long serialVersionUID = 5285848663756806913L;
 
 	//画面項目(ヘッダ）
+	// 社宅名
 	private String shatakuName;
-	
+	// 部屋番号
+	private String roomNo;
+
 	//非表示項目
 	// 社宅管理番号
 	private String hdnShatakuKanriNo;
+	// 部屋管理番号
+	private String hdnRoomKanriNo;
 	
 	
 	//提示データ一覧画面連携項目
