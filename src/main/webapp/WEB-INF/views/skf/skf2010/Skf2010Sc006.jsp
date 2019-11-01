@@ -105,6 +105,18 @@ $(function() {
                       </tr>
                     </table>
     </div>
+
+<c:if test="${form.displayLevel == 4}">
+    <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
+       <nfwui:Accordion id="taikyoTodokeView" >
+		  <nfwui:AccordionItem id="taikyoTodokeItem" code="<%= MessageIdConstant.SKF2010_SC004_TAIKYO %>"
+		  defaultOpen="${form.level4Open }">
+<%@ include file="common/Skf2010TaikyoTodoke.jsp" %>
+		  </nfwui:AccordionItem>
+		</nfwui:Accordion>
+        
+    </div>
+</c:if>
     <!-- コンテンツエリア -->
 <c:if test="${form.displayLevel == 3}">
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
@@ -131,7 +143,7 @@ $(function() {
 
 
     <!-- コンテンツエリア -->
-<c:if test="${form.displayLevel >= 2}">
+<c:if test="${form.displayLevel >= 2 and form.displayLevel != 4}">
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
 		<nfwui:Accordion id="taiyoAnnaiView" >
 		  <nfwui:AccordionItem id="taiyoAnnaiItem" code="<%= MessageIdConstant.SKF2010_SC006_ANNAI %>"
@@ -154,6 +166,7 @@ $(function() {
 	</div>
 </c:if>
 
+<c:if test="${form.displayLevel != 4 }" >
     <!-- コンテンツエリア -->
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
 		<nfwui:Accordion id="nyukyoChoshoTsuchiView" >
@@ -163,7 +176,7 @@ $(function() {
 		  </nfwui:AccordionItem>
 		</nfwui:Accordion>
     </div>
-
+</c:if>
 
     <nfwui:Form id="form" name="form"  modelAttribute="form" encType="multipart/form-data">
 

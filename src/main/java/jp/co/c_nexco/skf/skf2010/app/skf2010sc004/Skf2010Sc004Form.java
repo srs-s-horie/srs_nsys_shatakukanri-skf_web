@@ -19,6 +19,9 @@ public class Skf2010Sc004Form extends Skf2010NyukyoCommonForm {
 	private int displayLevel;
 	private String commentViewFlag;
 
+	// コメント欄表示フラグ
+	private boolean commentAreaVisible = true;
+
 	// 現社宅の退居日
 	private String taikyobi;
 	// 現社宅の駐車場返還日
