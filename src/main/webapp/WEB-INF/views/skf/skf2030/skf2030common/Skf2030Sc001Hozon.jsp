@@ -24,7 +24,7 @@ ${f:h(form.affiliation2) }
 <tr>
 	<th colspan="2"><nfwui:LabelBox id="lblTel" code="<%= MessageIdConstant.SKF2030_SC001_TEL %>" /></th>
 	<td colspan="2">
-	<imui:textbox id="tel" name="tel" value="${f:h(form.tel) }" tabindex="1" />
+	<imui:textbox id="tel" name="tel" maxlength="14" value="${f:h(form.tel) }" tabindex="1" />
 </td>
 </tr>
 <tr>

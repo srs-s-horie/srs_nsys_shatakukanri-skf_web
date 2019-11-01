@@ -72,6 +72,7 @@ function back1() {
 				map['bihinKibo'] = $("#bihinKibo").val();
 				map['taikyobi'] = $("#taikyobi").val();
 				map['henkanbi'] = $("#henkanbi").val();
+				map['commentNote'] = $("#commentNote").val();
 				nfw.common.doAjaxAction("skf/Skf2010Sc004/AgreeAsync", map, true, function(res){
 					if (res.dialogFlg) {
 						var message = "続けて備品希望申請を行います。よろしいですか？";
@@ -156,14 +157,6 @@ ${form.operationGuide }
 		</nfwui:Accordion>
         
     </div>
-    <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
-		<nfwui:Accordion id="seiyakusyoView" >
-		  <nfwui:AccordionItem id="seiyakusyoItem" code="<%= MessageIdConstant.SKF2010_SC004_SEIYAKUSYO %>"
-		  defaultOpen="${form.level4Open }">
-<%@ include file="common/Skf2010Seiyakusyo.jsp" %>
-		  </nfwui:AccordionItem>
-		</nfwui:Accordion>
-	</div>
 </c:if>
 
 <c:if test="${form.displayLevel == 3}">
@@ -265,7 +258,7 @@ ${form.operationGuide }
       </table>
     </div>
 </c:if>
-    
+
     <!-- コメント欄 -->
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;" height="100px">
         <div class="imui-chapter-title" style="margin-bottom: 10px;">
@@ -281,7 +274,6 @@ ${form.operationGuide }
            </tr>
         </table>
     </div>
-
     <br>
       <nfwui:Hidden id="applNo" name="applNo" />
       <nfwui:Hidden id="applId" name="applId" />

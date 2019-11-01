@@ -11,6 +11,7 @@
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
+<%@ page import="jp.co.c_nexco.nfw.common.utils.MessageUtils"%>
 <script src="scripts/skf/skfCommon.js"></script>
 
 <%-- コンテンツエリア --%>
@@ -38,6 +39,11 @@
 		<input type="hidden" name="sc003HdnRateShienTanka" id="sc003HdnRateShienTanka" value="${form.sc003HdnRateShienTanka }" />
 		<input type="hidden" name="sc003HdnRateShienKeinen" id="sc003HdnRateShienKeinen" value="${form.sc003HdnRateShienKeinen }" />
 		<input type="hidden" name="sc003HdnRateShienKeinenZankaRitsu" id="sc003HdnRateShienKeinenZankaRitsu" value="${form.sc003HdnRateShienKeinenZankaRitsu }" />
+		<!-- エラー処理用 -->
+		<input type="hidden" name="sc003KikakuSelectErr" id="sc003KikakuSelectErr" value="" />
+		<input type="hidden" name="sc003YoutoSelectErr" id="sc003YoutoSelectErr" value="" />
+		<input type="hidden" name="sc003InputNobeMensekiErr" id="sc003InputNobeMensekiErr" value="" />
+
 		<nfwui:Table use="search">
 			<tbody>
 				<tr>
@@ -87,7 +93,7 @@
 					<!-- 規格ドロップダウン -->
 					<td style="width: 15%;">
 						<imui:select id="sc003KikakuSelect" name="sc003KikakuSelect" width="100"
-						list="${form.sc003KikakuSelecteList}" class="${form.sc003KikakuSelecteErr}" tabindex="1" />
+						list="${form.sc003KikakuSelectList}" class="${form.sc003KikakuSelectErr}" tabindex="1" />
 					</td>
 					<td style="width: 25%;border:none;background-color:#ffffff;box-shadow:none;" />
 				</tr>
@@ -115,7 +121,7 @@
 					</td>
 					<td>
 						<!-- 延べ面積テキストボックス -->
-						<imui:textbox id="sc003InputNobeMenseki" name="sc003InputNobeMenseki" style="ime-mode: disabled;width:100px; text-align:right;" maxlength="8"
+						<imui:textbox id="sc003InputNobeMenseki" name="sc003InputNobeMenseki" style="ime-mode: disabled;width:95px; text-align:right;" maxlength="8"
 						value="${form.sc003InputNobeMenseki}" placeholder="例　70.5" class="${form.sc003InputNobeMensekiErr}" tabindex="3"/>&nbsp;㎡
 					</td>
 				</tr>
@@ -276,8 +282,9 @@
 		<div class="align-R">
 			<nfwui:PopupButton id="sc003Closebtn" value="画面を閉じる" cssStyle="width:100px;"
 									 cssClass="imui-small-button" modalMode="true" use="cancel"  tabindex="4"/>
-			<nfwui:PopupButton id="sc003SelectBtn" value="設定する" cssStyle="width:100px;"
+			<nfwui:PopupButton id="sc003SelectBtn" value="設定する" cssStyle="width:100px;" preUrl="skf/Skf3022Sc003/checkInputErr"
 				 cssClass="imui-small-button" modalMode="true" use="ok" preOnClick="if(!checkSc003()){return(false)};" tabindex="5" />
+
 		</div>
 		<script type="text/javascript">
 			(function($) {
@@ -358,13 +365,8 @@
 			};
 
 			// 入力チェック
-			function checkSc003(){
-				// エラークリア
-				$("#sc003KikakuSelect").removeClass("nfw-validation-error");
-				$("#sc003YoutoSelect").removeClass("nfw-validation-error");
-				$("#sc003InputNobeMenseki").removeClass("nfw-validation-error");
-
-				var errMsg = "";
+			function checkSc003() {
+				var errFlg = false;
 				// 規格
 				var kikaku = $('#sc003KikakuSelect').children("option:selected").text().trim();
 				// 用途
@@ -374,30 +376,30 @@
 				/** 必須入力チェック */
 				// 規格
 				if (kikaku == null || kikaku == "") {
-					errMsg = "規格を選択してください。<br/>";
-					// 背景色設定
-					$("#sc003KikakuSelect").addClass("nfw-validation-error");
+					// 規格未設定
+					$("#sc003KikakuSelectErr").val("nfw-validation-error");
+					errFlg = true;
 				}
 				// 用途
 				if (youtoKbn == null || youtoKbn == "") {
-					errMsg += "①用途を選択してください。<br/>";
-					// 背景色設定
-					$("#sc003YoutoSelect").addClass("nfw-validation-error");
+					// 用途未設定
+					$("#sc003YoutoSelectErr").val("nfw-validation-error");
+					errFlg = true;
 				}
 				// 延べ面積
 				if (nobeMenseki == null || nobeMenseki == "") {
-					errMsg += "②延べ面積が未入力です。<br/>";
-					// 背景色設定
-					$("#sc003InputNobeMenseki").addClass("nfw-validation-error");
+					// 面積未設定
+					$("#sc003InputNobeMensekiErr").val("0");	// 面積未設定の場合"0"とする
+					errFlg = true;
 				} else if (!nobeMenseki.match(/^([1-9]\d*|0)(\.\d+)?$/)) {	// 延べ面積形式チェック
-					errMsg += "②延べ面積の形式が不正です。確認してください。";
-					// 背景色設定
-					$("#sc003InputNobeMenseki").addClass("nfw-validation-error");
+					// 面積形式エラー
+					$("#sc003InputNobeMensekiErr").val("1");	// 面積形式不正の場合"1"とする
+					errFlg = true;
 				}
 				// エラーチェック
-				if (errMsg.length > 0) {
-					nfw.common.showReserveMessage("warning", errMsg);
-					return false;
+				if (errFlg) {
+					// 入力エラー(入力チェックエラー時のみtrueを返却し同期処理を行う)
+					return true;
 				}
 				// 本来延面積≠入力した延べ面積、且つ、本来規格＝入力した規格の場合確認メッセージを表示する
 				var honraiMenseki = $("#sc003NobeMenseki").text().trim();	// 本来延べ面積
@@ -407,8 +409,8 @@
 					skf.common.confirmPopupForCallback("延べ面積が変更されていますが、規格が変更されていません。よろしいですか？",
 															"確認", "rateShienform", "ok", "キャンセル", this, resultReturn);
 				} else {
-					sc003SetResult();
-					return true;
+					// 親画面に値を設定して閉じる
+					resultReturn();
 				}
 				return false;
 			};
@@ -434,7 +436,7 @@
 				$("#hdnRateShienPatternName").val($("#sc003Kikaku").text().trim() + " 　⇒　" + $('#sc003KikakuSelect').children("option:selected").text().trim());
 			};
 
-			// 親画面へ
+			// 親画面に値を設定して閉じる
 			function resultReturn() {
 				sc003SetResult();
 				nfw.common.modalPopupOk($('#Skf3022Sc003_popup_sc003SelectBtn'));

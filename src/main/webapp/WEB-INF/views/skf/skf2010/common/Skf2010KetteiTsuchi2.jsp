@@ -299,7 +299,7 @@
 
           <tr width="800px">
               <td width="700px"><font size="3"  face="ＭＳ Ｐ明朝">(1) 入居日</font></td>
-              <td width="150px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝"><font size="3" id="nyukyoYoteiDate" face="ＭＳ Ｐ明朝">${f:h(form.nyukyoYoteiDate)}</font>
+              <td width="150px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝"><font size="3" id="nyukyoYoteiDate" face="ＭＳ Ｐ明朝">${f:h(form.nyukyoKanoDate)}</font>
           </td>
           </tr>
 
