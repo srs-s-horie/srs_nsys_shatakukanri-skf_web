@@ -3,8 +3,9 @@ package jp.co.c_nexco.skf.skf3010.app.skf3010sc006;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import jp.co.c_nexco.nfw.webcore.app.GridForm;
+
 import org.springframework.web.multipart.MultipartFile;
+import jp.co.c_nexco.nfw.nfwfile.app.nfwfilescdwd.NfwfileScDwdForm;
 
 import lombok.EqualsAndHashCode;
 
@@ -16,9 +17,13 @@ import lombok.EqualsAndHashCode;
 */
 @lombok.Data
 @EqualsAndHashCode(callSuper = true)
-public class Skf3010Sc006Form extends GridForm {
+public class Skf3010Sc006Form extends NfwfileScDwdForm {
 
 	private static final long serialVersionUID = 5285848663756806913L;
+	
+	// ページ種別対応
+	private String pageMode = "0";
+	
 	/** 画面上部 */
 	// 社宅名
 	private String shatakuName;
@@ -35,6 +40,8 @@ public class Skf3010Sc006Form extends GridForm {
 	/** 基本情報 */
 	// 郵便番号
 	private String zipCd;
+	// 都道府県コード
+	private String pref;
 	// 社宅住所
 	private String shatakuAddress;
 	// 社宅構造詳細
@@ -53,66 +60,30 @@ public class Skf3010Sc006Form extends GridForm {
 	private String shatakuHosokuFileName2;
 	// 社宅補足ファイル名3
 	private String shatakuHosokuFileName3;
-	// 社宅補足リンク1
+	// 社宅補足リンク名1
 	private String shatakuHosokuLink1;
 	// 社宅補足リンク名2
 	private String shatakuHosokuLink2;
 	// 社宅補足リンク名3
 	private String shatakuHosokuLink3;
+	// 社宅補足サイズ1
+	private String shatakuHosokuSize1;
+	// 社宅補足サイズ2
+	private String shatakuHosokuSize2;
+	// 社宅補足サイズ3
+	private String shatakuHosokuSize3;
+	// 社宅補足ファイル1
+	private byte[] shatakuHosokuFile1;
+	// 社宅補足ファイル2
+	private byte[] shatakuHosokuFile2;
+	// 社宅補足ファイル3
+	private byte[] shatakuHosokuFile3;
 	// 備考
 	private String biko;
 	// 基本情報更新日時(排他用)
 	private Date kihonUpdateDate;
-	
-	/** 部屋情報 */
-	//部屋管理番号
-	private String shatakuRoomKanriNo;
-	//　部屋番号
-	private String roomNo;
-	// 本来延面積
-	private String originalMenseki;
-	// 本来規格
-	private String originalKikaku;
-	// 本来規格（補助）
-	private String originalKikakuHosoku;
-	// 貸与延面積
-	private String lendMenseki;
-	// 本来用途
-	private String originalAuse;
-	//本来用途（補助）			
-	private String originalAuseHosoku;
-	//サンルーム面積
-	private String sunRoomMenseki;
-	//貸与区分
-	private String lendKbn;
-	//貸与区分（補助）
-	private String lendKbnHosoku;
-	//寒冷地減免区分事由区分
-	private String coldExemptionKbn;
-	//備考
-	private String roomBiko;
-	//階段面積
-	private String stairsMenseki;
-	//物置面積
-	private String barnMenseki;
-	//物置調整面積
-	private String barnMensekiAdjust;	
-	// 本来規格リスト
-	private List<Map<String, Object>> originalKikakuList;
-	// 本来用途リスト
-	private List<Map<String, Object>> originalAuseList;
-	// 貸与区分リスト
-	private List<Map<String, Object>> lendKbnList;
-	// 寒冷地減免事由区分リスト
-	private List<Map<String, Object>> coldExemptionKbnList;
-	//物置調整面積
-	private String hdnBarnMensekiAdjust;
-	//更新日時
-	private Date roomUpadteDate;
-	
+
 	/** 駐車場情報 */
-	//駐車場管理番号
-	private String parkingKanriNo;
 	// 駐車場基本使用料
 	private String parkingRent;
 	// 駐車場台数
@@ -131,46 +102,24 @@ public class Skf3010Sc006Form extends GridForm {
 	private String parkingHosokuLink2;
 	// 駐車場補足リンク3
 	private String parkingHosokuLink3;
+	// 駐車場補足サイズ1
+	private String parkingHosokuSize1;
+	// 駐車場補足サイズ2
+	private String parkingHosokuSize2;
+	// 駐車場補足サイズ3
+	private String parkingHosokuSize3;
+	// 駐車場補足ファイル1
+	private byte[] parkingHosokuFile1;
+	// 駐車場補足ファイル2
+	private byte[] parkingHosokuFile2;
+	// 駐車場補足ファイル3
+	private byte[] parkingHosokuFile3;
 	// 駐車場備考
 	private String parkingBiko;
 	// 駐車場情報更新日時(排他用)
 	private Date parkingUpdateDate;
-	//駐車場所在地
-	private String parkingAddress;
-	//区画番号
-	private String parkingBlock;
-	//貸与区分
-	private String parkingLendKbn;
-	//使用者
-	private String shiyosya;
-	//駐車場調整金額
-	private String parkingRentalAdjust;
-	//駐車場月額使用料
-	private String parkingShiyoMonthFei;
-	//駐車場区分情報更新日時
-	private Date blockUpdateDate;
-	//駐車場構造
-	private String parkingStructure;
-	//駐車場契約物件ID
-	private String parkingPropertyId;
-	
 	/** 管理者情報 */
-	/** 管理会社 */
-	// 会社名：管理会社
-	private String manageCompanyName;
-	// 担当者名：管理会社
-	private String manageName;
-	// 電子メールアドレス：管理会社
-	private String manageMailAddress;
-	// 電話番号：管理会社
-	private String manageTelNumber;
-	// 備考：管理会社
-	private String manageBiko;
-	// 更新日時(排他用)：管理会社
-	private Date manageUpdateDate;
 	/** 鍵管理者 */
-	// 会社名 ：鍵管理者
-	private String keyManagerCompanyName;
 	// 担当者名 ：鍵管理者
 	private String keyManagerName;
 	// 電子メールアドレス ：鍵管理者
@@ -183,8 +132,6 @@ public class Skf3010Sc006Form extends GridForm {
 	private Date keyManagerUpdateDate;
 
 	/** 契約情報 */
-	//契約番号
-	private String contractNo;
 	// 賃貸人（代理人）名
 	private String contractOwnerName;
 	// 賃貸人（代理人）番号
@@ -211,53 +158,7 @@ public class Skf3010Sc006Form extends GridForm {
 	private String hdnChangeContractSelectedIndex;
 	// 契約情報削除プルダウンインデックス
 	private String hdnDeleteContractSelectedValue;
-	
-	/** 契約情報 （駐車場）*/
-	// 契約情報リスト
-	private List<Map<String, Object>> parkingContractInfoListTableData;
-	//契約番号
-	private String parkingContractNo;
-	//契約番号リスト
-	private List<Map<String, Object>> parkingContractNoList;
-	//リスト用文字列
-	private String contractPropertyIdListData;
-	//契約形態リスト
-	private List<Map<String, Object>> parkingContractTypeList;
-	private String parkingContractType;
-	//賃貸人（代理人）
-	private String parkingOwnerName;
-	private String parkingOwnerNo;
-	//郵便番号
-	private String parkingZipCd;
-	//住所
-	private String parkingContractAddress;
-	//駐車場名
-	private String parkingName;
-	//経理連携用管理番号
-	private String parkingAssetRegisterNo;
-	//契約開始日
-	private String parkingContractStartDay;
-	//契約終了日
-	private String parkingContractEndDay;
-	//駐車場料（地代） 
-	private String parkingLandRent;
-	//備考
-	private String parkingContractBiko;
-	// 駐車場契約情報追加ボタン(非活性：true, 活性:false)
-	private Boolean parkingContractAddDisableFlg;
-	// 駐車場契約情報削除ボタン(非活性：true, 活性:false)
-	private Boolean parkingContractDelDisableFlg;
-	// 駐車場契約形態
-	private String parkingContractTypeDisabled;
-	// 駐車場契約情報
-	private String parkingContractInfoDisabled;
-	//駐車場契約選択インデックス
-	private String hdnDispParkingContractSelectedIndex;
-	// 契約情報選択プルダウンインデックス
-	private String hdnChangeParkingContractSelectedIndex;
-	// 契約情報削除プルダウンインデックス
-	private String hdnDeleteParkingContractSelectedValue;
-	
+
 	/** 前画面からの連携用 */
 	// 対象行の社宅区分
 	private String hdnRowShatakuKbn;
@@ -273,8 +174,6 @@ public class Skf3010Sc006Form extends GridForm {
 	private String hdnRowEmptyParkingCount;
 	// 選択タブインデックス
 	private String hdnNowSelectTabIndex;
-	// 複写フラグ
-	private String copyFlg;
 
 	/** 駐車場契約情報への連携用 */
 	private String hdnShatakuKanriNo;
@@ -285,18 +184,18 @@ public class Skf3010Sc006Form extends GridForm {
 	private String hdnEmptyParkingCount;
 
 	/** ドロップダウンリスト */
+	// 社宅区分リスト(Skf301010Common共通)
+	private List<Map<String, Object>> shatakuKbnList;
+	// 利用区分リスト(Skf301010Common共通)
+	private List<Map<String, Object>> useKbnList;
+	// 管理会社リスト(Skf301010Common共通)
+	private List<Map<String, Object>> manageCompanyList;
+	// 管理機関リスト(Skf301010Common共通)
+	private List<Map<String, Object>> manageAgencyList;
 	// 地域区分リスト
 	private List<Map<String, Object>> areaKbnList;
 	// 地域区分選択値コード
 	private String areaKbnCd;
-	// 社宅区分リスト
-	private List<Map<String, Object>> shatakuKbnList;
-	// 利用区分リスト
-	private List<Map<String, Object>> useKbnList;
-	// 管理会社リスト
-	private List<Map<String, Object>> manageCompanyList;
-	// 管理機関リスト
-	private List<Map<String, Object>> manageAgencyList;
 	// 管理事業領域リスト
 	private List<Map<String, Object>> manageBusinessAreaList;
 	// 都道府県リスト
@@ -333,6 +232,7 @@ public class Skf3010Sc006Form extends GridForm {
 	private List<Map<String, Object>> shatakuRoomExlusiveCntrllList;
 	// 社宅部屋備品情報リスト(排他処理用)
 	private List<Map<String, Object>> roomeBihinExlusiveCntrllList;
+
 	/** フラグ */
 	// 新規保有社宅フラグ(新規：true, 編集：false)
 	private Boolean newShatakuFlg;
@@ -388,9 +288,177 @@ public class Skf3010Sc006Form extends GridForm {
 	private String buildDateErr;
 	// 駐車場構造
 	private String parkingStructureErr;
-	// リストテーブル内の区画番号
-	private String listBlockNo;
+	// 鍵管理者 メールアドレス
+	private String keyManagerMailAddressErr;
+	// 鍵管理者 電話番号
+	private String keyManagerTelNumberErr;
+	// 賃貸人（代理人）名
+	private String contractOwnerNameErr;
+	// 経理連携用管理番号
+	private String assetRegisterNoErr;
+	// 契約開始日
+	private String contractStartDayErr;
+	// 契約終了日
+	private String contractEndDayErr;
+	// 家賃
+	private String contractRentErr;
+	// 共益費
+	private String contractKyoekihiErr;
+	// 駐車場料（地代）
+	private String contractLandRentErr;
 	
+	//借上社宅登録
+	/** 前画面からの連携用 */
+	// 複写フラグ
+	private String copyFlg;
+	
+	/** 社宅情報 */
+	private String areaKbn;
+	private String useKbn;
+	private String manageCompany;
+	private String manageAgency;
+	private String manageBusinessArea;
+	private String shatakuStructure;
+	private String elevator;
+	
+	/** 部屋情報 */
+	//部屋管理番号
+	private String shatakuRoomKanriNo;
+	//　部屋番号
+	private String roomNo;
+	// 本来延面積
+	private String originalMenseki;
+	// 本来規格
+	private String originalKikaku;
+	// 本来規格（補助）
+	private String originalKikakuHosoku;
+	// 貸与延面積
+	private String lendMenseki;
+	// 本来用途
+	private String originalAuse;
+	//本来用途（補助）			
+	private String originalAuseHosoku;
+	//サンルーム面積
+	private String sunRoomMenseki;
+	//貸与区分
+	private String lendKbn;
+	//貸与区分（補助）
+	private String lendKbnHosoku;
+	//寒冷地減免区分事由区分
+	private String coldExemptionKbn;
+	//備考
+	private String roomBiko;
+	//階段面積
+	private String stairsMenseki;
+	//物置面積
+	private String barnMenseki;
+	//物置調整面積
+	private String barnMensekiAdjust;	
+	// 本来規格リスト
+	private List<Map<String, Object>> originalKikakuList;
+	// 本来用途リスト
+	private List<Map<String, Object>> originalAuseList;
+	// 貸与区分リスト
+	private List<Map<String, Object>> lendKbnList;
+	// 寒冷地減免事由区分リスト
+	private List<Map<String, Object>> coldExemptionKbnList;
+	//物置調整面積
+	private String hdnBarnMensekiAdjust;
+	//更新日時（排他用）
+	private Date roomUpdateDate;
+	
+	/** 駐車場情報 */
+	//駐車場管理番号
+	private String parkingKanriNo;
+	//駐車場所在地
+	private String parkingAddress;
+	//区画番号
+	private String parkingBlock;
+	//貸与区分
+	private String parkingLendKbn;
+	//使用者
+	private String shiyosya;
+	//駐車場調整金額
+	private String parkingRentalAdjust;
+	//駐車場月額使用料
+	private String parkingShiyoMonthFei;
+	//駐車場区分情報更新日時
+	private Date blockUpdateDate;
+	//駐車場構造
+	private String parkingStructure;
+	//駐車場契約物件ID
+	private String parkingPropertyId;
+	
+	/** 管理者情報 */
+	/** 管理会社 */
+	// 会社名：管理会社
+	private String manageCompanyName;
+	// 担当者名：管理会社
+	private String manageName;
+	// 電子メールアドレス：管理会社
+	private String manageMailAddress;
+	// 電話番号：管理会社
+	private String manageTelNumber;
+	// 備考：管理会社
+	private String manageBiko;
+	// 更新日時(排他用)：管理会社
+	private Date manageUpdateDate;
+	/** 鍵管理者 */
+	// 会社名 ：鍵管理者
+	private String keyManagerCompanyName;
+	
+	/** 契約情報 （社宅）*/
+	//契約番号
+	private String contractNo;
+	/** 契約情報 （駐車場）*/
+	// 契約情報リスト
+	private List<Map<String, Object>> parkingContractInfoListTableData;
+	//契約番号
+	private String parkingContractNo;
+	//契約番号リスト
+	private List<Map<String, Object>> parkingContractNoList;
+	//リスト用文字列
+	private String contractPropertyIdListData;
+	//契約形態リスト
+	private List<Map<String, Object>> parkingContractTypeList;
+	private String parkingContractType;
+	//賃貸人（代理人）
+	private String parkingOwnerName;
+	private String parkingOwnerNo;
+	//郵便番号
+	private String parkingZipCd;
+	//住所
+	private String parkingContractAddress;
+	//駐車場名
+	private String parkingName;
+	//経理連携用管理番号
+	private String parkingAssetRegisterNo;
+	//契約開始日
+	private String parkingContractStartDay;
+	//契約終了日
+	private String parkingContractEndDay;
+	//駐車場料（地代） 
+	private String parkingLandRent;
+	//備考
+	private String parkingContractBiko;
+	// 駐車場契約情報追加ボタン(非活性：true, 活性:false)
+	private Boolean parkingContractAddDisableFlg;
+	// 駐車場契約情報削除ボタン(非活性：true, 活性:false)
+	private Boolean parkingContractDelDisableFlg;
+	//駐車場契約形態
+	private String parkingContractTypeDisabled;
+	//駐車場契約情報
+	private String parkingContractInfoDisabled;
+	//駐車場契約選択インデックス
+	private String hdnDispParkingContractSelectedIndex;
+	// 契約情報選択プルダウンインデックス
+	private String hdnChangeParkingContractSelectedIndex;
+	// 契約情報削除プルダウンインデックス
+	private String hdnDeleteParkingContractSelectedValue;
+	// 更新日時(排他用)
+	private Date parkingContractUpdateDate;
+	
+	/**エラー**/
 	// 部屋番号
 	private String roomNoError;
 	// 本来延面積
@@ -444,34 +512,13 @@ public class Skf3010Sc006Form extends GridForm {
 	// 備考：管理会社
 	private String manageBikoError;
 
+	
 	//駐車場契約情報選択モード
 	private String parkingSelectMode;
 	//駐車場契約編集中フラグ
 	private String parkingEditFlg;
 	
-	/** 社宅情報 */
-	private String areaKbn;
-	private String useKbn;
-	private String manageCompany;
-	private String manageAgency;
-	private String manageBusinessArea;
-	private String pref;
-	private String shatakuStructure;
-	private String elevator;
-	
-	/** 補足ファイル */
-	// 社宅補足ファイル1
-	private byte[] shatakuHosokuFile1;
-	// 社宅補足ファイル2
-	private byte[] shatakuHosokuFile2;
-	// 社宅補足ファイル3
-	private byte[] shatakuHosokuFile3;
-	// 駐車場補足ファイル1
-	private byte[] parkingHosokuFile1;
-	// 駐車場補足ファイル2
-	private byte[] parkingHosokuFile2;
-	// 駐車場補足ファイル3
-	private byte[] parkingHosokuFile3;
+	/** 添付ファイル **/
 	private String hdnHosoku;
 	private String hdnAttachedNo;
 	//ファイル番号
@@ -497,4 +544,5 @@ public class Skf3010Sc006Form extends GridForm {
 	private String startingParkingName;
 	private String startingParkingContractLandRent;
 	private String startingParkingContractBiko;
+
 }
