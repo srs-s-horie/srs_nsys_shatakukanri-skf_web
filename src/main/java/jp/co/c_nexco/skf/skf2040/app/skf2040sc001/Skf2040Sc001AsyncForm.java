@@ -59,7 +59,6 @@ public class Skf2040Sc001AsyncForm extends AsyncBaseForm {
 	private String shatakuJotai;
 	// 退居後の連絡先
 	private String taikyogoRenrakuSaki;
-
 	// 返却備品HTML
 	private String returnEquipment;
 	// 返却立会希望日
@@ -68,5 +67,7 @@ public class Skf2040Sc001AsyncForm extends AsyncBaseForm {
 	private String sessionTime;
 	// 連絡先
 	private String renrakuSaki;
+	// 備品返却有無
+    private String hdnBihinHenkyakuUmu;
 
 }

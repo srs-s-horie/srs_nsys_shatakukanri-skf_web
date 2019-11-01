@@ -420,6 +420,8 @@
         map['sessionTime'] = $("#sessionTime").val();
         // 連絡先
         map['renrakuSaki'] = $("#renrakuSaki").val();
+        // 備品返却有無
+        map['hdnBihinHenkyakuUmu'] = $('#hdnBihinHenkyakuUmu').val();
          
         //入力チェック非同期処理呼び出し
         nfw.common.doAjaxAction(

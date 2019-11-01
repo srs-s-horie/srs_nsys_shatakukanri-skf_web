@@ -151,7 +151,7 @@ public class Skf2040Sc001Form extends NfwfileScDwdForm {
 	// 添付書類有無フラグ
 	private Integer applTacFlg;
 	// ステータス
-	private String status;
+	private String applStatus;
 
 	/**
 	 * フラグ
@@ -224,5 +224,4 @@ public class Skf2040Sc001Form extends NfwfileScDwdForm {
 	private String hdnConfirmFlg;
 	// ステータス
 	private String hdnstatus;
-
 }
