@@ -217,7 +217,8 @@ public class Skf2010NyukyoCommonForm extends NfwfileScDwdForm {
 	// 保管場所使用料2
 	private String parkingRental2;
 	// 自動車の使用者（carUser2使用）
-	// 入居予定日（nyukyoYoteiDate使用）
+	// 入居予定日
+	private String nyukyoKanoDate;
 	// 自動車保管場所（１台目）の使用開始予定日
 	private String parkingKanoDate;
 	// 自動車保管場所（2台目）の使用開始予定日
@@ -229,8 +230,8 @@ public class Skf2010NyukyoCommonForm extends NfwfileScDwdForm {
 	/** 退居（自動車の保管場所返還）届 **/
 	// 現住所
 	private String address;
-	// 社宅名
-	private String shatakuName;
+	// 退居場所
+	private String taikyoArea;
 	// 駐車場１
 	private String parkingAddress1;
 	// 駐車場2
@@ -247,6 +248,15 @@ public class Skf2010NyukyoCommonForm extends NfwfileScDwdForm {
 	private String shatakuTaikyoKbn;
 	// 駐車場返還区分
 	private String shatakuTaikyoKbn2;
+
+	// 入居日変更フラグ
+	private String nyukyoDateFlg;
+	// 駐車場使用開始日変更フラグ
+	private String parkingSDateFlg;
+	// 退居日変更フラグ
+	private String taikyoDateFlg;
+	// 駐車場返還日変更フラグ
+	private String parkingEDateFlg;
 
 	/** コメント **/
 	private String commentNote;

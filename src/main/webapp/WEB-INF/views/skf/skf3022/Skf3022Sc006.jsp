@@ -25,6 +25,7 @@
 	<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3022_SC006 %>" />
  	<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="${form.hdnShatakuKanriNo}" />
 	<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="${form.shatakuName}" />
+	<input type="hidden" name="roomNo" id="roomNo" value="${form.roomNo}" />
 	<input type="hidden" name="hdnParkingShienParkNo" id="hdnParkingShienParkNo" value="" />
 	<input type="hidden" name="hdnParkingShienParkBlock" id="hdnParkingShienParkBlock" value="" />
 	<input type="hidden" name="hdnParkingShienParkRentalAsjust" id="hdnParkingShienParkRentalAsjust" value="" />
@@ -117,7 +118,9 @@
 						504
 					</td>
 					<td>
-						<input type="button" value="社宅入力支援" class="imui-small-button" onclick="openWindow()"/>
+						<nfwui:PopupButton id="shayakuHeyaShien" name="shayakuHeyaShien" value="社宅入力支援" use="popup" 
+								cssClass="imui-small-button" popupWidth="650" popupHeight="650"  
+								modalMode="true" screenUrl="skf/Skf3022Sc001/init" callbackFunc="shatakuShienCallback()" tabindex="6"/> 
 					</td>
 					<th>
 						<label>社宅使用料月額</label>
@@ -1542,9 +1545,19 @@
 		(function($) {
 			// 画面表示時に定義される処理
 			$(document).ready(function(){
+				// 社宅部屋入力支援コールバック
+				shatakuShienCallback = function() {
+					alert("社宅部屋入力支援コールバック！"
+							+ "\n社宅管理番号：" + $("#hdnShatakuKanriNo").val()
+							+ "\n社宅名：" + $("#hdnShatakuName").val()
+							+ "\n部屋管理番号：" + $("#hdnRoomKanriNo").val()
+							+ "\n部屋番号：" + $("#roomNo").val()
+						);
+				}
+
 				// 使用料支援コールバック
 				shiyoryoShienCallback = function() {
-					alert("使用料入力支援終わった"
+					alert("使用料入力支援コールバック！"
 						+ "\n規格：" + $("#hdnRateShienKikaku").val()
 						+ "\n規格名：" + $("#hdnRateShienKikakuName").val()
 						+ "\n用途：" + $("#hdnRateShienYoto").val()
