@@ -13,7 +13,7 @@ import jp.co.c_nexco.nfw.nfwfile.app.nfwfilescdwd.NfwfileScDwdForm;
 import lombok.EqualsAndHashCode;
 
 /**
- * 入居希望等調書申請同期処理Form Skf2020Sc002Form
+ * 入居希望等調書申請共通同期処理Form Skf2020Form
  * 
  * @author NEXCOシステムズ
  *
