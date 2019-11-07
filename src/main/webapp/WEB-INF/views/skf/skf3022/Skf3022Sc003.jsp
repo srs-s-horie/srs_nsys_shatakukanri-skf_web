@@ -43,6 +43,7 @@
 		<input type="hidden" name="sc003KikakuSelectErr" id="sc003KikakuSelectErr" value="" />
 		<input type="hidden" name="sc003YoutoSelectErr" id="sc003YoutoSelectErr" value="" />
 		<input type="hidden" name="sc003InputNobeMensekiErr" id="sc003InputNobeMensekiErr" value="" />
+		<input type="hidden" name="sc003JsonLabelList" id="sc003JsonLabelList" value="" />
 
 		<nfwui:Table use="search">
 			<tbody>
@@ -398,6 +399,8 @@
 				}
 				// エラーチェック
 				if (errFlg) {
+					// 可変ラベルパラメータ設定
+					setVariableLabelList();
 					// 入力エラー(入力チェックエラー時のみtrueを返却し同期処理を行う)
 					return true;
 				}
@@ -414,6 +417,35 @@
 				}
 				return false;
 			};
+
+			// JSON可変ラベルリスト設定
+			// 可変値ラベルをリスト形式にし、JSON文字列に変換後
+			// formのhidden変数「jsonLabelList」に格納する
+			setVariableLabelList = function() {
+				// 可変ラベルリスト
+				var labelArray = new Array();
+				{
+					// 可変ラベルリスト作成
+					var labelMap = new Object();
+					// ⑥基準使用料算定上延べ面積
+					labelMap['sc003KijunMenseki2'] = $('#sc003KijunMenseki2').text().trim();
+					// ⑦社宅使用料算定上延べ面積
+					labelMap['sc003ShatakuMenseki2'] = $('#sc003ShatakuMenseki2').text().trim();
+					// ⑧基準単価
+					labelMap['sc003KijunTanka2'] = $('#sc003KijunTanka2').text().trim();
+					// ⑨経年調整なし使用料
+					labelMap['sc003KeinenChouseinashiShiyoryo2'] = $('#sc003KeinenChouseinashiShiyoryo2').text().trim();
+					// ⑫使用料月額
+					labelMap['sc003PatternShiyoryo2'] = $('#sc003PatternShiyoryo2').text().trim();
+					// ⑬年齢加算係数
+					labelMap['sc003NenreikasanKeisu'] = $('#sc003NenreikasanKeisu').text().trim();
+					// 社宅使用料月額
+					labelMap['sc003ShatakuShiyoryo2'] = $('#sc003ShatakuShiyoryo2').text().trim();
+					labelArray.push(labelMap);
+				}
+				// 可変ラベルリストをJSON文字列に変換
+				$('#sc003JsonLabelList').val(JSON.stringify(labelArray));
+			}
 
 			// 親画面へ値を設定
 			function sc003SetResult() {
