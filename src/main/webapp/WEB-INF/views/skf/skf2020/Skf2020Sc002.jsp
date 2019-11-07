@@ -430,7 +430,7 @@
 												</th>
 												<td colspan="3">
 													<imui:textbox id="carUser" name="carUser"  value="${f:h(form.carUser)}"
-													 style="width: 50%;" placeholder="中日本 太郎" disabled="true" tabindex="36"/>
+													 style="width: 50%;" placeholder="例 中日本 太郎" disabled="true" tabindex="36"/>
 												</td>
 											</tr>
 											<!-- 自動車の保管場所使用開始日（予定日） -->
@@ -503,7 +503,7 @@
 												</th>
 												<td colspan="2">
 													<imui:textbox id="carUser2" name="carUser2"  value="${f:h(form.carUser2)}" 
-														style="width: 85%;" placeholder="中日本太郎" disabled="true" tabindex="42"/>
+														style="width: 85%;" placeholder="例 中日本 太郎" disabled="true" tabindex="42"/>
 												</td>
 											</tr>
 											<!-- 自動車の保管場所使用開始日（予定日） -->
