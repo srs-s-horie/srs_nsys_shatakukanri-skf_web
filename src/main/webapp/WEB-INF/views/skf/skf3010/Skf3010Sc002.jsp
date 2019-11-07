@@ -771,7 +771,7 @@
 							</th>
 							<td>
 								<nfwui:NumberBox id="contractRent" name="contractRent" max="99999999" min="0"
-									cssClass="nfw-default-width ${form.contractRentErr }" cssStyle="width: 100px;"
+									cssClass="${form.contractRentErr }" cssStyle="width: 100px;"
 									maxlength="10" value="${form.contractRent}" disabled="${form.contractDelDisableFlg }" tabindex="74" />&nbsp;円
 							</td>
 						</tr>
@@ -782,7 +782,7 @@
 							</th>
 							<td>
 								<nfwui:NumberBox id="contractKyoekihi" name="contractKyoekihi" max="99999999" min="0"
-									cssClass="nfw-default-width ${form.contractKyoekihiErr }" cssStyle="width: 100px;"
+									cssClass="${form.contractKyoekihiErr }" cssStyle="width: 100px;"
 									maxlength="10" value="${form.contractKyoekihi}" disabled="${form.contractDelDisableFlg }" tabindex="75" />&nbsp;円
 							</td>
 
@@ -794,7 +794,7 @@
 							</th>
 							<td>
 								<nfwui:NumberBox id="contractLandRent" name="contractLandRent" max="99999999" min="0"
-									cssClass="nfw-default-width ${form.contractLandRentErr}" cssStyle="width: 100px;"
+									cssClass="${form.contractLandRentErr}" cssStyle="width: 100px;"
 									maxlength="10" value="${form.contractLandRent}" disabled="${form.contractDelDisableFlg }" tabindex="76" />&nbsp;円
 							</td>
 						</tr>

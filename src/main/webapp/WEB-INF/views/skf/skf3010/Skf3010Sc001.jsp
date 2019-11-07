@@ -222,7 +222,7 @@
 					// 空き駐車場数
 					$("#hdnRowEmptyParkingCount").val(row.hdnEmptyParkingCount);
 					// 複写フラグ
-					$('#form2 [name=copyFlg]').val($("false").val());
+					$("#copyFlg").val("false");
 
 					// クリックアイコン判定
 					if ($(cellcontent).hasClass('im-ui-icon-common-16-update') && iCol == 11) {
@@ -329,7 +329,7 @@
 								// 選択行:空き駐車場数
 								$('#form2 [name=hdnRowEmptyParkingCount]').val($("#hdnRowEmptyParkingCount").val());
 								// 複写フラグ
-								$('#form2 [name=copyFlg]').val($("true").val());
+								$('#form2 [name=copyFlg]').val("true");
 								// 社宅一覧の借上(複写)ボタン処理
 								url = "skf/Skf3010Sc001/rentalCopyCheck";
 								$("#form2").attr("action", url);
