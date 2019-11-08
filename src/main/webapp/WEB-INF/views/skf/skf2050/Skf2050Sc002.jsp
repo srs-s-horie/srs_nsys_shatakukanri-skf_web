@@ -217,7 +217,7 @@
                             <tr>
                                 <th colspan="3"><nfwui:LabelBox id="lblComment" code="<%= MessageIdConstant.SKF2050_SC002_COMMENT %>" /></th>
                                 <td colspan="3" >
-                                    <imui:textArea id="commentNote" name="commentNote" rows="4" style="width: 98%" placeholder="例  申請者へのコメント" value="${form.commentNote }" />
+                                    <imui:textArea id="commentNote" name="commentNote" rows="4" style="width: 98%" placeholder="例  申請者へのコメント" value="${form.commentNote }" tabIndex="1" />
                                 </td>
                             </tr>
 </imart:condition>                           
@@ -249,9 +249,13 @@
 <imart:condition validity="<%= String.valueOf(form.isAllButtonEscape()) %>">                         
 <div class="align-L">
 </imart:condition>
-  <input class="imui-medium-button check" type="button" onclick="back1()" value="前の画面へ" style="width:150px;">
+  <imui:button id="backBtn" class="imui-medium-button check" type="button" onclick="back1()" value="前の画面へ" style="width:150px;" tabIndex="2" />
 <imart:condition validity="<%= String.valueOf(form.isCommentBtnVisibled()) %>">                         
-  <input class="imui-medium-button check" type="button" value="コメント表示" style="width:150px;">
+    <nfwui:PopupButton id="commentPop" value="コメント表示" 
+    cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
+    modalMode="true" popupWidth="1250" popupHeight="550"
+    parameter="applNo:applNo" formId="form" tabindex="12"
+    screenUrl="skf/Skf2010Sc010/init" use="popup" />
 </imart:condition>
 </div> 
 
@@ -260,12 +264,12 @@
 <div class="align-R">
   <nfwui:ConfirmButton id="revisionBtn" value="修正依頼"
       cssClass="imui-medium-button check" cssStyle="width:150px;"
-      url="skf/Skf2050Sc002/Revision" formId="form"
+      url="skf/Skf2050Sc002/Revision" formId="form" tabIndex="3"
       title="<%= MessageIdConstant.SKF2050_SC002_CONFIRM_TITLE %>"
       message="<%= MessageIdConstant.I_SKF_2005 %>" />
   <nfwui:ConfirmButton id="confirmBtn" value="確認"
       cssClass="imui-medium-button check" cssStyle="width:150px;"
-      url="skf/Skf2050Sc002/Confirm" formId="form"
+      url="skf/Skf2050Sc002/Confirm" formId="form" tabIndex="4"
       title="<%= MessageIdConstant.SKF2050_SC002_CONFIRM_TITLE %>"
       message="<%= MessageIdConstant.I_SKF_2011 %>" />
 </div> 
@@ -274,12 +278,12 @@
 <div class="align-R">
   <nfwui:ConfirmButton id="returnBtn" value="修正依頼"
       cssClass="imui-medium-button check" cssStyle="width:150px;"
-      url="skf/Skf2050Sc002/Return" formId="form"
+      url="skf/Skf2050Sc002/Return" formId="form" tabIndex="5"
       title="<%= MessageIdConstant.SKF2050_SC002_CONFIRM_TITLE %>"
       message="<%= MessageIdConstant.I_SKF_2005 %>" />
   <nfwui:ConfirmButton id="agreeBtn" value="承認"
       cssClass="imui-medium-button check" cssStyle="width:150px;"
-      url="skf/Skf2050Sc002/Agree" formId="form"
+      url="skf/Skf2050Sc002/Agree" formId="form" tabIndex="6"
       title="<%= MessageIdConstant.SKF2050_SC002_CONFIRM_TITLE %>"
       message="<%= MessageIdConstant.I_SKF_2006 %>" />
 </div> 
