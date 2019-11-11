@@ -22,6 +22,7 @@
 		$(document).ready(function($){
 			$("#agencyCd").bind('change', function() {
 				var map = new Object();
+				var className = $("#originalCompanyCd").attr("class");
 				map['originalCompanyCd'] = $("#originalCompanyCd").val();
 				map['agencyCd'] = $("#agencyCd").val();
 				
@@ -29,17 +30,20 @@
 					$("#affiliation1Cd").imuiSelect('replace', data.affiliation1List);
 					$("#affiliation2Cd").imuiSelect('replace', data.affiliation2List);
 					$("#businessAreaCd").imuiSelect('replace', data.businessAreaList);
+					$("#originalCompanyCd").addClass(className);
 				});
 			});
 			
 			$("#affiliation1Cd").bind('change', function() {
 				var map = new Object();
+				var className = $("#originalCompanyCd").attr("class");
 				map['originalCompanyCd'] = $("#originalCompanyCd").val();
 				map['agencyCd'] = $("#agencyCd").val();
 				map['affiliation1Cd'] = $("#affiliation1Cd").val();
 				
 				nfw.common.doAjaxAction("skf/Skf3090Sc005/ChangeDropDownAsync",map,true,function(data) {
 					$("#affiliation2Cd").imuiSelect('replace', data.affiliation2List);
+					$("#originalCompanyCd").addClass(className);
 				});
 			});
 		});
@@ -48,8 +52,8 @@
 	
 </script>
 		<!-- コンテンツエリア -->
-		<div class="imui-form-container-wide" width="1350px" style="width: 100%; min-width:1300px;max-width: 1350px;">
-			<div class="imui-form-container-wide"  style="width:1280px;">
+		<div class="imui-form-container-wide">
+			<div class="imui-form-container-wide"  style="width:95%;">
 				<div class="imui-chapter-title" style="width:35%;"><h2>社員情報</h2></div>
 				<nfwui:Form id="form" name="form" modelAttribute="form">
 				<input type="hidden" name="hdnShainNo" id="hdnShainNo" value="${form.hdnShainNo}"  />
@@ -71,7 +75,7 @@
 								</th>
 								<td style="width: 20%;">
 								<imui:textbox id="shainNo" name="shainNo" value="${f:h(form.shainNo)}" 
-								style="width: 95%;" placeholder="例 00123456（半角）" disabled="${form.shainNoDisabled}" class="${form.shainNoError}" tabindex="1" />
+								style="width: 95%; ime-mode:disabled;" placeholder="例 00123456（半角）" disabled="${form.shainNoDisabled}" class="${form.shainNoError}" tabindex="3" />
 								</td>
 								<td style="border:none">
 								</td>
@@ -82,7 +86,7 @@
 								</th>
 
 								<td style="width: 20%;">
-								<imui:textbox id="name" name="name" style="width: 95%;" placeholder="例 中日本　太郎" value="${f:h(form.name)}" class="${form.nameError}" tabindex="2" />
+								<imui:textbox id="name" name="name" style="width: 95%;" placeholder="例 中日本　太郎" value="${f:h(form.name)}" class="${form.nameError}" tabindex="4" />
 								</td>
 							</tr>
 							<tr>
@@ -90,7 +94,7 @@
 									<nfwui:LabelBox id="lblName" code="<%=MessageIdConstant.SKF3090_SC005_NAME_KK %>" />
 								</th>
 								<td style="width: 20%;">
-								<imui:textbox id="nameKk" name="nameKk" style="width: 95%;" placeholder="例 ナカニホン　タロウ" value="${f:h(form.nameKk)}" class="${form.nameKkError}" tabindex="3" />
+								<imui:textbox id="nameKk" name="nameKk" style="width: 95%;" placeholder="例 ナカニホン　タロウ" value="${f:h(form.nameKk)}" class="${form.nameKkError}" tabindex="5" />
 								</td>
 							</tr>
 							<tr>
@@ -98,7 +102,7 @@
 									<nfwui:LabelBox id="lblName" code="<%=MessageIdConstant.SKF3090_SC005_MAIL %>" />
 								</th>
 								<td style="width: 20%;">
-								<imui:textbox id="mailAddress" name="mailAddress" style="width: 95%;" placeholder="" value="${f:h(form.mailAddress)}" class="${form.mailAddressError}" tabindex="4" />
+								<imui:textbox id="mailAddress" name="mailAddress" style="width: 95%; ime-mode:disabled;" placeholder="" value="${f:h(form.mailAddress)}" class="${form.mailAddressError}" tabindex="6" />
 								</td>
 							</tr>
 							<tr>
@@ -106,8 +110,7 @@
 									<nfwui:LabelBox id="lblName" code="<%=MessageIdConstant.SKF3090_SC005_RETIRE %>" />
 								</th>
 								<td style="width: 20%;">
-								<imui:textbox id="retireDate" name="retireDate" style="width: 85%;" value="${f:h(form.retireDate)}" class="${form.retireDateError}" tabindex="5" />	
-								<im:calendar floatable="true" altField="#retireDate" />
+									<nfwui:DateBox id="retireDate" name="retireDate" cssStyle="width: 85%;" cssClass="${form.retireDateError}" tabindex="7" />	
 								</td>
 							</tr>
 							<tr>
@@ -117,7 +120,7 @@
 								<td style="width: 20%;">
 									<imui:select id="originalCompanyCd" name="originalCompanyCd"
 									width="95%"
-									list="${form.companyList}"  class="${form.originalCompanyCdError}" tabindex="6" />
+									list="${form.companyList}"  class="${form.originalCompanyCdError}" tabindex="8" />
 								</td>
 							</tr>
 							</nfwui:Table>
@@ -131,7 +134,7 @@
 								<td style="width: 20%;">
 								<imui:select id="agencyCd" name="agencyCd"
 									width="95%"
-									list="${form.agencyList}" tabindex="7" />
+									list="${form.agencyList}" tabindex="9" />
 								</td>
 								<td style="border:none">
 								</td>
@@ -143,7 +146,7 @@
 								<td style="width: 20%;">
 								<imui:select id="affiliation1Cd" name="affiliation1Cd"
 									width="95%"
-									list="${form.affiliation1List}" tabindex="8" />
+									list="${form.affiliation1List}" tabindex="10" />
 								
 								</td>
 							</tr>
@@ -154,7 +157,7 @@
 								<td style="width: 20%;">
 								<imui:select id="affiliation2Cd" name="affiliation2Cd"
 									width="95%"
-									list="${form.affiliation2List}" tabindex="9" />								
+									list="${form.affiliation2List}" tabindex="11" />								
 								</td>
 							</tr>
 							<tr>
@@ -164,7 +167,7 @@
 								<td style="width: 20%;">
 								<imui:select id="businessAreaCd" name="businessAreaCd"
 									width="95%"
-									list="${form.businessAreaList}" tabindex="10" />								
+									list="${form.businessAreaList}" tabindex="12" />								
 								</td>
 							</tr>
 						</tbody>
@@ -173,7 +176,7 @@
 			</div>
 			<br />
 			<div class="align-L float-L">
-				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="11"  />
+				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="13"  />
 				<script type="text/javascript">
 				    /**
 				     * 一つ前の画面へ戻る
@@ -187,15 +190,15 @@
 			</div>
 
 			<div class="align-R">
-				<nfwui:ConfirmButton cssStyle="width:150px;" id="registe" value="登録" 
+				<nfwui:ConfirmButton cssStyle="width:150px;" id="regist" value="登録" 
 				 formId="form"
 				 cssClass="imui-medium-button" title="<%=MessageIdConstant.SKF3090_SC005_CONFIRM_TITLE %>" message="<%=MessageIdConstant.I_SKF_3053 %>"
-				 url="skf/Skf3090Sc005/regist" tabindex="12" />
+				 url="skf/Skf3090Sc005/regist" tabindex="14" />
 				<!---->
 				<nfwui:ConfirmButton cssStyle="width:150px;" id="delete" value="削除"
 				remove="${form.deleteRemoveFlag}" formId="form"
 				 cssClass="imui-medium-button" title="<%=MessageIdConstant.SKF3090_SC005_CONFIRM_TITLE %>" message="<%=MessageIdConstant.I_SKF_3005 %>"
-				 url="skf/Skf3090Sc005/delete" tabindex="13" />
+				 url="skf/Skf3090Sc005/delete" tabindex="15" />
 				<!---->
 			</div>
 		</div>
