@@ -268,7 +268,7 @@
         </table>
 <imart:condition validity="<%= String.valueOf(form.isCarryOutVisible()) %>" negative>
 <div class="align-L float-L">
-    <imui:button id="backBtn" class="imui-medium-button check" onclick="back1()" value="前の画面へ" style="width:150px;" />
+    <imui:button id="backBtn" class="imui-medium-button check" onclick="back1()" value="前の画面へ" style="width:150px;" tabIndex="1" />
   <imart:condition validity="<%= String.valueOf(form.isCommentBtnVisible()) %>" >
     <nfwui:PopupButton id="commentPop" value="コメント表示" 
     cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
@@ -281,12 +281,12 @@
 <div class="align-R">
       <nfwui:ConfirmButton id="agreeBtn" value="同意する"
       cssClass="imui-medium-button check" cssStyle="width:150px;"
-      url="skf/Skf2050Sc001/Agree" formId="form"
+      url="skf/Skf2050Sc001/Agree" formId="form" tabIndex="2"
       title="<%= MessageIdConstant.SKF2050_SC001_CONFIRM_TITLE %>"
       message="<%= MessageIdConstant.I_SKF_2012 %>" />
       <nfwui:ConfirmButton id="notAgreeBtn" value="同意しない"
       cssClass="imui-medium-button check" cssStyle="width:150px;"
-      url="skf/Skf2050Sc001/NotAgree" formId="form"
+      url="skf/Skf2050Sc001/NotAgree" formId="form" tabIndex="3"
       title="<%= MessageIdConstant.SKF2050_SC001_CONFIRM_TITLE %>"
       message="<%= MessageIdConstant.I_SKF_2013 %>" />
 </div> 
@@ -310,7 +310,7 @@
 <imart:condition validity="<%= String.valueOf(form.isAllNotVisible()) %>" negative>
 <div class="align-R">
 <imart:condition validity="<%= String.valueOf(form.isCarryOutBtnRemove()) %>" negative>
-      <imui:button id="carryOutBtn" class="imui-medium-button check" value="搬入完了" style="width:150px;" />
+      <imui:button id="carryOutBtn" class="imui-medium-button check" value="搬入完了" style="width:150px;" tabIndex="4" />
 </imart:condition>
 </div> 
 </imart:condition>

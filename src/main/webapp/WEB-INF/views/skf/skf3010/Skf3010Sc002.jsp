@@ -771,7 +771,7 @@
 							</th>
 							<td>
 								<nfwui:NumberBox id="contractRent" name="contractRent" max="99999999" min="0"
-									cssClass="nfw-default-width ${form.contractRentErr }" cssStyle="width: 100px;"
+									cssClass="${form.contractRentErr }" cssStyle="width: 100px;"
 									maxlength="10" value="${form.contractRent}" disabled="${form.contractDelDisableFlg }" tabindex="74" />&nbsp;円
 							</td>
 						</tr>
@@ -782,7 +782,7 @@
 							</th>
 							<td>
 								<nfwui:NumberBox id="contractKyoekihi" name="contractKyoekihi" max="99999999" min="0"
-									cssClass="nfw-default-width ${form.contractKyoekihiErr }" cssStyle="width: 100px;"
+									cssClass="${form.contractKyoekihiErr }" cssStyle="width: 100px;"
 									maxlength="10" value="${form.contractKyoekihi}" disabled="${form.contractDelDisableFlg }" tabindex="75" />&nbsp;円
 							</td>
 
@@ -794,7 +794,7 @@
 							</th>
 							<td>
 								<nfwui:NumberBox id="contractLandRent" name="contractLandRent" max="99999999" min="0"
-									cssClass="nfw-default-width ${form.contractLandRentErr}" cssStyle="width: 100px;"
+									cssClass="${form.contractLandRentErr}" cssStyle="width: 100px;"
 									maxlength="10" value="${form.contractLandRent}" disabled="${form.contractDelDisableFlg }" tabindex="76" />&nbsp;円
 							</td>
 						</tr>
@@ -1000,8 +1000,7 @@
 								//保存情報設定
 								backUpStatus();
 								url = "skf/Skf3010Sc002/attachedFileAdd";
-								$("#form").attr("action", url);
-								$("#form").submit();
+								nfw.common.submitForm("form", url);
 							}
 						}
 
@@ -1069,8 +1068,7 @@
 											'click': function() {
 												$(this).imuiMessageDialog('close');
 												url = "skf/Skf3010Sc002/regist";
-												$("#form").attr("action", url);
-												$("#form").submit();
+												nfw.common.submitForm("form", url);
 											}
 										},
 										{
@@ -1083,8 +1081,7 @@
 								});
 							} else {
 								url = "skf/Skf3010Sc002/regist";
-								$("#form").attr("action", url);
-								$("#form").submit();
+								nfw.common.submitForm("form", url);
 							}
 						}
 
@@ -1175,8 +1172,7 @@
 												backUpStatus();
 												// 契約情報変更なし
 												url = "skf/Skf3010Sc002/addContractList";
-												$("#form").attr("action", url);
-												$("#form").submit();
+												nfw.common.submitForm("form", url);
 											} else {
 												$("<div>入力内容が無効になります。破棄してもよろしいですか？</div>").imuiMessageDialog({
 													iconType : 'question',
@@ -1191,8 +1187,7 @@
 																// 現在状態バックアップ
 																backUpStatus();
 																url = "skf/Skf3010Sc002/addContractList";
-																$("#form").attr("action", url);
-																$("#form").submit();
+																nfw.common.submitForm("form", url);
 															}
 														},
 														{
@@ -1251,8 +1246,7 @@
 												// 選択値設定(削除済み契約番号)
 												$("#hdnDeleteContractSelectedValue").val($("#contractNo").val());
 												url = "skf/Skf3010Sc002/delContractList";
-												$("#form").attr("action", url);
-												$("#form").submit();
+												nfw.common.submitForm("form", url);
 											}
 										},
 										{
@@ -1280,8 +1274,7 @@
 												// 選択値設定(削除済み契約番号)
 												$("#hdnDeleteContractSelectedValue").val($("#contractNo").val());
 												url = "skf/Skf3010Sc002/delContractList";
-												$("#form").attr("action", url);
-												$("#form").submit();
+												nfw.common.submitForm("form", url);
 											}
 										},
 										{
@@ -1449,8 +1442,7 @@
 								// 現在状態バックアップ
 								backUpStatus();
 								url = "skf/Skf3010Sc002/changeContractDrpDwn";
-								$("#form").attr("action", url);
-								$("#form").submit();
+								nfw.common.submitForm("form", url);
 							} else {
 								$("<div>入力内容が無効になります。破棄してもよろしいですか？</div>").imuiMessageDialog({
 									iconType : 'question',
@@ -1465,8 +1457,7 @@
 												// 現在状態バックアップ
 												backUpStatus();
 												url = "skf/Skf3010Sc002/changeContractDrpDwn";
-												$("#form").attr("action", url);
-												$("#form").submit();
+												nfw.common.submitForm("form", url);
 											}
 										},
 										{
@@ -1578,8 +1569,7 @@
 						var fileNo = list[3];
 						$("#sendHosokuType").val(hosokuType);
 						$("#sendAttachedNo").val(fileNo);
-						$("#form").attr("action", url);
-						$("#form").submit();
+						nfw.common.submitForm("form", url);
 					}
 
 					// アイコンクリック

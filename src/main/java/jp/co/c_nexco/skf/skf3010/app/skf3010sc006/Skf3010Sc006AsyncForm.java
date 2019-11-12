@@ -85,6 +85,7 @@ public class Skf3010Sc006AsyncForm extends AsyncBaseForm {
 	// 貸与可能総数
 	private String lendPossibleCount;
 
+
 	// 駐車場区画削除フラグ
 	private Boolean parkingBlockDeleteFlg;
 	// 削除駐車場管理番号
@@ -109,6 +110,12 @@ public class Skf3010Sc006AsyncForm extends AsyncBaseForm {
 	private String zipCdErr;
 	
 	//借上登録
+	// 本来用途
+	private String originalAuse;
+	// 物置面積
+	private String barnMenseki;
+	// 物置調整面積
+	private String barnMensekiAdjust;	
 	//駐車場調整金額
 	private String parkingRentalAdjust;
 	//駐車場月額使用料

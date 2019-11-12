@@ -220,8 +220,9 @@
 			function check(){
 				var rowId = $("#targetRowId").val();
 				if (rowId == null || rowId == "") {
-					// E-SKF-3056
-					nfw.common.showReserveMessage("warning", "社宅部屋を選択してください");
+					var map = new Object();
+					// 未選択エラー
+					nfw.common.doAjaxAction("skf/Skf3022Sc001/selectErrAsync", map, true, function(data){});
 					return false;
 				}else{
 					var grid = $("#resultList");
