@@ -116,7 +116,12 @@ function back1() {
     onClickOutputPdfR0100= function () {
         nfw.common.submitForm("form", "skf/Skf2010Sc004/OutputPdfR0100");
     }
-
+	
+	// 「貸与（予定）社宅等のご案内PDF出力」ボタン押下時のイベント
+    onClickOutputPdfR0101 = function () {
+		nfw.common.submitForm("form", "skf/Skf2010Sc004/OutputPdfR0101");
+	}
+	
 })(jQuery);
 </script>
 
@@ -295,7 +300,7 @@ ${form.operationGuide }
           
           <imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()"  />
           <input name="doDelRow1" id="doDelRow1" type="button" value="社宅入居希望等調書PDF出力" class="imui-medium-button" onclick="onClickOutputPdfR0100();" />
-          <input name="doDelRow1" id="doDelRow1" type="button" value="貸与（予定）社宅等のご案内PDF出力" class="imui-medium-button" onclick="" />
+          <input name="doDelRow1" id="doDelRow1" type="button" value="貸与（予定）社宅等のご案内PDF出力" class="imui-medium-button" onclick="onClickOutputPdfR0101();" />
           <input name="doDelRow1" id="doDelRow1" type="button" value="入居等決定通知書PDF出力" class="imui-medium-button" onclick="" />
 <c:if test="${form.commentViewFlag == 'true'}">
           <br />
