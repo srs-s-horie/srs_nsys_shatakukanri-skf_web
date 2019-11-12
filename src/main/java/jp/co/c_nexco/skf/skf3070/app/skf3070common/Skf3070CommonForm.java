@@ -22,7 +22,9 @@ public class Skf3070CommonForm extends NfwfileScDwdForm {
 
 	// 賃貸人（代理人） ID
 	private String ownerNo;
-	// 対象年
+	// 基準年（対象年プルダウン 作成基準値）
+	private String standardYear;
+	// 対象年（対象年プルダウン 選択値）
 	private String targetYear;
 	// 社宅名
 	private String shatakuName;
