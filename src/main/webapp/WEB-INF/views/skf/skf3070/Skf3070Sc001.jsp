@@ -14,25 +14,6 @@
 <%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
 
 
-
-<%-- コンテンツエリア --%>
-<style type="text/css">
-
-</style>
-<script src="scripts/skf/skfCommon.js"></script>
-<script type="text/javascript">
-  (function($){
-    // 画面表示時に定義される処理
-    $(document).ready(function(){
-
-    });
-
-   
-
-  })(jQuery);
-</script>
-
-
 <!-- コンテンツエリア -->
 <div style="width: 100%;">
 	<nfwui:Form id="form" name="form" modelAttribute="form">
@@ -46,13 +27,13 @@
 							<nfwui:LabelBox id="lblOwnerName" code="<%= MessageIdConstant.SKF3070_SC001_OWNER_NAME %>" />
 						</th>
 						<td colspan="2">
-	   						<imui:textbox id="ownerName" name="ownerName" value="${form.ownerName}" placeholder="例 中日本 一郎" tabindex="1"/>
+	   						<imui:textbox id="ownerName" name="ownerName" value="${form.ownerName}" placeholder="例 中日本 一郎" tabindex="3"/>
 	   					</td>
 	   					<th style="width: 200px;">
 							<nfwui:LabelBox id="lblShatakuName" code="<%= MessageIdConstant.SKF3070_SC001_SHATAKU_NAME %>" />
 						</th>
 						<td colspan="2">
-	   						<imui:textbox id="shatakuName" name="shatakuName" value="${form.shatakuName}" placeholder="例 社宅名" />
+	   						<imui:textbox id="shatakuName" name="shatakuName" value="${form.shatakuName}" placeholder="例 社宅名"  tabindex="4"/>
 	   					</td>
 					</tr>
 					<tr>
@@ -60,14 +41,14 @@
 							<nfwui:LabelBox id="lblOwnerNameKk" code="<%= MessageIdConstant.SKF3070_SC001_OWNER_NAME_KK %>" />
 						</th>
 						<td colspan="2">
-	   						<imui:textbox id="ownerNameKk" name="ownerNameKk" value="${form.ownerName}" placeholder="例 ナカニホン　イチロウ" tabindex="2"/>
+	   						<imui:textbox id="ownerNameKk" name="ownerNameKk" value="${form.ownerNameKk}" placeholder="例 ナカニホン　イチロウ" tabindex="5"/>
 	   					</td>
 	   					<th style="width: 200px;">
 							<nfwui:LabelBox id="lblShatakuAddress" code="<%= MessageIdConstant.SKF3070_SC001_SHATAKU_ADDRESS %>" />
 						</th>
 						<td colspan="2">
 	   						<imui:textbox id="shatakuAddress" name="shatakuAddress" value="${form.shatakuAddress}" 
-	   						placeholder="例 愛知県名古屋市中区錦2-18-19" tabindex="2"/>
+	   						placeholder="例 愛知県名古屋市中区錦2-18-19" tabindex="6"/>
 	   					</td>
 					</tr>
 					<tr>
@@ -76,13 +57,13 @@
 						</th>
 						<td colspan="2">
 	   						<imui:textbox id="address" name="address" value="${form.address}"  width="100%" 
-	   							placeholder="例 愛知県名古屋市中区錦2-18-19"  tabindex="3"/>
+	   							placeholder="例 愛知県名古屋市中区錦2-18-19"  tabindex="7"/>
 	   					</td>
 	   					<th style="width: 200px;">
 							<nfwui:LabelBox id="lblTargetYear" code="<%= MessageIdConstant.SKF3070_SC001_TARGET_YEAR %>" />
 						</th>
 						<td colspan="2">
-							<imui:select id="targetYear" name="targetYear" list="${form.ddlTargetYearList}" width="30%"  tabindex="4"/>
+							<imui:select id="targetYear" name="targetYear" list="${form.ddlTargetYearList}" width="30%"  tabindex="8"/>
 	   					</td>
 					</tr>
 					<tr>
@@ -91,20 +72,20 @@
 						</th>
 						<td colspan="2">
 	   						<imui:select id="businessKbn" name="businessKbn" list="${form.ddlBusinessKbnList}" width="30%"
-	   							 tabindex="5"/>
+	   							 tabindex="9"/>
 	   					</td>
 	   					<th style="width: 200px;">
-							<nfwui:LabelBox id="lblTargetYear" code="<%= MessageIdConstant.SKF3070_SC001_ACCEPT_STATUS %>" />
+							<nfwui:LabelBox id="lblAcceptFlg" code="<%= MessageIdConstant.SKF3070_SC001_ACCEPT_FLG %>" />
 						</th>
 						<td colspan="2">
 							<imui:select id="acceptFlg" name="acceptFlg" list="${form.ddlAcceptFlgList}" width="80%"
-								 tabindex="6"/>
+								 tabindex="10"/>
 	   					</td>
 					</tr>
 				 </table>
 				<div class="align-L">
 						<nfwui:Button id="search" name="search" value="検索" cssClass="imui-small-button" 
-							url="skf/Skf3070Sc001/search" formId="form" tabindex="7" />
+							url="skf/Skf3070Sc001/search" formId="form" tabindex="11" />
 				</div>
 			</table>
 		</div>
@@ -122,11 +103,11 @@
 			         <pager rowNum="${form.listTableMaxRowCount}" />
 						<cols sortable="false">
 							<col name="ownerNo" hidden="true" />
-							<col name="ownerName" caption="氏名又は名称" width="130" align="left" wrap="false"/>
-							<col name="ownerNameKk" caption="氏名又は名称（フリガナ）" width="200" align="left" wrap="false" />
+							<col name="ownerName" caption="氏名又は名称" width="150" align="left" wrap="true"/>
+							<col name="ownerNameKk" caption="氏名又は名称（フリガナ）" width="200" align="left" wrap="true" />
 							<col name="address" caption="住所(居所）又は所在地" width="200" align="left" wrap="true" />
 							<col name="businessKbn" caption="個人法人" width="50" align="center" wrap="false" />
-							<col name="acceptFlg" caption="個人番号" width="200" align="left" wrap="false" />
+							<col name="acceptFlg" caption="個人番号" width="230" align="left" wrap="false" />
 							<col name="propertiesOwnedCnt" caption="所持物件数" width="60" align="right" wrap="false" />
 							<col name="edit" caption="編集" width="30" sortable="false" align="center">
 								<showIcon iconClass="im-ui-icon-common-16-update" />
@@ -143,9 +124,68 @@
 	<br><br>
 	<%-- フッターエリア --%>
 	<div class="align-R" style="margin-right: 45px; margin-top: -25px;">
-		<input name="statutoryRecordDownload" id="statutoryRecordDownload" type="button" value="法定調書データ出力" class="imui-medium-button" style="width:150px"/>
-		<input name="lessorInfoDownload" id="lessorInfoDownload" type="button" value="賃貸人（代理人）情報出力" class="imui-medium-button"  style="width:200px"/>
+		<input name="statutoryRecordDownload" id="statutoryRecordDownload" type="button" value="法定調書データ出力" class="imui-medium-button" style="width:150px" tabindex="97"/>
+		<input name="lessorInfoDownload" id="lessorInfoDownload" type="button" value="賃貸人（代理人）情報出力" class="imui-medium-button"  style="width:200px" tabindex="98"/>
 		<nfwui:Button cssStyle="width:150px;" id="regist" formId="form" value="新規登録"
-			cssClass="imui-medium-button" url="skf/Skf3070Sc002/init"/>
+			cssClass="imui-medium-button" url="skf/Skf3070Sc002/init" tabindex="99"/>
 	</div>
 </div>
+
+<%-- text/css --%>
+<style type="text/css">
+</style>
+<%-- text/javascript --%>
+
+<nfwui:Form id="paramForm" name="paramForm" modelAttribute="form" secureToken="false">
+	<input type="hidden" name="hdnOwnerNo" id="sendOwnerNo" value="" />
+</nfwui:Form>
+
+<script src="scripts/skf/skfCommon.js"></script>
+<script type="text/javascript">
+(function($) {
+	onCellSelect = function(rowId,iCol,cellcontent,e) {
+		//編集アイコンクリック時
+		if ($(cellcontent).hasClass('im-ui-icon-common-16-update')) {
+			// リストテーブル情報取得
+			var grid = $("#mainList");
+			// 行番号から選択した行の情報を取得
+			var row = grid.getRowData(rowId);
+
+			// ownerNo:賃貸人（代理人）管理番号
+			var ownerNo = row.ownerNo;		
+			$("#sendOwnerNo").val(ownerNo);
+			
+			var nextPageUrl = "skf/Skf3070Sc002/init";
+    		nfw.common.submitForm("paramForm", nextPageUrl);
+		}
+		
+		//物件アイコンクリック時
+		if ($(cellcontent).hasClass('im-smart-icon-common-16-information')) {
+			// リストテーブル情報取得
+			var grid = $("#mainList");
+			// 行番号から選択した行の情報を取得
+			var row = grid.getRowData(rowId);
+			
+			//var map = new Object();
+			
+			// ownerNo:賃貸人（代理人）管理番号
+			var ownerNo = row.ownerNo;		
+			$("#sendOwnerNo").val(ownerNo);
+			
+			var nextPageUrl = "skf/Skf3070Sc003/init";
+    		nfw.common.submitForm("paramForm", nextPageUrl);
+		}
+		
+	}
+	
+	  //ウィンドウリサイズ時イベント
+	  $(window).bind('resize', function(){
+	      // 一覧の横幅を変更
+	      $('#mainList').setGridWidth($("#listTableArea").width(), true);
+	  }).trigger('resize');
+
+})(jQuery);
+
+</script>
+
+
