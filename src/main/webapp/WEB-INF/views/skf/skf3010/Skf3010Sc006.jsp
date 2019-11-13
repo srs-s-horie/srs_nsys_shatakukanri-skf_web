@@ -1143,9 +1143,12 @@
 								//保存情報設定
 								setJsonBihinList();
 								setVariableLabelList();
+// 								url = "skf/Skf3010Sc006/attachedFileAdd";
+// 								$("#form").attr("action", url);
+// 								$("#form").submit();
+								formId= "form";
 								url = "skf/Skf3010Sc006/attachedFileAdd";
-								$("#form").attr("action", url);
-								$("#form").submit();
+								nfw.common.submitForm(formId, url);
 							}
 							
 						}
@@ -1216,9 +1219,13 @@
 											'text': 'ok',
 											'click': function() {
 												$(this).imuiMessageDialog('close');
+// 												url = "skf/Skf3010Sc006/regist";
+// 												$("#form").attr("action", url);
+// 												$("#form").submit();
+												formId= "form";
 												url = "skf/Skf3010Sc006/regist";
-												$("#form").attr("action", url);
-												$("#form").submit();
+												nfw.common.submitForm(formId, url);
+
 											}
 										},
 										{
@@ -1230,9 +1237,12 @@
 									]
 								});
 							} else {
+// 								url = "skf/Skf3010Sc006/regist";
+// 								$("#form").attr("action", url);
+// 								$("#form").submit();
+								formId= "form";
 								url = "skf/Skf3010Sc006/regist";
-								$("#form").attr("action", url);
-								$("#form").submit();
+								nfw.common.submitForm(formId, url);
 							}
 						}
 						
@@ -1299,9 +1309,12 @@
 																$(this).imuiMessageDialog('close');
 																// 現在状態バックアップ
 																backUpStatus();
+// 																url = "skf/Skf3010Sc006/addContractList";
+// 																$("#form").attr("action", url);
+// 																$("#form").submit();
+																formId= "form";
 																url = "skf/Skf3010Sc006/addContractList";
-																$("#form").attr("action", url);
-																$("#form").submit();
+																nfw.common.submitForm(formId, url);
 															}
 														},
 														{
@@ -1359,9 +1372,12 @@
 												backUpStatus();
 												// 選択値設定(削除済み契約番号)
 												$("#hdnDeleteContractSelectedValue").val($("#contractNo").val());
+// 												url = "skf/Skf3010Sc006/delContractList";
+// 												$("#form").attr("action", url);
+// 												$("#form").submit();
+												formId= "form";
 												url = "skf/Skf3010Sc006/delContractList";
-												$("#form").attr("action", url);
-												$("#form").submit();
+												nfw.common.submitForm(formId, url);
 											}
 										},
 										{
@@ -1387,10 +1403,13 @@
 												// 現在状態バックアップ
 												backUpStatus();
 												// 選択値設定(削除済み契約番号)
-												$("#hdnDeleteContractSelectedValue").val($("#contractNo").val());
+ 												$("#hdnDeleteContractSelectedValue").val($("#contractNo").val());
+// 												url = "skf/Skf3010Sc006/delContractList";
+// 												$("#form").attr("action", url);
+//												$("#form").submit();
+												formId= "form";
 												url = "skf/Skf3010Sc006/delContractList";
-												$("#form").attr("action", url);
-												$("#form").submit();
+												nfw.common.submitForm(formId, url);
 											}
 										},
 										{
@@ -1423,9 +1442,12 @@
 												backUpStatus();
 												$("#parkingSelectMode").val("addParking");
 												// 契約情報変更なし
+// 												url = "skf/Skf3010Sc006/changeParkingContractList";
+// 												$("#form").attr("action", url);
+// 												$("#form").submit();
+												formId= "form";
 												url = "skf/Skf3010Sc006/changeParkingContractList";
-												$("#form").attr("action", url);
-												$("#form").submit();
+												nfw.common.submitForm(formId, url);
 											} else {
 												$("<div>入力内容が無効になります。破棄してもよろしいですか？</div>").imuiMessageDialog({
 													iconType : 'question',
@@ -1440,9 +1462,12 @@
 																// 現在状態バックアップ
 																backUpStatus();
 																$("#parkingSelectMode").val("addParking");
+// 																url = "skf/Skf3010Sc006/changeParkingContractList";
+// 																$("#form").attr("action", url);
+// 																$("#form").submit();
+																formId= "form";
 																url = "skf/Skf3010Sc006/changeParkingContractList";
-																$("#form").attr("action", url);
-																$("#form").submit();
+																nfw.common.submitForm(formId, url);
 															}
 														},
 														{
@@ -1500,9 +1525,12 @@
 												$("#parkingSelectMode").val("delParking");
 												// 選択値設定(削除済み契約番号)
 												$("#hdnDeleteParkingContractSelectedValue").val($("#parkingContractNo").val());
+// 												url = "skf/Skf3010Sc006/changeParkingContractList";
+// 												$("#form").attr("action", url);
+// 												$("#form").submit();
+												formId= "form";
 												url = "skf/Skf3010Sc006/changeParkingContractList";
-												$("#form").attr("action", url);
-												$("#form").submit();
+												nfw.common.submitForm(formId, url);
 											}
 										},
 										{
@@ -1530,9 +1558,12 @@
 												$("#parkingSelectMode").val("delParking");
 												// 選択値設定(削除済み契約番号)
 												$("#hdnDeleteParkingContractSelectedValue").val($("#parkingContractNo").val());
+// 												url = "skf/Skf3010Sc006/changeParkingContractList";
+// 												$("#form").attr("action", url);
+// 												$("#form").submit();
+												formId= "form";
 												url = "skf/Skf3010Sc006/changeParkingContractList";
-												$("#form").attr("action", url);
-												$("#form").submit();
+												nfw.common.submitForm(formId, url);
 											}
 										},
 										{
@@ -1848,9 +1879,12 @@
 												$(this).imuiMessageDialog('close');
 												// 現在状態バックアップ
 												backUpStatus();
+// 												url = "skf/Skf3010Sc006/changeContractDrpDwn";
+// 												$("#form").attr("action", url);
+// 												$("#form").submit();
+												formId= "form";
 												url = "skf/Skf3010Sc006/changeContractDrpDwn";
-												$("#form").attr("action", url);
-												$("#form").submit();
+												nfw.common.submitForm(formId, url);
 											}
 										},
 										{
@@ -1893,9 +1927,12 @@
 												// 現在状態バックアップ
 												backUpStatus();
 												$("#parkingSelectMode").val("changeParking");
+// 												url = "skf/Skf3010Sc006/changeParkingContractList";
+// 												$("#form").attr("action", url);
+// 												$("#form").submit();
+												formId= "form";
 												url = "skf/Skf3010Sc006/changeParkingContractList";
-												$("#form").attr("action", url);
-												$("#form").submit();
+												nfw.common.submitForm(formId, url);
 											}
 										},
 										{
@@ -1989,8 +2026,11 @@
 						$("#sendHosokuType").val(hosokuType);
 						$("#sendAttachedNo").val(fileNo);
 						
-			    		$("#form").attr("action", url);
-			    		$("#form").submit();
+// 			    		$("#form").attr("action", url);
+// 			    		$("#form").submit();
+						formId= "form";
+						url = "skf/Skf3010Sc006/AttachedDownload";
+						nfw.common.submitForm(formId, url);
 						
 					}
 					

@@ -90,7 +90,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 								</th>
 								<td style="width: 5%;">
 								<imui:select id="originalAuse" name="originalAuse" 
-									width="110" list="${form.auseList}" tabindex="1" />
+									width="110" list="${form.auseList}" tabindex="3" />
 								</td>
 								<th style="width: 5%;">
 <!-- 									<label>貸与区分</label> -->
@@ -98,7 +98,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 								</th>
 								<td style="width: 5%;">
 								<imui:select id="lendKbn" name="lendKbn" 
-									width="110" list="${form.lendList}" tabindex="2" />
+									width="110" list="${form.lendList}" tabindex="4" />
 								</td>
 							</tr>
 						</tbody>
@@ -106,7 +106,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 				</nfwui:Form>
 				<div class="align-L">	
 					<nfwui:Button id="search" name="search" code="<%=MessageIdConstant.SKF3010_SC004_BUTTON_SEARCH %>" cssClass="imui-small-button" 
-						url="skf/Skf3010Sc004/search" formId="form" tabindex="3" />
+						url="skf/Skf3010Sc004/search" formId="form" tabindex="5" />
 				</div>
 		</div>
 			<!-- 明細＆細目未満 -->
@@ -200,7 +200,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 				</nfwui:Form>
 							<br />
 			<div class="align-L float-L">	
-				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="5" />
+				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="6" />
 			</div>
 			<div class="align-R">
 				<nfwui:Form id="new" name="new" >
@@ -216,7 +216,8 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 					<input type="hidden" name="hdnLendKbn" id="hdnLendKbn" value="" />
 					<input type="hidden" name="updateFlag" id="updateFlag" value="0"/>
 					<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc004/init"/>
-				<nfwui:Button id="regist" code="<%=MessageIdConstant.SKF3010_SC004_BUTTON_NEW %>" cssClass="imui-medium-button" cssStyle="width:150px;" url="skf/Skf3010Sc005/init" formId="new"  tabindex="6"/>
+				<nfwui:Button id="regist" code="<%=MessageIdConstant.SKF3010_SC004_BUTTON_NEW %>" cssClass="imui-medium-button" 
+				cssStyle="width:150px;" url="skf/Skf3010Sc005/init" formId="new"  tabindex="7"/>
 				
 				</nfwui:Form>
 			</div>
