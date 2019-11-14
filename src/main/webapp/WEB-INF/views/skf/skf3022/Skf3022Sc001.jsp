@@ -231,7 +231,7 @@
 			 		$("#hdnShatakuKanriNo").val(rowData.colShatakuKanriNo);
 					$("#hdnShatakuName").val(rowData.colShatakuName);
 					$("#hdnRoomKanriNo").val(rowData.colRoomKanriNo);
-					$("#roomNo").val(rowData.colRoomNo);
+					$("#hdnRoomNo").val(rowData.colRoomNo);
 
 					return true;
 				}
