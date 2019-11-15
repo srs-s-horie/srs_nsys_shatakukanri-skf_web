@@ -339,6 +339,7 @@
     		
     		var nextPageId = "";
     		var nextPageId2 = "";
+    		var shainNo = rowData.shainNo;
     		var applId = rowData.applId;
     		var applStatusCd = rowData.applStatusCd;
     		var agreName1 = rowData.agreName1;
@@ -348,6 +349,7 @@
     		
     		$("#putApplNo").val(applNo);
     		$("#putApplId").val(applId);
+    		$("#putShainNo").val(shainNo);
     		$("#putApplStatus").val(applStatusCd);
     		$("#putShonin1").val(agreName1);
     		$("#putShonin2").val(agreName2);
