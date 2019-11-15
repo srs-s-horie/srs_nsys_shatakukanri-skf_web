@@ -178,6 +178,14 @@
 		
 	}
 	
+	  // 賃貸人（代理人）情報出力ボタン押下時のイベント
+	  $("#lessorInfoDownload").click(function(){
+		  dialogTitle = "確認";
+		  dialogMessage = "賃貸人（代理人）情報を出力します。よろしいですか？";
+		  url = "skf/Skf3070Sc001/LessorInfoDownload";
+	      nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);  
+	  });
+	
 	  //ウィンドウリサイズ時イベント
 	  $(window).bind('resize', function(){
 	      // 一覧の横幅を変更
