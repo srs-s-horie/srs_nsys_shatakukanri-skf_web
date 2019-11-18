@@ -35,14 +35,9 @@
 #lblApplName, #txtApplDateFrom, #txtAgreDateFrom {
 	float: left;
 }
-.imui-box-warning .imui-box-caution {
-  min-width: 70%;
-  position: absolute!important;
-  z-index: 1;
-  margin-left: 12%;
-}
+
 .ui-jqgrid .ui-jqgrid-htable th div{
-	height: 34px;
+	height: 30px;
     white-space:normal;
 }
 </style>
@@ -56,7 +51,6 @@
                      <div style="margin-left: 10px; width: 95%;">
                        <nfwui:Title id="searchTitle" code="<%= MessageIdConstant.SKF2010_SC005_SEARCH_TITLE %>" titleLevel="2" />
                             <nfwui:Form id="form" name="form" modelAttribute="form" encType="multipart/form-data">
-                             <input type="hidden" id="submitApplNo" name="submitApplNo" value="" />
                              <input type="hidden" id="nyukyoFlag" name="nyukyoFlag" value="false" />
                                 <table class="imui-form-search-condition" >
                                     <tr>
@@ -170,8 +164,8 @@
                                                     	value="10" label="審査中" />
                                                     </td>
                                                     <td>
-                                                    	<nfwui:CheckBox id="applStatus30" name="applStatus"
-                                                    	value="30" label="承認中" />
+                                                    	<nfwui:CheckBox id="applStatus31" name="applStatus"
+                                                    	value="31" label="承認中" />
                                                     </td>
                                                     <td>
                                                      	<nfwui:CheckBox id="applStatus40" name="applStatus"
@@ -281,57 +275,57 @@
     $("#allNoCheck").click(function() {
     	$("input[name='applStatus']").prop("checked", false);
     });
+    
 
     // 画面表示時に定義される処理
     $(document).ready(function(){
 	    // 「一括承認」ボタン押下時のイベント
 	    preUpdateEvent = function () {
-	        // 行データを取得する
-	        var grid = jQuery("#ltResultListTable");
-			var ids = grid.getGridParam("selarrrow");
-			// 選択項目が無い場合
-			if( ids.length <= 0 )
-			{
-				nfw.common.showReserveMessage("warning", "選択してください");
+	        var ids = $("input[id^='applNo_']:not(:disabled):checkbox:checked");
+	        // 承認対象チェック
+	        if (ids.length <= 0) {
+	        	nfw.common.showReserveMessage("warning", "承認対象がありません");
 				return false;
-			}
-			
+	        }
 			var strs = [];
 			for( var i=0; i<ids.length; ++i )
 			{
-				var id = ids[i];
-				var row = grid.getRowData(id);
-				
-				// 承認対象外かチェック
-				if (row.chkAgree == "-") {
-					continue;
-				}
-				
-				strs.push(row.applNo);
+				var id = ids[i].id;
+				var applNo = id.replace("applNo_", "");
+				strs.push(applNo);
 			}
 			var submitStr = strs.join(",");
-			
-			// 承認可能対象が無い場合
-			if (submitStr == "") {
-				nfw.common.showReserveMessage("warning", "承認対象がありません");
-				return false;
-			}
-	
+			$("#submitApplNo").val(submitStr);
 			skf.common.confirmPopup("選択された申請書を一括で承認します。よろしいですか？", 
 					"確認", "resultListForm", "skf/Skf2010Sc005/Update", 
-					"OK", "Cancel", this, false);
-			//$("#submitApplNo").val(submitStr);
+					"ok", "キャンセル", this, false);
 			
 			return true;
 	    }
+
 	});
     
+    // リストテーブル完成時に実行する関数
     gridComplete = function() {
     	var grid = $("#ltResultListTable");
-    	
+    	// チェックボックスをカラム名に追加
+    	grid[0].grid.headers[3].el.innerHTML = "<input type=\"checkbox\" id=\"allCheckListTable\" />"
     	grid[0].grid.headers[11].el.innerHTML = "承認日/<br />　修正依頼日";
     	grid[0].grid.headers[12].el.innerHTML = "承認者名1／<br />　　修正依頼者名 ";
     	grid[0].grid.headers[13].el.innerHTML = "承認者名2／<br />　　修正依頼者名 ";
+    	
+    	// カラム名のチェックボックスのセンタリング
+    	$("#ltResultListTable_chkBox").css("text-align","center");
+    	// リストテーブル全選択チェックのイベントを設定する
+    	$("#allCheckListTable").bind('click', function() {
+	    	if ($(this).prop("checked") == true) {
+	    		// inputタグのidが「applNo_」で始まり、且つ活性状態のもののチェックをTRUEにする
+	    		$("input[id^='applNo_']:not(:disabled)").prop("checked", true);
+	    	} else {
+	    		// inputタグのidが「applNo_」で始まり、且つ活性状態のもののチェックをFALSEにする
+	    		$("input[id^='applNo_']:not(:disabled)").prop("checked", false);
+	    	}
+	    });
     }
     
     // リストテーブルの確認欄のアイコンをクリックした時のイベント
@@ -345,6 +339,7 @@
     		
     		var nextPageId = "";
     		var nextPageId2 = "";
+    		var shainNo = rowData.shainNo;
     		var applId = rowData.applId;
     		var applStatusCd = rowData.applStatusCd;
     		var agreName1 = rowData.agreName1;
@@ -354,6 +349,7 @@
     		
     		$("#putApplNo").val(applNo);
     		$("#putApplId").val(applId);
+    		$("#putShainNo").val(shainNo);
     		$("#putApplStatus").val(applStatusCd);
     		$("#putShonin1").val(agreName1);
     		$("#putShonin2").val(agreName2);
@@ -381,21 +377,22 @@
 <input type="hidden" id="putShonin1" name="shonin1" value="" />
 <input type="hidden" id="putShonin2" name="shonin2" value="" />
 <input type="hidden" id="putShainNo" name="applShainNo" value="" />
+<input type="hidden" id="submitApplNo" name="submitApplNo" value="" />
 <input type="hidden" name="backUrl" value="skf/Skf2010Sc005/init" />
 <input type="hidden" name="prePageId" value="Skf2010Sc005" />
 <imui:listTable data="${form.ltResultList}"
 id="ltResultListTable" name="ltResultListTable"
-multiSelect="true" autoResize="true" autoWidth="true"
-rowNumbers="true" onCellSelect="onCellSelect"
+autoResize="true" autoWidth="true"
+onCellSelect="onCellSelect" rowNumbers="true"
  height="232" onGridComplete="gridComplete"
 >
 <pager num="30" />
 <cols>
   <col name="applId" hidden="true" />
   <col name="applStatusCd" hidden="true" />
-  <col name="chkAgree" hidden="true" />
+  <col name="chkBox" caption="" width="30" align="center" /><!-- チェックボックス -->
   <col name="applStatus" caption="申請状況" width="60" align="center" onCellAttr="onCellAttr" /><!-- 申請状況 -->
-  <col name="applNo" caption="申請書番号" width="150" align="center" wrap="true" /><!-- 申請書番号 -->
+  <col name="applNo" caption="申請書番号" width="150" align="left" wrap="true" /><!-- 申請書番号 -->
   <col name="applDate" caption="申請日" width="80" align="center" wrap="true" /><!-- 申請日 -->
   <col name="shainNo" caption="社員番号" width="80" align="left" wrap="true" /><!-- 社員番号 -->
   <col name="name" caption="申請者名" width="110" align="left" wrap="true" /><!-- 申請者名 -->

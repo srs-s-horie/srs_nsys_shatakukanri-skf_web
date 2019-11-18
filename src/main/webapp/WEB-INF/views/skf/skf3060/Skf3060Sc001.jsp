@@ -349,9 +349,14 @@
 			switch (mode) {
 				// 検索
 				case 0:
-					url = "skf/Skf3060Sc001/search";
-					$("#form").attr("action", url);
-					$("#form").submit();
+					//url = "skf/Skf3060Sc001/search";
+					//$("#form").attr("action", url);
+					//$("#form").submit();
+
+					var formId= "form";
+					var url = "skf/Skf3060Sc001/search";
+					nfw.common.submitForm(formId, url);
+					
 					break;
 				// CSV出力
 				case 1:

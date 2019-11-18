@@ -36,7 +36,7 @@
 	color : red;
 }
 </imart:decision>
-<imart:decision case="${form.parkingEDateFlg}" value="<%= SkfCommonConstant.NOT_CHANGE %>">
+<imart:decision case="${form.parkingEDateFlg}" value="<%= SkfCommonConstant.DATE_CHANGE %>">
 #parkingHenkanDate {
 	color : red;
 }

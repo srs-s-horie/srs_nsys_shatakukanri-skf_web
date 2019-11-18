@@ -106,9 +106,9 @@
 							<col name="ownerName" caption="氏名又は名称" width="150" align="left" wrap="true"/>
 							<col name="ownerNameKk" caption="氏名又は名称（フリガナ）" width="200" align="left" wrap="true" />
 							<col name="address" caption="住所(居所）又は所在地" width="200" align="left" wrap="true" />
-							<col name="businessKbn" caption="個人法人" width="50" align="center" wrap="false" />
+							<col name="businessKbn" caption="法人個人" width="50" align="center" wrap="false" />
 							<col name="acceptFlg" caption="個人番号" width="230" align="left" wrap="false" />
-							<col name="propertiesOwnedCnt" caption="所持物件数" width="60" align="right" wrap="false" />
+							<col name="propertiesOwnedCnt" caption="所有物件数" width="60" align="right" wrap="false" />
 							<col name="edit" caption="編集" width="30" sortable="false" align="center">
 								<showIcon iconClass="im-ui-icon-common-16-update" />
 							</col>
@@ -119,15 +119,15 @@
 				</imui:listTable>
 				<table name="imui-8eqlrzst4hv6std" id="sampleListTable1"></table>
 		    </div>
-	    </div>
-	</nfwui:Form>
-	<br><br>
-	<%-- フッターエリア --%>
-	<div class="align-R" style="margin-right: 45px; margin-top: -25px;">
-		<input name="statutoryRecordDownload" id="statutoryRecordDownload" type="button" value="法定調書データ出力" class="imui-medium-button" style="width:150px" tabindex="97"/>
-		<input name="lessorInfoDownload" id="lessorInfoDownload" type="button" value="賃貸人（代理人）情報出力" class="imui-medium-button"  style="width:200px" tabindex="98"/>
-		<nfwui:Button cssStyle="width:150px;" id="regist" formId="form" value="新規登録"
-			cssClass="imui-medium-button" url="skf/Skf3070Sc002/init" tabindex="99"/>
+		</nfwui:Form>
+		<br>
+		<%-- フッターエリア --%>
+		<div class="align-R">
+			<input name="statutoryRecordDownload" id="statutoryRecordDownload" type="button" value="法定調書データ出力" class="imui-medium-button" style="width:150px" tabindex="97"/>
+			<input name="lessorInfoDownload" id="lessorInfoDownload" type="button" value="賃貸人（代理人）情報出力" class="imui-medium-button"  style="width:200px" tabindex="98"/>
+			<nfwui:Button cssStyle="width:150px;" id="regist" formId="form" value="新規登録"
+				cssClass="imui-medium-button" url="skf/Skf3070Sc002/init" tabindex="99"/>
+		</div>
 	</div>
 </div>
 
@@ -177,6 +177,14 @@
 		}
 		
 	}
+	
+	  // 賃貸人（代理人）情報出力ボタン押下時のイベント
+	  $("#lessorInfoDownload").click(function(){
+		  dialogTitle = "確認";
+		  dialogMessage = "賃貸人（代理人）情報を出力します。よろしいですか？";
+		  url = "skf/Skf3070Sc001/LessorInfoDownload";
+	      nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);  
+	  });
 	
 	  //ウィンドウリサイズ時イベント
 	  $(window).bind('resize', function(){

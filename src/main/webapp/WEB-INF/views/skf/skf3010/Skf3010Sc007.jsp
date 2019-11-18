@@ -142,8 +142,9 @@ function back1() {
 										$("#selectMode").val('mainlList');
 										
 										url = "skf/Skf3010Sc007/selectList";
-										$("#form").attr("action", url);
-										$("#form").submit();
+// 										$("#form").attr("action", url);
+// 										$("#form").submit();
+										nfw.common.submitForm("form", url);
 									}else{
 										checkInput('mainList');	
 									}
@@ -372,8 +373,9 @@ function back1() {
 								}else{
 									
 									url = "skf/Skf3010Sc007/selectList";
-									$("#form").attr("action", url);
-									$("#form").submit();
+// 									$("#form").attr("action", url);
+// 									$("#form").submit();
+									nfw.common.submitForm("form", url);
 								}
 								
 								
