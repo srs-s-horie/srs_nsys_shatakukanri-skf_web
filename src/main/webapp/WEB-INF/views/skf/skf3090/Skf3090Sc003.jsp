@@ -325,9 +325,14 @@
 					// 管理機関
 					$("#hdnAddAgencyCd").val($("#addaAency").val());
 
+					//url = "skf/Skf3090Sc003/search";
+					//$("#form").attr("action", url);
+					//$("#form").submit();
+					
+					formId= "form";
 					url = "skf/Skf3090Sc003/search";
-					$("#form").attr("action", url);
-					$("#form").submit();
+					nfw.common.submitForm(formId, url);					
+					
 					break;
 				default:
 					nfw.common.showReserveMessage("warning", "未サポート(未実装機能)です。");
