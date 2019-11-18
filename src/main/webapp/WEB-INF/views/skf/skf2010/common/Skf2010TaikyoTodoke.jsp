@@ -150,7 +150,7 @@
         </td>
         <br>
         <td width="150px">
-        	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${f:h(form.shatakuName )}</font>
+        	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${f:h(form.taikyoArea )}</font>
         </td>
         <br><br>
         <td width="150px">
@@ -173,27 +173,17 @@
         	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;２．退居日</font>
         </td>
         	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;社宅等:</font>
-        	<imart:decision case="${form.taikyoDateFlg}" value="<%= SkfCommonConstant.NOT_CHANGE %>">
-        		<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;${f:h(form.taikyoDate)}</font>
-        	</imart:decision>
-        	<imart:decision case="${form.taikyoDateFlg}" value="<%= SkfCommonConstant.DATE_CHANGE %>">
-        		<font size="3" color="red" face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;${f:h(form.taikyoDate)}</font>
-        	</imart:decision>
+        	<font size="3" id="taikyoDate"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;${f:h(form.taikyoDate)}</font>
         <br>
         <font size="3"  face="ＭＳ Ｐ明朝">
 	        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	        	駐車場:
 	    </font>
-	    <imart:decision case="${form.parkingEDateFlg}" value="<%= SkfCommonConstant.NOT_CHANGE %>">
-	        <font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;${f:h(form.parkingHenkanDate )}</font>
-	    </imart:decision>
-      	<imart:decision case="${form.parkingEDateFlg}" value="<%= SkfCommonConstant.DATE_CHANGE %>">
-	        <font size="3" color="red" face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;${f:h(form.parkingHenkanDate )}</font>
-	    </imart:decision>  
+	        <font size="3" id="parkingHenkanDate" face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;${f:h(form.parkingHenkanDate )}</font>
         <br><br>
         <td width="150px">
-        	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;３．退居（返還）理由所</font>
+        	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;３．退居（返還）理由</font>
         </td>
         <br>
         <td width="150px">

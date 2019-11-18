@@ -133,7 +133,8 @@
                                         <nfwui:LabelBox id="lblHeadParking1stPlace" code="<%= MessageIdConstant.SKF2040_SC001_PERKING_PLACE %>" />
                                     </th>
                                     <td colspan="2">
-                                        <span id="parking1stPlace">${f:h(form.parking1stPlace)} </span>
+                                        <span id="parking1stPlaceTxt">${f:h(form.parking1stPlace)} </span>
+                                        <input type="hidden" name="parking1stPlace" id="parking1stPlace" value="${form.parking1stPlace}" />
                                     </td>
                                 </tr>
                                 <!-- 駐車場2台目保管場所 -->
@@ -145,7 +146,8 @@
                                         <nfwui:LabelBox id="lblHeadParking2ndPlace" code="<%= MessageIdConstant.SKF2040_SC001_PERKING_PLACE %>" />
                                     </th>
                                     <td colspan="2">
-                                        <span id="parking2ndPlace">${f:h(form.parking2ndPlace)} </span>
+                                        <span id="parking2ndPlaceTxt">${f:h(form.parking2ndPlace)} </span>
+                                        <input type="hidden" name="parking2ndPlace" id="parking2ndPlace" value="${form.parking2ndPlace}" />
                                     </td>
                                 </tr>
                                 <!-- 退居(返還)日 -->
@@ -209,12 +211,12 @@
                                 <!-- 社宅の状態 -->
                                 <tr>
                                     <th colspan="3">
-                                        <nfwui:LabelBox id="lblHeadShatakuJyotai" code="<%= MessageIdConstant.SKF2040_SC001_SHATAKU_STATUS %>" />
+                                        <nfwui:LabelBox id="lblHeadShatakuJotai" code="<%= MessageIdConstant.SKF2040_SC001_SHATAKU_STATUS %>" />
                                     </th>
                                     <td colspan="2">
-                                        <imui:textArea id="shatakuJyotai" name="shatakuJyotai"
-                                                       value="${form.shatakuJyotai}" style="width: 90%;" 
-                                                       css="${f:h(form.shatakuJyotaiErr)}"
+                                        <imui:textArea id="shatakuJotai" name="shatakuJotai"
+                                                       value="${form.shatakuJotai}" style="width: 90%;" 
+                                                       css="${f:h(form.shatakuJotaiErr)}"
                                                        placeholder="例  壁紙に破損あり" disabled="true" tabindex="51" />
                                     </td>
                                 </tr>
@@ -278,7 +280,7 @@
                     <nfwui:Hidden id="shainNo" name="shainNo" />
                     <input type="hidden" name="hdnShainNo" id="hdnShainNo" value="${form.shainNo}" />
                     <input type="hidden" name="hdnSelectedNowShatakuName" id="hdnSelectedNowShatakuName" value="${form.hdnSelectedNowShatakuName}" />
-                    <input type="hidden" name="hdnParking1stNumber" id="hdnParking1stNumber" value="${form.hdnParking1stNumber}"/>            
+                    <input type="hidden" name="hdnParking1stNumber" id="hdnParking1stNumber" value="${form.hdnParking1stNumber}"/>
                     <input type="hidden" name="hdnParking2ndNumber" id="hdnParking2ndNumber" value="${form.hdnParking2ndNumber}"/>
                     <input type="hidden" name="hdnNowShatakuKanriNo" id="hdnNowShatakuKanriNo" value="${form.hdnNowShatakuKanriNo}"/>
                     <input type="hidden" name="hdnNowShatakuRoomKanriNo" id="hdnNowShatakuRoomKanriNo" value="${form.hdnNowShatakuRoomKanriNo}"/>
@@ -411,7 +413,7 @@
         map['taikyoHenkanRiyu'] = $("#taikyoHenkanRiyu").val();
 
         // 社宅状態
-        map['shatakuJyotai'] = $("#shatakuJyotai").val();
+        map['shatakuJotai'] = $("#shatakuJotai").val();
         // 退居後の連絡先
         map['taikyogoRenrakuSaki'] = $("#taikyogoRenrakuSaki").val();
         // 返却立ち合い希望日
@@ -420,6 +422,8 @@
         map['sessionTime'] = $("#sessionTime").val();
         // 連絡先
         map['renrakuSaki'] = $("#renrakuSaki").val();
+        // 備品返却有無
+        map['hdnBihinHenkyakuUmu'] = $('#hdnBihinHenkyakuUmu').val();
          
         //入力チェック非同期処理呼び出し
         nfw.common.doAjaxAction(
@@ -479,41 +483,51 @@
         nfw.common.doAjaxAction("skf/Skf2040Sc001/ChangeDropDownAsync",map,true,function(data) {
             //値の変更
             $('#nowAddress').html( data.nowAddress );
-            $('#parking1stPlace').html( data.parking1stPlace );
-            $('#parking2ndPlace').html( data.parking2ndPlace );
+            $('#parking1stPlaceTxt').html( data.parking1stPlace );
+            $('#parking1stPlace').val( data.parking1stPlace );
+            $('#parking2ndPlaceTxt').html( data.parking2ndPlace );
+            $('#parking2ndPlace').val( data.parking2ndPlace );
             $('#returnEquipments').html( data.returnEquipment );
 
             //値の設定
             $('#hdnSelectedNowShatakuName').val(data.hdnSelectedNowShatakuName);
+            $('#hdnNowShatakuKanriNo').val(data.hdnNowShatakuKanriNo);
+            $('#hdnNowShatakuRoomKanriNo').val(data.hdnNowShatakuRoomKanriNo);
             $('#hdnParking1stNumber').val(data.hdnParking1stNumber);
             $('#hdnParking2ndNumber').val(data.hdnParking2ndNumber);
             $('#hdnBihinHenkyakuUmu').val(data.hdnBihinHenkyakuUmu);
 
             //画面制御
-            var bihinHenkyakuUmu = data.hdnBihinHenkyakuUmu;
-            if(bihinHenkyakuUmu=="0"){
-                //貸与品がない場合は、備品返却項目を非活性
-                $('#sessionDayDiv').prop('disabled', true);
-                $('#sessionDay').prop('disabled', true);
-                $('#sessionTime').prop('disabled', true);
-                $('#renrakuSaki').prop('disabled', true);
-            }else{
-                $('#sessionDayDiv').removeClass("wj-state-disabled");
-                $('#sessionDayDiv').prop('disabled', false);
-                $('#sessionDay').prop('disabled', false);
-                $('#sessionTime').prop('disabled', false);
-                $('#renrakuSaki').prop('disabled', false);
+            var isTaikyoChecked = $('#taikyoType01').prop('checked');
+            if (isTaikyoChecked){
+                // 「社宅を退居する」チェック時のみ
+                var bihinHenkyakuUmu = data.hdnBihinHenkyakuUmu;
+                if(bihinHenkyakuUmu=="0"){
+                    //貸与品がない場合は、備品返却項目を非活性
+                    $('#sessionDayDiv').prop('disabled', true);
+                    $('#sessionDay').prop('disabled', true);
+                    $('#sessionTime').prop('disabled', true);
+                    $('#renrakuSaki').prop('disabled', true);
+                }else{
+                    $('#sessionDayDiv').removeClass("wj-state-disabled");
+                    $('#sessionDayDiv').prop('disabled', false);
+                    $('#sessionDay').prop('disabled', false);
+                    $('#sessionTime').prop('disabled', false);
+                    $('#renrakuSaki').prop('disabled', false);
+                }
             }
-            
+
             if(data.parking1stPlace == ""){
                 // 駐車場1を借りていない場合
                 $('#taikyoType02').prop('disabled', true);
+                $('#taikyoType02').prop('checked', false);
             }else{
                 $('#taikyoType02').prop('disabled', false);
             }
             if(data.parking2ndPlace == ""){
                 // 駐車場2を借りていない場合
                 $('#taikyoType03').prop('disabled', true);
+                $('#taikyoType03').prop('checked', false);
             }else{
                 $('#taikyoType03').prop('disabled', false);
             }
@@ -534,7 +548,7 @@
                 $('#taikyoType03').prop('checked', true);
             }
             
-            $('#shatakuJyotai').prop('disabled', false);
+            $('#shatakuJotai').prop('disabled', false);
             $('#taikyogoRenrakuSaki').prop('disabled', false);
             
             // 備品返却関連
@@ -548,7 +562,7 @@
             }
         }else{
             // 「社宅を退居する」チェック外し時
-            $('#shatakuJyotai').prop('disabled', true);
+            $('#shatakuJotai').prop('disabled', true);
             $('#taikyogoRenrakuSaki').prop('disabled', true);
             
             // 備品返却関連
@@ -585,15 +599,6 @@
     
     // 画面表示時に定義される処理
     $(document).ready(function(){
-        if($("#hdnBihinHenkyakuUmu").val()=="0"){
-        //返却希望立会日　非活性
-            $('#sessionDayDiv').prop('disabled', true);
-            $('#sessionDay').prop('disabled', true);
-        }else{
-            $('#sessionDayDiv').prop('disabled', false);
-            $('#sessionDay').prop('disabled', false);
-        }
-        
         var isTaikyoChecked = $('#taikyoType01').prop('checked');
         if(isTaikyoChecked){
             // 「社宅を退居する」チェック時
@@ -606,7 +611,7 @@
                 $('#taikyoType03').prop('checked', true);
             }
             
-            $('#shatakuJyotai').prop('disabled', false);
+            $('#shatakuJotai').prop('disabled', false);
             $('#taikyogoRenrakuSaki').prop('disabled', false);
             
             // 備品返却関連
@@ -620,7 +625,7 @@
             }
         }else{
             // 「社宅を退居する」チェック外し時
-            $('#shatakuJyotai').prop('disabled', true);
+            $('#shatakuJotai').prop('disabled', true);
             $('#taikyogoRenrakuSaki').prop('disabled', true);
             
             // 備品返却関連
@@ -630,7 +635,7 @@
             $('#renrakuSaki').prop('disabled', true);
         }
         
-     	//その他が選択された場合、その他ボックスを活性化する
+        //退居理由でその他が選択された場合、その他ボックスを活性化する
         var selTaikyoRiyuKbnCd = $('#taikyoRiyuKbn option:selected').val();
         if(selTaikyoRiyuKbnCd == "9"){
             $('#taikyoHenkanRiyu').prop('disabled', false);

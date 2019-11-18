@@ -73,6 +73,9 @@ public class Skf3022Sc005Form extends BaseForm {
 	private String mailTeijiKbn;
 	
 	//削除時パラメータ
+	private String delTeijiNo;
+	private String delShainNo;
+	private String delNyutaikyoKbn;
     private String delUpdateDate;
     private String delUpdateDateNtk;
     private String delUpdateDateShataku;

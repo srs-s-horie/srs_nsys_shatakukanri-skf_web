@@ -23,8 +23,9 @@
 </script>
 
 <!-- コンテンツエリア -->
-<div class="imui-form-container-wide" >
-	<nfwui:Form id="form" name="form" modelAttribute="form"  enctype="multipart/form-data" >
+
+	<nfwui:Form id="form" name="form" modelAttribute="form" enctype="multipart/form-data" >
+	<div class="imui-form-container-wide" >
 		<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC006 %>" />
 		<input type="hidden" name="ittoFlg" id="ittoFlg" value="${form.ittoFlg }" />
 		<input type="hidden" name="oldBuildDate" id="oldBuildDate" value="${f:h(form.buildDate)}" />
@@ -111,14 +112,14 @@
 					</th>
 					<td style="width: 10%;">
 						<imui:textbox id="shatakuName" name="shatakuName" style="width:200px;" maxlength="30"
-							class="${form.shatakuNameErr}" value="${form.shatakuName}" placeholder="例　社宅名" tabindex="1" />
+							class="${form.shatakuNameErr}" value="${form.shatakuName}" placeholder="例　社宅名" tabindex="3" />
 					</td>
 					<th style="width: 5%;">
 						<!-- 地域区分 -->
 						<nfwui:LabelBox id="lblAreaKbn" code="<%=MessageIdConstant.SKF3010_SC002_LBL_AREA_KBN %>" />
 					</th>
 					<td style="width: 5%;">
-						<imui:select id="areaKbn" name="areaKbn" width="100" list="${form.areaKbnList}" class="${form.areaKbnErr}" tabindex="2" />
+						<imui:select id="areaKbn" name="areaKbn" width="100" list="${form.areaKbnList}" class="${form.areaKbnErr}" tabindex="4" />
 					</td>
 					<th style="width: 5%;">
 						<!-- 社宅区分 -->
@@ -150,7 +151,7 @@
 								<nfwui:LabelBox id="lblUseKbn" code="<%=MessageIdConstant.SKF3010_SC002_LBL_USE_KBN %>" />
 							</th>
 							<td colspan="3">
-								<imui:select id="useKbn" name="useKbn" width="90" list="${form.useKbnList}" class="${form.useKbnKbnErr}" tabindex="4" />
+								<imui:select id="useKbn" name="useKbn" width="90" list="${form.useKbnList}" class="${form.useKbnKbnErr}" tabindex="9" />
 							</td>
 						</tr>
 						<!--管理会社-->
@@ -160,7 +161,7 @@
 							</th>
 							<td colspan="3">
 								<imui:select id="manageCompany" name="manageCompany" width="160"
-									list="${form.manageCompanyList}" class="${form.manageCompanyErr}" tabindex="5" />
+									list="${form.manageCompanyList}" class="${form.manageCompanyErr}" tabindex="10" />
 							</td>
 						</tr>
 						<!--管理機関-->
@@ -170,7 +171,7 @@
 							</th>
 							<td colspan="3">
 								<imui:select id="manageAgency" name="manageAgency" width="160"
-									list="${form.manageAgencyList}" class="${form.manageAgencyErr}" tabindex="6" />
+									list="${form.manageAgencyList}" class="${form.manageAgencyErr}" tabindex="11" />
 							</td>
 						</tr>
 						<!--管理事業領域-->
@@ -180,7 +181,7 @@
 							</th>
 							<td colspan="3">
 								<imui:select id="manageBusinessArea" name="manageBusinessArea" width="160"
-									list="${form.manageBusinessAreaList}" class="${form.manageBusinessAreaErr}" tabindex="7" />
+									list="${form.manageBusinessAreaList}" class="${form.manageBusinessAreaErr}" tabindex="12" />
 							</td>
 						</tr>
 						<!--所在地-->
@@ -195,9 +196,9 @@
 							</th>
 							<td colspan="3">
 								<imui:textbox id="zipCd" name="zipCd" style="ime-mode: disabled;width:85px;" value="${form.zipCd}"
-													class="${form.zipCdErr}" placeholder="例　4600003" maxlength="7" tabindex="8"/>
+													class="${form.zipCdErr}" placeholder="例　4600003" maxlength="7" tabindex="13"/>
 								<imui:button id="addressSearch" name="addressSearch" value="住所検索"
-										class="imui-small-button" onclick="addressSearchClick()" tabindex="9" />
+										class="imui-small-button" onclick="addressSearchClick()" tabindex="14" />
 							</td>
 						</tr>
 						<!--住所-->
@@ -207,9 +208,9 @@
 							</th>
 							<td colspan="3">
 								<!-- 都道府県リスト -->
-								<imui:select id="pref" name="pref" width="90" list="${form.prefList}" class="${form.prefErr}" tabindex="10" />
+								<imui:select id="pref" name="pref" width="90" list="${form.prefList}" class="${form.prefErr}" tabindex="15" />
 								<imui:textbox id="shatakuAddress" name="shatakuAddress" style="width:615px;" maxlength="100"
-								value="${form.shatakuAddress}" placeholder="例　名古屋市中区錦2-18-19" class="${form.shatakuAddressErr}" tabindex="11" />
+								value="${form.shatakuAddress}" placeholder="例　名古屋市中区錦2-18-19" class="${form.shatakuAddressErr}" tabindex="16" />
 							</td>
 						</tr>
 						<!--社宅構造-->
@@ -220,9 +221,9 @@
 							<td colspan="3">
 								<!-- 構造リスト -->
 								<imui:select id="shatakuStructure" name="shatakuStructure" width="90"
-									list="${form.shatakuStructureList}" class="${form.shatakuStructureErr}" tabindex="12" />
+									list="${form.shatakuStructureList}" class="${form.shatakuStructureErr}" tabindex="17" />
 								<imui:textbox id="shatakuStructureDetail" name="shatakuStructureDetail" style="width:360px;"
-									maxlength="30" value="${form.shatakuStructureDetail}" placeholder="例　RC3F" tabindex="13" />
+									maxlength="30" value="${form.shatakuStructureDetail}" placeholder="例　RC3F" tabindex="18" />
 							</td>
 						</tr>
 						<!--エレベーター-->
@@ -232,7 +233,7 @@
 							</th>
 							<td colspan="3">
 								<!-- エレベーターリスト -->
-								<imui:select id="elevator" name="elevator" width="90" list="${form.elevatorList}" tabindex="14" />
+								<imui:select id="elevator" name="elevator" width="90" list="${form.elevatorList}" tabindex="19" />
 							</td>
 						</tr>
 						<!--建築年月日-->
@@ -242,7 +243,8 @@
 								<nfwui:LabelBox id="lblBuildDate" code="<%=MessageIdConstant.SKF3010_SC002_LBL_BUILD_DATE %>" />
 							</th>
 							<td>
-								<nfwui:DateBox id="buildDate" name="buildDate" value="${f:h(form.buildDate)}" cssStyle="width:100px" tabindex="15"/>
+								<nfwui:DateBox id="buildDate" name="buildDate" value="${f:h(form.buildDate)}" cssStyle="width:100px" 
+								cssClass="${f:h(form.buildDateErr)}" tabindex="20"/>
 							</td>
 							<th>
 								<nfwui:LabelBox id="lblRealYearCount" code="<%=MessageIdConstant.SKF3010_SC002_LBL_REAL_YEAR_COUNT %>" />
@@ -279,40 +281,40 @@
 								<nfwui:LabelBox id="lblShatakuSupplement" code="<%=MessageIdConstant.SKF3010_SC002_LBL_SHATAKU_SUPPLEMENT %>" />
 							</th>
 							<td>
-								<a id="${form.shatakuHosokuLink1 }" tabindex="16">${form.shatakuHosokuFileName1 }</a>
+								<a id="${form.shatakuHosokuLink1 }" tabindex="21">${form.shatakuHosokuFileName1 }</a>
 							</td>
 							<td colspan="2">
 								<!-- 参照 -->
-								<imui:button id="impShatakuHosoku1" name="impShatakuHosoku1" value="参照" class="imui-small-button" tabindex="17" onclick="fileSelect('1','shataku')"/>
+								<imui:button id="impShatakuHosoku1" name="impShatakuHosoku1" value="参照" class="imui-small-button" tabindex="22" onclick="fileSelect('1','shataku')"/>
 								<nfwui:FileBox cssStyle="display: none;" id="tmpFileBoxshataku1" name="tmpFileBoxshataku1" />
 								<!-- 削除 -->
-								<imui:button id="delShatakuHosoku1" name="delShatakuHosoku1" value="削除" class="imui-small-button" tabindex="18" onclick="fileDelete('1','shataku')"/>
+								<imui:button id="delShatakuHosoku1" name="delShatakuHosoku1" value="削除" class="imui-small-button" tabindex="23" onclick="fileDelete('1','shataku')"/>
 							</td>
 						</tr>
 						<!--社宅補足-->
 						<tr style="display:table-row;">
 							<td>
-								<a id="${form.shatakuHosokuLink2 }" tabindex="19">${form.shatakuHosokuFileName2 }</a>
+								<a id="${form.shatakuHosokuLink2 }" tabindex="24">${form.shatakuHosokuFileName2 }</a>
 							</td>
 							<td colspan="2">
 								<!-- 参照 -->
-								<imui:button id="impShatakuHosoku2" name="impShatakuHosoku2" value="参照" class="imui-small-button" tabindex="20" onclick="fileSelect('2','shataku')"/>
+								<imui:button id="impShatakuHosoku2" name="impShatakuHosoku2" value="参照" class="imui-small-button" tabindex="25" onclick="fileSelect('2','shataku')"/>
 								<nfwui:FileBox cssStyle="display: none;" id="tmpFileBoxshataku2" name="tmpFileBoxshataku2" />
 								<!-- 削除 -->
-								<imui:button id="delShatakuHosoku2" name="delShatakuHosoku2" value="削除" class="imui-small-button" tabindex="21" onclick="fileDelete('2','shataku')"/>
+								<imui:button id="delShatakuHosoku2" name="delShatakuHosoku2" value="削除" class="imui-small-button" tabindex="26" onclick="fileDelete('2','shataku')"/>
 							</td>
 						</tr>
 						<!--社宅補足-->
 						<tr style="display:table-row;">
 							<td>
-								<a id="${form.shatakuHosokuLink3 }">${form.shatakuHosokuFileName3 }</a>
+								<a id="${form.shatakuHosokuLink3 }" tabindex="27">${form.shatakuHosokuFileName3 }</a>
 							</td>
 							<td colspan="2">
 								<!-- 参照 -->
-								<imui:button id="impShatakuHosoku3" name="impShatakuHosoku3" value="参照" class="imui-small-button" tabindex="23" onclick="fileSelect('3','shataku')"/>
+								<imui:button id="impShatakuHosoku3" name="impShatakuHosoku3" value="参照" class="imui-small-button" tabindex="28" onclick="fileSelect('3','shataku')"/>
 								<nfwui:FileBox cssStyle="display: none;" id="tmpFileBoxshataku3" name="tmpFileBoxshataku3" />
 								<!-- 削除 -->
-								<imui:button id="delShatakuHosoku3" name="delShatakuHosoku3" value="削除" class="imui-small-button" tabindex="24" onclick="fileDelete('3','shataku')"/>
+								<imui:button id="delShatakuHosoku3" name="delShatakuHosoku3" value="削除" class="imui-small-button" tabindex="29" onclick="fileDelete('3','shataku')"/>
 							</td>
 						</tr>
 						<!--備考-->
@@ -321,7 +323,7 @@
 								<nfwui:LabelBox id="lblBiko" code="<%=MessageIdConstant.SKF3010_SC002_LBL_BIKO %>" />
 							</th>
 							<td rowspan="3" colspan="3">
-								<imui:textArea id="biko" name="biko" rows="3" style="width:715px;" maxlength="400" value="${form.biko}" tabindex="25" />
+								<imui:textArea id="biko" name="biko" rows="3" style="width:715px;" maxlength="400" value="${form.biko}" tabindex="30" />
 							</td>
 							<td style="width: 30%;border:none;background-color:white;box-shadow:none;"></td>
 						</tr>
@@ -338,7 +340,7 @@
 							</th>
 							<td style="width: 40%;">
 								<imui:textbox id="roomNo" name="roomNo" style="ime-mode: disabled;width:120px;" value="${form.roomNo}" 
-								class="${form.roomNoError}" placeholder="例　101（半角）" maxlength="10" tabindex="25"/>
+								class="${form.roomNoError}" placeholder="例　101（半角）" maxlength="10" tabindex="31"/>
 							</td>
 							<th style="width: 15%;">
 		<!-- 				<label>本来延面積</label> -->
@@ -346,7 +348,7 @@
 							</th>
 							<td>
 								<imui:textbox id="originalMenseki" name="originalMenseki" style="text-align: right;ime-mode: disabled;width:100px;" 
-								value="${form.originalMenseki}"  class="${form.originalMensekiError}" placeholder="例　70.5" maxlength="8" tabindex="26"/>㎡
+								value="${form.originalMenseki}"  class="${form.originalMensekiError}" placeholder="例　70.5" maxlength="8" tabindex="37"/>㎡
 							</td>
 						</tr>
 						<tr>
@@ -356,7 +358,7 @@
 							</th>
 							<td>
 								<imui:select id="originalKikaku" name="originalKikaku" 
-									width="200" list="${form.originalKikakuList}" class="${form.originalKikakuError}" tabindex="27" />
+									width="200" list="${form.originalKikakuList}" class="${form.originalKikakuError}" tabindex="32" />
 							</td>
 							<th>
 		<!-- 					<label>貸与延面積</label> -->
@@ -364,7 +366,7 @@
 							</th>
 							<td>
 								<imui:textbox id="lendMenseki" name="lendMenseki" style="text-align: right;ime-mode: disabled;width:100px;" 
-								value="${form.lendMenseki}" class="${form.lendMensekiError}" placeholder="例　70.5" maxlength="8" tabindex="28"/>㎡
+								value="${form.lendMenseki}" class="${form.lendMensekiError}" placeholder="例　70.5" maxlength="8" tabindex="38"/>㎡
 							</td>
 						</tr>
 						<tr>
@@ -374,7 +376,7 @@
 							</th>
 							<td>
 								<imui:select id="originalAuse" name="originalAuse" 
-											width="200" list="${form.originalAuseList}" class="${form.originalAuseError}" tabindex="29" />
+											width="200" list="${form.originalAuseList}" class="${form.originalAuseError}" tabindex="33" />
 							</td>
 							<th>
 			<!-- 				<label>サンルーム面積</label> -->
@@ -382,7 +384,7 @@
 							</th>
 							<td>
 								<imui:textbox id="sunRoomMenseki" name="sunRoomMenseki" style="text-align: right;ime-mode: disabled;width:100px;" 
-								value="${form.sunRoomMenseki}" class="${form.sunRoomMensekiError}" placeholder="例　1.0" maxlength="8" tabindex="30"/>㎡
+								value="${form.sunRoomMenseki}" class="${form.sunRoomMensekiError}" placeholder="例　1.0" maxlength="8" tabindex="39"/>㎡
 							</td>
 						</tr>
 						<tr>
@@ -392,9 +394,9 @@
 							</th>
 							<td>
 								<imui:select id="lendKbn" name="lendKbn" 
-									width="200" list="${form.lendKbnList}" class="${form.lendKbnError}" tabindex="31" />
+									width="200" list="${form.lendKbnList}" class="${form.lendKbnError}" tabindex="34" />
 								<imui:textbox id="lendKbnHosoku" name="lendKbnHosoku" style="width:120px;" value="${form.lendKbnHosoku}" 
-								class="${form.lendKbnHosokuError}" placeholder="例　貸与区分" maxlength="5" tabindex="32"/>
+								class="${form.lendKbnHosokuError}" placeholder="例　貸与区分" maxlength="5" tabindex="35"/>
 							</td>
 							<th>
 		<!-- 					<label>寒冷地減免事由区分</label> -->
@@ -402,7 +404,7 @@
 							</th>
 							<td>
 								<imui:select id="coldExemptionKbn" name="coldExemptionKbn" 
-									width="200" list="${form.coldExemptionKbnList}" tabindex="33" />
+									width="200" list="${form.coldExemptionKbnList}" tabindex="40" />
 							</td>
 						</tr>
 						<tr>
@@ -411,7 +413,7 @@
 								<nfwui:LabelBox id="lblBiko" code="<%=MessageIdConstant.SKF3010_SC005_BIKO %>" />
 							</th>
 							<td rowspan="3">
-								<imui:textArea id="roomBiko" name="roomBiko" style="width:90%;" value="${form.roomBiko}" cols="35" rows="5" maxlength="100" tabindex="34"/>
+								<imui:textArea id="roomBiko" name="roomBiko" style="width:90%;" value="${form.roomBiko}" cols="35" rows="5" maxlength="100" tabindex="36"/>
 							</td>
 							<th>
 		<!-- 				<label>階段面積</label> -->
@@ -419,7 +421,7 @@
 							</th>
 							<td>
 								<imui:textbox id="stairsMenseki" name="stairsMenseki" style="text-align: right;ime-mode: disabled;width:100px;" 
-								value="${form.stairsMenseki}" class="${form.stairsMensekiError}" placeholder="例　1.0" maxlength="8" tabindex="35"/>㎡
+								value="${form.stairsMenseki}" class="${form.stairsMensekiError}" placeholder="例　1.0" maxlength="8" tabindex="41"/>㎡
 							</td>
 						</tr>
 						<tr>
@@ -429,7 +431,7 @@
 							</th>
 							<td>
 								<imui:textbox id="barnMenseki" name="barnMenseki" style="text-align: right;ime-mode: disabled;width:100px;" 
-								value="${form.barnMenseki}" class="${form.barnMensekiError}" placeholder="例　1.0" maxlength="8" tabindex="36"/>㎡
+								value="${form.barnMenseki}" class="${form.barnMensekiError}" placeholder="例　1.0" maxlength="8" tabindex="42"/>㎡
 							</td>
 						</tr>
 						<tr>
@@ -461,7 +463,7 @@
 							<td colspan="2">
 								<!-- 駐車場構造リスト -->
 								<imui:select id="parkingStructure" name="parkingStructure" width="200"
-								list="${form.parkingStructureList}" class="${form.parkingStructureErr}" tabindex="37" />
+								list="${form.parkingStructureList}" class="${form.parkingStructureErr}" tabindex="43" />
 							</td>
 							<td style="border:none;background-color:#ffffff;box-shadow:none;"></td>
 						</tr>
@@ -483,40 +485,40 @@
 							</th>
 							<!--駐車場補足1-->
 							<td style="width:30%;">
-								<a id="${form.parkingHosokuLink1}" tabindex="38">${form.parkingHosokuFileName1}</a>
+								<a id="${form.parkingHosokuLink1}" tabindex="44">${form.parkingHosokuFileName1}</a>
 							</td>
 							<td>
 								<nfwui:FileBox cssStyle="display: none;" id="tmpFileBoxparking1" name="tmpFileBoxparking1" />
 								<!-- 参照 -->
-								<imui:button id="impParkingHosoku1" name="impParkingHosoku1" value="参照" class="imui-small-button" tabindex="39" onclick="fileSelect('1','parking')"/>&nbsp;
+								<imui:button id="impParkingHosoku1" name="impParkingHosoku1" value="参照" class="imui-small-button" tabindex="45" onclick="fileSelect('1','parking')"/>&nbsp;
 								<!-- 削除 -->
-								<imui:button id="delParkingHosoku1" name="delParkingHosoku1" value="削除" class="imui-small-button" tabindex="40" onclick="fileDelete('1','parking')"/>
+								<imui:button id="delParkingHosoku1" name="delParkingHosoku1" value="削除" class="imui-small-button" tabindex="46" onclick="fileDelete('1','parking')"/>
 							</td>
 						</tr>
 						<tr style="display:table-row;">
 							<!--駐車場補足2-->
 							<td >
-								<a id="${form.parkingHosokuLink2}" tabindex="41">${form.parkingHosokuFileName2}</a>
+								<a id="${form.parkingHosokuLink2}" tabindex="47">${form.parkingHosokuFileName2}</a>
 							</td>
 							<td > 
 								<nfwui:FileBox cssStyle="display: none;" id="tmpFileBoxparking2" name="tmpFileBoxparking2" />
 								<!-- 参照 -->
-								<imui:button id="impParkingHosoku2" name="impParkingHosoku2" value="参照" class="imui-small-button" tabindex="42" onclick="fileSelect('2','parking')"/>&nbsp;
+								<imui:button id="impParkingHosoku2" name="impParkingHosoku2" value="参照" class="imui-small-button" tabindex="48" onclick="fileSelect('2','parking')"/>&nbsp;
 								<!-- 削除 -->
-								<imui:button id="delParkingHosoku2" name="delParkingHosoku2" value="削除" class="imui-small-button" tabindex="43" onclick="fileDelete('2','parking')"/>
+								<imui:button id="delParkingHosoku2" name="delParkingHosoku2" value="削除" class="imui-small-button" tabindex="49" onclick="fileDelete('2','parking')"/>
 							</td>
 						</tr>
 						<tr style="display:table-row;">
 							<!--駐車場補足3-->
 							<td>
-								<a id="${form.parkingHosokuLink3}" tabindex="44">${form.parkingHosokuFileName3}</a>
+								<a id="${form.parkingHosokuLink3}" tabindex="50">${form.parkingHosokuFileName3}</a>
 							</td>
 							<td >
 								<nfwui:FileBox cssStyle="display: none;" id="tmpFileBoxparking3" name="tmpFileBoxparking3" />
 								<!-- 参照 -->
-								<imui:button id="impParkingHosoku3" name="impParkingHosoku3" value="参照" class="imui-small-button" tabindex="45" onclick="fileSelect('3','parking')"/>&nbsp;
+								<imui:button id="impParkingHosoku3" name="impParkingHosoku3" value="参照" class="imui-small-button" tabindex="51" onclick="fileSelect('3','parking')"/>&nbsp;
 								<!-- 削除 -->
-								<imui:button id="delParkingHosoku3" name="delParkingHosoku3" value="削除" class="imui-small-button" tabindex="46" onclick="fileDelete('3','parking')"/>
+								<imui:button id="delParkingHosoku3" name="delParkingHosoku3" value="削除" class="imui-small-button" tabindex="52" onclick="fileDelete('3','parking')"/>
 							</td>
 						</tr>
 						<tr>
@@ -526,7 +528,7 @@
 							</th>
 							<td colspan="2">
 								<imui:textbox id="parkingBlock" name="parkingBlock" style="text-align: right;ime-mode: disabled;width:100px;" 
-								value="${form.parkingBlock}" class="${form.parkingBlockError}" placeholder="例　01（半角）" maxlength="10" tabindex="47"/>
+								value="${form.parkingBlock}" class="${form.parkingBlockError}" placeholder="例　01（半角）" maxlength="10" tabindex="53"/>
 							</td>
 						</tr>
 						<tr>
@@ -569,7 +571,7 @@
 							</th>
 							<td colspan="2">
 								<nfwui:NumberBox name="parkingRentalAdjust" id="parkingRentalAdjust" cssClass="${form.parkingRentalAdjustError}" cssStyle="width:100px;" 
-								inputFormat="n0" maxlength="10"  max="99999999" min="-999999" tabindex="48"/>&nbsp;円
+								inputFormat="n0" maxlength="10"  max="99999999" min="-999999" tabindex="54"/>&nbsp;円
 							</td>
 						</tr>
 						<tr>
@@ -589,7 +591,7 @@
 								<nfwui:LabelBox id="lblParkingBiko" code="<%=MessageIdConstant.SKF3010_SC002_LBL_PARKING_BIKO %>" />
 							</th>
 							<td colspan="2">
-								<imui:textArea id="parkingBiko" name="parkingBiko" rows="4" maxlength="100" style="width:90%;" value="${form.parkingBiko}" tabindex="49" />
+								<imui:textArea id="parkingBiko" name="parkingBiko" rows="4" maxlength="100" style="width:90%;" value="${form.parkingBiko}" tabindex="55" />
 							</td>
 						</tr>
 					</tbody>
@@ -597,7 +599,7 @@
 			</div>
 			<div id="bihin_info">
 				<imui:listTable id="bihinInfoList" process="jssp" autoEncode="false" autoWidth="false" rowNumbers="true" autoResize="false" 
-						onCellSelect="onCellSelect" multiSelect="false" data="${form.bihinInfoListTableData }" style="max-height: 800px;" height="auto" tabinex="43">
+						onCellSelect="onCellSelect" multiSelect="false" data="${form.bihinInfoListTableData }" style="max-height: 800px;" height="auto" tabinex="56">
 					<cols sortable="false">
 						<col name="bihinCd" caption="備品コード" hidden="true" key="true" />
 						<col name="bihinName" caption="備品名称" width="165" sortable="false" align="left" wrap="true" />
@@ -629,12 +631,12 @@
 							<td>
 								<!-- 管理会社 -->
 								<imui:textbox id="manageCompanyName" name="manageCompanyName" style="width:150px;"
-								maxlength="30" value="${form.manageCompanyName}" placeholder="例　○○管理会社" tabindex="51" />
+								maxlength="30" value="${form.manageCompanyName}" placeholder="例　○○管理会社" tabindex="57" />
 							</td>
 							<td>
 								<!-- 鍵管理者 -->
 								<imui:textbox id="keyManagerCompanyName" name="keyManagerCompanyName" style="width:150px;"
-								maxlength="30" value="${form.keyManagerCompanyName}" placeholder="例　○○管理会社" tabindex="56" />
+								maxlength="30" value="${form.keyManagerCompanyName}" placeholder="例　○○管理会社" tabindex="62" />
 							</td>
 						</tr>
 						<tr>
@@ -645,12 +647,12 @@
 							<td>
 								<!-- 管理会社 -->
 								<imui:textbox id="manageName" name="manageName" style="width:150px;"
-								maxlength="30" value="${form.manageName}" placeholder="例　中日本　太郎" tabindex="52" />
+								maxlength="30" value="${form.manageName}" placeholder="例　中日本　太郎" tabindex="58" />
 							</td>
 							<td>
 								<!-- 鍵管理者 -->
 								<imui:textbox id="keyManagerName" name="keyManagerName" style="width:150px;" maxlength="30"
-								value="${form.keyManagerName}" placeholder="例　中日本　太郎" tabindex="57" />
+								value="${form.keyManagerName}" placeholder="例　中日本　太郎" tabindex="63" />
 							</td>
 						</tr>
 						<tr>
@@ -661,12 +663,14 @@
 							<td>
 								<!-- 管理会社 -->
 								<imui:textbox id="manageMailAddress" name="manageMailAddress" style="width:260px;"
-								maxlength="30" value="${form.manageMailAddress}" placeholder="例　t.nakanihon.aa@" tabindex="53" />
+								maxlength="30" value="${form.manageMailAddress}" placeholder="例　t.nakanihon.aa@" tabindex="59" 
+								class="${form.manageMailAddressError}"/>
 							</td>
 							<td>
 								<!-- 鍵管理者 -->
 								<imui:textbox id="keyManagerMailAddress" name="keyManagerMailAddress" style="width:260px;"
-								maxlength="50" value="${form.keyManagerMailAddress}" placeholder="例　t.nakanihon.aa@" tabindex="58" />
+								maxlength="50" value="${form.keyManagerMailAddress}" placeholder="例　t.nakanihon.aa@" tabindex="64" 
+								class="${form.keyManagerMailAddressErr}"/>
 							</td>
 						</tr>
 						<tr>
@@ -677,12 +681,14 @@
 							<td>
 								<!-- 管理会社 -->
 								<imui:textbox id="manageTelNumber" name="manageTelNumber" style="width:150px;height:98%"
-								maxlength="15" value="${form.manageTelNumber}" placeholder="例　052-999-9999" tabindex="54" />
+								maxlength="15" value="${form.manageTelNumber}" placeholder="例　052-999-9999" tabindex="60" 
+								class="${form.manageTelNumberError}"/>
 							</td>
 							<td>
 								<!-- 鍵管理者 -->
 								<imui:textbox id="keyManagerTelNumber" name="keyManagerTelNumber" style="width:150px;height:98%"
-								maxlength="15" value="${form.keyManagerTelNumber}" placeholder="例　052-999-9999" tabindex="59" />
+								maxlength="15" value="${form.keyManagerTelNumber}" placeholder="例　052-999-9999" tabindex="65" 
+								class="${form.keyManagerTelNumberErr}"/>
 							</td>
 
 						</tr>
@@ -694,12 +700,12 @@
 							<td rowspan="4">
 								<!-- 管理会社 -->
 								<imui:textArea id="manageBiko" name="manageBiko" rows="4" maxlength="400"
-														style="width:260px;" value="${form.manageBiko}" tabindex="55" />
+														style="width:260px;" value="${form.manageBiko}" tabindex="61" />
 							</td>
 							<td rowspan="4">
 								<!-- 鍵管理者 -->
 								<imui:textArea id="keyManagerBiko" name="keyManagerBiko" rows="4" maxlength="400"
-														style="width:260px;" value="${form.keyManagerBiko}" tabindex="60" />
+														style="width:260px;" value="${form.keyManagerBiko}" tabindex="66" />
 							</td>
 						</tr>
 						<tr />
@@ -723,13 +729,13 @@
 							<td  style="width:30%">
 								<!-- 契約番号リスト -->
 								<imui:select id="contractNo" name="contractNo" width="200" list="${form.contractNoList}"
-																			tabindex="61" disabled="${form.contractDelDisableFlg }"/>
+																			tabindex="67" disabled="${form.contractDelDisableFlg }"/>
 								<!-- 追加ボタン -->
 								<imui:button id="contractAdd" name="contractAdd" value="追加" class="imui-small-button" 
-												disabled="${form.contractAddDisableFlg}" onclick="contractAddClick()" tabindex="62" />
+												disabled="${form.contractAddDisableFlg}" onclick="contractAddClick()" tabindex="68" />
 								<!-- 削除ボタン -->
 								<imui:button id="contractDell" name="contractDell" value="削除" class="imui-small-button" 
-												disabled="${form.contractDelDisableFlg}" onclick="contractDelClick()" tabindex="63" />
+												disabled="${form.contractDelDisableFlg}" onclick="contractDelClick()" tabindex="69" />
 							</td>
 							<th rowspan="13" style="width:5%" >
 								<!-- 駐車場 -->
@@ -742,13 +748,13 @@
 							<td  style="width:30%">
 								<!-- 契約番号リスト -->
 								<imui:select id="parkingContractNo" name="parkingContractNo" width="200" list="${form.parkingContractNoList}"
-																			tabindex="73" disabled="${form.parkingContractDelDisableFlg }"/>
+																			tabindex="79" disabled="${form.parkingContractDelDisableFlg }"/>
 								<!-- 追加ボタン -->
 								<imui:button id="parkingContractAdd" name="parkingContractAdd" value="追加" class="imui-small-button" 
-												disabled="${form.parkingContractAddDisableFlg}" onclick="parkingContractAddClick()" tabindex="74" />
+												disabled="${form.parkingContractAddDisableFlg}" onclick="parkingContractAddClick()" tabindex="80" />
 								<!-- 削除ボタン -->
 								<imui:button id="parkingContractDel" name="parkingContractDel" value="削除" class="imui-small-button" 
-												disabled="${form.parkingContractDelDisableFlg}" onclick="parkingContractDelClick()" tabindex="75" />
+												disabled="${form.parkingContractDelDisableFlg}" onclick="parkingContractDelClick()" tabindex="81" />
 							</td>
 						</tr>
 						<tr>
@@ -758,14 +764,14 @@
 							</th>
 							<td>
 								<!-- 賃貸人（代理人）テキストボックス -->
-								<imui:textbox readonly="true" id="contractOwnerName" name="contractOwnerName"
-									style="width:150px;" value="${form.contractOwnerName}" disabled="${form.contractDelDisableFlg }" tabindex="64" />
+								<imui:textbox readonly="true" id="contractOwnerName" name="contractOwnerName" class="${form.contractOwnerNameErr }"
+									style="width:150px;" value="${form.contractOwnerName}" disabled="${form.contractDelDisableFlg }" tabindex="70" />
 								<!-- 支援ボタン -->
 								<nfwui:PopupButton id="contractSupport" name="contractSupport" value="支援" use="popup"
 									cssClass="imui-small-button" popupWidth="650" popupHeight="700"
 									modalMode="false" screenUrl="skf/Skf2010Sc001/init"
 									parameter="parkingLendKbn:nyukyoFlag"  disabled="${form.contractDelDisableFlg }"
-									callbackFunc="contractOwnerInfoCallback()" tabindex="65"/>
+									callbackFunc="contractOwnerInfoCallback()" tabindex="71"/>
 							</td>
 							<th colspan="2">
 								<!-- 契約形態(駐車場) -->
@@ -773,7 +779,7 @@
 							</th>
 							<td >
 							<imui:select id="parkingContractType" name="parkingContractType" 
-								 width="130" list="${form.parkingContractTypeList}" tabindex="76" disabled="${form.parkingContractTypeDisabled}" class="${form.parkingContractTypeError}"/>
+								 width="130" list="${form.parkingContractTypeList}" tabindex="82" disabled="${form.parkingContractTypeDisabled}" class="${form.parkingContractTypeError}"/>
 			               </td>
 						</tr>
 						<tr>
@@ -794,14 +800,14 @@
 							</th>
 							<td>
 								<!-- 賃貸人（代理人）テキストボックス -->
-								<imui:textbox readonly="true" id="parkingOwnerName" name="parkingOwnerName"
-									style="width:150px;height:98%" value="${form.parkingOwnerName}" disabled="${form.parkingContractInfoDisabled}" tabindex="77" />
+								<imui:textbox readonly="true" id="parkingOwnerName" name="parkingOwnerName" class="${form.parkingOwnerNameError }"
+									style="width:150px;height:98%" value="${form.parkingOwnerName}" disabled="${form.parkingContractInfoDisabled}" tabindex="83" />
 								<!-- 支援ボタン -->
 								<nfwui:PopupButton id="parkingContractSupport" name="parkingContractSupport" value="支援" use="popup"
 									cssClass="imui-small-button" popupWidth="650" popupHeight="700"
 									modalMode="false" screenUrl="skf/Skf2010Sc001/init"
 									parameter="parkingLendKbn:nyukyoFlag"  disabled="${form.parkingContractInfoDisabled }"
-									callbackFunc="parkingContractOwnerInfoCallback()" tabindex="78"/>
+									callbackFunc="parkingContractOwnerInfoCallback()" tabindex="84"/>
 							</td>
 						</tr>
 							<!--住所-->
@@ -822,8 +828,10 @@
 								<nfwui:LabelBox id="lblContractPostNumber" code="<%=MessageIdConstant.SKF3010_SC002_LBL_CONTRACT_POST_NUMBER %>" />
 							</th>
 							<td>
-								<imui:textbox id="parkingZipCd" name="parkingZipCd" style="ime-mode: disabled;width:85px;" value="${f:h(form.parkingZipCd)}" class="${form.parkingZipCdError}" disabled="${form.parkingContractInfoDisabled}" placeholder="例　4600003" maxlength="7" tabindex="79"/>
-								<imui:button id="parkingAddressSearch" name="parkingAddressSearch" value="住所検索" class="imui-small-button" disabled="${form.parkingContractInfoDisabled}" onclick="addressOnClick()" tabindex="80" />
+								<imui:textbox id="parkingZipCd" name="parkingZipCd" style="ime-mode: disabled;width:85px;" value="${f:h(form.parkingZipCd)}" class="${form.parkingZipCdError}" 
+								disabled="${form.parkingContractInfoDisabled}" placeholder="例　4600003" maxlength="7" tabindex="85"/>
+								<imui:button id="parkingAddressSearch" name="parkingAddressSearch" value="住所検索" class="imui-small-button" 
+								disabled="${form.parkingContractInfoDisabled}" onclick="addressOnClick()" tabindex="86" />
 							</td>
 						</tr>
 						<tr></tr>
@@ -833,15 +841,16 @@
 								<nfwui:LabelBox id="lblContractAssetRegisterNo" code="<%=MessageIdConstant.SKF3010_SC002_LBL_CONTRACT_ASSET_REGISTER_NO %>" />
 							</th>
 							<td>
-								<imui:textbox id="assetRegisterNo" name="assetRegisterNo" style="ime-mode:disabled;width:150px;" maxlength="13"
-									value="${form.assetRegisterNo}" placeholder="例　A001002003004" disabled="${form.contractDelDisableFlg }" tabindex="66" />
+								<imui:textbox id="assetRegisterNo" name="assetRegisterNo" style="ime-mode:disabled;width:150px;" maxlength="15"
+									class="${form.assetRegisterNoErr}" value="${form.assetRegisterNo}" placeholder="例　A001002003004" disabled="${form.contractDelDisableFlg }" tabindex="72" />
 							</td>
 							<!-- 住所（駐車場） -->
 							<th>
-								<nfwui:LabelBox id="lblParkingContractAddress" code="<%=MessageIdConstant.SKF3010_SC002_LBL_CONTRACT_ADDRESS%>" />
+								<nfwui:LabelBox id="lblParkingContractAddress" code="<%=MessageIdConstant.SKF3010_SC002_LBL_CONTRACT_DETAIL_ADDRESS%>" />
 							</th>
 							<td>
-								<imui:textbox id="parkingContractAddress" name="parkingContractAddress" style="width:300;" value="${f:h(form.parkingContractAddress)}" class="${form.parkingAddressError}" placeholder="例　愛知県名古屋市中区錦2-18-19" maxlength="50" tabindex="81" disabled="${form.parkingContractInfoDisabled}"/>
+								<imui:textbox id="parkingContractAddress" name="parkingContractAddress" style="width:300;" value="${f:h(form.parkingContractAddress)}" 
+								class="${form.parkingAddressError}" placeholder="例　愛知県名古屋市中区錦2-18-19" maxlength="50" tabindex="87" disabled="${form.parkingContractInfoDisabled}"/>
 							</td>
 						</tr>
 						<tr>
@@ -855,8 +864,8 @@
 									maxlength="10" value="${form.contractStartDay}" placeholder="例　2020/09/01" tabindex="70" />
 								<im:calendar floatable="true" altField="#contractStartDay"/>
 							-->
-								<nfwui:DateBox id="contractStartDay" name="contractStartDay"
-									value="${f:h(form.contractStartDay)}" cssStyle="width:100px" disabled="${form.contractDelDisableFlg }" tabindex="67"/>
+								<nfwui:DateBox id="contractStartDay" name="contractStartDay" cssClass="${form.contractStartDayErr }"
+									value="${f:h(form.contractStartDay)}" cssStyle="width:100px" disabled="${form.contractDelDisableFlg }" tabindex="73"/>
 							</td>
 							<th colspan="2">
 							<!-- 駐車場名 -->
@@ -864,7 +873,7 @@
 							</th>
 							<td colspan="3">
 								<imui:textbox id="parkingName" name="parkingName" style="width:150px;" value="${f:h(form.parkingName)}" 
-									class="${form.parkingNameError}" disabled="${form.parkingContractInfoDisabled}" placeholder="例　駐車場名" maxlength="30" tabindex="82"/>
+									class="${form.parkingNameError}" disabled="${form.parkingContractInfoDisabled}" placeholder="例　駐車場名" maxlength="30" tabindex="88"/>
 							</td>
 						</tr>
 						<tr>
@@ -878,16 +887,16 @@
 									maxlength="10" value="${form.contractEndDay}" placeholder="例　2020/09/30" tabindex="71" />
 								<im:calendar floatable="true" altField="#contractEndDay"/>
 							-->
-								<nfwui:DateBox id="contractEndDay" name="contractEndDay"
-									value="${f:h(form.contractEndDay)}" cssStyle="width:100px" disabled="${form.contractDelDisableFlg }" tabindex="68"/>
+								<nfwui:DateBox id="contractEndDay" name="contractEndDay" cssClass="${form.contractEndDayErr }"
+									value="${f:h(form.contractEndDay)}" cssStyle="width:100px" disabled="${form.contractDelDisableFlg }" tabindex="74"/>
 							</td>
 							<th colspan="2">
 								<!-- 経理連携用管理番号（駐車場） -->
 								<nfwui:LabelBox id="lblContractAssetRegisterNo" code="<%=MessageIdConstant.SKF3010_SC002_LBL_CONTRACT_ASSET_REGISTER_NO %>" />
 							</th>
 							<td>
-								<imui:textbox id="parkingAssetRegisterNo" name="parkingAssetRegisterNo" style="ime-mode:disabled;width:150px;" maxlength="13"
-									value="${form.parkingAssetRegisterNo}" placeholder="例　A001002003004" disabled="${form.parkingContractInfoDisabled }" tabindex="83" />
+								<imui:textbox id="parkingAssetRegisterNo" name="parkingAssetRegisterNo" style="ime-mode:disabled;width:150px;" class="${form.parkingAssetRegisterNoError}" maxlength="15"
+									value="${form.parkingAssetRegisterNo}" placeholder="例　A001002003004" disabled="${form.parkingContractInfoDisabled }" tabindex="89" />
 							</td>
 						</tr>
 						<tr>
@@ -896,16 +905,17 @@
 								<nfwui:LabelBox id="lblContractRent" code="<%=MessageIdConstant.SKF3010_SC002_LBL_CONTRACT_RENT %>" />
 							</th>
 							<td>
-								<nfwui:NumberBox id="contractRent" name="contractRent" max="99999999" min="0" cssClass="nfw-default-width" cssStyle="width: 100px;"
-									maxlength="10" value="${form.contractRent}" disabled="${form.contractDelDisableFlg }" tabindex="69" />&nbsp;円
+								<nfwui:NumberBox id="contractRent" name="contractRent" max="99999999" min="0" 
+									cssClass="${form.contractRentErr}" cssStyle="width:100px;"
+									maxlength="10" disabled="${form.contractDelDisableFlg }" tabindex="75" inputFormat="n0" />&nbsp;円
 							</td>
 							<th colspan="2">
 								<!-- 契約開始日 -->
 								<nfwui:LabelBox id="lblContractStartDay" code="<%=MessageIdConstant.SKF3010_SC002_LBL_CONTRACT_START_DAY %>" />
 							</th>
 							<td>
-								<nfwui:DateBox id="parkingContractStartDay" name="parkingContractStartDay"
-									value="${f:h(form.parkingContractStartDay)}" cssStyle="width:100px" disabled="${form.parkingContractInfoDisabled }" tabindex="84"/>
+								<nfwui:DateBox id="parkingContractStartDay" name="parkingContractStartDay" value="${f:h(form.parkingContractStartDay)}" 
+									cssStyle="width:100px" cssClass="${f:h(form.parkingContractStartDateError)}" disabled="${form.parkingContractInfoDisabled}" tabindex="90"/>
 							</td>
 						</tr>
 						<tr>
@@ -914,16 +924,17 @@
 								<nfwui:LabelBox id="lblContractKyoekihi" code="<%=MessageIdConstant.SKF3010_SC002_LBL_CONTRACT_KYOEKIHI %>" />
 							</th>
 							<td>
-								<nfwui:NumberBox id="contractKyoekihi" name="contractKyoekihi" max="99999999" min="0" cssClass="nfw-default-width" cssStyle="width: 100px;"
-									maxlength="10" value="${form.contractKyoekihi}" disabled="${form.contractDelDisableFlg }" tabindex="70" />&nbsp;円
+								<nfwui:NumberBox id="contractKyoekihi" name="contractKyoekihi" max="99999999" min="0" 
+									cssClass="${form.contractKyoekihiErr }" cssStyle="width: 100px;"
+									maxlength="10" value="${form.contractKyoekihi}" disabled="${form.contractDelDisableFlg }" tabindex="76" />&nbsp;円
 							</td>
 							<th colspan="2">
 								<!-- 契約終了日 -->
 								<nfwui:LabelBox id="lblContractEndtDay" code="<%=MessageIdConstant.SKF3010_SC002_LBL_CONTRACT_END_DAY %>" />
 							</th>
 							<td>
-								<nfwui:DateBox id="parkingContractEndDay" name="parkingContractEndDay"
-									value="${f:h(form.parkingContractEndDay)}" cssStyle="width:100px" disabled="${form.parkingContractInfoDisabled }" tabindex="85"/>
+								<nfwui:DateBox id="parkingContractEndDay" name="parkingContractEndDay" value="${f:h(form.parkingContractEndDay)}" 
+									 cssStyle="width:100px" cssClass="${f:h(form.parkingContractEndDateError)}" disabled="${form.parkingContractInfoDisabled }" tabindex="91"/>
 							</td>
 						</tr> 
 						<tr>
@@ -932,16 +943,17 @@
 								<nfwui:LabelBox id="lblContractLandRent" code="<%=MessageIdConstant.SKF3010_SC002_LBL_CONTRACT_LAND_RENT %>" />
 							</th>
 							<td>
-								<nfwui:NumberBox id="contractLandRent" name="contractLandRent" max="99999999" min="0" cssClass="nfw-default-width" cssStyle="width: 100px;"
-									maxlength="10" value="${form.contractLandRent}" disabled="${form.contractDelDisableFlg }" tabindex="71" />&nbsp;円
+								<nfwui:NumberBox id="contractLandRent" name="contractLandRent" max="99999999" min="0" 
+									cssClass="${form.contractLandRentErr}" cssStyle="width: 100px;"
+									maxlength="10" value="${form.contractLandRent}" disabled="${form.contractDelDisableFlg }" tabindex="77" />&nbsp;円
 							</td>
 							<th colspan="2">
 								<!-- 駐車場料（地代）(駐車場) -->
 								<nfwui:LabelBox id="lblContractLandRent" code="<%=MessageIdConstant.SKF3010_SC002_LBL_CONTRACT_LAND_RENT %>" />
 							</th>
 							<td>
-								<nfwui:NumberBox id="parkingLandRent" name="parkingLandRent" max="99999999" min="0" cssClass="nfw-default-width" cssStyle="width: 100px;"
-									maxlength="10" value="${form.parkingLandRent}" disabled="${form.parkingContractInfoDisabled }" tabindex="86" />&nbsp;円
+								<nfwui:NumberBox id="parkingLandRent" name="parkingLandRent" max="999999" min="0" cssClass="${f:h(form.parkingLandRentError)}" cssStyle="width: 100px;"
+									maxlength="8" value="${form.parkingLandRent}" disabled="${form.parkingContractInfoDisabled }" tabindex="92" />&nbsp;円
 							</td>
 						</tr>
 						<tr>
@@ -951,7 +963,7 @@
 							</th>
 							<td rowspan="2">
 								<imui:textArea id="contractBiko" name="contractBiko" rows="5" clols="35" maxlength="400"
-									style="width:90%;" value="${form.contractBiko}" disabled="${form.contractDelDisableFlg }" tabindex="72" />
+									style="width:90%;" value="${form.contractBiko}" disabled="${form.contractDelDisableFlg }" tabindex="78" />
 							</td>
 							<th rowspan ="2" colspan="2">
 								<!-- 備考（駐車場） -->
@@ -959,7 +971,7 @@
 							</th>
 							<td rowspan="2">
 								<imui:textArea id="parkingContractBiko" name="parkingContractBiko" rows="5" clols="35" maxlength="400"
-									style="width:90%;" value="${form.parkingContractBiko}" disabled="${form.parkingContractInfoDisabled }" tabindex="87" />
+									style="width:90%;" value="${form.parkingContractBiko}" disabled="${form.parkingContractInfoDisabled }" tabindex="93" />
 							</td>
 						</tr>
 					</tbody>
@@ -981,11 +993,11 @@
 							// 変更チェック(賃貸人、経理連携用管理番号、契約開始日、契約終了日、家賃、共益費、駐車場料、備考)
 							if ($("#startingContractOwnerName").val() != $("#contractOwnerName").val()
 								|| $("#startingAssetRegisterNo").val() != $("#assetRegisterNo").val()
-								|| $("#startingContractStartDay").val() != $("#contractStartDay").val().replace(/\//g, "")
-								|| $("#startingContractEndDay").val() != $("#contractEndDay").val().replace(/\//g, "")
-								|| $("#startingContractRent").val() != $("#contractRent").val().replace(/,/g, "")
-								|| $("#startingContractKyoekihi").val() != $("#contractKyoekihi").val().replace(/,/g, "")
-								|| $("#startingContractLandRent").val() != $("#contractLandRent").val().replace(/,/g, "")
+								|| $("#startingContractStartDay").val().replace(/\//g, "") != $("#contractStartDay").val().replace(/\//g, "")
+								|| $("#startingContractEndDay").val().replace(/\//g, "") != $("#contractEndDay").val().replace(/\//g, "")
+								|| $("#startingContractRent").val().replace(/,/g, "") != $("#contractRent").val().replace(/,/g, "")
+								|| $("#startingContractKyoekihi").val().replace(/,/g, "") != $("#contractKyoekihi").val().replace(/,/g, "")
+								|| $("#startingContractLandRent").val().replace(/,/g, "") != $("#contractLandRent").val().replace(/,/g, "")
 								|| $("#startingContractBiko").val() != $("#contractBiko").val())
 							{
 								return true;
@@ -1096,7 +1108,7 @@
 								labelMap['parkingBasicRent'] = $('#parkingBasicRent').text().replace("円", "").trim();
 								// 駐車場月額使用料
 								labelMap['parkingShiyoMonthFei'] = $('#parkingShiyoMonthFei').text().replace("円", "").trim();
-								// 貸与可能総数
+								// 調整金額
 								labelMap['parkingRentalAdjust'] = $('#parkingRentalAdjust').val();
 								labelArray.push(labelMap);
 							}
@@ -1111,7 +1123,7 @@
 							// JSON備品リスト設定
 							setJsonBihinList();
 							// JSONドロップダウン選択値リスト設定
-							//setDrpDwnList();
+							setDrpDwnList();
 							// JSON可変ラベルリスト設定
 							setVariableLabelList();
 						}
@@ -1131,9 +1143,12 @@
 								//保存情報設定
 								setJsonBihinList();
 								setVariableLabelList();
+// 								url = "skf/Skf3010Sc006/attachedFileAdd";
+// 								$("#form").attr("action", url);
+// 								$("#form").submit();
+								formId= "form";
 								url = "skf/Skf3010Sc006/attachedFileAdd";
-								$("#form").attr("action", url);
-								$("#form").submit();
+								nfw.common.submitForm(formId, url);
 							}
 							
 						}
@@ -1204,9 +1219,13 @@
 											'text': 'ok',
 											'click': function() {
 												$(this).imuiMessageDialog('close');
+// 												url = "skf/Skf3010Sc006/regist";
+// 												$("#form").attr("action", url);
+// 												$("#form").submit();
+												formId= "form";
 												url = "skf/Skf3010Sc006/regist";
-												$("#form").attr("action", url);
-												$("#form").submit();
+												nfw.common.submitForm(formId, url);
+
 											}
 										},
 										{
@@ -1218,9 +1237,12 @@
 									]
 								});
 							} else {
+// 								url = "skf/Skf3010Sc006/regist";
+// 								$("#form").attr("action", url);
+// 								$("#form").submit();
+								formId= "form";
 								url = "skf/Skf3010Sc006/regist";
-								$("#form").attr("action", url);
-								$("#form").submit();
+								nfw.common.submitForm(formId, url);
 							}
 						}
 						
@@ -1229,8 +1251,8 @@
 							// 現在状態バックアップ
 							backUpStatus();
 							var dialogTitle = "確認";
-							//MessageIdConstant.：I-SKF-3003
-							var dialogMessage = "社宅（" + $("#shatakuName").val() + "）の削除処理を実行します。よろしいですか？";
+							//MessageIdConstant.：I-SKF-3004
+							var dialogMessage = "（" + $("#shatakuName").val() + "・" + $("#roomNo").val() + "）の削除処理を実行します。よろしいですか？";
 							nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc006/delete", "ok", "キャンセル", this, true);
 						}
 						
@@ -1287,9 +1309,12 @@
 																$(this).imuiMessageDialog('close');
 																// 現在状態バックアップ
 																backUpStatus();
+// 																url = "skf/Skf3010Sc006/addContractList";
+// 																$("#form").attr("action", url);
+// 																$("#form").submit();
+																formId= "form";
 																url = "skf/Skf3010Sc006/addContractList";
-																$("#form").attr("action", url);
-																$("#form").submit();
+																nfw.common.submitForm(formId, url);
 															}
 														},
 														{
@@ -1347,9 +1372,12 @@
 												backUpStatus();
 												// 選択値設定(削除済み契約番号)
 												$("#hdnDeleteContractSelectedValue").val($("#contractNo").val());
+// 												url = "skf/Skf3010Sc006/delContractList";
+// 												$("#form").attr("action", url);
+// 												$("#form").submit();
+												formId= "form";
 												url = "skf/Skf3010Sc006/delContractList";
-												$("#form").attr("action", url);
-												$("#form").submit();
+												nfw.common.submitForm(formId, url);
 											}
 										},
 										{
@@ -1375,10 +1403,13 @@
 												// 現在状態バックアップ
 												backUpStatus();
 												// 選択値設定(削除済み契約番号)
-												$("#hdnDeleteContractSelectedValue").val($("#contractNo").val());
+ 												$("#hdnDeleteContractSelectedValue").val($("#contractNo").val());
+// 												url = "skf/Skf3010Sc006/delContractList";
+// 												$("#form").attr("action", url);
+//												$("#form").submit();
+												formId= "form";
 												url = "skf/Skf3010Sc006/delContractList";
-												$("#form").attr("action", url);
-												$("#form").submit();
+												nfw.common.submitForm(formId, url);
 											}
 										},
 										{
@@ -1411,9 +1442,12 @@
 												backUpStatus();
 												$("#parkingSelectMode").val("addParking");
 												// 契約情報変更なし
+// 												url = "skf/Skf3010Sc006/changeParkingContractList";
+// 												$("#form").attr("action", url);
+// 												$("#form").submit();
+												formId= "form";
 												url = "skf/Skf3010Sc006/changeParkingContractList";
-												$("#form").attr("action", url);
-												$("#form").submit();
+												nfw.common.submitForm(formId, url);
 											} else {
 												$("<div>入力内容が無効になります。破棄してもよろしいですか？</div>").imuiMessageDialog({
 													iconType : 'question',
@@ -1428,9 +1462,12 @@
 																// 現在状態バックアップ
 																backUpStatus();
 																$("#parkingSelectMode").val("addParking");
+// 																url = "skf/Skf3010Sc006/changeParkingContractList";
+// 																$("#form").attr("action", url);
+// 																$("#form").submit();
+																formId= "form";
 																url = "skf/Skf3010Sc006/changeParkingContractList";
-																$("#form").attr("action", url);
-																$("#form").submit();
+																nfw.common.submitForm(formId, url);
 															}
 														},
 														{
@@ -1488,9 +1525,12 @@
 												$("#parkingSelectMode").val("delParking");
 												// 選択値設定(削除済み契約番号)
 												$("#hdnDeleteParkingContractSelectedValue").val($("#parkingContractNo").val());
+// 												url = "skf/Skf3010Sc006/changeParkingContractList";
+// 												$("#form").attr("action", url);
+// 												$("#form").submit();
+												formId= "form";
 												url = "skf/Skf3010Sc006/changeParkingContractList";
-												$("#form").attr("action", url);
-												$("#form").submit();
+												nfw.common.submitForm(formId, url);
 											}
 										},
 										{
@@ -1518,9 +1558,12 @@
 												$("#parkingSelectMode").val("delParking");
 												// 選択値設定(削除済み契約番号)
 												$("#hdnDeleteParkingContractSelectedValue").val($("#parkingContractNo").val());
+// 												url = "skf/Skf3010Sc006/changeParkingContractList";
+// 												$("#form").attr("action", url);
+// 												$("#form").submit();
+												formId= "form";
 												url = "skf/Skf3010Sc006/changeParkingContractList";
-												$("#form").attr("action", url);
-												$("#form").submit();
+												nfw.common.submitForm(formId, url);
 											}
 										},
 										{
@@ -1532,6 +1575,20 @@
 									]
 								});
 							}
+						}
+						
+						checkMaxParkingContract = function(){
+							// 契約番号リスト取得
+							var contractNoOptions = $("#parkingContractNo")[0].options;
+							// 契約番号リスト最大値取得
+							var maxContractNo = contractNoOptions[contractNoOptions.length - 1];
+							// 契約番号の最大値か確認
+							var selectContractNo = $("#parkingContractNo").val();
+							// 契約番号の最大値か確認
+							if ($("#parkingContractNo").val() != maxContractNo.value) {
+								return false;
+							}
+							return true;
 						}
 						
 						// 駐車場契約情報ボタンクリック
@@ -1546,8 +1603,6 @@
 						shainInfoCallback = function(param) {
 //						leaderShainInfoCallback = function(param) {
 							if( param != null && typeof param == 'object' && param.name != null){
-								$("#dormitoryLeaderName").val(param.name);
-								$("#keyManagerName").val(param.name);	// ← 後で削除
 								$("#contractOwnerName").val(param.name);	// ← 後で削除
 								$("#contractOwnerNo").val(1);	// ← 後で削除
 							}
@@ -1582,7 +1637,9 @@
 							nfw.common.doAjaxAction("skf/Skf3010Sc006/ParkingAddressSearchAsync",map,true,function(data) {
 								if(data.parkingContractAddress != null && data.parkingContractAddress!=""){
 									$("#parkingContractAddress").val(data.parkingContractAddress);
-									$("#parkingAddress").text(data.parkingContractAddress);
+									if(checkMaxParkingContract()){
+										$("#parkingAddress").val(data.parkingContractAddress);
+									}
 								}
 								$("#parkingZipCd").removeClass("nfw-validation-error");
 								$("#parkingZipCd").addClass(data.parkingZipCdError);
@@ -1671,7 +1728,7 @@
 						//部屋情報物置面積
 						$("#barnMenseki").bind('change', function() {
 							var map = new Object();
-							map['barnMenseki'] = $("#txtBarnMenseki").val();
+							map['barnMenseki'] = $("#barnMenseki").val();
 							map['originalAuse'] = $("#originalAuse").val();
 							map['barnMensekiAdjust'] = $("#hdnBarnMensekiAdjust").val();
 							
@@ -1822,9 +1879,12 @@
 												$(this).imuiMessageDialog('close');
 												// 現在状態バックアップ
 												backUpStatus();
+// 												url = "skf/Skf3010Sc006/changeContractDrpDwn";
+// 												$("#form").attr("action", url);
+// 												$("#form").submit();
+												formId= "form";
 												url = "skf/Skf3010Sc006/changeContractDrpDwn";
-												$("#form").attr("action", url);
-												$("#form").submit();
+												nfw.common.submitForm(formId, url);
 											}
 										},
 										{
@@ -1867,9 +1927,12 @@
 												// 現在状態バックアップ
 												backUpStatus();
 												$("#parkingSelectMode").val("changeParking");
+// 												url = "skf/Skf3010Sc006/changeParkingContractList";
+// 												$("#form").attr("action", url);
+// 												$("#form").submit();
+												formId= "form";
 												url = "skf/Skf3010Sc006/changeParkingContractList";
-												$("#form").attr("action", url);
-												$("#form").submit();
+												nfw.common.submitForm(formId, url);
 											}
 										},
 										{
@@ -1877,7 +1940,7 @@
 											'click': function() {
 												$(this).imuiMessageDialog('close');
 												// 変更前選択プルダウンに戻す
-												$("#contractNo").val($("#hdnDispContractSelectedIndex").val());
+												$("#parkingContractNo").val($("#hdnDispParkingContractSelectedIndex").val());
 											}
 										}
 									]
@@ -1915,8 +1978,11 @@
 						
 						// 駐車場住所チェンジ
 						$("#parkingContractAddress").bind('change', function() {
-							// 駐車場情報の所在地に設定
-							$("#parkingAddress").text($("#parkingContractAddress").val());
+							//最新の契約情報かチェック
+							if(checkMaxParkingContract()){
+								// 最新の情報の場合、駐車場情報の所在地に設定
+								$("#parkingAddress").text($("#parkingContractAddress").val());
+							}
 						});
 						
 						// 駐車場調整金額チェンジ
@@ -1960,8 +2026,11 @@
 						$("#sendHosokuType").val(hosokuType);
 						$("#sendAttachedNo").val(fileNo);
 						
-			    		$("#form").attr("action", url);
-			    		$("#form").submit();
+// 			    		$("#form").attr("action", url);
+// 			    		$("#form").submit();
+						formId= "form";
+						url = "skf/Skf3010Sc006/AttachedDownload";
+						nfw.common.submitForm(formId, url);
 						
 					}
 					
@@ -1970,14 +2039,14 @@
 		</div>
 		<br />
 		<div class="align-L float-L">
-			<input style="width:150px;" type="button" value="前の画面へ" class="imui-medium-button" onclick="back1()" tabindex="77"/>
+			<input style="width:150px;" type="button" value="前の画面へ" class="imui-medium-button" onclick="back1()" tabindex="94"/>
 		</div>
 		<div class="align-R">
 			<!-- 登録 -->
-			<imui:button id="enter" name="enter" value="登録" class="imui-medium-button" style="width:150px;" onclick="enterClick()" tabindex="78" />
+			<imui:button id="enter" name="enter" value="登録" class="imui-medium-button" style="width:150px;" onclick="enterClick()" tabindex="95" />
 			<!-- 削除 -->
 			<imui:button id="delete" name="delete" value="削除" class="imui-medium-button" style="width:150px;"
-											onclick="deleteClick()" tabindex="79" disabled="${form.newShatakuFlg }"/>
+											onclick="deleteClick()" tabindex="96" disabled="${form.newShatakuFlg }"/>
 		</div>
 		<!-- 現在表示中タブインデックス -->
 		<input type="hidden" name="hdnNowSelectTabIndex" id="hdnNowSelectTabIndex" value="${form.hdnNowSelectTabIndex}" />
@@ -2019,6 +2088,7 @@
 				});
 			});
 		</script>
+	</div>
 	</nfwui:Form>
-</div>
+
 <!-- コンテンツエリア　ここまで -->

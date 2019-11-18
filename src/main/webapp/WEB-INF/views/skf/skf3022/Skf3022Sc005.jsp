@@ -38,6 +38,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 	<!-- コンテンツエリア -->
 	<nfwui:Form id="form" name="form" modelAttribute="form">
 		<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3022_SC005%>" />
+		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3022Sc005/init"/>
 		<input type="hidden" name="hdnStTeijiCnt" id="hdnStTeijiCnt" value="${form.hdnStTeijiCnt}" />
 		<input type="hidden" name="hdnBhTeijiCnt" id="hdnBhTeijiCnt" value="${form.hdnBhTeijiCnt}" />
 		<input type="hidden" name="hdnMoveInOutCnt" id="hdnMoveInOutCnt" value="${form.hdnMoveInOutCnt}" />
@@ -53,6 +54,8 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 		<input type="hidden" name="delUpdateDateParkTwo" id="delUpdateDateParkTwo" value="" />
 		<input type="hidden" name="delShatakuNo" id="delShatakuNo" value="" />
 		<input type="hidden" name="delRoomNo" id="delRoomNo" value="" />
+		<input type="hidden" name="delParkOne" id="delParkOne" value="" />
+		<input type="hidden" name="delParkTwo" id="delParkTwo" value="" />
 		<input type="hidden" name="hdnTeijiNo" id="hdnTeijiNo" value="" />
 		<input type="hidden" name="hdnNyukyoDate" id="hdnNyukyoDate" value="" />
 		<input type="hidden" name="hdnTaikyoDate" id="hdnTaikyoDate" value="" />
@@ -69,6 +72,8 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 		<input type="hidden" name="searchInfoBhJyokyo" id="searchInfoBhJyokyo" value="${form.searchInfoBhJyokyo}" />
 		<input type="hidden" name="searchInfoBhKakunin" id="searchInfoBhKakunin" value="${form.searchInfoBhKakunin}" />
 		<input type="hidden" name="searchInfoMoveInout" id="searchInfoMoveInout" value="${form.searchInfoMoveInout}" />
+		<input type="hidden" name="hdnListSelectState" id="hdnListSelectState" value="" />
+		<input type="hidden" name="hdnPageMax" id="hdnPageMax" value="${form.listTableMaxRowCount}" />
 		<div class="imui-form-container-wide">
 			<div class="imui-chapter-title"><h2>検索条件</h2></div>
 			<table class="imui-form-search-condition">
@@ -80,7 +85,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 						</th>
 						<td>
 <!-- 							<input class="ime-off" style="width:200px;" type="text" placeholder="例　00123456（半角）"/> -->
-							<imui:textbox id="txtShainNo" name="shainNo" style="ime-mode: disabled;width:200px;" value="${f:h(form.shainNo)}" placeholder="例　00123456（半角）" maxlength="8" tabindex="1"/>
+							<imui:textbox id="txtShainNo" name="shainNo" style="ime-mode: disabled;width:200px;" value="${f:h(form.shainNo)}" placeholder="例　00123456（半角）" maxlength="8" tabindex="3"/>
 						</td>
 						<th colspan="2">
 <!-- 							<label style="width:80px;">入退居区分</label> -->
@@ -88,7 +93,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 						</th>
 						<td>
 							<imui:select id="nyutaikyoKbn" name="nyutaikyoKbn" 
-									width="120px" list="${form.nyutaikyoKbnList}" tabindex="4" />
+									width="120px" list="${form.nyutaikyoKbnList}" tabindex="6" />
 						</td>
 						<th rowspan="2">
 <!-- 							<label style="width:80px;">備品提示</label> -->
@@ -100,7 +105,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 						</th>
 						<td style="width:40%;">
 							<imui:select id="bhJyokyo" name="bhJyokyo" 
-									width="120px" list="${form.bhJyokyoList}" tabindex="7" />
+									width="120px" list="${form.bhJyokyoList}" tabindex="9" />
 						</td>
 					</tr>
 					<tr>
@@ -110,7 +115,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 						</th>
 						<td>
 <!-- 							<input style="width:200px;" type="text" placeholder="例　中日本　太郎"/> -->
-							<imui:textbox id="txtShainName" name="shainName" style="width:200px;" value="${f:h(form.shainName)}" placeholder="例　中日本　太郎" maxlength="20" tabindex="2"/>
+							<imui:textbox id="txtShainName" name="shainName" style="width:200px;" value="${f:h(form.shainName)}" placeholder="例　中日本　太郎" maxlength="20" tabindex="4"/>
 						</td>
 						<th rowspan="2">
 <!-- 							<label style="width:80px;">社宅提示</label> -->
@@ -122,15 +127,15 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 						</th>
 						<td>
 							<imui:select id="stJyokyo" name="stJyokyo" 
-								width="120px" list="${form.stJyokyoList}" tabindex="5" />
+								width="120px" list="${form.stJyokyoList}" tabindex="7" />
 						</td>
 						<th>
 <!-- 							<label>確認督促</label> -->
-							<nfwui:LabelBox id="lblBhKakunin" code="<%=MessageIdConstant.SKF3022_SHTAKU_TEIJI %>" />
+							<nfwui:LabelBox id="lblBhKakunin" code="<%=MessageIdConstant.SKF3022_SC005_BIHINTEIJI_KAKUNIN %>" />
 						</th>
 						<td>
 							<imui:select id="bhKakunin" name="bhKakunin" 
-								width="120px" list="${form.bhKakuninList}" tabindex="8" />
+								width="120px" list="${form.bhKakuninList}" tabindex="10" />
 						</td>
 					</tr>
 					<tr>
@@ -140,7 +145,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 						</th>
 						<td>
 <!-- 							<input style="width:200px;" type="text" placeholder="例　社宅名"/> -->
-							<imui:textbox id="txtShatakuName" name="shatakuName" style="width:200px;" value="${f:h(form.shatakuName)}" placeholder="例　社宅名" maxlength="30" tabindex="3"/>
+							<imui:textbox id="txtShatakuName" name="shatakuName" style="width:200px;" value="${f:h(form.shatakuName)}" placeholder="例　社宅名" maxlength="30" tabindex="5"/>
 						</td>
 						<th>
 <!-- 							<label>確認督促</label> -->
@@ -148,7 +153,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 						</th>
 						<td>
 							<imui:select id="stKakunin" name="stKakunin" 
-								width="120px" list="${form.stKakuninList}" tabindex="6" />
+								width="120px" list="${form.stKakuninList}" tabindex="8" />
 						</td>
 						<th colspan="2">
 <!-- 							<label>備品搬入搬出督促</label> -->
@@ -156,14 +161,14 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 						</th>
 						<td>
 							<imui:select id="moveInOut" name="moveInOut" 
-								width="120px" list="${form.moveInOutList}" tabindex="9" />
+								width="120px" list="${form.moveInOutList}" tabindex="11" />
 						</td>
 					</tr>
 				</tbody>
 			</table>
 			<div class="align-L">	
 				<nfwui:Button id="search" name="search" code="<%=MessageIdConstant.SKF3010_SC004_BUTTON_SEARCH %>" cssClass="imui-small-button" 
-						url="skf/Skf3022Sc005/search" formId="form" tabindex="10" />
+						url="skf/Skf3022Sc005/search" formId="form" tabindex="12" />
 			</div>
 		</div>
 		<!-- 明細＆細目未満 -->
@@ -185,24 +190,24 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 						<pager rowNum="${form.listTableMaxRowCount }" />
 						<cols sortable="false">
 						<col name="colChkSelect" caption="督促" hidden="true"/>
-						<col name="colNyutaikyoKbn" caption="入退居区分" width="65" sortable="false" align="center" wrap="true"/>
-						<col name="colShainNo" caption="社員番号" width="70" sortable="false" align="left" wrap="true"/>
-						<col name="colShainName" caption="社員氏名" width="100" sortable="false" align="left" wrap="true"/>
+						<col name="colNyutaikyoKbn" caption="入退居区分" width="50" sortable="false" align="center" wrap="true"/>
+						<col name="colShainNo" caption="社員番号" width="75" sortable="false" align="left" wrap="true"/>
+						<col name="colShainName" caption="社員氏名" width="95" sortable="false" align="left" wrap="true"/>
 						<col name="colSinseiKbn" caption="申請区分"　width="55" sortable="false" align="center" wrap="true"/>
-						<col name="colNyukyoDate" caption="入居予定日" width="80" sortable="false" align="center" wrap="true"/>
-						<col name="colTaikyoDate" caption="退居予定日"  width="80" sortable="false" align="center" wrap="true"/>
-						<col name="colShatakuName" caption="社宅名" width="170" sortable="false" align="left" wrap="true"/>
+						<col name="colNyukyoDate" caption="入居予定日" width="85" sortable="false" align="center" wrap="true"/>
+						<col name="colTaikyoDate" caption="退居予定日"  width="85" sortable="false" align="center" wrap="true"/>
+						<col name="colShatakuName" caption="社宅名" width="140" sortable="false" align="left" wrap="true"/>
 						<col name="colRoomNo" caption="部屋番号" width="60" sortable="false" align="left" wrap="true"/>
 						<col name="colYouto" caption="用途" width="35" sortable="false" align="center" wrap="true"/>
 						<col name="colStJyokyo" caption="状況" width="60" sortable="false" align="center" wrap="true" onCellAttr="onCellAttr"/>
-						<col name="colStKakunin" caption="確認督促" width="70" sortable="false" align="center" wrap="true"/>
+						<col name="colStKakunin" caption="確認督促" width="85" sortable="false" align="center" wrap="true"/>
 						<col name="colBhJyokyo" caption="状況" width="60" sortable="false" align="center" wrap="true" onCellAttr="onCellAttr"/>
-						<col name="colBhkakunin" caption="確認督促" width="70" sortable="false" align="center" wrap="true"/>
-						<col name="colMoveInOut" caption="督促" width="70" sortable="false" align="center" wrap="true"/>
-						<col name="colDetail" caption="詳細" width="50" sortable="false" align="center" >
+						<col name="colBhkakunin" caption="確認督促" width="85" sortable="false" align="center" wrap="true"/>
+						<col name="colMoveInOut" caption="督促" width="85" sortable="false" align="center" wrap="true"/>
+						<col name="colDetail" caption="詳細" width="40" sortable="false" align="center" >
 							<showIcon iconClass="im-ui-icon-common-16-update" />
 						</col>
-						<col name="colDelete" caption="削除" width="50" sortable="false" align="center" >
+						<col name="colDelete" caption="削除" width="40" sortable="false" align="center" >
 							<showIcon iconClass="im-ui-icon-common-16-trashbox" />
 						</col>
 						<col name="hdnTeijiNo" caption="" hidden="true"/>
@@ -223,6 +228,9 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 						<col name="hdnJssShatakuTeijiDate" caption="" hidden="true"/>
 						<col name="hdnTeijiKbn" caption="" hidden="true"/>
 						<col name="sameAppNoCount" caption="同一申請書類管理番号" hidden="true"/>
+						<col name="hdnNyutaikyoKbnCd" caption="" hidden="true"/>
+						<col name="hdnStJyokyoCd" caption="" hidden="true"/>
+						<col name="hdnBhJyokyoCd" caption="" hidden="true"/>
 						<col name="chkSelect" caption="チェックボックス" hidden="true"/>
 						
 						</cols>
@@ -233,27 +241,33 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 					<div id="sampleListTable1-pager"></div>
 					<script type="text/javascript">
 						(function($) {
+							
+							//選択行チェック
 							onBeforeSelectRow = function(rowId,e) {
-								//チェックボックスかアイコン列がクリックされた場合のみTrueにする
+								//チェックボックス可かアイコン列がクリックされた場合のみTrueにする
 								// リストテーブル情報取得
 								var grid = $("#mainList");
-		                        i =  $.jgrid.getCellIndex($(e.target).closest('td')[0]);
-		                        cm = grid.getGridParam('colModel');
-		                        
-		                        if(cm[i].name === 'cb'){
-		                        	var row = grid.getRowData(rowId);
-									if(row.chkSelect == 'false'){
-										//選択不可ボックス
-										return false;
-									}
-		                        	return true;
-		                        }else if(cm[i].name === 'colDetail' || cm[i].name === 'colDelete'){
-		                        	return true;
-		                        }else{
-		                        	return false;
-		                        }
-
+								i =  $.jgrid.getCellIndex($(e.target).closest('td')[0]);
+								cm = grid.getGridParam('colModel');
+								var row = grid.getRowData(rowId);
+								//詳細列は許可
+								if(cm[i].name === 'colDetail'){
+									return true;
+								}
+								//削除列は許可
+								else if( cm[i].name === 'colDelete'){
+									return true;
+								}
+								//他行はチェックボックス選択可のみ許可
+								else if(row.chkSelect == 'false'){
+									//選択不可
+									return false;
+								}else{
+									return true;
+								}
+								return false;
 							}
+							
 							
 							onCellSelect = function(rowId,iCol,cellcontent,e) {
 								// リストテーブル情報取得
@@ -267,7 +281,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
  									var hdnNyukyoDate = row.colNyukyoDate;
  									var hdnTaikyoDate = row.colTaikyoDate;
  									var hdnShoruikanriNo = row.hdnShoruikanriNo;
- 									var hdnNyutaikyoKbn = row.colNyutaikyoKbn;
+ 									var hdnNyutaikyoKbn = row.hdnNyutaikyoKbnCd;
  									var hdnApplKbn = row.colSinseiKbn;
  									var hdnShainNoChangeFlg = row.hdnShainChangeFlg;
 									
@@ -279,15 +293,23 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
  									$("#hdnApplKbn").val(hdnApplKbn);
  									$("#hdnShainNoChangeFlg").val(hdnShainNoChangeFlg);
  									
-									// サービス呼び出し
- 									url = "skf/Skf3022Sc006/init";
- 									$("#form").attr("action", url);
-									$("#form").submit();
+ 									$('#mainList').setSelection(rowId,false);
+ 									
+ 									if(row.sameAppNoCount != ""){
+ 										//同一申請書類管理番号存在する場合メッセージ表示
+ 	 									var dialogMessage = row.sameAppNoCount;
+ 	 									nfw.common.confirmPopup(dialogMessage, "", "form", "skf/Skf3022Sc006/init", "ok", "キャンセル", this, true);
+
+ 									}else{
+ 										// サービス呼び出し
+ 	 									url = "skf/Skf3022Sc006/init";
+ 										nfw.common.submitForm("form", url);
+ 									}
 								}else if($(cellcontent).hasClass('im-ui-icon-common-16-trashbox')) {
  									// 削除パラメータ
  									var delTeijiNo = row.hdnTeijiNo;
  									var delShainNo = row.colShainNo;
- 									var delNyutaikyoKbn = row.colNyutaikyoKbn;
+ 									var delNyutaikyoKbn = row.dhnNyutaikyoKbnCd;
  									var delUpdateDate = row.hdnUpdateDate;
  									var delUpdateDateNtk = row.hdnUpdateDateNtk;
  									var delUpdateDateShataku = row.hdnUpdateDateShataku;
@@ -311,47 +333,42 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
  									$("#delParkOne").val(delParkOne);
  									$("#delParkTwo").val(delParkTwo);
  									
- 									var dialogTitle = "確認";
- 									var dialogMessage = "提示データ（"+row.colShainName+"）を削除します。よろしいですか？";//I-SKF-3022
- 							    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3022Sc005/delete", "OK", "CANCEL", this, true);
-//  									// サービス呼び出し
-//  									url = "skf/Skf3022Sc005/delete";
-//  									$("#form").attr("action", url);
-// 									$("#form").submit();
+ 									$('#mainList').setSelection(rowId,false);
+ 									
+									var dialogTitle = "確認";
+									var dialogMessage = "提示データ（"+row.colShainName+"）を削除します。よろしいですか？";//I-SKF-3022
+									nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3022Sc005/delete", "ok", "キャンセル", this, true);
+
 								}
- 								else if($(cellcontent).hasClass('cbox')){
- 									//チェックボックス
+								else if($(cellcontent).hasClass('cbox')){
+									//チェックボックス
 
  								}
-
+								var prop = $('#allListCheck').prop('checked');
+								if(prop){
+									//督促チェックボックスがONの場合、OFFにする
+									$('#allListCheck').prop('checked',false);
+								}
 							}
 							
 							onSelectRow = function(rowid,e){
+								
 								changeButtonState();
 							}
 							
-							onSelectAll = function(aRowids,status) {
-								// リストテーブル情報取得
-								var grid = $("#mainList");
-						        if (status) {
-						            // uncheck "protected" rows
-						            var cbs = $("tr.jqgrow > td > input.cbox:disabled", grid);
-						            cbs.removeAttr("checked");
-
-						            //modify the selarrrow parameter
-						            grid[0].p.selarrrow = grid.find("tr.jqgrow:has(td > input.cbox:checked)")
-						                .map(function() { return this.id; }) // convert to set of ids
-						                .get(); // convert to instance of Array
-						        }
-						        changeButtonState();
-						    }
 							
+							//督促ボタン状態変更
 							changeButtonState = function(){
 								var TeijiKbnCount1 = 0;     // 提示区分が1の件数
-					            var TeijiKbnCount2 = 0;     // 提示区分が2の件数
-					            var TeijiKbnCount3 = 0;     // 提示区分が3の件数
+								var TeijiKbnCount2 = 0;     // 提示区分が2の件数
+								var TeijiKbnCount3 = 0;     // 提示区分が3の件数
+							
+								if($('#hdnListSelectState').val() ==="all"){
+									//全選択処理中は実行しない
+									return;
+								}
 								
-					            var grid = $('#mainList');
+								var grid = $('#mainList');
 								var rows = grid.getRowData(); //get data
 								var selrows = $('#mainList').getGridParam('selarrrow');
 								for (var i = 0; i < selrows.length; i++)
@@ -383,6 +400,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 									$('#hdnBhTeijiCnt').val(TeijiKbnCount2);
 								}else{
 									$('#btnBihinTeiji').prop("disabled",true);
+									$('#btnBihinTeiji').addClass("imui-disabled-button");
 									$('#hdnBhTeijiCnt').val(TeijiKbnCount2);
 								}
 								if(TeijiKbnCount3 > 0){
@@ -391,43 +409,52 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 									$('#hdnMoveInOutCnt').val(TeijiKbnCount3);
 								}else{
 									$('#btnBihinInOut').prop("disabled",true);
+									$('#btnBihinInOut').addClass("imui-disabled-button");
 									$('#hdnMoveInOutCnt').val(TeijiKbnCount3);
 								}
 							}
+							
 						})(jQuery);
 						
-						 $(function() {
-// 							$("#mainList").jqGrid('setGroupHeaders', {
-// 								useColSpanStyle: true,
-// 								groupHeaders: [
-// // 								{
-// // 									startColumnName: 'colStJyokyo',
-// // 									numberOfColumns: 2,
-// // 									titleText: '<div style="text-align:center;font-size:12px">社宅提示</div>'
-// // 								},{
-// // 									startColumnName: 'colBhJyokyo',
-// // 									numberOfColumns: 2,
-// // 									titleText: '<div style="text-align:center;font-size:12px">備品提示</div>'
-// // 								},{
-// // 									startColumnName: 'colMoveInOut',
-// // 									numberOfColumns: 1,
-// // 									titleText: '<div style="text-align:center;font-size:12px">搬入搬出</div>'
-// // 								},
-// 								{
-// 									startColumnName: 'cb',
-// 									numberOfColumns: 1,
-// 									titleText: '<div style="text-align:center;font-size:12px;">督促</div>'
-// 								}
-// 								]
-// 							});
-						});
-
+						//督促チェックボックス処理
+						function allCheckBoxSelect(e){
+							//チェックボックス状態取得
+							var prop = $('#allListCheck').prop('checked');
+							//リスト選択全解除
+							$("#mainList").jqGrid('resetSelection');
+							//選択処理状態all
+							$('#hdnListSelectState').val("all");
+							//選択状態で選択処理
+							if(prop){
+								var grid = $('#mainList');
+								var rows = grid.getRowData(); //get data
+								//nfw.common.showReserveMessage("warning", "選択");
+								for (var idx in rows) {
+									var row = rows[idx];
+									var page = $('#mainList').getGridParam('page');
+									var pagem = $('#hdnPageMax').val();
+									var pagemax =  Number(pagem);
+									var rowidx = Number(idx) + 1 + ((page - 1) * pagemax);
+									if(row.chkSelect == 'true'){
+										$('#mainList').setSelection(rowidx,true);
+									}
+								}
+							}
+							$('#hdnListSelectState').val("solo");
+							changeButtonState();
+							
+						}
+						 
+						//リスト生成後イベント
 						 function gridComplete(){
 							var grid = $('#mainList');
 							var rows = grid.getRowData(); //get data
 							for (var idx in rows) {
 								var row = rows[idx];
-								var rowidx = Number(idx) + 1;
+								var page = $('#mainList').getGridParam('page');
+								var pagem = $('#hdnPageMax').val();
+								var pagemax =  Number(pagem);
+								var rowidx = Number(idx) + 1 + ((page - 1) * pagemax);
 								if(row.chkSelect == 'false'){
 									//チェックボックスを非活性にする
 									var cbsdis = $("tr#"+rowidx+".jqgrow > td > input.cbox", grid);
@@ -440,39 +467,41 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 
 							var $list = $('#mainList');
 							// 項目に指定した幅を設定する
-							var $col = $('#mainList_cb');
-						    //$col[0].style.width = "35px";
+							//var $col = $('#mainList_cb');
+							//$col[0].style.width = "35px";
 							// ヘッダ項目に指定した幅を設定する
-						    //$(".jqgfirstrow > td")[1].style.width = "35px";
-						    // JqGridの項目の幅情報の上書き.
-						    //$list[0].grid.headers[1].width = 35;
-						    //$list[0].grid.headers[1].el.align = "center";
-						    //$list[0].grid.headers[1].el.style.textAlign = "center";
-						    //$list[0].grid.headers[3].el.style.textAlign = "center";
-						    //$list[0].grid.headers[3].el.innerText = "入退居\n区分";
-						    $list[0].grid.headers[12].el.innerText = "社宅提示\n状況";
-						    $list[0].grid.headers[13].el.innerText = "社宅提示\n確認督促";
-						    $list[0].grid.headers[14].el.innerText = "備品提示\n状況";
-						    $list[0].grid.headers[15].el.innerText = "備品提示\n確認督促";
-						    $list[0].grid.headers[16].el.innerText = "搬入搬出\n督促";
-// 						    $list[0].grid.headers[6].el.style.textAlign = "center";
-// 						    $list[0].grid.headers[7].el.style.textAlign = "center";
-// 						    $list[0].grid.headers[8].el.style.textAlign = "center";
-// 						    $list[0].grid.headers[11].el.style.textAlign = "center";
- 						    $list[0].grid.headers[12].el.style.textAlign = "center";
- 						    $list[0].grid.headers[13].el.style.textAlign = "center";
- 						    $list[0].grid.headers[14].el.style.textAlign = "center";
- 						    $list[0].grid.headers[15].el.style.textAlign = "center";
- 						    $list[0].grid.headers[16].el.style.textAlign = "center";
- 						    $list[0].grid.headers[17].el.style.textAlign = "center";
- 						    $list[0].grid.headers[18].el.style.textAlign = "center";
-						    // colModelの幅の情報を更新する.
- 						    //var colModel = $list.jqGrid('getGridParam', 'colModel');
- 						    //colModel[1].width = 35;
- 						    //$list.jqGrid('setGridParam', 'colModel', colModel);
+							$(".jqgfirstrow > td")[1].style.width = "25px";
+							// JqGridの項目の幅情報の上書き.
+							var befHtml = $list[0].grid.headers[1].el.innerHTML;
+							$list[0].grid.headers[1].el.innerHTML="<span>督促<br /><input type=\"checkbox\" name=\"listCheck\" id=\"allListCheck\" onclick=\"allCheckBoxSelect(event)\"></span>";
+							//$list[0].grid.headers[1].el.innerHTML="<div id=\"jqgh_mainList_cb\">督促<input class=\"cbox\" id=\"cb_mainList\" role=\"checkbox\" type=\"checkbox\"></div>";
+							$list[0].grid.headers[1].el.style.width="25px";
+							$list[0].grid.headers[1].el.style.textAlign = "center";
+							//$list[0].grid.headers[1].el.outerHTML="<th class=\"ui-state-default ui-th-column ui-th-ltr\" id=\"mainList_cb\" role=\"columnheader\" style=\"width: 30px;\"><div id=\"jqgh_mainList_cb\"><span>督促<br /><input name=\"listCheck\" id=\"allListCheck\" type=\"checkbox\"></span></div></th>";
+							//$list[0].grid.headers[3].el.style.textAlign = "center";
+							$list[0].grid.headers[3].el.innerText = "入退居\n区分";
+							$list[0].grid.headers[6].el.innerText = "申請\n区分";
+							$list[0].grid.headers[12].el.innerText = "社宅提示\n状況";
+							$list[0].grid.headers[13].el.innerText = "社宅提示\n確認督促";
+							$list[0].grid.headers[14].el.innerText = "備品提示\n状況";
+							$list[0].grid.headers[15].el.innerText = "備品提示\n確認督促";
+							$list[0].grid.headers[16].el.innerText = "搬入搬出\n督促";
+							$list[0].grid.headers[3].el.style.textAlign = "center";
+ 						    $list[0].grid.headers[6].el.style.textAlign = "center";
+ 							$list[0].grid.headers[12].el.style.textAlign = "center";
+ 							$list[0].grid.headers[13].el.style.textAlign = "center";
+ 							$list[0].grid.headers[14].el.style.textAlign = "center";
+ 							$list[0].grid.headers[15].el.style.textAlign = "center";
+ 							$list[0].grid.headers[16].el.style.textAlign = "center";
+ 							$list[0].grid.headers[17].el.style.textAlign = "center";
+ 							$list[0].grid.headers[18].el.style.textAlign = "center";
+
 						    changeButtonState();
 						};
 						
+
+						
+						//メール送信情報生成
 						function setDunningMailInfo(teijiKbn){
 							//選択行
 							var index = 0;
@@ -489,10 +518,10 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 									var shainNo = row.colShainNo;
 									var shainName = row.colShainName;
 									var teijiNo = row.hdnTeijiNo;
-									var nyutaikyoKbn = row.colNyutaikyoKbn;
+									var nyutaikyoKbn = row.hdnNyutaikyoKbnCd;
 									var updateDate = row.hdnUpdateDate;
 									var shinseiShoruiNo = row.hdnShoruikanriNo
-									var bihinTeijiJokyo = row.colBhJyokyo;
+									var bihinTeijiJokyo = row.hdnBhJyokyoCd;
 									var jssShatakuTeijiDate = row.hdnJssShatakuTeijiDate
 									
 									tempStr.push(shainNo);
@@ -525,35 +554,36 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 				    	}).trigger('resize');
 				    				
 				    });
+					
 				})(jQuery);
 				</script>
 			
 					<br />
 			<div class="align-R">				
-				<nfwui:ConfirmButton id="btnShatakuTeiji" name="btnShatakuTeiji" value="社宅提示データ本人確認督促"
- 			    			cssStyle="width:200px;" cssClass="imui-medium-button" 
-			  				formId="form" disabled="${form.btnShatakuTeijiDisabled}"
- 			  				title="<%= MessageIdConstant.SKF2020_SC002_CONFIRM_TITLE %>"  
+				<nfwui:ConfirmButton id="btnShatakuTeiji" name="btnShatakuTeiji" 
+							code="<%=MessageIdConstant.SKF3022_SC005_ST_TEIJI_KAKUNIN%>"  
+ 							cssStyle="width:200px;" cssClass="imui-medium-button" 
+							formId="form" disabled="${form.btnShatakuTeijiDisabled}"
+ 							title="<%= MessageIdConstant.SKF2020_SC002_CONFIRM_TITLE %>"  
  							message="<%= MessageIdConstant.I_SKF_3023 %>"  
  							preOnclick="if(!setDunningMailInfo(1)){retrun(false)};" 
- 			  				url="skf/Skf3022Sc005/SendMail" /> 
-			  	<nfwui:ConfirmButton id="btnBihinTeiji" name="btnBihinTeiji" value="備品提示データ本人確認督促"
-			    			cssStyle="width:200px;" cssClass="imui-medium-button"
-			  				formId="form" disabled="${form.btnShatakuTeijiDisabled}"
-			  				title="<%= MessageIdConstant.SKF2020_SC002_CONFIRM_TITLE %>" 
-							message="<%= MessageIdConstant.I_SKF_3023 %>" 
+ 							url="skf/Skf3022Sc005/SendMail" tabindex="13"/> 
+				<nfwui:ConfirmButton id="btnBihinTeiji" name="btnBihinTeiji" 
+							code="<%=MessageIdConstant.SKF3022_SC005_BH_TEIJI_KAKUNIN%>"  
+							cssStyle="width:200px;" cssClass="imui-medium-button"
+							formId="form" disabled="${form.btnBihinTeijiDisabled}"
+							title="<%= MessageIdConstant.SKF2020_SC002_CONFIRM_TITLE %>" 
+							message="<%= MessageIdConstant.I_SKF_3024 %>" 
 							preOnclick="if(!setDunningMailInfo(2)){retrun(false)};"
-			  				url="skf/Skf3022Sc005/SendMail" />
-			  	<nfwui:ConfirmButton id="btnBihinInOut" name="btnBihinInOut" value="備品搬入・搬出督促"
-			    			cssStyle="width:150px;" cssClass="imui-medium-button"
-			  				formId="form" disabled="${form.btnShatakuTeijiDisabled}"
-			  				title="<%= MessageIdConstant.SKF2020_SC002_CONFIRM_TITLE %>" 
-							message="<%= MessageIdConstant.I_SKF_3023 %>" 
+							url="skf/Skf3022Sc005/SendMail" tabindex="14"/>
+				<nfwui:ConfirmButton id="btnBihinInOut" name="btnBihinInOut" 
+							code="<%=MessageIdConstant.SKF3022_SC005_BTN_MOVE_INOUT%>"  
+							cssStyle="width:150px;" cssClass="imui-medium-button"
+							formId="form" disabled="${form.btnBihinInOutDisabled}"
+							title="<%= MessageIdConstant.SKF2020_SC002_CONFIRM_TITLE %>" 
+							message="<%= MessageIdConstant.I_SKF_3025 %>" 
 							preOnclick="if(!setDunningMailInfo(3)){retrun(false)};"
-			  				url="skf/Skf3022Sc005/SendMail" />
-<!-- 				<input style="width:200px;" type="button" value="社宅提示データ本人確認督促" class="imui-medium-button" onclick="" disabled/> -->
-<!-- 				<input style="width:200px;" type="button" value="備品提示データ本人確認督促" class="imui-medium-button" onclick="" disabled/> -->
-<!-- 				<input style="width:150px;" type="button" value="備品搬入・搬出督促" class="imui-medium-button" onclick="" disabled/> -->
+							url="skf/Skf3022Sc005/SendMail" tabindex="15"/>
 			</div>
 
 		</div>

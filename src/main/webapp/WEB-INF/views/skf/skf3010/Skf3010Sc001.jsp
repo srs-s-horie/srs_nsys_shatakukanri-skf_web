@@ -222,7 +222,7 @@
 					// 空き駐車場数
 					$("#hdnRowEmptyParkingCount").val(row.hdnEmptyParkingCount);
 					// 複写フラグ
-					$('#form2 [name=copyFlg]').val($("false").val());
+					$("#copyFlg").val("false");
 
 					// クリックアイコン判定
 					if ($(cellcontent).hasClass('im-ui-icon-common-16-update') && iCol == 11) {
@@ -235,13 +235,11 @@
 							// 借上げ社宅登録画面へ
 							url = "skf/Skf3010Sc006/init";
 						}
-						$("#listTableForm").attr("action", url);
-						$("#listTableForm").submit();
+						nfw.common.submitForm("listTableForm", url);
 					} else if ($(cellcontent).hasClass('im-ui-icon-common-16-update') && iCol == 12) {
 						/** 部屋 */
 						url = "skf/Skf3010Sc004/init";
-						$("#listTableForm").attr("action", url);
-						$("#listTableForm").submit();
+						nfw.common.submitForm("listTableForm", url);
 					}
 				}
 				$("#selectedCompanyCd").bind('change', function() {
@@ -301,8 +299,7 @@
 								$('#form2 [name=hdnRowShatakuKbn]').val("1");
 								// 保有社宅登録画面
 								url = "skf/Skf3010Sc002/init";
-								$("#form2").attr("action", url);
-								$("#form2").submit();
+								nfw.common.submitForm("form2", url);
 								break;
 							// 新規（借上）
 							case 2:
@@ -310,8 +307,7 @@
 								$('#form2 [name=hdnRowShatakuKbn]').val("2");
 								// 借上社宅登録画面
 								url = "skf/Skf3010Sc006/init";
-								$("#form2").attr("action", url);
-								$("#form2").submit();
+								nfw.common.submitForm("form2", url);
 								break;
 							// 複写(借上)
 							case 3:
@@ -329,11 +325,10 @@
 								// 選択行:空き駐車場数
 								$('#form2 [name=hdnRowEmptyParkingCount]').val($("#hdnRowEmptyParkingCount").val());
 								// 複写フラグ
-								$('#form2 [name=copyFlg]').val($("true").val());
+								$('#form2 [name=copyFlg]').val("true");
 								// 社宅一覧の借上(複写)ボタン処理
 								url = "skf/Skf3010Sc001/rentalCopyCheck";
-								$("#form2").attr("action", url);
-								$("#form2").submit();
+								nfw.common.submitForm("form2", url);
 								break;
 							// 新規(一棟)
 							case 4:
@@ -341,8 +336,7 @@
 								$('#form2 [name=hdnRowShatakuKbn]').val("4");
 								// 保有社宅登録画面
 								url = "skf/Skf3010Sc002/init";
-								$("#form2").attr("action", url);
-								$("#form2").submit();
+								nfw.common.submitForm("form2", url);
 								break;
 							default:
 								nfw.common.showReserveMessage("warning", "未サポート(未実装機能)です。");

@@ -10,11 +10,38 @@
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.skf2010.app.skf2010sc002.Skf2010Sc002Form" %>
-
+<%  Skf2010Sc002Form form = (Skf2010Sc002Form)request.getAttribute("form"); %>
 <% // 代行ログイン時CSS読み込み箇所ここから  %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
 <% // 代行ログイン時CSS読み込み箇所ここまで %>
 
+<%-- コンテンツエリア CSS--%>
+<style type="text/css">
+.vertical-top {
+	vertical-align:top;
+}
+
+<imart:decision case="${form.nyukyoDateFlg}" value="<%= SkfCommonConstant.DATE_CHANGE %>">
+#nyukyoKanoDate {
+	color : red;
+}
+</imart:decision>
+<imart:decision case="${form.parkingSDateFlg}" value="<%= SkfCommonConstant.DATE_CHANGE %>">
+#parkingKanoDate {
+	color : red;
+}
+</imart:decision>
+<imart:decision case="${form.taikyoDateFlg}" value="<%= SkfCommonConstant.DATE_CHANGE %>">
+#taikyoKanoDate {
+	color : red;
+}
+</imart:decision>
+<imart:decision case="${form.parkingEDateFlg}" value="<%= SkfCommonConstant.DATE_CHANGE %>">
+#parkingHenkanDate {
+	color : red;
+}
+</imart:decision>
+</style>
 <!-- コンテンツエリア -->
 <div class="imui-form-container-wide" width="1350px" style="width: 95%; max-width: 1350px;">
    	<!-- 代行ログイン時のみ表示されるメッセージ -->
@@ -136,7 +163,7 @@
 						<input name="doDelRow1" id="doDelRow1" type="button" value="社宅入居希望等調書PDF出力" class="imui-medium-button" onclick="onClickOutputPdfR0100();" />
 					</imart:condition>
 					<imart:condition validity="${form.level2}">
-						<input name="doDelRow1" id="doDelRow1" type="button" value="貸与（予定）社宅等のご案内PDF出力" class="imui-medium-button" onclick="" />
+						<input name="doDelRow1" id="doDelRow1" type="button" value="貸与（予定）社宅等のご案内PDF出力" class="imui-medium-button" onclick="onClickOutputPdfR0101();" />
 					</imart:condition>
 					<imart:condition validity="${form.level3}">
 						<input name="doDelRow1" id="doDelRow1" type="button" value="退居（自動車の保管場所変換）届PDF出力ボタン" class="imui-medium-button" onclick="" />
@@ -169,12 +196,6 @@
 	</table>
 	</nfwui:Form>
 </div>
-<%-- コンテンツエリア CSS--%>
-<style type="text/css">
-.vertical-top {
-	vertical-align:top;
-}
-</style>
 <%-- コンテンツエリア javascript--%>
 <script type="text/javascript">
 function back1() {
@@ -231,6 +252,10 @@ function back1() {
     // 「社宅入居希望等調書PDF出力」ボタン押下時のイベント
     onClickOutputPdfR0100= function () {
         nfw.common.submitForm("form", "skf/Skf2010Sc002/OutputPdfR0100");
+    }
+    // 「貸与（予定）社宅等のご案内PDF出力」ボタン押下時のイベント
+    onClickOutputPdfR0101 = function () {
+    	nfw.common.submitForm("form", "skf/Skf2010Sc002/OutputPdfR0101");
     }
 })(jQuery);
 </script>

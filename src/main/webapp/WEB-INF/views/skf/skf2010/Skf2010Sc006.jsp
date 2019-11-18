@@ -12,6 +12,7 @@
 <%@ page import="jp.co.c_nexco.skf.skf2010.app.skf2010sc006.Skf2010Sc006Form" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.SkfCommonConstant" %>
 <%  Skf2010Sc006Form form = (Skf2010Sc006Form)request.getAttribute("form"); %>
 
 
@@ -20,6 +21,27 @@
 .vertical-top {
 	vertical-align:top;
 }
+
+<imart:decision case="${form.nyukyoDateFlg}" value="<%= SkfCommonConstant.DATE_CHANGE %>">
+#nyukyoKanoDate {
+	color : red;
+}
+</imart:decision>
+<imart:decision case="${form.parkingSDateFlg}" value="<%= SkfCommonConstant.DATE_CHANGE %>">
+#parkingKanoDate {
+	color : red;
+}
+</imart:decision>
+<imart:decision case="${form.taikyoDateFlg}" value="<%= SkfCommonConstant.DATE_CHANGE %>">
+#taikyoKanoDate {
+	color : red;
+}
+</imart:decision>
+<imart:decision case="${form.parkingEDateFlg}" value="<%= SkfCommonConstant.NOT_CHANGE %>">
+#parkingHenkanDate {
+	color : red;
+}
+</imart:decision>
 </style>
 
 <!-- コンテンツエリア:モックのまま -->
@@ -60,6 +82,16 @@ $(function() {
 			});
 		});
 	}
+	
+	// 「社宅入居希望等調書PDF出力」ボタン押下時のイベント
+    onClickOutputPdfR0100= function () {
+        nfw.common.submitForm("form", "skf/Skf2010Sc006/OutputPdfR0100");
+    }
+	
+	// 「貸与（予定）社宅等のご案内PDF出力」ボタン押下時のイベント
+    onClickputPdfR0101 = function () {
+    	nfw.common.submitForm("form", "skf/Skf2010Sc006/OutputPdfR0101");
+    }
 
 });
 </script>
@@ -84,8 +116,17 @@ $(function() {
                     </table>
     </div>
 
-
-
+<c:if test="${form.displayLevel == 4}">
+    <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
+       <nfwui:Accordion id="taikyoTodokeView" >
+		  <nfwui:AccordionItem id="taikyoTodokeItem" code="<%= MessageIdConstant.SKF2010_SC004_TAIKYO %>"
+		  defaultOpen="${form.level4Open }">
+<%@ include file="common/Skf2010TaikyoTodoke.jsp" %>
+		  </nfwui:AccordionItem>
+		</nfwui:Accordion>
+        
+    </div>
+</c:if>
     <!-- コンテンツエリア -->
 <c:if test="${form.displayLevel == 3}">
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
@@ -112,7 +153,7 @@ $(function() {
 
 
     <!-- コンテンツエリア -->
-<c:if test="${form.displayLevel >= 2}">
+<c:if test="${form.displayLevel >= 2 and form.displayLevel != 4}">
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
 		<nfwui:Accordion id="taiyoAnnaiView" >
 		  <nfwui:AccordionItem id="taiyoAnnaiItem" code="<%= MessageIdConstant.SKF2010_SC006_ANNAI %>"
@@ -135,6 +176,7 @@ $(function() {
 	</div>
 </c:if>
 
+<c:if test="${form.displayLevel != 4 }" >
     <!-- コンテンツエリア -->
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
 		<nfwui:Accordion id="nyukyoChoshoTsuchiView" >
@@ -144,7 +186,7 @@ $(function() {
 		  </nfwui:AccordionItem>
 		</nfwui:Accordion>
     </div>
-
+</c:if>
 
     <nfwui:Form id="form" name="form"  modelAttribute="form" encType="multipart/form-data">
 
@@ -178,8 +220,8 @@ $(function() {
         <div class="align-L float-L">
           
           <imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()"  />
-          <input name="doDelRow1" id="doDelRow1" type="button" value="社宅入居希望等調書PDF出力" class="imui-medium-button" onclick="" />
-          <input name="doDelRow1" id="doDelRow1" type="button" value="貸与（予定）社宅等のご案内PDF出力" class="imui-medium-button" onclick="" />
+          <input name="doDelRow1" id="doDelRow1" type="button" value="社宅入居希望等調書PDF出力" class="imui-medium-button" onclick="onClickOutputPdfR0100();" />
+          <input name="doDelRow1" id="doDelRow1" type="button" value="貸与（予定）社宅等のご案内PDF出力" class="imui-medium-button" onclick="onClickputPdfR0101();" />
           <input name="doDelRow1" id="doDelRow1" type="button" value="入居等決定通知書PDF出力" class="imui-medium-button" onclick="" />
 <c:if test="${form.commentViewFlag == 'true'}">
           <br />

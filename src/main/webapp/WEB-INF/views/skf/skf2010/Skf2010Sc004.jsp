@@ -23,6 +23,27 @@
 .vertical-top {
 	vertical-align:top;
 }
+
+<imart:decision case="${form.nyukyoDateFlg}" value="<%= SkfCommonConstant.DATE_CHANGE %>">
+#nyukyoKanoDate {
+	color : red;
+}
+</imart:decision>
+<imart:decision case="${form.parkingSDateFlg}" value="<%= SkfCommonConstant.DATE_CHANGE %>">
+#parkingKanoDate {
+	color : red;
+}
+</imart:decision>
+<imart:decision case="${form.taikyoDateFlg}" value="<%= SkfCommonConstant.DATE_CHANGE %>">
+#taikyoKanoDate, #taikyoDate {
+	color : red;
+}
+</imart:decision>
+<imart:decision case="${form.parkingEDateFlg}" value="<%= SkfCommonConstant.DATE_CHANGE %>">
+#parkingHenkanDate {
+	color : red;
+}
+</imart:decision>
 </style>
 
 <!-- コンテンツエリア:モックのまま -->
@@ -51,6 +72,7 @@ function back1() {
 				map['bihinKibo'] = $("#bihinKibo").val();
 				map['taikyobi'] = $("#taikyobi").val();
 				map['henkanbi'] = $("#henkanbi").val();
+				map['commentNote'] = $("#commentNote").val();
 				nfw.common.doAjaxAction("skf/Skf2010Sc004/AgreeAsync", map, true, function(res){
 					if (res.dialogFlg) {
 						var message = "続けて備品希望申請を行います。よろしいですか？";
@@ -89,7 +111,17 @@ function back1() {
 			});
 		});
 	}
-
+	
+	// 「社宅入居希望等調書PDF出力」ボタン押下時のイベント
+    onClickOutputPdfR0100= function () {
+        nfw.common.submitForm("form", "skf/Skf2010Sc004/OutputPdfR0100");
+    }
+	
+	// 「貸与（予定）社宅等のご案内PDF出力」ボタン押下時のイベント
+    onClickOutputPdfR0101 = function () {
+		nfw.common.submitForm("form", "skf/Skf2010Sc004/OutputPdfR0101");
+	}
+	
 })(jQuery);
 </script>
 
@@ -98,7 +130,7 @@ function back1() {
    <jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
 
     <!-- 状況、資料ヘッダ -->
-    <div class="imui-form-container-wide" style="border: currentColor; border-image: none; width: 80%; padding-left: 0px; margin-left: 100px;">
+    <div class="imui-form-container-wide" style="border: currentColor; border-image: none; width: 80%; padding-left: 0px; padding-bottom: 10px; margin-left: 100px;">
                     <table class="imui-form-search-condition">
                        <tr>
                             <th width="100px"><nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2010_SC006_LBL_APPL_STATUS %>" /></th>
@@ -113,8 +145,7 @@ function back1() {
                       </tr>
                     </table>
 </div>
-<imart:condition validity="<%= String.valueOf((form.getDisplayLevel() < 3)) %>">
-　　<imart:condition validity="<%= String.valueOf((form.getOperationGuide() != null && form.getOperationGuide() != CodeConstant.NONE)) %>">
+<imart:condition validity="<%= String.valueOf((form.getOperationGuide() != null && form.getOperationGuide() != CodeConstant.NONE)) %>">
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;" height="100px">
        <nfwui:Title id="operationGuide" code="<%= MessageIdConstant.SKF2010_SC004_OPERATION_GUIDE %>" titleLevel="2" />
        <table>
@@ -125,7 +156,6 @@ ${form.operationGuide }
         </tr>
         </table>
     </div>
-  </imart:condition>
 </imart:condition>
 <c:if test="${form.displayLevel == 4}">
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
@@ -137,14 +167,6 @@ ${form.operationGuide }
 		</nfwui:Accordion>
         
     </div>
-    <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
-		<nfwui:Accordion id="seiyakusyoView" >
-		  <nfwui:AccordionItem id="seiyakusyoItem" code="<%= MessageIdConstant.SKF2010_SC004_SEIYAKUSYO %>"
-		  defaultOpen="${form.level4Open }">
-<%@ include file="common/Skf2010Seiyakusyo.jsp" %>
-		  </nfwui:AccordionItem>
-		</nfwui:Accordion>
-	</div>
 </c:if>
 
 <c:if test="${form.displayLevel == 3}">
@@ -246,7 +268,6 @@ ${form.operationGuide }
       </table>
     </div>
 </c:if>
-    
     <!-- コメント欄 -->
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;" height="100px">
         <div class="imui-chapter-title" style="margin-bottom: 10px;">
@@ -262,7 +283,6 @@ ${form.operationGuide }
            </tr>
         </table>
     </div>
-
     <br>
       <nfwui:Hidden id="applNo" name="applNo" />
       <nfwui:Hidden id="applId" name="applId" />
@@ -276,11 +296,23 @@ ${form.operationGuide }
         <tr>
           <td>
         <div class="align-L float-L">
-          
           <imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()"  />
-          <input name="doDelRow1" id="doDelRow1" type="button" value="社宅入居希望等調書PDF出力" class="imui-medium-button" onclick="" />
-          <input name="doDelRow1" id="doDelRow1" type="button" value="貸与（予定）社宅等のご案内PDF出力" class="imui-medium-button" onclick="" />
-          <input name="doDelRow1" id="doDelRow1" type="button" value="入居等決定通知書PDF出力" class="imui-medium-button" onclick="" />
+<c:if test="${form.displayLevel != 4}" >          
+          <nfwui:Button id="outputNyukyoBtn" name="outputNyukyoBtn" value="社宅入居希望等調書PDF出力" 
+          cssClass="imui-medium-button" url="skf/Skf2010Sc004/OutputPdfR0100" />
+<c:if test="${form.displayLevel >= 2}" >
+          <nfwui:Button id="outputTaiyoBtn" name="outputTaiyoBtn" value="貸与（予定）社宅等のご案内PDF出力" 
+          cssClass="imui-medium-button" url="skf/Skf2010Sc004/OutputPdfR0101" />
+</c:if>
+<c:if test="${form.displayLevel >= 3}" >
+          <nfwui:Button id="outputKetteiBtn" name="outputKetteiBtn" value="入居等決定通知書PDF出力" 
+          cssClass="imui-medium-button" url="skf/Skf2010Sc004/OutputPdfR0101" />
+</c:if>
+</c:if>
+<c:if test="${form.displayLevel == 4}" >          
+          <nfwui:Button id="outputTaikyoBtn" name="outputTaikyoBtn" value="退居（自動車の保管場所返還）届PDF出力" 
+          cssClass="imui-medium-button" url="skf/Skf2010Sc004/OutputPdfR0100" />
+</c:if>
 <c:if test="${form.commentViewFlag == 'true'}">
           <br />
           <nfwui:PopupButton id="commentPop" value="コメント表示" 

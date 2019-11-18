@@ -13,7 +13,7 @@ import jp.co.c_nexco.nfw.nfwfile.app.nfwfilescdwd.NfwfileScDwdForm;
 import lombok.EqualsAndHashCode;
 
 /**
- * 入居希望等調書申請同期処理Form Skf2020Sc002Form
+ * 入居希望等調書申請共通同期処理Form Skf2020Form
  * 
  * @author NEXCOシステムズ
  *
@@ -248,7 +248,7 @@ public class Skf2020CommonForm extends NfwfileScDwdForm {
 	 * 社宅の状態
 	 */
 	// 社宅の状態
-	private String shatakuJyotai;
+	private String shatakuJotai;
 
 	/**
 	 * 退居理由
@@ -631,7 +631,7 @@ public class Skf2020CommonForm extends NfwfileScDwdForm {
 	// 退居予定日
 	private String taikyoYoteiDateErr;
 	// 社宅の状態
-	private String shatakuJyotaiErr;
+	private String shatakuJotaiErr;
 	// 退居理由(ドロップダウン)
 	private String ddlTaikyoRiyuKbnListErr;
 	// 退居理由

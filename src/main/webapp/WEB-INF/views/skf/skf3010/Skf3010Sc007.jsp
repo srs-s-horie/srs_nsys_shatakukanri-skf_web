@@ -142,8 +142,9 @@ function back1() {
 										$("#selectMode").val('mainlList');
 										
 										url = "skf/Skf3010Sc007/selectList";
-										$("#form").attr("action", url);
-										$("#form").submit();
+// 										$("#form").attr("action", url);
+// 										$("#form").submit();
+										nfw.common.submitForm("form", url);
 									}else{
 										checkInput('mainList');	
 									}
@@ -372,8 +373,9 @@ function back1() {
 								}else{
 									
 									url = "skf/Skf3010Sc007/selectList";
-									$("#form").attr("action", url);
-									$("#form").submit();
+// 									$("#form").attr("action", url);
+// 									$("#form").submit();
+									nfw.common.submitForm("form", url);
 								}
 								
 								
@@ -481,7 +483,7 @@ function back1() {
 				                $("#sendOwnerNo").val(param.shainNo);
 				            }
 				    	}
-				    	
+				    	//戻るボタン
 				    	backOnClick = function () {
 					    	//確認メッセージ
 							dialogTitle = "確認";
@@ -494,7 +496,7 @@ function back1() {
 				    		$('#mainList').setGridWidth($('#listTableArea').width(), true);	
 				    	}).trigger('resize');
 				    	
-				    	
+				    	//契約形態変更時活性制御
 				    	setDisabled = function(state){
 				    		$("#txtOwnerName").prop("disabled",state);
 				    		$("#txtOwnerName").val("");
@@ -544,6 +546,7 @@ function back1() {
 				    	
 				    });
 					
+					//駐車場契約番号ドロップダウン
 					$("#contractPropertyId").bind('change', function() {
 						$("#sendParkingBlock").val($("#sendParkingBlock").val());
 						$("#sendContractPropertyId").val( $("#contractPropertyId").val());
@@ -552,8 +555,7 @@ function back1() {
 						
 					});
 					
-					
-					
+					//駐車場契約形態ドロップダウン
 					$("#parkingContractType").bind('change', function() {
 						//契約形態変更
 						$('#sendParkingContractType').val($("#parkingContractType").val());

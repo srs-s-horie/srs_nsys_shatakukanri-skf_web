@@ -22,51 +22,52 @@ public class Skf2040Sc001AsyncForm extends AsyncBaseForm {
 	private static final long serialVersionUID = 1L;
 
 	/**
-     * フォーム情報
-     */
-    // 現入居社宅
-    private String nowShataku;
-    // 保有社宅名
-    private String nowShatakuName;
-    // 社宅管理ID
-    private long shatakuKanriId;
+	 * フォーム情報
+	 */
+	// 現入居社宅
+	private String nowShataku;
+	// 保有社宅名
+	private String nowShatakuName;
+	// 社宅管理ID
+	private long shatakuKanriId;
 
-    // 社員番号
-    private String shainNo;
-    // 現住所
-    private String nowAddress;
-    /**
-     * 駐車場情報
-     */
-    private String parking1stPlace;
-    private String parking2ndPlace;
-    
-    /**
-     * フォーム情報
-     */
-    // 退居(返還)日
-    private String taikyoHenkanDate;
-    // 退居(返還)する社宅又は自動車の保管場所
-    private String[] taikyoType;
-    private String taikyoTypeShataku;
-    private String taikyoTypeParking1;
-    private String taikyoTypeParking2;
-    // 退居理由区分
-    private String taikyoRiyuKbn;
-    // 退居(返還)理由
-    private String taikyoHenkanRiyu;
-    // 社宅の状態 
-    private String shatakuJyotai;
-    // 退居後の連絡先
-    private String taikyogoRenrakuSaki;
+	// 社員番号
+	private String shainNo;
+	// 現住所
+	private String nowAddress;
+	/**
+	 * 駐車場情報
+	 */
+	private String parking1stPlace;
+	private String parking2ndPlace;
 
-    // 返却備品HTML
-    private String returnEquipment;
-    // 返却立会希望日
-    private String sessionDay;
-    // 返却立会希望時間
-    private String sessionTime;
-    // 連絡先
-    private String renrakuSaki;
+	/**
+	 * フォーム情報
+	 */
+	// 退居(返還)日
+	private String taikyoHenkanDate;
+	// 退居(返還)する社宅又は自動車の保管場所
+	private String[] taikyoType;
+	private String taikyoTypeShataku;
+	private String taikyoTypeParking1;
+	private String taikyoTypeParking2;
+	// 退居理由区分
+	private String taikyoRiyuKbn;
+	// 退居(返還)理由
+	private String taikyoHenkanRiyu;
+	// 社宅の状態
+	private String shatakuJotai;
+	// 退居後の連絡先
+	private String taikyogoRenrakuSaki;
+	// 返却備品HTML
+	private String returnEquipment;
+	// 返却立会希望日
+	private String sessionDay;
+	// 返却立会希望時間
+	private String sessionTime;
+	// 連絡先
+	private String renrakuSaki;
+	// 備品返却有無
+    private String hdnBihinHenkyakuUmu;
 
 }
