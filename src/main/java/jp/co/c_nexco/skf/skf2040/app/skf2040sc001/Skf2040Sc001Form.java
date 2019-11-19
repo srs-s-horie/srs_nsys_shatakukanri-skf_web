@@ -201,13 +201,15 @@ public class Skf2040Sc001Form extends NfwfileScDwdForm {
 	 */
 
 	// 社宅管理部屋番号
-	private long hdnShatakuRoomKanriNo;
+	private String hdnShatakuRoomKanriNo;
 	// 社宅管理番号
-	private long hdnShatakuKanriNo;
+	private String hdnShatakuKanriNo;
+	// 現居住社宅部屋番号
+	private String hdnNowShatakuRoomNo;
 	// 現居住社宅部屋管理番号
-	private long hdnNowShatakuRoomKanriNo;
+	private String hdnNowShatakuRoomKanriNo;
 	// 現居住社宅管理番号
-	private long hdnNowShatakuKanriNo;
+	private String hdnNowShatakuKanriNo;
 	// 備品返却有無
 	private String hdnBihinHenkyakuUmu;
 	// 現在の位置番号
