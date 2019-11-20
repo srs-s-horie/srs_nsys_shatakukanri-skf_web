@@ -233,7 +233,7 @@ ${form.operationGuide }
       <tr style="width: 100%; max-width: 1000px;text-align:center;">
         <th><nfwui:LabelBox id="lblNowTaikyoDate" code="<%= MessageIdConstant.SKF2010_SC004_NOW_TAIKYO_DATE %>" /></th>
         <td align="left">
-			<nfwui:DateBox id="taikyobi" name="taikyobi" />
+			<nfwui:DateBox id="taikyobi" name="taikyobi" disabledPatterns="NOT_TAIKYO" />
         </td>
         <th><nfwui:LabelBox id="lblNewShatakuNyukyo" code="<%= MessageIdConstant.SKF2010_SC004_NEW_SHATAKU_NYUKYO %>" /></th>
         <td align="left">
@@ -243,7 +243,7 @@ ${form.operationGuide }
       <tr style="width: 100%; max-width: 1000px;text-align:center;">
         <th><nfwui:LabelBox id="lblNowCarSpaceHenkan" code="<%= MessageIdConstant.SKF2010_SC004_NOW_CAR_SPACE_HENKAN %>" /></th>
         <td align="left">
-          <nfwui:DateBox id="henkanbi" name="henkanbi" />
+          <nfwui:DateBox id="henkanbi" name="henkanbi" disabledPatterns="NOT_TAIKYO" />
         </td>
         <th><nfwui:LabelBox id="lblNewCarSpaceStart" code="<%= MessageIdConstant.SKF2010_SC004_NEW_CAR_SPACE_START %>" /></th>
         <td align="left">
