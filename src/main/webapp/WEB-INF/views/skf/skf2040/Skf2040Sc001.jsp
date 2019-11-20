@@ -91,7 +91,7 @@
                                     </th>
                                     <td colspan="2">
                                         <imui:select id="nowShatakuName" name="nowShatakuName" list="${form.ddlNowShatakuNameList}" 
-                                                     value=""  tabindex="45"/>
+                                                     value="" tabindex="1"/>
                                     </td>
                                 </tr>
                                 <!-- 現住所 -->
@@ -100,7 +100,8 @@
                                         <nfwui:LabelBox id="lblHeadNowAddress" code="<%= MessageIdConstant.SKF2040_SC001_NOW_ADDRESS %>" />
                                     </th>
                                     <td colspan="2">
-                                        <span id="nowAddress">${f:h(form.nowAddress)}</span>
+                                        <span id="nowAddressArea">${f:h(form.nowAddress)}</span>
+                                        <input type="hidden" name="nowAddress" id="nowAddress" value="${f:h(form.nowAddress)}" />
                                     </td>
                                 </tr>
                                 <!-- 氏名 -->
@@ -157,7 +158,7 @@
                                     </th>
                                     <td colspan="2">
                                         <nfwui:DateBox id="taikyoHenkanDate" name="taikyoHenkanDate" value="${f:h(form.taikyoHenkanDate)}"
-                                               cssClass="${f:h(form.taikyoHenkanDateErr)}" tabindex="1" cssStyle="width:100px"/>
+                                               cssClass="${f:h(form.taikyoHenkanDateErr)}" tabindex="2" cssStyle="width:100px"/>
                                     </td>
                                 </tr>
                                 <!-- 退居(返還)する社宅又は、自動車の保管場所 -->
@@ -171,19 +172,19 @@
                                             <tr style="height: 25px;">
                                                 <td>
                                                     <nfwui:CheckBox id="taikyoType01" name="taikyoType"
-                                                            value="shataku_checked" label="社宅を退居する" tabindex="7"
+                                                            value="shataku_checked" label="社宅を退居する" tabindex="3"
                                                             disabled="${form.nowShatakuTaikyoDisabled}"
                                                             onclick="onClickTaikyoType01();" />
                                                 </td>
                                                 <td>
                                                     <nfwui:CheckBox id="taikyoType02" name="taikyoType"
-                                                            value="park1_checked" label="駐車場1を返還する" tabindex="7"
+                                                            value="park1_checked" label="駐車場1を返還する" tabindex="3"
                                                             disabled="${form.nowParking1TaikyoDisabled}"
                                                             onclick="onClickTaikyoType02();" />
                                                 </td>
                                                 <td>
                                                     <nfwui:CheckBox id="taikyoType03" name="taikyoType"
-                                                            value="park2_checked" label="駐車場2を返還する" tabindex="7"
+                                                            value="park2_checked" label="駐車場2を返還する" tabindex="3"
                                                             disabled="${form.nowParking2TaikyoDisabled}"
                                                             onclick="onClickTaikyoType03();" />
                                                 </td>
@@ -200,12 +201,12 @@
                                     <td colspan="2">
                                         <imui:select id="taikyoRiyuKbn" name="taikyoRiyuKbn"  style="width: 50%;" 
                                                      css="${f:h(form.taikyoRiyuKbnErr)}" onChange="onChangeTaikyoRiyuKbn();"
-                                                     list="${form.ddlTaikyoRiyuKbnList}" tabindex="50"/>
+                                                     list="${form.ddlTaikyoRiyuKbnList}" tabindex="4"/>
                                         <br>
                                         <imui:textArea id="taikyoHenkanRiyu" name="taikyoHenkanRiyu"
                                                        value="${form.taikyoHenkanRiyu}" style="width: 90%;" 
                                                        css="${f:h(form.taikyoHenkanRiyuErr)}"
-                                                       placeholder="例 自宅購入のため" disabled="true" tabindex="51" />
+                                                       placeholder="例 自宅購入のため" disabled="true" tabindex="5" />
                                     </td>
                                 </tr>
                                 <!-- 社宅の状態 -->
@@ -217,7 +218,7 @@
                                         <imui:textArea id="shatakuJotai" name="shatakuJotai"
                                                        value="${form.shatakuJotai}" style="width: 90%;" 
                                                        css="${f:h(form.shatakuJotaiErr)}"
-                                                       placeholder="例  壁紙に破損あり" disabled="true" tabindex="51" />
+                                                       placeholder="例  壁紙に破損あり" disabled="true" tabindex="6" />
                                     </td>
                                 </tr>
                                 <!-- 退居後の連絡先 -->
@@ -229,7 +230,7 @@
                                         <imui:textArea id="taikyogoRenrakuSaki" name="taikyogoRenrakuSaki" 
                                                        value="${form.taikyogoRenrakuSaki}" style="width: 90%;" 
                                                        css="${f:h(form.taikyogoRenrakuSakiErr)}"
-                                                       placeholder="例 090-0000-0000" disabled="true" tabindex="52"/>
+                                                       placeholder="例 090-0000-0000" disabled="true" tabindex="7"/>
                                     </td>
                                 </tr>
                                 <!-- 返却備品 -->
@@ -249,10 +250,10 @@
                                     <td colspan="2">
                                         <nfwui:DateBox id="sessionDay" name="sessionDay" value="${f:h(form.sessionDay)}"
                                                        cssClass="${f:h(form.sessionDayErr)}" cssStyle="width:100px"
-                                                       tabindex="53" disabled="${form.sessionDayDisabled}"/>
+                                                       tabindex="8" disabled="${form.sessionDayDisabled}"/>
                                         <imui:select id="sessionTime" name="sessionTime" 
                                                      css="${f:h(form.sessionTimeErr)}"
-                                                     list="${form.ddlReturnWitnessRequestDateList}" disabled="${form.sessionTimeDisabled}" tabindex="54" />
+                                                     list="${form.ddlReturnWitnessRequestDateList}" disabled="${form.sessionTimeDisabled}" tabindex="9" />
                                     </td>
                                 </tr>
                                 <!-- 連絡先 -->
@@ -264,7 +265,7 @@
                                         <imui:textbox id="renrakuSaki" name="renrakuSaki" 
                                                       value="${f:h(form.renrakuSaki)}" style="width: 90%;" placeholder="例 090-0000-0000"  
                                                       css="${f:h(form.renrakuSakiErr)}"
-                                                      disabled="${form.renrakuSakiDisabled}" tabindex="55" />
+                                                      disabled="${form.renrakuSakiDisabled}" tabindex="10" />
                                         <br>
                                         <span style="color:red;">
                                             <nfwui:LabelBox id="lblExplanationRenrakuSaki" code="<%= MessageIdConstant.SKF2040_SC001_EXPLANATION_RENRAKU_SAKI %>" />
@@ -283,6 +284,7 @@
                     <input type="hidden" name="hdnParking1stNumber" id="hdnParking1stNumber" value="${form.hdnParking1stNumber}"/>
                     <input type="hidden" name="hdnParking2ndNumber" id="hdnParking2ndNumber" value="${form.hdnParking2ndNumber}"/>
                     <input type="hidden" name="hdnNowShatakuKanriNo" id="hdnNowShatakuKanriNo" value="${form.hdnNowShatakuKanriNo}"/>
+                    <input type="hidden" name="hdnNowShatakuRoomNo" id="hdnNowShatakuRoomNo" value="${form.hdnNowShatakuRoomNo}"/>
                     <input type="hidden" name="hdnNowShatakuRoomKanriNo" id="hdnNowShatakuRoomKanriNo" value="${form.hdnNowShatakuRoomKanriNo}"/>
                     <input type="hidden" name="hdnBihinHenkyakuUmu" id="hdnBihinHenkyakuUmu" value="${form.hdnBihinHenkyakuUmu}"/>
                     <!-- 右側の操作ガイドの部分 -->
@@ -310,7 +312,7 @@
                     <nfwui:ConfirmButton cssStyle="width:150px;" id="clearBtn" formId="form" value="入力内容をクリア" 
                         cssClass="imui-medium-button" title="<%= MessageIdConstant.SKF2040_SC001_CONFIRM_TITLE %>" 
                         message="<%= MessageIdConstant.I_SKF_2004 %>" remove="${form.btnClearRemoved}"
-                        url="skf/Skf2040Sc001/Clear"/>    
+                        url="skf/Skf2040Sc001/Clear"/>
                  </div>
                 <!-- 右エリア -->
                  <div class="btnRight">
@@ -367,7 +369,15 @@
      * ひとつ前の画面に戻る
      */
     function back1() {
-        var url = "skf/Skf2010Sc007/init?SKF2010_SC007&tokenCheck=0";
+    	var prePageId = $("#prePageId").val();
+    	var url = "";
+    	//前の画面のＵＲＬ判定
+   		if(prePageId=="Skf2010Sc007"){
+   			url = "skf/Skf2010Sc007/init?SKF2010_SC007&tokenCheck=0";
+   		}else if(prePageId=="Skf2010Sc003"){
+   			//申請条件一覧
+   			url="skf/Skf2010Sc003/init?SKF2010_SC003";
+		}
         nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。編集内容を保存する場合は「一時保存」をクリックして下さい。");
     }
     
@@ -482,7 +492,8 @@
 
         nfw.common.doAjaxAction("skf/Skf2040Sc001/ChangeDropDownAsync",map,true,function(data) {
             //値の変更
-            $('#nowAddress').html( data.nowAddress );
+            $('#nowAddressArea').html( data.nowAddress );
+            $('#nowAddress').val( data.nowAddress );
             $('#parking1stPlaceTxt').html( data.parking1stPlace );
             $('#parking1stPlace').val( data.parking1stPlace );
             $('#parking2ndPlaceTxt').html( data.parking2ndPlace );
@@ -492,31 +503,13 @@
             //値の設定
             $('#hdnSelectedNowShatakuName').val(data.hdnSelectedNowShatakuName);
             $('#hdnNowShatakuKanriNo').val(data.hdnNowShatakuKanriNo);
+            $('#hdnNowShatakuRoomNo').val(data.hdnNowShatakuRoomNo);
             $('#hdnNowShatakuRoomKanriNo').val(data.hdnNowShatakuRoomKanriNo);
             $('#hdnParking1stNumber').val(data.hdnParking1stNumber);
             $('#hdnParking2ndNumber').val(data.hdnParking2ndNumber);
             $('#hdnBihinHenkyakuUmu').val(data.hdnBihinHenkyakuUmu);
 
             //画面制御
-            var isTaikyoChecked = $('#taikyoType01').prop('checked');
-            if (isTaikyoChecked){
-                // 「社宅を退居する」チェック時のみ
-                var bihinHenkyakuUmu = data.hdnBihinHenkyakuUmu;
-                if(bihinHenkyakuUmu=="0"){
-                    //貸与品がない場合は、備品返却項目を非活性
-                    $('#sessionDayDiv').prop('disabled', true);
-                    $('#sessionDay').prop('disabled', true);
-                    $('#sessionTime').prop('disabled', true);
-                    $('#renrakuSaki').prop('disabled', true);
-                }else{
-                    $('#sessionDayDiv').removeClass("wj-state-disabled");
-                    $('#sessionDayDiv').prop('disabled', false);
-                    $('#sessionDay').prop('disabled', false);
-                    $('#sessionTime').prop('disabled', false);
-                    $('#renrakuSaki').prop('disabled', false);
-                }
-            }
-
             if(data.parking1stPlace == ""){
                 // 駐車場1を借りていない場合
                 $('#taikyoType02').prop('disabled', true);
@@ -531,6 +524,9 @@
             }else{
                 $('#taikyoType03').prop('disabled', false);
             }
+            
+            // 「社宅を退居する」チェック時のイベント
+            onClickTaikyoType01();
         });
     });
 
@@ -600,6 +596,22 @@
     // 画面表示時に定義される処理
     $(document).ready(function(){
         var isTaikyoChecked = $('#taikyoType01').prop('checked');
+        
+        if($('#parking1stPlace').val() == ""){
+            // 駐車場1を借りていない場合
+            $('#taikyoType02').prop('disabled', true);
+            $('#taikyoType02').prop('checked', false);
+        }else{
+            $('#taikyoType02').prop('disabled', false);
+        }
+        if($('#parking2ndPlace').val() == ""){
+            // 駐車場2を借りていない場合
+            $('#taikyoType03').prop('disabled', true);
+            $('#taikyoType03').prop('checked', false);
+        }else{
+            $('#taikyoType03').prop('disabled', false);
+        }
+        
         if(isTaikyoChecked){
             // 「社宅を退居する」チェック時
             
