@@ -358,7 +358,7 @@
 													<nfwui:LabelBox id="lblHeadNyukyoKiboDate" code="<%= MessageIdConstant.SKF2020_SC002_NYUKYO_KIBO_DATA %>" />
 												</th>
 												<td colspan="3">
-													<nfwui:DateBox id="nyukyoYoteiDate" name="nyukyoYoteiDate" value="${f:h(form.nyukyoYoteiDate)}" tabindex="30" disabled="true"/> 	                                  	
+													<nfwui:DateBox id="nyukyoYoteiDate" name="nyukyoYoteiDate" value="${f:h(form.nyukyoYoteiDate)}" tabindex="30" disabled="true" cssStyle="width:100px"/> 	                                  	
 												</td>
 											</tr>
 											<!--  自動車の保管場所 -->  
@@ -420,7 +420,7 @@
 												</th>
 												<td colspan="3">
 													<nfwui:DateBox id="carExpirationDate" name="carExpirationDate" value="${f:h(form.carExpirationDate)}"
-														 tabindex="35" disabled="true"/>                                   
+														 tabindex="35" disabled="true" cssStyle="width:100px"/>                                   
 												</td>
 											</tr>
 											<!-- 自動車の使用者 -->
@@ -440,7 +440,7 @@
 												</th>
 												<td colspan="3">
 													<nfwui:DateBox id="parkingUseDate" name="parkingUseDate" value="${f:h(form.parkingUseDate)}"
-														 tabindex="37" disabled="true"/>
+														 tabindex="37" disabled="true" cssStyle="width:100px"/>
 												</td>
 											</tr>
 											<!-- ２台目 --> 
@@ -493,7 +493,7 @@
 												</th>
 												<td colspan="2">
 													<nfwui:DateBox id="carExpirationDate2" name="carExpirationDate2" value="${f:h(form.carExpirationDate2)}"
-														 tabindex="41" disabled="true"/>
+														 tabindex="41" disabled="true" cssStyle="width:100px"/>
 												</td>
 											</tr>
 											<!-- 自動車の使用者 -->	
@@ -513,7 +513,7 @@
 												</th>
 												<td colspan="2">
 													<nfwui:DateBox id="parkingUseDate2" name="parkingUseDate2" value="${f:h(form.carExpirationDate2)}"
-														 tabindex="43" disabled="true"/>
+														 tabindex="43" disabled="true" cssStyle="width:100px"/>
 												</td>
 											</tr> 
 											<!-- 現居住宅 --> 
@@ -629,7 +629,7 @@
 											</th>
 											<td colspan="2">
 												<nfwui:DateBox id="taikyoYoteiDate" name="taikyoYoteiDate" value="${f:h(form.taikyoYoteiDate)}"
-												 	tabindex="48" disabled="true"/>	
+												 	tabindex="48" disabled="true" cssStyle="width:100px"/>	
 											</td>
 										</tr>
 										<!-- 社宅の状態 -->
@@ -685,8 +685,7 @@
 												</th>
 												<td colspan="3">
 													<nfwui:DateBox id="sessionDay" name="sessionDay" value="${f:h(form.sessionDay)}"
-												 		tabindex="53" disabled="${form.sessionDayDisabled}"/>	
-												 		<!-- disabled="${form.sessionDayDisabled}"  -->
+												 		tabindex="53" disabled="${form.sessionDayDisabled}" cssStyle="width:100px"/>	
 													<imui:select id="sessionTime" name="sessionTime" 
 														list="${form.ddlReturnWitnessRequestDateList}" disabled="${form.sessionTimeDisabled}" tabindex="54" />			
 												</td>
@@ -1429,12 +1428,29 @@ function mesDisplayControl(isShow){
 		  }); 
 		  		  		  			  	  
 		  // 現保有の社宅の「退居する」押下時に発動
-		  $('#rdoNowHoyuShatakuTaikyo').click(function() {	 	   
+		  $('#rdoNowHoyuShatakuTaikyo').click(function() {	
+			  alert("!!");
 			// 社宅を不要とするが選択されていた場合
 			if($("#rdoFuyou").prop('checked')) {		
 	    		//退居を促すメッセージ制御（現社宅情報）　表示
-				mesDisplayControl("yes");
-		      }
+				mesDisplayControl("yes");				
+		     }
+			
+			if($("#hdnBihinHenkyakuUmu").val()=="0"){
+	    		//備品項目非活性
+				returnEquipmentDisabled("disabled");
+			}else{		
+				  alert("!!!");
+				// 社宅を必要としますか？の「駐車場のみ」にチェックが入っている場合
+				if($("#rdoParkingOnly").prop('checked')) {
+		    		alert("!!!!");
+		    		//備品項目非活性
+					returnEquipmentDisabled("disabled");
+				}else{
+					alert("!!!!!");
+					returnEquipmentDisabled("abled");
+				}
+			}
 		  }); 
 		  
 		  // 現保有の社宅の「継続利用する」押下時に発動
@@ -1443,6 +1459,9 @@ function mesDisplayControl(isShow){
 			if($("#rdoNowHoyuShatakuKeizoku").prop('checked')) {		
 	    		//退居を促すメッセージ制御（現社宅情報）　非表示
 				mesDisplayControl("no");
+	    		//備品項目非活性
+				returnEquipmentDisabled("disabled");
+	    		alert("!");
 		      }
 		  }); 
 		  	  
@@ -1469,16 +1488,16 @@ function mesDisplayControl(isShow){
 					$('#sessionDayDiv').prop('disabled', true);	
 					$('#sessionDay').prop('disabled', true);
 				}else{					
-					// 社宅を必要としますか？の「駐車場のみ」にチェックが入っている場合
-					if($("#rdoParkingOnly").prop('checked')) {
+					// 社宅を必要としますか？の「必要とする」かつ「退居する」にチェックが入っている場合
+					if($("#rdoHitsuyo").prop('checked')　&& ('#rdoNowHoyuShatakuTaikyo').prop('checkd')) {
+						$('#sessionDayDiv').removeClass("wj-state-disabled");
+						$('#sessionDayDiv').prop('disabled', false);
+						$('#sessionDay').prop('disabled', false);
+					}else{
 						//返却希望立会日　非活性
 						$('#sessionDayDiv').addClass("wj-state-disabled");
 						$('#sessionDayDiv').prop('disabled', true);	
 						$('#sessionDay').prop('disabled', true);
-					}else{
-						$('#sessionDayDiv').removeClass("wj-state-disabled");
-						$('#sessionDayDiv').prop('disabled', false);
-						$('#sessionDay').prop('disabled', false);
 					}
 				}
 				
