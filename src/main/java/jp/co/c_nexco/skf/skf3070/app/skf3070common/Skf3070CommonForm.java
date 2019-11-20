@@ -3,6 +3,8 @@
  */
 package jp.co.c_nexco.skf.skf3070.app.skf3070common;
 
+import java.util.List;
+import java.util.Map;
 import jp.co.c_nexco.nfw.nfwfile.app.nfwfilescdwd.NfwfileScDwdForm;
 import lombok.EqualsAndHashCode;
 
@@ -40,6 +42,8 @@ public class Skf3070CommonForm extends NfwfileScDwdForm {
 	private String ownerName;
 	// 賃貸人（代理人） 氏名又は名称（フリガナ）
 	private String ownerNameKk;
+	// 郵便番号
+	private String zipCode;
 	// 住所(居所）又は所在地
 	private String address;
 	// 個人法人区分
@@ -48,5 +52,12 @@ public class Skf3070CommonForm extends NfwfileScDwdForm {
 	private String acceptFlg;
 	// 督促状況（コメント）
 	private String acceptStatus;
+	// 備考
+	private String remarks;
+
+	// 個人法人区分ドロップダウン
+	private List<Map<String, Object>> ddlBusinessKbnList;
+	// 個人番号ドロップダウン
+	private List<Map<String, Object>> ddlAcceptFlgList;
 
 }
