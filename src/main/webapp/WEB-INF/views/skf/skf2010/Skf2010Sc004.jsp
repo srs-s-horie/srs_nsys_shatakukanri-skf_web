@@ -306,7 +306,7 @@ ${form.operationGuide }
 </c:if>
 <c:if test="${form.displayLevel >= 3}" >
           <nfwui:Button id="outputKetteiBtn" name="outputKetteiBtn" value="入居等決定通知書PDF出力" 
-          cssClass="imui-medium-button" url="skf/Skf2010Sc004/OutputPdfR0101" />
+          cssClass="imui-medium-button" url="skf/Skf2010Sc004/OutputPdfR0102" />
 </c:if>
 </c:if>
 <c:if test="${form.displayLevel == 4}" >          

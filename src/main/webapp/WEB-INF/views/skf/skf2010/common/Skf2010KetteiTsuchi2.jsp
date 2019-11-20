@@ -305,7 +305,7 @@
 
           <tr>
               <td width="500px"><font size="3"  face="ＭＳ Ｐ明朝">(2) 自動車の保管場所の使用開始日</font></td>
-              <td width="150px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝"><font size="3" id="parkingKanoDate" face="ＭＳ Ｐ明朝">${f:h(form.parkingKanoDate)}</font>
+              <td width="150px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝"><font size="3" id="parkingKanoDate" face="ＭＳ Ｐ明朝">${f:h(form.parkingKanoDate2)}</font>
           </td>
           </tr>
         </table>
