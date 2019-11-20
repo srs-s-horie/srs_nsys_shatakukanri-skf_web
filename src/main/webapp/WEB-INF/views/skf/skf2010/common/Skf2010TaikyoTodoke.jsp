@@ -3,21 +3,19 @@
 <!-- 退居（（自動車の保管場所返還）届 -->
 <div name="imui-8eqlrzsrdhv6itd" id="imui-8eqlrzsrdhv6htd" data-im-default-open="true">
 	<tbody>
-		<div class="align-L">
+        <div class="align-R" style="margin-top: 10px">
+            <tr><font size="4"  face="ＭＳ Ｐ明朝">${f:h(form.applNo )}</font><br></tr>
+        </div>
+        <div class="align-L" style="margin-top: 10px">
+          <tr><font size="4"  face="ＭＳ Ｐ明朝">別記様式３号</font><br></tr>
+          
+        </div>
+        <div class="align-R" style="margin-top: 10px">
+            <tr><font size="4"  face="ＭＳ Ｐ明朝">${f:h(form.applDate )}</font><br></tr>
+        </div>
+        <div class="align-L" style="margin-top: 10px; margin-bottom: 10px;">
 			<tr>
-				<font size="4"  face="ＭＳ Ｐ明朝">別記様式３号</font><br>
-			</tr>
-		</div>
-		<br><br><br>
-		<div class="align-R">
-			<tr>
-				<font size="4"  face="ＭＳ Ｐ明朝">${f:h(form.applNo )}</font><br>
-			</tr>
-		</div>
-		<br><br><br>
-		<div class="align-L">
-			<tr>
-				<font size="4"  face="ＭＳ Ｐ明朝">中日本高速道路株式会社殿</font><br>
+				<font size="4"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;中日本高速道路株式会社殿</font><br>
 			</tr>
 		</div>
 		<br>

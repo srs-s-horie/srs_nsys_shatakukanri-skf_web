@@ -55,7 +55,7 @@
                                 <table class="imui-form-search-condition" >
                                     <tr>
                                         <th style="width: 100px;">
-                                        	<nfwui:LabelBox id="applDater" code="<%= MessageIdConstant.SKF2010_SC005_APPL_DATER %>" />
+                                        	<nfwui:LabelBox id="lblApplDater" code="<%= MessageIdConstant.SKF2010_SC005_APPL_DATER %>" />
                                         </th>
                                         <td colspan="2">
                                             <nfwui:DateBox name="applDateFrom" id="applDateFrom" cssStyle="width:100px" />&nbsp;～&nbsp;<nfwui:DateBox name="applDateTo" id="applDateTo" cssStyle="width:100px" />
@@ -63,7 +63,7 @@
                                     </tr>
                                     <tr>
                                         <th style="width: 100px;">
-                                        	<nfwui:LabelBox id="agreDate" code="<%= MessageIdConstant.SKF2010_SC005_AGRE_DATE %>" />
+                                        	<nfwui:LabelBox id="lblAgreDate" code="<%= MessageIdConstant.SKF2010_SC005_AGRE_DATE %>" />
                                         </th>
                                         <td colspan="2">
                                             <nfwui:DateBox name="agreDateFrom" id="agreDateFrom" cssStyle="width:100px"/>&nbsp;～&nbsp;<nfwui:DateBox name="agreDateTo" id="agreDateTo" cssStyle="width:100px"/>
@@ -71,7 +71,7 @@
                                     </tr>
                                     <tr>
                                         <th style="width: 100px;">
-                                        	<nfwui:LabelBox id="shozoku" code="<%= MessageIdConstant.SKF2010_SC005_SHOZOKU %>" />
+                                        	<nfwui:LabelBox id="lblShozoku" code="<%= MessageIdConstant.SKF2010_SC005_SHOZOKU %>" />
                                         </th>
                                         <td colspan="2">
                                         <nfwui:RadioButtonGroup id="shozokuKikan">
@@ -83,7 +83,7 @@
                     
                                     <tr>
                                         <th style="width: 100px;">
-                                            <nfwui:LabelBox id="agencyLabel" code="<%= MessageIdConstant.SKF2010_SC005_AGENCY %>" />
+                                            <nfwui:LabelBox id="lblAgencyLabel" code="<%= MessageIdConstant.SKF2010_SC005_AGENCY %>" />
                                         </th>
                                         <td style="width: 150px;" colspan="2">
                                         	<imui:select id="agency" name="agency"
@@ -94,7 +94,7 @@
                     
                                     <tr>
                                         <th style="width: 100px;">
-                                            <nfwui:LabelBox id="affiliation1Label" code="<%= MessageIdConstant.SKF2010_SC005_AFFILIATION1 %>" />
+                                            <nfwui:LabelBox id="lblAffiliation1Label" code="<%= MessageIdConstant.SKF2010_SC005_AFFILIATION1 %>" />
                                         </th>
                                         <td style="width: 180px;" colspan="2">
                                             <imui:select id="affiliation1" name="affiliation1"
@@ -104,7 +104,7 @@
                     
                                     <tr>
                                         <th style="width: 100px;">
-                                            <nfwui:LabelBox id="affiliation2Label" code="<%= MessageIdConstant.SKF2010_SC005_AFFILIATION2 %>" />
+                                            <nfwui:LabelBox id="lblAffiliation2Label" code="<%= MessageIdConstant.SKF2010_SC005_AFFILIATION2 %>" />
                                         </th>
                                         <td style="width: 180px;" colspan="2">
                                             <imui:select id="affiliation2" name="affiliation2"
@@ -148,10 +148,10 @@
                     
                                     <tr>
                                         <th style="width: 100px;" rowspan="2">
-                                        	<nfwui:LabelBox id="applStatus" code="<%= MessageIdConstant.SKF2010_SC005_APPL_STATUS %>" />
+                                        	<nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2010_SC005_APPL_STATUS %>" />
                                             &nbsp;&nbsp;<imui:button tabindex="19" name="imui-8euruuk15dn9qtq" id="allCheck" value="全選択" class="imui-small-button" align="right"/>&nbsp;&nbsp;<imui:button tabindex="19" name="imui-8euruuk15dn9qtq" id="allNoCheck" value="全解除" class="imui-small-button" align="right"/>
                                         </th>
-                                        <td style="width: 190px;" colspan="2" class="${form.applStatusErr}">
+                                        <td style="width: 190px;" colspan="2" id="applStatusArea" class="${form.applStatusErr}">
                                         	<nfwui:CheckBoxGroupTag id="applStatus">
                                             <table>
                                                 <tr style="height: 25px;">
@@ -309,10 +309,10 @@
     gridComplete = function() {
     	var grid = $("#ltResultListTable");
     	// チェックボックスをカラム名に追加
-    	grid[0].grid.headers[3].el.innerHTML = "<input type=\"checkbox\" id=\"allCheckListTable\" />"
-    	grid[0].grid.headers[11].el.innerHTML = "承認日/<br />　修正依頼日";
-    	grid[0].grid.headers[12].el.innerHTML = "承認者名1／<br />　　修正依頼者名 ";
-    	grid[0].grid.headers[13].el.innerHTML = "承認者名2／<br />　　修正依頼者名 ";
+    	grid[0].grid.headers[3].el.innerHTML = "<input type=\"checkbox\" id=\"allCheckListTable\" />";
+    	grid[0].grid.headers[10].el.innerHTML = "承認日/<br />　修正依頼日";
+    	grid[0].grid.headers[11].el.innerHTML = "承認者名1／<br />　　修正依頼者名 ";
+    	grid[0].grid.headers[12].el.innerHTML = "承認者名2／<br />　　修正依頼者名 ";
     	
     	// カラム名のチェックボックスのセンタリング
     	$("#ltResultListTable_chkBox").css("text-align","center");
@@ -337,8 +337,6 @@
     		var applNo = rowData.applNo;
     		var applStatus = rowData.applStatus;
     		
-    		var nextPageId = "";
-    		var nextPageId2 = "";
     		var shainNo = rowData.shainNo;
     		var applId = rowData.applId;
     		var applStatusCd = rowData.applStatusCd;
