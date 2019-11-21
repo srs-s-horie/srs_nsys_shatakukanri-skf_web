@@ -311,7 +311,7 @@ ${form.operationGuide }
 </c:if>
 <c:if test="${form.displayLevel == 4}" >          
           <nfwui:Button id="outputTaikyoBtn" name="outputTaikyoBtn" value="退居（自動車の保管場所返還）届PDF出力" 
-          cssClass="imui-medium-button" url="skf/Skf2010Sc004/OutputPdfR0100" />
+          cssClass="imui-medium-button" url="skf/Skf2010Sc004/OutputPdfR0103" />
 </c:if>
 <c:if test="${form.commentViewFlag == 'true'}">
           <br />
