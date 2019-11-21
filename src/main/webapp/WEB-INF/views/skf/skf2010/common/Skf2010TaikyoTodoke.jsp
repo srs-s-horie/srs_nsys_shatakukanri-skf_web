@@ -28,7 +28,7 @@
             		<td width="300px">
             			<font size="3"  face="ＭＳ Ｐ明朝">機&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;関</font>
            			</td>
-            		<td width="500px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝">
+            		<td width="500px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝; text-align: left;">
             			<font size="3"  face="ＭＳ Ｐ明朝">${f:h(form.nowAgency )}</font>
 					</td>
 				</tr>
@@ -44,8 +44,8 @@
 					<td width="400px">
 						<font size="3"  face="ＭＳ Ｐ明朝">部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;等</font>
 					</td>
-					<td width="500px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝">
-						<font size="3"  face="ＭＳ Ｐ明朝">${f:h(form.nowAffiliation1 )}</font>
+					<td width="500px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝; text-align: left;">
+						<font size="3"  face="ＭＳ Ｐ明朝;">${f:h(form.nowAffiliation1 )}</font>
 					</td>
 				</tr>
 				<tr>
@@ -60,7 +60,7 @@
 					<td width="400px">
 						<font size="3"  face="ＭＳ Ｐ明朝">室、チーム又は課</font>
 					</td>
-					<td width="500px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝">
+					<td width="500px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝; text-align: left;">
 						<font size="3"  face="ＭＳ Ｐ明朝">${f:h(form.nowAffiliation2 )}</font>
 					</td>
 				</tr>
@@ -76,7 +76,7 @@
 					<td width="400px">
 						<font size="3"  face="ＭＳ Ｐ明朝">現&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;住&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所</font>
 					</td>
-					<td width="500px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝">
+					<td width="500px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝; text-align: left;">
 						<font size="3"  face="ＭＳ Ｐ明朝">${f:h(form.address )}</font>
 					</td>
 				</tr>
@@ -97,7 +97,7 @@
 					<td width="400px">
 						<font size="3"  face="ＭＳ Ｐ明朝">氏&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</font>
 					</td>
-					<td width="500px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝">
+					<td width="500px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝; text-align: left;">
 						<font size="3"  face="ＭＳ Ｐ明朝">${f:h(form.name )}</font>
 					</td>
 				</tr>
