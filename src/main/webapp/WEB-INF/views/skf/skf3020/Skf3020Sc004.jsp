@@ -115,7 +115,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 		$("#hdnRowUpdateDate").val(row.col16);
 		
 		$("#sendShainNo").val(shainNo);									
-		if ($(cellcontent).hasClass('im-ui-icon-common-16-settings')) {
+		if ($(cellcontent).hasClass('im-smart-icon-common-16-information')) {
 			// 現社宅ボタン押下
 			var url = "/imart/skf/Skf3020Sc001/init";
 			// ― テスト用URL
@@ -132,9 +132,14 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 			
 		}else if($(cellcontent).hasClass('im-ui-icon-common-16-update')){
 			// 詳細ボタン押下
+			
+			var formId= "form2";
 			var url = "skf/Skf3020Sc005/init";
-			$("#form2").attr("action", url);
-			$("#form2").submit();								
+			nfw.common.submitForm(formId, url);			
+			
+			//var url = "skf/Skf3020Sc005/init";
+			//$("#form2").attr("action", url);
+			//$("#form2").submit();								
 		}else if($(cellcontent).hasClass('im-ui-icon-common-16-trashbox')){
 			// 削除ボタン押下
 			dialogTitle = "確認";
@@ -185,16 +190,24 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 				// 転任者調書取込
 				case 1:
 					// 転入者調書取込画面（SKF3020_SC002）
+					var formId= "form";
 					url = "skf/Skf3020Sc002/init";
-					$("#form").attr("action", url);
-					$("#form").submit();
+					nfw.common.submitForm(formId, url);					
+					
+					//url = "skf/Skf3020Sc002/init";
+					//$("#form").attr("action", url);
+					//$("#form").submit();
 					break;
 				// 新規
 				case 2:
-					// 借上社宅登録画面（SKF3020_SC005）
+					// 転任者登録画面（SKF3020_SC005）
+					var formId= "form";
 					url = "skf/Skf3020Sc005/init";
-					$("#form").attr("action", url);
-					$("#form").submit();
+					nfw.common.submitForm(formId, url);					
+
+					//url = "skf/Skf3020Sc005/init";
+					//$("#form").attr("action", url);
+					//$("#form").submit();
 					break;
 				// 登録
 				case 3:
@@ -345,7 +358,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 							<col name="col13" caption="現社宅" width="75" sortable="false" align="center" tabindex="15"/>
 							 -->
 							<col name="col13" caption="現社宅" width="46" sortable="false" align="center" tabindex="17">
-								<showIcon iconClass="im-ui-icon-common-16-settings" align="center" />
+								<showIcon iconClass="im-smart-icon-common-16-information" align="center" />
 							</col>
 							<!-- 
 							<col name="col14" caption="詳細" width="70" sortable="false" align="center" tabindex="16"/>
