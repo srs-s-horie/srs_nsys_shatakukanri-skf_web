@@ -89,7 +89,7 @@
                                             cssClass="imui-small-button" use="popup"
                                             screenUrl="skf/Skf2010Sc001/init"
                                             popupWidth="650" popupHeight="700"
-                                            modalMode="false" tabindex="1" />
+                                            modalMode="true" tabindex="1" />
                                     </nobr>
                                     </th>
                                     <td style="width:120px;">
