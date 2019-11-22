@@ -87,6 +87,7 @@
 				</tr>
 			</table>
 			<input type="hidden" name="ownerNo" id="ownerNo" value="${form.ownerNo}" />
+			<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3070_SC002 %>" />
 		</nfwui:Form>
 		<!-- フッターエリア -->
         <div class="align-L float-L">
