@@ -1429,7 +1429,6 @@ function mesDisplayControl(isShow){
 		  		  		  			  	  
 		  // 現保有の社宅の「退居する」押下時に発動
 		  $('#rdoNowHoyuShatakuTaikyo').click(function() {	
-			  alert("!!");
 			// 社宅を不要とするが選択されていた場合
 			if($("#rdoFuyou").prop('checked')) {		
 	    		//退居を促すメッセージ制御（現社宅情報）　表示
@@ -1440,14 +1439,11 @@ function mesDisplayControl(isShow){
 	    		//備品項目非活性
 				returnEquipmentDisabled("disabled");
 			}else{		
-				  alert("!!!");
 				// 社宅を必要としますか？の「駐車場のみ」にチェックが入っている場合
 				if($("#rdoParkingOnly").prop('checked')) {
-		    		alert("!!!!");
 		    		//備品項目非活性
 					returnEquipmentDisabled("disabled");
 				}else{
-					alert("!!!!!");
 					returnEquipmentDisabled("abled");
 				}
 			}
@@ -1461,7 +1457,6 @@ function mesDisplayControl(isShow){
 				mesDisplayControl("no");
 	    		//備品項目非活性
 				returnEquipmentDisabled("disabled");
-	    		alert("!");
 		      }
 		  }); 
 		  	  
