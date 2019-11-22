@@ -222,19 +222,19 @@ $(function() {
           <imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()"  />
 <c:if test="${form.displayLevel != 4}" >          
           <nfwui:Button id="outputNyukyoBtn" name="outputNyukyoBtn" value="社宅入居希望等調書PDF出力" 
-          cssClass="imui-medium-button" url="skf/Skf2010Sc004/OutputPdfR0100" />
+          cssClass="imui-medium-button" url="skf/Skf2010Sc006/OutputPdfR0100" />
 <c:if test="${form.displayLevel >= 2}" >
           <nfwui:Button id="outputTaiyoBtn" name="outputTaiyoBtn" value="貸与（予定）社宅等のご案内PDF出力" 
-          cssClass="imui-medium-button" url="skf/Skf2010Sc004/OutputPdfR0101" />
+          cssClass="imui-medium-button" url="skf/Skf2010Sc006/OutputPdfR0101" />
 </c:if>
 <c:if test="${form.displayLevel >= 3}" >
           <nfwui:Button id="outputKetteiBtn" name="outputKetteiBtn" value="入居等決定通知書PDF出力" 
-          cssClass="imui-medium-button" url="skf/Skf2010Sc004/OutputPdfR0102" />
+          cssClass="imui-medium-button" url="skf/Skf2010Sc006/OutputPdfR0102" />
 </c:if>
 </c:if>
 <c:if test="${form.displayLevel == 4}" >          
           <nfwui:Button id="outputTaikyoBtn" name="outputTaikyoBtn" value="退居（自動車の保管場所返還）届PDF出力" 
-          cssClass="imui-medium-button" url="skf/Skf2010Sc004/OutputPdfR0100" />
+          cssClass="imui-medium-button" url="skf/Skf2010Sc006/OutputPdfR0103" />
 </c:if>
 <c:if test="${form.commentViewFlag == 'true'}">
           <br />
