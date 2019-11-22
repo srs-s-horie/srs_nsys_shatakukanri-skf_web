@@ -27,10 +27,6 @@ public class Skf3070Sc001Form extends Skf3070CommonForm {
 	/* ドロップダウン */
 	// 対象年ドロップダウン
 	private List<Map<String, Object>> ddlTargetYearList;
-	// 個人法人区分ドロップダウン
-	private List<Map<String, Object>> ddlBusinessKbnList;
-	// 個人番号ドロップダウン
-	private List<Map<String, Object>> ddlAcceptFlgList;
 
 	// 検索結果表示用
 	private List<Map<String, Object>> listTableData;
