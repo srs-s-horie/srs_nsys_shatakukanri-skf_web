@@ -140,6 +140,12 @@
 	<input type="hidden" name="ownerNo" id="ownerNo" value="" />
 </nfwui:Form>
 
+<nfwui:Form id="paramForm2" name="paramForm2">
+	<input type="hidden" name="ownerNo" id="ownerNo" value="" />
+	<input type="hidden" name="recodeDadefrom" id="recodeDadefrom" value="${form.recodeDadefrom}" />
+	<input type="hidden" name="recodeDadeto" id="recodeDadeto" value="${form.recodeDadeto}" />
+</nfwui:Form>
+
 <script src="scripts/skf/skfCommon.js"></script>
 <script type="text/javascript">
 (function($) {
@@ -165,15 +171,13 @@
 			var grid = $("#mainList");
 			// 行番号から選択した行の情報を取得
 			var row = grid.getRowData(rowId);
-			
-			//var map = new Object();
-			
+					
 			// ownerNo:賃貸人（代理人）管理番号
 			var ownerNo = row.ownerNo;		
-			$("#sendOwnerNo").val(ownerNo);
+			$("#ownerNo").val(ownerNo);
 			
 			var nextPageUrl = "skf/Skf3070Sc003/init";
-    		nfw.common.submitForm("paramForm", nextPageUrl);
+    		nfw.common.submitForm("paramForm2", nextPageUrl);
 		}
 		
 	}
@@ -186,11 +190,7 @@
 	      nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);  
 	  });
 	
-	  //ウィンドウリサイズ時イベント
-	  $(window).bind('resize', function(){
-	      // 一覧の横幅を変更
-	      $('#mainList').setGridWidth($("#listTableArea").width(), true);
-	  }).trigger('resize');
+
 
 })(jQuery);
 

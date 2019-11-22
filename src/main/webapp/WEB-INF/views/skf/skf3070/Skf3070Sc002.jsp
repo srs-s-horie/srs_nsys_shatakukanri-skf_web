@@ -73,7 +73,7 @@
 					<td colspan="6">
 						<imui:select id="acceptFlg" name="acceptFlg" list="${form.ddlAcceptFlgList}" tabindex="7"/>
 						<imui:textbox id="acceptStatus" name="acceptStatus" value="${f:h(form.acceptStatus)}" placeholder="例 督促状況" 
-							style="width: 60%;" tabindex="8"/>
+							style="width: 30%;" tabindex="8"/>
 					</td>
 				</tr>
 				<tr>
@@ -90,15 +90,19 @@
 		</nfwui:Form>
 		<!-- フッターエリア -->
         <div class="align-L float-L">
-        	<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="13"  />
+        	<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="10"  />
         </div>
         
         <div class="align-R">
-            <input name="doSendBack" id="" type="button" value="登録" class="imui-medium-button" onclick="touroku()"  style="width:150px;">
+    		<nfwui:ConfirmButton cssStyle="width:150px;" id="regist" value="登録" 
+				formId="form"
+				cssClass="imui-medium-button" title="<%=MessageIdConstant.SKF3070_SC002_CONFIRM_TITLE %>" message="<%=MessageIdConstant.I_SKF_3053 %>"
+				url="skf/Skf3070Sc002/regist" tabindex="11" />
+
         </div>
 	</div>
 </div>
-
+<!-- javascript -->
 <script src="scripts/skf/skfCommon.js"></script>	
 <script type="text/javascript">
 /**
