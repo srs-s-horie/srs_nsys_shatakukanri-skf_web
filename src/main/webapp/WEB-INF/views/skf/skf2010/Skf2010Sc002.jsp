@@ -166,7 +166,7 @@
 						<input name="doDelRow1" id="doDelRow1" type="button" value="貸与（予定）社宅等のご案内PDF出力" class="imui-medium-button" onclick="onClickOutputPdfR0101();" />
 					</imart:condition>
 					<imart:condition validity="${form.level3}">
-						<input name="doDelRow1" id="doDelRow1" type="button" value="退居（自動車の保管場所変換）届PDF出力ボタン" class="imui-medium-button" onclick="" />
+						<input name="doDelRow1" id="doDelRow1" type="button" value="退居（自動車の保管場所返還）届PDF出力" class="imui-medium-button" onclick="onClickOutputPdfR0103()" />
 					</imart:condition>
 					<imart:condition validity="${form.commentViewFlag}" >
 						<nfwui:PopupButton id="commentPop" value="コメント表示" 
@@ -253,9 +253,15 @@ function back1() {
     onClickOutputPdfR0100= function () {
         nfw.common.submitForm("form", "skf/Skf2010Sc002/OutputPdfR0100");
     }
+    
     // 「貸与（予定）社宅等のご案内PDF出力」ボタン押下時のイベント
     onClickOutputPdfR0101 = function () {
     	nfw.common.submitForm("form", "skf/Skf2010Sc002/OutputPdfR0101");
+    }
+    
+    //「退居（自動車の保管場所返還）届」ボタン押下時のイベント
+    onClickOutputPdfR0103 = function () {
+    	nfw.common.submitForm("form", "skf/Skf2010Sc002/OutputPdfR0103");
     }
 })(jQuery);
 </script>
