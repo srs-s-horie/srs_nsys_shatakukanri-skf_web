@@ -119,9 +119,8 @@
                                             <nfwui:PopupButton id="support" name="support" value="支援"
                                             cssClass="imui-small-button" use="popup"
                                             screenUrl="skf/Skf2010Sc001/init"
-                                            parameter="nyukyoFlag:nyukyoFlag"
                                             popupWidth="650" popupHeight="700"
-                                            modalMode="false" />
+                                            modalMode="true" />
                                         </th>
                                         <td style="width: 180px;" colspan="2">
                                         <imui:textbox id="name" name="name" value="${form.name}" />
