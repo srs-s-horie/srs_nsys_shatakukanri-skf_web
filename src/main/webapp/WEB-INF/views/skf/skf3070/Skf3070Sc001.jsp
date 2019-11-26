@@ -182,6 +182,14 @@
 		
 	}
 	
+	  // 法定調書データ出力ボタン押下時のイベント
+	  $("#statutoryRecordDownload").click(function(){
+		  dialogTitle = "確認";
+		  dialogMessage = "法定調書データを出力します。よろしいですか？";
+		  url = "skf/Skf3070Sc001/StatutoryRecordDownload";
+	      nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);  
+	  });
+	  
 	  // 賃貸人（代理人）情報出力ボタン押下時のイベント
 	  $("#lessorInfoDownload").click(function(){
 		  dialogTitle = "確認";
