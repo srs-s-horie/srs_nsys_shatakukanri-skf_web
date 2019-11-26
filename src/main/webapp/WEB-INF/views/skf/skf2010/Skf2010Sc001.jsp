@@ -32,7 +32,7 @@ $(function(){
 		// 検索ボタンをクリックした時の処理
 		$("#search").click(function() {
 			// 警告文表示を削除
-			$(".imui-box-caution").hide();
+			$(".imui-box-caution, .imui-box-warning").hide();
 			var grid = $("#popShainList");
 			var map = new Object();
 			map['popShainNo'] = $("#popShainNo").val();
