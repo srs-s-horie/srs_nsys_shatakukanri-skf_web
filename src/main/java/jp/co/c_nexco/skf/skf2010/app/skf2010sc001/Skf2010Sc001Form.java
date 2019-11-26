@@ -25,12 +25,6 @@ public class Skf2010Sc001Form extends PopupForm {
 	// リストテーブル情報
 	private List<Map<String, Object>> popListTableList;
 
-	// 親画面ID
-	private String nyukyoFlag;
-
-	// エラー関連
-	private String errShainNo;
-	private String errName;
-	private String errNameKk;
-	private String errAgency;
+	// 社宅管理番号
+	private int popShatakuKanriNo;
 }

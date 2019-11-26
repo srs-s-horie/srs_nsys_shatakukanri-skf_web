@@ -26,23 +26,30 @@
 	}
 </style>
 
-<script src="scripts/skf/skfCommon.js"></script>
 <script type="text/javascript">
 $(function(){
 	$(document).ready(function(){
+		// 検索ボタンをクリックした時の処理
 		$("#search").click(function() {
-			$(".imui-box-caution").hide();
+			// 警告文表示を削除
+			$(".imui-box-caution, .imui-box-warning").hide();
 			var grid = $("#popShainList");
-    		grid.clearGridData();
 			var map = new Object();
 			map['popShainNo'] = $("#popShainNo").val();
 			map['popName'] = $("#popName").val();
 			map['popNameKk'] = $("#popNameKk").val();
 			map['popAgency'] = $("#popAgency").val();
+			map['popShatakuKanriNo'] = $("#shatakuKanriNo").val();
+			if (map['popShatakuKanriNo'] == null) {
+				map['popShatakuKanriNo'] = $("#hdnShatakuKanriNo").val();
+			}
+			// 非同期で検索処理を実行
 			nfw.common.doAjaxAction("skf/Skf2010Sc001/SearchAsync", map, true, function(data) {
-	    		//var grid = $("#popShainList");
+				// 現在のリストテーブルの内容を初期化
 	    		grid.clearGridData();
-	    		grid.jqGrid('setGridParam', {data:data.popListTableList});
+				// リストテーブルのデータをセット
+				grid.jqGrid('setGridParam', {data:data.popListTableList});
+				// リストテーブルをリロード
 				grid.trigger("reloadGrid");
 	    	});
 		});
@@ -56,14 +63,11 @@ $(function(){
 			
 			var grid = $("#popShainList");
 	        var rowData = grid.getRowData(rowId);
-	        //JSONデータ作成
-			var shainData = {
-					"name": rowData.name,
-					"shainNo": rowData.shainNo,
-					"agency": rowData.agency
-			}
+
+	        var insertFormName = $("#insertFormName").val();
+	        
 	        $("#shainNo").val(rowData.shainNo);
-	        $("#name").val(rowData.name);
+	        $("#" + insertFormName).val(rowData.name);
 	        nfw.common.modalPopupClose(this);
 		});
 
@@ -91,7 +95,7 @@ $(function(){
 					  <nfwui:LabelBox id="lblShainNo" code="<%= MessageIdConstant.SKF2010_SC001_SHAIN_NO %>" />
 					</th>
 					<td style="width: 10%;">
-					    <imui:textbox id="popShainNo" name="popShainNo" style="width:260px;" value="${form.popShainNo}" class="${form.errShainNo}" />
+					    <imui:textbox id="popShainNo" name="popShainNo" style="width:260px;" value="${form.popShainNo}" />
 					</td>
 				</tr>
 				<tr>
@@ -99,14 +103,14 @@ $(function(){
 					  <nfwui:LabelBox id="lblName" code="<%= MessageIdConstant.SKF2010_SC001_NAME %>" />
 					</th>
 					<td style="width: 10%;">
-					  <imui:textbox id="popName" name="popName" style="width:260px;" value="${form.popName}" class="${form.errName}" />
+					  <imui:textbox id="popName" name="popName" style="width:260px;" value="${form.popName}" />
 					</td>
 				</tr>
 					<th style="width: 7%;">
 					  <nfwui:LabelBox id="lblNameKk" code="<%= MessageIdConstant.SKF2010_SC001_NAME_KK %>" />
 					</th>
 					<td style="width: 10%;">
-					  <imui:textbox id="popNameKk" name="popNameKk" style="width:260px;" value="${form.popNameKk}" class="${form.errNameKk}" />
+					  <imui:textbox id="popNameKk" name="popNameKk" style="width:260px;" value="${form.popNameKk}" />
 					</td>
 				</tr>
 				<tr>
@@ -114,7 +118,7 @@ $(function(){
 					  <nfwui:LabelBox id="lblGenShozoku" code="<%= MessageIdConstant.SKF2010_SC001_AGENCY %>" />
 					</th>
 					<td style="width: 10%;">
-					  <imui:textbox id="popAgency" name="popAgency" style="width:260px;" value="${form.popAgency}" class="${form.errAgency}" />
+					  <imui:textbox id="popAgency" name="popAgency" style="width:260px;" value="${form.popAgency}" />
 					</td>
 				</tr>
 
@@ -125,8 +129,7 @@ $(function(){
 	    <imui:button id="search" name="search" value="検索"
 	    class="imui-small-button" url="skf/Skf2010Sc001/Search"
 	    formId="searchForm" />
-		<!--<input type="button" value="クリア" class="imui-small-button" >-->
-				</div>
+	</div>
 <br>
 			<!-- 明細＆細目未満 -->
 	<!-- 明細部 -->
@@ -145,12 +148,9 @@ $(function(){
 		<cols>
 		  <col name="shainNo" width="100" sortable="false" caption="社員番号" />
 		  <col name="name" width="200" sortable="false" caption="氏名" />
-		  <col name="nameKk" hidden="true" />
 		  <col name="agency" width="255" sortable="false" caption="現所属" />
 		</cols>
 		</imui:listTable>
-
-
 	</nfwui:Form>
 	<br>
 <div class="align-R">
