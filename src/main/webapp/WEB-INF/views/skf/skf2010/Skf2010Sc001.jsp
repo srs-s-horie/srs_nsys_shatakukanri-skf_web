@@ -39,9 +39,9 @@ $(function(){
 			map['popName'] = $("#popName").val();
 			map['popNameKk'] = $("#popNameKk").val();
 			map['popAgency'] = $("#popAgency").val();
-			map['shatakuKanriNo'] = $("#shatakuKanriNo").val();
-			if (map['shatakuKanriNo'] == null) {
-				map['shatakuKanriNo'] = $("#hdnShatakuKanriNo").val();
+			map['popShatakuKanriNo'] = $("#shatakuKanriNo").val();
+			if (map['popShatakuKanriNo'] == null) {
+				map['popShatakuKanriNo'] = $("#hdnShatakuKanriNo").val();
 			}
 			// 非同期で検索処理を実行
 			nfw.common.doAjaxAction("skf/Skf2010Sc001/SearchAsync", map, true, function(data) {
