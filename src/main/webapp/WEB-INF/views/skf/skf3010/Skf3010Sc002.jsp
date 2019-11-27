@@ -77,6 +77,8 @@
 		<input type="hidden" name="hdnHosoku" id="sendHosokuType"/>
 		<input type="hidden" name="hdnAttachedNo" id="sendAttachedNo"/>
 
+		<!-- 社員名入力支援用 -->
+		<input type="hidden" id="insertFormName" value="" />
 		<nfwui:Table use="input">
 			<tbody>
 				<tr>
@@ -520,9 +522,9 @@
 								<imui:textbox id="dormitoryLeaderName" name="dormitoryLeaderName" style="width:150px;"
 								maxlength="30" value="${form.dormitoryLeaderName}" placeholder="例　中日本　太郎" tabindex="47" />
 								<!-- 社員入力支援 -->
-								<nfwui:PopupButton id="leaderInputSupportShain" name="leaderInputSupportShain" value="社員入力支援" use="popup"
+								<nfwui:PopupButton id="supportDormitoryLeaderName" name="supportDormitoryLeaderName" value="社員入力支援" use="popup"
 									cssClass="imui-small-button" popupWidth="650" popupHeight="700"
-									modalMode="false" screenUrl="skf/Skf2010Sc001/init"
+									modalMode="true" screenUrl="skf/Skf2010Sc001/init"
 									parameter="shainNo:shainNo"
 									callbackFunc="leaderShainInfoCallback" tabindex="48"/> 
 <%--                	<nfwui:PopupButton id="cShien" name="cShien" value="駐車支援" use="popup"  --%>
@@ -537,9 +539,9 @@
 								<imui:textbox id="keyManagerName" name="keyManagerName" style="width:150px;" maxlength="30"
 								value="${form.keyManagerName}" placeholder="例　中日本　太郎" tabindex="54" />
 								<!-- 社員入力支援 -->
-								<nfwui:PopupButton id="keyManagerInputSupportShain" name="keyManagerInputSupportShain" value="社員入力支援" use="popup"
+								<nfwui:PopupButton id="supportKeyManagerName" name="supportKeyManagerName" value="社員入力支援" use="popup"
 									cssClass="imui-small-button" popupWidth="650" popupHeight="700"
-									modalMode="false" screenUrl="skf/Skf2010Sc001/init"
+									modalMode="true" screenUrl="skf/Skf2010Sc001/init"
 									parameter="shainNo:shainNo"
 									callbackFunc="keyManagerShainInfoCallback" tabindex="55"/> 
 							</td>
@@ -1504,6 +1506,14 @@
 						//添付ファイルリンククリック時
 						$("a[id^='attached_']").click(function(){
 							downloadShatakuHosokuFile(this);
+						});
+						
+						$("#supportDormitoryLeaderName, #supportKeyManagerName").click(function(){
+					    	var id = $(this).attr("id");
+					    	var formName = id.replace(/^support/g, "").replace(/^[A-Z]/g, function(val) {
+					    		return val.toLowerCase();
+					    	});
+					    	$("#insertFormName").val(formName);
 						});
 					});
 
