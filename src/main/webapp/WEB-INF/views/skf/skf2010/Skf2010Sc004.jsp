@@ -233,7 +233,7 @@ ${form.operationGuide }
       <tr style="width: 100%; max-width: 1000px;text-align:center;">
         <th><nfwui:LabelBox id="lblNowTaikyoDate" code="<%= MessageIdConstant.SKF2010_SC004_NOW_TAIKYO_DATE %>" /></th>
         <td align="left">
-			<nfwui:DateBox id="taikyobi" name="taikyobi" />
+			<nfwui:DateBox id="taikyobi" name="taikyobi" disabled="${form.notTaikyo }" />
         </td>
         <th><nfwui:LabelBox id="lblNewShatakuNyukyo" code="<%= MessageIdConstant.SKF2010_SC004_NEW_SHATAKU_NYUKYO %>" /></th>
         <td align="left">
@@ -243,7 +243,7 @@ ${form.operationGuide }
       <tr style="width: 100%; max-width: 1000px;text-align:center;">
         <th><nfwui:LabelBox id="lblNowCarSpaceHenkan" code="<%= MessageIdConstant.SKF2010_SC004_NOW_CAR_SPACE_HENKAN %>" /></th>
         <td align="left">
-          <nfwui:DateBox id="henkanbi" name="henkanbi" />
+          <nfwui:DateBox id="henkanbi" name="henkanbi" disabled="${form.notTaikyo }" />
         </td>
         <th><nfwui:LabelBox id="lblNewCarSpaceStart" code="<%= MessageIdConstant.SKF2010_SC004_NEW_CAR_SPACE_START %>" /></th>
         <td align="left">
@@ -306,12 +306,12 @@ ${form.operationGuide }
 </c:if>
 <c:if test="${form.displayLevel >= 3}" >
           <nfwui:Button id="outputKetteiBtn" name="outputKetteiBtn" value="入居等決定通知書PDF出力" 
-          cssClass="imui-medium-button" url="skf/Skf2010Sc004/OutputPdfR0101" />
+          cssClass="imui-medium-button" url="skf/Skf2010Sc004/OutputPdfR0102" />
 </c:if>
 </c:if>
 <c:if test="${form.displayLevel == 4}" >          
           <nfwui:Button id="outputTaikyoBtn" name="outputTaikyoBtn" value="退居（自動車の保管場所返還）届PDF出力" 
-          cssClass="imui-medium-button" url="skf/Skf2010Sc004/OutputPdfR0100" />
+          cssClass="imui-medium-button" url="skf/Skf2010Sc004/OutputPdfR0103" />
 </c:if>
 <c:if test="${form.commentViewFlag == 'true'}">
           <br />

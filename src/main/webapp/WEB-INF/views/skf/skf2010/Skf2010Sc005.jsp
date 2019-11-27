@@ -29,6 +29,131 @@
 	  }
       return style;
   }
+
+  (function($){
+    // 機関ドロップダウン変更時のイベント
+    $("#agency").change(function() {
+    	var map = new Object();
+    	map['agency'] = $("#agency").val();
+    	
+    	nfw.common.doAjaxAction("skf/Skf2010Sc005/ChangeDropDownAsync", map, true, function(data) {
+    		$("#affiliation1").imuiSelect("replace", data.ddlAffiliation1List);
+    		$("#affiliation2").imuiSelect("replace", data.ddlAffiliation2List);
+    	});
+    });
+    // 部等ドロップダウン変更時のイベント
+    $("#affiliation1").change(function() {
+    	var map = new Object();
+    	map['agency'] = $("#agency").val();
+    	map['affiliation1'] = $("#affiliation1").val();
+    	
+    	nfw.common.doAjaxAction("skf/Skf2010Sc005/ChangeDropDownAsync", map, true, function(data) {
+    		$("#affiliation2").imuiSelect("replace", data.ddlAffiliation2List);
+    	});
+    });
+    
+    // 申請状況の「全選択」ボタン押下時のイベント
+    $("#allCheck").click(function() {
+    	$("input[name='applStatus']").prop("checked", true);
+    });
+    // 申請状況の「全解除」ボタン押下時のイベント
+    $("#allNoCheck").click(function() {
+    	$("input[name='applStatus']").prop("checked", false);
+    });
+    
+
+    // 画面表示時に定義される処理
+    $(document).ready(function(){
+	    // 「一括承認」ボタン押下時のイベント
+	    preUpdateEvent = function () {
+	        var ids = $("input[id^='applNo_']:not(:disabled):checkbox:checked");
+	        // 承認対象チェック
+	        if (ids.length <= 0) {
+	        	nfw.common.showReserveMessage("warning", "承認対象がありません");
+				return false;
+	        }
+			var strs = [];
+			for( var i=0; i<ids.length; ++i )
+			{
+				var id = ids[i].id;
+				var applNo = id.replace("applNo_", "");
+				strs.push(applNo);
+			}
+			var submitStr = strs.join(",");
+			$("#submitApplNo").val(submitStr);
+			skf.common.confirmPopup("選択された申請書を一括で承認します。よろしいですか？", 
+					"確認", "resultListForm", "skf/Skf2010Sc005/Update", 
+					"ok", "キャンセル", this, false);
+			
+			return true;
+	    }
+	    
+	    $("#supportName").click(function(){
+	    	var id = $(this).attr("id");
+	    	var formName = id.replace(/^support/g, "").replace(/^[A-Z]/g, function(val) {
+	    		return val.toLowerCase();
+	    	});
+	    	$("#insertFormName").val(formName);
+		});
+
+
+	});
+    
+    // リストテーブル完成時に実行する関数
+    gridComplete = function() {
+    	var grid = $("#ltResultListTable");
+    	// チェックボックスをカラム名に追加
+    	grid[0].grid.headers[3].el.innerHTML = "<input type=\"checkbox\" id=\"allCheckListTable\" />";
+    	grid[0].grid.headers[10].el.innerHTML = "承認日/<br />　修正依頼日";
+    	grid[0].grid.headers[11].el.innerHTML = "承認者名1／<br />　　修正依頼者名 ";
+    	grid[0].grid.headers[12].el.innerHTML = "承認者名2／<br />　　修正依頼者名 ";
+    	
+    	// カラム名のチェックボックスのセンタリング
+    	$("#ltResultListTable_chkBox").css("text-align","center");
+    	// リストテーブル全選択チェックのイベントを設定する
+    	$("#allCheckListTable").bind('click', function() {
+	    	if ($(this).prop("checked") == true) {
+	    		// inputタグのidが「applNo_」で始まり、且つ活性状態のもののチェックをTRUEにする
+	    		$("input[id^='applNo_']:not(:disabled)").prop("checked", true);
+	    	} else {
+	    		// inputタグのidが「applNo_」で始まり、且つ活性状態のもののチェックをFALSEにする
+	    		$("input[id^='applNo_']:not(:disabled)").prop("checked", false);
+	    	}
+	    });
+    }
+    
+    // リストテーブルの確認欄のアイコンをクリックした時のイベント
+    onCellSelect = function(rowId, iCol, cellContent, e) {
+    	if ($(cellContent).hasClass('im-ui-icon-menu-24-document')) {
+    		var grid = $("#ltResultListTable");
+    		var rowData = grid.getRowData(rowId);
+    		
+    		var applNo = rowData.applNo;
+    		var applStatus = rowData.applStatus;
+    		
+    		var shainNo = rowData.shainNo;
+    		var applId = rowData.applId;
+    		var applStatusCd = rowData.applStatusCd;
+    		var agreName1 = rowData.agreName1;
+    		var agreName2 = rowData.agreName2;
+    		
+   			var nextPageUrl = "skf/Skf2010Sc005/Transfer";
+    		
+    		$("#putApplNo").val(applNo);
+    		$("#putApplId").val(applId);
+    		$("#putShainNo").val(shainNo);
+    		$("#putApplStatus").val(applStatusCd);
+    		$("#putShonin1").val(agreName1);
+    		$("#putShonin2").val(agreName2);
+    		
+    		nfw.common.submitForm("resultListForm", nextPageUrl);
+    		
+    	}
+    }
+    
+    
+  })(jQuery);
+
 </script>
 
 <style>
@@ -52,10 +177,11 @@
                        <nfwui:Title id="searchTitle" code="<%= MessageIdConstant.SKF2010_SC005_SEARCH_TITLE %>" titleLevel="2" />
                             <nfwui:Form id="form" name="form" modelAttribute="form" encType="multipart/form-data">
                              <input type="hidden" id="nyukyoFlag" name="nyukyoFlag" value="false" />
+                             <input type="hidden" id="insertFormName" name="insertFormName" value="" />
                                 <table class="imui-form-search-condition" >
                                     <tr>
                                         <th style="width: 100px;">
-                                        	<nfwui:LabelBox id="applDater" code="<%= MessageIdConstant.SKF2010_SC005_APPL_DATER %>" />
+                                        	<nfwui:LabelBox id="lblApplDater" code="<%= MessageIdConstant.SKF2010_SC005_APPL_DATER %>" />
                                         </th>
                                         <td colspan="2">
                                             <nfwui:DateBox name="applDateFrom" id="applDateFrom" cssStyle="width:100px" />&nbsp;～&nbsp;<nfwui:DateBox name="applDateTo" id="applDateTo" cssStyle="width:100px" />
@@ -63,7 +189,7 @@
                                     </tr>
                                     <tr>
                                         <th style="width: 100px;">
-                                        	<nfwui:LabelBox id="agreDate" code="<%= MessageIdConstant.SKF2010_SC005_AGRE_DATE %>" />
+                                        	<nfwui:LabelBox id="lblAgreDate" code="<%= MessageIdConstant.SKF2010_SC005_AGRE_DATE %>" />
                                         </th>
                                         <td colspan="2">
                                             <nfwui:DateBox name="agreDateFrom" id="agreDateFrom" cssStyle="width:100px"/>&nbsp;～&nbsp;<nfwui:DateBox name="agreDateTo" id="agreDateTo" cssStyle="width:100px"/>
@@ -71,7 +197,7 @@
                                     </tr>
                                     <tr>
                                         <th style="width: 100px;">
-                                        	<nfwui:LabelBox id="shozoku" code="<%= MessageIdConstant.SKF2010_SC005_SHOZOKU %>" />
+                                        	<nfwui:LabelBox id="lblShozoku" code="<%= MessageIdConstant.SKF2010_SC005_SHOZOKU %>" />
                                         </th>
                                         <td colspan="2">
                                         <nfwui:RadioButtonGroup id="shozokuKikan">
@@ -83,7 +209,7 @@
                     
                                     <tr>
                                         <th style="width: 100px;">
-                                            <nfwui:LabelBox id="agencyLabel" code="<%= MessageIdConstant.SKF2010_SC005_AGENCY %>" />
+                                            <nfwui:LabelBox id="lblAgencyLabel" code="<%= MessageIdConstant.SKF2010_SC005_AGENCY %>" />
                                         </th>
                                         <td style="width: 150px;" colspan="2">
                                         	<imui:select id="agency" name="agency"
@@ -94,7 +220,7 @@
                     
                                     <tr>
                                         <th style="width: 100px;">
-                                            <nfwui:LabelBox id="affiliation1Label" code="<%= MessageIdConstant.SKF2010_SC005_AFFILIATION1 %>" />
+                                            <nfwui:LabelBox id="lblAffiliation1Label" code="<%= MessageIdConstant.SKF2010_SC005_AFFILIATION1 %>" />
                                         </th>
                                         <td style="width: 180px;" colspan="2">
                                             <imui:select id="affiliation1" name="affiliation1"
@@ -104,7 +230,7 @@
                     
                                     <tr>
                                         <th style="width: 100px;">
-                                            <nfwui:LabelBox id="affiliation2Label" code="<%= MessageIdConstant.SKF2010_SC005_AFFILIATION2 %>" />
+                                            <nfwui:LabelBox id="lblAffiliation2Label" code="<%= MessageIdConstant.SKF2010_SC005_AFFILIATION2 %>" />
                                         </th>
                                         <td style="width: 180px;" colspan="2">
                                             <imui:select id="affiliation2" name="affiliation2"
@@ -116,12 +242,11 @@
                                         <th style="width: 100px;">
                                         	<nfwui:LabelBox id="lblApplName" code="<%= MessageIdConstant.SKF2010_SC005_APPLICANT_NAME %>" style="float:left" />
                                             &nbsp;&nbsp;
-                                            <nfwui:PopupButton id="support" name="support" value="支援"
+                                            <nfwui:PopupButton id="supportName" name="supportName" value="支援"
                                             cssClass="imui-small-button" use="popup"
                                             screenUrl="skf/Skf2010Sc001/init"
-                                            parameter="nyukyoFlag:nyukyoFlag"
                                             popupWidth="650" popupHeight="700"
-                                            modalMode="false" />
+                                            modalMode="true" />
                                         </th>
                                         <td style="width: 180px;" colspan="2">
                                         <imui:textbox id="name" name="name" value="${form.name}" />
@@ -148,10 +273,10 @@
                     
                                     <tr>
                                         <th style="width: 100px;" rowspan="2">
-                                        	<nfwui:LabelBox id="applStatus" code="<%= MessageIdConstant.SKF2010_SC005_APPL_STATUS %>" />
+                                        	<nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2010_SC005_APPL_STATUS %>" />
                                             &nbsp;&nbsp;<imui:button tabindex="19" name="imui-8euruuk15dn9qtq" id="allCheck" value="全選択" class="imui-small-button" align="right"/>&nbsp;&nbsp;<imui:button tabindex="19" name="imui-8euruuk15dn9qtq" id="allNoCheck" value="全解除" class="imui-small-button" align="right"/>
                                         </th>
-                                        <td style="width: 190px;" colspan="2" class="${form.applStatusErr}">
+                                        <td style="width: 190px;" colspan="2" id="applStatusArea" class="${form.applStatusErr}">
                                         	<nfwui:CheckBoxGroupTag id="applStatus">
                                             <table>
                                                 <tr style="height: 25px;">
@@ -244,125 +369,6 @@
             </tr>
 </table>
 </div>
-<script type="text/javascript">
-  (function($){
-    // 機関ドロップダウン変更時のイベント
-    $("#agency").change(function() {
-    	var map = new Object();
-    	map['agency'] = $("#agency").val();
-    	
-    	nfw.common.doAjaxAction("skf/Skf2010Sc005/ChangeDropDownAsync", map, true, function(data) {
-    		$("#affiliation1").imuiSelect("replace", data.ddlAffiliation1List);
-    		$("#affiliation2").imuiSelect("replace", data.ddlAffiliation2List);
-    	});
-    });
-    // 部等ドロップダウン変更時のイベント
-    $("#affiliation1").change(function() {
-    	var map = new Object();
-    	map['agency'] = $("#agency").val();
-    	map['affiliation1'] = $("#affiliation1").val();
-    	
-    	nfw.common.doAjaxAction("skf/Skf2010Sc005/ChangeDropDownAsync", map, true, function(data) {
-    		$("#affiliation2").imuiSelect("replace", data.ddlAffiliation2List);
-    	});
-    });
-    
-    // 申請状況の「全選択」ボタン押下時のイベント
-    $("#allCheck").click(function() {
-    	$("input[name='applStatus']").prop("checked", true);
-    });
-    // 申請状況の「全解除」ボタン押下時のイベント
-    $("#allNoCheck").click(function() {
-    	$("input[name='applStatus']").prop("checked", false);
-    });
-    
-
-    // 画面表示時に定義される処理
-    $(document).ready(function(){
-	    // 「一括承認」ボタン押下時のイベント
-	    preUpdateEvent = function () {
-	        var ids = $("input[id^='applNo_']:not(:disabled):checkbox:checked");
-	        // 承認対象チェック
-	        if (ids.length <= 0) {
-	        	nfw.common.showReserveMessage("warning", "承認対象がありません");
-				return false;
-	        }
-			var strs = [];
-			for( var i=0; i<ids.length; ++i )
-			{
-				var id = ids[i].id;
-				var applNo = id.replace("applNo_", "");
-				strs.push(applNo);
-			}
-			var submitStr = strs.join(",");
-			$("#submitApplNo").val(submitStr);
-			skf.common.confirmPopup("選択された申請書を一括で承認します。よろしいですか？", 
-					"確認", "resultListForm", "skf/Skf2010Sc005/Update", 
-					"ok", "キャンセル", this, false);
-			
-			return true;
-	    }
-
-	});
-    
-    // リストテーブル完成時に実行する関数
-    gridComplete = function() {
-    	var grid = $("#ltResultListTable");
-    	// チェックボックスをカラム名に追加
-    	grid[0].grid.headers[3].el.innerHTML = "<input type=\"checkbox\" id=\"allCheckListTable\" />"
-    	grid[0].grid.headers[11].el.innerHTML = "承認日/<br />　修正依頼日";
-    	grid[0].grid.headers[12].el.innerHTML = "承認者名1／<br />　　修正依頼者名 ";
-    	grid[0].grid.headers[13].el.innerHTML = "承認者名2／<br />　　修正依頼者名 ";
-    	
-    	// カラム名のチェックボックスのセンタリング
-    	$("#ltResultListTable_chkBox").css("text-align","center");
-    	// リストテーブル全選択チェックのイベントを設定する
-    	$("#allCheckListTable").bind('click', function() {
-	    	if ($(this).prop("checked") == true) {
-	    		// inputタグのidが「applNo_」で始まり、且つ活性状態のもののチェックをTRUEにする
-	    		$("input[id^='applNo_']:not(:disabled)").prop("checked", true);
-	    	} else {
-	    		// inputタグのidが「applNo_」で始まり、且つ活性状態のもののチェックをFALSEにする
-	    		$("input[id^='applNo_']:not(:disabled)").prop("checked", false);
-	    	}
-	    });
-    }
-    
-    // リストテーブルの確認欄のアイコンをクリックした時のイベント
-    onCellSelect = function(rowId, iCol, cellContent, e) {
-    	if ($(cellContent).hasClass('im-ui-icon-menu-24-document')) {
-    		var grid = $("#ltResultListTable");
-    		var rowData = grid.getRowData(rowId);
-    		
-    		var applNo = rowData.applNo;
-    		var applStatus = rowData.applStatus;
-    		
-    		var nextPageId = "";
-    		var nextPageId2 = "";
-    		var shainNo = rowData.shainNo;
-    		var applId = rowData.applId;
-    		var applStatusCd = rowData.applStatusCd;
-    		var agreName1 = rowData.agreName1;
-    		var agreName2 = rowData.agreName2;
-    		
-   			var nextPageUrl = "skf/Skf2010Sc005/Transfer";
-    		
-    		$("#putApplNo").val(applNo);
-    		$("#putApplId").val(applId);
-    		$("#putShainNo").val(shainNo);
-    		$("#putApplStatus").val(applStatusCd);
-    		$("#putShonin1").val(agreName1);
-    		$("#putShonin2").val(agreName2);
-    		
-    		nfw.common.submitForm("resultListForm", nextPageUrl);
-    		
-    	}
-    }
-    
-    
-  })(jQuery);
-
-</script>
 
 
 <!-- テーブル一覧箇所 -->
