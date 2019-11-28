@@ -71,7 +71,7 @@ $(function(){
 	        nfw.common.modalPopupClose(this);
 	        
 	        var callbackFlag = $("#callbackFlag").val();
-	        if (callbackFlag != null) {
+	        if (callbackFlag != null && callbackFlag == "true") {
 	        	shainInfoCallback();
 	        }
 		});
