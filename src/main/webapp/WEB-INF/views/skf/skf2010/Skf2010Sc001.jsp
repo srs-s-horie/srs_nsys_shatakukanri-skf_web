@@ -69,6 +69,11 @@ $(function(){
 	        $("#shainNo").val(rowData.shainNo);
 	        $("#" + insertFormName).val(rowData.name);
 	        nfw.common.modalPopupClose(this);
+	        
+	        var callbackFlag = $("#callbackFlag").val();
+	        if (callbackFlag != null) {
+	        	shainInfoCallback();
+	        }
 		});
 
 		$("#closeBtn").click(function() {
