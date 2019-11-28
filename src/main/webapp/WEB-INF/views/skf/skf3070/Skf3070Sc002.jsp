@@ -78,7 +78,7 @@
 				</tr>
 				<tr>
 					<th style="width: 160px;">
-						<nfwui:LabelBox id="lblAcceptFlg" code="<%= MessageIdConstant.SKF3070_SC002_REMARKS %>" />
+						<nfwui:LabelBox id="lblRemarks" code="<%= MessageIdConstant.SKF3070_SC002_REMARKS %>" />
 					</th>
 					<td colspan="6">
 						<imui:textArea id="remarks" name="remarks" 
