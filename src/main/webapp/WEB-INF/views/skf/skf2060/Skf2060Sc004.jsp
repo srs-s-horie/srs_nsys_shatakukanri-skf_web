@@ -178,7 +178,7 @@
                             <td colspan="2">
                                 <input type="hidden" name="candidatePersonNo" id="candidatePersonNo" value="${form.candidatePersonNo}" />
                                 <input name="candidatePersonName" id="candidatePersonName" placeholder="例 中日本　一郎"
-                                       value="${form.candidatePersonName}" readonly="readonly" tabindex="6" onKeyDown="candidateName_KeyDown(event)" ></input>
+                                       value="${f:h(form.candidatePersonName)}" readonly="readonly" tabindex="6" onKeyDown="candidateName_KeyDown(event)" ></input>
                             </td>
                         </tr>
                         <tr>
@@ -186,7 +186,7 @@
                                 <nfwui:LabelBox id="lblShatakuName" code="<%= MessageIdConstant.SKF2060_SC004_SHATAKU_NAME %>" />
                             </th>
                             <td colspan="2">
-                                <input name="shatakuName" id="shatakuName" placeholder="例 厚木宿舎" value="${form.shatakuName}"  tabindex="7"></input>
+                                <input name="shatakuName" id="shatakuName" placeholder="例 厚木宿舎" value="${f:h(form.shatakuName)}"  tabindex="7"></input>
                             </td>
                         </tr>
 
@@ -195,7 +195,7 @@
                                 <nfwui:LabelBox id="lblShatakuAddressName" code="<%= MessageIdConstant.SKF2060_SC004_SHATAKU_ADDRESS_NAME %>"/>
                             </th>
                             <td colspan="2">
-                                <input name="shatakuAddressName" id="shatakuAddressName" placeholder="例 神奈川県厚木市恩名" value="${form.shatakuAddressName}" tabindex="8"></input>
+                                <input name="shatakuAddressName" id="shatakuAddressName" placeholder="例 神奈川県厚木市恩名" value="${f:h(form.shatakuAddressName)}" tabindex="8"></input>
                             </td>
                         </tr>   
 
