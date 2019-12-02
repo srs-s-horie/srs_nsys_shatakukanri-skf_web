@@ -15,20 +15,6 @@
 <%  Skf2060Sc001Form form = (Skf2060Sc001Form)request.getAttribute("form"); %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
 
-<script type="text/javascript">
-(function($){
-    // 社員選択支援ポップアップ コールバック関数
-    shainInfoCallback = function(param){
-        if( param != null && typeof param == 'object' && param.name != null){
-            $("#presentedName").val(param.name);
-            $("#shainNo").val(param.shainNo);
-            
-            nfw.common.submitForm("form", "skf/Skf2060Sc001/support");
-        }
-    }
-})(jQuery);
-</script>
-
 
 <!-- コンテンツエリア -->
 <div style ="width:100%; ">
@@ -52,7 +38,7 @@
                                             cssClass="imui-small-button" use="popup"
                                             screenUrl="skf/Skf2010Sc001/init"
                                             popupWidth="650" popupHeight="700"
-                                            modalMode="false" disabled="${form.supportDisabled}" tabindex="3" />
+                                            modalMode="true" disabled="${form.supportDisabled}" tabindex="3" />
                                         </nobr>   
                                         </th>
                                         <td colspan="2">
@@ -202,7 +188,6 @@
                 <th style="width: 20%"><nfwui:LabelBox id="applicantCommentlbl" code="<%= MessageIdConstant.SKF2060_SC001_APPLICANT_COMMENT %>" style="float:left" /></th>
             <td>
             	<imui:textArea style="width:100%;" rows="3" id="comment" name="comment" value="${f:h(form.comment)}" placeholder="例 物件の再提示を行います。" tabindex="10" />
-                <!-- <textarea style="height:50px;width:99%;" placeholder="例 物件の再提示を行います。"></textarea>-->
            </td>
            </tr>
         </table>
@@ -223,7 +208,7 @@
 <div class="align-R">
      <nfwui:ConfirmButton style="width:150px;" id="download" name="download" value="CSV出力"  formId="form" cssClass="imui-medium-button" 
      					title="<%=MessageIdConstant.SKF2060_SC001_CONFIRM_TITLE %>" message="<%=MessageIdConstant.I_SKF_2008 %>" url="skf/Skf2060Sc001/download" tabindex="13" />
-      <nfwui:Button style="width:150px;" id="candidate" name="candidate" formId="form" value="提示" cssClass="imui-medium-button" url="skf/Skf2060Sc001/candidate" tabindex="14" />
+      <imui:button style="width:150px;" id="candidate" name="candidate" value="提示" class="imui-medium-button" tabindex="14" />
 </div> 
     </div>
 
@@ -236,10 +221,11 @@
 <br>
 
 <!-- 隠し項目 -->
+<input type="hidden" name="insertFormName" id="insertFormName" value="presentedName" /> <!-- 支援ポップアップ社員名受け取り用 -->
+<input type="hidden" name="callbackFlag" id="callbackFlag" value="true" /> <!-- 支援ポップアップコールバックフラグ -->
 <input type="hidden" name="shainNo" id="shainNo" value="${form.shainNo}" /> <!-- 提示対象者の社員番号 -->
 <input type="hidden" name="updateDate" id="updateDate" value="${form.updateDate}" /> <!-- 更新日時 -->
 <input type="hidden" name="applNo" id="applNo" value="${form.applNo}" />　<!-- 申請書類管理番号 -->
-<!-- 申請書類ステータス(いらない？？？） -->
 <!-- 隠し項目終わり -->
 
 </nfwui:Form>
@@ -386,6 +372,17 @@
 							});
 							
 						});
+						
+						//提示ボタンクリック時
+						$("#candidate").click(function(){
+							nfw.common.confirmPopup("選択した借上候補物件を提示します。よろしいですか?", "確認", "form", "skf/Skf2060Sc001/Candidate", "ok", "キャンセル", this, true);
+						});
+						
+						//支援ポップアップコールバック時
+						shainInfoCallback = function() {
+							nfw.common.submitForm("form", "skf/Skf2060Sc001/Support", this);
+						}
+						
 						
 					})(jQuery);	
 					</script>
