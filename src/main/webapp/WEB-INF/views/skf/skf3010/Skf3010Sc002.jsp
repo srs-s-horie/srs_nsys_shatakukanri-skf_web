@@ -16,7 +16,7 @@
 <style type="text/css"></style>
 <script type="text/javascript">
 	function back1() {
-		var url="skf/Skf3010Sc001/init?SKF3010_SC001"
+		var url="skf/Skf3010Sc001/init"
 		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
 	}
 </script>

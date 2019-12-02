@@ -15,7 +15,7 @@
 <%-- コンテンツエリア --%>
 <script type="text/javascript">
 	function back1() {
-		var url="skf/Skf3022Sc005/init?SKF3022_SC005"
+		var url="skf/Skf3022Sc005/init"
 		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？");
 	}
 </script>
