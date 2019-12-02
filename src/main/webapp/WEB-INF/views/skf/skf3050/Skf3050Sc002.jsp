@@ -17,318 +17,323 @@
 </style>
 
 <!-- コンテンツエリア:モックのまま -->
-<!-- 以下ツールバー -->
-		<div class="imui-toolbar-wrap">
-			<div class="imui-toolbar-inner">
-				<!-- ツールバー左側 -->
-				<ul class="imui-list-toolbar">
-					<!-- 戻る -->
-					<li>
-						<a class="imui-toolbar-icon" title="戻る" tabindex="23" onclick="back1()" href="javascript:void(0);">
-							<span class="im-ui-icon-common-16-back"></span>
-						</a>
-					</li>
+<script src="scripts/skf/skfCommon.js"></script>
+	<script type="text/javascript">
+		/**
+		* 一つ前の画面へ戻る
+		*/
+		function back1() {
+			showConfirm(W_GFK_0002, function() {
+				history.back()
+			});
+		}
 
-				</ul>
-				<!-- ツールバー右側 -->
-				<ul class="imui-list-box-toolbar-utility">
-					<li>
-						<a onclick="back()" class="imui-toolbar-icon" tabindex="16">
-							<span class="im-ui-icon-common-16-home"></span>
-							社宅TOP
-						</a>
-					</li>
-					<li>
-						<a class="imui-toolbar-icon" title="最新情報"  tabindex="26">
-							<span class="im-ui-icon-common-16-refresh" onclick="refresh()"></span>
-						</a>
-					</li>
-
-				</ul>
-			</div>
+		/**
+		* メニュー画面へ遷移する。
+		*/
+		function back() {
+			showConfirm(W_GFK_0007, function() {
+				$.StandardPost("../common/top.html");
+			});
+		}
+	</script>
+	
+	<!-- 明細＆細目未満 -->
+	<div class="imui-form-container-wide">
+	<nfwui:Form id="form" name="form" modelAttribute="form" enctype="multipart/form-data">
+		<!-- hidden項目 -->
+		<input type="hidden" id="hdnBtnKariKeisanDisabled" name="hdnBtnKariKeisanDisabled" value="${f:h(form.hdnBtnKariKeisanDisabled)}" />
+		<input type="hidden" id="hdnBtnShimeShoriDisabled" name="hdnBtnShimeShoriDisabled" value="${f:h(form.hdnBtnShimeShoriDisabled)}" />
+		<input type="hidden" id="hdnBtnRenkeiDataSakuseiDisabled" name="hdnBtnRenkeiDataSakuseiDisabled" value="${f:h(form.hdnBtnRenkeiDataSakuseiDisabled)}" />
+		<input type="hidden" id="hdnBtnShimeKaijoDisabled" name="hdnBtnShimeKaijoDisabled" value="${f:h(form.hdnBtnShimeKaijoDisabled)}" />
+		<input type="hidden" id="hdnBtnRenkeiDataKakuteiDisabled" name="hdnBtnRenkeiDataKakuteiDisabled" value="${f:h(form.hdnBtnRenkeiDataKakuteiDisabled)}" />
+		<input type="hidden" id="hdnSelectedTaisyonendo" name="hdnSelectedTaisyonendo" value="${f:h(form.hdnSelectedTaisyonendo)}" />
+		<input type="hidden" id="hdnJikkouShijiYoteiNengetsu" name="hdnJikkouShijiYoteiNengetsu" value="${f:h(form.hdnJikkouShijiYoteiNengetsu)}" />
+		<input type="hidden" id="hdnJikkouShijiYoteiShoriCol" name="hdnJikkouShijiYoteiShoriCol" value="${f:h(form.hdnJikkouShijiYoteiShoriCol)}" />
+		<input type="hidden" id="hdnJikkouShijiYoteiShoriIdx" name="hdnJikkouShijiYoteiShoriIdx" value="${f:h(form.hdnJikkouShijiYoteiShoriIdx)}" />
+		<input type="hidden" id="hdnKariKeisanBtnMsg" name="hdnKariKeisanBtnMsg" value="${f:h(form.hdnKariKeisanBtnMsg)}" />
+		<input type="hidden" id="hdnShimeShoriBtnMsg" name="hdnShimeShoriBtnMsg" value="${f:h(form.hdnShimeShoriBtnMsg)}" />
+		<input type="hidden" id="hdnRenkeiDataSakuseiBtnMsg" name="hdnRenkeiDataSakuseiBtnMsg" value="${f:h(form.hdnRenkeiDataSakuseiBtnMsg)}" />
+		<input type="hidden" id="hdnShimeKaijoBtnMsg" name="hdnShimeKaijoBtnMsg" value="${f:h(form.hdnShimeKaijoBtnMsg)}" />
+		<input type="hidden" id="hdnRenkeiDataKakuteiBtnMsg" name="hdnRenkeiDataKakuteiBtnMsg" value="${f:h(form.hdnRenkeiDataKakuteiBtnMsg)}" />
+	
+		<table class="imui-form-search-condition">
+			<tbody>
+				<tr>
+					<th>
+						<label style="width:80px;">対象年度</label>
+					</th>
+					<td>
+						<imui:select id="taishonendoDropdown" name="taishonendoDropdown" width="120" list="${form.dropDownList}" />
+					</td>
+					<td style="width:100%;border:none;"></td>
+				</tr>
+			</tbody>
+		</table>
+	
+		<!-- 明細部 -->
+			<div class="imui-chapter-title" ><h2>月次処理状況</h2></div>
+			<script type="text/javascript">
+			  (function($){
+			    $.imui.util.loadCSS("ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
+			  })(jQuery);
+			</script>
+			
+			<imui:listTable id="grvGetsujiShoriSts" process="jssp" autoEncode="false" autoWidth="false"
+			autoResize="true" height="100%" style="word-wrap:break-word;" data="${form.getujiGrid }" >
+				<cols sortable="false">
+				<col name="col1" caption="年月" width="160" sortable="false" align="center" />
+				<col name="col2" caption="締め処理" width="160" sortable="false" align="center" />
+				<col name="col3" caption="給与連携データ作成" width="160" sortable="false" align="center" />
+				<col name="col4" hidden="true"/>
+				<showIcon iconClass="im-ui-icon-common-16-update" />
+				</cols>
+			</imui:listTable>
+		<br>
+	</nfwui:Form>
+		
+	<nfwui:Form id="batchForm" name="batchForm" modelAttribute="form" enctype="multipart/form-data">
+		<input type="hidden" id="hdnJikkouShijiYoteiNengetsu" name="hdnJikkouShijiYoteiNengetsu" value="${f:h(batchForm.hdnJikkouShijiYoteiNengetsu)}" />
+		<input type="hidden" id="hdnBihinTaiyoWarnContinueFlg" name="hdnBihinTaiyoWarnContinueFlg" value="${f:h(batchForm.hdnBihinTaiyoWarnContinueFlg)}" />
+		<input type="hidden" id="hdnBihinHenkyakuWarnContinueFlg" name="asyncUserId" value="${f:h(batchForm.hdnBihinHenkyakuWarnContinueFlg)}" />
+		<input type="hidden" id="taskMsgId" name="taskMsgId" value="${f:h(batchForm.taskMsgId)}" />
+	
+		<div class="align-R">
+			<input id="kariKeisanBtn" name="kariKeisanBtn" style="width:150px;" type="button" value="仮計算処理" class="imui-medium-button" />
+			<imui:button id="closeTaskExecution" name="closeTaskExecution" style="width:150px;" value="締め処理" class="imui-medium-button" />
+			<input id="positiveCoopDataSakuseiBtn" name="positiveCoopDataSakuseiBtn" type="button" style="width:200px;" value="給与連携データ作成処理" class="imui-medium-button" />
 		</div>
-		<script type="text/javascript">
-			/**
-			* 一つ前の画面へ戻る
-			*/
-			function back1() {
-				showConfirm(W_GFK_0002, function() {
-					history.back()
-				});
-			}
 
-			/**
-			* メニュー画面へ遷移する。
-			*/
-			function back() {
-				showConfirm(W_GFK_0007, function() {
-					$.StandardPost("../common/top.html");
-				});
-			}
-		</script>
+		<div class="align-R">
+			<imui:button id="closeCanselTaskExecution" name="closeCanselTaskExecution"  style="width:150px;" value="締め解除処理" class="imui-medium-button" />
+			<imui:button id="confirmPositiveCooperationTaskExecution" name="confirmPositiveCooperationTaskExecution" style="width:200px;" value="給与連携データ確定処理" class="imui-medium-button" />
+		</div>
+	</nfwui:Form>
+</div>
 
-<!-- 		<div class="alertDiv imui-box-warning" style="padding: 15px;margin-top: 10px;text-align:left;" id="errMainDiv"> -->
-<!-- 			<div class="alert-errorIcon alert" style="margin:0;padding:0;margin-right:10px;"> -->
-<!-- 			</div>  -->
-<!-- 		</div> -->
-
-		<!-- コンテンツエリア -->
-<!--
-			<div class="imui-form-container-wide"  style="width:1280px;">
-				<div class="imui-chapter-title"><h2>検索条件</h2></div>
-				-->
-
-<!--
-			</div>
-			-->
-			<!-- 明細＆細目未満 -->
-			<div class="imui-form-container-wide"  style="width:1280px;">
+<script type="text/javascript">
+(function($) {
+	$(document).ready(function() {
+		
+		const KARIKEISAN_BTN = 'kariKeisanBtn';
+		const SHIME_SHORI_BTN = 'closeTaskExecution';
+		const POSITIVE_DATA_CREATE_BTN = 'positiveCoopDataSakuseiBtn';
+		const SHIME_KAIJO_SHORI_BTN = 'closeCanselTaskExecution';
+		const POSITIVE_DATA_CONFIRM_BTN = 'confirmPositiveCooperationTaskExecution';
+		const DISABLED_COLOR = '#aaaaaa';
+		const NORMAL_COLOR = '#333333';
+		const HILIGHT_COLOR = '#87cefa';
+		
+		/*
+		* 「仮計算処理」ボタン押下時
+		*/
+		$("#" + KARIKEISAN_BTN).click(function() {
+			var dialogTitle = "確認";
+			var dialogMessage = $("#hdnKariKeisanBtnMsg").val();
+			var url = "skf/Skf3050Sc002/provCalc";
+			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "CANCEL", this, true);
+		});
+		
+		/*
+		* 「締め処理」ボタン押下時
+		*/
+		$("#" + SHIME_SHORI_BTN).click(function() {
+			var dialogMessage = $("#hdnShimeShoriBtnMsg").val();
 			
-							<table class="imui-form-search-condition">
-					<tbody>
-
-						<tr>
-							<th>
-								<label style="width:80px;">対象年度</label>
-							</th>
-							<td>
-								<select style="width:120px;">
-									<option value="0"></option>
-									<option value="1">2018年度</option>
-									<option value="2">2017年度</option>
-									<option value="3" selected>2016年度</option>
-									<option value="4">2015年度</option>
-									<option value="5">2014年度</option>
-								</select>
-							</td>
-							<td style="width:1000px;border:none;"></td>
-							
-						</tr>
-					</tbody>
-				</table>
-			
-				<!-- 明細部 -->
-				<form id="sampleList1">
-					<div class="imui-chapter-title" ><h2>月次処理状況</h2></div>
-					<script type="text/javascript">
-					  (function($){
-					    $.imui.util.loadCSS("ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
-					  })(jQuery);
-					</script>
+			skf.common.confirmPopupForCallback(dialogMessage, "確認", "batchForm", "OK", "CANCEL", this, function() {
+				var paramMap = new Object();
+				paramMap['hdnJikkouShijiYoteiNengetsu'] = $("#hdnJikkouShijiYoteiNengetsu").val();
+				paramMap['hdnBihinTaiyoWarnContinueFlg'] = '';
+				paramMap['hdnBihinHenkyakuWarnContinueFlg'] = '';
+				
+				nfw.common.doAjaxAction("skf/Skf3050Sc002/closeTaskExecutionAsync", paramMap, true, function(data) {
+					checkBatchProc(data);
+				});
+			});
+		});
+		
+		/*
+		 * バッチ処理後のチェック
+		 * 警告メッセージがあればダイアログ表示。
+		 */
+		checkBatchProc = function(inData) {
+			if (inData.hdnWarnMsg !== null && inData.hdnWarnMsg !== '') {
+				skf.common.confirmPopupForCallback(inData.hdnWarnMsg, "確認", "batchForm", "OK", "CANCEL", this, function() {
 					
-					<table name="imui-8eqlrzst4hv6std" id="sampleListTable1"></table>
-
-					<div id="sampleListTable1-pager"></div>
-
-					<script type="text/javascript">
-						(function() {
-							function imuiListTable() {
-								var grid = jQuery('#sampleListTable1');
-								var parameter = {
-									"multiselect":false,
-									"pager":false,
-									"colNames":[
-										"",
-										"年月",
-										"締め処理",
-										"給与連携データ作成"
-
-									],
-									"datatype":"local",
-									"errorCell":function(xhr) { imuiShowErrorMessage($(xhr.responseText).find('dt').text()); },
-									"rowNum":12,
-									"width":"495",
-									"shrinkToFit":"true",
-									"cellsubmit":"clientArray",
-									"loadonce":true,
-									"colModel":[
-										{"hidden":true,"name":"id","key":true}
-										,{"name":"nengetsu","width":"160","align":"center"}<!-- 選択 -->
-										,{"name":"shimeshori","width":"160","align":"center"}<!-- 入退居区分 -->
-										,{"name":"hrrenkei","width":"160","align":"center"}<!-- 社員番号 -->
-									],
-									"rownumbers":false,
-									"height":"350"
-								};
-								parameter.data = [
-									{
-										"id":1,
-										"nengetsu":"2016年4月（5月給与）",
-										"shimeshori":"実行済",
-										"hrrenkei":"確定済",
-									},									{
-										"id":2,
-										"nengetsu":"2016年5月（6月給与）",
-										"shimeshori":"実行済",
-										"hrrenkei":"確定済",
-									},
-									{
-										"id":3,
-										"nengetsu":"2016年6月（7月給与）",
-										"shimeshori":"実行済",
-										"hrrenkei":"確定済",
-									},
-									{
-										"id":4,
-										"nengetsu":"2016年7月（8月給与）",
-										"shimeshori":"実行済",
-										"hrrenkei":"確定済",
-									},
-									{
-										"id":5,
-										"nengetsu":"2016年8月（9月給与）",
-										"shimeshori":"実行済",
-										"hrrenkei":"確定済",
-									},
-									{
-										"id":6,
-										"nengetsu":"2016年9月（10月給与）",
-										"shimeshori":"実行済",
-										"hrrenkei":"確定済",
-									},
-									{
-										"id":7,
-										"nengetsu":"2016年10月（11月給与）",
-										"shimeshori":"",
-										"hrrenkei":"",
-									},
-									{
-										"id":8,
-										"nengetsu":"2016年11月（12月給与）",
-										"shimeshori":"",
-										"hrrenkei":"",
-									},
-									{
-										"id":9,
-										"nengetsu":"2016年12月（翌1月給与）",
-										"shimeshori":"",
-										"hrrenkei":"",
-									},
-									{
-										"id":10,
-										"nengetsu":"2017年1月（2月給与）",
-										"shimeshori":"",
-										"hrrenkei":"",
-									},
-									{
-										"id":11,
-										"nengetsu":"2017年2月（3月給与）",
-										"shimeshori":"",
-										"hrrenkei":"",
-									},
-									{
-										"id":12,
-										"nengetsu":"2017年3月（4月給与）",
-										"shimeshori":"",
-										"hrrenkei":"",
-									},
-
-								];
-
-								grid.jqGrid(parameter);
-
-//								// ヘッダ結合
-//								grid.jqGrid('setGroupHeaders', {
-//									useColSpanStyle: true,
-//									groupHeaders:[
-//										{startColumnName: 'shataku_status', numberOfColumns: 2,  titleText: '社宅提示'},
-//										{startColumnName: 'bihin_status', numberOfColumns: 2,  titleText: '備品提示'},
-//									]
-//								});
-
-// as
-//									// 1行づつ網掛け挑戦
-//									jQuery('#sampleListTable1').jqGrid({
-//										loadComplete: function () {
-//											var rowIDs = jQuery('#sampleListTable1').getDataIDs(); 
-//											$.each(rowIDs, function (i, item) {
-//												if (i % 2 == 0) {
-//													$('#'+item).removeClass('ui-widget-content');
-//													$('#'+item).addClass('testcss');
-//												}
-//											});
-//										},
-//									});
-//									jQuery('#sampleListTable1').jqGrid({
-//										gridComplete: function () {
-//											$('tbody > tr:even', this).addClass('ui-row-even');
-//										}
-//									});
-// ae
-
-								grid.jqGrid('navGrid','#sampleListTable1-pager',{
-									edit: false,
-									add: false,
-									del: false,
-									search: false,
-								});
-
-								var gboxGridId     = 'gbox_sampleListTable1';
-								var gboxGrid       = jQuery('#' + gboxGridId);
-								var parentWidthOld = Number.MIN_VALUE;
-							}
-
-							(function($) {
-								$(document).ready(function() {
-									imuiListTable();
-								});
-							})(jQuery);
-
-						})();
-					</script>
-					<style type="text/css">  
-						<!--
-							/* ヘッダテキスト中央寄せ */
-							.ui-jqgrid .ui-jqgrid-htable th div {
-								display:table-cell;
-							    height: 32px;
-								text-align:center;
-								vertical-align:middle;
-							}
-							/** 1行間隔で網掛け挑戦
-							.testcss {
-								border: 1px solid #a6c9e2;
-								background-color: #e6e6fa ;
-								color: #222222;
-							}
-
-							.ui-row-even {
-								background-color: #e6e6fa ;
-							}
-							*/
-
-							/* データ行の改行許容 */
-							#sampleListTable1 tr td{
-								white-space:normal;
-							}
-						-->
-					</style>
-				</form>
-				<br>
-
-			<!--
-			<div class="align-L">	
-				<input type="button" value="CSV取込" class="imui-small-button" onclick="location.href='../../skf/Skf3020_Sc003/init'"/>
-				<input type="button" value="取込状況を確認" class="imui-small-button" onclick="location.href='../../skf/Skf3020_Sc003/init'"/>
-			</div>
-			<br /><br /><br />
+					var reParamMap = new Object();
+					reParamMap['hdnJikkouShijiYoteiNengetsu'] = inData.hdnJikkouShijiYoteiNengetsu;
+					reParamMap['hdnBihinTaiyoWarnContinueFlg'] = inData.hdnBihinTaiyoWarnContinueFlg;
+					reParamMap['hdnBihinHenkyakuWarnContinueFlg'] = inData.hdnBihinHenkyakuWarnContinueFlg;
+					
+					nfw.common.doAjaxAction("skf/Skf3050Sc002/closeTaskExecutionAsync", reParamMap, true, function(data) {
+						checkBatchProc(data);
+						alert("締め処理タスク登録。メッセージID:" + data.taskMsgId);
+					});
+				});
+			}
+		}
+		
+		/*
+		 * 「給与連携データ作成処理」ボタン押下時
+		 */
+		$("#" + POSITIVE_DATA_CREATE_BTN).click(function(){
+			var dialogTitle = "確認";
+			var dialogMessage = $("#hdnRenkeiDataSakuseiBtnMsg").val();
+			var url = "skf/Skf3050Sc002/createPositiveCooperationData";
+			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "CANCEL", this, true);
+		});
+		
+		/*
+		* 「締め解除処理」ボタン押下時
+		*/
+		$("#" + SHIME_KAIJO_SHORI_BTN).click(function() {
+			var dialogMessage = $("#hdnShimeKaijoBtnMsg").val();
 			
-			<div class="align-L">
-				<input style="width:150px;" type="button" value="前の画面へ" class="imui-medium-button" onclick="back1()"/>
-			</div>
-			-->
-			<div class="align-R">
-				<input style="width:150px;" type="button" value="仮計算処理" class="imui-medium-button" onclick=""/>
-				<input style="width:150px;" type="button" value="締め処理" class="imui-medium-button" onclick="" />
-				<input style="width:200px;" type="button" value="給与連携データ作成処理" class="imui-medium-button" onclick="" disabled/>
-			</div>
+			skf.common.confirmPopupForCallback(dialogMessage, "確認", "batchForm", "OK", "CANCEL", this, function() {
+				var paramMap = new Object();
+				paramMap['hdnJikkouShijiYoteiNengetsu'] = $("#hdnJikkouShijiYoteiNengetsu").val();
+				
+				nfw.common.doAjaxAction("skf/Skf3050Sc002/closeCancelTaskExecutionAsync", paramMap, true, function(data) {
+					alert("締め解除処理タスク登録。メッセージID:" + data.taskMsgId);
+				});
+			});
+		});
+		
+		/*
+		* 「給与連携データ確定処理」ボタン押下時
+		*/
+		$("#" + POSITIVE_DATA_CONFIRM_BTN).click(function() {
+			var dialogMessage = $("#hdnRenkeiDataKakuteiBtnMsg").val();
+			
+			skf.common.confirmPopupForCallback(dialogMessage, "確認", "batchForm", "OK", "CANCEL", this, function() {
+				var paramMap = new Object();
+				paramMap['hdnJikkouShijiYoteiNengetsu'] = $("#hdnJikkouShijiYoteiNengetsu").val();
+				
+				nfw.common.doAjaxAction("skf/Skf3050Sc002/confirmPositiveCooperationTaskExecutionAsync", paramMap, true, function(data) {
+					alert("給与連携データ確定処理タスク登録。メッセージID:" + data.taskMsgId);
+				});
+			});
+		});
+		
+		/*
+		 * 「対象年度」ドロップダウン変更
+		 */
+		$("#taishonendoDropdown").bind('change', function() {
+			var selectVal = $("#taishonendoDropdown").val();
+			$("#hdnSelectedTaisyonendo").val(selectVal);
+			
+			
+			nfw.common.submitForm("form", "skf/Skf3050Sc002/changeDropDown");
+		});
+		
+		/*
+		 * メッセージ用の処理実行年月を取得する。
+		 */
+		getJikkoNengetsuForMsg = function() {
+			var tagetNengetsu = $("#hdnJikkouShijiYoteiNengetsu").val();
+			var year = tagetNengetsu.substr(0, 4);
+			var month = Number(tagetNengetsu.substr(4));
+			var rtnNengetsu = year + '年' + month + '月';
+			
+			return rtnNengetsu;
+		}
+		
+		/*
+		 * 画面のボタンの活性状態を設定
+		 */
+		setBtnStatus = function() {
 
-			<div class="align-R">
-				<input style="width:150px;" type="button" value="締め解除処理" class="imui-medium-button" onclick="" disabled/>
-				<input style="width:200px;" type="button" value="給与連携データ確定処理" class="imui-medium-button" onclick="" disabled/>
-			</div>
-		</div>
+			var kariKeisanDisabled = cnvBoolean($("#hdnBtnKariKeisanDisabled").val());
+			$("#" + KARIKEISAN_BTN).attr("disabled", kariKeisanDisabled);
+			if (kariKeisanDisabled) {
+				$("#" + KARIKEISAN_BTN).css("color", DISABLED_COLOR);
+			}
+			
+			var shimeShoriDisabled = cnvBoolean($("#hdnBtnShimeShoriDisabled").val());
+			$("#" + SHIME_SHORI_BTN).attr("disabled", shimeShoriDisabled);
+			if (shimeShoriDisabled) {
+				$("#" + SHIME_SHORI_BTN).css("color", DISABLED_COLOR);
+			}
+			
+			var renkeiDataSakuseiDisabled = cnvBoolean($("#hdnBtnRenkeiDataSakuseiDisabled").val());
+			$("#" + POSITIVE_DATA_CREATE_BTN).attr("disabled", renkeiDataSakuseiDisabled);
+			if (renkeiDataSakuseiDisabled) {
+				$("#" + POSITIVE_DATA_CREATE_BTN).css("color", DISABLED_COLOR);
+			}
+			
+			var shimeKaijoDisabled = cnvBoolean($("#hdnBtnShimeKaijoDisabled").val());
+			$("#" + SHIME_KAIJO_SHORI_BTN).attr("disabled", shimeKaijoDisabled);
+			if (shimeKaijoDisabled) {
+				$("#" + SHIME_KAIJO_SHORI_BTN).css("color", DISABLED_COLOR);
+			}
+		
+			var renkeiDataKakuteiDisabled = cnvBoolean($("#hdnBtnRenkeiDataKakuteiDisabled").val());
+			$("#" + POSITIVE_DATA_CONFIRM_BTN).attr("disabled", renkeiDataKakuteiDisabled);
+			if (renkeiDataKakuteiDisabled) {
+				$("#" + POSITIVE_DATA_CONFIRM_BTN).css("color", DISABLED_COLOR);
+			}
+		}
+		
+		/*
+		 * ボタンの文字色を初期化する。
+		 */
+		initBtnColor = function() {
+			$("#" + KARIKEISAN_BTN).css("color", NORMAL_COLOR);
+			$("#" + SHIME_SHORI_BTN).css("color", NORMAL_COLOR);
+			$("#" + POSITIVE_DATA_CREATE_BTN).css("color", NORMAL_COLOR);
+			$("#" + SHIME_KAIJO_SHORI_BTN).css("color", NORMAL_COLOR);
+			$("#" + POSITIVE_DATA_CONFIRM_BTN).css("color", NORMAL_COLOR);
+		}
+		
+		/*
+		 * 月次グリッドビューの実行指示予定箇所の協調表示設定(背景色変更)
+		 */
+		setGetsujiGridHilight = function() {
+			var getsujiGrid = $("#grvGetsujiShoriSts");
+			var gridDatas = getsujiGrid.getGridParam('data');
+			var tagetCol = $("#hdnJikkouShijiYoteiShoriCol").val();
+			var tagetIdx = Number($("#hdnJikkouShijiYoteiShoriIdx").val());
+			
+			getsujiGrid.setCell(gridDatas[tagetIdx].id, tagetCol, '', { background: HILIGHT_COLOR });
+		}
+		
+		/*
+		 * boolean変換
+		 */
+		cnvBoolean = function(targetVal) {
+			var result = typeof(targetVal);
+			
+			if (result === 'string') {
+				if (targetVal === 'true') {
+					return true;
+				} else {
+					return false;
+				}
+			
+			} else if (result === 'boolean') {
+				return targetVal;
+				 
+			} else {
+				return false;
+			}
+		}
+	
+		/*
+		 * 画面初期表示処理
+		 */
+		initDisplay = function() {
 
-					</div>
-	</div>
+			var selectTaisyonendo = $("#hdnSelectedTaisyonendo").val();
+			$("#taishonendoDropdown").val(selectTaisyonendo);
+			
+			initBtnColor();
+			setBtnStatus();
+			setGetsujiGridHilight();
+		}
+		
+		initDisplay();
+		
+	});
+})(jQuery);
+</script>
 <!-- コンテンツエリア　ここまで -->

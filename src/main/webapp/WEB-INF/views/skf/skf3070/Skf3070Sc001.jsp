@@ -27,13 +27,13 @@
 							<nfwui:LabelBox id="lblOwnerName" code="<%= MessageIdConstant.SKF3070_SC001_OWNER_NAME %>" />
 						</th>
 						<td colspan="2">
-	   						<imui:textbox id="ownerName" name="ownerName" value="${form.ownerName}" placeholder="例 中日本 一郎" tabindex="3"/>
+	   						<imui:textbox id="ownerName" name="ownerName" value="${f:h(form.ownerName)}" placeholder="例 中日本 一郎" tabindex="3"/>
 	   					</td>
 	   					<th style="width: 200px;">
 							<nfwui:LabelBox id="lblShatakuName" code="<%= MessageIdConstant.SKF3070_SC001_SHATAKU_NAME %>" />
 						</th>
 						<td colspan="2">
-	   						<imui:textbox id="shatakuName" name="shatakuName" value="${form.shatakuName}" placeholder="例 社宅名"  tabindex="4"/>
+	   						<imui:textbox id="shatakuName" name="shatakuName" value="${f:h(form.shatakuName)}" placeholder="例 社宅名"  tabindex="4"/>
 	   					</td>
 					</tr>
 					<tr>
@@ -41,13 +41,13 @@
 							<nfwui:LabelBox id="lblOwnerNameKk" code="<%= MessageIdConstant.SKF3070_SC001_OWNER_NAME_KK %>" />
 						</th>
 						<td colspan="2">
-	   						<imui:textbox id="ownerNameKk" name="ownerNameKk" value="${form.ownerNameKk}" placeholder="例 ナカニホン　イチロウ" tabindex="5"/>
+	   						<imui:textbox id="ownerNameKk" name="ownerNameKk" value="${f:h(form.ownerNameKk)}" placeholder="例 ナカニホン　イチロウ" tabindex="5"/>
 	   					</td>
 	   					<th style="width: 200px;">
 							<nfwui:LabelBox id="lblShatakuAddress" code="<%= MessageIdConstant.SKF3070_SC001_SHATAKU_ADDRESS %>" />
 						</th>
 						<td colspan="2">
-	   						<imui:textbox id="shatakuAddress" name="shatakuAddress" value="${form.shatakuAddress}" 
+	   						<imui:textbox id="shatakuAddress" name="shatakuAddress" value="${f:h(form.shatakuAddress)}" 
 	   						placeholder="例 愛知県名古屋市中区錦2-18-19" tabindex="6"/>
 	   					</td>
 					</tr>
@@ -56,7 +56,7 @@
 							<nfwui:LabelBox id="lblAddress" code="<%= MessageIdConstant.SKF3070_SC001_ADDRESS %>" />
 						</th>
 						<td colspan="2">
-	   						<imui:textbox id="address" name="address" value="${form.address}"  width="100%" 
+	   						<imui:textbox id="address" name="address" value="${f:h(form.address)}"  width="100%" 
 	   							placeholder="例 愛知県名古屋市中区錦2-18-19"  tabindex="7"/>
 	   					</td>
 	   					<th style="width: 200px;">
@@ -125,7 +125,7 @@
 		<div class="align-R">
 			<input name="statutoryRecordDownload" id="statutoryRecordDownload" type="button" value="法定調書データ出力" class="imui-medium-button" style="width:150px" tabindex="97"/>
 			<input name="lessorInfoDownload" id="lessorInfoDownload" type="button" value="賃貸人（代理人）情報出力" class="imui-medium-button"  style="width:200px" tabindex="98"/>
-			<nfwui:Button cssStyle="width:150px;" id="regist" formId="form" value="新規登録"
+			<nfwui:Button cssStyle="width:150px;" id="regist" formId="paramForm" value="新規登録"
 				cssClass="imui-medium-button" url="skf/Skf3070Sc002/init" tabindex="99"/>
 		</div>
 	</div>
@@ -136,8 +136,14 @@
 </style>
 <%-- text/javascript --%>
 
-<nfwui:Form id="paramForm" name="paramForm" modelAttribute="form" secureToken="false">
-	<input type="hidden" name="hdnOwnerNo" id="sendOwnerNo" value="" />
+<nfwui:Form id="paramForm" name="paramForm">
+	<input type="hidden" name="ownerNo" id="ownerNo" value="" />
+</nfwui:Form>
+
+<nfwui:Form id="paramForm2" name="paramForm2">
+	<input type="hidden" name="ownerNo" id="ownerNo" value="" />
+	<input type="hidden" name="recodeDadefrom" id="recodeDadefrom" value="${form.recodeDadefrom}" />
+	<input type="hidden" name="recodeDadeto" id="recodeDadeto" value="${form.recodeDadeto}" />
 </nfwui:Form>
 
 <script src="scripts/skf/skfCommon.js"></script>
@@ -153,7 +159,7 @@
 
 			// ownerNo:賃貸人（代理人）管理番号
 			var ownerNo = row.ownerNo;		
-			$("#sendOwnerNo").val(ownerNo);
+			$("#ownerNo").val(ownerNo);
 			
 			var nextPageUrl = "skf/Skf3070Sc002/init";
     		nfw.common.submitForm("paramForm", nextPageUrl);
@@ -165,19 +171,25 @@
 			var grid = $("#mainList");
 			// 行番号から選択した行の情報を取得
 			var row = grid.getRowData(rowId);
-			
-			//var map = new Object();
-			
+					
 			// ownerNo:賃貸人（代理人）管理番号
 			var ownerNo = row.ownerNo;		
-			$("#sendOwnerNo").val(ownerNo);
+			$("#ownerNo").val(ownerNo);
 			
 			var nextPageUrl = "skf/Skf3070Sc003/init";
-    		nfw.common.submitForm("paramForm", nextPageUrl);
+    		nfw.common.submitForm("paramForm2", nextPageUrl);
 		}
 		
 	}
 	
+	  // 法定調書データ出力ボタン押下時のイベント
+	  $("#statutoryRecordDownload").click(function(){
+		  dialogTitle = "確認";
+		  dialogMessage = "法定調書データを出力します。よろしいですか？";
+		  url = "skf/Skf3070Sc001/StatutoryRecordDownload";
+	      nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);  
+	  });
+	  
 	  // 賃貸人（代理人）情報出力ボタン押下時のイベント
 	  $("#lessorInfoDownload").click(function(){
 		  dialogTitle = "確認";
@@ -186,11 +198,7 @@
 	      nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);  
 	  });
 	
-	  //ウィンドウリサイズ時イベント
-	  $(window).bind('resize', function(){
-	      // 一覧の横幅を変更
-	      $('#mainList').setGridWidth($("#listTableArea").width(), true);
-	  }).trigger('resize');
+
 
 })(jQuery);
 

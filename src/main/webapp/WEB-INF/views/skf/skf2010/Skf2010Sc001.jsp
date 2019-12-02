@@ -13,21 +13,83 @@
 
 <%-- コンテンツエリア --%>
 <style type="text/css">
-  .imui-box-warning, .imui-box-caution {
-    min-width: 70%;
-    position: absolute!important;
-    z-index: 1;
-    margin-left: 12%;
-  }
-  #imui-container {
-    width:650px;
-    min-width:650px;
-    max-width: 1000px;
-  }
+  .ui-jqgrid .ui-jqgrid-htable th div {
+		display:table-cell;
+	    height: 32px;
+		text-align:center;
+		vertical-align:middle;
+	}
+
+	/* データ行の改行許容 */
+	#shainList tr td{
+		white-space:normal;
+	}
 </style>
-<div id="imui-container" style="width:650px;min-width:650px;max-width: 1000px;">
+
+<script type="text/javascript">
+$(function(){
+	$(document).ready(function(){
+		// 検索ボタンをクリックした時の処理
+		$("#search").click(function() {
+			// 警告文表示を削除
+			$(".imui-box-caution, .imui-box-warning").hide();
+			var grid = $("#popShainList");
+			var map = new Object();
+			map['popShainNo'] = $("#popShainNo").val();
+			map['popName'] = $("#popName").val();
+			map['popNameKk'] = $("#popNameKk").val();
+			map['popAgency'] = $("#popAgency").val();
+			map['popShatakuKanriNo'] = $("#shatakuKanriNo").val();
+			if (map['popShatakuKanriNo'] == null) {
+				map['popShatakuKanriNo'] = $("#hdnShatakuKanriNo").val();
+			}
+			// 非同期で検索処理を実行
+			nfw.common.doAjaxAction("skf/Skf2010Sc001/SearchAsync", map, true, function(data) {
+				// 現在のリストテーブルの内容を初期化
+	    		grid.clearGridData();
+				// リストテーブルのデータをセット
+				grid.jqGrid('setGridParam', {data:data.popListTableList});
+				// リストテーブルをリロード
+				grid.trigger("reloadGrid");
+	    	});
+		});
+		
+		$("#selectBtn").click (function() {
+			var rowId = $("#targetRowId").val();
+			if (rowId == null || rowId == "") {
+				nfw.common.showReserveMessage("warning", "選択してください");
+				return;
+			}
+			
+			var grid = $("#popShainList");
+	        var rowData = grid.getRowData(rowId);
+
+	        var insertFormName = $("#insertFormName").val();
+	        
+	        $("#shainNo").val(rowData.shainNo);
+	        $("#" + insertFormName).val(rowData.name);
+	        nfw.common.modalPopupClose(this);
+	        
+	        var callbackFlag = $("#callbackFlag").val();
+	        if (callbackFlag != null && callbackFlag == "true") {
+	        	shainInfoCallback();
+	        }
+		});
+
+		$("#closeBtn").click(function() {
+			nfw.common.modalPopupClose(this);
+		});
+	});
+	
+    // リストテーブルの確認欄のアイコンをクリックした時のイベント
+    onCellSelect = function(rowId, iCol, cellContent, e) {
+    	$("#targetRowId").val(rowId);
+    }
+});
+</script>
+<div id="imui-container" style="width:650px;min-width:650px;max-width: 650px;">
 <!-- コンテンツエリア -->
-<div class="imui-form-container-wide" width="550px" style="width:100%; min-width:550px;max-width: 550px;">
+<div class="imui-form-container-wide" width="550px" style="width:100%; min-width:550px;max-width: 550px; margin-left: 10px;">
 <div style="height:30px; bottom:10px">検索条件を指定して、<font color="green">「検索」</font>をクリックしてください。</div>
 	<nfwui:Title code="<%= MessageIdConstant.SKF2010_SC001_SEARCH_TITLE %>" titleLevel="2" />
 	<nfwui:Form id="searchForm" name="searchForm" modelAttribute="form" >
@@ -38,7 +100,7 @@
 					  <nfwui:LabelBox id="lblShainNo" code="<%= MessageIdConstant.SKF2010_SC001_SHAIN_NO %>" />
 					</th>
 					<td style="width: 10%;">
-					    <imui:textbox id="shainNo" name="shainNo" style="width:260px;" value="${form.shainNo}" class="${form.errShainNo}" />
+					    <imui:textbox id="popShainNo" name="popShainNo" style="width:260px;" value="${form.popShainNo}" tabIndex="3" />
 					</td>
 				</tr>
 				<tr>
@@ -46,14 +108,14 @@
 					  <nfwui:LabelBox id="lblName" code="<%= MessageIdConstant.SKF2010_SC001_NAME %>" />
 					</th>
 					<td style="width: 10%;">
-					  <imui:textbox id="name" name="name" style="width:260px;" value="${form.name}" class="${form.errName}" />
+					  <imui:textbox id="popName" name="popName" style="width:260px;" value="${form.popName}" tabIndex="4" />
 					</td>
 				</tr>
 					<th style="width: 7%;">
 					  <nfwui:LabelBox id="lblNameKk" code="<%= MessageIdConstant.SKF2010_SC001_NAME_KK %>" />
 					</th>
 					<td style="width: 10%;">
-					  <imui:textbox id="nameKk" name="nameKk" style="width:260px;" value="${form.nameKk}" class="${form.errNameKk}" />
+					  <imui:textbox id="popNameKk" name="popNameKk" style="width:260px;" value="${form.popNameKk}" tabIndex="5" />
 					</td>
 				</tr>
 				<tr>
@@ -61,7 +123,7 @@
 					  <nfwui:LabelBox id="lblGenShozoku" code="<%= MessageIdConstant.SKF2010_SC001_AGENCY %>" />
 					</th>
 					<td style="width: 10%;">
-					  <imui:textbox id="agency" name="agency" style="width:260px;" value="${form.agency}" class="${form.errAgency}" />
+					  <imui:textbox id="popAgency" name="popAgency" style="width:260px;" value="${form.popAgency}" tabIndex="6" />
 					</td>
 				</tr>
 
@@ -69,11 +131,10 @@
 		</nfwui:Table>
 	</nfwui:Form>
 	<div class="align-L">	
-	    <nfwui:Button id="search" name="search" value="検索"
-	    cssClass="imui-small-button" url="skf/Skf2010Sc001/Search"
+	    <imui:button id="search" name="search" value="検索"
+	    class="imui-small-button" url="skf/Skf2010Sc001/Search"
 	    formId="searchForm" />
-		<!--<input type="button" value="クリア" class="imui-small-button" >-->
-				</div>
+	</div>
 <br>
 			<!-- 明細＆細目未満 -->
 	<!-- 明細部 -->
@@ -85,45 +146,16 @@
 			})(jQuery);
 		</script>
 
-		<imui:listTable id="shainList" name="shainList"
-		data="${form.listTableList}" onCellSelect="onCellSelect"
+		<imui:listTable id="popShainList" name="popShainList"
+		data="${form.popListTableList}" onCellSelect="onCellSelect"
 		width="550" height="200" multiSelect="false">
-		<pager rowNum="1000" />
+		<pager rowNum="10" />
 		<cols>
 		  <col name="shainNo" width="100" sortable="false" caption="社員番号" />
 		  <col name="name" width="200" sortable="false" caption="氏名" />
-		  <col name="nameKk" hidden="true" />
 		  <col name="agency" width="255" sortable="false" caption="現所属" />
 		</cols>
 		</imui:listTable>
-
-		<style type="text/css">  
-			<!--
-				/* ヘッダテキスト中央寄せ */
-				.ui-jqgrid .ui-jqgrid-htable th div {
-					display:table-cell;
-				    height: 32px;
-					text-align:center;
-					vertical-align:middle;
-				}
-				/** 1行間隔で網掛け挑戦
-				.testcss {
-					border: 1px solid #a6c9e2;
-					background-color: #e6e6fa ;
-					color: #222222;
-				}
-
-				.ui-row-even {
-					background-color: #e6e6fa ;
-				}
-				*/
-
-				/* データ行の改行許容 */
-				#shainList tr td{
-					white-space:normal;
-				}
-			-->
-		</style>
 	</nfwui:Form>
 	<br>
 <div class="align-R">
@@ -132,43 +164,6 @@
 	<!--<input style="width:100px;" id="" type="button" value="キャンセル" class="imui-small-button"  onclick="window.close()"/>-->
 	<input type="hidden" id="targetRowId" value="" />
 </div>
-<script type="text/javascript">
-jQuery(function ($) {
-	onCellSelect = function(rowId, iCol, cellcontent, e) {
-		$("#targetRowId").val(rowId);
-	}
-	
-	$("#search").click(function() {
-		$("#targetRowId").val("");
-	});
-
-	$("#selectBtn").click (function() {
-		var rowId = $("#targetRowId").val();
-		if (rowId == null || rowId == "") {
-			nfw.common.showReserveMessage("warning", "選択してください");
-			return;
-		}
-		
-		var grid = $("#shainList");
-        var rowData = grid.getRowData(rowId);
-        //JSONデータ作成
-		var shainData = {
-				"name": rowData.name,
-				"shainNo": rowData.shainNo,
-				"agency": rowData.agency
-		}
-        //親画面のコールバック関数を実行
-		window.opener.shainInfoCallback(shainData);
-		window.open('about:blank','_self').close();
-	});
-
-	$("#closeBtn").click(function() {
-		window.open('about:blank','_self').close();
-	});
-
-});
-
-</script>
 </div>
 </div>
 	<!-- コンテンツエリア　ここまで -->
