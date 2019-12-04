@@ -62,6 +62,22 @@ public class Skf3022Sc006Form extends BaseForm {
 	// 備品搬入搬出督促
 	private String searchInfoMoveInout;
 
+	/** 次月予約登録パラメータ */
+	// 提示番号
+	private String hdnJigetuYoyakuTeijiNo;
+	// 基準年月
+	private String hdnJigetuYoyakuYearMonth;
+	// 社宅管理台帳ID
+	private String hdnJigetuYoyakuShatakuKanriId;
+	// 社宅使用料月額
+	private String hdnJigetuYoyakuRental;
+	// 個人負担共益費月額
+	private String hdnJigetuYoyakuKyoekihiPerson;
+	// 区画1_駐車場使用料月額
+	private String hdnJigetuYoyakuParkingRentalOne;
+	// 区画2_駐車場使用料月額
+	private String hdnJigetuYoyakuParkingRentalTwo;
+
 	/** 使用料計算入力支援戻り値 */
 	// 規格
 	private String hdnRateShienKikaku;
@@ -231,6 +247,8 @@ public class Skf3022Sc006Form extends BaseForm {
 	private String jsonLabelList;
 	// JSON備品情報 リスト
 	private String jsonBihin;
+	// 協議中フラグ状態
+	private String sc006KyoekihiKyogichuCheckState;
 
 	/** ラベル値 */
 	// 社員番号

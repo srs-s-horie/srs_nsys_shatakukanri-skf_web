@@ -15,7 +15,7 @@
 <%-- コンテンツエリア --%>
 <script type="text/javascript">
 	function back1() {
-		var url="skf/Skf3022Sc005/init"
+		var url="skf/Skf3022Sc005/init?SKF3010_SC005&tokenCheck=0"
 		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？");
 	}
 </script>
@@ -24,7 +24,7 @@
 <div class="imui-form-container-wide" >
 	<nfwui:Form id="form" name="form" modelAttribute="form">
 		<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3022_SC006 %>" />
-		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3022Sc006/init"/>
+		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3022Sc006/init?SKF3010_SC006&tokenCheck=0" />
 		<!-- ** サーバー連携用 ** -->
 		<!-- 使用料パターンID -->	<input type="hidden" name="hdnSiyouryoId" id="hdnSiyouryoId" value="${form.hdnSiyouryoId}" />
 		<!-- JSON可変ラベルリスト -->	<input type="hidden" name="jsonLabelList" id="jsonLabelList" />
@@ -32,15 +32,28 @@
 		<!-- 入退居区分 -->		<input type="hidden" name="hdnNyutaikyoKbn" id="hdnNyutaikyoKbn" value="${form.hdnNyutaikyoKbn }"/>
 		<!-- 生年月日 -->			<input type="hidden" name="hdnBirthday" id="hdnBirthday" value="${form.hdnBirthday }"/>
 		<!-- 入居予定日 -->		<input type="hidden" name="hdnNyukyoDate" id="hdnNyukyoDate" value="${form.hdnNyukyoDate }"/>
+		<!-- 退居予定日 -->		<input type="hidden" name="hdnTaikyoDate" id="hdnTaikyoDate" value="${form.hdnTaikyoDate }"/>
 		<!-- 利用開始日1 -->		<input type="hidden" name="hdnRiyouStartDayOne" id="hdnRiyouStartDayOne" value="${form.hdnRiyouStartDayOne }"/>
 		<!-- 利用開始日2 -->		<input type="hidden" name="hdnRiyouStartDayTwo" id="hdnRiyouStartDayTwo" value="${form.hdnRiyouStartDayTwo }"/>
 		<!-- 区画1管理番号 -->		<input type="hidden" name="hdnChushajoNoOne" id="hdnChushajoNoOne" value="${form.hdnChushajoNoOne }"/>
+		<!-- 旧区画1管理番号 -->	<input type="hidden" name="hdnChushajoNoOneOld" id="hdnChushajoNoOneOld" value="${form.hdnChushajoNoOneOld }"/>
 		<!-- 区画2管理番号 -->		<input type="hidden" name="hdnChushajoNoTwo" id="hdnChushajoNoTwo" value="${form.hdnChushajoNoTwo }"/>
+		<!-- 旧区画2管理番号 -->	<input type="hidden" name="hdnChushajoNoTwoOld" id="hdnChushajoNoTwoOld" value="${form.hdnChushajoNoTwoOld }"/>
 		<!-- 区画１ 終了日 -->		<input type="hidden" name="hdnEndDayOne" id="hdnEndDayOne" value="${form.hdnEndDayOne }"/>
 		<!-- 区画2終了日 -->		<input type="hidden" name="hdnEndDayTwo" id="hdnEndDayTwo" value="${form.hdnEndDayTwo }"/>
 		<!-- 区画１更新日 -->		<input type="hidden" name="hdnShatakuParkingBlock1UpdateDate" id="hdnShatakuParkingBlock1UpdateDate" value="${form.hdnShatakuParkingBlock1UpdateDate }"/>
 		<!-- 区画番号1 -->		<input type="hidden" name="hdnKukakuNoOne" id="hdnKukakuNoOne" value="${form.hdnKukakuNoOne }"/>
 		<!-- 区画番号2 -->		<input type="hidden" name="hdnKukakuNoTwo" id="hdnKukakuNoTwo" value="${form.hdnKukakuNoTwo }"/>
+		<!-- 協議中フラグ状態 -->	<input type="hidden" name="sc006KyoekihiKyogichuCheckState" id="sc006KyoekihiKyogichuCheckState" value="${form.sc006KyoekihiKyogichuCheck }"/>
+
+		<!-- ** 次月予約登録：パラメータ ** -->
+		<!-- 提示番号 -->			<input type="hidden" name="hdnJigetuYoyakuTeijiNo" id="hdnJigetuYoyakuTeijiNo" value="${form.hdnJigetuYoyakuTeijiNo }"/>
+		<!-- 基準年月 -->			<input type="hidden" name="hdnJigetuYoyakuYearMonth" id="hdnJigetuYoyakuYearMonth" value="${form.hdnJigetuYoyakuYearMonth }"/>
+		<!-- 社宅管理台帳ID -->	<input type="hidden" name="hdnJigetuYoyakuShatakuKanriId" id="hdnJigetuYoyakuShatakuKanriId" value="${form.hdnJigetuYoyakuShatakuKanriId }"/>
+		<!-- 社宅使用料月額 -->	<input type="hidden" name="hdnJigetuYoyakuRental" id="hdnJigetuYoyakuRental" value="${form.hdnJigetuYoyakuRental }"/>
+		<!-- 個人負担共益費月額 -->	<input type="hidden" name="hdnJigetuYoyakuKyoekihiPerson" id="hdnJigetuYoyakuKyoekihiPerson" value="${form.hdnJigetuYoyakuKyoekihiPerson }"/>
+		<!-- 駐車場1月額 -->		<input type="hidden" name="hdnJigetuYoyakuParkingRentalOne" id="hdnJigetuYoyakuParkingRentalOne" value="${form.hdnJigetuYoyakuParkingRentalOne }"/>
+		<!-- 駐車場2月額 -->		<input type="hidden" name="hdnJigetuYoyakuParkingRentalTwo" id="hdnJigetuYoyakuParkingRentalTwo" value="${form.hdnJigetuYoyakuParkingRentalTwo }"/>
 
 		<!-- ** 社宅部屋入力支援：戻り値 ** -->
 		<!-- 社宅名 -->			<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="${form.sc006ShatakuName}" />
@@ -86,9 +99,8 @@
 		<!-- 社宅使用料月額 -->	<input type="hidden" name="hdnRateShienShatakuGetsugaku" id="hdnRateShienShatakuGetsugaku" value="${form.hdnRateShienShatakuGetsugaku}" />
 		<!-- 社宅基本使用料 -->	<input type="hidden" name="hdnRateShienKihonShiyoryo" id="hdnRateShienKihonShiyoryo" value="${form.hdnRateShienKihonShiyoryo}" />
 
-		<!-- ** 社員入力支援：戻り値 ** -->
-		<!-- 社員番号 -->			<input type="hidden" name="shainNo" id="shainNo" value="" />
-		<!-- 社員名 -->			<input type="hidden" name="name" id="name" value="" />
+		<!-- 社員名入力支援用 -->
+		<input type="hidden" id="insertFormName" value="" />
 		<nfwui:Table use="search">
 			<tbody>
 				<tr>
@@ -161,7 +173,7 @@
 					</td>
 					<td style="width: 6%;">
 						<nfwui:PopupButton id="shayakuHeyaShien" name="shayakuHeyaShien" value="社宅入力支援" use="popup" 
-								cssClass="imui-small-button" popupWidth="650" popupHeight="650"  
+								cssClass="imui-small-button" popupWidth="650" popupHeight="650"
 								disabled="${form.shayakuHeyaShienDisableFlg }" modalMode="true" screenUrl="skf/Skf3022Sc001/init" callbackFunc="shatakuShienCallback()" tabindex="4"/> 
 					</td>
 					<!-- 社宅使用料月額-->
@@ -466,7 +478,7 @@
 								<nfwui:LabelBox id="lblSc006KyoekihiKyogichu" code="<%=MessageIdConstant.SKF3022_SC006_KYOEKIHI_KYOGICHU %>" />
 							</th>
 							<td>
-								<imui:checkbox id="sc006KyoekihiKyogichuCheck" name="sc006KyoekihiKyogichuCheck" value="1"
+								<imui:checkbox id="sc006KyoekihiKyogichuCheck" name="sc006KyoekihiKyogichuCheck" value="1" onClick="kyogichuClick()"
 								checked="${form.sc006KyoekihiKyogichuCheck }" disabled="${form.sc006KyoekihiKyogichuCheckDisableFlg }" tabindex="13"/>
 							</td>
 							<!-- 備考 -->
@@ -531,7 +543,8 @@
 								<imui:listTable id="bihinInfoList" process="jssp" autoEncode="false" autoWidth="false" rowNumbers="true" autoResize="false" 
 										onCellSelect="onCellSelect" multiSelect="false" data="${form.bihinInfoListTableData }" style="max-height: 800px;" height="auto">
 									<cols sortable="false">
-										<col name="bihinCd" caption="備品コード" hidden="true" key="true" />
+										<col name="rId" caption="RelativeID" hidden="true" key="true"/>
+										<col name="bihinCd" caption="備品コード" hidden="true" />
 										<col name="bihinName" caption="備品名称" width="200" sortable="false" align="left" wrap="true" />
 										<c:if test='${form.hdnNyutaikyoKbn != "2"}'>
 											<!-- 入居時 -->
@@ -632,7 +645,7 @@
 													cssClass="imui-small-button" popupWidth="650" popupHeight="700"
 													modalMode="true" screenUrl="skf/Skf2010Sc001/init"
 													disabled="${form.sc006UketoriDairiInShienDisableFlg }"
-													callbackFunc="sc006ShainShienCallBack(1)" tabindex="33"/> 
+													preOnclick="setShainShienPreparation(1)" tabindex="33"/> 
 											</td>
 										</tr>
 										<tr>
@@ -690,7 +703,7 @@
 													cssClass="imui-small-button" popupWidth="650" popupHeight="700"
 													modalMode="true" screenUrl="skf/Skf2010Sc001/init"
 													disabled="${form.sc006TachiaiDairiShienDisableFlg }"
-													callbackFunc="sc006ShainShienCallBack(2)" tabindex="39"/> 
+													preOnclick="setShainShienPreparation(2)" tabindex="39"/> 
 											</td>
 										</tr>
 										<tr>
@@ -950,7 +963,11 @@
 			<imui:button id="btnCreate" value="作成完了" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="62" disabled="${form.btnCreateDisableFlg }" />
 		</div>
 		<div class="align-R">
-			<imui:button id="btnJigetuYoyaku" value="次月予約" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="63" disabled="${form.btnJigetuYoyakuDisableFlg }" />
+			<nfwui:PopupButton id="btnJigetuYoyaku" name="btnJigetuYoyaku" value="次月予約" use="popup"
+					cssClass="imui-medium-button" popupWidth="800" popupHeight="700"  cssStyle="width:150px;"
+					modalMode="true" screenUrl="skf/Skf3022Sc004/init" preOnClick="backUpStatus();" preUrl="skf/Skf3022Sc006/PreJigetsuYoyaku"
+					parameter="hdnJigetuYoyakuTeijiNo:hdnJigetuYoyakuTeijiNo,hdnJigetuYoyakuYearMonth:hdnJigetuYoyakuYearMonth,hdnJigetuYoyakuShatakuKanriId:hdnJigetuYoyakuShatakuKanriId,hdnJigetuYoyakuRental:hdnJigetuYoyakuRental,hdnJigetuYoyakuKyoekihiPerson:hdnJigetuYoyakuKyoekihiPerson,hdnJigetuYoyakuParkingRentalOne:hdnJigetuYoyakuParkingRentalOne,hdnJigetuYoyakuParkingRentalTwo:hdnJigetuYoyakuParkingRentalTwo"
+					disabled="${form.btnJigetuYoyakuDisableFlg }" callbackFunc="jigetuYoyakuCallback()" tabindex="63"/> 
 			<imui:button id="btnKeizokuLogin" value="入居情報の継続登録" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="64" disabled="${form.btnKeizokuLoginDisableFlg }" />
 			<imui:button id="btnShatakuLogin" value="社宅管理台帳登録" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="65" disabled="${form.btnShatakuLoginDisableFlg }" />
 		</div>
@@ -1001,6 +1018,8 @@
 							labelMap['sc006KukakuNoOne'] = $("#sc006KukakuNoOne").text().trim();
 							// 区画2 区画番号
 							labelMap['sc006KukakuNoTwo'] = $("#sc006KukakuNoTwo").text().trim();
+							// 個人負担共益費月額(調整後)
+							labelMap['sc006KyoekihiPayAfter'] = $("#sc006KyoekihiPayAfter").text().trim();
 							// 利用開始日
 //							labelMap['sc006RiyouStartDayOne'] = $("#sc006RiyouStartDayOne").val().trim();
 //							labelMap['sc006RiyouStartDayTwo'] = $("#sc006RiyouStartDayTwo").val().trim();
@@ -1053,7 +1072,6 @@
 					 * @param resultMap	使用料計算(提示データ登録画面)戻り値
 					 */
 					function setSiyoryoKeiSanResultAsync(resultMap) {
-
 						// 駐車場使用料月額(調整後)
 						if (resultMap['sc006TyusyaMonthPayAfter']) {
 							$("#sc006TyusyaMonthPayAfter").text(resultMap.sc006TyusyaMonthPayAfter);
@@ -1108,8 +1126,8 @@
 						map['sc006NyukyoYoteiDay'] = $("#sc006NyukyoYoteiDay").val();
 						map['hdnNyukyoDate'] = $("#hdnNyukyoDate").val();
 						map['sc006TaikyoYoteiDay'] = $("#sc006TaikyoYoteiDay").val();
-						map['sc006TyusyaDayPayOne'] = $("#sc006TyusyaDayPayOne").val();
-						map['sc006TyusyaDayPayTwo'] = $("#sc006TyusyaDayPayTwo").val();
+						map['sc006TyusyaDayPayOne'] = $("#sc006TyusyaDayPayOne").text();
+						map['sc006TyusyaDayPayTwo'] = $("#sc006TyusyaDayPayTwo").text();
 						map['sc006RiyouStartDayOne'] = $("#sc006RiyouStartDayOne").val();
 						map['hdnRiyouStartDayOne'] = $("#hdnRiyouStartDayOne").val();
 						map['sc006RiyouEndDayOne'] = $("#sc006RiyouEndDayOne").val();
@@ -1130,6 +1148,53 @@
 							// 利用開始日2をパラメータに設定
 							$("#hdnRiyouStartDay").val($("#sc006RiyouStartDayTwo").val().replace(/\//g, "").trim());
 						}
+					}
+
+					// 社員入力支援クリック
+					setShainShienPreparation = function(p) {
+						// 種別判定
+						if (p == 1) {
+							// 受取代理人入力支援
+							$("#insertFormName").val("sc006UketoriDairiInName");
+						} else {
+							// 立会代理人入力支援
+							$("#insertFormName").val("sc006TachiaiDairi");
+						}
+					}
+
+					// 個人負担共益費 協議中チェックボックスクリック
+					kyogichuClick = function() {
+						var state = $("#sc006KyoekihiKyogichuCheck:checked").val();
+						if(state == "1") {
+							// 個人負担共益費月額
+							$("#sc006KyoekihiMonthPay").prop('disabled', true);
+							// 個人負担共益費調整金額
+							$("#sc006KyoekihiTyoseiPay").prop('disabled', true);
+							// 共益費支払月
+							$("#sc006KyoekihiPayMonthSelect").prop('disabled', true);
+							// 個人負担共益費月額(調整後)
+							$("#sc006KyoekihiPayAfter").text("0");
+						} else {
+							// 個人負担共益費月額
+							$("#sc006KyoekihiMonthPay").prop('disabled', false);
+							// 個人負担共益費調整金額
+							$("#sc006KyoekihiTyoseiPay").prop('disabled', false);
+							// 共益費支払月
+							$("#sc006KyoekihiPayMonthSelect").prop('disabled', false);
+							// 共益費月額
+							var monthKyoekiPay = 0;
+							if ($("#sc006KyoekihiMonthPay").val() != null && $("#sc006KyoekihiMonthPay").val().trim().length > 0) {
+								monthKyoekiPay = parseInt($("#sc006KyoekihiMonthPay").val().trim().replace(/,/g, ""));
+							}
+							// 共益費調整金額
+							var tyoseiKyoekiPay = 0;
+							if ($("#sc006KyoekihiTyoseiPay").val() != null && $("#sc006KyoekihiTyoseiPay").val().trim().length > 0) {
+								tyoseiKyoekiPay = parseInt($("#sc006KyoekihiTyoseiPay").val().trim().replace(/,/g, ""));
+							}
+							// 個人負担共益費月額(調整後)
+							$("#sc006KyoekihiPayAfter").text((monthKyoekiPay + tyoseiKyoekiPay).toLocaleString());
+						}
+						$("#sc006KyoekihiKyogichuCheckState").val(state);
 					}
 
 					// 区画クリアボタン押下処理
@@ -1181,52 +1246,33 @@
 //						$("#hdnRateShienShatakuMenseki").val($("#sc006ShainNo").text().trim());
 					}
 
-					// 社宅情報:個人負担共益費 協議中フラグ判定
-
-					// 社宅部屋入力支援コールバック
-					shatakuShienCallback = function() {
-						alert("社宅部屋入力支援コールバック！"
-								+ "\n社宅管理番号：" + $("#hdnShatakuKanriNo").val()
-								+ "\n社宅名：" + $("#hdnShatakuName").val()
-								+ "\n部屋管理番号：" + $("#hdnRoomKanriNo").val()
-								+ "\n部屋番号：" + $("#hdnRoomNo").val()
-							);
-						// 社宅名
-						$("#sc006ShatakuName").text($("#hdnShatakuName").val().trim());
-						// 部屋番号
-						$("#sc006HeyaNo").text($("#hdnRoomNo").val().trim());
-
+					// 現在状態バックアップ
+					// 可変ラベル、備品リストテーブル、協議中フラグのバックアップを行う
+					backUpStatus = function() {
 						// 可変ラベルリスト作成
 						sc006SetVariableLabelList();
 						// 備品リスト作成
 						sc006SetJsonBihinList();
+						// 協議中フラグ状態
+						$("#sc006KyoekihiKyogichuCheckState").val($("#sc006KyoekihiKyogichuCheck:checked").val());
+					}
+
+					// 社宅情報:個人負担共益費 協議中フラグ判定
+
+					// 社宅部屋入力支援コールバック
+					shatakuShienCallback = function() {
+						// 社宅名
+						$("#sc006ShatakuName").text($("#hdnShatakuName").val().trim());
+						// 部屋番号
+						$("#sc006HeyaNo").text($("#hdnRoomNo").val().trim());
+						// 現在状態バックアップ
+						backUpStatus();
 						url = "skf/Skf3022Sc006/ShatakuSupportCallBack";
 						nfw.common.submitForm("form", url);
-
 					}
 
 					// 使用料支援コールバック
 					shiyoryoShienCallback = function() {
-/**						alert("使用料入力支援コールバック！"
-							+ "\n規格：" + $("#hdnRateShienKikaku").val()
-							+ "\n規格名：" + $("#hdnRateShienKikakuName").val()
-							+ "\n用途：" + $("#hdnRateShienYoto").val()
-							+ "\n用途名：" + $("#hdnRateShienYotoName").val()
-							+ "\n延べ面積：" + $("#hdnRateShienNobeMenseki").val()
-							+ "\nサンルーム面積：" + $("#hdnRateShienSunroomMenseki").val()
-							+ "\n階段面積：" + $("#hdnRateShienKaidanMenseki").val()
-							+ "\n物置面積：" + $("#hdnRateShienMonookiMenseki").val()
-							+ "\n基準面積：" + $("#hdnRateShienKijunMenseki").val()
-							+ "\n社宅面積：" + $("#hdnRateShienShatakuMenseki").val()
-							+ "\n単価：" + $("#hdnRateShienTanka").val()
-							+ "\n経年：" + $("#hdnRateShienKeinen").val()
-							+ "\n経年残価率：" + $("#hdnRateShienKeinenZankaRitsu").val()
-							+ "\n使用料パターン月額：" + $("#hdnRateShienPatternGetsugaku").val()
-							+ "\n社宅使用料月額：" + $("#hdnRateShienShatakuGetsugaku").val()
-							+ "\n社宅基本使用料：" + $("#hdnRateShienKihonShiyoryo").val()
-							+ "\n使用料パターン名：" + $("#hdnRateShienPatternName").val()
-						);
-*/
 						// ヘッダ項目貸与用途(使用料計算パターン名)
 						$("#sc006SiyoryoPatName").text($("#hdnRateShienPatternName").val());
 						// 社宅使用料月額
@@ -1247,11 +1293,8 @@
 						$("#sc006SiyoroTyoseiPay").val("0");
 						// 個人負担共益費調整金額 
 						$("#sc006KyoekihiTyoseiPay").val("0");
-
-						// 可変ラベルリスト作成
-						sc006SetVariableLabelList();
-						// 備品リスト作成
-						sc006SetJsonBihinList();
+						// 現在状態バックアップ
+						backUpStatus();
 						url = "skf/Skf3022Sc006/ShiyoryoSupportCallBack";
 						nfw.common.submitForm("form", url);
 					}
@@ -1306,17 +1349,459 @@
 						}
 					}
 
-					// 社員入力支援コールバック
-					sc006ShainShienCallBack = function(p) {
+					// 相互利用自動判定処理
+					sogoriyoAutoSet = function(kind) {
 						// 種別判定
-						if (p == 1) {
-							// 受取代理人
-							$("#sc006UketoriDairiInName").val($("#name").val());
-						} else {
-							// 立会代理人
-							$("#sc006TachiaiDairi").val($("#name").val());
-						}
+						switch(kind) {
+							case 1:	// 給与支給
+								if ($("#sc006KyuyoKaisyaSelect").val() == $("#sc006KariukeKaisyaSelect").val()) {
+									$("#sc006SokinShatakuSelect").val("0");
+									$("#sc006SokinKyoekihiSelect").val("0");
+								} else {
+									$("#sc006SokinShatakuSelect").val("1");
+									$("#sc006SokinKyoekihiSelect").val("1");
+								}
+								break;
+							case 2:	// 貸付
+								if ($("#sc006TaiyoKaisyaSelect").val() == $("#sc006KariukeKaisyaSelect").val()) {
+									$("#sc006SogoHanteiKbnSelect").val("0");
+								} else {
+									$("#sc006SogoHanteiKbnSelect").val("1");
+								}
+								break;
+							case 3:	// 借受
+								if ($("#sc006KyuyoKaisyaSelect").val() == $("#sc006KariukeKaisyaSelect").val()) {
+									$("#sc006SokinShatakuSelect").val("0");
+									$("#sc006SokinKyoekihiSelect").val("0");
+								} else {
+									$("#sc006SokinShatakuSelect").val("1");
+									$("#sc006SokinKyoekihiSelect").val("1");
+								}
+								if ($("#sc006TaiyoKaisyaSelect").val() == $("#sc006KariukeKaisyaSelect").val()) {
+									$("#sc006SogoHanteiKbnSelect").val("0");
+								} else {
+									$("#sc006SogoHanteiKbnSelect").val("1");
+								}
+								break;
+						};
 					}
+
+					/** テキストチェンジイベント */
+					// 入居予定日チェンジ
+					$("#sc006NyukyoYoteiDay").bind('change', function() {
+						// エラークリア
+						$("#sc006NyukyoYoteiDay").removeClass("nfw-validation-error");
+						$("#hdnNyukyoDate").val($("#sc006NyukyoYoteiDay").val());
+						// パラメータ作成 
+						var map = new Object();
+						map['mapParam'] = createSiyoryoKeiSanParamAsync();
+						// 使用料再計算
+						nfw.common.doAjaxAction("skf/Skf3022Sc006/ChangeNyutaikyoYoteiAsync", map, true, function(data) {
+							// 戻り値設定(使用料再計算分)
+							setSiyoryoKeiSanResultAsync(data);
+						});
+					});
+
+					// 退居予定日チェンジ
+					$("#sc006TaikyoYoteiDay").bind('change', function() {
+						// エラークリア
+						$("#sc006TaikyoYoteiDay").removeClass("nfw-validation-error");
+						$("#hdnTaikyoDate").val($("#sc006TaikyoYoteiDay").val());
+						// パラメータ作成 
+						var map = new Object();
+						map['mapParam'] = createSiyoryoKeiSanParamAsync();
+						// 使用料再計算
+						nfw.common.doAjaxAction("skf/Skf3022Sc006/ChangeNyutaikyoYoteiAsync", map, true, function(data) {
+							// 戻り値設定(使用料再計算分)
+							setSiyoryoKeiSanResultAsync(data);
+						});
+					});
+
+					// 給与支給会社ドロップダウンチェンジ
+					$("#sc006KyuyoKaisyaSelect").bind('change', function() {
+						// 給与支給会社ドロップダウン変更
+						sogoriyoAutoSet(1);
+					});
+
+					// 貸付会社ドロップダウンチェンジ
+					$("#sc006TaiyoKaisyaSelect").bind('change', function() {
+						// 貸付会社ドロップダウン変更
+						sogoriyoAutoSet(2);
+					});
+
+					// 借受会社ドロップダウンチェンジ
+					$("#sc006KariukeKaisyaSelect").bind('change', function() {
+						// 借受会社ドロップダウン変更
+						sogoriyoAutoSet(3);
+					});
+
+					// 出向の有無(相互利用状況)ドロップダウンチェンジ
+					$("#sc006SogoRyojokyoSelect").bind('change', function() {
+						if ("1" == $("#sc006SogoRyojokyoSelect").val()) {
+							// 相互利用判定区分
+							$("#sc006SogoHanteiKbnSelect").prop('disabled', false);
+							// 送金区分
+							$("#sc006SokinShatakuSelect").prop('disabled', false);
+							$("#sc006SokinKyoekihiSelect").prop('disabled', false);
+							// 借受会社ドロップダウン変更
+							sogoriyoAutoSet(3);
+						} else {
+							// 相互利用判定区分
+							$("#sc006SogoHanteiKbnSelect").prop('disabled', true);
+							$("#sc006SogoHanteiKbnSelect").val("");
+							$("#sc006SogoHanteiKbnSelect").removeClass("nfw-validation-error");
+							// 送金区分
+							$("#sc006SokinShatakuSelect").prop('disabled', true);
+							$("#sc006SokinShatakuSelect").val("");
+							$("#sc006SokinShatakuSelect").removeClass("nfw-validation-error");
+							// 共益費会社間送付区分
+							$("#sc006SokinKyoekihiSelect").prop('disabled', true);
+							$("#sc006SokinKyoekihiSelect").val("");
+							$("#sc006SokinKyoekihiSelect").removeClass("nfw-validation-error");
+							// 貸付会社
+							$("#sc006TaiyoKaisyaSelect").prop('disabled', true);
+							$("#sc006TaiyoKaisyaSelect").removeClass("nfw-validation-error");
+							// 借受会社
+							$("#sc006KariukeKaisyaSelect").prop('disabled', true);
+							$("#sc006KariukeKaisyaSelect").removeClass("nfw-validation-error");
+							// 開始日
+							$("#sc006StartDay").prop('disabled', true);
+							$("#sc006StartDay").removeClass("nfw-validation-error");
+							// 終了日
+							$("#sc006EndDay").prop('disabled', true);
+							$("#sc006EndDay").removeClass("nfw-validation-error");
+							// 社宅賃貸料
+							$("#sc006ChintaiRyo").prop('disabled', true);
+							$("#sc006ChintaiRyo").removeClass("nfw-validation-error");
+							// 駐車場賃貸料
+							$("#sc006TyusyajoRyokin").prop('disabled', true);
+							$("#sc006TyusyajoRyokin").removeClass("nfw-validation-error");
+							// 共益費
+							$("#sc006Kyoekihi").prop('disabled', true);
+							$("#sc006Kyoekihi").removeClass("nfw-validation-error");
+							// 配属情報
+							$("#sc006HaizokuKaisyaSelect").prop('disabled', true);
+							$("#sc006HaizokuKaisyaSelect").removeClass("nfw-validation-error");
+							// 所属機関
+							$("#sc006SyozokuKikan").prop('disabled', true);
+							$("#sc006SyozokuKikan").removeClass("nfw-validation-error");
+							// 室・部名
+							$("#sc006SituBuName").prop('disabled', true);
+							$("#sc006SituBuName").removeClass("nfw-validation-error");
+							// 課等名
+							$("#sc006KanadoMei").prop('disabled', true);
+							$("#sc006KanadoMei").removeClass("nfw-validation-error");
+							// 配属データコード番号
+							$("#sc006HaizokuNo").prop('disabled', true);
+							$("#sc006HaizokuNo").removeClass("nfw-validation-error");
+						}
+					});
+
+					// 備品ドロップダウンチェンジ
+					$("select[id^='bihinTaiyoStts']").bind('change', function(data) {
+						// RelativeID取得
+						var rId = data.target.id.replace("bihinTaiyoStts", "");
+						// 行データ取得
+						var rowData = $("#bihinInfoList").getRowData(rId);
+						// 備品貸与状態取得
+						var bihinTaiyoStts = $("#bihinTaiyoStts" + rId).val();
+						// 部屋備付状態取得
+						var heyaSonaetukeSttsStr = rowData.heyaSonaetukeSttsStr;
+						// 旧指示書
+						var shijishoOld = rowData.shijishoOld;
+						// 入退居区分判定
+						switch ($("#hdnNyutaikyoKbn").val()) {
+							case "1":	// 入退居区分＝"1"（入居）の場合
+								// 貸与状態判定
+								if(bihinTaiyoStts == '3' && (heyaSonaetukeSttsStr == 'なし' || heyaSonaetukeSttsStr == '共有')) {
+									// 貸与状態ドロップダウンリストが"3"（レンタル）で、表示されてる部屋備付状態が「なし」「共有」の場合、指示書欄に「搬入」を表示させる。
+									$("#shijisho" + rId).val("搬入");
+								} else {
+									$("#shijisho" + rId).val("");
+								}
+								// 変更前指示書文字列と異なる文言を設定した指示書欄の背景色は、ピンク色に設定する。
+								if($("#shijisho" + rId).val() != shijishoOld) {
+									$("#shijisho" + rId).css('background-color','#ffcecf')
+								} else {
+									$("#shijisho" + rId).css('background-color','transparent')
+								}
+								break;
+							case "2":	// 入退居区分＝"2"（退居）の場合
+								// 貸与状態判定
+								if(bihinTaiyoStts == '2' && (heyaSonaetukeSttsStr == 'なし' || heyaSonaetukeSttsStr == '共有')) {
+									// 貸与状態ドロップダウンリストが"2"（会社保有）で、表示されてる部屋備付状態が「なし」「共有」の場合、指示書欄に「下取」を表示させる
+									$("#shijisho" + rId).val("下取");
+								} else if(bihinTaiyoStts == '3' && (heyaSonaetukeSttsStr == 'なし' || heyaSonaetukeSttsStr == '共有')) {
+									// 貸与状態ドロップダウンリストが"3"（レンタル）で、表示されてる部屋備付状態が「なし」「共有」の場合、指示書欄に「搬出」を表示させる。
+									$("#shijisho" + rId).val("搬出");
+								} else {
+									$("#shijisho" + rId).val("");
+								}
+								// 変更前指示書文字列と異なる文言を設定した指示書欄の背景色は、ピンク色に設定する。
+								if($("#shijisho" + rId).val() != shijishoOld) {
+									$("#shijisho" + rId).css('background-color','#ffcecf')
+								} else {
+									$("#shijisho" + rId).css('background-color','transparent')
+								}
+								break;
+							default:	// 入退居区分が上記以外（変更）の場合
+								break;
+						};
+					});
+
+					// 役員算定ドロップダウンチェンジ
+					$("#sc006YakuinSanteiSelect").bind('change', function() {
+						// パラメータ作成 
+						var map = new Object();
+						map['mapParam'] = createSiyoryoKeiSanParamAsync();
+						map['sc006KukakuNoOne'] = $("#sc006KukakuNoOne").text();
+						map['hdnChushajoNoOne'] = $("#hdnChushajoNoOne").val();
+						map['hdnChushajoNoOneOld'] = $("#hdnChushajoNoOneOld").val();
+						map['sc006KukakuNoTwo'] = $("#sc006KukakuNoTwo").text();
+						map['hdnChushajoNoTwo'] = $("#hdnChushajoNoTwo").val();
+						map['hdnChushajoNoTwoOld'] = $("#hdnChushajoNoTwoOld").val();
+						// 使用料再計算
+						nfw.common.doAjaxAction("skf/Skf3022Sc006/ChangeYakuinSanteiAsync", map, true, function(data) {
+							// 戻り値設定(使用料再計算分)
+							setSiyoryoKeiSanResultAsync(data);
+						});
+					});
+
+					// 社宅使用料調整金額チェンジ
+					$("#sc006SiyoroTyoseiPay").bind('change', function() {
+						// 社宅使用料調整金額 
+						if ($("#sc006SiyoroTyoseiPay").val() != null && $("#sc006SiyoroTyoseiPay").val().length > 0) {
+							// エラークリア
+							$("#sc006SiyoroTyoseiPay").removeClass("nfw-validation-error");
+							// 社宅使用料日割金額
+							var hiwariPay = 0;
+							if ($("#sc006SiyoryoHiwariPay").text() != null && $("#sc006SiyoryoHiwariPay").text().trim().length > 0) {
+								hiwariPay = parseInt($("#sc006SiyoryoHiwariPay").text().trim().replace(/,/g, ""));
+							}
+							// 社宅使用料調整金額
+							var tyoseiPay = 0;
+							tyoseiPay = parseInt($("#sc006SiyoroTyoseiPay").val().trim().replace(/,/g, ""));
+							// 社宅使用料月額(調整後)
+							$("#sc006SyatauMonthPayAfter").text((hiwariPay + tyoseiPay).toLocaleString());
+						} else {
+							if ($("#sc006SiyoryoHiwariPay").text() != null && $("#sc006SiyoryoHiwariPay").text().trim().length > 0) {
+								// 社宅使用料月額(調整後)を日割金額と同額に設定
+								$("#sc006SyatauMonthPayAfter").text($("#sc006SiyoryoHiwariPay").text().trim());
+							} else {
+								// 社宅使用料月額(調整後)を「0」に設定
+								$("#sc006SyatauMonthPayAfter").text("0");
+							}
+						}
+					});
+
+					// 個人負担共益費月額チェンジ
+					$("#sc006KyoekihiMonthPay").bind('change', function() {
+						// 個人負担共益費月額
+						if ($("#sc006KyoekihiMonthPay").val() != null && $("#sc006KyoekihiMonthPay").val().length > 0) {
+							// エラークリア
+							$("#sc006KyoekihiMonthPay").removeClass("nfw-validation-error");
+							// 共益費月額
+							var monthKyoekiPay = 0;
+							monthKyoekiPay = parseInt($("#sc006KyoekihiMonthPay").val().trim().replace(/,/g, ""));
+							// 共益費調整金額
+							var tyoseiKyoekiPay = 0;
+							if ($("#sc006KyoekihiTyoseiPay").val() != null && $("#sc006KyoekihiTyoseiPay").val().trim().length > 0) {
+								tyoseiKyoekiPay = parseInt($("#sc006KyoekihiTyoseiPay").val().trim().replace(/,/g, ""));
+							}
+							// 個人負担共益費月額(調整後)
+							$("#sc006KyoekihiPayAfter").text((monthKyoekiPay + tyoseiKyoekiPay).toLocaleString());
+						} else {
+							if ($("#sc006KyoekihiTyoseiPay").val() != null && $("#sc006KyoekihiTyoseiPay").val().trim().length > 0) {
+								// 社宅使用料月額(調整後)を日割金額と同額に設定
+								$("#sc006KyoekihiPayAfter").text($("#sc006KyoekihiTyoseiPay").val().trim());
+							} else {
+								// 社宅使用料月額(調整後)を「0」に設定
+								$("#sc006KyoekihiPayAfter").text("0");
+							}
+						}
+					});
+
+					// 個人負担共益費調整金額チェンジ
+					$("#sc006KyoekihiTyoseiPay").bind('change', function() {
+						// 個人負担共益費調整金額
+						if ($("#sc006KyoekihiTyoseiPay").val() != null && $("#sc006KyoekihiTyoseiPay").val().length > 0) {
+							// エラークリア
+							$("#sc006KyoekihiTyoseiPay").removeClass("nfw-validation-error");
+							// 共益費月額
+							var monthKyoekiPay = 0;
+							// 当月以前に退居の場合は0とする
+							if ($("#sc006KyoekihiMonthPay").val() != null && $("#sc006KyoekihiMonthPay").val().trim().length > 0) {
+								monthKyoekiPay = parseInt($("#sc006KyoekihiMonthPay").val().trim().replace(/,/g, ""));
+							}
+							// 共益費調整金額
+							var tyoseiKyoekiPay = 0;
+							tyoseiKyoekiPay = parseInt($("#sc006KyoekihiTyoseiPay").val().trim().replace(/,/g, ""));
+							// 個人負担共益費月額(調整後)
+							$("#sc006KyoekihiPayAfter").text((monthKyoekiPay + tyoseiKyoekiPay).toLocaleString());
+						} else {
+							if ($("#sc006KyoekihiMonthPay").val() != null && $("#sc006KyoekihiMonthPay").val().trim().length > 0) {
+								// 個人負担共益費月額(調整後)を日割金額と同額に設定
+								$("#sc006KyoekihiPayAfter").text($("#sc006KyoekihiMonthPay").val().trim());
+							} else {
+								// 個人負担共益費月額(調整後)を「0」に設定
+								$("#sc006KyoekihiPayAfter").text("0");
+							}
+						}
+					});
+
+					// 駐車場利用日チェンジ
+					$("input[id^='sc006Riyou']").bind('change', function() {
+						var id = $(this).attr("id");
+						// パラメータ作成 
+						var map = new Object();
+						map['mapParam'] = createSiyoryoKeiSanParamAsync();
+						// コントロール判定
+						switch (id) {
+							case "sc006RiyouStartDayOne":	// 利用開始日1
+								map['sc006ChushajoKanriNo'] = $("#hdnChushajoNoOne").val();
+								map['sc006ParkBlockKind'] = "1";
+								// エラークリア
+								$("#sc006RiyouStartDayOne").removeClass("nfw-validation-error");
+								break;
+							case "sc006RiyouEndDayOne":		// 利用終了日1
+								map['sc006ChushajoKanriNo'] = $("#hdnChushajoNoOne").val();
+								map['sc006ParkBlockKind'] = "1";
+								// エラークリア
+								$("#sc006RiyouEndDayOne").removeClass("nfw-validation-error");
+								break;
+							case "sc006RiyouStartDayTwo":	// 利用開始日2
+								map['sc006ChushajoKanriNo'] = $("#hdnChushajoNoTwo").val();
+								map['sc006ParkBlockKind'] = "2";
+								// エラークリア
+								$("#sc006RiyouStartDayTwo").removeClass("nfw-validation-error");
+								break;
+							case "sc006RiyouEndDayTwo":		// 利用終了日2
+								map['sc006ChushajoKanriNo'] = $("#hdnChushajoNoTwo").val();
+								map['sc006ParkBlockKind'] = "2";
+								// エラークリア
+								$("#sc006RiyouEndDayTwo").removeClass("nfw-validation-error");
+								break;
+						};
+						// 使用料再計算
+						nfw.common.doAjaxAction("skf/Skf3022Sc006/ChangeParkingUseDayAsync", map, true, function(data) {
+							// 戻り値設定(使用料再計算分)
+							setSiyoryoKeiSanResultAsync(data);
+						});
+					});
+
+					// 駐車場使用料調整金額チェンジ
+					$("#sc006TyusyaTyoseiPay").bind('change', function() {
+						// 駐車場１日割金額
+						var parkingOnePay = 0;
+						if ($("#sc006TyusyaDayPayOne").text() != null && $("#sc006TyusyaDayPayOne").text().trim().length > 0) {
+							parkingOnePay = parseInt($("#sc006TyusyaDayPayOne").text().trim().replace(/,/g, ""));
+						}
+						// 駐車場２日割金額
+						var parkingTwoPay = 0;
+						if ($("#sc006TyusyaDayPayTwo").text() != null && $("#sc006TyusyaDayPayTwo").text().trim().length > 0) {
+							parkingTwoPay = parseInt($("#sc006TyusyaDayPayTwo").text().trim().replace(/,/g, ""));
+						}
+						// 駐車場使用料調整金額 
+						if ($("#sc006TyusyaTyoseiPay").val() != null && $("#sc006TyusyaTyoseiPay").val().trim().length > 0) {
+							// 駐車場使用料調整金額
+							var tyoseiPay = 0;
+							tyoseiPay = parseInt($("#sc006TyusyaTyoseiPay").val().trim().replace(/,/g, ""));
+							$("#sc006TyusyaMonthPayAfter").text((parkingOnePay + parkingTwoPay + tyoseiPay).toLocaleString());
+						} else {
+							$("#sc006TyusyaMonthPayAfter").text((parkingOnePay + parkingTwoPay).toLocaleString());
+						}
+					});
+
+					// 貸与日チェンジ
+					$("#sc006TaiyoDay").bind('change', function() {
+						// エラークリア
+						$("#sc006TaiyoDay").removeClass("nfw-validation-error");
+					});
+
+					// 返却日チェンジ
+					$("#sc006HenkyakuDay").bind('change', function() {
+						// エラークリア
+						$("#sc006HenkyakuDay").removeClass("nfw-validation-error");
+					});
+
+					// 搬入日チェンジ
+					$("#sc006KibouDayIn").bind('change', function() {
+						// エラークリア
+						$("#sc006KibouDayIn").removeClass("nfw-validation-error");
+					});
+
+					// 搬出日チェンジ
+					$("#sc006KibouDayOut").bind('change', function() {
+						// エラークリア
+						$("#sc006KibouDayOut").removeClass("nfw-validation-error");
+					});
+
+					// 開始日チェンジ
+					$("#sc006StartDay").bind('change', function() {
+						// エラークリア
+						$("#sc006StartDay").removeClass("nfw-validation-error");
+					});
+
+					// 終了日チェンジ
+					$("#sc006EndDay").bind('change', function() {
+						// エラークリア
+						$("#sc006EndDay").removeClass("nfw-validation-error");
+					});
+
+					// 社宅賃貸料チェンジ
+					$("#sc006ChintaiRyo").bind('change', function() {
+						// 社宅賃貸料 入力チェック
+						if ($("#sc006ChintaiRyo").val() != null && $("#sc006ChintaiRyo").val().trim().length > 0) {
+							// エラークリア
+							$("#sc006ChintaiRyo").removeClass("nfw-validation-error");
+							// パラメータ作成 
+							var map = new Object();
+							map['mapParam'] = createSiyoryoKeiSanParamAsync();
+							map['sc006KukakuNoOne'] = $("#sc006KukakuNoOne").text();
+							map['hdnChushajoNoOne'] = $("#hdnChushajoNoOne").val();
+							map['hdnChushajoNoOneOld'] = $("#hdnChushajoNoOneOld").val();
+							map['sc006KukakuNoTwo'] = $("#sc006KukakuNoTwo").text();
+							map['hdnChushajoNoTwo'] = $("#hdnChushajoNoTwo").val();
+							map['hdnChushajoNoTwoOld'] = $("#hdnChushajoNoTwoOld").val();
+							// 使用料再計算
+							nfw.common.doAjaxAction("skf/Skf3022Sc006/ChangeShatakuChintaiRyoAsync", map, true, function(data) {
+								// 戻り値設定(使用料再計算分)
+								setSiyoryoKeiSanResultAsync(data);
+							});
+						}
+					});
+
+					// 駐車場料金チェンジ
+					$("#sc006TyusyajoRyokin").bind('change', function() {
+						// 駐車場料金入力チェック
+						if ($("#sc006TyusyajoRyokin").val() != null && $("#sc006TyusyajoRyokin").val().trim().length > 0) {
+							// エラークリア
+							$("#sc006TyusyajoRyokin").removeClass("nfw-validation-error");
+							// パラメータ作成 
+							var map = new Object();
+							map['mapParam'] = createSiyoryoKeiSanParamAsync();
+							map['sc006KukakuNoOne'] = $("#sc006KukakuNoOne").text();
+							map['hdnChushajoNoOne'] = $("#hdnChushajoNoOne").val();
+							map['hdnChushajoNoOneOld'] = $("#hdnChushajoNoOneOld").val();
+							map['sc006KukakuNoTwo'] = $("#sc006KukakuNoTwo").text();
+							map['hdnChushajoNoTwo'] = $("#hdnChushajoNoTwo").val();
+							map['hdnChushajoNoTwoOld'] = $("#hdnChushajoNoTwoOld").val();
+							// 使用料再計算
+							nfw.common.doAjaxAction("skf/Skf3022Sc006/ChangeParkingPayAsync", map, true, function(data) {
+								// 戻り値設定(使用料再計算分)
+								setSiyoryoKeiSanResultAsync(data);
+							});
+						}
+					});
+
+					// 共益費チェンジ
+					$("#sc006Kyoekihi").bind('change', function() {
+						// 共益費入力チェック
+						if ($("#sc006Kyoekihi").val() != null && $("#sc006Kyoekihi").val().trim().length > 0) {
+							// エラークリア
+							$("#sc006Kyoekihi").removeClass("nfw-validation-error");
+						}
+					});
 				});
 			})(jQuery);
 		</script>
