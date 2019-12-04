@@ -79,6 +79,9 @@
 
 		<!-- 社員名入力支援用 -->
 		<input type="hidden" id="insertFormName" value="" />
+		<!-- 賃貸人(代理人)入力支援用 -->
+		<input type="hidden" name="insertFormOwnerName" id="insertFormOwnerName" value="" />
+		<input type="hidden" name="insertFormOwnerNo" id="insertFormOwnerNo" value="" />
 		<nfwui:Table use="search">
 			<tbody>
 				<tr>
@@ -689,10 +692,10 @@
 									style="width:150px;height:98%" value="${f:h(form.contractOwnerName)}" disabled="${form.contractDelDisableFlg }" tabindex="69" />
 								<!-- 支援ボタン -->
 								<nfwui:PopupButton id="contractSupport" name="contractSupport" value="支援" use="popup"
-									cssClass="imui-small-button" popupWidth="650" popupHeight="700"
-									modalMode="false" screenUrl="skf/Skf2010Sc001/init"
+									cssClass="imui-small-button" popupWidth="640" popupHeight="800"
+									modalMode="true" screenUrl="skf/Skf3070Sc004/init"
 									parameter="parkinglendKbn:nyukyoFlag"  disabled="${form.contractDelDisableFlg }"
-									callbackFunc="contractOwnerInfoCallback" tabindex="70"/>
+									tabindex="70"/>
 							</td>
 						</tr>
 						<tr>
@@ -1283,13 +1286,6 @@
 							nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc007/init", "ok", "キャンセル", this, true);
 						}
 
-						// 賃貸人入力支援コールバック
-						contractOwnerInfoCallback = function(param) {
-							if( param != null && typeof param == 'object' && param.name != null){
-								$("#contractOwnerName").val(param.name);
-								$("#contractOwnerNo").val(param.shainNo);
-							}
-						}
 
 						/** ドロップダウンチェンジイベント */
 						// 管理会社ドロップダウンチェンジ
@@ -1482,6 +1478,13 @@
 					    	});
 					    	$("#insertFormName").val(formName);
 						});
+						
+						$("#contractSupport").click(function(){
+					    	$("#insertFormOwnerName").val("contractOwnerName");
+					    	$("#insertFormOwnerNo").val("contractOwnerNo");
+						});
+																													
+						
 					});
 
 					// 動的に作成したコントロールのイベント
