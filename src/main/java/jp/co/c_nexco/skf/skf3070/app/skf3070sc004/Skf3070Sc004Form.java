@@ -27,5 +27,8 @@ public class Skf3070Sc004Form extends PopupForm {
 
 	// リストテーブル情報
 	private List<Map<String, Object>> popListTableList;
+	
+	// リストテーブルの１ページ最大表示行数
+	private String listTableMaxRowCount;
 
 }
