@@ -958,7 +958,7 @@
 				${form.sc006Msg }
 		</label>
 		<div class="align-R">
-			<imui:button id="btnUnyonGuide" value="運用ガイド" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="60" disabled="${form.btnUnyonGuideDisableFlg }" />
+			<nfwui:Button url="skf/Skf3022Sc006/OperationGuideDownload" id="search" value="運用ガイド" cssClass="imui-medium-button" cssStyle="width: 150px" tabindex="60" disabled="${form.btnUnyonGuideDisableFlg }" />
 			<imui:button id="btnTmpSave" value="一時保存" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="61" disabled="${form.btnTmpSaveDisableFlg }" />
 			<imui:button id="btnCreate" value="作成完了" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="62" disabled="${form.btnCreateDisableFlg }" />
 		</div>

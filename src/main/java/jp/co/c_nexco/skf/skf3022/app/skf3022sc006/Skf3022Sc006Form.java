@@ -2,11 +2,8 @@
  * Copyright(c) 2020 NEXCO Systems company limited All rights reserved.
  */
 package jp.co.c_nexco.skf.skf3022.app.skf3022sc006;
-
-import jp.co.c_nexco.nfw.webcore.app.BaseForm;
-
+import jp.co.c_nexco.nfw.webcore.app.GridForm;
 import java.util.*;
-
 import lombok.EqualsAndHashCode;
 
 /**
@@ -16,7 +13,7 @@ import lombok.EqualsAndHashCode;
  */
 @lombok.Data
 @EqualsAndHashCode(callSuper = true)
-public class Skf3022Sc006Form extends BaseForm {
+public class Skf3022Sc006Form extends GridForm {
 
 	private static final long serialVersionUID = 5285848663756806913L;
 
@@ -218,9 +215,6 @@ public class Skf3022Sc006Form extends BaseForm {
 	private String sc006MsgBoxStyle;
 	// メッセージ
 	private String sc006Msg;
-
-	/** 運用ガイド */
-//	private String operationGuide
 
 	/** タブステータス */
 	// 社宅タブ
