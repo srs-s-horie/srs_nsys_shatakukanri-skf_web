@@ -16,7 +16,7 @@
 <style type="text/css"></style>
 <script type="text/javascript">
 	function back1() {
-		var url="skf/Skf3010Sc001/init"
+		var url="skf/Skf3010Sc001/init?SKF3010_SC001&tokenCheck=0"
 		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
 	}
 </script>
@@ -70,7 +70,7 @@
 		<input type="hidden" name="jsonDrpDwnList" id="jsonDrpDwnList" />
 		<!-- JSON可変ラベルリスト -->
 		<input type="hidden" name="jsonLabelList" id="jsonLabelList" />
-		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc002/init"/>
+		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc002/init?SKF3010_SC002&tokenCheck=0"/>
 		<!-- 補足ファイル -->
 		<input type="hidden" name="fileNo" id="fileNo"/>
 		<input type="hidden" name="hosokuType" id="hosokuType"/>
@@ -801,6 +801,10 @@
 				(function($) {
 					// 画面表示時に定義される処理
 					$(document).ready(function(){
+						// 駐車場調整金額フォーカス時、入力済み文字列全選択
+						jQuery(document).on("focus", "input[id^='parkingRentalAdjust']", function(data) {
+							$(this).select();
+						});
 						if ($("#ittoFlg").val() != "true") {
 							// 一棟借上以外は非表示
 							$('#tabs div[id=keiyaku_info]').hide();
@@ -955,6 +959,7 @@
 							// 可変ラベルリストをJSON文字列に変換
 							$('#jsonLabelList').val(JSON.stringify(labelArray));
 						}
+
 						// 現在状態バックアップ
 						// ドロップ選択値ダウンリスト、可変ラベルリスト、リストテーブルのバックアップを行う
 						backUpStatus = function() {
