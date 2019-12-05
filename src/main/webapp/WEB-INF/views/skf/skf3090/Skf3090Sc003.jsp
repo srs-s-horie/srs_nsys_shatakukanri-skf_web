@@ -146,10 +146,12 @@
 			for( var i=iMin; i<iMax; ++i ){
 				var targetId = "businessAreaName"+ i; 
 		    	// テキストボックス、テキストエリアにフォーカス時、入力済み文字列全選択
+		    	/*
 		    	document.getElementById(targetId).addEventListener('click', function(){
 		    		$(this).select();
 		    		return false;
 		    	}, false);    	
+		    	*/
 			}
 		}
 	}
@@ -215,6 +217,7 @@
 
 	onAddGridComplete = function(rowId,iCol,cellcontent,e) {
     	// テキストボックス、テキストエリアにフォーカス時、入力済み文字列全選択
+    	/*
     	document.getElementById("txtBusinessAreaCd").addEventListener('click', function(){
     		$(this).select();
     		return false;
@@ -231,6 +234,7 @@
     		$(this).select();
     		return false;
     	}, false);    	
+    	*/
 	}
 	
 	$("span .im-ui-icon-common-16-update").mouseover(
@@ -385,13 +389,13 @@
 								<nfwui:LabelBox id="lblBusinessAreaCd" code="<%=MessageIdConstant.SKF3090_SC003_BUSINESS_CODE %>" />
 							</th>
 							<td>
-								<imui:textbox id="txtBusinessAreaCd" name="businessAreaCd" style="ime-mode: disabled;width:100px;" placeholder="例 A001" value="${form.businessAreaCd}" tabindex="4" maxlength="4"/>
+								<imui:textbox id="txtBusinessAreaCd" name="businessAreaCd" style="ime-mode: disabled;width:100px;" placeholder="例 A001" value="${f:h(form.businessAreaCd)}" tabindex="4" maxlength="4"/>
 							</td>
 							<th style="width: 12%;">
 								<nfwui:LabelBox id="lblBusinessAreaName" code="<%=MessageIdConstant.SKF3090_SC003_BUSINESS_NAME %>" />
 							</th>
 							<td>
-								<imui:textbox id="txtBusinessAreaName" name="businessAreaName" style="width:300px;" placeholder="例 本社 〇〇部" value="${form.businessAreaName}" tabindex="5" maxlength="255"/>
+								<imui:textbox id="txtBusinessAreaName" name="businessAreaName" style="width:300px;" placeholder="例 本社 〇〇部" value="${f:h(form.businessAreaName)}" tabindex="5" maxlength="255"/>
 							</td>
 						</tr>
 					</tbody>

@@ -55,6 +55,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 		$list[0].grid.headers[12].el.style.textAlign = "center";
 
 		// テキストボックス、テキストエリアにフォーカス時、入力済み文字列全選択
+		/*
 	   	document.getElementById("txtShainNo").addEventListener('click', function(){
 	   		$(this).select();
 	   		return false;
@@ -75,7 +76,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 	   		$(this).select();
 	   		return false;
 	   	}, false);    	
-		
+		*/
 	}
 	
 	
@@ -255,7 +256,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 							<nfwui:LabelBox id="lblShainNo" code="<%=MessageIdConstant.SKF3020_SC004_SHAIN_NUMBER %>" />
 						</th>
 						<td>
-							<imui:textbox id="txtShainNo" name="shainNo" style="ime-mode: disabled;width:150px;" placeholder="例　00123456（半角）" value="${form.shainNo}" tabindex="3" maxlength="8"/>         
+							<imui:textbox id="txtShainNo" name="shainNo" style="ime-mode: disabled;width:150px;" placeholder="例　00123456（半角）" value="${f:h(form.shainNo)}" tabindex="3" maxlength="8"/>         
 						</td>
 						<th style="width: 8%;">
 							<nfwui:LabelBox id="lblNyukyoTaikyo" code="<%=MessageIdConstant.SKF3020_SC004_NYUKYO_TAIKYO %>" />
@@ -278,7 +279,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 							<nfwui:LabelBox id="lblShinShozoku" code="<%=MessageIdConstant.SKF3020_SC004_SHIN_SHOZOKU %>" />
 						</th>
 						<td>
-							<imui:textbox id="txtShinShozoku" name="shinShozoku" style="width:155px;" placeholder="例 名古屋支社" value="${form.shinShozoku}" tabindex="9" maxlength="192"/>
+							<imui:textbox id="txtShinShozoku" name="shinShozoku" style="width:155px;" placeholder="例 名古屋支社" value="${f:h(form.shinShozoku)}" tabindex="9" maxlength="192"/>
 						</td>
 						<th style="width: 12%;">
 							<nfwui:LabelBox id="lblNyutaikyoYoteiSakuseiKubun" code="<%=MessageIdConstant.SKF3020_SC004_YOTEI_SAKUSEI %>" />
@@ -293,7 +294,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 							<nfwui:LabelBox id="lblShainMei" code="<%=MessageIdConstant.SKF3020_SC004_SHAIN_NAME %>" />
 						</th>
 						<td>
-							<imui:textbox id="txtShainMei" name="shainName" style="width:150px;" placeholder="例　中日本　太郎" value="${form.shainName}" tabindex="4" maxlength="20"/>
+							<imui:textbox id="txtShainMei" name="shainName" style="width:150px;" placeholder="例　中日本　太郎" value="${f:h(form.shainName)}" tabindex="4" maxlength="20"/>
 						</td>
 						<th>
 							<nfwui:LabelBox id="lblGenShataku" code="<%=MessageIdConstant.SKF3020_SC004_GEN_SHATAKU %>" />
@@ -306,13 +307,13 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 							<nfwui:LabelBox id="lblGenShozoku" code="<%=MessageIdConstant.SKF3020_SC004_GEN_SHOZOKU %>" />
 						</th>
 						<td>
-							<imui:textbox id="txtGenShozoku" name="genShozoku" style="width:155px;" placeholder="例 名古屋支社" value="${form.genShozoku}" tabindex="10" maxlength="192"/>			
+							<imui:textbox id="txtGenShozoku" name="genShozoku" style="width:155px;" placeholder="例 名古屋支社" value="${f:h(form.genShozoku)}" tabindex="10" maxlength="192"/>			
 						</td>
 						<th>
 							<nfwui:LabelBox id="lblBiko" code="<%=MessageIdConstant.SKF3020_SC004_BIKO %>" />
 						</th>
 						<td colspan="2">
-							<imui:textbox id="txtBiko" name="biko" style="width:250px;" value="${form.biko}" tabindex="12"  maxlength="100"/>
+							<imui:textbox id="txtBiko" name="biko" style="width:250px;" value="${f:h(form.biko)}" tabindex="12"  maxlength="100"/>
 						</td>
 					</tr>
 				</tbody>

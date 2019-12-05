@@ -119,8 +119,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn01" name="txtTodoufukenn01" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn01Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn01}"  tabindex="2" />
+									cssClass="${form.txtTodoufukenn01Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn01}"  tabindex="2" />
 							</td>
 							<!-- 13 東京都 -->
 							<th>
@@ -128,8 +128,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn13" name="txtTodoufukenn13" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn13Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn13}"  tabindex="14" />
+									cssClass="${form.txtTodoufukenn13Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn13}"  tabindex="14" />
 							</td>
 							<!-- 25 滋賀県 -->
 							<th>
@@ -137,8 +137,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn25" name="txtTodoufukenn25" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn25Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn25}"  tabindex="26" />
+									cssClass="${form.txtTodoufukenn25Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn25}"  tabindex="26" />
 							</td>
 							<!-- 37 香川県 -->
 							<th>
@@ -146,8 +146,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn37" name="txtTodoufukenn37" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn37Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn37}"  tabindex="38" />
+									cssClass="${form.txtTodoufukenn37Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn37}"  tabindex="38" />
 							</td>
 						</tr>
 						<tr>
@@ -157,8 +157,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn02" name="txtTodoufukenn02" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn02Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn02}"  tabindex="3" />
+									cssClass="${form.txtTodoufukenn02Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn02}"  tabindex="3" />
 							</td>
 							<!-- 14 神奈川県 -->
 							<th>
@@ -166,8 +166,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn14" name="txtTodoufukenn14" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn14Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn14}"  tabindex="15" />
+									cssClass="${form.txtTodoufukenn14Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn14}"  tabindex="15" />
 							</td>
 							<!-- 26 京都府 -->
 							<th>
@@ -175,8 +175,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn26" name="txtTodoufukenn26" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn26Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn26}"  tabindex="27" />
+									cssClass="${form.txtTodoufukenn26Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn26}"  tabindex="27" />
 							</td>
 							<!-- 38 愛媛県 -->
 							<th>
@@ -184,8 +184,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn38" name="txtTodoufukenn38" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn38Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn38}"  tabindex="39" />
+									cssClass="${form.txtTodoufukenn38Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn38}"  tabindex="39" />
 							</td>
 						</tr>
 						<tr>
@@ -195,8 +195,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn03" name="txtTodoufukenn03" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn03Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn03}"  tabindex="4" />
+									cssClass="${form.txtTodoufukenn03Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn03}"  tabindex="4" />
 							</td>
 							<!-- 15 新潟県 -->
 							<th>
@@ -204,8 +204,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn15" name="txtTodoufukenn15" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn15Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn15}"  tabindex="16" />
+									cssClass="${form.txtTodoufukenn15Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn15}"  tabindex="16" />
 							</td>
 							<!-- 27 大阪府 -->
 							<th>
@@ -213,8 +213,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn27" name="txtTodoufukenn27" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn27Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn27}"  tabindex="28" />
+									cssClass="${form.txtTodoufukenn27Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn27}"  tabindex="28" />
 							</td>
 							<!-- 39 高知県 -->
 							<th>
@@ -222,8 +222,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn39" name="txtTodoufukenn39" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn39Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn39}"  tabindex="40" />
+									cssClass="${form.txtTodoufukenn39Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn39}"  tabindex="40" />
 							</td>
 						</tr>
 						<tr>
@@ -233,8 +233,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn04" name="txtTodoufukenn04" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn04Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn04}"  tabindex="5" />
+									cssClass="${form.txtTodoufukenn04Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn04}"  tabindex="5" />
 							</td>
 							<!-- 16 富山県 -->
 							<th>
@@ -242,8 +242,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn16" name="txtTodoufukenn16" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn16Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn16}"  tabindex="17" />
+									cssClass="${form.txtTodoufukenn16Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn16}"  tabindex="17" />
 							</td>
 							<!-- 28 兵庫県 -->
 							<th>
@@ -251,8 +251,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn28" name="txtTodoufukenn28" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn28Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn28}"  tabindex="29" />
+									cssClass="${form.txtTodoufukenn28Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn28}"  tabindex="29" />
 							</td>
 							<!-- 40 福岡県 -->
 							<th>
@@ -260,8 +260,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn40" name="txtTodoufukenn40" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn40Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn40}"  tabindex="41" />
+									cssClass="${form.txtTodoufukenn40Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn40}"  tabindex="41" />
 							</td>
 						</tr>
 						<tr>
@@ -271,8 +271,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn05" name="txtTodoufukenn05" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn05Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn05}"  tabindex="6" />
+									cssClass="${form.txtTodoufukenn05Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn05}"  tabindex="6" />
 							</td>
 							<!-- 17 石川県 -->
 							<th>
@@ -280,8 +280,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn17" name="txtTodoufukenn17" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn17Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn17}"  tabindex="18" />
+									cssClass="${form.txtTodoufukenn17Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn17}"  tabindex="18" />
 							</td>
 							<!-- 29 奈良県 -->
 							<th>
@@ -289,8 +289,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn29" name="txtTodoufukenn29" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn29Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn29}"  tabindex="30" />
+									cssClass="${form.txtTodoufukenn29Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn29}"  tabindex="30" />
 							</td>
 							<!-- 41 佐賀県 -->
 							<th>
@@ -298,8 +298,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn41" name="txtTodoufukenn41" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn41Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn41}"  tabindex="42" />
+									cssClass="${form.txtTodoufukenn41Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn41}"  tabindex="42" />
 							</td>
 						</tr>
 						<tr>
@@ -309,8 +309,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn06" name="txtTodoufukenn06" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn06Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn06}"  tabindex="7" />
+									cssClass="${form.txtTodoufukenn06Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn06}"  tabindex="7" />
 							</td>
 							<!-- 18 福井県 -->
 							<th>
@@ -318,8 +318,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn18" name="txtTodoufukenn18" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn18Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn18}"  tabindex="19" />
+									cssClass="${form.txtTodoufukenn18Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn18}"  tabindex="19" />
 							</td>
 							<!-- 30 和歌山県 -->
 							<th>
@@ -327,8 +327,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn30" name="txtTodoufukenn30" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn30Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn30}"  tabindex="31" />
+									cssClass="${form.txtTodoufukenn30Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn30}"  tabindex="31" />
 							</td>
 							<!-- 42 長崎県 -->
 							<th>
@@ -336,8 +336,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn42" name="txtTodoufukenn42" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn42Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn42}"  tabindex="43" />
+									cssClass="${form.txtTodoufukenn42Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn42}"  tabindex="43" />
 							</td>
 						</tr>
 						<tr>
@@ -347,8 +347,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn07" name="txtTodoufukenn07" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn07Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn07}"  tabindex="8" />
+									cssClass="${form.txtTodoufukenn07Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn07}"  tabindex="8" />
 							</td>
 							<!-- 19 山梨県 -->
 							<th>
@@ -356,8 +356,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn19" name="txtTodoufukenn19" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn19Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn19}"  tabindex="20" />
+									cssClass="${form.txtTodoufukenn19Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn19}"  tabindex="20" />
 							</td>
 							<!-- 31 鳥取県 -->
 							<th>
@@ -365,8 +365,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn31" name="txtTodoufukenn31" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn31Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn31}"  tabindex="32" />
+									cssClass="${form.txtTodoufukenn31Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn31}"  tabindex="32" />
 							</td>
 							<!-- 43 熊本県 -->
 							<th>
@@ -374,8 +374,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn43" name="txtTodoufukenn43" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn43Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn43}"  tabindex="44" />
+									cssClass="${form.txtTodoufukenn43Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn43}"  tabindex="44" />
 							</td>
 						</tr>
 						<tr>
@@ -385,8 +385,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn08" name="txtTodoufukenn08" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn08Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn08}"  tabindex="9" />
+									cssClass="${form.txtTodoufukenn08Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn08}"  tabindex="9" />
 							</td>
 							<!-- 20 長野県 -->
 							<th>
@@ -394,8 +394,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn20" name="txtTodoufukenn20" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn20Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn20}"  tabindex="21" />
+									cssClass="${form.txtTodoufukenn20Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn20}"  tabindex="21" />
 							</td>
 							<!-- 32 島根県 -->
 							<th>
@@ -403,8 +403,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn32" name="txtTodoufukenn32" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn32Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn32}"  tabindex="33" />
+									cssClass="${form.txtTodoufukenn32Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn32}"  tabindex="33" />
 							</td>
 							<!-- 44 大分県 -->
 							<th>
@@ -412,8 +412,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn44" name="txtTodoufukenn44" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn44Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn44}"  tabindex="45" />
+									cssClass="${form.txtTodoufukenn44Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn44}"  tabindex="45" />
 							</td>
 						</tr>
 						<tr>
@@ -423,8 +423,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn09" name="txtTodoufukenn09" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn09Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn09}"  tabindex="10" />
+									cssClass="${form.txtTodoufukenn09Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn09}"  tabindex="10" />
 							</td>
 							<!-- 21 岐阜県 -->
 							<th>
@@ -432,8 +432,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn21" name="txtTodoufukenn21" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn21Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn21}"  tabindex="22" />
+									cssClass="${form.txtTodoufukenn21Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn21}"  tabindex="22" />
 							</td>
 							<!-- 33 岡山県 -->
 							<th>
@@ -441,8 +441,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn33" name="txtTodoufukenn33" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn33Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn33}"  tabindex="34" />
+									cssClass="${form.txtTodoufukenn33Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn33}"  tabindex="34" />
 							</td>
 							<!-- 45 宮崎県 -->
 							<th>
@@ -450,8 +450,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn45" name="txtTodoufukenn45" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn45Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn45}"  tabindex="46" />
+									cssClass="${form.txtTodoufukenn45Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn45}"  tabindex="46" />
 							</td>
 						</tr>
 						<tr>
@@ -461,8 +461,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn10" name="txtTodoufukenn10" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn10Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn10}"  tabindex="11" />
+									cssClass="${form.txtTodoufukenn10Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn10}"  tabindex="11" />
 							</td>
 							<!-- 22 静岡県 -->
 							<th>
@@ -470,8 +470,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn22" name="txtTodoufukenn22" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn22Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn22}"  tabindex="23" />
+									cssClass="${form.txtTodoufukenn22Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn22}"  tabindex="23" />
 							</td>
 							<!-- 34 広島県 -->
 							<th>
@@ -479,8 +479,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn34" name="txtTodoufukenn34" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn34Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn34}"  tabindex="35" />
+									cssClass="${form.txtTodoufukenn34Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn34}"  tabindex="35" />
 							</td>
 							<!-- 46 鹿児島県 -->
 							<th>
@@ -488,8 +488,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn46" name="txtTodoufukenn46" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn46Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn46}"  tabindex="47" />
+									cssClass="${form.txtTodoufukenn46Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn46}"  tabindex="47" />
 							</td>
 						</tr>
 						<tr>
@@ -499,8 +499,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn11" name="txtTodoufukenn11" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn11Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn11}"  tabindex="12" />
+									cssClass="${form.txtTodoufukenn11Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn11}"  tabindex="12" />
 							</td>
 							<!-- 23 愛知県 -->
 							<th>
@@ -508,8 +508,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn23" name="txtTodoufukenn23" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn23Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn23}"  tabindex="24" />
+									cssClass="${form.txtTodoufukenn23Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn23}"  tabindex="24" />
 							</td>
 							<!-- 35 山口県 -->
 							<th>
@@ -517,8 +517,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn35" name="txtTodoufukenn35" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn35Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn35}"  tabindex="36" />
+									cssClass="${form.txtTodoufukenn35Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn35}"  tabindex="36" />
 							</td>
 							<!-- 47 沖縄県 -->
 							<th>
@@ -526,8 +526,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn47" name="txtTodoufukenn47" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn47Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn47}"  tabindex="48" />
+									cssClass="${form.txtTodoufukenn47Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn47}"  tabindex="48" />
 							</td>
 						</tr>
 						<tr>
@@ -537,8 +537,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn12" name="txtTodoufukenn12" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn12Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn12}"  tabindex="13" />
+									cssClass="${form.txtTodoufukenn12Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn12}"  tabindex="13" />
 							</td>
 							<!-- 24 三重県 -->
 							<th>
@@ -546,8 +546,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn24" name="txtTodoufukenn24" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn24Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn24}"  tabindex="25" />
+									cssClass="${form.txtTodoufukenn24Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn24}"  tabindex="25" />
 							</td>
 							<!-- 36 徳島県 -->
 							<th>
@@ -555,8 +555,8 @@ function back1() {
 							</th>
 							<td>
 								<nfwui:NumberBox id="txtTodoufukenn36" name="txtTodoufukenn36" max="9999" min="0"
-									cssClass="nfw-default-width ${form.txtTodoufukenn36Err}" cssStyle="width: 70px;"
-									maxlength="4" value="${form.txtTodoufukenn36}"  tabindex="37" />
+									cssClass="${form.txtTodoufukenn36Err}" cssStyle="width: 70px;"
+									maxlength="5" value="${form.txtTodoufukenn36}"  tabindex="37" />
 							</td>
 							<td colspan="2">
 							</td>
@@ -566,7 +566,7 @@ function back1() {
 								<label style="width:100px;">備考</label>
 							</th>
 							<td colspan="7">
-								<imui:textArea id="biko" name="biko" rows="2" style="width:990px;" maxlength="400" value="${form.biko}" class="${form.bikoErr}" tabindex="49" />
+								<imui:textArea id="biko" name="biko" rows="2" style="width:990px;" maxlength="400" value="${f:h(form.biko)}" class="${form.bikoErr}" tabindex="49" />
 							</td>
 						</tr>
 					</tbody>
