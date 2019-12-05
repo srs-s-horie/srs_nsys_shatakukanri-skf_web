@@ -70,14 +70,19 @@
 		<input type="hidden" name="jsonDrpDwnList" id="jsonDrpDwnList" />
 		<!-- JSON可変ラベルリスト -->
 		<input type="hidden" name="jsonLabelList" id="jsonLabelList" />
-		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc002/init"/>
+		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc002/init?SKF3010_SC002&tokenCheck=0"/>
 		<!-- 補足ファイル -->
 		<input type="hidden" name="fileNo" id="fileNo"/>
 		<input type="hidden" name="hosokuType" id="hosokuType"/>
 		<input type="hidden" name="hdnHosoku" id="sendHosokuType"/>
 		<input type="hidden" name="hdnAttachedNo" id="sendAttachedNo"/>
 
-		<nfwui:Table use="input">
+		<!-- 社員名入力支援用 -->
+		<input type="hidden" id="insertFormName" value="" />
+		<!-- 賃貸人(代理人)入力支援用 -->
+		<input type="hidden" name="insertFormOwnerName" id="insertFormOwnerName" value="" />
+		<input type="hidden" name="insertFormOwnerNo" id="insertFormOwnerNo" value="" />
+		<nfwui:Table use="search">
 			<tbody>
 				<tr>
 					<th style="width: 5%;">
@@ -141,7 +146,7 @@
 				</c:if>
 			</ul>
 			<div id="kihon_info">
-				<nfwui:Table use="input">
+				<nfwui:Table use="search">
 					<tbody>
 						<!--利用区分-->
 						<tr>
@@ -194,7 +199,7 @@
 								<nfwui:LabelBox id="lblZipCd" code="<%=MessageIdConstant.SKF3010_SC002_LBL_ZIP_CD %>" />
 							</th>
 							<td colspan="3">
-								<imui:textbox id="zipCd" name="zipCd" style="ime-mode: disabled;width:85px;" value="${form.zipCd}"
+								<imui:textbox id="zipCd" name="zipCd" style="ime-mode: disabled;width:85px;" value="${f:h(form.zipCd)}"
 													class="${form.zipCdErr}" placeholder="例　4600003" maxlength="7" tabindex="10"/>
 								<imui:button id="addressSearch" name="addressSearch" value="住所検索"
 										class="imui-small-button" onclick="addressSearchClick()" tabindex="11" />
@@ -209,7 +214,7 @@
 								<!-- 都道府県リスト -->
 								<imui:select id="pref" name="pref" width="90" list="${form.prefList}" class="${form.prefErr}" tabindex="12" />
 								<imui:textbox id="shatakuAddress" name="shatakuAddress" style="width:615px;" maxlength="100"
-								value="${form.shatakuAddress}" placeholder="例　名古屋市中区錦2-18-19" class="${form.shatakuAddressErr}" tabindex="13" />
+								value="${f:h(form.shatakuAddress)}" placeholder="例　名古屋市中区錦2-18-19" class="${form.shatakuAddressErr}" tabindex="13" />
 							</td>
 						</tr>
 						<!--社宅構造-->
@@ -222,7 +227,7 @@
 								<imui:select id="shatakuStructure" name="shatakuStructure" width="90"
 									list="${form.shatakuStructureList}" class="${form.shatakuStructureErr}" tabindex="14" />
 								<imui:textbox id="shatakuStructureDetail" name="shatakuStructureDetail" style="width:360px;"
-									maxlength="30" value="${form.shatakuStructureDetail}" placeholder="例　RC3F" tabindex="15" />
+									maxlength="30" value="${f:h(form.shatakuStructureDetail)}" placeholder="例　RC3F" tabindex="15" />
 							</td>
 						</tr>
 						<!--エレベーター-->
@@ -330,7 +335,7 @@
 				</nfwui:Table>
 			</div>
 			<div id="parking_info">
-				<nfwui:Table use="input">
+				<nfwui:Table use="search">
 					<tbody>
 						<!--駐車場構造-->
 						<tr >
@@ -443,7 +448,7 @@
 				<br />
 				<div>
 					<!--備考-->
-					<nfwui:Table use="input">
+					<nfwui:Table use="search">
 						<tbody>
 							<!--備考-->
 							<tr>
@@ -472,7 +477,7 @@
 				</imui:listTable>
 			</div>
 			<div id="admin_info">
-				<nfwui:Table use="input">
+				<nfwui:Table use="search">
 					<tbody>
 						<tr >
 							<td style="width:15%;"/>
@@ -497,17 +502,17 @@
 							<td>
 								<!-- 寮長・自治会長 -->
 								<imui:textbox id="dormitoryLeaderRoomNo" name="dormitoryLeaderRoomNo" style="width:150px;"
-								maxlength="30" value="${form.dormitoryLeaderRoomNo}" placeholder="例　101（半角）" tabindex="46" />
+								maxlength="30" value="${f:h(form.dormitoryLeaderRoomNo)}" placeholder="例　101（半角）" tabindex="46" />
 							</td>
 							<td>
 								<!-- 鍵管理者 -->
 								<imui:textbox id="keyManagerRoomNo" name="keyManagerRoomNo" style="width:150px;"
-								maxlength="30" value="${form.keyManagerRoomNo}" placeholder="例　101（半角）" tabindex="53" />
+								maxlength="30" value="${f:h(form.keyManagerRoomNo)}" placeholder="例　101（半角）" tabindex="53" />
 							</td>
 							<td>
 								<!-- 寮母・管理会社 -->
 								<imui:textbox id="matronRoomNo" name="matronRoomNo" style="width:150px;"
-								maxlength="30" value="${form.matronRoomNo}" placeholder="例　101（半角）" tabindex="60" />
+								maxlength="30" value="${f:h(form.matronRoomNo)}" placeholder="例　101（半角）" tabindex="60" />
 							</td>
 						</tr>
 						<tr>
@@ -518,35 +523,25 @@
 							<td>
 								<!-- 寮長・自治会長 -->
 								<imui:textbox id="dormitoryLeaderName" name="dormitoryLeaderName" style="width:150px;"
-								maxlength="30" value="${form.dormitoryLeaderName}" placeholder="例　中日本　太郎" tabindex="47" />
+								maxlength="30" value="${f:h(form.dormitoryLeaderName)}" placeholder="例　中日本　太郎" tabindex="47" />
 								<!-- 社員入力支援 -->
-								<nfwui:PopupButton id="leaderInputSupportShain" name="leaderInputSupportShain" value="社員入力支援" use="popup"
+								<nfwui:PopupButton id="supportDormitoryLeaderName" name="supportDormitoryLeaderName" value="社員入力支援" use="popup"
 									cssClass="imui-small-button" popupWidth="650" popupHeight="700"
-									modalMode="false" screenUrl="skf/Skf2010Sc001/init"
-									parameter="shainNo:shainNo"
-									callbackFunc="leaderShainInfoCallback" tabindex="48"/> 
-<%--                	<nfwui:PopupButton id="cShien" name="cShien" value="駐車支援" use="popup"  --%>
-<%--                		cssClass="imui-small-button" popupWidth="650" popupHeight="700"  --%>
-<%--                		modalMode="true" screenUrl="skf/Skf3022Sc002/init"  --%>
-<%--                		parameter="hdnShatakuKanriNo:hdnShatakuKanriNo,hdnShatakuName:hdnShatakuName,hdnBackupContractStartDate:hdnRiyouStartDay" disabled="${form.contractInfoDisabled}"  --%>
-<%--                		mappingArray="{'txtOwnerName':'resultList.colParkingBlock'}" --%>
-<%--                		 tabindex="48"/> --%>
+									modalMode="true" screenUrl="skf/Skf2010Sc001/init" tabindex="48"/> 
 							</td>
 							<td>
 								<!-- 鍵管理者 -->
 								<imui:textbox id="keyManagerName" name="keyManagerName" style="width:150px;" maxlength="30"
-								value="${form.keyManagerName}" placeholder="例　中日本　太郎" tabindex="54" />
+								value="${f:h(form.keyManagerName)}" placeholder="例　中日本　太郎" tabindex="54" />
 								<!-- 社員入力支援 -->
-								<nfwui:PopupButton id="keyManagerInputSupportShain" name="keyManagerInputSupportShain" value="社員入力支援" use="popup"
+								<nfwui:PopupButton id="supportKeyManagerName" name="supportKeyManagerName" value="社員入力支援" use="popup"
 									cssClass="imui-small-button" popupWidth="650" popupHeight="700"
-									modalMode="false" screenUrl="skf/Skf2010Sc001/init"
-									parameter="shainNo:shainNo"
-									callbackFunc="keyManagerShainInfoCallback" tabindex="55"/> 
+									modalMode="true" screenUrl="skf/Skf2010Sc001/init" tabindex="55"/> 
 							</td>
 							<td>
 								<!-- 寮母・管理会社 -->
 								<imui:textbox id="matronName" name="matronName" style="width:150px;"
-								maxlength="30" value="${form.matronName}" placeholder="例　中日本　太郎" tabindex="61" />
+								maxlength="30" value="${f:h(form.matronName)}" placeholder="例　中日本　太郎" tabindex="61" />
 							</td>
 						</tr>
 						<tr>
@@ -557,19 +552,19 @@
 							<td>
 								<!-- 寮長・自治会長 -->
 								<imui:textbox id="dormitoryLeaderMailAddress" name="dormitoryLeaderMailAddress" style="width:260px;"
-								maxlength="50" value="${form.dormitoryLeaderMailAddress}" placeholder="例　t.nakanihon.aa@" tabindex="49"
+								maxlength="50" value="${f:h(form.dormitoryLeaderMailAddress)}" placeholder="例　t.nakanihon.aa@" tabindex="49"
 								class="${form.dormitoryLeaderMailAddressErr}" />
 							</td>
 							<td>
 								<!-- 鍵管理者 -->
 								<imui:textbox id="keyManagerMailAddress" name="keyManagerMailAddress" style="width:260px;"
-								maxlength="50" value="${form.keyManagerMailAddress}" placeholder="例　t.nakanihon.aa@" tabindex="56"
+								maxlength="50" value="${f:h(form.keyManagerMailAddress)}" placeholder="例　t.nakanihon.aa@" tabindex="56"
 								class="${form.keyManagerMailAddressErr}" />
 							</td>
 							<td>
 								<!-- 寮母・管理会社 -->
 								<imui:textbox id="matronMailAddress" name="matronMailAddress" style="width:260px;"
-								maxlength="30" value="${form.matronMailAddress}" placeholder="例　t.nakanihon.aa@" tabindex="62"
+								maxlength="30" value="${f:h(form.matronMailAddress)}" placeholder="例　t.nakanihon.aa@" tabindex="62"
 								class="${form.matronMailAddressErr}" />
 							</td>
 						</tr>
@@ -581,19 +576,19 @@
 							<td>
 								<!-- 寮長・自治会長 -->
 								<imui:textbox id="dormitoryLeaderTelNumber" name="dormitoryLeaderTelNumber" style="width:150px;height:98%"
-								maxlength="15" value="${form.dormitoryLeaderTelNumber}" placeholder="例　052-999-9999" tabindex="50"
+								maxlength="15" value="${f:h(form.dormitoryLeaderTelNumber)}" placeholder="例　052-999-9999" tabindex="50"
 								class="${form.dormitoryLeaderTelNumberErr}" />
 							</td>
 							<td>
 								<!-- 鍵管理者 -->
 								<imui:textbox id="keyManagerTelNumber" name="keyManagerTelNumber" style="width:150px;height:98%"
-								maxlength="15" value="${form.keyManagerTelNumber}" placeholder="例　052-999-9999" tabindex="57"
+								maxlength="15" value="${f:h(form.keyManagerTelNumber)}" placeholder="例　052-999-9999" tabindex="57"
 								class="${form.keyManagerTelNumberErr}" />
 							</td>
 							<td>
 								<!-- 寮母・管理会社 -->
 								<imui:textbox id="matronTelNumber" name="matronTelNumber" style="width:150px;height:98%"
-								maxlength="15" value="${form.matronTelNumber}" placeholder="例　052-999-9999" tabindex="63"
+								maxlength="15" value="${f:h(form.matronTelNumber)}" placeholder="例　052-999-9999" tabindex="63"
 								class="${form.matronTelNumberErr}" />
 							</td>
 						</tr>
@@ -605,19 +600,19 @@
 							<td>
 								<!-- 寮長・自治会長 -->
 								<imui:textbox id="dormitoryLeaderExtentionNo" name="dormitoryLeaderExtentionNo" style="width:150px;height:98%"
-								maxlength="15" value="${form.dormitoryLeaderExtentionNo}" placeholder="例　0000" tabindex="51"
+								maxlength="15" value="${f:h(form.dormitoryLeaderExtentionNo)}" placeholder="例　0000" tabindex="51"
 								class="${form.dormitoryLeaderExtentionNoErr}" />
 							</td>
 							<td>
 								<!-- 鍵管理者 -->
 								<imui:textbox id="keyManagerExtentionNo" name="keyManagerExtentionNo" style="width:150px;height:98%"
-								maxlength="15" value="${form.keyManagerExtentionNo}" placeholder="例　0000" tabindex="58"
+								maxlength="15" value="${f:h(form.keyManagerExtentionNo)}" placeholder="例　0000" tabindex="58"
 								class="${form.keyManagerExtentionNoErr}" />
 							</td>
 							<td>
 								<!-- 寮母・管理会社 -->
 								<imui:textbox id="matronExtentionNo" name="matronExtentionNo" style="width:150px;height:98%"
-								maxlength="15" value="${form.matronExtentionNo}" placeholder="例　0000" tabindex="64"
+								maxlength="15" value="${f:h(form.matronExtentionNo)}" placeholder="例　0000" tabindex="64"
 								class="${form.matronExtentionNoErr}" />
 							</td>
 						</tr>
@@ -649,7 +644,7 @@
 				</nfwui:Table>
 			</div>
 			<div id="keiyaku_info">
-				<nfwui:Table use="input">
+				<nfwui:Table use="search">
 					<tbody>
 						<tr>
 							<th rowspan="13" style="width:5%" >
@@ -694,19 +689,13 @@
 							<td>
 								<!-- 賃貸人（代理人）テキストボックス -->
 								<imui:textbox readonly="true" id="contractOwnerName" name="contractOwnerName" class="${form.contractOwnerNameErr }"
-									style="width:150px;height:98%" value="${form.contractOwnerName}" disabled="${form.contractDelDisableFlg }" tabindex="69" />
+									style="width:150px;height:98%" value="${f:h(form.contractOwnerName)}" disabled="${form.contractDelDisableFlg }" tabindex="69" />
 								<!-- 支援ボタン -->
 								<nfwui:PopupButton id="contractSupport" name="contractSupport" value="支援" use="popup"
-									cssClass="imui-small-button" popupWidth="650" popupHeight="700"
-									modalMode="false" screenUrl="skf/Skf2010Sc001/init"
+									cssClass="imui-small-button" popupWidth="640" popupHeight="800"
+									modalMode="true" screenUrl="skf/Skf3070Sc004/init"
 									parameter="parkinglendKbn:nyukyoFlag"  disabled="${form.contractDelDisableFlg }"
-									callbackFunc="contractOwnerInfoCallback" tabindex="70"/>
-<%--                	<nfwui:PopupButton id="cShien" name="cShien" value="駐車支援" use="popup"  --%>
-<%--                		cssClass="imui-small-button" popupWidth="650" popupHeight="700"  --%>
-<%--                		modalMode="true" screenUrl="skf/Skf3022Sc002/init"  --%>
-<%--                		parameter="hdnShatakuKanriNo:hdnShatakuKanriNo,hdnShatakuName:hdnShatakuName,hdnBackupContractStartDate:hdnRiyouStartDay" disabled="${form.contractInfoDisabled}"  --%>
-<%--                		mappingArray="{'txtOwnerName':'resultList.colParkingBlock'}" --%>
-<%--                		 tabindex="70"/> --%>
+									tabindex="70"/>
 							</td>
 						</tr>
 						<tr>
@@ -740,7 +729,7 @@
 							</th>
 							<td>
 								<imui:textbox id="assetRegisterNo" name="assetRegisterNo" style="ime-mode:disabled;width:150px;" maxlength="13"
-													class="${form.assetRegisterNoErr}" value="${form.assetRegisterNo}" placeholder="例　A001002003004"
+													class="${form.assetRegisterNoErr}" value="${f:h(form.assetRegisterNo)}" placeholder="例　A001002003004"
 																					 disabled="${form.contractDelDisableFlg }" tabindex="71" />
 							</td>
 						</tr>
@@ -813,12 +802,12 @@
 			</div>
 			<script type="text/javascript">
 				(function($) {
-					// テキストボックス、テキストエリアにフォーカス時、入力済み文字列全選択
-					jQuery(document).on("focus click", "input,textarea", function() {
-						$(this).select();
-					});
 					// 画面表示時に定義される処理
 					$(document).ready(function(){
+						// 駐車場調整金額フォーカス時、入力済み文字列全選択
+						jQuery(document).on("focus", "input[id^='parkingRentalAdjust']", function(data) {
+							$(this).select();
+						});
 						if ($("#ittoFlg").val() != "true") {
 							// 一棟借上以外は非表示
 							$('#tabs div[id=keiyaku_info]').hide();
@@ -973,6 +962,7 @@
 							// 可変ラベルリストをJSON文字列に変換
 							$('#jsonLabelList').val(JSON.stringify(labelArray));
 						}
+
 						// 現在状態バックアップ
 						// ドロップ選択値ダウンリスト、可変ラベルリスト、リストテーブルのバックアップを行う
 						backUpStatus = function() {
@@ -1296,31 +1286,6 @@
 							nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc007/init", "ok", "キャンセル", this, true);
 						}
 
-						// 社員入力支援コールバック(寮長・自治会長)
-						shainInfoCallback = function(param) {
-//						leaderShainInfoCallback = function(param) {
-							if( param != null && typeof param == 'object' && param.name != null){
-								$("#dormitoryLeaderName").val(param.name);
-								$("#keyManagerName").val(param.name);	// ← 後で削除
-								$("#contractOwnerName").val(param.name);	// ← 後で削除
-								$("#contractOwnerNo").val(1);	// ← 後で削除
-							}
-						}
-
-						// 社員入力支援コールバック(鍵管理者)
-						keyManagerShainInfoCallback = function(param) {
-							if( param != null && typeof param == 'object' && param.name != null){
-								$("#keyManagerName").val(param.name);
-							}
-						}
-
-						// 賃貸人入力支援コールバック
-						contractOwnerInfoCallback = function(param) {
-							if( param != null && typeof param == 'object' && param.name != null){
-								$("#contractOwnerName").val(param.name);
-								$("#contractOwnerNo").val(param.shainNo);
-							}
-						}
 
 						/** ドロップダウンチェンジイベント */
 						// 管理会社ドロップダウンチェンジ
@@ -1505,6 +1470,21 @@
 						$("a[id^='attached_']").click(function(){
 							downloadShatakuHosokuFile(this);
 						});
+						
+						$("#supportDormitoryLeaderName, #supportKeyManagerName").click(function(){
+					    	var id = $(this).attr("id");
+					    	var formName = id.replace(/^support/g, "").replace(/^[A-Z]/g, function(val) {
+					    		return val.toLowerCase();
+					    	});
+					    	$("#insertFormName").val(formName);
+						});
+						
+						$("#contractSupport").click(function(){
+					    	$("#insertFormOwnerName").val("contractOwnerName");
+					    	$("#insertFormOwnerNo").val("contractOwnerNo");
+						});
+																													
+						
 					});
 
 					// 動的に作成したコントロールのイベント

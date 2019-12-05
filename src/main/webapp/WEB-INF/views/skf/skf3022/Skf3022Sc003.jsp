@@ -123,7 +123,7 @@
 					<td>
 						<!-- 延べ面積テキストボックス -->
 						<imui:textbox id="sc003InputNobeMenseki" name="sc003InputNobeMenseki" style="ime-mode: disabled;width:95px; text-align:right;" maxlength="8"
-						value="${form.sc003InputNobeMenseki}" placeholder="例　70.5" class="${form.sc003InputNobeMensekiErr}" tabindex="3"/>&nbsp;㎡
+						value="${f:h(form.sc003InputNobeMenseki)}" placeholder="例　70.5" class="${form.sc003InputNobeMensekiErr}" tabindex="3"/>&nbsp;㎡
 					</td>
 				</tr>
 				<tr>
@@ -289,10 +289,6 @@
 		</div>
 		<script type="text/javascript">
 			(function($) {
-				// テキストボックス、テキストエリアにフォーカス時、入力済み文字列全選択
-				jQuery(document).on("focus click", "input,textarea", function() {
-					$(this).select();
-				});
 				// 画面表示時に定義される処理
 				$(document).ready(function(){
 					// テキストエリア、テキストボックス内でEnterKey押下でsubmitされないようにする
