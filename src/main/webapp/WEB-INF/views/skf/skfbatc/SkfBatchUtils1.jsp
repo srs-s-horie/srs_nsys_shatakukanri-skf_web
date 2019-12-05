@@ -132,7 +132,124 @@
 							</tr>
 							</tbody>
 					</nfwui:Table>
-					
+					社宅管理台帳相互利用基本TBL
+					<nfwui:Table use="search">
+						<tbody>
+							<tr>
+								<th style="width: 30%;">
+									社宅管理台帳ID
+								</th>
+								<td style="width: 60%;">
+								<imui:textbox id="sMutualShatakuKanriId" name="sMutualShatakuKanriId" style="width: 50%;" placeholder="key1"  tabindex="1" />
+								</td>
+							</tr>
+						</tbody>
+					</nfwui:Table>
+					月別相互利用履歴TBL
+					<nfwui:Table use="search">
+						<tbody>
+							<tr>
+								<th style="width: 30%;">
+									社宅管理台帳ID
+								</th>
+								<td style="width: 60%;">
+								<imui:textbox id="sMutualRirekiShatakuKanriId" name="sMutualRirekiShatakuKanriId" style="width: 50%;" placeholder="key1"  tabindex="1" />
+								</td>
+							</tr>
+							<tr>
+								<th style="width: 30%;">
+									年月
+								</th>
+								<td style="width: 60%;">
+								<imui:textbox id="sMutualRirekiYearMonth" name="sMutualRirekiYearMonth" style="width: 50%;" placeholder="key2"  tabindex="2" />
+								</td>
+							</tr>
+						</tbody>
+					</nfwui:Table>
+					月別駐車場履歴TBL
+					<nfwui:Table use="search">
+						<tbody>
+							<tr>
+								<th style="width: 30%;">
+									社宅管理台帳ID
+								</th>
+								<td style="width: 60%;">
+								<imui:textbox id="pRirekiShatakuKanriId" name="pRirekiShatakuKanriId" style="width: 50%;" placeholder="key1"  tabindex="1" />
+								</td>
+							</tr>
+							<tr>
+								<th style="width: 30%;">
+									駐車場貸与番号
+								</th>
+								<td style="width: 60%;">
+								<imui:textbox id="pRirekiParkingLendNo" name="pRirekiParkingLendNo" style="width: 50%;" placeholder="key2"  tabindex="2" />
+								</td>
+							</tr>
+							<tr>
+								<th style="width: 30%;">
+									年月
+								</th>
+								<td style="width: 60%;">
+								<imui:textbox id="pRirekiYearMonth" name="pRirekiYearMonth" style="width: 50%;" placeholder="key3"  tabindex="3" />
+								</td>
+							</tr>
+						</tbody>
+					</nfwui:Table>
+					月別使用料履歴TBL
+					<nfwui:Table use="search">
+						<tbody>
+							<tr>
+								<th style="width: 30%;">
+									社宅管理台帳ID
+								</th>
+								<td style="width: 60%;">
+								<imui:textbox id="sRentalRirekiShatakuKanriId" name="sRentalRirekiShatakuKanriId" style="width: 50%;" placeholder="key1"  tabindex="1" />
+								</td>
+							</tr>
+							<tr>
+								<th style="width: 30%;">
+									年月
+								</th>
+								<td style="width: 60%;">
+								<imui:textbox id="sRentalRirekiYearMonth" name="sRentalRirekiYearMonth" style="width: 50%;" placeholder="key2"  tabindex="2" />
+								</td>
+							</tr>
+						</tbody>
+					</nfwui:Table>
+					社宅管理台帳備品基本TBL
+					<nfwui:Table use="search">
+						<tbody>
+							<tr>
+								<th style="width: 30%;">
+									社宅管理台帳ID
+								</th>
+								<td style="width: 60%;">
+								<imui:textbox id="sBihinShatakuKanriId" name="sBihinShatakuKanriId" style="width: 50%;" placeholder="key1"  tabindex="1" />
+								</td>
+							</tr>
+						</tbody>
+					</nfwui:Table>
+					提示備品データTBL
+					<nfwui:Table use="search">
+						<tbody>
+							<tr>
+								<th style="width: 30%;">
+									提示備品データ
+								</th>
+								<td style="width: 60%;">
+								<imui:textbox id="tBihinDataTeijiNo" name="tBihinDataTeijiNo" style="width: 50%;" placeholder="key1"  tabindex="1" />
+								</td>
+							</tr>
+							<tr>
+								<th style="width: 30%;">
+									備品コード
+								</th>
+								<td style="width: 60%;">
+								<imui:textbox id="tBihinDataBihinCd" name="tBihinDataBihinCd" style="width: 50%;" placeholder="key2"  tabindex="2" />
+								</td>
+							</tr>
+						</tbody>
+					</nfwui:Table>					
 					結果コード
 					<nfwui:Table use="search">
 							<tbody>
