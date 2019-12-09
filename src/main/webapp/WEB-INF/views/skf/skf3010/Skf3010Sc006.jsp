@@ -112,7 +112,7 @@
 					</th>
 					<td style="width: 10%;">
 						<imui:textbox id="shatakuName" name="shatakuName" style="width:200px;" maxlength="30"
-							class="${form.shatakuNameErr}" value="${form.shatakuName}" placeholder="例　社宅名" tabindex="3" />
+							class="${form.shatakuNameErr}" value="${f:h(form.shatakuName)}" placeholder="例　社宅名" tabindex="3" />
 					</td>
 					<th style="width: 5%;">
 						<!-- 地域区分 -->
@@ -195,7 +195,7 @@
 								<nfwui:LabelBox id="lblZipCd" code="<%=MessageIdConstant.SKF3010_SC002_LBL_ZIP_CD %>" />
 							</th>
 							<td colspan="3">
-								<imui:textbox id="zipCd" name="zipCd" style="ime-mode: disabled;width:85px;" value="${form.zipCd}"
+								<imui:textbox id="zipCd" name="zipCd" style="ime-mode: disabled;width:85px;" value="${f:h(form.zipCd)}"
 													class="${form.zipCdErr}" placeholder="例　4600003" maxlength="7" tabindex="13"/>
 								<imui:button id="addressSearch" name="addressSearch" value="住所検索"
 										class="imui-small-button" onclick="addressSearchClick()" tabindex="14" />
@@ -210,7 +210,7 @@
 								<!-- 都道府県リスト -->
 								<imui:select id="pref" name="pref" width="90" list="${form.prefList}" class="${form.prefErr}" tabindex="15" />
 								<imui:textbox id="shatakuAddress" name="shatakuAddress" style="width:615px;" maxlength="100"
-								value="${form.shatakuAddress}" placeholder="例　名古屋市中区錦2-18-19" class="${form.shatakuAddressErr}" tabindex="16" />
+								value="${f:h(form.shatakuAddress)}" placeholder="例　名古屋市中区錦2-18-19" class="${form.shatakuAddressErr}" tabindex="16" />
 							</td>
 						</tr>
 						<!--社宅構造-->
@@ -223,7 +223,7 @@
 								<imui:select id="shatakuStructure" name="shatakuStructure" width="90"
 									list="${form.shatakuStructureList}" class="${form.shatakuStructureErr}" tabindex="17" />
 								<imui:textbox id="shatakuStructureDetail" name="shatakuStructureDetail" style="width:360px;"
-									maxlength="30" value="${form.shatakuStructureDetail}" placeholder="例　RC3F" tabindex="18" />
+									maxlength="30" value="${f:h(form.shatakuStructureDetail)}" placeholder="例　RC3F" tabindex="18" />
 							</td>
 						</tr>
 						<!--エレベーター-->
@@ -323,7 +323,7 @@
 								<nfwui:LabelBox id="lblBiko" code="<%=MessageIdConstant.SKF3010_SC002_LBL_BIKO %>" />
 							</th>
 							<td rowspan="3" colspan="3">
-								<imui:textArea id="biko" name="biko" rows="3" style="width:715px;" maxlength="400" value="${form.biko}" tabindex="30" />
+								<imui:textArea id="biko" name="biko" rows="3" style="width:715px;" maxlength="400" value="${f:h(form.biko)}" tabindex="30" />
 							</td>
 							<td style="width: 30%;border:none;background-color:white;box-shadow:none;"></td>
 						</tr>
@@ -339,7 +339,7 @@
 								<nfwui:LabelBox id="lblRoomNo" code="<%=MessageIdConstant.SKF3010_SC006_ROOMNO%>" />
 							</th>
 							<td style="width: 40%;">
-								<imui:textbox id="roomNo" name="roomNo" style="ime-mode: disabled;width:120px;" value="${form.roomNo}" 
+								<imui:textbox id="roomNo" name="roomNo" style="ime-mode: disabled;width:120px;" value="${f:h(form.roomNo)}" 
 								class="${form.roomNoError}" placeholder="例　101（半角）" maxlength="10" tabindex="31"/>
 							</td>
 							<th style="width: 15%;">
@@ -348,7 +348,7 @@
 							</th>
 							<td>
 								<imui:textbox id="originalMenseki" name="originalMenseki" style="text-align: right;ime-mode: disabled;width:100px;" 
-								value="${form.originalMenseki}"  class="${form.originalMensekiError}" placeholder="例　70.5" maxlength="8" tabindex="37"/>㎡
+								value="${f:h(form.originalMenseki)}"  class="${form.originalMensekiError}" placeholder="例　70.5" maxlength="8" tabindex="37"/>㎡
 							</td>
 						</tr>
 						<tr>
@@ -366,7 +366,7 @@
 							</th>
 							<td>
 								<imui:textbox id="lendMenseki" name="lendMenseki" style="text-align: right;ime-mode: disabled;width:100px;" 
-								value="${form.lendMenseki}" class="${form.lendMensekiError}" placeholder="例　70.5" maxlength="8" tabindex="38"/>㎡
+								value="${f:h(form.lendMenseki)}" class="${form.lendMensekiError}" placeholder="例　70.5" maxlength="8" tabindex="38"/>㎡
 							</td>
 						</tr>
 						<tr>
@@ -384,7 +384,7 @@
 							</th>
 							<td>
 								<imui:textbox id="sunRoomMenseki" name="sunRoomMenseki" style="text-align: right;ime-mode: disabled;width:100px;" 
-								value="${form.sunRoomMenseki}" class="${form.sunRoomMensekiError}" placeholder="例　1.0" maxlength="8" tabindex="39"/>㎡
+								value="${f:h(form.sunRoomMenseki)}" class="${form.sunRoomMensekiError}" placeholder="例　1.0" maxlength="8" tabindex="39"/>㎡
 							</td>
 						</tr>
 						<tr>
@@ -395,7 +395,7 @@
 							<td>
 								<imui:select id="lendKbn" name="lendKbn" 
 									width="200" list="${form.lendKbnList}" class="${form.lendKbnError}" tabindex="34" />
-								<imui:textbox id="lendKbnHosoku" name="lendKbnHosoku" style="width:120px;" value="${form.lendKbnHosoku}" 
+								<imui:textbox id="lendKbnHosoku" name="lendKbnHosoku" style="width:120px;" value="${f:h(form.lendKbnHosoku)}" 
 								class="${form.lendKbnHosokuError}" placeholder="例　貸与区分" maxlength="5" tabindex="35"/>
 							</td>
 							<th>
@@ -413,7 +413,7 @@
 								<nfwui:LabelBox id="lblBiko" code="<%=MessageIdConstant.SKF3010_SC005_BIKO %>" />
 							</th>
 							<td rowspan="3">
-								<imui:textArea id="roomBiko" name="roomBiko" style="width:90%;" value="${form.roomBiko}" cols="35" rows="5" maxlength="100" tabindex="36"/>
+								<imui:textArea id="roomBiko" name="roomBiko" style="width:90%;" value="${f:h(form.roomBiko)}" cols="35" rows="5" maxlength="100" tabindex="36"/>
 							</td>
 							<th>
 		<!-- 				<label>階段面積</label> -->
@@ -421,7 +421,7 @@
 							</th>
 							<td>
 								<imui:textbox id="stairsMenseki" name="stairsMenseki" style="text-align: right;ime-mode: disabled;width:100px;" 
-								value="${form.stairsMenseki}" class="${form.stairsMensekiError}" placeholder="例　1.0" maxlength="8" tabindex="41"/>㎡
+								value="${f:h(form.stairsMenseki)}" class="${form.stairsMensekiError}" placeholder="例　1.0" maxlength="8" tabindex="41"/>㎡
 							</td>
 						</tr>
 						<tr>
@@ -431,7 +431,7 @@
 							</th>
 							<td>
 								<imui:textbox id="barnMenseki" name="barnMenseki" style="text-align: right;ime-mode: disabled;width:100px;" 
-								value="${form.barnMenseki}" class="${form.barnMensekiError}" placeholder="例　1.0" maxlength="8" tabindex="42"/>㎡
+								value="${f:h(form.barnMenseki)}" class="${form.barnMensekiError}" placeholder="例　1.0" maxlength="8" tabindex="42"/>㎡
 							</td>
 						</tr>
 						<tr>
@@ -528,7 +528,7 @@
 							</th>
 							<td colspan="2">
 								<imui:textbox id="parkingBlock" name="parkingBlock" style="text-align: right;ime-mode: disabled;width:100px;" 
-								value="${form.parkingBlock}" class="${form.parkingBlockError}" placeholder="例　01（半角）" maxlength="10" tabindex="53"/>
+								value="${f:h(form.parkingBlock)}" class="${form.parkingBlockError}" placeholder="例　01（半角）" maxlength="10" tabindex="53"/>
 							</td>
 						</tr>
 						<tr>
@@ -591,7 +591,7 @@
 								<nfwui:LabelBox id="lblParkingBiko" code="<%=MessageIdConstant.SKF3010_SC002_LBL_PARKING_BIKO %>" />
 							</th>
 							<td colspan="2">
-								<imui:textArea id="parkingBiko" name="parkingBiko" rows="4" maxlength="100" style="width:90%;" value="${form.parkingBiko}" tabindex="55" />
+								<imui:textArea id="parkingBiko" name="parkingBiko" rows="4" maxlength="100" style="width:90%;" value="${f:h(form.parkingBiko)}" tabindex="55" />
 							</td>
 						</tr>
 					</tbody>
@@ -631,12 +631,12 @@
 							<td>
 								<!-- 管理会社 -->
 								<imui:textbox id="manageCompanyName" name="manageCompanyName" style="width:150px;"
-								maxlength="30" value="${form.manageCompanyName}" placeholder="例　○○管理会社" tabindex="57" />
+								maxlength="30" value="${f:h(form.manageCompanyName)}" placeholder="例　○○管理会社" tabindex="57" />
 							</td>
 							<td>
 								<!-- 鍵管理者 -->
 								<imui:textbox id="keyManagerCompanyName" name="keyManagerCompanyName" style="width:150px;"
-								maxlength="30" value="${form.keyManagerCompanyName}" placeholder="例　○○管理会社" tabindex="62" />
+								maxlength="30" value="${f:h(form.keyManagerCompanyName)}" placeholder="例　○○管理会社" tabindex="62" />
 							</td>
 						</tr>
 						<tr>
@@ -647,12 +647,12 @@
 							<td>
 								<!-- 管理会社 -->
 								<imui:textbox id="manageName" name="manageName" style="width:150px;"
-								maxlength="30" value="${form.manageName}" placeholder="例　中日本　太郎" tabindex="58" />
+								maxlength="30" value="${f:h(form.manageName)}" placeholder="例　中日本　太郎" tabindex="58" />
 							</td>
 							<td>
 								<!-- 鍵管理者 -->
 								<imui:textbox id="keyManagerName" name="keyManagerName" style="width:150px;" maxlength="30"
-								value="${form.keyManagerName}" placeholder="例　中日本　太郎" tabindex="63" />
+								value="${f:h(form.keyManagerName)}" placeholder="例　中日本　太郎" tabindex="63" />
 							</td>
 						</tr>
 						<tr>
@@ -663,13 +663,13 @@
 							<td>
 								<!-- 管理会社 -->
 								<imui:textbox id="manageMailAddress" name="manageMailAddress" style="width:260px;"
-								maxlength="30" value="${form.manageMailAddress}" placeholder="例　t.nakanihon.aa@" tabindex="59" 
+								maxlength="30" value="${f:h(form.manageMailAddress)}" placeholder="例　t.nakanihon.aa@" tabindex="59" 
 								class="${form.manageMailAddressError}"/>
 							</td>
 							<td>
 								<!-- 鍵管理者 -->
 								<imui:textbox id="keyManagerMailAddress" name="keyManagerMailAddress" style="width:260px;"
-								maxlength="50" value="${form.keyManagerMailAddress}" placeholder="例　t.nakanihon.aa@" tabindex="64" 
+								maxlength="50" value="${f:h(form.keyManagerMailAddress)}" placeholder="例　t.nakanihon.aa@" tabindex="64" 
 								class="${form.keyManagerMailAddressErr}"/>
 							</td>
 						</tr>
@@ -681,13 +681,13 @@
 							<td>
 								<!-- 管理会社 -->
 								<imui:textbox id="manageTelNumber" name="manageTelNumber" style="width:150px;height:98%"
-								maxlength="15" value="${form.manageTelNumber}" placeholder="例　052-999-9999" tabindex="60" 
+								maxlength="15" value="${f:h(form.manageTelNumber)}" placeholder="例　052-999-9999" tabindex="60" 
 								class="${form.manageTelNumberError}"/>
 							</td>
 							<td>
 								<!-- 鍵管理者 -->
 								<imui:textbox id="keyManagerTelNumber" name="keyManagerTelNumber" style="width:150px;height:98%"
-								maxlength="15" value="${form.keyManagerTelNumber}" placeholder="例　052-999-9999" tabindex="65" 
+								maxlength="15" value="${f:h(form.keyManagerTelNumber)}" placeholder="例　052-999-9999" tabindex="65" 
 								class="${form.keyManagerTelNumberErr}"/>
 							</td>
 
@@ -700,12 +700,12 @@
 							<td rowspan="4">
 								<!-- 管理会社 -->
 								<imui:textArea id="manageBiko" name="manageBiko" rows="4" maxlength="400"
-														style="width:260px;" value="${form.manageBiko}" tabindex="61" />
+														style="width:260px;" value="${f:h(form.manageBiko)}" tabindex="61" />
 							</td>
 							<td rowspan="4">
 								<!-- 鍵管理者 -->
 								<imui:textArea id="keyManagerBiko" name="keyManagerBiko" rows="4" maxlength="400"
-														style="width:260px;" value="${form.keyManagerBiko}" tabindex="66" />
+														style="width:260px;" value="${f:h(form.keyManagerBiko)}" tabindex="66" />
 							</td>
 						</tr>
 						<tr />
@@ -765,7 +765,7 @@
 							<td>
 								<!-- 賃貸人（代理人）テキストボックス -->
 								<imui:textbox readonly="true" id="contractOwnerName" name="contractOwnerName" class="${form.contractOwnerNameErr }"
-									style="width:150px;" value="${form.contractOwnerName}" disabled="${form.contractDelDisableFlg }" tabindex="70" />
+									style="width:150px;" value="${f:h(form.contractOwnerName)}" disabled="${form.contractDelDisableFlg }" tabindex="70" />
 								<!-- 支援ボタン -->
 								<nfwui:PopupButton id="contractSupport" name="contractSupport" value="支援" use="popup"
 									cssClass="imui-small-button" popupWidth="650" popupHeight="700"
@@ -801,7 +801,7 @@
 							<td>
 								<!-- 賃貸人（代理人）テキストボックス -->
 								<imui:textbox readonly="true" id="parkingOwnerName" name="parkingOwnerName" class="${form.parkingOwnerNameError }"
-									style="width:150px;height:98%" value="${form.parkingOwnerName}" disabled="${form.parkingContractInfoDisabled}" tabindex="83" />
+									style="width:150px;height:98%" value="${f:h(form.parkingOwnerName)}" disabled="${form.parkingContractInfoDisabled}" tabindex="83" />
 								<!-- 支援ボタン -->
 								<nfwui:PopupButton id="parkingContractSupport" name="parkingContractSupport" value="支援" use="popup"
 									cssClass="imui-small-button" popupWidth="650" popupHeight="700"
@@ -842,7 +842,7 @@
 							</th>
 							<td>
 								<imui:textbox id="assetRegisterNo" name="assetRegisterNo" style="ime-mode:disabled;width:150px;" maxlength="15"
-									class="${form.assetRegisterNoErr}" value="${form.assetRegisterNo}" placeholder="例　A001002003004" disabled="${form.contractDelDisableFlg }" tabindex="72" />
+									class="${form.assetRegisterNoErr}" value="${f:h(form.assetRegisterNo)}" placeholder="例　A001002003004" disabled="${form.contractDelDisableFlg }" tabindex="72" />
 							</td>
 							<!-- 住所（駐車場） -->
 							<th>
@@ -896,7 +896,7 @@
 							</th>
 							<td>
 								<imui:textbox id="parkingAssetRegisterNo" name="parkingAssetRegisterNo" style="ime-mode:disabled;width:150px;" class="${form.parkingAssetRegisterNoError}" maxlength="15"
-									value="${form.parkingAssetRegisterNo}" placeholder="例　A001002003004" disabled="${form.parkingContractInfoDisabled }" tabindex="89" />
+									value="${f:h(form.parkingAssetRegisterNo)}" placeholder="例　A001002003004" disabled="${form.parkingContractInfoDisabled }" tabindex="89" />
 							</td>
 						</tr>
 						<tr>
@@ -963,7 +963,7 @@
 							</th>
 							<td rowspan="2">
 								<imui:textArea id="contractBiko" name="contractBiko" rows="5" clols="35" maxlength="400"
-									style="width:90%;" value="${form.contractBiko}" disabled="${form.contractDelDisableFlg }" tabindex="78" />
+									style="width:90%;" value="${f:h(form.contractBiko)}" disabled="${form.contractDelDisableFlg }" tabindex="78" />
 							</td>
 							<th rowspan ="2" colspan="2">
 								<!-- 備考（駐車場） -->
@@ -971,7 +971,7 @@
 							</th>
 							<td rowspan="2">
 								<imui:textArea id="parkingContractBiko" name="parkingContractBiko" rows="5" clols="35" maxlength="400"
-									style="width:90%;" value="${form.parkingContractBiko}" disabled="${form.parkingContractInfoDisabled }" tabindex="93" />
+									style="width:90%;" value="${f:h(form.parkingContractBiko)}" disabled="${form.parkingContractInfoDisabled }" tabindex="93" />
 							</td>
 						</tr>
 					</tbody>
@@ -2007,6 +2007,13 @@
 						$("a[id^='attached_']").click(function(){
 							downloadShatakuHosokuFile(this);
 						});
+						
+					    backOnClick = function () {
+					    	//確認メッセージ
+							dialogTitle = "確認";
+							dialogMessage = "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。";
+					    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc001/init", "ok", "キャンセル", this, true);	
+					    }
 					});
 					// 何かが変わったときのイベント
 					jQuery(document).on("change", function(data) {
@@ -2039,7 +2046,7 @@
 		</div>
 		<br />
 		<div class="align-L float-L">
-			<input style="width:150px;" type="button" value="前の画面へ" class="imui-medium-button" onclick="back1()" tabindex="94"/>
+			<input style="width:150px;" type="button" value="前の画面へ" class="imui-medium-button" onclick="backOnClick()" tabindex="94"/>
 		</div>
 		<div class="align-R">
 			<!-- 登録 -->
