@@ -3,6 +3,9 @@
  */
 package jp.co.c_nexco.skf.skf3070.app.skf3070sc003;
 
+import java.util.List;
+import java.util.Map;
+
 import jp.co.c_nexco.skf.skf3070.app.skf3070common.Skf3070CommonForm;
 import lombok.EqualsAndHashCode;
 
@@ -17,5 +20,9 @@ import lombok.EqualsAndHashCode;
 public class Skf3070Sc003Form extends Skf3070CommonForm {
 
 	private static final long serialVersionUID = 5285848663756806913L;
+	
+	// 所有物件一覧表示用
+	private List<Map<String, Object>> listTableData;
+	private String listTableMaxRowCount;
 
 }

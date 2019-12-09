@@ -110,7 +110,7 @@
 					</th>
 					<td>
 						<imui:textbox id="shatakuAddress" name="shatakuAddress" style="width:260px;" maxlength="100"
-								value="${form.shatakuAddress}" placeholder="例　愛知県名古屋市中区錦2-18-19" tabindex="10" />
+								value="${f:h(form.shatakuAddress)}" placeholder="例　愛知県名古屋市中区錦2-18-19" tabindex="10" />
 					</td>
 				</tr>
 			</tbody>
@@ -195,10 +195,6 @@
 
 		<script type="text/javascript">
 			(function($) {
-				// テキストボックス、テキストエリアにフォーカス時、入力済み文字列全選択
-				jQuery(document).on("focus click", "input,textarea", function() {
-					$(this).select();
-				});
 				onCellSelect = function(rowId,iCol,cellcontent,e) {
 					// リストテーブル情報取得
 					var grid = $("#mainList");
@@ -351,7 +347,7 @@
 	<div class="align-R">
 		<nfwui:Form id="form2" name="form2" >
 			<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC001 %>" />
-			<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc001/init"/>
+			<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc001/init?SKF3010_SC001&tokenCheck=0" />
 			<!-- 検索キー  -->
 			<!-- 検索キー：管理会社コード -->
 			<input type = "hidden" name="hdnSelectedCompanyCd" id="hdnSelectedCompanyCd" value="${form.hdnSelectedCompanyCd}" />

@@ -53,6 +53,8 @@
 		<input type="hidden" name="startingAreaKbn" id="startingAreaKbn" value="${form.startingAreaKbn }"/>
 		<!-- 賃貸人(画面表示時データ) -->
 		<input type="hidden" name="startingContractOwnerName" id="startingContractOwnerName" value="${form.contractOwnerName }"/>
+		<!-- 賃貸人番号(画面表示時データ) -->
+		<input type="hidden" name="startingContractOwnerNo" id="startingContractOwnerNo" value="${form.contractOwnerNo }"/>
 		<!-- 経理連携用管理番号(画面表示時データ) -->
 		<input type="hidden" name="startingAssetRegisterNo" id="startingAssetRegisterNo" value="${form.assetRegisterNo }"/>
 		<!-- 契約開始日(画面表示時データ) -->
@@ -992,6 +994,7 @@
 						checkContractInfo = function() {
 							// 変更チェック(賃貸人、経理連携用管理番号、契約開始日、契約終了日、家賃、共益費、駐車場料、備考)
 							if ($("#startingContractOwnerName").val() != $("#contractOwnerName").val()
+								|| $("#startingContractOwnerNo").val() != $("#contractOwnerNo").val()
 								|| $("#startingAssetRegisterNo").val() != $("#assetRegisterNo").val()
 								|| $("#startingContractStartDay").val().replace(/\//g, "") != $("#contractStartDay").val().replace(/\//g, "")
 								|| $("#startingContractEndDay").val().replace(/\//g, "") != $("#contractEndDay").val().replace(/\//g, "")

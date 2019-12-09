@@ -174,7 +174,7 @@
 					
 			// ownerNo:賃貸人（代理人）管理番号
 			var ownerNo = row.ownerNo;		
-			$("#ownerNo").val(ownerNo);
+			$('input[name="ownerNo"]').val(ownerNo);
 			
 			var nextPageUrl = "skf/Skf3070Sc003/init";
     		nfw.common.submitForm("paramForm2", nextPageUrl);

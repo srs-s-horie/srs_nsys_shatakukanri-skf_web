@@ -46,7 +46,7 @@
 						<nfwui:LabelBox id="lblSc001RoomNo" code="<%= MessageIdConstant.SKF3022_SC001_ROOM_NO %>" />
 					</th>
 					<td  colspan="5">
-						<imui:textbox id="sc001RoomNo" name="sc001RoomNo" style="width:260px;" value="${form.roomNo}"
+						<imui:textbox id="sc001RoomNo" name="sc001RoomNo" style="width:260px;" value="${f:h(form.roomNo)}"
 																			placeholder="例　101（半角）" tabindex="4" />
 					</td>
 				</tr>
@@ -118,10 +118,6 @@
 		</imui:listTable>
 		<script type="text/javascript">
 			(function($) {
-				// テキストボックス、テキストエリアにフォーカス時、入力済み文字列全選択
-				jQuery(document).on("focus click", "input,textarea", function() {
-					$(this).select();
-				});
 				onBeforeSelectRow = function(rowId,e) {
 					//選択可の行がクリックされた場合のみTrueにする
 					// リストテーブル情報取得
