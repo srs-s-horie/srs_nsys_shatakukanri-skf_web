@@ -347,7 +347,7 @@
 	<div class="align-R">
 		<nfwui:Form id="form2" name="form2" >
 			<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC001 %>" />
-			<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc001/init"/>
+			<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc001/init?SKF3010_SC001&tokenCheck=0" />
 			<!-- 検索キー  -->
 			<!-- 検索キー：管理会社コード -->
 			<input type = "hidden" name="hdnSelectedCompanyCd" id="hdnSelectedCompanyCd" value="${form.hdnSelectedCompanyCd}" />

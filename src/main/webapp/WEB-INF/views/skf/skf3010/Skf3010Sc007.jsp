@@ -28,7 +28,6 @@ function back1() {
 	<div >
 	<div class="imui-form-container-wide" >
 
-				<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC007 %>" />
 				<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="${form.hdnShatakuKanriNo}" />
 				<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="${form.hdnShatakuName}" />
 				<input type="hidden" name="hdnAreaKbn" id="hdnAreaKbn" value="${form.hdnAreaKbn}" />

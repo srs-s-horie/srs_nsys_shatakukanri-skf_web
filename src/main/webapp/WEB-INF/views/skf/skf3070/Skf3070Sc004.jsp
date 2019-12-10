@@ -60,10 +60,21 @@ $(function(){
 			
 			var grid = $("#popOwnerInfoList");
 	        var rowData = grid.getRowData(rowId);
-
-	        var insertFormName = $("#insertFormName").val();
-	        $("#" + insertFormName).val(rowData.OwnerName);
+	        
+	        //ID名が insertFormOwnerNameのvalue値 のテキストボックスに氏名又は名称を設定
+	        var insertFormOwnerName = $("#insertFormOwnerName").val();
+	        $("#" + insertFormOwnerName).val(rowData.ownerName);
+	        
+	      //ID名が insertFormOwnerNoのvalue値 のテキストボックスに賃貸人(代理人)番号を設定
+	        var insertFormOwnerNo = $("#insertFormOwnerNo").val();
+	        $("#" + insertFormOwnerNo).val(rowData.ownerNo);
+	        
 	        nfw.common.modalPopupClose(this);
+	        
+	        var ownerCallbackFlag = $("#ownerCallbackFlag").val();
+	        if (ownerCallbackFlag != null && ownerCallbackFlag == "true") {
+	        	ownerInfoCallback();
+	        }
 		});
 
 		$("#closeBtn").click(function() {
@@ -77,7 +88,7 @@ $(function(){
     }
 });
 </script>
-<div id="imui-container" style="width:650px;min-width:650px;max-width: 650px;">
+<div id="imui-container" style="width:620px;min-width:620px;max-width: 620px;">
 <!-- コンテンツエリア -->
 <div class="imui-form-container-wide" width="550px" style="width:100%; min-width:550px;max-width: 550px; margin-left: 10px;">
 <div style="height:30px; bottom:10px">検索条件を指定して、<font color="green">「検索」</font>をクリックしてください。</div>
@@ -113,7 +124,7 @@ $(function(){
 					  <nfwui:LabelBox id="lblBusinessKbn" code="<%= MessageIdConstant.SKF3070_SC004_BUSINESS_KBN %>" />
 					</th>
 					<td style="width: 10%;">
-					  <imui:select id="popBusinessKbn" name="popBusinessKbn" width="180" list="${form.popBusinessKbnList}" tabindex="6" />
+					  <imui:select id="popBusinessKbn" name="popBusinessKbn" width="150" list="${form.popBusinessKbnList}" tabindex="6" />
 					</td>
 				</tr>
 
@@ -121,35 +132,44 @@ $(function(){
 		</nfwui:Table>
 	</nfwui:Form>
 	<div class="align-L">	
-	    <imui:button id="search" name="search" value="検索" class="imui-small-button"/>
+	    <imui:button id="search" name="search" value="検索" class="imui-small-button" tabindex="7" />
 	</div>
 <br>
 			<!-- 明細＆細目未満 -->
 	<!-- 明細部 -->
 	<nfwui:Form id="sampleList1" name="sampleList1" modelAttribute="form" secureToken="false">
 	    <nfwui:Title code="<%= MessageIdConstant.SKF3070_SC004_SEARCH_RESULT %>" titleLevel="2" />
-		<script type="text/javascript">
+	    <script type="text/javascript">
+			(function($){
 			$.imui.util.loadCSS("../../ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
 			})(jQuery);
 		</script>
-
 		<imui:listTable id="popOwnerInfoList" name="popOwnerInfoList"
 		data="${form.popListTableList}" onCellSelect="onCellSelect"
-		width="550" height="200" multiSelect="false" autoEncode="false">
-		<pager rowNum="10"/>
+		width="550" height="200" multiSelect="false" autoEncode="true">
+		<pager rowNum="${form.listTableMaxRowCount}"/>
 		<cols>
-		  <col name="ownerName" width="200" sortable="false" caption="氏名又は名称" wrap="true" />
-		  <col name="ownerNameKk" width="255" sortable="false" caption="氏名又は名称(フリガナ）" wrap="true" />
-		  <col name="businessKbn" width="100" sortable="false" caption="個人法人区分" wrap="true" />
-		  <col name="address" width="255" sortable="false" caption="住所" wrap="true" />
+		  <col name="ownerName" width="160" sortable="false" caption="氏名又は名称" wrap="true" />
+		  <col name="ownerNameKk" width="180" sortable="false" caption="氏名又は名称(フリガナ）" wrap="true" />
+		  <col name="businessKbn" width="90" sortable="false" caption="個人法人区分" wrap="true" />
+		  <col name="address" width="320" sortable="false" caption="住所" wrap="true" />
+		  <col name="ownerNo" caption="賃貸人(代理人)番号" hidden="true" />
 		</cols>
 		</imui:listTable>
 	</nfwui:Form>
+	<script type="text/javascript">
+	(function($) {
+		$(document).ready(function(){
+			//リストテーブルのヘッダの内容を書き換える
+			$("#jqgh_popOwnerInfoList_ownerNameKk").html("氏名又は名称<br />(フリガナ）");
+			$("#jqgh_popOwnerInfoList_businessKbn").html("個人法人<br />区分");
+		});
+	})(jQuery);	
+	</script>
 	<br>
 <div class="align-R">
-	<imui:button id="closeBtn" name="closeBtn" value="画面を閉じる" style="width:100px;" class="imui-small-button" />
-	<imui:button id="selectBtn" name="selectBtn" value="選択" style="width:100px;" class="imui-small-button" />
-	<!--<input style="width:100px;" id="" type="button" value="キャンセル" class="imui-small-button"  onclick="window.close()"/>-->
+	<imui:button id="closeBtn" name="closeBtn" value="画面を閉じる" style="width:100px;" class="imui-small-button" tabindex="8" />
+	<imui:button id="selectBtn" name="selectBtn" value="選択" style="width:100px;" class="imui-small-button" tabindex="9" />
 	<input type="hidden" id="targetRowId" value="" />
 </div>
 </div>

@@ -16,7 +16,7 @@
 <style type="text/css"></style>
 <script type="text/javascript">
 	function back1() {
-		var url="skf/Skf3010Sc001/init"
+		var url="skf/Skf3010Sc001/init?SKF3010_SC001&tokenCheck=0"
 		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
 	}
 </script>
@@ -47,6 +47,8 @@
 		<input type="hidden" name="startingAreaKbn" id="startingAreaKbn" value="${form.startingAreaKbn }"/>
 		<!-- 賃貸人(画面表示時データ) -->
 		<input type="hidden" name="startingContractOwnerName" id="startingContractOwnerName" value="${form.contractOwnerName }"/>
+		<!-- 賃貸人番号(画面表示時データ) -->
+		<input type="hidden" name="startingContractOwnerNo" id="startingContractOwnerNo" value="${form.contractOwnerNo }"/>
 		<!-- 経理連携用管理番号(画面表示時データ) -->
 		<input type="hidden" name="startingAssetRegisterNo" id="startingAssetRegisterNo" value="${form.assetRegisterNo }"/>
 		<!-- 契約開始日(画面表示時データ) -->
@@ -70,7 +72,7 @@
 		<input type="hidden" name="jsonDrpDwnList" id="jsonDrpDwnList" />
 		<!-- JSON可変ラベルリスト -->
 		<input type="hidden" name="jsonLabelList" id="jsonLabelList" />
-		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc002/init"/>
+		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc002/init?SKF3010_SC002&tokenCheck=0"/>
 		<!-- 補足ファイル -->
 		<input type="hidden" name="fileNo" id="fileNo"/>
 		<input type="hidden" name="hosokuType" id="hosokuType"/>
@@ -79,6 +81,9 @@
 
 		<!-- 社員名入力支援用 -->
 		<input type="hidden" id="insertFormName" value="" />
+		<!-- 賃貸人(代理人)入力支援用 -->
+		<input type="hidden" name="insertFormOwnerName" id="insertFormOwnerName" value="" />
+		<input type="hidden" name="insertFormOwnerNo" id="insertFormOwnerNo" value="" />
 		<nfwui:Table use="search">
 			<tbody>
 				<tr>
@@ -689,10 +694,10 @@
 									style="width:150px;height:98%" value="${f:h(form.contractOwnerName)}" disabled="${form.contractDelDisableFlg }" tabindex="69" />
 								<!-- 支援ボタン -->
 								<nfwui:PopupButton id="contractSupport" name="contractSupport" value="支援" use="popup"
-									cssClass="imui-small-button" popupWidth="650" popupHeight="700"
-									modalMode="false" screenUrl="skf/Skf2010Sc001/init"
+									cssClass="imui-small-button" popupWidth="640" popupHeight="800"
+									modalMode="true" screenUrl="skf/Skf3070Sc004/init"
 									parameter="parkinglendKbn:nyukyoFlag"  disabled="${form.contractDelDisableFlg }"
-									callbackFunc="contractOwnerInfoCallback" tabindex="70"/>
+									tabindex="70"/>
 							</td>
 						</tr>
 						<tr>
@@ -801,6 +806,10 @@
 				(function($) {
 					// 画面表示時に定義される処理
 					$(document).ready(function(){
+						// 駐車場調整金額フォーカス時、入力済み文字列全選択
+						jQuery(document).on("focus", "input[id^='parkingRentalAdjust']", function(data) {
+							$(this).select();
+						});
 						if ($("#ittoFlg").val() != "true") {
 							// 一棟借上以外は非表示
 							$('#tabs div[id=keiyaku_info]').hide();
@@ -816,6 +825,7 @@
 						checkContractInfo = function() {
 							// 変更チェック(賃貸人、経理連携用管理番号、契約開始日、契約終了日、家賃、共益費、駐車場料、備考)
 							if ($("#startingContractOwnerName").val() != $("#contractOwnerName").val()
+								|| $("#startingContractOwnerNo").val() != $("#contractOwnerNo").val()
 								|| $("#startingAssetRegisterNo").val() != $("#assetRegisterNo").val()
 								|| $("#startingContractStartDay").val().replace(/\//g, "") != $("#contractStartDay").val().replace(/\//g, "")
 								|| $("#startingContractEndDay").val().replace(/\//g, "") != $("#contractEndDay").val().replace(/\//g, "")
@@ -955,6 +965,7 @@
 							// 可変ラベルリストをJSON文字列に変換
 							$('#jsonLabelList').val(JSON.stringify(labelArray));
 						}
+
 						// 現在状態バックアップ
 						// ドロップ選択値ダウンリスト、可変ラベルリスト、リストテーブルのバックアップを行う
 						backUpStatus = function() {
@@ -997,7 +1008,7 @@
 								var dialogTitle = "確認";
 								//MessageIdConstant.：I-SKF-3005
 								var dialogMessage = "削除します。よろしいですか？";
-								nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc002/attachedFileDelete", "ok", "キャンセル", this, true);
+								nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc002/attachedFileDelete", "ok", "キャンセル", this, true);
 						}
 
 						// 登録ボタンクリック
@@ -1074,7 +1085,7 @@
 							var dialogTitle = "確認";
 							//MessageIdConstant.：I-SKF-3003
 							var dialogMessage = "社宅（" + $("#shatakuName").val() + "）の削除処理を実行します。よろしいですか？";
-							nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc002/delete", "ok", "キャンセル", this, true);
+							nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc002/delete", "ok", "キャンセル", this, true);
 						}
 
 						// 住所検索押下時のイベント
@@ -1275,16 +1286,9 @@
 							var dialogTitle = "確認";
 							//MessageIdConstant.：I-SKF-3110
 							var dialogMessage = "社宅情報は登録済みでしょうか。確認後、駐車場契約情報登録を行ってください。";
-							nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc007/init", "ok", "キャンセル", this, true);
+							nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc007/init", "ok", "キャンセル", this, true);
 						}
 
-						// 賃貸人入力支援コールバック
-						contractOwnerInfoCallback = function(param) {
-							if( param != null && typeof param == 'object' && param.name != null){
-								$("#contractOwnerName").val(param.name);
-								$("#contractOwnerNo").val(param.shainNo);
-							}
-						}
 
 						/** ドロップダウンチェンジイベント */
 						// 管理会社ドロップダウンチェンジ
@@ -1469,13 +1473,20 @@
 						$("a[id^='attached_']").click(function(){
 							downloadShatakuHosokuFile(this);
 						});
-						
+
+						// 社員入力支援戻り値設定用
 						$("#supportDormitoryLeaderName, #supportKeyManagerName").click(function(){
-					    	var id = $(this).attr("id");
-					    	var formName = id.replace(/^support/g, "").replace(/^[A-Z]/g, function(val) {
-					    		return val.toLowerCase();
-					    	});
-					    	$("#insertFormName").val(formName);
+							var id = $(this).attr("id");
+							var formName = id.replace(/^support/g, "").replace(/^[A-Z]/g, function(val) {
+								return val.toLowerCase();
+							});
+							$("#insertFormName").val(formName);
+						});
+
+						// 賃貸人入力支援戻り値設定用
+						$("#contractSupport").click(function(){
+							$("#insertFormOwnerName").val("contractOwnerName");
+							$("#insertFormOwnerNo").val("contractOwnerNo");
 						});
 					});
 

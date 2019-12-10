@@ -12,7 +12,11 @@
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
 
-<%-- コンテンツエリア --%>
+<style type="text/css">
+.ui-jqgrid .ui-jqgrid-bdiv {
+  overflow-x:hidden; 
+}
+</style>
 <script type="text/javascript">
 // リストテーブルの貸与区分の文字色変更
 function onCellAttr(rowId,val,rawObject,cm,rdata){
