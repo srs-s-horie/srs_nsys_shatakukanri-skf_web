@@ -53,7 +53,7 @@
 							<nfwui:LabelBox id="lblShiyosha" code="<%= MessageIdConstant.SKF3022_SC002_SHIYOSYA %>" />
 						</th>
 						<td>
-							<imui:textbox id="shiyosha" name="shiyosha" style="width:150px;" value="${form.shiyosha}" placeholder="例  中日本  太郎" tabindex="51" />
+							<imui:textbox id="shiyosha" name="shiyosha" style="width:150px;" value="${f:h(form.shiyosha)}" placeholder="例  中日本  太郎" tabindex="51" />
 						</td>
 						<th style="width: 15%;">
 <!-- 							<label>駐車場</label> -->
@@ -72,7 +72,7 @@
 							<nfwui:LabelBox id="lblBiko" code="<%= MessageIdConstant.SKF3022_SC002_BIKO %>" />
 						</th>
 						<td colspan="3">
-							<imui:textbox id="parkingBiko" name="parkingBiko" style="width:80%;" value="${form.parkingBiko}" tabindex="53" />
+							<imui:textbox id="parkingBiko" name="parkingBiko" style="width:80%;" value="${f:h(form.parkingBiko)}" tabindex="53" />
 						</td>
 					</tr>
 				</tbody>
@@ -240,7 +240,9 @@
 		function check(){
 			var rowId = $("#targetRowId").val();
 			if (rowId == null || rowId == "") {
-				nfw.common.showReserveMessage("warning", "駐車場を選択してください");
+				//nfw.common.showReserveMessage("warning", "駐車場を選択してください");
+				var map = new Object();
+				nfw.common.doAjaxAction("skf/Skf3022Sc002/selectErrAsync", map, true, function(data){});
 				return false;
 			}else{
 				var grid = $("#resultList");

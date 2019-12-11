@@ -97,7 +97,7 @@ function back() {
                                         	<nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2010_SC003_APPL_STATUS %>" />
                                             &nbsp;&nbsp;<imui:button tabindex="19" name="imui-8euruuk15dn9qtq" id="allCheck" value="全選択" class="imui-small-button" align="right"/>&nbsp;&nbsp;<imui:button tabindex="19" name="imui-8euruuk15dn9qtq" id="allNoCheck" value="全解除" class="imui-small-button" align="right"/>
                                         </th>
-                                        <td style="width: 180px;" colspan="2">
+                                        <td style="width: 180px;" colspan="2" id="applStatusArea">
                                         <nfwui:CheckBoxGroupTag id="applStatus">
                                             <table>
                                                 <tr style="height: 25px;">
@@ -229,9 +229,10 @@ ${form.operationGuide}
 
 <imui:listTable data="${form.ltResultList}"
 id="ltResultListTable" name="ltResultListTable"
-autoResize="true" autoWidth="true"
+autoResize="true" autoWidth="true" 
 rowNumbers="true" onCellSelect="onCellSelect"
 height="232" onGridComplete="gridComplete">
+<pager rowNum = "10" />
 <cols>
   <col name="detail" caption="表示" width="90" align="center">
      <showIcon iconClass="im-ui-icon-common-16-update" />
@@ -288,7 +289,7 @@ height="232" onGridComplete="gridComplete">
 	    		dialogMessage = "申請書を取下げします。よろしいですか？";
 	    	} else if ($(cellContent).hasClass('im-ui-icon-common-16-trashbox')) {
 	    		// 削除
-	    		url = url + "Delete";
+	    		dialogMessage = "削除します。よろしいですか？";
 	    	}
     		
     		var grid = $("#ltResultListTable");		// リストテーブル情報取得
@@ -319,7 +320,7 @@ height="232" onGridComplete="gridComplete">
 	    	if (dialogMessage == "") {
 	    		nfw.common.submitForm("form", url, this);
 	    	} else {
-	    		nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "CANCEL", this, true);
+	    		nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
 	    	}
     	}
     }

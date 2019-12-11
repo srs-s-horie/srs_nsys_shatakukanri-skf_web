@@ -47,6 +47,8 @@
 		<input type="hidden" name="startingAreaKbn" id="startingAreaKbn" value="${form.startingAreaKbn }"/>
 		<!-- 賃貸人(画面表示時データ) -->
 		<input type="hidden" name="startingContractOwnerName" id="startingContractOwnerName" value="${form.contractOwnerName }"/>
+		<!-- 賃貸人番号(画面表示時データ) -->
+		<input type="hidden" name="startingContractOwnerNo" id="startingContractOwnerNo" value="${form.contractOwnerNo }"/>
 		<!-- 経理連携用管理番号(画面表示時データ) -->
 		<input type="hidden" name="startingAssetRegisterNo" id="startingAssetRegisterNo" value="${form.assetRegisterNo }"/>
 		<!-- 契約開始日(画面表示時データ) -->
@@ -823,6 +825,7 @@
 						checkContractInfo = function() {
 							// 変更チェック(賃貸人、経理連携用管理番号、契約開始日、契約終了日、家賃、共益費、駐車場料、備考)
 							if ($("#startingContractOwnerName").val() != $("#contractOwnerName").val()
+								|| $("#startingContractOwnerNo").val() != $("#contractOwnerNo").val()
 								|| $("#startingAssetRegisterNo").val() != $("#assetRegisterNo").val()
 								|| $("#startingContractStartDay").val().replace(/\//g, "") != $("#contractStartDay").val().replace(/\//g, "")
 								|| $("#startingContractEndDay").val().replace(/\//g, "") != $("#contractEndDay").val().replace(/\//g, "")
@@ -1005,7 +1008,7 @@
 								var dialogTitle = "確認";
 								//MessageIdConstant.：I-SKF-3005
 								var dialogMessage = "削除します。よろしいですか？";
-								nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc002/attachedFileDelete", "ok", "キャンセル", this, true);
+								nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc002/attachedFileDelete", "ok", "キャンセル", this, true);
 						}
 
 						// 登録ボタンクリック
@@ -1082,7 +1085,7 @@
 							var dialogTitle = "確認";
 							//MessageIdConstant.：I-SKF-3003
 							var dialogMessage = "社宅（" + $("#shatakuName").val() + "）の削除処理を実行します。よろしいですか？";
-							nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc002/delete", "ok", "キャンセル", this, true);
+							nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc002/delete", "ok", "キャンセル", this, true);
 						}
 
 						// 住所検索押下時のイベント
@@ -1283,7 +1286,7 @@
 							var dialogTitle = "確認";
 							//MessageIdConstant.：I-SKF-3110
 							var dialogMessage = "社宅情報は登録済みでしょうか。確認後、駐車場契約情報登録を行ってください。";
-							nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc007/init", "ok", "キャンセル", this, true);
+							nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc007/init", "ok", "キャンセル", this, true);
 						}
 
 
@@ -1470,21 +1473,21 @@
 						$("a[id^='attached_']").click(function(){
 							downloadShatakuHosokuFile(this);
 						});
-						
+
+						// 社員入力支援戻り値設定用
 						$("#supportDormitoryLeaderName, #supportKeyManagerName").click(function(){
-					    	var id = $(this).attr("id");
-					    	var formName = id.replace(/^support/g, "").replace(/^[A-Z]/g, function(val) {
-					    		return val.toLowerCase();
-					    	});
-					    	$("#insertFormName").val(formName);
+							var id = $(this).attr("id");
+							var formName = id.replace(/^support/g, "").replace(/^[A-Z]/g, function(val) {
+								return val.toLowerCase();
+							});
+							$("#insertFormName").val(formName);
 						});
-						
+
+						// 賃貸人入力支援戻り値設定用
 						$("#contractSupport").click(function(){
-					    	$("#insertFormOwnerName").val("contractOwnerName");
-					    	$("#insertFormOwnerNo").val("contractOwnerNo");
+							$("#insertFormOwnerName").val("contractOwnerName");
+							$("#insertFormOwnerNo").val("contractOwnerNo");
 						});
-																													
-						
 					});
 
 					// 動的に作成したコントロールのイベント
