@@ -234,7 +234,7 @@
 						<tbody>
 							<tr>
 								<th style="width: 30%;">
-									提示備品データ
+									提示番号
 								</th>
 								<td style="width: 60%;">
 								<imui:textbox id="tBihinDataTeijiNo" name="tBihinDataTeijiNo" style="width: 50%;" placeholder="key1"  tabindex="1" />
@@ -246,6 +246,14 @@
 								</th>
 								<td style="width: 60%;">
 								<imui:textbox id="tBihinDataBihinCd" name="tBihinDataBihinCd" style="width: 50%;" placeholder="key2"  tabindex="2" />
+								</td>
+							</tr>
+							<tr>
+								<th style="width: 30%;">
+									フラグ
+								</th>
+								<td style="width: 60%;">
+								<imui:textbox id="checkFlg" name="checkFlg" style="width: 50%;" placeholder=""  tabindex="3" />
 								</td>
 							</tr>
 						</tbody>
@@ -273,6 +281,8 @@
 			<div class="align-R">
 				<nfwui:Button id="registe" name="registe" value="実行!" cssClass="imui-medium-button" 
 						url="skf/SkfBatchUtils1/execute" formId="form" tabindex="8" />
+				<nfwui:Button id="reacquire" name="reacquire" value="再取得♫" cssClass="imui-medium-button" 
+						url="skf/SkfBatchUtils1/reacquire" formId="form" tabindex="8" />
 			</div>
 		</div>
 	<!-- コンテンツエリア　ここまで -->
