@@ -487,19 +487,35 @@
                     <ul class='imui-list-link-side'>
                     <tr style="width: 100px; max-width:100px;" >
                         <th>
-                            <a href="../S0000/S0010_ShinseiJokenKakunin.html" class="imui-accent" style="margin-left: 8px">
-                            	<nfwui:LabelBox id="manyuaruIppan" code="<%= MessageIdConstant.SKF1010_SC001_MANYUARU_IPPAN %>" />
-                            </a>
+                                <a id="downloadManualGeneral" name="downloadManual" >
+                            	マニュアル（一般）
+                            </a>	
+                            	<input type="hidden" id="manual" name="manual" value="${form.manual}" />
+
                         </th>
                     </tr>
                     <tr>
-                    <imart:condition validity="${form.level4_1}" negative> 
+                      <imart:condition validity="${form.level4_1}" negative>
+                    <tr style="width: 100px; max-width:100px;" >
                         <th>
                             <a href="../S0000/S0010_SyatakuNyukyoKibouChoushoPage_UnderButton.html" class="imui-accent" style="margin-left: 8px">
                             	<nfwui:LabelBox id="manyuaruKanri" code="<%= MessageIdConstant.SKF1010_SC001_MANYUARU_KANRI %>" />
                             </a>
-                        </td>
-					 </imart:condition>
+                            <a id="downloadManualManager" name="downloadManual" >
+                            	マニュアル（管理）
+                            </a>	
+                            	<input type="hidden" id="manual" name="manual" value="${form.manual}" />
+                        </th>
+                    </tr>
+                     </imart:condition>
+                    <tr>
+                    <imart:condition validity="${form.level4_2}" negative> 
+                        <th>
+                            <a id="downloadManualShataku" name="downloadManual" >
+                            	マニュアル（社宅管理）
+                            </a>	
+                            	<input type="hidden" id="manual" name="manual" value="${form.manual}" />
+
                      <tr> 
                     </ul>
             </tr>
@@ -697,14 +713,21 @@
     
     
     </div>
-
-    <!-- メッセージを表示するためのJavaScript（モック時はコメント）
-    <script type="text/javascript">
+    
+	<script type="text/javascript">
         $(function() {
             showWarningDialog('', 'true');
         });
+    (function($) {
+    	$("[name=downloadManual]").click(function(){
+    		var id = $(this).attr("id");
+    		var manual = id.replace("downloadManual", "").toLowerCase();
+    		$('#manual').val(manual);
+    		nfw.common.submitForm("form", "skf/Skf1010Sc001/download", this);
+    	});
+    })(jQuery);
+	
     </script>
-    -->
 
     </div>
     <!-- コンテンツエリア　ここまで -->

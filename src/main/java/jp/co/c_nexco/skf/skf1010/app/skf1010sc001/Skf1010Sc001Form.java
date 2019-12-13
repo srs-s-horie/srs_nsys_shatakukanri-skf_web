@@ -45,8 +45,10 @@ public class Skf1010Sc001Form extends BaseForm {
 	private String level3;
 	// 画面表示（操作に困ったときは）
 	private String level4;
-	// 画面表示（操作に困ったときは 管理者）
+	// 画面表示（マニュアル 管理）
 	private String level4_1;
+	// 画面表示（マニュアル 社宅管理）
+	private String level4_2;
 	// 画面表示（未処理情報）
 	private String level5;
 	// システムに関するお知らせ
