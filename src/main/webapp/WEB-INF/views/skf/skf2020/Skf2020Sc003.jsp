@@ -289,7 +289,7 @@ $(function() {
                                     </nfwui:LabelBox>
                                     </th>
                                     <td colspan="2">
-                                    <input type="hidden" id="default" value="${form.hitsuyoShataku }" />
+                                    <input type="hidden" id="default" name="defaultHitsuyoShataku" value="${form.hitsuyoShataku }" />
                                     <nfwui:RadioButtonGroup id="hitsuyoShataku">
                                       <nfwui:RadioButton id="hitsuyoShatakuSetai" name="hitsuyoShataku" value="<%= CodeConstant.SETAI %>" label="世帯" />
                                       <nfwui:RadioButton id="hitsuyoShatakuTanshin" name="hitsuyoShataku" value="<%= CodeConstant.TANSHIN %>" label="単身" />
