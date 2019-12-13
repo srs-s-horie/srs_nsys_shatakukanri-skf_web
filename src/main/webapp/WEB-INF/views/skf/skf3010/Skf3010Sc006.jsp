@@ -20,6 +20,7 @@
 		var url="skf/Skf3010Sc001/init?SKF3010_SC001&tokenCheck=0"
 		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
 	}
+	
 </script>
 
 <!-- コンテンツエリア -->
@@ -104,6 +105,9 @@
 		<input type="hidden" name="hosokuType" id="hosokuType"/>
 		<input type="hidden" name="hdnHosoku" id="sendHosokuType"/>
 		<input type="hidden" name="hdnAttachedNo" id="sendAttachedNo"/>
+		<!-- 賃貸人(代理人)入力支援用 -->
+		<input type="hidden" name="insertFormOwnerName" id="insertFormOwnerName" value="" />
+		<input type="hidden" name="insertFormOwnerNo" id="insertFormOwnerNo" value="" />
 		
 		<nfwui:Table use="search">
 			<tbody>
@@ -114,7 +118,7 @@
 					</th>
 					<td style="width: 10%;">
 						<imui:textbox id="shatakuName" name="shatakuName" style="width:200px;" maxlength="30"
-							class="${form.shatakuNameErr}" value="${f:h(form.shatakuName)}" placeholder="例　社宅名" tabindex="3" />
+							class="${form.shatakuNameErr}" value="${form.shatakuName}" placeholder="例　社宅名" tabindex="3" />
 					</td>
 					<th style="width: 5%;">
 						<!-- 地域区分 -->
@@ -767,13 +771,14 @@
 							<td>
 								<!-- 賃貸人（代理人）テキストボックス -->
 								<imui:textbox readonly="true" id="contractOwnerName" name="contractOwnerName" class="${form.contractOwnerNameErr }"
-									style="width:150px;" value="${f:h(form.contractOwnerName)}" disabled="${form.contractDelDisableFlg }" tabindex="70" />
+									style="width:150px;" value="${f:h(form.contractOwnerName)}" disabled="${form.contractDelDisableFlg }" tabindex="70"
+									onKeyDown="contractOwnerName_KeyDown(event)" />
 								<!-- 支援ボタン -->
 								<nfwui:PopupButton id="contractSupport" name="contractSupport" value="支援" use="popup"
-									cssClass="imui-small-button" popupWidth="650" popupHeight="700"
-									modalMode="false" screenUrl="skf/Skf2010Sc001/init"
-									parameter="parkingLendKbn:nyukyoFlag"  disabled="${form.contractDelDisableFlg }"
-									callbackFunc="contractOwnerInfoCallback()" tabindex="71"/>
+									cssClass="imui-small-button" popupWidth="640" popupHeight="800"
+									modalMode="true" screenUrl="skf/Skf3070Sc004/init"
+									disabled="${form.contractDelDisableFlg }"
+									 tabindex="71"/>
 							</td>
 							<th colspan="2">
 								<!-- 契約形態(駐車場) -->
@@ -803,13 +808,14 @@
 							<td>
 								<!-- 賃貸人（代理人）テキストボックス -->
 								<imui:textbox readonly="true" id="parkingOwnerName" name="parkingOwnerName" class="${form.parkingOwnerNameError }"
-									style="width:150px;height:98%" value="${f:h(form.parkingOwnerName)}" disabled="${form.parkingContractInfoDisabled}" tabindex="83" />
+									style="width:150px;height:98%" value="${f:h(form.parkingOwnerName)}" disabled="${form.parkingContractInfoDisabled}" tabindex="83" 
+									onKeyDown="parkingOwnerName_KeyDown(event)"/>
 								<!-- 支援ボタン -->
 								<nfwui:PopupButton id="parkingContractSupport" name="parkingContractSupport" value="支援" use="popup"
-									cssClass="imui-small-button" popupWidth="650" popupHeight="700"
-									modalMode="false" screenUrl="skf/Skf2010Sc001/init"
-									parameter="parkingLendKbn:nyukyoFlag"  disabled="${form.parkingContractInfoDisabled }"
-									callbackFunc="parkingContractOwnerInfoCallback()" tabindex="84"/>
+									cssClass="imui-small-button" popupWidth="640" popupHeight="800"
+									modalMode="true" screenUrl="skf/Skf3070Sc004/init"
+									disabled="${form.parkingContractInfoDisabled }"
+									 tabindex="84"/>
 							</td>
 						</tr>
 							<!--住所-->
@@ -2017,6 +2023,17 @@
 							dialogMessage = "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。";
 					    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc001/init", "ok", "キャンセル", this, true);	
 					    }
+					    
+						// 賃貸人入力支援戻り値設定用
+						$("#contractSupport").click(function(){
+							$("#insertFormOwnerName").val("contractOwnerName");
+							$("#insertFormOwnerNo").val("contractOwnerNo");
+						});
+						// 賃貸人入力支援戻り値設定用
+						$("#parkingContractSupport").click(function(){
+							$("#insertFormOwnerName").val("parkingOwnerName");
+							$("#insertFormOwnerNo").val("parkingOwnerNo");
+						});
 					});
 					// 何かが変わったときのイベント
 					jQuery(document).on("change", function(data) {
@@ -2043,6 +2060,24 @@
 						nfw.common.submitForm(formId, url);
 						
 					}
+					
+				    // 賃貸人名欄でDeleteKeyまたはBackSpaceを押下時イベント
+				    contractOwnerName_KeyDown = function(e) {
+				        var c = e.keyCode;
+				        if (c == 46 || c == 8) {
+				            $("#contractOwnerName").val("");
+				            // 裏で保持している社員番号をクリア
+				            $("#contractOwnerNo").val("");
+				        }
+				    };
+				    parkingOwnerName_KeyDown = function(e) {
+				        var c = e.keyCode;
+				        if (c == 46 || c == 8) {
+				            $("#parkingOwnerName").val("");
+				            // 裏で保持している社員番号をクリア
+				            $("#parkingOwnerNo").val("");
+				        }
+				    };
 					
 				})(jQuery);
 			</script>
