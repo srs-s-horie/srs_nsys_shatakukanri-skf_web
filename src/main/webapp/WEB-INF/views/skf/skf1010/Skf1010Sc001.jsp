@@ -31,109 +31,11 @@
 
 <!-- ヘッド情報 -->
 
-<!-- インクルード -->
-
-<!-- メッセージを表示するためのJavaScript（モック時はコメント）
-<script type="text/javascript">
-    var INFO=""
-        if(INFO!=""){
-            imuiShowSuccessMessage(INFO);
-        }
-    window.onload=function(){
-        $(".hasDatepicker").each(function(e){
-            $(this).css("width","100px");
-        });
-        if($("#errMainDiv").children().length!=undefined && $("#errMainDiv").children().length>1){
-            $("#errMainDiv").css("display","inline-block");
-        }
-        
-    };
-    var W_GFK_0001 = "{0}を行います。<br/>よろしいですか？";
-    var W_GFK_0002 = "前画面に戻ります。<br/>入力途中のものがあれば破棄されます。よろしいですか？";
-    var W_GFK_0003 = "画面の再表示を行います。<br/>よろしいですか？";
-    var W_GFK_0004 = "入力情報が破棄されますが、よろしいですか？";
-    var W_GFK_0005 = "復旧工事を「無」に選択した工事担当の工事費用登録情報は削除されますが、よろしいですか？";
-    var W_GFK_0006 = "登録後の修正はできません。登録を続けてよろしいですか？";
-    var I_GFK_0001 = "{0}処理が正常に終了しました。{1}";
-
-    var E_GFK_0001 = "未入力の項目があります。";
-    var E_GFK_1001 = "当該データは他のユーザによって既に処理されました。{0}";
-    var E_GFK_0006 = "指定した文字列の属性が不正です。{type}";
-    var E_GFK_0012 = "登録対象を選択してください。";
-    var E_GFK_0014 = "選択されたファイルはCSVファイルでないため取込できません。";
-    var E_GFK_0015 = "取込対象ファイルが0件です。";
-    var E_GFK_0016 = "取込対象ファイルの項目数が不正です。";
-    var E_GFK_0020 = "削除対象を選択してください。";
-    var E_GFK_0022 = "登録ボタン押下前に計算ボタンを押下してください。";
-    var E_GFK_0023 = "債権の明細が0件となるため削除できません。";
-    var E_GFK_0070 = "{0}に、締め年月以前の日付は設定できません。";
-    var E_GFK_0071 = "{0}が締め年月以前のため、取消できません。";
-    var E_GFK_0073 = "削除対象の明細が存在しません。";
-    var E_GFK_0075 = "メニューグループが設定されていません。";
-    var E_GFK_0076 = "認可設定が存在しません。";
-</script>
--->
-
-    <!-- 確認ダイアログ表示用（モック作成時は特に変更する必要なし） -->
-    <div name="imui-8euqak4j4tsbrtq" id="confirm_dialog" style="display: none;">
-        <div>
-            <div style="float:left;width:15%;">
-                <span class="im-ui-icon-common-32-question imui-icon-float-left"></span>
-            </div>
-            <div style="float:left;width:85%;padding-top:10px;">
-                <span id="message_confirm"></span>
-            </div>
-        </div>
-    </div>
-    <!--                                   JavaScriptエラーなのでコメントアウト
-    <script type="text/javascript">
-        jQuery(function () {jQuery("#confirm_dialog").imuiDialog({"buttons":[{"name":"imui-8euqak4j4tsbttq","text":"はい","id":"imui-8euqak4j4tsbstq","click":button_ok},{"name":"imui-8euqak4j4tsbvtq","text":"いいえ","id":"imui-8euqak4j4tsbutq","click":button_ng}],"autoOpen":false,"show":{"effect":"fade"},"title":"確認","modal":true});});
-    </script>
-    -->
-    
-
-    <!-- アラートダイアログ表示用（モック作成時は特に変更する必要なし） -->
-    <!-- 
-    <div name="imui-8euqak4j4tsbwtq" id="alert_dialog" style="display: none;">
-        <span class="im-ui-icon-common-32-tick imui-icon-float-left"></span>
-        <span style="width:30px;"></span>
-        <span id="message_alert"></span>
-    </div>
-    <script type="text/javascript">
-        jQuery(function () {jQuery("#alert_dialog").imuiDialog({"buttons":[{"name":"imui-8euqak4j4tsbytq","text":"確認","id":"imui-8euqak4j4tsbxtq","click":button_alert}],"autoOpen":false,"show":{"effect":"fade"},"modal":true});});
-    </script>
-    -->
-    
-
-    <!-- ワーニングダイアログ表示用（モック作成時は特に変更する必要なし） -->
-<!--     <div name="imui-8euqak4j5tsbztq" id="warning_dialog" style="display: none;"> -->
-<!--         <span class="im-ui-icon-common-32-warning imui-icon-float-left"></span> -->
-<!--         <span id="message_warning"></span> -->
-<!--     </div> -->
-<!--     <script type="text/javascript"> -->
-<!--         jQuery(function () {jQuery("#warning_dialog").imuiDialog({"buttons":[{"name":"imui-8euqak4j5tsc1tq","text":"確認","id":"imui-8euqak4j5tsc0tq","click":button_warning}],"autoOpen":false,"show":{"effect":"fade"},"modal":true});}); -->
-<!--     </script> -->
-
-<!--     <div class="alertDiv imui-box-warning" style="padding: 15px;margin-top: 10px;text-align:left;" id="errMainDiv"> -->
-<!--         <div class="alert-errorIcon alert" style="margin:0;padding:0;margin-right:10px;"> -->
-<!--         </div>  -->
-<!--     </div> -->
-
-    <!-- 画面タイトル表示域（モック作成時は特に変更する必要なし） -->
-<!--     <div class="imui-title" style="width: 100%"> -->
-<!--         <h1>社宅申請システム</h1> -->
-<!--     </div> -->
-
-    <!-- エラーメッセージ表示域（モック作成時は特に変更する必要なし） -->
-    <div id="errdiv" class="alert alert-error notshow"></div>
-
-    <!-- コンテンツエリア -->
-    
 <div class="imui-form-container-wide" style="width: 95%;">
 <!-- 代行ログイン時のみ表示されるメッセージ -->
 <jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
 
-<nfwui:Form id="form" name="form" modelAttribute="form">
+<nfwui:Form id="form" name="form" modelAttribute="form" enctype="multipart/form-data">
 <table class="imui-form-search-condition" style="width: 100%; ">
             <td style="width: 50%; border: none;;background-color: #fdfdff;">
             
@@ -487,17 +389,30 @@
                     <ul class='imui-list-link-side'>
                     <tr style="width: 100px; max-width:100px;" >
                         <th>
-                            <a href="../S0000/S0010_ShinseiJokenKakunin.html" class="imui-accent" style="margin-left: 8px">
-                            	<nfwui:LabelBox id="manyuaruIppan" code="<%= MessageIdConstant.SKF1010_SC001_MANYUARU_IPPAN %>" />
-                            </a>
+                            <a id="downloadManualGeneral" name="downloadManual" >
+                            	マニュアル（一般）
+                            </a>	
+                            	<input type="hidden" id="manual" name="manual" value="${form.manual}" />
                         </th>
                     </tr>
                     <tr>
-                    <imart:condition validity="${form.level4_1}" negative> 
+                    <imart:condition validity="${form.level4_1}" negative>
+                    <tr style="width: 100px; max-width:100px;" >
                         <th>
-                            <a href="../S0000/S0010_SyatakuNyukyoKibouChoushoPage_UnderButton.html" class="imui-accent" style="margin-left: 8px">
-                            	<nfwui:LabelBox id="manyuaruKanri" code="<%= MessageIdConstant.SKF1010_SC001_MANYUARU_KANRI %>" />
-                            </a>
+                            <a id="downloadManualManager" name="downloadManual" >
+                            	マニュアル（管理）
+                            </a>	
+                            	<input type="hidden" id="manual" name="manual" value="${form.manual}" />
+                        </th>
+                    </tr>
+                     </imart:condition>
+                    <tr>
+                    <imart:condition validity="${form.level4_2}" negative> 
+                        <th>
+                            <a id="downloadManualShataku" name="downloadManual" >
+                            	マニュアル（社宅管理）
+                            </a>	
+                            	<input type="hidden" id="manual" name="manual" value="${form.manual}" />
                         </td>
 					 </imart:condition>
                      <tr> 
@@ -694,17 +609,18 @@
 </table>
     </div>
     
-    
+    </div>
     
     </div>
-
-    <!-- メッセージを表示するためのJavaScript（モック時はコメント）
+    
     <script type="text/javascript">
-        $(function() {
-            showWarningDialog('', 'true');
-        });
+    (function($) {
+    	$("[name=downloadManual]").click(function(){
+    		var id = $(this).attr("id");
+    		var manual = id.replace("downloadManual", "").toLowerCase();
+    		$('#manual').val(manual);
+    		nfw.common.submitForm("form", "skf/Skf1010Sc001/download", this);
+    	});
+    })(jQuery);
     </script>
-    -->
-
-    </div>
     <!-- コンテンツエリア　ここまで -->
