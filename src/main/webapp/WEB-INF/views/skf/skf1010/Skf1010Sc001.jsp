@@ -406,18 +406,6 @@
                         </th>
                     </tr>
                      </imart:condition>
-                    <tr>
-                    <imart:condition validity="${form.level4_2}" negative> 
-                        <th>
-                            <a id="downloadManualShataku" name="downloadManual" >
-                            	マニュアル（社宅管理）
-                            </a>	
-                            	<input type="hidden" id="manual" name="manual" value="${form.manual}" />
-                        </td>
-					 </imart:condition>
-                     <tr> 
-                    </ul>
-            </tr>
         </table>
 </imart:condition>
     </div>
