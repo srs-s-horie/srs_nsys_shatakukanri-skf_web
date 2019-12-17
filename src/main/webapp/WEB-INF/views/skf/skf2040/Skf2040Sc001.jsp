@@ -204,7 +204,7 @@
                                                      list="${form.ddlTaikyoRiyuKbnList}" tabindex="4"/>
                                         <br>
                                         <imui:textArea id="taikyoHenkanRiyu" name="taikyoHenkanRiyu"
-                                                       value="${f:h(form.taikyoHenkanRiyu)}" style="width: 90%;" 
+                                                       value="${form.taikyoHenkanRiyu}" style="width: 90%;" 
                                                        css="${f:h(form.taikyoHenkanRiyuErr)}"
                                                        placeholder="例 自宅購入のため" disabled="true" tabindex="5" />
                                     </td>
@@ -216,7 +216,7 @@
                                     </th>
                                     <td colspan="2">
                                         <imui:textArea id="shatakuJotai" name="shatakuJotai"
-                                                       value="${f:h(form.shatakuJotai)}" style="width: 90%;" 
+                                                       value="${form.shatakuJotai}" style="width: 90%;" 
                                                        css="${f:h(form.shatakuJotaiErr)}"
                                                        placeholder="例  壁紙に破損あり" disabled="true" tabindex="6" />
                                     </td>
@@ -228,7 +228,7 @@
                                     </th>
                                     <td colspan="2">
                                         <imui:textArea id="taikyogoRenrakuSaki" name="taikyogoRenrakuSaki" 
-                                                       value="${f:h(form.taikyogoRenrakuSaki)}" style="width: 90%;" 
+                                                       value="${form.taikyogoRenrakuSaki}" style="width: 90%;" 
                                                        css="${f:h(form.taikyogoRenrakuSakiErr)}"
                                                        placeholder="例 090-0000-0000" disabled="true" tabindex="7"/>
                                     </td>

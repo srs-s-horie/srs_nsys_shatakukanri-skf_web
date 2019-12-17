@@ -160,7 +160,7 @@
 	                                                    <input type="radio" id="radioCandidateNo_${f:h(kariageObject.candidateNo)}" name="radioCandidateNo" value="${f:h(kariageObject.candidateNo)}" tabindex="1" />     
 	                                                    </td>
 	                                                    <td style="text-align:left;">
-	                                                        ${f:h(kariageObject.shatakuName)}
+	                                                        ${kariageObject.shatakuName}
 	                                                    </td>
 	                                                    <td style="text-align:left;">
 	                                                        ${f:h(kariageObject.shatakuNameAddress)}
