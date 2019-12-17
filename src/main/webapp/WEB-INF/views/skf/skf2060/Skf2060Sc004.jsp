@@ -186,7 +186,7 @@
                                 <nfwui:LabelBox id="lblShatakuName" code="<%= MessageIdConstant.SKF2060_SC004_SHATAKU_NAME %>" />
                             </th>
                             <td colspan="2">
-                                <input name="shatakuName" id="shatakuName" placeholder="例 厚木宿舎" value="${f:h(form.shatakuName)}"  tabindex="7"></input>
+                                <input name="shatakuName" id="shatakuName" placeholder="例 厚木宿舎" value="${form.shatakuName}"  tabindex="7"></input>
                             </td>
                         </tr>
 

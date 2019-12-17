@@ -80,7 +80,7 @@
                      		<nfwui:LabelBox id="lblRemarks" code="<%= MessageIdConstant.SKF3070_SC003_REMARKS %>" />
                      	</th>
                         <td style="width:30%;" colspan="5">
-                        	${f:h(form.remarks)}
+                        	${form.remarks}
                         </td>
                      </tr>
 			</table>

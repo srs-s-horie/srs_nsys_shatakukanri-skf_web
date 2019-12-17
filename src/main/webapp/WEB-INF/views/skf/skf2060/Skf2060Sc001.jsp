@@ -80,7 +80,7 @@
                                             <nfwui:LabelBox id="shatakuNamelbl" code="<%= MessageIdConstant.SKF2060_SC001_SHATAKU_NAME %>" style="float:left" />
                                         </th>
                                         <td>
-                                        <imui:textbox style="width:30%;" id="shatakuName" name="shatakuName" value="${f:h(form.shatakuName)}" class="${form.shatakuNameError}" tabindex="5" />
+                                        <imui:textbox style="width:30%;" id="shatakuName" name="shatakuName" value="${form.shatakuName}" class="${form.shatakuNameError}" tabindex="5" />
                                         </td>
                                     </tr>   
 

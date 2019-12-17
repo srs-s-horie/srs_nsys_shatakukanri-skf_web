@@ -58,7 +58,7 @@
             <th rowspan="4"><nfwui:LabelBox id="lblNyukyoShataku" code="<%= MessageIdConstant.SKF2030_SC001_NYUKYO_SHATAKU %>" /></th>
               <th colspan="3"><nfwui:LabelBox id="lblShatakuName" code="<%= MessageIdConstant.SKF2030_SC001_SHATAKU_NAME %>" /></th>
             <td colspan="3">
-                ${f:h(form.shatakuName) }
+                ${form.shatakuName}
             </td>
         </tr>
         <tr>
