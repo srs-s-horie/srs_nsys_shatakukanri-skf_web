@@ -12,7 +12,6 @@
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
 
-
 		<!-- コンテンツエリア -->
 		<div class="imui-form-container-wide"  style="width: 95% ;">
 				<div class="imui-chapter-title"><h2>組織情報</h2></div>
