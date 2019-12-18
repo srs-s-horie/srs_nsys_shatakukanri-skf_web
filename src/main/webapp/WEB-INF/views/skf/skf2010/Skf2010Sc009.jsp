@@ -15,6 +15,72 @@
 	white-space:normal;
 }
 </style>
+
+<script type="text/javascript">
+	(function($){
+	$.imui.util.loadCSS("../../ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
+	})(jQuery);
+</script>
+<script type="text/javascript">
+	$(function() {
+		$(document).ready(function(){
+
+			$("#addFile").click(function(){
+				var sendUrl = "skf/Skf2010Sc009/AddAsync";
+				
+				var file = $("#Skf2010Sc009_popup_attachedFile");
+				var map = new Object();
+				map['applNo'] = $("#applNo").val();
+				map['applId'] = $("#applId").val();
+				map['candidateNo'] = $("#candidateNo").val();
+				map['filePath'] = file.val();
+				map['attachedFile'] = file.prop("files")[0];
+				// 非同期通信実行
+				nfw.common.doAjaxAction("skf/Skf2010Sc009/AddAsync", map, true, function(data) {
+					var grid = $("#attachedFileList");
+					// 現在のリストテーブルの内容を初期化
+		    		grid.clearGridData();
+					// リストテーブルのデータをセット
+					grid.jqGrid('setGridParam', {data:data.attachedFileList});
+					// リストテーブルをリロード
+					grid.trigger("reloadGrid");
+		    	});
+			}); 
+			
+		});
+		
+	    // リストテーブルの確認欄のアイコンをクリックした時のイベント
+	    onCellSelect = function(rowId, iCol, cellContent, e) {
+	    	if ($(cellContent).hasClass('im-ui-icon-menu-24-document')
+	    			|| $(cellContent).hasClass('im-ui-icon-common-24-trashbox')) {
+	    		var grid = $("#attachedFileList");
+	    		var rowData = grid.getRowData(rowId);
+	    		
+	    		var attachedName = rowData.attachedName;
+	    		var attachedNo = rowData.attachedNo;
+	    		$("#attachedName").val(attachedName);
+	    		$("#attachedNo").val(attachedNo);
+	    		
+	    		var submitUrl = "skf/Skf2010Sc009/";
+	    		if ($(cellContent).hasClass('im-ui-icon-menu-24-document')) {
+					submitUrl = submitUrl + "download";
+	    		} else {
+	    			submitUrl = submitUrl + "delete";
+	    		}
+	    		
+	    		$("#listForm").attr("action", submitUrl);
+	    		$("#listForm").submit();
+	    		
+	    	}
+	    }
+	    
+	    $("#closeBtn").click(function(){
+	    	//window.opener.updateAttachedFileArea();
+	    	updateAttachedFileArea("1");
+	    	window.open('about:blank','_self').close();
+	    });
+	});
+</script>
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 
 	<div id="imui-container" style="width:750px;min-width:750px;max-width: 1000px;">
@@ -43,7 +109,7 @@
 									<nfwui:LabelBox id="lblApplName" code="<%= MessageIdConstant.SKF2010_SC009_LBL_ATTACHED_FILE_SEARCH %>" />
 								</th>
 								<td style="width: 10%;">
-								  <nfwui:FileBox id="attachedFile" name="attachedFile" cssStyle="width:340px" />　　<nfwui:Button id="addFile" name="addFile" cssClass="imui-small-button" formId="form" url="skf/Skf2010Sc009/Add" value="申請書類に添付" />
+								  <nfwui:FileBox id="attachedFile" name="attachedFile" cssStyle="width:340px" />　　<imui:button id="addFile" name="addFile" class="imui-small-button" value="申請書類に添付" />
 								</td>
 							</tr>
 
@@ -58,47 +124,7 @@
 				  <input type="hidden" id="attachedName" name="attachedName" value="" />
 				  <input type="hidden" id="attachedNo" name="attachedNo" value="" />
 					<div class="imui-chapter-title"><nfwui:Title code="<%= MessageIdConstant.SKF2010_SC009_LBL_ATTACHED_FILE_LIST %>" level="2" /></div>
-					<script type="text/javascript">
-						(function($){
-						$.imui.util.loadCSS("../../ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
-						})(jQuery);
-					</script>
-					<script type="text/javascript">
-						(function($) {
-							
-						    // リストテーブルの確認欄のアイコンをクリックした時のイベント
-						    onCellSelect = function(rowId, iCol, cellContent, e) {
-						    	if ($(cellContent).hasClass('im-ui-icon-menu-24-document')
-						    			|| $(cellContent).hasClass('im-ui-icon-common-24-trashbox')) {
-						    		var grid = $("#attachedFileList");
-						    		var rowData = grid.getRowData(rowId);
-						    		
-						    		var attachedName = rowData.attachedName;
-						    		var attachedNo = rowData.attachedNo;
-						    		$("#attachedName").val(attachedName);
-						    		$("#attachedNo").val(attachedNo);
-						    		
-						    		var submitUrl = "skf/Skf2010Sc009/";
-						    		if ($(cellContent).hasClass('im-ui-icon-menu-24-document')) {
-										submitUrl = submitUrl + "download";
-						    		} else {
-						    			submitUrl = submitUrl + "delete";
-						    		}
-						    		
-						    		$("#listForm").attr("action", submitUrl);
-						    		$("#listForm").submit();
-						    		
-						    	}
-						    }
-						    
-						    $("#closeBtn").click(function(){
-						    	//window.opener.updateAttachedFileArea();
-						    	var func = new Function('data','window.opener.updateAttachedFileArea("1")');
-						    	func("1");
-						    	window.open('about:blank','_self').close();
-						    });
-						})(jQuery);
-					</script>
+					
 <imui:listTable id="attachedFileList" name="attachedFileList"
 data="${form.attachedFileList}"
 autoResize="true" autoWidth="true"

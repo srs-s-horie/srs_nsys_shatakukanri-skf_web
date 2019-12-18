@@ -259,7 +259,7 @@ $(function() {
            <nfwui:PopupButton id="shiryoBtn" name="shiryoBtn" value="資料を添付"
            cssClass="imui-medium-button" cssStyle="width: 150px" 
            use="popup" popupWidth="750" popupHeight="600"
-           parameter="applNo:applNo,applId:applId" modalMode="false" 
+           parameter="applNo:applNo,applId:applId" modalMode="true" 
            screenUrl="skf/Skf2010Sc009/init" formId="form" removePatterns="NON"
            callbackFunc="updateAttachedFileArea" />
            <!-- 承認ボタン -->
