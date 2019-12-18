@@ -92,5 +92,15 @@ public class Skf2050Sc001Form extends BaseForm {
 
 	// 備品返却立会時刻ドロップダウンリスト
 	private List<Map<String, Object>> ddSessionTimeList;
+	
+	/** ボタン表示非表示 */
+	// 同意するボタン
+	private String btnAgreeDisabled;
+	
+	// 同意しないボタン
+	private String btnNotAgreeDisabled;
+	
+	// 搬出完了ボタン
+	private String btnCarryingOutDisabled;
 
 }
