@@ -52,18 +52,17 @@
     	});
     });
     
-    // 申請状況の「全選択」ボタン押下時のイベント
-    $("#allCheck").click(function() {
-    	$("input[name='applStatus']").prop("checked", true);
-    });
-    // 申請状況の「全解除」ボタン押下時のイベント
-    $("#allNoCheck").click(function() {
-    	$("input[name='applStatus']").prop("checked", false);
-    });
-    
-
     // 画面表示時に定義される処理
     $(document).ready(function(){
+        // 申請状況の「全選択」ボタン押下時のイベント
+        $("#allCheck").click(function() {
+        	$("input[name='applStatus']").prop("checked", true);
+        });
+        // 申請状況の「全解除」ボタン押下時のイベント
+        $("#allNoCheck").click(function() {
+        	$("input[name='applStatus']").prop("checked", false);
+        });
+        
 	    // 「一括承認」ボタン押下時のイベント
 	    preUpdateEvent = function () {
 	        var ids = $("input[id^='applNo_']:not(:disabled):checkbox:checked");
@@ -177,7 +176,7 @@
                        <nfwui:Title id="searchTitle" code="<%= MessageIdConstant.SKF2010_SC005_SEARCH_TITLE %>" titleLevel="2" />
                             <nfwui:Form id="form" name="form" modelAttribute="form" encType="multipart/form-data">
                              <input type="hidden" id="nyukyoFlag" name="nyukyoFlag" value="false" />
-                             <input type="hidden" id="insertFormName" name="insertFormName" value="" />
+                             <input type="hidden" id="insertFormName" value="" />
                                 <table class="imui-form-search-condition" >
                                     <tr>
                                         <th style="width: 100px;">
