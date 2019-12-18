@@ -279,12 +279,12 @@
 </div> 
 
 <div class="align-R">
-      <nfwui:ConfirmButton id="agreeBtn" value="同意する"
+      <nfwui:ConfirmButton id="agreeBtn" value="同意する" disabled="${form.btnAgreeDisabled}"
       cssClass="imui-medium-button check" cssStyle="width:150px;"
       url="skf/Skf2050Sc001/Agree" formId="form" tabIndex="2"
       title="<%= MessageIdConstant.SKF2050_SC001_CONFIRM_TITLE %>"
       message="<%= MessageIdConstant.I_SKF_2012 %>" />
-      <nfwui:ConfirmButton id="notAgreeBtn" value="同意しない"
+      <nfwui:ConfirmButton id="notAgreeBtn" value="同意しない" disabled="${form.btnNotAgreeDisabled}"
       cssClass="imui-medium-button check" cssStyle="width:150px;"
       url="skf/Skf2050Sc001/NotAgree" formId="form" tabIndex="3"
       title="<%= MessageIdConstant.SKF2050_SC001_CONFIRM_TITLE %>"
@@ -310,7 +310,7 @@
 <imart:condition validity="<%= String.valueOf(form.isAllNotVisible()) %>" negative>
 <div class="align-R">
 <imart:condition validity="<%= String.valueOf(form.isCarryOutBtnRemove()) %>" negative>
-      <imui:button id="carryOutBtn" class="imui-medium-button check" value="搬入完了" style="width:150px;" tabIndex="4" />
+      <imui:button id="carryOutBtn" class="imui-medium-button check" value="搬出完了" disabled="${form.btnCarryingOutDisabled}" style="width:150px;" tabIndex="4" />
 </imart:condition>
 </div> 
 </imart:condition>
