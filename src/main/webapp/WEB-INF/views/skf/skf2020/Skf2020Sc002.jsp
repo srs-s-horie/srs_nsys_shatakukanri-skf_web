@@ -601,7 +601,7 @@
 													<nfwui:LabelBox id="lblHead" code="<%= MessageIdConstant.SKF2020_SC002_TOKUSHU_JIJO %>" />
 												</th>
 												<td colspan="3">
-													<imui:textArea id="tokushuJijo" name="tokushuJijo" value="${f:h(form.tokushuJijo)}" tabindex="46"/>
+													<imui:textArea id="tokushuJijo" name="tokushuJijo" value="${form.tokushuJijo}" tabindex="46"/>
 												</td>
 											</tr>                            	
 										<!-- 現保有社宅 -->   
@@ -640,7 +640,7 @@
 												</th>
 												<td colspan="3">
 													<imui:textArea id="shatakuJotai" name="shatakuJotai" 
-														value="${f:h(form.shatakuJotai)}" style="width: 90%;" placeholder="例 壁紙に破損あり"
+														value="${form.shatakuJotai}" style="width: 90%;" placeholder="例 壁紙に破損あり"
 														  disabled="true" hidden="false"  tabindex="49"/>
 												</td>
 											</tr>											
@@ -654,7 +654,7 @@
 														list="${form.ddlTaikyoRiyuKbnList}"  disabled="true" tabindex="50"/>
 													<div>
 														<imui:textArea id="taikyoRiyu" name="taikyoRiyu"
-															value="${f:h(form.taikyoRiyu)}" style="width: 90%;" placeholder="例 退職のため" disabled="true" tabindex="51" />
+															value="${form.taikyoRiyu}" style="width: 90%;" placeholder="例 退職のため" disabled="true" tabindex="51" />
 													</div>
 												</td>
 											</tr> 
@@ -665,7 +665,7 @@
 												</th>
 												<td colspan="3">
 													<imui:textArea id="taikyogoRenrakuSaki" name="taikyogoRenrakuSaki" 
-														value="${f:h(form.taikyogoRenrakuSaki)}" style="width: 90%;" placeholder="例 090-0000-0000" disabled="true"
+														value="${form.taikyogoRenrakuSaki}" style="width: 90%;" placeholder="例 090-0000-0000" disabled="true"
 														 tabindex="52"/>
 												</td>
 											</tr>

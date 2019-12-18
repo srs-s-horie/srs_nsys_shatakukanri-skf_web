@@ -140,7 +140,7 @@
                                     <th rowspan="4"><nfwui:LabelBox id="lblNyukyoShataku" code="<%= MessageIdConstant.SKF2050_SC001_NYUKYO_SHATAKU %>" /></th>
                                       <th colspan="2"><nfwui:LabelBox id="lblShatakuName" code="<%= MessageIdConstant.SKF2050_SC001_SHATAKU_NAME %>" /></th>
                                     <td colspan="2">
-                                        ${f:h(form.shatakuName) }
+                                        ${form.shatakuName}
                                     </td>
                                 </tr>
                                 <tr>

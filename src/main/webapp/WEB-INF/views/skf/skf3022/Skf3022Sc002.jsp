@@ -183,10 +183,10 @@
 				map['akiParking'] =  "0";
 			}
 			map['kaisiDate'] = $("#hdnRiyouStartDay").val();
-		
+			
+			$("#resultList").jqGrid("clearGridData");
+			$("#targetRowId").val("");
 			nfw.common.doAjaxAction("skf/Skf3022Sc002/searchAsync",map,true,function(data) {
-				$("#resultList").jqGrid("clearGridData");
-				$("#targetRowId").val("");
 				var result = data.dataCount;
 				// リストテーブル情報更新
 				var grid = $("#resultList");
@@ -194,17 +194,8 @@
 				 $("#resultList").jqGrid("setGridParam",{
 			            data : data.listTableList,
 			        }).trigger("reloadGrid");
-		// 		if(result == 0){
-		// 			nfw.common.showReserveMessage("warning", "検索結果がありません。抽出条件を変更してください。");
-		// 			return;
-		// 		}else if(result == -1){
-		// 			nfw.common.showReserveMessage("error", "検索結果が100件を超えました。抽出条件を変更してください。");
-		// 			return;
-		// 		}
 				if(result > 0){
-		// 			for(var i=0; i < data.listTableList.length; i++ ){
-		// 				grid.addRowData(undefined, data.listTableList[i]);
-		// 			}
+
 					var ids = $("#resultList").jqGrid('getDataIDs');
 		            for(var i = 0; i < ids.length; i++) {
 		                j = i + 1;

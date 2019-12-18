@@ -195,7 +195,7 @@
 	                                                    <input type="radio" id="radioCandidateNo_${f:h(kariageObject.candidateNo)}" name="radioCandidateNo" value="${f:h(kariageObject.candidateNo)}" tabindex="1" />     
 	                                                    </td>
 	                                                    <td style="text-align:left;">
-	                                                        ${f:h(kariageObject.shatakuName)}
+	                                                        ${kariageObject.shatakuName}
 	                                                    </td>
 	                                                    <td style="text-align:left;">
 	                                                        ${f:h(kariageObject.shatakuNameAddress)}
@@ -217,7 +217,7 @@
                                                     <br>
                                                     <imui:select id="riyuDropdown" name="riyuDropdown" width="185" list="${form.riyuList}" disabled="${form.riyuDropdownDisabled}" tabindex="2" />
                                                     <br>
-                                                    <imui:textArea style="width:100%;" rows="2" id="biko" name="biko" value="${f:h(form.biko)}" disabled="${form.bikoDisabled}" tabindex="3" />
+                                                    <imui:textArea style="width:100%;" rows="2" id="biko" name="biko" value="${form.biko}" disabled="${form.bikoDisabled}" tabindex="3" />
                                                     </td>
                                                 </tr>
                                             </tbody>

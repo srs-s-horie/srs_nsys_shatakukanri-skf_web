@@ -293,7 +293,7 @@ function onCellAttrNtk(rowId,val,rawObject,cm,rdata){
 									
 								var dialogTitle = "確認";
 								var dialogMessage = row.hdnDeleteText;
-								nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf30221c001/delete", "ok", "キャンセル", this, true);
+								nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3021Sc001/delete", "ok", "キャンセル", this, true);
 
 							}
 							var prop = $('#allListCheck').prop('checked');
@@ -494,7 +494,7 @@ function onCellAttrNtk(rowId,val,rawObject,cm,rdata){
 							var shainName = row.colShainName;//社員氏名
 							var applKbn = row.hdnSinseiKbn;//申請区分
 							var applNo = row.hdnApplNo;//申請書類管理番号
-							var taikyoYoteiDate = row.colTaikyoDate;//退居予定日
+							var taikyoYoteiDate = row.colTaikyoDate.replace(/\//g, "");//退居予定日
 							var parking1StartDate = row.hdnParking1StartDate;//駐車場区画１開始日
 							var parking2StartDate = row.hdnParking2StartDate;//駐車場区画２開始日
 							var hdnUpdateDate = row.hdnUpdateDateNtkyo;//更新日時hidden変数

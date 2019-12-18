@@ -2,14 +2,19 @@ package jp.co.c_nexco.skf.skf1010.app.skf1010sc001;
 
 import java.util.List;
 import java.util.Map;
+
+import jp.co.c_nexco.nfw.nfwfile.app.nfwfilescdwd.NfwfileScDwdForm;
 import jp.co.c_nexco.nfw.webcore.app.BaseForm;
 import lombok.EqualsAndHashCode;
 
 @lombok.Data
 @EqualsAndHashCode(callSuper = true)
-public class Skf1010Sc001Form extends BaseForm {
+public class Skf1010Sc001Form extends NfwfileScDwdForm {
 
 	private static final long serialVersionUID = 5285848663756806913L;
+	
+	// ぺージ種別対応
+	private String pageMode="0";
 
 	// 会社コード
 	private String companyCd;
@@ -45,7 +50,7 @@ public class Skf1010Sc001Form extends BaseForm {
 	private String level3;
 	// 画面表示（操作に困ったときは）
 	private String level4;
-	// 画面表示（操作に困ったときは 管理者）
+	// 画面表示（マニュアル 管理）
 	private String level4_1;
 	// 画面表示（未処理情報）
 	private String level5;
@@ -95,4 +100,12 @@ public class Skf1010Sc001Form extends BaseForm {
 	private List<Map<String, Object>> bihinHenkyakuInformationList;
 	// 個人のお知らせリスト
 	private List<Map<String, Object>> oshiraseList;
+	
+	// 申請書類ファイル名
+	private String downloadFileName;
+	// 機能ID
+	private String functionId;
+	// マニュアル区別
+	private String manual;
+
 }

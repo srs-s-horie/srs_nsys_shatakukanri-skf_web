@@ -964,7 +964,7 @@
 		</div>
 		<div class="align-R">
 			<nfwui:PopupButton id="btnJigetuYoyaku" name="btnJigetuYoyaku" value="次月予約" use="popup"
-					cssClass="imui-medium-button" popupWidth="800" popupHeight="700"  cssStyle="width:150px;"
+					cssClass="imui-medium-button" popupWidth="700" popupHeight="560"  cssStyle="width:150px;"
 					modalMode="true" screenUrl="skf/Skf3022Sc004/init" preOnClick="backUpStatus();" preUrl="skf/Skf3022Sc006/PreJigetsuYoyaku"
 					parameter="hdnJigetuYoyakuTeijiNo:hdnJigetuYoyakuTeijiNo,hdnJigetuYoyakuYearMonth:hdnJigetuYoyakuYearMonth,hdnJigetuYoyakuShatakuKanriId:hdnJigetuYoyakuShatakuKanriId,hdnJigetuYoyakuRental:hdnJigetuYoyakuRental,hdnJigetuYoyakuKyoekihiPerson:hdnJigetuYoyakuKyoekihiPerson,hdnJigetuYoyakuParkingRentalOne:hdnJigetuYoyakuParkingRentalOne,hdnJigetuYoyakuParkingRentalTwo:hdnJigetuYoyakuParkingRentalTwo"
 					disabled="${form.btnJigetuYoyakuDisableFlg }" callbackFunc="jigetuYoyakuCallback()" tabindex="63"/> 

@@ -289,7 +289,7 @@ $(function() {
                                     </nfwui:LabelBox>
                                     </th>
                                     <td colspan="2">
-                                    <input type="hidden" id="default" value="${form.hitsuyoShataku }" />
+                                    <input type="hidden" id="default" name="defaultHitsuyoShataku" value="${form.hitsuyoShataku }" />
                                     <nfwui:RadioButtonGroup id="hitsuyoShataku">
                                       <nfwui:RadioButton id="hitsuyoShatakuSetai" name="hitsuyoShataku" value="<%= CodeConstant.SETAI %>" label="世帯" />
                                       <nfwui:RadioButton id="hitsuyoShatakuTanshin" name="hitsuyoShataku" value="<%= CodeConstant.TANSHIN %>" label="単身" />
@@ -491,7 +491,7 @@ $(function() {
                                 </tr>
                                 <tr>
                                     <th colspan="2"><nfwui:LabelBox id="lblNowShatakuName" code="<%= MessageIdConstant.SKF2020_SC003_NOW_SHATAKU_NAME %>" /></th>
-                                    <td>${f:h(form.nowShatakuName)}
+                                    <td>${form.nowShatakuName}
                                     </td>
                                 </tr>
                                 <tr>
@@ -532,7 +532,7 @@ $(function() {
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblTokushuJijo" code="<%= MessageIdConstant.SKF2020_SC003_TOKUSHU_JIJO %>" /></th>
                                     <td colspan="2">
-                                    ${f:h(form.tokushuJijo)}
+                                    ${form.tokushuJijo}
                                     </td>
                                 </tr>
                                 
@@ -556,21 +556,21 @@ $(function() {
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblShatakuStatus" code="<%= MessageIdConstant.SKF2020_SC003_SHATAKU_STATUS %>" /></th>
                                     <td colspan="2">
-                                    ${f:h(form.shatakuJotai)}
+                                    ${form.shatakuJotai}
                                     </td>
                                 </tr>
                                 
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblTaikyoRiyu" code="<%= MessageIdConstant.SKF2020_SC003_TAIKYO_RIYU %>" /></th>
                                     <td colspan="2">
-                                    ${f:h(form.taikyoRiyu)}
+                                    ${form.taikyoRiyu}
                                     </td>
                                 </tr>
                                 
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblTaikyogoRenrakuSaki" code="<%= MessageIdConstant.SKF2020_SC003_TAIKYOGO_RENRAKU_SAKI %>" /></th>
                                     <td colspan="2">
-                                    ${f:h(form.taikyogoRenrakuSaki)}
+                                    ${form.taikyogoRenrakuSaki}
                                     </td>
                                 </tr>
                                 
@@ -616,7 +616,7 @@ $(function() {
                                 <tr>
                                     <th colspan="2"><nfwui:LabelBox id="lblNewShatakuName" code="<%= MessageIdConstant.SKF2020_SC003_NEW_SHATAKU_NAME %>" /></th>
                                     <td colspan="2">
-                                        ${f:h(form.newShatakuName)}
+                                        ${form.newShatakuName}
                                     </td>
                                 </tr>
                                 <tr>
