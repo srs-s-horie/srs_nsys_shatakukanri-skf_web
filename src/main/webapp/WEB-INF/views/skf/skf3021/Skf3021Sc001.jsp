@@ -554,8 +554,8 @@ function onCellAttrNtk(rowId,val,rawObject,cm,rdata){
 			<br />
 			<div class="align-R">
 				<nfwui:PopupButton id="shinseiNaiyo" style="visibility:hidden" 
-					value="a" cssClass="imui-medium-button" modalMode="true" popupWidth="800" 
-					popupHeight="640" parameter="hdnRowShainNo:hdnRowShainNo,hdnRowApplNo:hdnRowApplNo,hdnRowNyutaikyoKbn:hdnRowNyutaikyoKbn" 
+					value="a" cssClass="imui-medium-button" modalMode="true" popupWidth="850" 
+					popupHeight="740" parameter="hdnRowShainNo:hdnRowShainNo,hdnRowApplNo:hdnRowApplNo,hdnRowNyutaikyoKbn:hdnRowNyutaikyoKbn" 
 					screenUrl="skf/Skf3021Sc002/init" use="popup" />
 <!-- 				<input style="width:150px;" type="button" value="空き社宅リスト出力" class="imui-medium-button" onclick=""/> -->
 				<nfwui:ConfirmButton id="btnShatakuTeiji" name="btnAkiShatakuList" 

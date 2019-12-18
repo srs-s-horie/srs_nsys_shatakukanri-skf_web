@@ -16,16 +16,27 @@
 <style type="text/css">
 
 </style>
-
+<script type="text/javascript">
+	//リスト生成後イベント
+	 function gridCompleteDokyo(){
+			var $list = $('#listDokyoKazokuIchiran');
+			$list[0].grid.headers[0].el.style.textAlign = "center";
+			$list[0].grid.headers[2].el.style.textAlign = "center";
+	 };
+	 function gridCompleteCar(){
+			var $list = $('#listJidoshaIchiran');
+			$list[0].grid.headers[0].el.style.textAlign = "center";
+	 };
+</script>
 <!-- コンテンツエリア -->
-<div id="imui-container" style="width:760px;min-width:760px;max-width: 760px;">
+<div id="imui-container" style="width:800px;min-width:800px;max-width: 800px;">
 <nfwui:Form id="skf3020sc001Form" name="skf3020sc001Form" modelAttribute="form" secureToken="false">
 	<div class="imui-form-container-wide">
 		<div style="height:30px; bottom:10px">入退居予定者における入退居申請内容を照会します。</div>
 			<nfwui:Table use="search">
 				<tbody>
 					<tr>
-						<td style="width: 40%;">
+						<td style="width: 45%;">
 							<table class="imui-form-search-condition">
 								<tr>
 									<th rowspan="4" style="width: 15%">
@@ -125,7 +136,7 @@
 							</table>
 						</td>
 						<td>&nbsp;</td>
-						<td style="width: 60%;">
+						<td style="width: 55%;">
 							<table class="imui-form-search-condition">
 									<tr>
 										<th colspan="2" style="width: 60%">
@@ -250,21 +261,25 @@
 						</td>
 					</tr>
 					<tr>
-						<td style="width: 40%;">
-							<imui:listTable id="listDokyoKazokuIchiran" process="jssp" autoEncode="true" autoWidth="true" 
-								data="${form.dokyoKazokuIchiranList}" multiSelect="false" rowNumbers="true" height="auto">
+						<td style="width: 45%;">
+							<imui:listTable id="listDokyoKazokuIchiran" process="jssp" autoEncode="false" autoWidth="true" 
+								multiSelect="false" rowNumbers="false" height="auto" 
+								onGridComplete="gridCompleteDokyo" data="${form.dokyoKazokuIchiranList}" >
 								<cols sortable="false">
-									<col name="colDokyoName" width="130" sortable="false" align="left" caption="氏名" wrap="true" />
+									<col name="colDokyoNo" width="60" sortable="false" align="center" caption="同居家族" wrap="true" />
+									<col name="colDokyoName" width="120" sortable="false" align="left" caption="氏名" wrap="true" />
 									<col name="colZokugara" width="50" sortable="false" align="center" caption="続柄" wrap="true" />
 									<col name="colNenrei" width="50" sortable="false" align="left" caption="年齢" wrap="true" />
 								</cols>
 							</imui:listTable>
 						</td>
 						<td>&nbsp;</td>
-						<td style="width: 50%;">
+						<td style="width: 55%;">
 							<imui:listTable id="listJidoshaIchiran" process="jssp" autoEncode="true" autoWidth="true" autoResize="true"
-								data="${form.jidoshaIchiranList}" multiSelect="false" rowNumbers="true" >
+								 multiSelect="false" rowNumbers="false" 
+								onGridComplete="gridCompleteCar" data="${form.jidoshaIchiranList}">
 								<cols>
+									<col name="colCarNo" width="25" sortable="false" align="center" caption="No" wrap="true" />
 									<col name="colCarName" width="100" sortable="false" align="left" caption="車名" wrap="true" />
 									<col name="colTorokuNo" width="90" sortable="false" align="left" caption="登録番号" wrap="true" />
 									<col name="colCarUser" width="90" sortable="false" align="left" caption="使用者" wrap="true" />
@@ -273,9 +288,8 @@
 							</imui:listTable>
 						</td>
 					</tr>
-
 				</tbody>
-		</nfwui:Table>
+		</nfwui:Table>	
 		<br>
 		<div class="align-R">
 			<nfwui:PopupButton id="closebtn" value="画面を閉じる" cssStyle="width:100px;" cssClass="imui-small-button" modalMode="true" use="cancel"/>
