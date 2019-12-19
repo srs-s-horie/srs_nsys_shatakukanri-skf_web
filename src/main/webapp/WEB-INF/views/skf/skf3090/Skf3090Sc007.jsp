@@ -41,7 +41,7 @@
 								</th>
 
 								<td style="width: 30%;">
-								<imui:textbox id="registAgencyCd" name="registAgencyCd" value="${f:h(form.registAgencyCd)}" disabled="${form.agencyCdDisabled}" style="width: 55%; ime-mode:disabled" maxlength="3" placeholder="例 00" onblur="focusOut()" tabindex="2" />
+								<imui:textbox id="registAgencyCd" name="registAgencyCd" value="${f:h(form.registAgencyCd)}" disabled="${form.agencyCdDisabled}" style="width: 55%; ime-mode:disabled" maxlength="4" placeholder="例 00" onblur="focusOut()" tabindex="2" />
 								<imui:button id="agencyCdSearch"  value="名称を検索" disabled="${form.agencyCdSearchDisabled}" class="imui-small-button"
 									  onclick="agencyCheckConfrim()" tabindex="3" />
 								</td>
