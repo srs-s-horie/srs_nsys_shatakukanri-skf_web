@@ -725,6 +725,9 @@
 					<input type="hidden" name="hdnConfirmFlg" id="hdnConfirmFlg" value="${form.hdnConfirmFlg}" />
 					<input type="hidden" name="hdnApplHistroyApplDate" id="hdnApplHistroyApplDate" value="${form.hdnApplHistroyApplDate}" />
 					<input type="hidden" name="hdnParkingFullFlg" id="hdnParkingFullFlg" value="${form.parkingFullFlg}" />
+					<input type="hidden" name="hdnParking1stPlace" id="hdnParking1stPlace" value="${form.parking1stPlace}" />
+					<input type="hidden" name="hdnParking2stPlace" id="hdnParking2stPlace" value="${form.parking2stPlace}" />
+
 					<!-- 右側の入力ガイドの部分 -->
 					<td style="width: 30%; border: none;background-color: #fdfdff;">
 						<div class="imui-form-container-wide">
@@ -1962,6 +1965,9 @@ function mesDisplayControl(isShow){
 		
 		map['nowShataku'] = getNowShataku();
 		map['shatakuKanriId'] = $('#nowShatakuName option:selected').val();	
+		
+		map['hdnParking1stPlace'] = $("#hdnParking1stPlace").val();
+		map['hdnParking2stPlace'] = $("#hdnParking2stPlace").val();
 		
 		map['taikyoYotei'] = getTaikyoYotei();
     	map['taikyoYoteiDate'] = $("#taikyoYoteiDate").val();

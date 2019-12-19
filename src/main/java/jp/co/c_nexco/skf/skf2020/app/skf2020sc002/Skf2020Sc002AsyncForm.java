@@ -71,6 +71,11 @@ public class Skf2020Sc002AsyncForm extends AsyncBaseForm {
 	// 駐車場2台目
 	private String parking2stPlace;
 
+	// 駐車場1台目
+	private String hdnParking1stPlace;
+	// 駐車場2台目
+	private String hdnParking2stPlace;
+
 	// 勤務先のTEL
 	private String tel;
 
