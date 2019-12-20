@@ -301,7 +301,7 @@
          <ul class='imui-list-link-side'>
     
                     <tr>
-
+   					  <imart:condition validity="${form.level3_1}" negative>
                         <th>
                             <a href="/imart/skf/Skf2010Sc008/init" class="imui-accent" style="margin-left: 8px">
                             	<nfwui:LabelBox id="daikoLogin" code="<%= MessageIdConstant.SKF1010_SC001_DAIKO_LOGIN %>" />
@@ -310,6 +310,7 @@
                         <td style="width: 60%;">
                             <nfwui:LabelBox id="daikoLoginMessage" code="<%= MessageIdConstant.SKF1010_SC001_DAIKO_LOGIN_MESSAGE %>" /><br>
                         </td>
+                      </imart:condition>  
                     </tr>
                     
                     <tr name="daikoHide">
@@ -335,6 +336,7 @@
                     </tr>
                     
                     <tr name="daikoHide">
+                     <imart:condition validity="${form.level3_2}" negative>
                       <th>
                           <a href="/imart/skf/Skf3090Sc006/init" class="imui-accent" style="margin-left: 8px">
                           	<nfwui:LabelBox id="soshikiMasutaMaintenance" code="<%= MessageIdConstant.SKF1010_SC001_SOSHIKI_MASUTA_MAINTENANCE %>" /> 
@@ -343,6 +345,7 @@
                       <td style="width: 60%;">
                           <nfwui:LabelBox id="soshikiMasutaMaintenanceMessage"  code="<%= MessageIdConstant.SKF1010_SC001_SOSHIKI_MASUTA_MAINTENANCE_MESSAGE %>" /><br>
                       </td>
+                      </imart:condition>
                     </tr>
                     <!--
                     <tr>
