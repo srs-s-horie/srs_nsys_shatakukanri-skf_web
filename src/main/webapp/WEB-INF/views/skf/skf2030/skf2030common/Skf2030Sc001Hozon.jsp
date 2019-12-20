@@ -101,8 +101,8 @@ ${f:h(form.shatakuKikaku) }
 <tr>
 	<th rowspan="2" colspan="3"><nfwui:LabelBox id="lblBihin" code="<%= MessageIdConstant.SKF2030_SC001_BIHIN %>" /></th>
 	<tr>
-	<th><nfwui:LabelBox id="lblBihinState" code="<%= MessageIdConstant.SKF2030_SC001_BIHIN_STATE %>" /></th>
-	<th><nfwui:LabelBox id="lblBihinYohi" code="<%= MessageIdConstant.SKF2030_SC001_BIHIN_YOHI %>" /></th>
+	<th style="width:10%;"><nfwui:LabelBox id="lblBihinState" code="<%= MessageIdConstant.SKF2030_SC001_BIHIN_STATE %>" /></th>
+	<th style="width:65%;"><nfwui:LabelBox id="lblBihinYohi" code="<%= MessageIdConstant.SKF2030_SC001_BIHIN_YOHI %>" /></th>
 </tr>
 
 <tr>
@@ -156,6 +156,7 @@ ${f:h(form.shatakuKikaku) }
 	<nfwui:RadioButtonGroup id="bihinAppl15" >
 	 <nfwui:RadioButton id="bihinTrue15" name="bihinAppl15" value="2" label="申請する" /> 
 	 <nfwui:RadioButton id="bihinFalse15" name="bihinAppl15" value="1" label="申請しない" /> 
+	 <nfwui:LabelBox id="lblRiceCookComment" code="<%= MessageIdConstant.SKF2030_SC001_RICE_COOK_COMMENT %>" />
 	</nfwui:RadioButtonGroup>
 	</td>
 </tr>
