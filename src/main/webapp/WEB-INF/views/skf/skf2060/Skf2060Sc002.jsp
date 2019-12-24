@@ -27,41 +27,16 @@
 	function back1() {
 		var url = "skf/Skf2010Sc003/init?SKF2010_SC003&tokenCheck=0";
 		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
-	}
-	
-    /**
-     * メニュー画面へ遷移する。
-     */
-    function back() {
-        showConfirm(W_GFK_0002, function() {
-            $.StandardPost("../common/top.html");
-        });
-    }
-    
-    
-    /**
-     * 「同意する」ボタン押下時
-     */
-    function confreq() {
-        showConfirm(W_GFK_0001.replace('{0}', '選択'), function() {
-         $.StandardPost("../../skf/Skf2010_Sc003/init");
-        });
-    }
-        /**
-     * TOP画面へ遷移する。
-     */
-    function TOP() {
-        showConfirm(W_GFK_0007, function() {
-            $.StandardPost("../common/top.html");
-        });
-    }
-    
+	} 
 </script>
 
 <!-- コンテンツエリア -->
-<nfwui:Form id="form" name="form" modelAttribute="form">
 <div style="width:100%;">
+<div style="margin-left:1%;">
+<jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
+</div>
     	<!-- コンテンツエリア -->
+		<nfwui:Form id="form" name="form" modelAttribute="form">
      		<table class="imui-form-search-condition" style="width:20%; margin-left:2%;">
        			<tr>
          			<th style="width: 50%;">
@@ -248,6 +223,7 @@
 <br>
 <br>
 </div>
+</nfwui:Form>
 </div>
 
 <script type="text/javascript">
@@ -317,5 +293,4 @@
 })(jQuery);	
 
 </script>
-</nfwui:Form>
 <!-- コンテンツエリア　ここまで -->

@@ -11,6 +11,21 @@
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.SessionCacheKeyConstant" %>
+<%@ page import="java.util.Enumeration" %>
+<%@ page import="java.util.Map" %>
+
+<% 
+Map<String, Object> menuSesValTop = (Map<String, Object>)request.getSession().getAttribute("scopedTarget.menuScopeSessionBean");
+String alterLoginFlgTop= new String();
+if(menuSesValTop != null){
+	// 代行ログインフラグ
+	if(menuSesValTop.get(SessionCacheKeyConstant.ALTER_LOGIN_SESSION_KEY) == null){
+		menuSesValTop.put(SessionCacheKeyConstant.ALTER_LOGIN_SESSION_KEY, CodeConstant.NONLOGIN);
+	}
+	alterLoginFlgTop = (String)menuSesValTop.get(SessionCacheKeyConstant.ALTER_LOGIN_SESSION_KEY);
+}
+%>
 
 <%-- コンテンツエリア --%>
 <style type="text/css">
@@ -94,8 +109,8 @@
 </imart:condition>
 </div>
 
-<div name="daikoHide">
 <imart:condition validity="${form.level2}" negative>
+<imart:decision case="<%= alterLoginFlgTop %>" value="<%= CodeConstant.NONLOGIN %>">
 <div class="imui-form-container-wide" style="width: 93%;">
        <!-- 社宅窓口 -->
             <nfwui:Title id="windowTitle" code="<%= MessageIdConstant.SKF1010_SC001_WINDOW_TITLE %>" titleLevel="2" />
@@ -103,10 +118,9 @@
         <table class="imui-form-search-condition">
 
                     <ul class='imui-list-link-side'>
-                     <tr>
-                     
                       <imart:condition validity="${form.level2_1}" negative> 
-                     <th>
+                      <tr>
+                      <th>
                           <a href="/imart/skf/Skf2010Sc005/init" class="imui-accent" style="margin-left: 8px">
                           	<nfwui:LabelBox id="sinseiSyoruiSyonin" code="<%= MessageIdConstant.SKF1010_SC001_SINSEI_SYORUI_SYONIN %>" />
                           </a>
@@ -114,8 +128,8 @@
                       <td style="width: 60%;">
                           <nfwui:LabelBox id="sinseiSyoruiSyoninMessage" code="<%= MessageIdConstant.SKF1010_SC001_SINSEI_SYORUI_SYONIN_MESSAGE %>" /><br>
                       </td>
+                      </tr>
                       </imart:condition>
-                    </tr>
                     <!--
                     <tr>
                       <th width="20%">
@@ -133,8 +147,8 @@
                        </td>
                     </tr>
 
-                    <tr>
-                        <imart:condition validity="${form.level2_2}" negative> 
+                    <imart:condition validity="${form.level2_2}" negative> 
+                   	<tr>
                         <th>
                             <a href="/imart/skf/Skf3010Sc001/init" class="imui-accent" style="margin-left: 8px">
                             	<nfwui:LabelBox id="syatakuKanri" code="<%= MessageIdConstant.SKF1010_SC001_SYATAKU_KANRI %>" />
@@ -206,11 +220,11 @@
                         <td style="width: 60%;">
                             <nfwui:LabelBox id="syainZyohoKosinMessage" code="<%= MessageIdConstant. SKF1010_SC001_SYAIN_ZYOHO_KOSIN_MESSAGE%>" /><br>
                         </td>
-                         </imart:condition>
                     </tr>                
+                    </imart:condition>
 
-                    <tr>  
                     <imart:condition validity="${form.level2_3}" negative>
+                    <tr>  
                         <th>
                             <a href="/imart/skf/Skf3050Sc002/init" class="imui-accent" style="margin-left: 8px">
                             	<nfwui:LabelBox id="tukizimeSyori" code="<%= MessageIdConstant.SKF1010_SC001_TUKIZIME_SYORI %>" />
@@ -219,8 +233,8 @@
                         <td style="width: 60%;">
                             <nfwui:LabelBox id="tukizimeSyoriMessage" code="<%= MessageIdConstant.SKF1010_SC001_TUKIZIME_SYORI_MESSAGE %>" /><br>
                         </td>
-                        </imart:condition>
                     </tr>  
+                    </imart:condition>
 
                     <!-- スペース-->
                     <tr style="border:none">
@@ -228,8 +242,8 @@
                        </td>
                     </tr>
 
-                    <tr>
                     <imart:condition validity="${form.level2_4}" negative>
+                    <tr>
                         <th>
                             <a href="/imart/skf/Skf3040Sc001/init" class="imui-accent" style="margin-left: 8px">
                             	<nfwui:LabelBox id="rentaruBihinSizisyoSakusei" code="<%= MessageIdConstant.SKF1010_SC001_RENTARU_BIHIN_SIZISYO_SAKUSEI %>" />
@@ -290,8 +304,9 @@
         </table>
         
         </div>
-        </div>
-</imart:condition>        
+</imart:decision>        
+</imart:condition>
+
 <imart:condition validity="${form.level3}" negative>      
         <div class="imui-form-container-wide" style="width: 93%;">
 
@@ -300,8 +315,8 @@
         <table class="imui-form-search-condition">
          <ul class='imui-list-link-side'>
     
+   					<imart:condition validity="${form.level3_1}" negative>
                     <tr>
-   					  <imart:condition validity="${form.level3_1}" negative>
                         <th>
                             <a href="/imart/skf/Skf2010Sc008/init" class="imui-accent" style="margin-left: 8px">
                             	<nfwui:LabelBox id="daikoLogin" code="<%= MessageIdConstant.SKF1010_SC001_DAIKO_LOGIN %>" />
@@ -310,10 +325,10 @@
                         <td style="width: 60%;">
                             <nfwui:LabelBox id="daikoLoginMessage" code="<%= MessageIdConstant.SKF1010_SC001_DAIKO_LOGIN_MESSAGE %>" /><br>
                         </td>
-                      </imart:condition>  
                     </tr>
-                    
-                    <tr name="daikoHide">
+                    </imart:condition>  
+                    <imart:decision case="<%= alterLoginFlgTop %>" value="<%= CodeConstant.NONLOGIN %>">
+                    <tr>
                         <th>
                             <a href="/imart/skf/Skf3090Sc008/init" class="imui-accent" style="margin-left: 8px">
                             	<nfwui:LabelBox id="osiraseMasutaMaintenance" code="<%= MessageIdConstant.SKF1010_SC001_OSIRASE_MASUTA_MAINTENANCE %>" />
@@ -323,8 +338,8 @@
                             <nfwui:LabelBox id="osiraseMasutaMaintenanceMessage" code="<%= MessageIdConstant.SKF1010_SC001_OSIRASE_MASUTA_MAINTENANCE_MESSAGE %>" /><br>
                         </td>
                     </tr>
-
-                    <tr name="daikoHide">
+                    </div> 
+                    <tr>
                       <th>
                           <a href="/imart/skf/Skf3090Sc004/init" class="imui-accent" style="margin-left: 8px">
                           	<nfwui:LabelBox id="zyugyoinMasutaMaintenance" code="<%= MessageIdConstant.SKF1010_SC001_ZYUGYOIN_MASUTA_MAINTENANCE %>" />
@@ -334,9 +349,8 @@
                           <nfwui:LabelBox id="zyugyoMasutaMaintenanceMessage" code="<%= MessageIdConstant.SKF1010_SC001_ZYUGYOIN_MASUTA_MAINTENANCE_MESSAGE %>" /><br>
                       </td>
                     </tr>
-                    
-                    <tr name="daikoHide">
-                     <imart:condition validity="${form.level3_2}" negative>
+                    <imart:condition validity="${form.level3_2}" negative>
+                    <tr>
                       <th>
                           <a href="/imart/skf/Skf3090Sc006/init" class="imui-accent" style="margin-left: 8px">
                           	<nfwui:LabelBox id="soshikiMasutaMaintenance" code="<%= MessageIdConstant.SKF1010_SC001_SOSHIKI_MASUTA_MAINTENANCE %>" /> 
@@ -345,8 +359,8 @@
                       <td style="width: 60%;">
                           <nfwui:LabelBox id="soshikiMasutaMaintenanceMessage"  code="<%= MessageIdConstant.SKF1010_SC001_SOSHIKI_MASUTA_MAINTENANCE_MESSAGE %>" /><br>
                       </td>
-                      </imart:condition>
                     </tr>
+                    </imart:condition>
                     <!--
                     <tr>
                       <th width="20%">
@@ -358,7 +372,7 @@
                     </tr>
                     -->
                     
-                    <tr name="daikoHide">
+                    <tr>
                       <th>
                             <a href="/imart/skf/Skf3090Sc001/init" class="imui-accent" style="margin-left: 8px">
                             	<nfwui:LabelBox id="genbutuSikyuKagakuMasutaMaintenance" code="<%= MessageIdConstant.SKF1010_SC001_GENBUTU_SIKYU_KAGAKU_MASUTA_MAINTENANCE %>" />
@@ -369,7 +383,7 @@
                       </td>
                     </tr>
                     
-                    <tr name="daikoHide">
+                    <tr>
                         <th>
                             <a href="/imart/skf/Skf3090Sc003/init" class="imui-accent" style="margin-left: 8px">
                             	<nfwui:LabelBox id="zigyoRyoikiMasutaMaintenance" code="<%= MessageIdConstant.SKF1010_SC001_ZIGYO_RYOIKI_MASUTA_MAINTENANCE %>" />
@@ -379,6 +393,7 @@
                             <nfwui:LabelBox id="zigyoRyoikiMasutaMaintenanceMessage" code="<%= MessageIdConstant.SKF1010_SC001_ZIGYO_RYOIKI_MASUTA_MAINTENANCE_MESSAGE %>" /><br>
                         </td>
                     </tr>
+                    </imart:decision>
          </ul>
         </table>
         </div>
@@ -420,7 +435,7 @@
             <td style="width: 49%; border: none;;background-color: #fdfdff;">
 <imart:condition validity="${form.level5}" negative> 
             <!-- 未処理情報 -->
-            <div name="daikoHide">
+            <imart:decision case="<%= alterLoginFlgTop %>" value="<%= CodeConstant.NONLOGIN %>">
                 <div class="imui-form-container-wide" style="width: 94%;">
                     <table>
                     <nfwui:Title id="rawInformation" code="<%= MessageIdConstant.SKF1010_SC001_RAW_INFORMATION_TITLE %>" titleLevel="2" />
@@ -569,10 +584,10 @@
                                             </tbody>
                                         </table>
                 </div>  
-             </div>
+             </imart:decision>
 </imart:condition>              
             <!-- 個人に関するお知らせ -->
-            <div name="daikoHide">
+            <imart:decision case="<%= alterLoginFlgTop %>" value="<%= CodeConstant.NONLOGIN %>">
                 <div class="imui-form-container-wide" style="width: 94%;">
                     <table>
                             <nfwui:Title id="personalInformationTitle" code="<%= MessageIdConstant.SKF1010_SC001_PERSONAL_INFORMATION_TITLE %>" titleLevel="2"  />
@@ -583,10 +598,10 @@
                         		</div>
                     </table>
                 </div>
-             </div>
+             </imart:decision>
 </nfwui:Form>
               <!-- システムに関するお知らせ -->
-              <div name="daikoHide">
+              <imart:decision case="<%= alterLoginFlgTop %>" value="<%= CodeConstant.NONLOGIN %>">
                 <div class="imui-form-container-wide" style="width: 94%;">
                     <table style="width: 100%;">
                             <nfwui:Title id="sysytemAnnouncementsTitle" code="<%= MessageIdConstant.SKF1010_SC001_SYSTEM_ANNOUNCEMENTS_TITLE %>" titleLevel="2" />
@@ -595,7 +610,7 @@
                         		</div>
                     </table>
                 </div>
-             </div>
+             </imart:decision>
 
 </table>
     </div>
