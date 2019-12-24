@@ -338,7 +338,7 @@ if(menuSesValTop != null){
                             <nfwui:LabelBox id="osiraseMasutaMaintenanceMessage" code="<%= MessageIdConstant.SKF1010_SC001_OSIRASE_MASUTA_MAINTENANCE_MESSAGE %>" /><br>
                         </td>
                     </tr>
-                    </div> 
+
                     <tr>
                       <th>
                           <a href="/imart/skf/Skf3090Sc004/init" class="imui-accent" style="margin-left: 8px">
