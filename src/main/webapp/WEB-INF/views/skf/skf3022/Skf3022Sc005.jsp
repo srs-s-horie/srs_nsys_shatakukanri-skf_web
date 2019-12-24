@@ -235,6 +235,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 						<col name="hdnNyutaikyoKbnCd" caption="" hidden="true"/>
 						<col name="hdnStJyokyoCd" caption="" hidden="true"/>
 						<col name="hdnBhJyokyoCd" caption="" hidden="true"/>
+						<col name="hdnSinseiKbnCd" caption="" hidden="true"/>
 						<col name="chkSelect" caption="チェックボックス" hidden="true"/>
 						
 						</cols>
@@ -286,7 +287,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
  									var hdnTaikyoDate = row.colTaikyoDate;
  									var hdnShoruikanriNo = row.hdnShoruikanriNo;
  									var hdnNyutaikyoKbn = row.hdnNyutaikyoKbnCd;
- 									var hdnApplKbn = row.colSinseiKbn;
+ 									var hdnApplKbn = row.hdnSinseiKbnCd;
  									var hdnShainNoChangeFlg = row.hdnShainChangeFlg;
 									
  									$("#hdnTeijiNo").val(hdnTeijiNo);
