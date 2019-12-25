@@ -82,7 +82,7 @@ $(function(){
 	});
 	
     // リストテーブルの確認欄のアイコンをクリックした時のイベント
-    onCellSelectSupport = function(rowId, iCol, cellContent, e) {
+    onCellSelectShain = function(rowId, iCol, cellContent, e) {
     	$("#targetRowId").val(rowId);
     }
 });
@@ -147,7 +147,7 @@ $(function(){
 		</script>
 
 		<imui:listTable id="popShainList" name="popShainList"
-		data="${form.popListTableList}" onCellSelect="onCellSelectSupport"
+		data="${form.popListTableList}" onCellSelect="onCellSelectShain"
 		width="550" height="200" multiSelect="false">
 		<pager rowNum="10" />
 		<cols>
