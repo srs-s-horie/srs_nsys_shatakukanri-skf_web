@@ -72,17 +72,6 @@ if(menuSesValTop != null){
                         </td>
                     </tr> 
                     
-                    <!--
-                    <tr>
-                        <th width="20%">
-                            <a href="http://localhost:8080/imart/skf/Skf3090Sc004/init?menuFlg=1" class="imui-accent" style="margin-left: 8px">備品希望申請</a>
-                        </th>
-                        <td width="30%">
-                            <font>備品を希望する場合に作成する申請です。<br>　　　</font>
-                        </td>
-                    </tr> 
-                    -->
-                    
                     <tr>
                         <th>
                             <a href="/imart/skf/Skf2010Sc007/init?confirmationKbn=2" class="imui-accent" style="margin-left: 8px">
@@ -130,17 +119,7 @@ if(menuSesValTop != null){
                       </td>
                       </tr>
                       </imart:condition>
-                    <!--
-                    <tr>
-                      <th width="20%">
-                          <a href="../S0011/S0011_ShatakuSearchPage.html" class="imui-accent" style="margin-left: 8px">申請書類を承認する（閲覧用）</a>
-                      </th>
-                      <td width="30%">
-                          <font>申請書類の申請状況を確認します。<br>　　　</font>
-                      </td>
-                    </tr>
-                    -->
-                    
+                
                     <!-- スペース-->
                     <tr style="border:none">
                        <td style="border:none">
@@ -196,7 +175,7 @@ if(menuSesValTop != null){
                             </a>
                         </th>
                         <td style="width: 60%;">
-                            <nfwui:LabelBox id="kariageKohoBukkenTeijiMessage" code="<%= MessageIdConstant.SKF1010_SC001_KARIAGE_KOHO_BUKKEN_TEIJI_MESSAGE %>" />
+                            <nfwui:LabelBox id="kariageKohoBukkenTeijiMessage" code="<%= MessageIdConstant.SKF1010_SC001_KARIAGE_KOHO_BUKKEN_TEIJI_MESSAGE %>" /><br>
                         </td>
                     </tr>
                     <tr>
@@ -282,7 +261,7 @@ if(menuSesValTop != null){
                             </a>
                         </th>
                         <td style="width: 60%;">
-                            <nfwui:LabelBox id="hoteiTyosyoDataKanriMessage" code="<%= MessageIdConstant.SKF1010_SC001_HOTEI_TYOSYO_DATA_KANRI_MESSAGE %>" />
+                            <nfwui:LabelBox id="hoteiTyosyoDataKanriMessage" code="<%= MessageIdConstant.SKF1010_SC001_HOTEI_TYOSYO_DATA_KANRI_MESSAGE %>" /><br>
                         </td>
                     </imart:condition>
                     </tr>
@@ -440,7 +419,7 @@ if(menuSesValTop != null){
                     <table>
                     <nfwui:Title id="rawInformation" code="<%= MessageIdConstant.SKF1010_SC001_RAW_INFORMATION_TITLE %>" titleLevel="2" />
                                 <tr>
-                                                                        <table class="imui-form-search-condition" style="width:100%;">
+                                      <table class="imui-form-search-condition" style="width:100%;">
                                             <tbody>
                                                 <tr>
                                                     <th style="width:520px;">
@@ -453,7 +432,7 @@ if(menuSesValTop != null){
                                                 </tr>
                                                 <tr>
                                                     <td style="text-align:left;">
-                                                    	<nfwui:LabelBox id="syatakuNyukyoNotKibo" code="<%= MessageIdConstant.SKF1010_SC001_SYATAKU_NYUKYO_NOT_KIBO %>" />
+                                                    	<nfwui:LabelBox id="syatakuNyukyoNotKibo" code="<%= MessageIdConstant.SKF1010_SC001_SYATAKU_NYUKYO_NOT_KIBO %>" /><br>
                                                     </td>
                                                     <td style="text-align:center;"   colspan="5" >
                                                      <nfwui:Link id="nyutaikyoCount1" name="nyutaikyoCount1" label="${form.nyutaikyoCount1}件" use="anchor" href="/imart/skf/Skf3022Sc005/init" />
@@ -461,7 +440,7 @@ if(menuSesValTop != null){
                                                 </tr>
                                                 <tr>
                                                     <td style="text-align:left;">
-                                                        <nfwui:LabelBox id="taikyoTodokeNotSinsei" code="<%= MessageIdConstant.SKF1010_SC001_TAIKYO_TODOKE_NOT_SINSEI %>" />
+                                                        <nfwui:LabelBox id="taikyoTodokeNotSinsei" code="<%= MessageIdConstant.SKF1010_SC001_TAIKYO_TODOKE_NOT_SINSEI %>" /><br>
                                                     </td>
                                                     <td style="text-align:center;"   colspan="5" >
                                                      <nfwui:Link id="nyutaikyoCount2" name="nyutaikyoCount2" label="${form.nyutaikyoCount2}件" use="anchor" href="/imart/skf/Skf3022Sc005/init" />
@@ -472,10 +451,10 @@ if(menuSesValTop != null){
                                         <table class="imui-form-search-condition" style="width:100%;">
                                             <tbody>
                                                 <tr>
-                                                    <th style="width:520px;">
+                                                    <th style="width:420px;">
                                                     <nfwui:LabelBox id="lblMessage2" code="<%= MessageIdConstant.SKF1010_SC001_MESSAGE %>" />
                                                     </th>
-                                                    <th style="width:40px;text-align:center">
+                                                    <th style="width:40px;text-align:center;">
                                                     <nfwui:LabelBox id="lblHonsya" code="<%= MessageIdConstant.SKF1010_SC001_HONSYA %>" />
                                                     </th>
                                                     <th style="width:40px;text-align:center">
