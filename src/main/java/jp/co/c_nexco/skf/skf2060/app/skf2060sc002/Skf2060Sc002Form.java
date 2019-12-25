@@ -78,5 +78,8 @@ public class Skf2060Sc002Form extends NfwfileScDwdForm {
 	private String hdnCandidateNo;
 	//添付ファイル番号
 	private String hdnAttachedNo;
+	
+	// 選択された借上候補物件
+	private String selectedRadioCandidateNo;
 
 }

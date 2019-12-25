@@ -231,12 +231,9 @@
 <script type="text/javascript">
 (function($) {		
 	$(document).ready(function() {	
-		var applStatus = '<%= form.getApplStatus() %>';
-		var sentakuZumi = '選択済';
-		var sentakuShinai = '選択しない';
 		var checkCandidateNo = $("#checkCandidateNo").val();
 		//選択物件番号の行のラジオボタンをチェックする
-		if(applStatus == sentakuZumi || applStatus == sentakuShinai){
+		if(checkCandidateNo != null && checkCandidateNo != ""){
 			$("#radioCandidateNo_"+checkCandidateNo).prop('checked', true);
 		}
 		//ラジオボタンを入力不可能にする

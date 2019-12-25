@@ -182,7 +182,7 @@
 												</c:forEach>                
                                                 <tr>
                                                     <td style="text-align:center;">
-                                                    <input type="radio" id="radioCandidateNoNone" name="radioCandidateNo" value="0" tabindex="1" />
+                                                    <input type="radio" id="radioCandidateNo_0" name="radioCandidateNo" value="0" tabindex="1" />
                                                     </td>
                                                     <td style="text-align:left;">
 														選択しない
@@ -241,6 +241,7 @@
 <input type="hidden" name="applNo" id="applNo" value="${form.applNo}" />　<!-- 申請書類管理番号 -->
 <!-- 前画面からの値取得用終わり -->
 <input type="hidden" name="teijiKaisu" id="teijiKaisu" value="${form.teijiKaisu}" />　<!-- 提示回数 -->
+<input type="hidden" name="hdnRadioCandidateNo" id="selectedRadioCandidateNo" value="${form.selectedRadioCandidateNo}" />　<!-- 選択されたラジオボタン -->
 <input type="hidden" name="hdnCandidateNo" id="sendCandidateNo" value="" /><!-- 添付ファイルダウンロード用借上候補物件番号 -->
 <input type="hidden" name="hdnAttachedNo" id="sendAttachedNo" value="" /><!-- 添付ファイルダウンロード用添付ファイル番号 -->
 <!-- 隠し項目終わり -->
@@ -257,6 +258,12 @@
 		}else{
 			$("[name=radioCandidateNo]").prop('disabled', true);
 		}
+		
+		var selectedRadioCandidateNo = $("#selectedRadioCandidateNo").val();
+		if(selectedRadioCandidateNo != null && selectedRadioCandidateNo != ""){
+			$("#radioCandidateNo_"+selectedRadioCandidateNo).prop('checked', true);
+		}
+		
 	});
 	
 	//添付ファイルリンククリック時
@@ -268,7 +275,7 @@
 	//ドロップダウン非同期処理
 	$("#riyuDropdown").bind('change', function() {
 		var riyuValue = $("#riyuDropdown").val();
-		if(riyuValue == <%= CodeConstant.FUYO_RIYU_OTHERS %>){
+		if(riyuValue == <%= CodeConstant.RELATION_OTHERS %>){
 			$("#biko").prop('disabled', false);
 		}else{
 			$("#biko").prop('disabled', true);

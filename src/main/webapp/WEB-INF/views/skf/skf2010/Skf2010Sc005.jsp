@@ -244,7 +244,7 @@
                                             <nfwui:PopupButton id="supportName" name="supportName" value="支援"
                                             cssClass="imui-small-button" use="popup"
                                             screenUrl="skf/Skf2010Sc001/init"
-                                            popupWidth="650" popupHeight="700"
+                                            popupWidth="640" popupHeight="800"
                                             modalMode="true" />
                                         </th>
                                         <td style="width: 180px;" colspan="2">

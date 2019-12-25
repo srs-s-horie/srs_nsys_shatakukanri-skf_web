@@ -83,7 +83,7 @@ $(function(){
 	});
 	
     // リストテーブルの確認欄のアイコンをクリックした時のイベント
-    onCellSelect = function(rowId, iCol, cellContent, e) {
+    onCellSelectContract = function(rowId, iCol, cellContent, e) {
     	$("#targetRowId").val(rowId);
     }
 });
@@ -145,7 +145,7 @@ $(function(){
 			})(jQuery);
 		</script>
 		<imui:listTable id="popOwnerInfoList" name="popOwnerInfoList"
-		data="${form.popListTableList}" onCellSelect="onCellSelect"
+		data="${form.popListTableList}" onCellSelect="onCellSelectContract"
 		width="550" height="200" multiSelect="false" autoEncode="true">
 		<pager rowNum="${form.listTableMaxRowCount}"/>
 		<cols>

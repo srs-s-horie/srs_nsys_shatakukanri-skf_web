@@ -168,15 +168,15 @@
                                     <nfwui:PopupButton id="support" name="support" value="支援"
                                         cssClass="imui-small-button" use="popup"
                                         screenUrl="skf/Skf2010Sc001/init"
-                                        popupWidth="650" popupHeight="700"
-                                        modalMode="false"  tabindex="5"/>
+                                        popupWidth="640" popupHeight="800"
+                                        modalMode="true"  tabindex="5"/>
                                 </div>
                                 <nfwui:LabelBox id="lblCandidatePersonName" code="<%= MessageIdConstant.SKF2060_SC004_CANDIDATE_PERSON_NAME %>"/>
                                 &nbsp;&nbsp;
                                 
                             </th>
                             <td colspan="2">
-                                <input type="hidden" name="candidatePersonNo" id="candidatePersonNo" value="${form.candidatePersonNo}" />
+                                <input type="hidden" name="candidatePersonNo" id="shainNo" value="${form.candidatePersonNo}" />
                                 <input name="candidatePersonName" id="candidatePersonName" placeholder="例 中日本　一郎"
                                        value="${f:h(form.candidatePersonName)}" readonly="readonly" tabindex="6" onKeyDown="candidateName_KeyDown(event)" ></input>
                             </td>
@@ -230,7 +230,7 @@
                         </tr>
                     </table>
                     <div class="align-L">
-                        <nfwui:Button id="search" name="search" value="検索" cssClass="imui-small-button" 
+                        <nfwui:Button id="Skf2060Sc004Search" name="Skf2060Sc004Search" value="検索" cssClass="imui-small-button" 
                             url="skf/Skf2060Sc004/search" formId="form" tabindex="13" />
                     </div>
                 </div>
@@ -311,5 +311,8 @@
     <input type="hidden" id="paramApplStatus" name="applStatus" value="" />
     <input type="hidden" name="backUrl" value="skf/Skf2060Sc004/init" />
 </nfwui:Form>
+<!-- 隠し項目 -->
+<input type="hidden" name="insertFormName" id="insertFormName" value="candidatePersonName" /> <!-- 支援ポップアップ社員名受け取り用 -->
+<!-- 隠し項目終わり -->
 
 <!-- コンテンツエリア　ここまで -->
