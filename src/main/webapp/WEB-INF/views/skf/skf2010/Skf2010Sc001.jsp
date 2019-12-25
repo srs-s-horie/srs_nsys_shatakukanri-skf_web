@@ -82,12 +82,12 @@ $(function(){
 	});
 	
     // リストテーブルの確認欄のアイコンをクリックした時のイベント
-    onCellSelect = function(rowId, iCol, cellContent, e) {
+    onCellSelectSupport = function(rowId, iCol, cellContent, e) {
     	$("#targetRowId").val(rowId);
     }
 });
 </script>
-<div id="imui-container" style="width:650px;min-width:650px;max-width: 650px;">
+<div id="imui-container" style="width:620px;min-width:620px;max-width: 620px;">
 <!-- コンテンツエリア -->
 <div class="imui-form-container-wide" width="550px" style="width:100%; min-width:550px;max-width: 550px; margin-left: 10px;">
 <div style="height:30px; bottom:10px">検索条件を指定して、<font color="green">「検索」</font>をクリックしてください。</div>
@@ -147,7 +147,7 @@ $(function(){
 		</script>
 
 		<imui:listTable id="popShainList" name="popShainList"
-		data="${form.popListTableList}" onCellSelect="onCellSelect"
+		data="${form.popListTableList}" onCellSelect="onCellSelectSupport"
 		width="550" height="200" multiSelect="false">
 		<pager rowNum="10" />
 		<cols>

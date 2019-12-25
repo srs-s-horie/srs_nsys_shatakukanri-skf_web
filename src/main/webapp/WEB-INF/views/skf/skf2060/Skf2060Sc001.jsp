@@ -37,7 +37,7 @@
                                             <nfwui:PopupButton id="support" name="support" value="支援"
                                             cssClass="imui-small-button" use="popup"
                                             screenUrl="skf/Skf2010Sc001/init"
-                                            popupWidth="650" popupHeight="700"
+                                            popupWidth="640" popupHeight="800"
                                             modalMode="true" disabled="${form.supportDisabled}" tabindex="3" />
                                         </nobr>   
                                         </th>
