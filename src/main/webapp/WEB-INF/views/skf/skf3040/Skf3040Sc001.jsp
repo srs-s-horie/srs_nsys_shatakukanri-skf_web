@@ -60,7 +60,7 @@
 
 	<div style="width:100%;" >
 	    <div class="imui-form-container-wide">
-			<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3090_SC001 %>" />
+			<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3040_SC001 %>" />
 				<nfwui:Table use="search">
 					<tbody>
 						<tr>
