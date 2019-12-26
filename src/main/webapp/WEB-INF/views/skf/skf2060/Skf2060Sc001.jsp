@@ -356,6 +356,7 @@
 							var map = new Object();
 							map['shatakuName'] = $("#shatakuName").val();
 							map['address'] = $("#address").val();
+							$(".imui-box-caution, .imui-box-warning").remove();
 							
 							nfw.common.doAjaxAction("skf/Skf2060Sc001/CheckAsync", map, true, function(data){
 								var formId = "form";

@@ -29,7 +29,7 @@
 									<nfwui:LabelBox id="lblShainNo" code="<%=MessageIdConstant.SKF3090_SC004_SHAIN_NO %>" />
 								</th>
 								<td style="width: 15%;">
-								<imui:textbox id="shainNo" name="shainNo" value="${form.shainNo}"  placeholder="例 00123456（半角）" tabindex="3" />
+								<imui:textbox style="ime-mode:disabled;" id="shainNo" name="shainNo" value="${form.shainNo}"  placeholder="例 00123456（半角）" tabindex="3" />
 								
 								<th style="width: 10%;">
 									<nfwui:LabelBox id="lblCompany" code="<%=MessageIdConstant.SKF3090_SC004_COMPANY %>" />
