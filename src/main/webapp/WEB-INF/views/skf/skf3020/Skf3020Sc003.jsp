@@ -99,7 +99,7 @@
 				var dialogTitle = "確認";
 				var dialogMessage = "転任者調書データを取り込みます。よろしいですか？";
 				var url = "skf/Skf3020Sc003/import";
-				nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "CANCEL", this, true);
+				nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
 			}
 			
 			/*
