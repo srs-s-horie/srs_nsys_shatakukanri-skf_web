@@ -10,354 +10,182 @@
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
+<script src="scripts/skf/skfCommon.js"></script>
 
 <%-- コンテンツエリア --%>
 <style type="text/css">
 
 </style>
 
-<!-- コンテンツエリア:モックのまま -->
-<!-- 以下ツールバー -->
-		<div class="imui-toolbar-wrap">
-			<div class="imui-toolbar-inner">
-				<!-- ツールバー左側 -->
-				<ul class="imui-list-toolbar">
-					<!-- 戻る -->
-					<li>
-						<a class="imui-toolbar-icon" title="戻る" tabindex="23" onclick="back1()" href="javascript:void(0);">
-							<span class="im-ui-icon-common-16-back"></span>
-						</a>
-					</li>
-				</ul>
-				<!-- ツールバー右側 -->
-				<ul class="imui-list-box-toolbar-utility">
-					<li>
-						<a onclick="back()" class="imui-toolbar-icon" tabindex="16">
-							<span class="im-ui-icon-common-16-home"></span>
-							社宅TOP
-						</a>
-					</li>
 
-				</ul>
-			</div>
+<!-- コンテンツエリア -->
+<nfwui:Form id="form" name="form" modelAttribute="form">
+	<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3050_SC001%>" />
+	<input type="hidden" name="shainListData" id="shainListData" value="" /><!-- 社員情報リスト -->
+	<input type="hidden" name="hdnPageMax" id="hdnPageMax" value="${form.listTableMaxRowCount}" /><!-- ページ最大数 -->
+	<input type="hidden" name="listPage" id="listPage" value="${form.listPage}" />
+	<div class="imui-form-container-wide" >
+		<div id="listTableArea">
+			<imui:listTable id="mainList" process="jssp" autoEncode="false" autoWidth="true" rowNumbers="false"
+				autoResize="true" multiSelect="false" data="${form.listTableData}" page="${form.listPage}" onPaging="onPaging"
+				 tabindex="1">
+				<pager rowNum="${form.listTableMaxRowCount}" />
+				<cols sortable="false">
+				<col name="colShainNo" caption="社員番号" width="120" sortable="false" align="left" wrap="true"/>
+				<col name="colShainName" caption="社員氏名" width="200" sortable="false" align="left" wrap="true"/>
+				<col name="colShozoku" caption="所属"　width="250" sortable="false" align="left" wrap="true"/>
+				<col name="colTxtShainNo" caption="社員番号" width="120" sortable="false" align="center" wrap="true"/>
+				<col name="colShainNameJugyoin" caption="従業員マスタ:社員氏名"  width="200" sortable="false" align="left" wrap="true"/>
+				<col name="colShozokuJugyoin" caption="従業員マスタ:所属" width="250" sortable="false" align="left" wrap="true"/>
+				<col name="hdnCompanyCd" caption="" hidden="true"/>
+				<col name="hdnShainNoChangeFlg" caption="" hidden="true"/>
+				<col name="hdnUpdateDateSS" caption="" hidden="true"/>
+				<col name="hdnUpdateDateSL" caption="" hidden="true"/>
+				<col name="hdnShatakuKanriId" caption="" hidden="true"/>
+				<col name="hdnUpdateDateNew" caption="" hidden="true"/>
+				<col name="hdnFlg" caption="" hidden="true"/>
+				<col name="hdnTaikyoDate" caption="" hidden="true"/>
+				<col name="hdnKyojushaKbn" caption="" hidden="true"/>
+				<col name="hdnTxtBoxName" caption="" hidden="true"/>
+				</cols>
+			</imui:listTable>
 		</div>
+		<br />
 		<script type="text/javascript">
-			/**
-			* 一つ前の画面へ戻る
-			*/
-			function back1() {
-				showConfirm(W_GFK_0002, function() {
-					history.back()
-				});
-			}
-
-			/**
-			* メニュー画面へ遷移する。
-			*/
-			function back() {
-				showConfirm(W_GFK_0007, function() {
-					$.StandardPost("../common/top.html");
-				});
-			}
-		</script>
-
-<!-- 		<div class="alertDiv imui-box-warning" style="padding: 15px;margin-top: 10px;text-align:left;" id="errMainDiv"> -->
-<!-- 			<div class="alert-errorIcon alert" style="margin:0;padding:0;margin-right:10px;"> -->
-<!-- 			</div>  -->
-<!-- 		</div> -->
-
-		<!-- コンテンツエリア -->
-<!--
-			<div class="imui-form-container-wide"  style="width:1280px;">
-				<div class="imui-chapter-title"><h2>検索条件</h2></div>
-				-->
-
-<!--
-			</div>
-			-->
-			<!-- 明細＆細目未満 -->
-			<div class="imui-form-container-wide"  style="width:1280px;">
-			
-				<!-- 明細部 -->
-				<!--
-				<form id="sampleList1">
-					<div class="imui-chapter-title" ><h2>月次処理状況照会</h2></div>
-					-->
-					<script type="text/javascript">
-					  (function($){
-					    $.imui.util.loadCSS("ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
-					  })(jQuery);
-					</script>
-
-					<table name="imui-8eqlrzst4hv6std" id="sampleListTable1"></table>
-
-					<div id="sampleListTable1-pager"></div>
-
-					<script type="text/javascript">
-						(function() {
-							function imuiListTable() {
-								var grid = jQuery('#sampleListTable1');
-								var parameter = {
-									"multiselect":false,
-									"pager":false,
-									"colNames":[
-										"",
-										"社員番号",
-										"社員氏名",
-										"所属",
-										"社員番号",
-										"従業員マスタ:社員氏名",
-										"従業員マスタ:所属"
-
-									],
-									"datatype":"local",
-									"errorCell":function(xhr) { imuiShowErrorMessage($(xhr.responseText).find('dt').text()); },
-									"rowNum":1000,
-									"width":"1200",
-									"shrinkToFit":"true",
-									"cellsubmit":"clientArray",
-									"loadonce":true,
-									"colModel":[
-										{"hidden":true,"name":"id","key":true}
-										,{"name":"A001","width":"120","align":"center"}<!-- 社員番号 -->
-										,{"name":"A002","width":"200","align":"left"}<!-- 社員氏名 -->
-										,{"name":"A003","width":"300","align":"left"}<!-- 所属 -->
-										,{"name":"A004","width":"120","align":"left"}<!-- 社員番号 -->
-										,{"name":"A005","width":"200","align":"left"}<!-- 従業員マスタ:社員氏名 -->
-										,{"name":"A006","width":"120","align":"left"}<!-- 従業員マスタ:所属 -->
-									],
-									"rownumbers":false,
-									"height":"352"
-								};
-								parameter.data = [
-									{
-										"id":1,
-										"A001":"K0000001",
-										"A002":"中日本　○○１",
-										"A003":"本社総務本部・人事部",
-										"A004":"<input type='text' value='26990001' style='width:95%'></input>",
-										"A005":"",
-										"A006":"",
-									},
-									{
-										"id":2,
-										"A001":"K0000002",
-										"A002":"中日本　○○２",
-										"A003":"本社総務本部・人事部",
-										"A004":"<input type='text' value='26990002' style='width:95%'></input>",
-										"A005":"",
-										"A006":"",
-									},
-									{
-										"id":3,
-										"A001":"K0000003",
-										"A002":"中日本　○○３",
-										"A003":"本社総務本部・人事部",
-										"A004":"<input type='text' value='26990003' style='width:95%'></input>",
-										"A005":"",
-										"A006":"",
-									},
-									{
-										"id":4,
-										"A001":"K0000004",
-										"A002":"中日本　○○４",
-										"A003":"東京支社南アルプス工事事務所",
-										"A004":"<input type='text' value='26990004' style='width:95%'></input>",
-										"A005":"",
-										"A006":"",
-									},
-									{
-										"id":5,
-										"A001":"K0000005",
-										"A002":"中日本　○○５",
-										"A003":"東京支社南アルプス工事事務所",
-										"A004":"<input type='text' value='26990005' style='width:95%'></input>",
-										"A005":"",
-										"A006":"",
-									},
-									{
-										"id":6,
-										"A001":"K0000006",
-										"A002":"中日本　○○６",
-										"A003":"東京支社環境・技術管理部",
-										"A004":"<input type='text' value='26990006' style='width:95%'></input>",
-										"A005":"",
-										"A006":"",
-									},
-									{
-										"id":7,
-										"A001":"K0000007",
-										"A002":"中日本　○○７",
-										"A003":"東京支社環境・技術管理部",
-										"A004":"<input type='text' value='26990007' style='width:95%'></input>",
-										"A005":"",
-										"A006":"",
-									},
-									{
-										"id":8,
-										"A001":"K0000008",
-										"A002":"中日本　○○８",
-										"A003":"東京支社総務企画部",
-										"A004":"<input type='text' value='26990008' style='width:95%'></input>",
-										"A005":"",
-										"A006":"",
-									},
-									{
-										"id":9,
-										"A001":"K0000009",
-										"A002":"中日本　○○９",
-										"A003":"東京支社総務企画部",
-										"A004":"<input type='text' value='26990009' style='width:95%'></input>",
-										"A005":"",
-										"A006":"",
-									},
-									{
-										"id":10,
-										"A001":"K0000010",
-										"A002":"中日本　○○１０",
-										"A003":"東京支社総務企画部",
-										"A004":"<input type='text' value='26990010' style='width:95%'></input>",
-										"A005":"",
-										"A006":"",
-									},
-									{
-										"id":11,
-										"A001":"K0000011",
-										"A002":"中日本　○○１１",
-										"A003":"東京支社総務企画部",
-										"A004":"<input type='text' value='26990011' style='width:95%'></input>",
-										"A005":"",
-										"A006":"",
-									},
-									{
-										"id":12,
-										"A001":"K0000012",
-										"A002":"中日本　○○１２",
-										"A003":"東京支社総務企画部",
-										"A004":"<input type='text' value='26990012' style='width:95%'></input>",
-										"A005":"",
-										"A006":"",
-									},
-									{
-										"id":13,
-										"A001":"K0000013",
-										"A002":"中日本　○○１３",
-										"A003":"東京支社総務企画部",
-										"A004":"<input type='text' value='26990013' style='width:95%'></input>",
-										"A005":"",
-										"A006":"",
-									},
-									{
-										"id":14,
-										"A001":"K0000014",
-										"A002":"中日本　○○１４",
-										"A003":"東京支社総務企画部",
-										"A004":"<input type='text' value='26990014' style='width:95%'></input>",
-										"A005":"",
-										"A006":"",
-									},
-									{
-										"id":15,
-										"A001":"K0000015",
-										"A002":"中日本　○○１５",
-										"A003":"東京支社総務企画部",
-										"A004":"<input type='text' value='26990014' style='width:95%'></input>",
-										"A005":"",
-										"A006":"",
-									},
-								];
-
-								grid.jqGrid(parameter);
-
-//								// ヘッダ結合
-//								grid.jqGrid('setGroupHeaders', {
-//									useColSpanStyle: true,
-//									groupHeaders:[
-//										{startColumnName: 'shataku_status', numberOfColumns: 2,  titleText: '社宅提示'},
-//										{startColumnName: 'bihin_status', numberOfColumns: 2,  titleText: '備品提示'},
-//									]
-//								});
-
-// as
-//									// 1行づつ網掛け挑戦
-//									jQuery('#sampleListTable1').jqGrid({
-//										loadComplete: function () {
-//											var rowIDs = jQuery('#sampleListTable1').getDataIDs(); 
-//											$.each(rowIDs, function (i, item) {
-//												if (i % 2 == 0) {
-//													$('#'+item).removeClass('ui-widget-content');
-//													$('#'+item).addClass('testcss');
-//												}
-//											});
-//										},
-//									});
-//									jQuery('#sampleListTable1').jqGrid({
-//										gridComplete: function () {
-//											$('tbody > tr:even', this).addClass('ui-row-even');
-//										}
-//									});
-// ae
-
-								grid.jqGrid('navGrid','#sampleListTable1-pager',{
-									edit: false,
-									add: false,
-									del: false,
-									search: false,
-								});
-
-								var gboxGridId     = 'gbox_sampleListTable1';
-								var gboxGrid       = jQuery('#' + gboxGridId);
-								var parentWidthOld = Number.MIN_VALUE;
-							}
-
-							(function($) {
-								$(document).ready(function() {
-									imuiListTable();
-								});
-							})(jQuery);
-
-						})();
-					</script>
-					<style type="text/css">  
-						<!--
-							/* ヘッダテキスト中央寄せ */
-							.ui-jqgrid .ui-jqgrid-htable th div {
-								display:table-cell;
-							    height: 32px;
-								text-align:center;
-								vertical-align:middle;
-							}
-							/** 1行間隔で網掛け挑戦
-							.testcss {
-								border: 1px solid #a6c9e2;
-								background-color: #e6e6fa ;
-								color: #222222;
-							}
-
-							.ui-row-even {
-								background-color: #e6e6fa ;
-							}
-							*/
-
-							/* データ行の改行許容 */
-							#sampleListTable1 tr td{
-								white-space:normal;
-							}
-						-->
-					</style>
-					<br>
-			<div class="align-R">
-				<input style="width:150px;" type="button" value="社員情報確認" class="imui-medium-button" onclick="" />
-				<input style="width:150px;" type="button" value="登録" class="imui-medium-button" onclick=""/>
-			</div>
-
+			//社員情報リスト生成
+			function setShainListData(){
+                $("#regist").attr("disabled", true); // 登録ボタンを非活性にする
+                $('#regist').addClass("imui-disabled-button");
+				//選択行
+				var shainList=[];
+				var grid = $('#mainList');
+				var rows = grid.getRowData(); //get data
+				for (var idx in rows) {
+					var row = rows[idx];
+					var page = $('#mainList').getGridParam('page');
+					var pagem = $('#hdnPageMax').val();
+					var pagemax =  Number(pagem);
+					var rowidx = Number(idx) + 1 + ((page - 1) * pagemax);
+					$("#listPage").val(page);
 					
-				</form>
-
-		</div>
-
+					//行データ取得
+					var boxName= row.hdnTxtBoxName;
+					var tempStr = [];
+					var shainNo = row.colShainNo;//社員番号
+					var shainName = row.colShainName;//社員名
+					var txtShainNo = $('#'+ boxName).val();//社員番号(txt)
+					var shainNameJugyoin = row.colShainNameJugyoin;//従業員マスタ:社員氏名
+					var shozokuJugyoin = row.colShozokuJugyoin//従業員マスタ:所属
+					var updateDateNew = row.hdnUpdateDateNew;//入退居予定更新日時
+					
+					tempStr.push(shainNo);
+					tempStr.push(shainName);
+					tempStr.push(txtShainNo);
+					tempStr.push(shainNameJugyoin);
+					tempStr.push(shozokuJugyoin);
+					tempStr.push(updateDateNew);
+					tempStr.push(boxName);
+					
+					shainList.push(tempStr.join(","));		//配列で格納						
+					
+				}
+				//送信データ設定
+				$("#shainListData").val(shainList.join(";"));
+				
+				nfw.common.submitForm("form", "skf/Skf3050Sc001/shainConfirm");
+			};
 			
+			function setRegistListData(){
+				//選択行
+				var shainList=[];
+				var grid = $('#mainList');
+				var rows = grid.getRowData(); //get data
+				for (var idx in rows) {
+					var row = rows[idx];
+					var page = $('#mainList').getGridParam('page');
+					var pagem = $('#hdnPageMax').val();
+					var pagemax =  Number(pagem);
+					var rowidx = Number(idx) + 1 + ((page - 1) * pagemax);
+					$("#listPage").val(page);
+					
+					//行データ取得
+					var boxName= row.hdnTxtBoxName;
+					var tempStr = [];
+					var shainNo = row.colShainNo;//社員番号
+					var shainName = row.colShainName;//社員名
+					var txtShainNo = $('#'+ boxName).val();//社員番号(txt)
+					var shainNameJugyoin = row.colShainNameJugyoin;//従業員マスタ:社員氏名
+					var shozokuJugyoin = row.colShozokuJugyoin//従業員マスタ:所属
+					var shainNoChangeFlg = row.hdnShainNoChangeFlg
+					var shatakuKanriId = row.hdnShatakuKanriId
+					var companyCd = row.hdnCompanyCd
+					var flg = row.hdnFlg
+					var taikyoDate = row.hdnTaikyoDate
+					var kyojushaKbn = row.hdnKyojushaKbn
+					var updateDateSL = row.hdnUpdateDateSL
+					var updateDateSS = row.hdnUpdateDateSS
+					var updateDateNew = row.hdnUpdateDateNew;//入退居予定更新日時
+					
+					tempStr.push(shainNo);
+					tempStr.push(shainName);
+					tempStr.push(txtShainNo);
+					tempStr.push(shainNameJugyoin);
+					tempStr.push(shozokuJugyoin);
+					tempStr.push(shainNoChangeFlg);
+					tempStr.push(shatakuKanriId);
+					tempStr.push(companyCd);
+					tempStr.push(flg);
+					tempStr.push(taikyoDate);
+					tempStr.push(kyojushaKbn);
+					tempStr.push(updateDateSL);
+					tempStr.push(updateDateSS);
+					tempStr.push(updateDateNew);
+					tempStr.push(boxName);
+					
+					shainList.push(tempStr.join(","));		//配列で格納						
+					
+				}
+				//送信データ設定
+				$("#shainListData").val(shainList.join(";"));
+				dialogTitle = "確認";
+				dialogMessage = "社員番号一括設定処理を実行します。よろしいですか？";//infomation.skf.i_skf_3034
+		    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3050Sc001/regist", "ok", "キャンセル", this, true);	
+				//nfw.common.submitForm("form", "skf/Skf3050Sc001/regist");
+			};
+			
+	        $(document).ready(function() {
+	            // 入力された社員番号の変更イベント
+	        	jQuery(document).on("focus", "input", function() {
+	        		 $(this).attr("data-old-val",$(this).val());
+	    		});
+	            
+	        	jQuery(document).on("blur", "input", function() {
+                    var oldVal=($(this).attr("data-old-val")); // 変更前社員番号
+                    var newVal=($(this).val()); // 変更後社員番号
+                    if (oldVal!=newVal)
+                    {
+                        $("#regist").attr("disabled", true); // 登録ボタンを非活性にする
+                        $('#regist').addClass("imui-disabled-button");
+                    }
+	    		});
+				
 
-					</div>
+	        });
+			(function($) {
+				onPaging = function(e,index) {
+	                $("#regist").attr("disabled", true); // 登録ボタンを非活性にする
+	                $('#regist').addClass("imui-disabled-button");
+				}
+			})(jQuery);
+		</script>
+		<div class="align-R">
+			<imui:button id="shainInfoCheck" name="shainInfoCheck" value="社員情報確認" class="imui-medium-button" 
+			style="width: 150px" tabindex="3" disabled="${form.btnShainInfoCheckDisabled}" onclick="setShainListData()"/>
+			<imui:button id="regist" name="regist" value="登録" class="imui-medium-button" 
+			style="width: 150px" tabindex="4" disabled="${form.btnRegistDisabled}" onclick="setRegistListData()"/>
+		</div>
 	</div>
+</div>
+</nfwui:Form>
 <!-- コンテンツエリア　ここまで -->

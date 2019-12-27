@@ -576,8 +576,11 @@
 								<nfwui:LabelBox id="lblParkingRentalAdjust" code="<%=MessageIdConstant.SKF3010_SC006_PARKING_RENTAL_ADJUST %>" />
 							</th>
 							<td colspan="2">
-								<nfwui:NumberBox name="parkingRentalAdjust" id="parkingRentalAdjust" cssClass="${form.parkingRentalAdjustError}" cssStyle="width:100px;" 
-								inputFormat="n0" maxlength="10"  max="99999999" min="-999999" tabindex="54"/>&nbsp;円
+							<imui:textbox id="parkingRentalAdjust" name="parkingRentalAdjust" style="text-align: right;width:100px;ime-mode: disabled;" pattern="\d*"
+								maxlength="6" value="${f:h(form.parkingRentalAdjust)}" class="${form.parkingRentalAdjustError}" tabindex="54" />
+<%-- 								<nfwui:NumberBox name="parkingRentalAdjust" id="parkingRentalAdjust" cssClass="${form.parkingRentalAdjustError}" cssStyle="width:100px;"  --%>
+<%-- 								inputFormat="n0" maxlength="8"  min="-999999" tabindex="54"/> --%>
+								&nbsp;円
 							</td>
 						</tr>
 						<tr>
@@ -1181,8 +1184,8 @@
 						// 登録ボタンクリック
 						enterClick = function() {
 							//MessageIdConstant.I_SKF_3035[{0}を登録します。よろしいですか？]
-							dialogMessage = "保有社宅情報を登録します。よろしいですか？";
-							$("<div>保有社宅情報を登録します。よろしいですか？</div>").imuiMessageDialog({
+							dialogMessage = "借上社宅情報を登録します。よろしいですか？";
+							$("<div>借上社宅情報を登録します。よろしいですか？</div>").imuiMessageDialog({
 								iconType : 'question',
 								title : '確認',
 								modal : true,
@@ -2010,7 +2013,23 @@
 								$("#parkingShiyoMonthFei").text(data.parkingShiyoMonthFei + " 円");
 							});
 						});
-
+						$("#parkingRentalAdjust").bind('focus', function() {
+							// 駐車場調整金額取得
+							var parkingRentalAdjust = $("#parkingRentalAdjust").val();
+							$("#parkingRentalAdjust").val(parkingRentalAdjust.replace(/,/g, ''));
+						});
+						$("#parkingRentalAdjust").bind('blur', function() {
+							// 駐車場調整金額取得
+							var parkingRentalAdjust = Number($("#parkingRentalAdjust").val());
+							$("#parkingRentalAdjust").val(parkingRentalAdjust.toLocaleString());
+						});
+						$("#parkingRentalAdjust").bind('keypress', function(e) {
+							  // 数字以外の不要な文字を削除
+							  var st = String.fromCharCode(e.which);
+							  if ("0123456789".indexOf(st,0) < 0) { return false; }
+							  return true;  
+						});
+						
 						// 参考にしようと思って残してるやつ
 						//添付ファイルリンククリック時
 						$("a[id^='attached_']").click(function(){
