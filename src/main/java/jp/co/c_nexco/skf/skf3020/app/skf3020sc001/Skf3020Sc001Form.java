@@ -1,12 +1,17 @@
+/*
+ * Copyright(c) 2020 NEXCO Systems company limited All rights reserved.
+ */
 package jp.co.c_nexco.skf.skf3020.app.skf3020sc001;
 
-
-import jp.co.c_nexco.nfw.webcore.app.BaseForm;
-
-import java.util.*;
 import lombok.EqualsAndHashCode;
 import jp.co.c_nexco.nfw.webcore.app.PopupForm;
 
+/**
+ * Skf3020Sc001Form 現社宅照会Form
+ * 
+ * @author NEXCOシステムズ
+ *
+ */
 @lombok.Data
 @EqualsAndHashCode(callSuper = true)
 //public class Skf3020Sc001Form extends BaseForm {

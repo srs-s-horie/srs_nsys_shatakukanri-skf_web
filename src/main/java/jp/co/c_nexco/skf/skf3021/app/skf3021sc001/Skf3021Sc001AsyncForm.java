@@ -3,8 +3,6 @@
  */
 package jp.co.c_nexco.skf.skf3021.app.skf3021sc001;
 
-import java.util.List;
-import java.util.Map;
 import jp.co.c_nexco.nfw.webcore.app.AsyncBaseForm;
 import lombok.EqualsAndHashCode;
 

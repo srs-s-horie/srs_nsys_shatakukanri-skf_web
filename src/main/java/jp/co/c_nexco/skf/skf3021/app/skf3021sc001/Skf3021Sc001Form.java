@@ -4,9 +4,9 @@
 package jp.co.c_nexco.skf.skf3021.app.skf3021sc001;
 
 import jp.co.c_nexco.nfw.nfwfile.app.nfwfilescdwd.NfwfileScDwdForm;
-import jp.co.c_nexco.nfw.webcore.app.BaseForm;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 import lombok.EqualsAndHashCode;
 

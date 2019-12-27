@@ -3,11 +3,6 @@
  */
 package jp.co.c_nexco.skf.skf3022.app.skf3022sc004;
 
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.Map;
-
-
 import jp.co.c_nexco.nfw.webcore.app.PopupForm;
 import lombok.EqualsAndHashCode;
 

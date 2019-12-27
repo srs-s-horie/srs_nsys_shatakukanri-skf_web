@@ -6,13 +6,12 @@ package jp.co.c_nexco.skf.skf3021.app.skf3021sc002;
 import java.util.List;
 import java.util.Map;
 
-import jp.co.c_nexco.nfw.webcore.app.BaseForm;
 import jp.co.c_nexco.nfw.webcore.app.PopupForm;
 
 import lombok.EqualsAndHashCode;
 
 /**
- * 入退居申請照会画面Form。
+ * Skf3021Sc002Form 入退居申請照会画面Form。
  * 
  * @author NEXCOシステムズ
  */
