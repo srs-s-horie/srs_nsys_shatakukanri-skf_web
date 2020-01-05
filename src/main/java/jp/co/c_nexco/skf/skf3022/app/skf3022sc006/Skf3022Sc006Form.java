@@ -216,6 +216,9 @@ public class Skf3022Sc006Form extends GridForm {
 	// メッセージ
 	private String sc006Msg;
 
+	/** 運用ガイド */
+	private String operationGuidePath;
+
 	/** タブステータス */
 	// 社宅タブ
 	private Boolean shatakuTabStatus;
@@ -229,7 +232,7 @@ public class Skf3022Sc006Form extends GridForm {
 	private String hdnTabIndex;
 	// 作成完了ボタン押下時メッセージ
 	private String litMessageCreate;
-	// 一次保存ボタン押下時メッセージ
+	// 一時保存ボタン押下時メッセージ
 	private String litMessageTmpSave;
 	// 社宅管理台帳登録
 	private String litMessageShatakuLogin;
@@ -237,6 +240,8 @@ public class Skf3022Sc006Form extends GridForm {
 	private String litMessageKeizokuLogin;
 	// 前に戻るボタン押下時メッセージ
 	private String litMessageBack;
+	// 処理状態
+	private String sc006Status;
 	// JSONラベルリスト
 	private String jsonLabelList;
 	// JSON備品情報 リスト

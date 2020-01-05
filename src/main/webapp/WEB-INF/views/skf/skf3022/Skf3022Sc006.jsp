@@ -16,7 +16,7 @@
 <script type="text/javascript">
 	function back1() {
 		var url="skf/Skf3022Sc005/init?SKF3010_SC005&tokenCheck=0"
-		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？");
+		nfw.common.doBack(url, $("#litMessageBack").val());
 	}
 </script>
 
@@ -27,7 +27,7 @@
 		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3022Sc006/init?SKF3010_SC006&tokenCheck=0" />
 		<!-- ** サーバー連携用 ** -->
 		<!-- 使用料パターンID -->	<input type="hidden" name="hdnSiyouryoId" id="hdnSiyouryoId" value="${form.hdnSiyouryoId}" />
-		<!-- JSON可変ラベルリスト -->	<input type="hidden" name="jsonLabelList" id="jsonLabelList" />
+		<!-- JSON可変ラベルリスト -->	<input type="hidden" name="jsonLabelList" id="jsonLabelList"/>
 		<!-- JSON備品情報 -->		<input type="hidden" name="jsonBihin" id="jsonBihin" />
 		<!-- 入退居区分 -->		<input type="hidden" name="hdnNyutaikyoKbn" id="hdnNyutaikyoKbn" value="${form.hdnNyutaikyoKbn }"/>
 		<!-- 生年月日 -->			<input type="hidden" name="hdnBirthday" id="hdnBirthday" value="${form.hdnBirthday }"/>
@@ -45,6 +45,11 @@
 		<!-- 区画番号1 -->		<input type="hidden" name="hdnKukakuNoOne" id="hdnKukakuNoOne" value="${form.hdnKukakuNoOne }"/>
 		<!-- 区画番号2 -->		<input type="hidden" name="hdnKukakuNoTwo" id="hdnKukakuNoTwo" value="${form.hdnKukakuNoTwo }"/>
 		<!-- 協議中フラグ状態 -->	<input type="hidden" name="sc006KyoekihiKyogichuCheckState" id="sc006KyoekihiKyogichuCheckState" value="${form.sc006KyoekihiKyogichuCheck }"/>
+		<!-- 処理状態 -->			<input type="hidden" name="sc006Status" id="sc006Status" value="${form.sc006Status }"/>
+		<!-- 戻るボタンMSG -->		<input type="hidden" name="litMessageBack" id="litMessageBack" value="${form.litMessageBack }"/>
+		<!-- 作成完了ボタンMSG -->	<input type="hidden" name="litMessageCreate" id="litMessageCreate" value="${form.litMessageCreate }"/>
+		<!-- 一時保存ボタンMSG -->	<input type="hidden" name="litMessageTmpSave" id="litMessageTmpSave" value="${form.litMessageTmpSave }"/>
+		<!-- 台帳登録ボタンMSG -->	<input type="hidden" name="litMessageShatakuLogin" id="litMessageShatakuLogin" value="${form.litMessageShatakuLogin }"/>
 
 		<!-- ** 次月予約登録：パラメータ ** -->
 		<!-- 提示番号 -->			<input type="hidden" name="hdnJigetuYoyakuTeijiNo" id="hdnJigetuYoyakuTeijiNo" value="${form.hdnJigetuYoyakuTeijiNo }"/>
@@ -65,8 +70,8 @@
 		<!-- 利用開始日 -->		<input type="hidden" name="hdnRiyouStartDay" id="hdnRiyouStartDay" value="" />
 
 		<!-- ** 駐車場入力支援：戻り値 ** -->
-		<!-- 駐車場管理番号 -->	<input type="hidden" name="hdnParkingShienParkBlock" id="hdnParkingShienParkBlock" value="" />
-		<!-- 区画番号 -->			<input type="hidden" name="hdnParkingShienParkNo" id="hdnParkingShienParkNo" value="" />
+		<!-- 区画番号 -->			<input type="hidden" name="hdnParkingShienParkBlock" id="hdnParkingShienParkBlock" value="" />
+		<!-- 駐車場管理番号 -->	<input type="hidden" name="hdnParkingShienParkNo" id="hdnParkingShienParkNo" value="" />
 		<!-- 駐車場使用料月額 -->	<input type="hidden" name="hdnParkingShienParkRentalAsjust" id="hdnParkingShienParkRentalAsjust" value="" />
 		<!-- 終了日 -->			<input type="hidden" name="hdnParkingShienEndDay" id="hdnParkingShienEndDay" value="" />
 
@@ -115,9 +120,9 @@
 					<!-- 申請内容-->
 					<td style="width: 7%;">
 						<nfwui:PopupButton id="sc006ShinseiNaiyo" name="sc006ShinseiNaiyo" value="申請内容" use="popup" 
-							cssClass="imui-small-button" popupWidth="650" popupHeight="650"  
+							cssClass="imui-small-button" popupWidth="800" popupHeight="650"  
 							modalMode="true" screenUrl="skf/Skf3021Sc002/init"
-							parameter="hdnShatakuKanriNo:hdnShatakuKanriNo,hdnNyutaikyoKbn:hdnNyutaikyoKbn,hdnShoruikanriNo:hdnShoruikanriNo" 
+							parameter="hdnShainNo:hdnRowShainNo,hdnNyutaikyoKbn:hdnRowNyutaikyoKbn,hdnSyoruiKanriNo:hdnRowApplNo" 
 							disabled="${form.sc006ShinseiNaiyoDisableFlg }" tabindex="3"/> 
 					</td>
 					<!-- 社宅名 -->
@@ -143,12 +148,12 @@
 						<nfwui:LabelBox id="lblSc006NyutaikyoKbn" code="<%=MessageIdConstant.SKF3022_SC006_NYUTAIKYO_KBN %>" style="text-align:center;" />
 					</th>
 					<!-- 社宅提示 -->
-					<th style="width: 7%;text-align:center;">
+					<th style="width: 7%;text-align:center;white-space: nowrap;">
 					<!--	<label style="width:60px;text-align:center;">社宅提示</label> -->
 						<nfwui:LabelBox id="lblSc006ShatakuStts" code="<%=MessageIdConstant.SKF3022_SC006_SHATAKU_STTS %>" style="text-align:center;" />
 					</th>
 					<!-- 備品提示 -->
-					<th style="width: 7%;text-align:center;">
+					<th style="width: 7%;text-align:center;white-space: nowrap;">
 					<!--	<label style="width:60px;text-align:center;">備品提示</label> -->
 						<nfwui:LabelBox id="lblSc006BihinStts" code="<%=MessageIdConstant.SKF3022_SC006_BIHIN_STTS %>" style="text-align:center;" />
 					</th>
@@ -333,7 +338,7 @@
 								disabled="${form.sc006KyojyusyaKbnSelectDisableFlg }" list="${form.sc006KyojyusyaKbnSelectList}" class="${form.sc006KyojyusyaKbnSelectErr}" tabindex="10" />
 							</td>
 							<!-- 駐車場使用料日割金額1 -->
-							<th>
+							<th style="white-space: nowrap;">
 								<nfwui:LabelBox id="lblSc006TyusyaDayPayOne" code="<%=MessageIdConstant.SKF3022_SC006_TYUSYA_DAY_PAY_ONE %>" />
 							</th>
 							<td>
@@ -392,7 +397,7 @@
 								<nfwui:LabelBox id="lblSc006YakuinSantei" code="<%=MessageIdConstant.SKF3022_SC006_YAKUIN_SANTEI %>" />
 							</th>
 							<td>
-								<imui:select id="sc006YakuinSanteiSelect" name="sc006YakuinSanteiSelect" width="80"
+								<imui:select id="sc006YakuinSanteiSelect" name="sc006YakuinSanteiSelect" width="90"
 								disabled="${form.sc006YakuinSanteiSelectDisableFlg }" list="${form.sc006YakuinSanteiSelectList}" class="${form.sc006YakuinSanteiSelectErr}" tabindex="11" />
 							</td>
 							<!-- 利用終了日2 -->
@@ -573,8 +578,10 @@
 										<col name="bihinShatakuKanriNo" caption="備品社宅管理番号" hidden="true" />
 										<col name="bihinRoomKanriNo" caption="備品部屋管理番号" hidden="true" />
 										<col name="heyaSonaetukeStts" caption="部屋備付状態区分(DB取得値)" hidden="true" />
+										<col name="bihinTaiyoSttsKbn" caption="備品貸与状態選択値" hidden="true" />
 										<col name="bihinTaiyoSttsOldKbn" caption="備品貸与状態選択値元" hidden="true" />
 										<col name="shijishoBackColor" caption="指示書背景色" hidden="true" />
+										<col name="bihinTaiyoSttsErr" caption="貸与状態エラー" hidden="true" />
 									</cols>
 								</imui:listTable>
 							</td>
@@ -861,7 +868,7 @@
 																		class="${form.sc006SogoHanteiKbnSelectErr}" tabindex="46" />
 							</td>
 							<!-- 配属データコード番号 -->
-							<th>
+							<th style="white-space: nowrap;">
 								<nfwui:LabelBox id="lblSc006HaizokuNo" code="<%=MessageIdConstant.SKF3022_SC006_HAIZOKU_NO %>" />
 							</th>
 							<td>
@@ -872,7 +879,7 @@
 						</tr>
 						<tr>
 							<!-- 社宅使用料会社間送金区分 -->
-							<th>
+							<th style="white-space: nowrap;">
 								<nfwui:LabelBox id="lblSc006SokinShataku" code="<%=MessageIdConstant.SKF3022_SC006_SOKIN_SHATAKU %>" />
 							</th>
 							<td>
@@ -958,9 +965,11 @@
 				${form.sc006Msg }
 		</label>
 		<div class="align-R">
-			<nfwui:Button url="skf/Skf3022Sc006/OperationGuideDownload" id="search" value="運用ガイド" cssClass="imui-medium-button" cssStyle="width: 150px" tabindex="60" disabled="${form.btnUnyonGuideDisableFlg }" />
-			<imui:button id="btnTmpSave" value="一時保存" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="61" disabled="${form.btnTmpSaveDisableFlg }" />
-			<imui:button id="btnCreate" value="作成完了" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="62" disabled="${form.btnCreateDisableFlg }" />
+			<nfwui:Button id="btnUnyonGuide" url="skf/Skf3022Sc006/OperationGuideDownload" value="運用ガイド" cssClass="imui-medium-button" cssStyle="width: 150px" tabindex="60" disabled="${form.btnUnyonGuideDisableFlg }" />
+<!--			<imui:button id="btnUnyonGuide" value="運用ガイド" class="imui-medium-button" style="width: 150px" onclick="window.open('/skf/template/skf3022/skf3022mn006/運用ガイド.zip', '_blank', 'menubar=no,toolbar=no,resizable=yes,location=no,status=no');return false;" tabindex="60" disabled="${form.btnUnyonGuideDisableFlg }" /> -->
+<!--			<imui:button id="btnUnyonGuide" value="運用ガイド" class="imui-medium-button" style="width: 150px" onclick="operationGuidDownLoad();" tabindex="60" disabled="${form.btnUnyonGuideDisableFlg }" /> -->
+			<imui:button id="btnTmpSave" value="一時保存" class="imui-medium-button" style="width: 150px" onclick="sc006PreButtonEvent(0)" tabindex="61" disabled="${form.btnTmpSaveDisableFlg }" />
+			<imui:button id="btnCreate" value="作成完了" class="imui-medium-button" style="width: 150px" onclick="sc006PreButtonEvent(1)" tabindex="62" disabled="${form.btnCreateDisableFlg }" />
 		</div>
 		<div class="align-R">
 			<nfwui:PopupButton id="btnJigetuYoyaku" name="btnJigetuYoyaku" value="次月予約" use="popup"
@@ -968,14 +977,19 @@
 					modalMode="true" screenUrl="skf/Skf3022Sc004/init" preOnClick="backUpStatus();" preUrl="skf/Skf3022Sc006/PreJigetsuYoyaku"
 					parameter="hdnJigetuYoyakuTeijiNo:hdnJigetuYoyakuTeijiNo,hdnJigetuYoyakuYearMonth:hdnJigetuYoyakuYearMonth,hdnJigetuYoyakuShatakuKanriId:hdnJigetuYoyakuShatakuKanriId,hdnJigetuYoyakuRental:hdnJigetuYoyakuRental,hdnJigetuYoyakuKyoekihiPerson:hdnJigetuYoyakuKyoekihiPerson,hdnJigetuYoyakuParkingRentalOne:hdnJigetuYoyakuParkingRentalOne,hdnJigetuYoyakuParkingRentalTwo:hdnJigetuYoyakuParkingRentalTwo"
 					disabled="${form.btnJigetuYoyakuDisableFlg }" callbackFunc="jigetuYoyakuCallback()" tabindex="63"/> 
-			<imui:button id="btnKeizokuLogin" value="入居情報の継続登録" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="64" disabled="${form.btnKeizokuLoginDisableFlg }" />
-			<imui:button id="btnShatakuLogin" value="社宅管理台帳登録" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="65" disabled="${form.btnShatakuLoginDisableFlg }" />
+			<imui:button id="btnKeizokuLogin" value="入居情報の継続登録" class="imui-medium-button" style="width: 150px" onclick="sc006PreButtonEvent(3)" tabindex="64" disabled="${form.btnKeizokuLoginDisableFlg }" />
+			<imui:button id="btnShatakuLogin" value="社宅管理台帳登録" class="imui-medium-button" style="width: 150px" onclick="sc006PreButtonEvent(2)" tabindex="65" disabled="${form.btnShatakuLoginDisableFlg }" />
 		</div>
 		<br><br><br>
 		<script type="text/javascript">
 			(function($) {
 				// 画面表示時に定義される処理
 				$(document).ready(function(){
+
+					// 運用ガイドダウンロード
+					operationGuidDownLoad = function() {
+						$('#downloadForm').submit();
+					}
 
 					// JSON可変ラベルリスト設定
 					// 可変値ラベルをリスト形式にし、JSON文字列に変換後
@@ -1058,6 +1072,7 @@
 								bihinMap['heyaSonaetukeStts'] = bihinArrrows[i].heyaSonaetukeStts;
 								bihinMap['updateFlg'] = bihinArrrows[i].updateFlg;
 								bihinMap['updateDate'] = bihinArrrows[i].updateDate;
+								bihinMap['bihinTaiyoSttsErr'] = bihinArrrows[i].bihinTaiyoSttsErr;
 								bihinArray.push(bihinMap);
 							}
 						}
@@ -1207,6 +1222,7 @@
 							$("#hdnEndDayOne").val("");
 							$("#sc006KukakuNoOne").text("");
 							$("#sc006RiyouStartDayOne").val("");
+//							$("#sc006RiyouStartDayOneDiv").val("");
 							$("#sc006RiyouEndDayOne").val("");
 							// 背景色をクリア
 							$("#sc006RiyouStartDayOne").removeClass("nfw-validation-error");
@@ -1220,7 +1236,7 @@
 							$("#hdnKukakuNoTwo").val("");
 							$("#hdnEndDayTwo").val("");
 							$("#sc006KukakuNoTwo").text("");
-							$("#sc006RiyouStartDayTwo").val("");
+							$("#sc006RiyouStartDayTwo").val("");// DIVクリア処理も必要ははず。これ水平展開ね。まずはNumberBox、DateBoxを洗い出し、各項目をスクリプトで変更していないか水平展開2019.12.27発見
 							$("#sc006RiyouEndDayTwo").val("");
 							// 背景色をクリア
 							$("#sc006RiyouStartDayTwo").removeClass("nfw-validation-error");
@@ -1229,6 +1245,47 @@
 							$("#sc006TyusyaMonthPayTwo").text("0");
 							$("#sc006TyusyaDayPayTwo").text("0");
 						}
+					}
+
+					// 下部ボタン押下時のイベント
+					sc006PreButtonEvent = function (mode) {
+						// 押下ボタン判定
+						switch (mode) {
+							case 0:
+								// 一時保存★
+								// 現在状態バックアップ
+								backUpStatus();
+								$("#sc006Status").val("0");
+								nfw.common.submitForm("form", "skf/Skf3022Sc006/SetCheckMsg");
+								break;
+							case 1:
+								// 作成完了★
+								// 現在状態バックアップ
+								backUpStatus();
+								$("#sc006Status").val("1");
+								nfw.common.submitForm("form", "skf/Skf3022Sc006/SetCheckMsg");
+								break;
+							case 2:
+								// 社宅管理台帳登録★
+								// 現在状態バックアップ
+								backUpStatus();
+								$("#sc006Status").val("2");
+								nfw.common.submitForm("form", "skf/Skf3022Sc006/SetCheckMsg");
+								break;
+							case 3:
+								// 入居情報の継続登録
+								// 現在状態バックアップ
+								backUpStatus();
+								$("#sc006Status").val("");
+								// 確認ダイアログ表示(I-SKF-3065)
+								nfw.common.confirmPopup("入居情報の提示データを継続登録します。よろしいですか？",
+										"確認", "form", "skf/Skf3022Sc006/keizokuLogin", "ok", "キャンセル", this, true);
+								break;
+							default:
+								$("#sc006Status").val("");
+								nfw.common.showReserveMessage("warning", "未サポート(未実装機能)です。");
+								break;
+						};
 					}
 
 					// 使用料入力支援パラメータ設定
@@ -1261,6 +1318,8 @@
 
 					// 社宅部屋入力支援コールバック
 					shatakuShienCallback = function() {
+						// 状態クリア
+						$("#sc006Status").val("");
 						// 社宅名
 						$("#sc006ShatakuName").text($("#hdnShatakuName").val().trim());
 						// 部屋番号
@@ -1273,6 +1332,8 @@
 
 					// 使用料支援コールバック
 					shiyoryoShienCallback = function() {
+						// 状態クリア
+						$("#sc006Status").val("");
 						// ヘッダ項目貸与用途(使用料計算パターン名)
 						$("#sc006SiyoryoPatName").text($("#hdnRateShienPatternName").val());
 						// 社宅使用料月額
@@ -1288,11 +1349,6 @@
 						// 使用料パターンID（hidden変数）
 						// 【使用料計算機能対応】ここでは画面制御として値を設定する。実際の使用料パターンIDは別処理にて付番する。
 						$("#hdnSiyouryoId").val("1");
-						// 使用料項目の再設定(社宅使用料調整金額、個人負担共益費調整金額 を「0」に設定し再計算)
-						// 社宅使用料調整金額
-						$("#sc006SiyoroTyoseiPay").val("0");
-						// 個人負担共益費調整金額 
-						$("#sc006KyoekihiTyoseiPay").val("0");
 						// 現在状態バックアップ
 						backUpStatus();
 						url = "skf/Skf3022Sc006/ShiyoryoSupportCallBack";
@@ -1304,9 +1360,9 @@
 						// 区画判定
 						if (p == 1) {
 							// 区画1 駐車場管理番号
-							$("#hdnChushajoNoOne").val($("#hdnParkingShienParkBlock").val());
+							$("#hdnChushajoNoOne").val($("#hdnParkingShienParkNo").val());
 							// 区画1 区画番号
-							$("#sc006KukakuNoOne").text($("#hdnParkingShienParkNo").val());
+							$("#sc006KukakuNoOne").text($("#hdnParkingShienParkBlock").val());
 							// 区画１ 駐車場使用料月額
 							$("#sc006TyusyaMonthPayOne").text($("#hdnParkingShienParkRentalAsjust").val());
 							// 区画１ 終了日
@@ -1314,7 +1370,7 @@
 							// パラメータ作成 
 							var map = new Object();
 							map['mapParam'] = createSiyoryoKeiSanParamAsync();
-							map['sc006ChushajoKanriNo'] = $("#hdnParkingShienParkBlock").val();
+							map['sc006ChushajoKanriNo'] = $("#hdnParkingShienParkNo").val();
 							map['sc006ParkBlockKind'] = "1";
 							map['hdnShatakuKanriNo'] = $("#hdnShatakuKanriNo").val();
 							// 使用料再計算と更新日時取得
@@ -1326,9 +1382,9 @@
 							});
 						} else {
 							// 区画2 駐車場管理番号
-							$("#hdnChushajoNoTwo").val($("#hdnParkingShienParkBlock").val());
+							$("#hdnChushajoNoTwo").val($("#hdnParkingShienParkNo").val());
 							// 区画2 区画番号
-							$("#sc006KukakuNoTwo").text($("#hdnParkingShienParkNo").val());
+							$("#sc006KukakuNoTwo").text($("#hdnParkingShienParkBlock").val());
 							// 区画2 駐車場使用料月額
 							$("#sc006TyusyaMonthPayTwo").text($("#hdnParkingShienParkRentalAsjust").val());
 							// 区画2 終了日
@@ -1336,7 +1392,7 @@
 							// パラメータ作成 
 							var map = new Object();
 							map['mapParam'] = createSiyoryoKeiSanParamAsync();
-							map['sc006ChushajoKanriNo'] = $("#hdnParkingShienParkBlock").val();
+							map['sc006ChushajoKanriNo'] = $("#hdnParkingShienParkNo").val();
 							map['sc006ParkBlockKind'] = "2";
 							map['hdnShatakuKanriNo'] = $("#hdnShatakuKanriNo").val();
 							// 使用料再計算と更新日時取得
@@ -1391,7 +1447,7 @@
 					$("#sc006NyukyoYoteiDay").bind('change', function() {
 						// エラークリア
 						$("#sc006NyukyoYoteiDay").removeClass("nfw-validation-error");
-						$("#hdnNyukyoDate").val($("#sc006NyukyoYoteiDay").val());
+//						$("#hdnNyukyoDate").val($("#sc006NyukyoYoteiDay").val());
 						// パラメータ作成 
 						var map = new Object();
 						map['mapParam'] = createSiyoryoKeiSanParamAsync();
@@ -1406,7 +1462,7 @@
 					$("#sc006TaikyoYoteiDay").bind('change', function() {
 						// エラークリア
 						$("#sc006TaikyoYoteiDay").removeClass("nfw-validation-error");
-						$("#hdnTaikyoDate").val($("#sc006TaikyoYoteiDay").val());
+//						$("#hdnTaikyoDate").val($("#sc006TaikyoYoteiDay").val());
 						// パラメータ作成 
 						var map = new Object();
 						map['mapParam'] = createSiyoryoKeiSanParamAsync();
@@ -1443,6 +1499,52 @@
 							// 送金区分
 							$("#sc006SokinShatakuSelect").prop('disabled', false);
 							$("#sc006SokinKyoekihiSelect").prop('disabled', false);
+
+							// 共益費会社間送付区分
+							$("#sc006SokinKyoekihiSelect").prop('disabled', false);
+							// 貸付会社
+							$("#sc006TaiyoKaisyaSelect").prop('disabled', false);
+							// 借受会社
+							$("#sc006KariukeKaisyaSelect").prop('disabled', false);
+							// 社宅賃貸料
+							$("#sc006ChintaiRyo").prop('disabled', false);
+							// 駐車場賃貸料
+							$("#sc006TyusyajoRyokin").prop('disabled', false);
+							// 共益費
+							$("#sc006Kyoekihi").prop('disabled', false);
+							// 配属情報
+							$("#sc006HaizokuKaisyaSelect").prop('disabled', false);
+							// 所属機関
+							$("#sc006SyozokuKikan").prop('disabled', false);
+							// 室・部名
+							$("#sc006SituBuName").prop('disabled', false);
+							// 課等名
+							$("#sc006KanadoMei").prop('disabled', false);
+							// 配属データコード番号
+							$("#sc006HaizokuNo").prop('disabled', false);
+							// 入退居区分判定
+							switch ($("#hdnNyutaikyoKbn").val()) {
+								case "1":	// 入退居区分＝"1"（入居）の場合
+									// 開始日
+									$("#sc006StartDay").prop('disabled', false);
+									$("#sc006StartDayDiv").prop('disabled', false);
+									$("#sc006StartDayDiv").removeClass("wj-state-disabled");
+									break;
+//								case "2":	// 入退居区分＝"2"（退居）の場合
+//									// 終了日
+//									$("#sc006EndDay").prop('disabled', false);
+//									break;
+								default:	// 入退居区分が上記以外（変更）の場合
+									// 開始日
+									$("#sc006StartDay").prop('disabled', false);
+									$("#sc006StartDayDiv").prop('disabled', false);
+									$("#sc006StartDayDiv").removeClass("wj-state-disabled");
+									// 終了日
+									$("#sc006EndDay").prop('disabled', false);
+									$("#sc006EndDayDiv").prop('disabled', false);
+									$("#sc006EndDayDiv").removeClass("wj-state-disabled");
+									break;
+							};
 							// 借受会社ドロップダウン変更
 							sogoriyoAutoSet(3);
 						} else {
@@ -1467,18 +1569,20 @@
 							// 開始日
 							$("#sc006StartDay").prop('disabled', true);
 							$("#sc006StartDay").removeClass("nfw-validation-error");
+							$("#sc006StartDayDiv").addClass("wj-state-disabled");
 							// 終了日
 							$("#sc006EndDay").prop('disabled', true);
 							$("#sc006EndDay").removeClass("nfw-validation-error");
+							$("#sc006EndDayDiv").addClass("wj-state-disabled");
 							// 社宅賃貸料
-							$("#sc006ChintaiRyo").prop('disabled', true);
-							$("#sc006ChintaiRyo").removeClass("nfw-validation-error");
+//							$("#sc006ChintaiRyo").prop('disabled', true);
+//							$("#sc006ChintaiRyo").removeClass("nfw-validation-error");
 							// 駐車場賃貸料
-							$("#sc006TyusyajoRyokin").prop('disabled', true);
-							$("#sc006TyusyajoRyokin").removeClass("nfw-validation-error");
+//							$("#sc006TyusyajoRyokin").prop('disabled', true);
+//							$("#sc006TyusyajoRyokin").removeClass("nfw-validation-error");
 							// 共益費
-							$("#sc006Kyoekihi").prop('disabled', true);
-							$("#sc006Kyoekihi").removeClass("nfw-validation-error");
+//							$("#sc006Kyoekihi").prop('disabled', true);
+//							$("#sc006Kyoekihi").removeClass("nfw-validation-error");
 							// 配属情報
 							$("#sc006HaizokuKaisyaSelect").prop('disabled', true);
 							$("#sc006HaizokuKaisyaSelect").removeClass("nfw-validation-error");
@@ -1802,12 +1906,50 @@
 							$("#sc006Kyoekihi").removeClass("nfw-validation-error");
 						}
 					});
+
+					// 処理状態判定
+					// 押下ボタン判定
+					switch ($("#sc006Status").val()) {
+						case "0":
+							// 一時保存★
+							// 状態クリア
+							$("#sc006Status").val("");
+							// 現在状態バックアップ
+							backUpStatus();
+							// 確認ダイアログ表示
+							nfw.common.confirmPopup($("#litMessageTmpSave").val(),
+									"確認", "form", "skf/Skf3022Sc006/tmpSave", "ok", "キャンセル", this, true);
+							break;
+						case "1":
+							// 作成完了★
+							// 状態クリア
+							$("#sc006Status").val("");
+							// 現在状態バックアップ
+							backUpStatus();
+							// 確認ダイアログ表示
+							nfw.common.confirmPopup($("#litMessageCreate").val(),
+									"確認", "form", "skf/Skf3022Sc006/create", "ok", "キャンセル", this, true);
+							break;
+						case "2":
+							// 社宅管理台帳登録★
+							// 状態クリア
+							$("#sc006Status").val("");
+							// 現在状態バックアップ
+							backUpStatus();
+							// 確認ダイアログ表示
+							nfw.common.confirmPopup($("#litMessageShatakuLogin").val(),
+									"確認", "form", "skf/Skf3022Sc006/shatakuLogin", "ok", "キャンセル", this, true);
+							break;
+						default:
+							// 状態クリア
+							$("#sc006Status").val("");
+							break;
+					};
 				});
 			})(jQuery);
 		</script>
 		<script>
 			$(function() {
-
 				// タブ活性/非活性設定
 				var setTabDisp = new Array();
 				if (${form.tbpBihinInfo}) {
@@ -1824,5 +1966,9 @@
 			});
 		</script>
 	</nfwui:Form>
+	<form id="downloadForm" action="tenant/maintenance/storage/file_download" method="post">
+		<input name="path" type="hidden" value="${form.operationGuidePath }" />
+		<input name="imui-theme-builder-module" type="hidden" value="notheme" />
+	</form>
 </div>
 <!-- コンテンツエリア　ここまで -->
