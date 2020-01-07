@@ -27,8 +27,8 @@
 		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3022Sc006/init?SKF3010_SC006&tokenCheck=0" />
 		<!-- ** サーバー連携用 ** -->
 		<!-- 使用料パターンID -->	<input type="hidden" name="hdnSiyouryoId" id="hdnSiyouryoId" value="${form.hdnSiyouryoId}" />
-		<!-- JSON可変ラベルリスト -->	<input type="hidden" name="jsonLabelList" id="jsonLabelList"/>
-		<!-- JSON備品情報 -->		<input type="hidden" name="jsonBihin" id="jsonBihin" />
+		<!-- JSON可変ラベルリスト -->	<input type="hidden" name="jsonLabelList" id="jsonLabelList" value="${form.jsonLabelList }" />
+		<!-- JSON備品情報 -->		<input type="hidden" name="jsonBihin" id="jsonBihin" value="${form.jsonBihin }" />
 		<!-- 入退居区分 -->		<input type="hidden" name="hdnNyutaikyoKbn" id="hdnNyutaikyoKbn" value="${form.hdnNyutaikyoKbn }"/>
 		<!-- 生年月日 -->			<input type="hidden" name="hdnBirthday" id="hdnBirthday" value="${form.hdnBirthday }"/>
 		<!-- 入居予定日 -->		<input type="hidden" name="hdnNyukyoDate" id="hdnNyukyoDate" value="${form.hdnNyukyoDate }"/>
