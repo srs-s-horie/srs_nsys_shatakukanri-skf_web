@@ -1985,20 +1985,40 @@ function mesDisplayControl(isShow){
 		
 		map['pageId'] = $("#hdnPageId").val();
 		
-		//入力チェック非同期処理呼び出し
-		nfw.common.doAjaxAction("skf/Skf2020Sc002/checkAsync",map,true,function(data) {
+		var errorCheck = false;
 		
-				//エラーが無い場合
-		    	var form = "form"; //受け渡すformId
-		    	var url = "skf/Skf2020Sc002/Confirm"; //遷移先サービス
-				if(dialogue=="yes"){
-		    	//退居予定日と返却希望立会日の確認ダイアログが必要な場合
-					//ダイアログ
-					skf.common.confirmPopup("返却立会希望日が退居予定日以降で入力されています。申請してもよろしいですか？", "確認", form ,url, "ok", "キャンセル",this);			
-				}else if(dialogue=="no"){
-					//退居予定日と返却希望立会日の確認ダイアログが不要な場合
-					nfw.common.submitForm(form,url,"checkBtn");
-				}						
+		//入力チェック非同期処理呼び出し
+		$.when(
+			nfw.common.doAjaxAction("skf/Skf2020Sc002/checkAsync",map,true,function(data) {
+			
+					//エラーが無い場合
+					$(".imui-box-caution, .imui-box-warning").remove();
+					errorCheck = true;
+			    	var form = "form"; //受け渡すformId
+			    	var url = "skf/Skf2020Sc002/Confirm"; //遷移先サービス
+					if(dialogue=="yes"){
+			    	//退居予定日と返却希望立会日の確認ダイアログが必要な場合
+						//ダイアログ
+						skf.common.confirmPopup("返却立会希望日が退居予定日以降で入力されています。申請してもよろしいですか？", "確認", form ,url, "ok", "キャンセル",this);			
+					}else if(dialogue=="no"){
+						//退居予定日と返却希望立会日の確認ダイアログが不要な場合
+						nfw.common.submitForm(form,url,"checkBtn");
+					}
+			}),wait(1)
+		)
+		.done(function(data) {
+			console.log(errorCheck);
+			if(!errorCheck){
+				 scrollTo(0, 0);
+			}
 		});
     }
+	
+	function wait(sec) {
+	    var d = $.Deferred();
+	    setTimeout(function() {
+	        d.resolve();
+	    }, sec * 100);
+	    return d.promise();
+	}
 </script>
