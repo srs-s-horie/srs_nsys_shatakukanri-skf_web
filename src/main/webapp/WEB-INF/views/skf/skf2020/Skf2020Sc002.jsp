@@ -726,9 +726,7 @@
 					<input type="hidden" name="hdnApplHistroyApplDate" id="hdnApplHistroyApplDate" value="${form.hdnApplHistroyApplDate}" />
 					<input type="hidden" name="hdnParkingFullFlg" id="hdnParkingFullFlg" value="${form.parkingFullFlg}" />
 					<input type="hidden" name="hdnParking1stPlace" id="hdnParking1stPlace" value="${form.parking1stPlace}" />
-					
-					<input type="hidden" name="hdnErrorCheck" id="hdnErrorCheck" value="" />
-					
+					<input type="hidden" name="hdnParking2stPlace" id="hdnParking2stPlace" value="${form.parking2stPlace}" />
 
 					<!-- 右側の入力ガイドの部分 -->
 					<td style="width: 30%; border: none;background-color: #fdfdff;">
@@ -1103,6 +1101,7 @@ function mesDisplayControl(isShow){
 	//表示制御
 	//退居届を促すメッセージの設定
 	$('#lblShatakuFuyouMsg').hide();
+	
 		
 	//クリックイベント		
 	//社宅を必要としますか-必要とする押下時
