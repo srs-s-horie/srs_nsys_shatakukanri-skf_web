@@ -123,7 +123,7 @@
     
     // リストテーブルの確認欄のアイコンをクリックした時のイベント
     onCellSelect = function(rowId, iCol, cellContent, e) {
-    	if ($(cellContent).hasClass('im-ui-icon-menu-24-document')) {
+    	if ($(cellContent).hasClass('im-ui-icon-common-16-document')) {
     		var grid = $("#ltResultListTable");
     		var rowData = grid.getRowData(rowId);
     		
@@ -407,7 +407,7 @@ onCellSelect="onCellSelect" rowNumbers="true"
   <col name="agreName2" caption="承認者名2／修正依頼者名"  width="110" wrap="true" align="left" /><!-- 承認者名2／修正依頼者名 -->
   <col name="detail" caption="確認" width="50" align="center">
   
-    <showIcon iconClass="im-ui-icon-menu-24-document" />
+    <showIcon iconClass="im-ui-icon-common-16-document" />
   </col><!-- 確認 -->
 </cols>
 </imui:listTable>
