@@ -26,6 +26,7 @@
 		<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3022_SC006 %>" />
 		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3022Sc006/init?SKF3010_SC006&tokenCheck=0" />
 		<!-- ** サーバー連携用 ** -->
+		<!-- 表示タブインデックス -->	<input type="hidden" name="hdnTabIndex" id="hdnTabIndex" value="${form.hdnTabIndex }" />
 		<!-- 使用料パターンID -->	<input type="hidden" name="hdnSiyouryoId" id="hdnSiyouryoId" value="${form.hdnSiyouryoId}" />
 		<!-- JSON可変ラベルリスト -->	<input type="hidden" name="jsonLabelList" id="jsonLabelList" value="${form.jsonLabelList }" />
 		<!-- JSON備品情報 -->		<input type="hidden" name="jsonBihin" id="jsonBihin" value="${form.jsonBihin }" />
@@ -976,7 +977,7 @@
 					cssClass="imui-medium-button" popupWidth="700" popupHeight="560"  cssStyle="width:150px;"
 					modalMode="true" screenUrl="skf/Skf3022Sc004/init" preOnClick="backUpStatus();" preUrl="skf/Skf3022Sc006/PreJigetsuYoyaku"
 					parameter="hdnJigetuYoyakuTeijiNo:hdnJigetuYoyakuTeijiNo,hdnJigetuYoyakuYearMonth:hdnJigetuYoyakuYearMonth,hdnJigetuYoyakuShatakuKanriId:hdnJigetuYoyakuShatakuKanriId,hdnJigetuYoyakuRental:hdnJigetuYoyakuRental,hdnJigetuYoyakuKyoekihiPerson:hdnJigetuYoyakuKyoekihiPerson,hdnJigetuYoyakuParkingRentalOne:hdnJigetuYoyakuParkingRentalOne,hdnJigetuYoyakuParkingRentalTwo:hdnJigetuYoyakuParkingRentalTwo"
-					disabled="${form.btnJigetuYoyakuDisableFlg }" callbackFunc="jigetuYoyakuCallback()" tabindex="63"/> 
+					disabled="${form.btnJigetuYoyakuDisableFlg }" tabindex="63"/> 
 			<imui:button id="btnKeizokuLogin" value="入居情報の継続登録" class="imui-medium-button" style="width: 150px" onclick="sc006PreButtonEvent(3)" tabindex="64" disabled="${form.btnKeizokuLoginDisableFlg }" />
 			<imui:button id="btnShatakuLogin" value="社宅管理台帳登録" class="imui-medium-button" style="width: 150px" onclick="sc006PreButtonEvent(2)" tabindex="65" disabled="${form.btnShatakuLoginDisableFlg }" />
 		</div>
@@ -1236,7 +1237,7 @@
 							$("#hdnKukakuNoTwo").val("");
 							$("#hdnEndDayTwo").val("");
 							$("#sc006KukakuNoTwo").text("");
-							$("#sc006RiyouStartDayTwo").val("");// DIVクリア処理も必要ははず。これ水平展開ね。まずはNumberBox、DateBoxを洗い出し、各項目をスクリプトで変更していないか水平展開2019.12.27発見
+							$("#sc006RiyouStartDayTwo").val("");
 							$("#sc006RiyouEndDayTwo").val("");
 							// 背景色をクリア
 							$("#sc006RiyouStartDayTwo").removeClass("nfw-validation-error");
@@ -1245,6 +1246,9 @@
 							$("#sc006TyusyaMonthPayTwo").text("0");
 							$("#sc006TyusyaDayPayTwo").text("0");
 						}
+						/* AS imart移植 駐車場区画をクリアした際に駐車場使用料月額（調整後）が再計算されない問題に対処 */
+						calcParkingMonthPayAfter();
+						/* AE imart移植 駐車場区画をクリアした際に駐車場使用料月額（調整後）が再計算されない問題に対処 */
 					}
 
 					// 下部ボタン押下時のイベント
@@ -1440,6 +1444,29 @@
 								}
 								break;
 						};
+					}
+
+					// 駐車場使用料月額（調整後）計算
+					calcParkingMonthPayAfter = function() {
+						// 駐車場１日割金額
+						var parkingOnePay = 0;
+						if ($("#sc006TyusyaDayPayOne").text() != null && $("#sc006TyusyaDayPayOne").text().trim().length > 0) {
+							parkingOnePay = parseInt($("#sc006TyusyaDayPayOne").text().trim().replace(/,/g, ""));
+						}
+						// 駐車場２日割金額
+						var parkingTwoPay = 0;
+						if ($("#sc006TyusyaDayPayTwo").text() != null && $("#sc006TyusyaDayPayTwo").text().trim().length > 0) {
+							parkingTwoPay = parseInt($("#sc006TyusyaDayPayTwo").text().trim().replace(/,/g, ""));
+						}
+						// 駐車場使用料調整金額 
+						if ($("#sc006TyusyaTyoseiPay").val() != null && $("#sc006TyusyaTyoseiPay").val().trim().length > 0) {
+							// 駐車場使用料調整金額
+							var tyoseiPay = 0;
+							tyoseiPay = parseInt($("#sc006TyusyaTyoseiPay").val().trim().replace(/,/g, ""));
+							$("#sc006TyusyaMonthPayAfter").text((parkingOnePay + parkingTwoPay + tyoseiPay).toLocaleString());
+						} else {
+							$("#sc006TyusyaMonthPayAfter").text((parkingOnePay + parkingTwoPay).toLocaleString());
+						}
 					}
 
 					/** テキストチェンジイベント */
@@ -1795,25 +1822,7 @@
 
 					// 駐車場使用料調整金額チェンジ
 					$("#sc006TyusyaTyoseiPay").bind('change', function() {
-						// 駐車場１日割金額
-						var parkingOnePay = 0;
-						if ($("#sc006TyusyaDayPayOne").text() != null && $("#sc006TyusyaDayPayOne").text().trim().length > 0) {
-							parkingOnePay = parseInt($("#sc006TyusyaDayPayOne").text().trim().replace(/,/g, ""));
-						}
-						// 駐車場２日割金額
-						var parkingTwoPay = 0;
-						if ($("#sc006TyusyaDayPayTwo").text() != null && $("#sc006TyusyaDayPayTwo").text().trim().length > 0) {
-							parkingTwoPay = parseInt($("#sc006TyusyaDayPayTwo").text().trim().replace(/,/g, ""));
-						}
-						// 駐車場使用料調整金額 
-						if ($("#sc006TyusyaTyoseiPay").val() != null && $("#sc006TyusyaTyoseiPay").val().trim().length > 0) {
-							// 駐車場使用料調整金額
-							var tyoseiPay = 0;
-							tyoseiPay = parseInt($("#sc006TyusyaTyoseiPay").val().trim().replace(/,/g, ""));
-							$("#sc006TyusyaMonthPayAfter").text((parkingOnePay + parkingTwoPay + tyoseiPay).toLocaleString());
-						} else {
-							$("#sc006TyusyaMonthPayAfter").text((parkingOnePay + parkingTwoPay).toLocaleString());
-						}
+						calcParkingMonthPayAfter();
 					});
 
 					// 貸与日チェンジ
@@ -1961,7 +1970,15 @@
 				$( "#tabs" ).tabs();
 				$("#tabs").tabs({
 					selected:parseInt(${form.hdnTabIndex}),
-					disabled:setTabDisp
+					disabled:setTabDisp,
+					activate: function(event, ui) {
+						// 選択タブインデックスを保存
+						$("#hdnTabIndex").val(ui.newTab.index());
+					},
+					select: function(event, ui){
+						// 選択タブインデックスを保存
+						$("#hdnTabIndex").val(ui.index);
+					}
 				});
 			});
 		</script>
