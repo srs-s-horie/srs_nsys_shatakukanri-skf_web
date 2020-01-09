@@ -41,8 +41,9 @@
 		<!-- 区画2管理番号 -->		<input type="hidden" name="hdnChushajoNoTwo" id="hdnChushajoNoTwo" value="${form.hdnChushajoNoTwo }"/>
 		<!-- 旧区画2管理番号 -->	<input type="hidden" name="hdnChushajoNoTwoOld" id="hdnChushajoNoTwoOld" value="${form.hdnChushajoNoTwoOld }"/>
 		<!-- 区画１ 終了日 -->		<input type="hidden" name="hdnEndDayOne" id="hdnEndDayOne" value="${form.hdnEndDayOne }"/>
-		<!-- 区画2終了日 -->		<input type="hidden" name="hdnEndDayTwo" id="hdnEndDayTwo" value="${form.hdnEndDayTwo }"/>
+		<!-- 区画2 終了日 -->		<input type="hidden" name="hdnEndDayTwo" id="hdnEndDayTwo" value="${form.hdnEndDayTwo }"/>
 		<!-- 区画１更新日 -->		<input type="hidden" name="hdnShatakuParkingBlock1UpdateDate" id="hdnShatakuParkingBlock1UpdateDate" value="${form.hdnShatakuParkingBlock1UpdateDate }"/>
+		<!-- 区画2更新日 -->		<input type="hidden" name="hdnShatakuParkingBlock2UpdateDate" id="hdnShatakuParkingBlock2UpdateDate" value="${form.hdnShatakuParkingBlock2UpdateDate }"/>
 		<!-- 区画番号1 -->		<input type="hidden" name="hdnKukakuNoOne" id="hdnKukakuNoOne" value="${form.hdnKukakuNoOne }"/>
 		<!-- 区画番号2 -->		<input type="hidden" name="hdnKukakuNoTwo" id="hdnKukakuNoTwo" value="${form.hdnKukakuNoTwo }"/>
 		<!-- 協議中フラグ状態 -->	<input type="hidden" name="sc006KyoekihiKyogichuCheckState" id="sc006KyoekihiKyogichuCheckState" value="${form.sc006KyoekihiKyogichuCheck }"/>
@@ -1404,7 +1405,7 @@
 								// 戻り値設定(使用料再計算分)
 								setSiyoryoKeiSanResultAsync(data);
 								// 社宅区画情報マスタ(区画2)更新日
-								$("#hdnShatakuParkingBlock1UpdateDate").val(data.hdnParkingBlockUpdateDate);
+								$("#hdnShatakuParkingBlock2UpdateDate").val(data.hdnParkingBlockUpdateDate);
 							});
 						}
 					}
