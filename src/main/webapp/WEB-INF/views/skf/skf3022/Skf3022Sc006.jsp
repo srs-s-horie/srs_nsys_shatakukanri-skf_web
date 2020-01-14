@@ -28,7 +28,7 @@
 		<!-- ** サーバー連携用 ** -->
 		<!-- 表示タブインデックス -->	<input type="hidden" name="hdnTabIndex" id="hdnTabIndex" value="${form.hdnTabIndex }" />
 		<!-- 使用料パターンID -->	<input type="hidden" name="hdnSiyouryoId" id="hdnSiyouryoId" value="${form.hdnSiyouryoId}" />
-		<!-- JSON可変ラベルリスト -->	<input type="hidden" name="jsonLabelList" id="jsonLabelList" value="${form.jsonLabelList }" />
+		<!-- JSON可変ラベルリスト -->	<input type="hidden" name="jsonLabelList" id="jsonLabelList" />
 		<!-- JSON備品情報 -->		<input type="hidden" name="jsonBihin" id="jsonBihin" value="${form.jsonBihin }" />
 		<!-- 入退居区分 -->		<input type="hidden" name="hdnNyutaikyoKbn" id="hdnNyutaikyoKbn" value="${form.hdnNyutaikyoKbn }"/>
 		<!-- 生年月日 -->			<input type="hidden" name="hdnBirthday" id="hdnBirthday" value="${form.hdnBirthday }"/>
@@ -875,7 +875,7 @@
 							</th>
 							<td>
 								<imui:textbox id="sc006HaizokuNo" name="sc006HaizokuNo" style="width:305;height:98%"
-								disabled="${form.sc006HaizokuNoDisableFlg }" maxlength="30" value="${f:h(form.sc006HaizokuNo)}" tabindex="58"
+								disabled="${form.sc006HaizokuNoDisableFlg }" maxlength="12" value="${f:h(form.sc006HaizokuNo)}" tabindex="58"
 								class="${form.sc006HaizokuNoErr}" />
 							</td>
 						</tr>
