@@ -31,29 +31,29 @@
   }
 
   (function($){
-    // 機関ドロップダウン変更時のイベント
-    $("#agency").change(function() {
-    	var map = new Object();
-    	map['agency'] = $("#agency").val();
-    	
-    	nfw.common.doAjaxAction("skf/Skf2010Sc005/ChangeDropDownAsync", map, true, function(data) {
-    		$("#affiliation1").imuiSelect("replace", data.ddlAffiliation1List);
-    		$("#affiliation2").imuiSelect("replace", data.ddlAffiliation2List);
-    	});
-    });
-    // 部等ドロップダウン変更時のイベント
-    $("#affiliation1").change(function() {
-    	var map = new Object();
-    	map['agency'] = $("#agency").val();
-    	map['affiliation1'] = $("#affiliation1").val();
-    	
-    	nfw.common.doAjaxAction("skf/Skf2010Sc005/ChangeDropDownAsync", map, true, function(data) {
-    		$("#affiliation2").imuiSelect("replace", data.ddlAffiliation2List);
-    	});
-    });
-    
     // 画面表示時に定義される処理
     $(document).ready(function(){
+        // 機関ドロップダウン変更時のイベント
+        $("#agency").change(function() {
+        	var map = new Object();
+        	map['agency'] = $("#agency").val();
+        	
+        	nfw.common.doAjaxAction("skf/Skf2010Sc005/ChangeDropDownAsync", map, true, function(data) {
+        		$("#affiliation1").imuiSelect("replace", data.ddlAffiliation1List);
+        		$("#affiliation2").imuiSelect("replace", data.ddlAffiliation2List);
+        	});
+        });
+        // 部等ドロップダウン変更時のイベント
+        $("#affiliation1").change(function() {
+        	var map = new Object();
+        	map['agency'] = $("#agency").val();
+        	map['affiliation1'] = $("#affiliation1").val();
+        	
+        	nfw.common.doAjaxAction("skf/Skf2010Sc005/ChangeDropDownAsync", map, true, function(data) {
+        		$("#affiliation2").imuiSelect("replace", data.ddlAffiliation2List);
+        	});
+        });
+        
         // 申請状況の「全選択」ボタン押下時のイベント
         $("#allCheck").click(function() {
         	$("input[name='applStatus']").prop("checked", true);
@@ -375,7 +375,7 @@
 <!-- 明細＆細目未満 -->
   <!-- 明細部 -->
   <nfwui:Form id="resultListForm" name="resultListForm" modelAttribute="form" secureToken="false">
-    <div class="imui-chapter-title" style="max-width:1300px;"><h2>検索結果一覧</h2></div>
+    <div class="imui-chapter-title"><h2>検索結果一覧</h2></div>
 <input type="hidden" id="putApplNo" name="applNo" value="" />
 <input type="hidden" id="putApplId" name="applId" value="" />
 <input type="hidden" id="putApplStatus" name="sendApplStatus" value="" />
