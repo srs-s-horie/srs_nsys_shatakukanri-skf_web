@@ -1247,9 +1247,8 @@
 							$("#sc006TyusyaMonthPayTwo").text("0");
 							$("#sc006TyusyaDayPayTwo").text("0");
 						}
-						/* AS imart移植 駐車場区画をクリアした際に駐車場使用料月額（調整後）が再計算されない問題に対処 */
+						// 駐車場使用料月額（調整後）再計算
 						calcParkingMonthPayAfter();
-						/* AE imart移植 駐車場区画をクリアした際に駐車場使用料月額（調整後）が再計算されない問題に対処 */
 					}
 
 					// 下部ボタン押下時のイベント
