@@ -1194,8 +1194,12 @@
 						} else {
 							// 個人負担共益費月額
 							$("#sc006KyoekihiMonthPay").prop('disabled', false);
+							$("#sc006KyoekihiMonthPayDiv").prop('disabled', false);
+							$("#sc006KyoekihiMonthPayDiv").removeClass("wj-state-disabled");
 							// 個人負担共益費調整金額
 							$("#sc006KyoekihiTyoseiPay").prop('disabled', false);
+							$("#sc006KyoekihiTyoseiPayDiv").prop('disabled', false);
+							$("#sc006KyoekihiTyoseiPayDiv").removeClass("wj-state-disabled");
 							// 共益費支払月
 							$("#sc006KyoekihiPayMonthSelect").prop('disabled', false);
 							// 共益費月額
