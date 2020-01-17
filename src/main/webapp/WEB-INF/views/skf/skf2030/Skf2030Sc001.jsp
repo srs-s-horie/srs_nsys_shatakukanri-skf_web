@@ -59,7 +59,7 @@
 			
 			// 搬入完了ボタンクリックイベント
 			$("#btnCarryIn").click(function(){
-				skf.common.confirmPopupForCallback("備品搬入を完了します。よろしいですか？", "搬入完了", "form", "OK", "cancel", this, function(){
+				skf.common.confirmPopupForCallback("備品搬入を完了します。よろしいですか？", "搬入完了", "form", "ok", "キャンセル", this, function(){
 					var map = new Object();
 					
 					map['applNo'] = $("#applNo").val();
@@ -70,7 +70,7 @@
 					nfw.common.doAjaxAction("skf/Skf2030Sc001/CheckAsync", map, true, function(res){
 						if (res.showDialogFlag == "true") {
 							var message = "搬入完了日が入居日より前ですがよろしいですか？(入居日:" + res.nyukyobi + "）";
-							skf.common.confirmPopup(message, "搬入完了", "form", "skf/Skf2030Sc001/Complete",  "OK", "cancel", this);
+							skf.common.confirmPopup(message, "搬入完了", "form", "skf/Skf2030Sc001/Complete",  "ok", "キャンセル", this);
 						} else {
 							skf.common.submitForm("form", "skf/Skf2030Sc001/Complete", this);
 						}
