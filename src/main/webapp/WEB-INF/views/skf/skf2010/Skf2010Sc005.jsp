@@ -164,6 +164,11 @@
 	height: 30px;
     white-space:normal;
 }
+
+.im-ui-icon-common-16-document {
+	cursor : pointer;
+}
+
 </style>
 
 <!-- コンテンツエリア -->

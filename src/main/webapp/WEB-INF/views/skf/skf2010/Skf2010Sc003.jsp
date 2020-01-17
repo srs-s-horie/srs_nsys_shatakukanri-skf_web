@@ -13,7 +13,9 @@
 
 <%-- コンテンツエリア --%>
 <style type="text/css">
-
+.im-ui-icon-common-16-update {
+cursor : pointer;
+}
 </style>
 
 <script type="text/javascript">
@@ -57,7 +59,7 @@ function back() {
 <table align="center">
     <tr>
         <td>
-            <div class="imui-form-container-wide" style="margin-top: 0px;"> 
+            <div class="imui-form-container-wide" style="width: 95%; margin-top: 0px;"> 
 <jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
                 <table class="imui-form-search-condition">
                     <td class="imui-form-container-wide" style="width: 45%; border: none;background-color: #fdfdff;" >
@@ -217,7 +219,7 @@ ${form.operationGuide}
 
 <!-- テーブル一覧箇所 -->
 <div style="width: 100%;">
-<div class="imui-form-container-wide"> 
+<div class="imui-form-container-wide" style="width: 95%"> 
 <!-- 明細＆細目未満 -->
   <!-- 明細部 -->
   <nfwui:Form id="listTableForm" name="listTableForm" modelAttribute="form">

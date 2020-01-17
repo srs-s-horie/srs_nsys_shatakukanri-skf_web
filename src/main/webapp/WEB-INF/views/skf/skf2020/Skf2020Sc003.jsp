@@ -46,19 +46,7 @@ $(function() {
 		$("a[id*='attached_']").click(function(){
 			attachedFileDownload(this);
 		});
-		// 世帯か単身の時は既婚にもチェックを入れる
-		if($("#hitsuyoShatakuSetai").prop("checked") || $("#hitsuyoShatakuTanshin").prop("checked")) {
-			$("#hitsuyoShatakuKikon").prop("checked", true);
-		} else {
-			$("#hitsuyoShatakuKikon").prop("checked", false);
-		}
 		
-		// 初期表示時、「社宅の必要理由」の選択状態が「世帯」だった場合の制御
-		if($("#hitsuyoShatakuSetai").is(":checked")) {
-			$("input:radio:not(:checked)").prop("disabled", true);
-		} else {
-			$("input[name!='bihinKibo']:radio:not(:checked)").prop("disabled", true);
-		}
 		
 		// 備品希望が不可の時は備品一覧を非表示
 		if ($("#bihinKiboFukano").attr("checked")) {
@@ -79,13 +67,33 @@ $(function() {
 			}
 		});
 		
+		// 初期表示時、「社宅の必要理由」の選択状態が「世帯」だった場合の制御
+		if($("#hitsuyoShatakuSetai").is(":checked")) {
+			$("input:radio:not(:checked)").prop("disabled", true);
+		} else {
+			$("input[name!='bihinKibo']:radio:not(:checked)").prop("disabled", true);
+		}
+		
+		// 「独身」のラジオボタンをクリックした場合
 		$("#hitsuyoShatakuDokushin").click(function() {
+			// 「既婚」のラジオボタンのチェックを外して活性化
     		$("#hitsuyoShatakuKikon").prop("checked", false);
+    		$("#hitsuyoShatakuKikon").prop("disabled", false);
+    		// 「社宅の必要理由」のラジオボタンでチェックされているもの以外は非活性
     		$("input[name='hitsuyoShataku']:radio:not(:checked)").prop("disabled", true);
 		});
+		// 「既婚」のラジオボタンをクリックした場合
 		$("#hitsuyoShatakuKikon").click(function() {
+			// 「独身」のラジオボタンのチェックを外す
     		$("#hitsuyoShatakuDokushin").prop("checked", false);
-    		$("input[name='hitsuyoShataku']:radio:not(:checked)").prop("disabled", false);
+			// 「社宅の必要理由」のラジオボタンを全て活性化
+    		$("input[name='hitsuyoShataku']:radio").prop("disabled", false);
+		});
+		// 「世帯」または「単身」をクリックした場合
+		$("#hitsuyoShatakuSetai, #hitsuyoShatakuTanshin").click(function() {
+			// 「既婚」のラジオボタンのチェックを外して非活性
+    		$("#hitsuyoShatakuKikon").prop("checked", false);
+    		$("#hitsuyoShatakuKikon").prop("disabled", true);
 		});
 		
 		// 「編集」ボタンを押下した時の処理
@@ -95,7 +103,7 @@ $(function() {
     		if (!$("#hitsuyoShatakuDokushin").prop("checked")) {
     			$("input[name='hitsuyoShataku']:radio").prop("disabled", false);
     		}
-    		$("#hitsuyoShatakuKikon").prop("disabled", false);
+    		//$("#hitsuyoShatakuKikon").prop("disabled", false);
     	});
     	// 「取消」ボタンを押下した時の処理
     	$("#cancel").click(function() {
