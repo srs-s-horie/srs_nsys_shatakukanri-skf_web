@@ -1475,7 +1475,8 @@
 
 					/** テキストチェンジイベント */
 					// 入居予定日チェンジ
-					$("#sc006NyukyoYoteiDay").bind('change', function() {
+					$("#sc006NyukyoYoteiDay").blur(function() {
+//					$("#sc006NyukyoYoteiDay").bind('change', function() {
 						// エラークリア
 						$("#sc006NyukyoYoteiDay").removeClass("nfw-validation-error");
 //						$("#hdnNyukyoDate").val($("#sc006NyukyoYoteiDay").val());
@@ -1490,7 +1491,8 @@
 					});
 
 					// 退居予定日チェンジ
-					$("#sc006TaikyoYoteiDay").bind('change', function() {
+					$("#sc006TaikyoYoteiDay").blur(function() {
+//					$("#sc006TaikyoYoteiDay").bind('change', function() {
 						// エラークリア
 						$("#sc006TaikyoYoteiDay").removeClass("nfw-validation-error");
 //						$("#hdnTaikyoDate").val($("#sc006TaikyoYoteiDay").val());
@@ -1788,7 +1790,8 @@
 					});
 
 					// 駐車場利用日チェンジ
-					$("input[id^='sc006Riyou']").bind('change', function() {
+					$("input[id^='sc006Riyou']").blur(function() {
+//					$("input[id^='sc006Riyou']").bind('change', function() {
 						var id = $(this).attr("id");
 						// パラメータ作成 
 						var map = new Object();
