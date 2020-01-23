@@ -8,6 +8,7 @@
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
 <script src="scripts/skf/skfCommon.js"></script>
+<link rel="stylesheet" type="text/css" href="styles/skf/listTableStyle.css" />
 
 <script type="text/javascript">
   // リストテーブルの申請状況の文字色変更
@@ -163,10 +164,6 @@
 .ui-jqgrid .ui-jqgrid-htable th div{
 	height: 30px;
     white-space:normal;
-}
-
-.im-ui-icon-common-16-document {
-	cursor : pointer;
 }
 
 </style>

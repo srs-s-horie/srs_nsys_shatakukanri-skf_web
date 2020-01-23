@@ -51,7 +51,7 @@ $(function(){
 				grid.jqGrid('setGridParam', {data:data.popListTableList});
 				// リストテーブルをリロード
 				grid.trigger("reloadGrid");
-	    	});
+	    	}, this, false);
 		});
 		
 		$("#selectBtn").click (function() {
