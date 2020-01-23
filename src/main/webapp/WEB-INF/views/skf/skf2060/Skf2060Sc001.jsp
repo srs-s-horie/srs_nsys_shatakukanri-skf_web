@@ -14,7 +14,7 @@
 
 <%  Skf2060Sc001Form form = (Skf2060Sc001Form)request.getAttribute("form"); %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
-
+<link rel="stylesheet" type="text/css" href="styles/skf/listTableStyle.css" />
 
 <!-- コンテンツエリア -->
 <div style ="width:100%; ">
@@ -306,11 +306,13 @@
 								$("#sendCandidateNo").val(candidateNo);
 								$("#rowId").val(rowId);
 								
-								map['applId'] = "R0106";
-								map['candidateNo'] = candidateNo;
+								map['popApplId'] = "R0106";
+								map['popCandidateNo'] = candidateNo;
+								
+								var param = "applId:R0106, candidateNo:" + candidateNo;
 								
 								var popupUrl = "skf/Skf2010Sc009/init";
-								nfw.common.modelessPopup(popupUrl, null, map, 750, 600);
+								nfw.common.modalPopup("Skf2060Sc001", popupUrl, null, map, 790, 700);
 							}
 						}
 						});
@@ -334,7 +336,7 @@
 									});
 									
 								}
-							});
+							}, this, false);
 						}
 						//添付ファイルリンククリック時呼び出し先
 						downloadKariageBukkenFile = function(data) {

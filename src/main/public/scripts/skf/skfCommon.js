@@ -1019,3 +1019,181 @@ skf.common.recoverDisabled = function() {
 skf.common.closeMessageBox = function(button) {
 	$(button).parent().remove();
 };
+
+
+/**
+ * ajax通信。
+ * <p>
+ * ajax通信を行い、エラーの場合はエラーメッセージを表示する。
+ * </p>
+ *
+ * @param {string} url 送信先URL
+ * @param {Array.<String>} data 送信データ
+ * @param {boolean} asyncFlg 非同期フラグ(true:非同期、false:同期)
+ * @param {function} afterSuccess 成功時のコールバック処理
+ * @param {Object} btn 押下されたボタン
+ * @param {boolean} fileFlg dataにファイルデータがあるかどうか
+ */
+skf.common.doAjaxAction = function(url, data, asyncFlg, afterSuccess, btn, fileFlg) {
+
+	if (btn && btn.type == 'button') {
+		// 二重クリック制御
+		$(btn).addClass("imui-disabled-button");
+		$(btn).prop("disabled", true);
+	}
+	
+	if (!fileFlg) {
+		fileFlg = false;
+	}
+	
+	// ajax本体生成
+	// セキュアトークンをリクエストデータに追加する
+	data["secureToken"] = $('[name=im_secure_token]').val();
+	
+	// ページモード
+	if (modalPopupInfoStack.length > 0) {
+		data["pageMode"] = "1";
+	} else {
+		data["pageMode"] = "0";
+	}
+	
+	// 入力チェックメッセージクリア（トップ階層のみ）
+	var fields = [];
+	// 表示項目の配列
+	var visibleItems = [];
+	for (key in data) {
+		fields.push(key);
+		var itemObj = nfw.common.getCurPageObj(key);
+		
+		if (data["skipValidationCheck"] && data["skipValidationCheck"] == "true") {
+		} else if (nfw.common.isVisible(itemObj)) {
+			if (itemObj.attr("name")) {
+				visibleItems.push(itemObj.attr("name"));
+			} else {
+				// ドロップダウンリスト
+				visibleItems.push(itemObj.attr("id"));
+			}
+		}
+	}
+	
+	// 最も近いDIV要素の取得
+	var parentDivTarget = $(btn).closest('div');
+	
+	// 入力可能な項目を設定
+	data["visibleItems"] = visibleItems.join(',');
+	
+	url = $("#contextPath").val() + "/async/" + url;
+	
+	var cam;
+	if (fileFlg) {
+		var formData = new FormData();
+		for (var k in data) {
+			formData.append(k, data[k]);
+		}
+		cam = skf.util.createAjaxForFile(url, formData, asyncFlg);
+	} else {
+		cam = skf.util.createAjax(url, data, asyncFlg);
+	}
+	
+	// 成功時処理
+	cam.done(function(res, status, xhr) {
+		// 業務エラークリア
+		// nfw.common.clearBusinessMessage();
+		nfw.common.clearValidationMessage(fields);
+
+		if (res.secureToken && res.secureToken.length > 0) {
+			// セキュアトークンを更新
+			$('[name=im_secure_token]').val(res.secureToken);
+		}
+		var resultStatus = res.status;
+		if (resultStatus == "1" || resultStatus == "2" || resultStatus == "3"
+				|| resultStatus == "9") {
+			// エラーハンドル処理
+			nfw.common.doAjaxException(resultStatus, res.validationMessages,
+					res.resultMessages, res.errorTargets, afterSuccess);
+		} else {
+			// 正常
+			// 通知メッセージ
+			nfw.common.setResultMessage("success", res.resultMessages);
+			if (afterSuccess) {
+				// コールバック処理
+				afterSuccess(res.data);
+			}
+		}
+
+		if (btn && btn.type == 'button') {
+			// 二重クリック制御
+			$(btn).prop("disabled", false);
+			$(btn).removeClass("imui-disabled-button");
+		}
+		if (parentDivTarget && (res.validationMessages != null || res.resultMessages != null)) {
+			// スクロールが先頭に移動
+			parentDivTarget.scrollTop(0);
+		}
+	});
+	// 失敗時処理
+	cam.fail(function(xhr, status, error) {
+		if (xhr.responseText && false) {
+			document.open();
+			document.write(xhr.responseText);
+			document.close();
+		} else {
+			nfw.common.clearBusinessMessage();
+			nfw.common.setResultMessage('error', "[" + error + "]");
+		}
+		if (btn && btn.type == 'button') {
+			// 二重クリック制御
+			$(btn).prop("disabled", false);
+			$(btn).removeClass("imui-disabled-button");
+		}
+		if (parentDivTarget) {
+			// スクロールが先頭に移動
+			parentDivTarget.scrollTop(0);
+		}
+		return null;
+	});
+};
+
+/**
+ * ajax本体生成。
+ * <p>
+ * POST通信を行うためのajax本体を生成する。
+ * </p>
+ *
+ * @param {string} url 送信先URL
+ * @param {Array.<string>} data 送信データ
+ * @param {boolean} asyncFlg 非同期フラグ(true:非同期、false:同期)
+ */
+skf.util.createAjax = function(url, data, asyncFlg) {
+	return $.ajax({
+		type: 'POST',
+		url: url,
+		contentType:"application/json;charset=UTF-8",
+		dataType: 'json',
+		data: JSON.stringify(data),
+		timeout: 10000,
+		async: asyncFlg
+	});
+};
+
+/**
+ * ajax本体生成(ファイル送信用)。
+ * <p>
+ * POST通信を行うためのajax本体を生成する。
+ * </p>
+ *
+ * @param {string} url 送信先URL
+ * @param {Array.<string>} data 送信データ
+ * @param {boolean} asyncFlg 非同期フラグ(true:非同期、false:同期)
+ */
+skf.util.createAjaxForFile = function(url, data, asyncFlg) {
+	return $.ajax({
+		type: 'POST',
+		url: url,
+		contentType: false,
+		processData: false,
+		data: data,
+		timeout: 30000000,
+		async: asyncFlg
+	});
+};
