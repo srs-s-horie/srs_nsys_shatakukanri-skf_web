@@ -266,7 +266,7 @@
 				// 画面表示時に定義される処理
 				$(document).ready(function(){
 
-					//リサイズ時イベント
+					// リサイズ時イベント
 					$(window).bind('resize', function(){
 						$('#mainList').setGridWidth($('#listTableArea').width(), true);
 					}).trigger('resize');
