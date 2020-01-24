@@ -51,7 +51,7 @@ $(function(){
 				grid.jqGrid('setGridParam', {data:data.popListTableList});
 				// リストテーブルをリロード
 				grid.trigger("reloadGrid");
-	    	});
+	    	}, this, false);
 		});
 		
 		$("#selectBtn").click (function() {
@@ -69,6 +69,11 @@ $(function(){
 	        $("#shainNo").val(rowData.shainNo);
 	        $("#" + insertFormName).val(rowData.name);
 	        nfw.common.modalPopupClose(this);
+	        
+	        var callbackFlag = $("#callbackFlag").val();
+	        if (callbackFlag != null && callbackFlag == "true") {
+	        	shainInfoCallback();
+	        }
 		});
 
 		$("#closeBtn").click(function() {
@@ -77,12 +82,12 @@ $(function(){
 	});
 	
     // リストテーブルの確認欄のアイコンをクリックした時のイベント
-    onCellSelect = function(rowId, iCol, cellContent, e) {
+    onCellSelectShain = function(rowId, iCol, cellContent, e) {
     	$("#targetRowId").val(rowId);
     }
 });
 </script>
-<div id="imui-container" style="width:650px;min-width:650px;max-width: 650px;">
+<div id="imui-container" style="width:620px;min-width:620px;max-width: 620px;">
 <!-- コンテンツエリア -->
 <div class="imui-form-container-wide" width="550px" style="width:100%; min-width:550px;max-width: 550px; margin-left: 10px;">
 <div style="height:30px; bottom:10px">検索条件を指定して、<font color="green">「検索」</font>をクリックしてください。</div>
@@ -95,7 +100,7 @@ $(function(){
 					  <nfwui:LabelBox id="lblShainNo" code="<%= MessageIdConstant.SKF2010_SC001_SHAIN_NO %>" />
 					</th>
 					<td style="width: 10%;">
-					    <imui:textbox id="popShainNo" name="popShainNo" style="width:260px;" value="${form.popShainNo}" />
+					    <imui:textbox id="popShainNo" name="popShainNo" style="width:260px;" value="${form.popShainNo}" tabIndex="3" />
 					</td>
 				</tr>
 				<tr>
@@ -103,14 +108,14 @@ $(function(){
 					  <nfwui:LabelBox id="lblName" code="<%= MessageIdConstant.SKF2010_SC001_NAME %>" />
 					</th>
 					<td style="width: 10%;">
-					  <imui:textbox id="popName" name="popName" style="width:260px;" value="${form.popName}" />
+					  <imui:textbox id="popName" name="popName" style="width:260px;" value="${form.popName}" tabIndex="4" />
 					</td>
 				</tr>
 					<th style="width: 7%;">
 					  <nfwui:LabelBox id="lblNameKk" code="<%= MessageIdConstant.SKF2010_SC001_NAME_KK %>" />
 					</th>
 					<td style="width: 10%;">
-					  <imui:textbox id="popNameKk" name="popNameKk" style="width:260px;" value="${form.popNameKk}" />
+					  <imui:textbox id="popNameKk" name="popNameKk" style="width:260px;" value="${form.popNameKk}" tabIndex="5" />
 					</td>
 				</tr>
 				<tr>
@@ -118,7 +123,7 @@ $(function(){
 					  <nfwui:LabelBox id="lblGenShozoku" code="<%= MessageIdConstant.SKF2010_SC001_AGENCY %>" />
 					</th>
 					<td style="width: 10%;">
-					  <imui:textbox id="popAgency" name="popAgency" style="width:260px;" value="${form.popAgency}" />
+					  <imui:textbox id="popAgency" name="popAgency" style="width:260px;" value="${form.popAgency}" tabIndex="6" />
 					</td>
 				</tr>
 
@@ -142,9 +147,9 @@ $(function(){
 		</script>
 
 		<imui:listTable id="popShainList" name="popShainList"
-		data="${form.popListTableList}" onCellSelect="onCellSelect"
+		data="${form.popListTableList}" onCellSelect="onCellSelectShain"
 		width="550" height="200" multiSelect="false">
-		<pager rowNum="1000" />
+		<pager rowNum="10" />
 		<cols>
 		  <col name="shainNo" width="100" sortable="false" caption="社員番号" />
 		  <col name="name" width="200" sortable="false" caption="氏名" />

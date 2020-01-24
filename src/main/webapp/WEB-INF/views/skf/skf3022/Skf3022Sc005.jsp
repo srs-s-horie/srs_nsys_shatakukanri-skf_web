@@ -12,7 +12,11 @@
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
 
-<%-- コンテンツエリア --%>
+<style type="text/css">
+.ui-jqgrid .ui-jqgrid-bdiv {
+  overflow-x:hidden; 
+}
+</style>
 <script type="text/javascript">
 // リストテーブルの貸与区分の文字色変更
 function onCellAttr(rowId,val,rawObject,cm,rdata){
@@ -231,6 +235,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 						<col name="hdnNyutaikyoKbnCd" caption="" hidden="true"/>
 						<col name="hdnStJyokyoCd" caption="" hidden="true"/>
 						<col name="hdnBhJyokyoCd" caption="" hidden="true"/>
+						<col name="hdnSinseiKbnCd" caption="" hidden="true"/>
 						<col name="chkSelect" caption="チェックボックス" hidden="true"/>
 						
 						</cols>
@@ -282,7 +287,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
  									var hdnTaikyoDate = row.colTaikyoDate;
  									var hdnShoruikanriNo = row.hdnShoruikanriNo;
  									var hdnNyutaikyoKbn = row.hdnNyutaikyoKbnCd;
- 									var hdnApplKbn = row.colSinseiKbn;
+ 									var hdnApplKbn = row.hdnSinseiKbnCd;
  									var hdnShainNoChangeFlg = row.hdnShainChangeFlg;
 									
  									$("#hdnTeijiNo").val(hdnTeijiNo);

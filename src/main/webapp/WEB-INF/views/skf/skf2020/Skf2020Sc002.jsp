@@ -601,7 +601,7 @@
 													<nfwui:LabelBox id="lblHead" code="<%= MessageIdConstant.SKF2020_SC002_TOKUSHU_JIJO %>" />
 												</th>
 												<td colspan="3">
-													<imui:textArea id="tokushuJijo" name="tokushuJijo" value="${f:h(form.tokushuJijo)}" tabindex="46"/>
+													<imui:textArea id="tokushuJijo" name="tokushuJijo" value="${form.tokushuJijo}" tabindex="46"/>
 												</td>
 											</tr>                            	
 										<!-- 現保有社宅 -->   
@@ -640,7 +640,7 @@
 												</th>
 												<td colspan="3">
 													<imui:textArea id="shatakuJotai" name="shatakuJotai" 
-														value="${f:h(form.shatakuJotai)}" style="width: 90%;" placeholder="例 壁紙に破損あり"
+														value="${form.shatakuJotai}" style="width: 90%;" placeholder="例 壁紙に破損あり"
 														  disabled="true" hidden="false"  tabindex="49"/>
 												</td>
 											</tr>											
@@ -654,7 +654,7 @@
 														list="${form.ddlTaikyoRiyuKbnList}"  disabled="true" tabindex="50"/>
 													<div>
 														<imui:textArea id="taikyoRiyu" name="taikyoRiyu"
-															value="${f:h(form.taikyoRiyu)}" style="width: 90%;" placeholder="例 退職のため" disabled="true" tabindex="51" />
+															value="${form.taikyoRiyu}" style="width: 90%;" placeholder="例 退職のため" disabled="true" tabindex="51" />
 													</div>
 												</td>
 											</tr> 
@@ -665,7 +665,7 @@
 												</th>
 												<td colspan="3">
 													<imui:textArea id="taikyogoRenrakuSaki" name="taikyogoRenrakuSaki" 
-														value="${f:h(form.taikyogoRenrakuSaki)}" style="width: 90%;" placeholder="例 090-0000-0000" disabled="true"
+														value="${form.taikyogoRenrakuSaki}" style="width: 90%;" placeholder="例 090-0000-0000" disabled="true"
 														 tabindex="52"/>
 												</td>
 											</tr>
@@ -725,6 +725,9 @@
 					<input type="hidden" name="hdnConfirmFlg" id="hdnConfirmFlg" value="${form.hdnConfirmFlg}" />
 					<input type="hidden" name="hdnApplHistroyApplDate" id="hdnApplHistroyApplDate" value="${form.hdnApplHistroyApplDate}" />
 					<input type="hidden" name="hdnParkingFullFlg" id="hdnParkingFullFlg" value="${form.parkingFullFlg}" />
+					<input type="hidden" name="hdnParking1stPlace" id="hdnParking1stPlace" value="${form.parking1stPlace}" />
+					<input type="hidden" name="hdnParking2stPlace" id="hdnParking2stPlace" value="${form.parking2stPlace}" />
+
 					<!-- 右側の入力ガイドの部分 -->
 					<td style="width: 30%; border: none;background-color: #fdfdff;">
 						<div class="imui-form-container-wide">
@@ -1963,6 +1966,9 @@ function mesDisplayControl(isShow){
 		map['nowShataku'] = getNowShataku();
 		map['shatakuKanriId'] = $('#nowShatakuName option:selected').val();	
 		
+		map['hdnParking1stPlace'] = $("#hdnParking1stPlace").val();
+		map['hdnParking2stPlace'] = $("#hdnParking2stPlace").val();
+		
 		map['taikyoYotei'] = getTaikyoYotei();
     	map['taikyoYoteiDate'] = $("#taikyoYoteiDate").val();
 		map['tokushuJijo'] =  $("#tokushuJijo").val();
@@ -1979,20 +1985,40 @@ function mesDisplayControl(isShow){
 		
 		map['pageId'] = $("#hdnPageId").val();
 		
-		//入力チェック非同期処理呼び出し
-		nfw.common.doAjaxAction("skf/Skf2020Sc002/checkAsync",map,true,function(data) {
+		var errorCheck = false;
 		
-				//エラーが無い場合
-		    	var form = "form"; //受け渡すformId
-		    	var url = "skf/Skf2020Sc002/Confirm"; //遷移先サービス
-				if(dialogue=="yes"){
-		    	//退居予定日と返却希望立会日の確認ダイアログが必要な場合
-					//ダイアログ
-					skf.common.confirmPopup("返却立会希望日が退居予定日以降で入力されています。申請してもよろしいですか？", "確認", form ,url, "ok", "キャンセル",this);			
-				}else if(dialogue=="no"){
-					//退居予定日と返却希望立会日の確認ダイアログが不要な場合
-					nfw.common.submitForm(form,url,"checkBtn");
-				}						
+		//入力チェック非同期処理呼び出し
+		$.when(
+			nfw.common.doAjaxAction("skf/Skf2020Sc002/checkAsync",map,true,function(data) {
+			
+					//エラーが無い場合
+					$(".imui-box-caution, .imui-box-warning").remove();
+					errorCheck = true;
+			    	var form = "form"; //受け渡すformId
+			    	var url = "skf/Skf2020Sc002/Confirm"; //遷移先サービス
+					if(dialogue=="yes"){
+			    	//退居予定日と返却希望立会日の確認ダイアログが必要な場合
+						//ダイアログ
+						skf.common.confirmPopup("返却立会希望日が退居予定日以降で入力されています。申請してもよろしいですか？", "確認", form ,url, "ok", "キャンセル",this);			
+					}else if(dialogue=="no"){
+						//退居予定日と返却希望立会日の確認ダイアログが不要な場合
+						nfw.common.submitForm(form,url,"checkBtn");
+					}
+			}),wait(1)
+		)
+		.done(function(data) {
+			console.log(errorCheck);
+			if(!errorCheck){
+				 scrollTo(0, 0);
+			}
 		});
     }
+	
+	function wait(sec) {
+	    var d = $.Deferred();
+	    setTimeout(function() {
+	        d.resolve();
+	    }, sec * 100);
+	    return d.promise();
+	}
 </script>

@@ -46,12 +46,7 @@ $(function() {
 		$("a[id*='attached_']").click(function(){
 			attachedFileDownload(this);
 		});
-		// 初期表示時、「社宅の必要理由」の選択状態が「世帯」だった場合の制御
-		if($("#hitsuyoShatakuSetai").is(":checked")) {
-			$("input:radio:not(:checked)").prop("disabled", true);
-		} else {
-			$("input[name!='bihinKibo']:radio:not(:checked)").prop("disabled", true);
-		}
+		
 		
 		// 備品希望が不可の時は備品一覧を非表示
 		if ($("#bihinKiboFukano").attr("checked")) {
@@ -72,11 +67,43 @@ $(function() {
 			}
 		});
 		
+		// 初期表示時、「社宅の必要理由」の選択状態が「世帯」だった場合の制御
+		if($("#hitsuyoShatakuSetai").is(":checked")) {
+			$("input:radio:not(:checked)").prop("disabled", true);
+		} else {
+			$("input[name!='bihinKibo']:radio:not(:checked)").prop("disabled", true);
+		}
+		
+		// 「独身」のラジオボタンをクリックした場合
+		$("#hitsuyoShatakuDokushin").click(function() {
+			// 「既婚」のラジオボタンのチェックを外して活性化
+    		$("#hitsuyoShatakuKikon").prop("checked", false);
+    		$("#hitsuyoShatakuKikon").prop("disabled", false);
+    		// 「社宅の必要理由」のラジオボタンでチェックされているもの以外は非活性
+    		$("input[name='hitsuyoShataku']:radio:not(:checked)").prop("disabled", true);
+		});
+		// 「既婚」のラジオボタンをクリックした場合
+		$("#hitsuyoShatakuKikon").click(function() {
+			// 「独身」のラジオボタンのチェックを外す
+    		$("#hitsuyoShatakuDokushin").prop("checked", false);
+			// 「社宅の必要理由」のラジオボタンを全て活性化
+    		$("input[name='hitsuyoShataku']:radio").prop("disabled", false);
+		});
+		// 「世帯」または「単身」をクリックした場合
+		$("#hitsuyoShatakuSetai, #hitsuyoShatakuTanshin").click(function() {
+			// 「既婚」のラジオボタンのチェックを外して非活性
+    		$("#hitsuyoShatakuKikon").prop("checked", false);
+    		$("#hitsuyoShatakuKikon").prop("disabled", true);
+		});
+		
 		// 「編集」ボタンを押下した時の処理
     	$("#edit").click(function() {
     		$("#editMode").show();
     		$("#readOnlyMode").hide();
-    		$("input[name='hitsuyoShataku']:radio").prop("disabled", false);
+    		if (!$("#hitsuyoShatakuDokushin").prop("checked")) {
+    			$("input[name='hitsuyoShataku']:radio").prop("disabled", false);
+    		}
+    		//$("#hitsuyoShatakuKikon").prop("disabled", false);
     	});
     	// 「取消」ボタンを押下した時の処理
     	$("#cancel").click(function() {
@@ -88,19 +115,23 @@ $(function() {
     			$("#hitsuyoShatakuSetai").prop("checked", true);
     			$("#hitsuyoShatakuTanshin").prop("checked", false);
     			$("#hitsuyoShatakuDokushin").prop("checked", false);
+    			$("#hitsuyoShatakuKikon").prop("checked", true);
     			break;
     		case '<%= CodeConstant.TANSHIN %>':
     			$("#hitsuyoShatakuSetai").prop("checked", false);
     			$("#hitsuyoShatakuTanshin").prop("checked", true);
     			$("#hitsuyoShatakuDokushin").prop("checked", false);
+    			$("#hitsuyoShatakuKikon").prop("checked", true);
     			break;
     		case '<%= CodeConstant.DOKUSHIN %>':
     			$("#hitsuyoShatakuSetai").prop("checked", false);
     			$("#hitsuyoShatakuTanshin").prop("checked", false);
     			$("#hitsuyoShatakuDokushin").prop("checked", true);
+    			$("#hitsuyoShatakuKikon").prop("checked", false);
+    			$("#hitsuyoShatakuKikon").prop("disabled", true);
     			break;
     		}
-    		
+    		$("input[name='hitsuyoShataku']:radio(:checked)").prop("disabled", false);
     		$("input[name='hitsuyoShataku']:radio:not(:checked)").prop("disabled", true);
     	});
 	});
@@ -288,14 +319,23 @@ $(function() {
 </imart:condition>
                                     </nfwui:LabelBox>
                                     </th>
-                                    <td colspan="2">
-                                    <input type="hidden" id="default" value="${form.hitsuyoShataku }" />
-                                    <nfwui:RadioButtonGroup id="hitsuyoShataku">
-                                      <nfwui:RadioButton id="hitsuyoShatakuSetai" name="hitsuyoShataku" value="<%= CodeConstant.SETAI %>" label="世帯" />
-                                      <nfwui:RadioButton id="hitsuyoShatakuTanshin" name="hitsuyoShataku" value="<%= CodeConstant.TANSHIN %>" label="単身" />
-                                      <nfwui:RadioButton id="hitsuyoShatakuDokushin" name="hitsuyoShataku" value="<%= CodeConstant.DOKUSHIN %>" label="独身" />
-                                    </nfwui:RadioButtonGroup>
-                                    </td>
+                                    <td id="hitsuyoShataku" colspan="3" >
+                                    <input type="hidden" id="default" name="defaultHitsuyoShataku" value="${form.hitsuyoShataku }" />
+										<nfwui:RadioButton name="rdoKikon" id="hitsuyoShatakuKikon" label="既婚"
+											value="<%= CodeConstant.KIKON %>" tabindex="10" />
+											<nfwui:RadioButtonGroup id="hitsuyoShataku" tabindex="11"> 
+												（
+													<nfwui:RadioButton name="hitsuyoShataku" id="hitsuyoShatakuSetai" label="世帯" 
+														value="<%= CodeConstant.SETAI %>" checked="${form.rdoHitsuyoSetaiChecked}" tabindex="11"/>
+													<nfwui:RadioButton name="hitsuyoShataku" id="hitsuyoShatakuTanshin" label="単身" 
+														value="<%= CodeConstant.TANSHIN %>" checked="${form.rdoHitsuyoTanshinChecked}" tabindex="11"/>
+												）
+													<br>
+													<nfwui:RadioButton name="hitsuyoShataku" id="hitsuyoShatakuDokushin" label="独身" 
+														value="<%= CodeConstant.DOKUSHIN %>" tabindex="19"/>
+											</nfwui:RadioButtonGroup>
+									</td>
+
                                 </tr>
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblDokyoKazoku" code="<%= MessageIdConstant.SKF2020_SC003_DOKYO_KAZOKU %>" /></th>
@@ -491,7 +531,7 @@ $(function() {
                                 </tr>
                                 <tr>
                                     <th colspan="2"><nfwui:LabelBox id="lblNowShatakuName" code="<%= MessageIdConstant.SKF2020_SC003_NOW_SHATAKU_NAME %>" /></th>
-                                    <td>${f:h(form.nowShatakuName)}
+                                    <td>${form.nowShatakuName}
                                     </td>
                                 </tr>
                                 <tr>
@@ -532,7 +572,7 @@ $(function() {
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblTokushuJijo" code="<%= MessageIdConstant.SKF2020_SC003_TOKUSHU_JIJO %>" /></th>
                                     <td colspan="2">
-                                    ${f:h(form.tokushuJijo)}
+                                    ${form.tokushuJijo}
                                     </td>
                                 </tr>
                                 
@@ -556,21 +596,21 @@ $(function() {
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblShatakuStatus" code="<%= MessageIdConstant.SKF2020_SC003_SHATAKU_STATUS %>" /></th>
                                     <td colspan="2">
-                                    ${f:h(form.shatakuJotai)}
+                                    ${form.shatakuJotai}
                                     </td>
                                 </tr>
                                 
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblTaikyoRiyu" code="<%= MessageIdConstant.SKF2020_SC003_TAIKYO_RIYU %>" /></th>
                                     <td colspan="2">
-                                    ${f:h(form.taikyoRiyu)}
+                                    ${form.taikyoRiyu}
                                     </td>
                                 </tr>
                                 
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblTaikyogoRenrakuSaki" code="<%= MessageIdConstant.SKF2020_SC003_TAIKYOGO_RENRAKU_SAKI %>" /></th>
                                     <td colspan="2">
-                                    ${f:h(form.taikyogoRenrakuSaki)}
+                                    ${form.taikyogoRenrakuSaki}
                                     </td>
                                 </tr>
                                 
@@ -616,7 +656,7 @@ $(function() {
                                 <tr>
                                     <th colspan="2"><nfwui:LabelBox id="lblNewShatakuName" code="<%= MessageIdConstant.SKF2020_SC003_NEW_SHATAKU_NAME %>" /></th>
                                     <td colspan="2">
-                                        ${f:h(form.newShatakuName)}
+                                        ${form.newShatakuName}
                                     </td>
                                 </tr>
                                 <tr>
@@ -923,8 +963,8 @@ $(function() {
 
            <nfwui:PopupButton id="shiryoBtn" name="shiryoBtn" value="資料を添付"
            cssClass="imui-medium-button" cssStyle="width: 150px" 
-           use="popup" popupWidth="750" popupHeight="600"
-           parameter="applNo:applNo,applId:applId" modalMode="false" 
+           use="popup" popupWidth="780" popupHeight="700"
+           parameter="applNo:popApplNo,applId:popApplId" modalMode="true" 
            screenUrl="skf/Skf2010Sc009/init" formId="form" />
       <nfwui:ConfirmButton id="remandBtn" name="remandBtn" value="差戻し"
        cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"

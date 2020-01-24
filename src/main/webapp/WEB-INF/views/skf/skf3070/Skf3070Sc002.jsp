@@ -78,11 +78,11 @@
 				</tr>
 				<tr>
 					<th style="width: 160px;">
-						<nfwui:LabelBox id="lblAcceptFlg" code="<%= MessageIdConstant.SKF3070_SC002_REMARKS %>" />
+						<nfwui:LabelBox id="lblRemarks" code="<%= MessageIdConstant.SKF3070_SC002_REMARKS %>" />
 					</th>
 					<td colspan="6">
 						<imui:textArea id="remarks" name="remarks" 
-							value="${f:h(form.remarks)}" style="width: 90%;" placeholder="例 共有持分不明につき総額" tabindex="9"/>
+							value="${form.remarks}" style="width: 90%;" placeholder="例 共有持分不明につき総額" tabindex="9"/>
 					</td>
 				</tr>
 			</table>

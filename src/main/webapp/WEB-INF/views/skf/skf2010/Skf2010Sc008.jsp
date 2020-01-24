@@ -93,18 +93,15 @@
                                             <nfwui:PopupButton id="support" name="support" value="支援"
                                             cssClass="imui-small-button" use="popup"
                                             screenUrl="skf/Skf2010Sc001/init"
-                                            popupWidth="650" popupHeight="700"
+                                            popupWidth="640" popupHeight="800"
                                             modalMode="true" tabindex="1" />
                                     </nobr>
                                     </th>
                                     <td style="width:120px;">
-                                        <!-- <input style="width:120px;" id="shainNo" name="shainNo" type="text" value="${f:h(form.shainNo)}">-->
-                                        <imui:textbox style="width:120px;" id="shainNo" name="shainNo" value="${f:h(form.shainNo)}" maxlength="8"/>
+                                        <imui:textbox style="width:120px; ime-mode:disabled;" id="shainNo" name="shainNo" value="${f:h(form.shainNo)}" maxlength="8"/>
                                     </td>
                                     <td style="border:none;">
                                         <nfwui:Button id="select" name="select" formId="form" value="選択する" cssClass="imui-small-button" url="skf/Skf2010Sc008/Select" tabindex="2" />
-                                       <!-- <nfwui:Button id="login" name="login" formId="form" value="テストログイン" cssClass="imui-small-button" url="skf/Skf2010Sc008/Login" />
-                                        <nfwui:Button id="logout" name="logout" formId="form" value="テストログアウト" cssClass="imui-small-button" url="skf/Skf2010Sc008/Logout" /> -->
                                     </td>
                                 </tr>
 
@@ -128,7 +125,6 @@
                                           </th>
                                           <td colspan="2">
                                               ${f:h(form.shainNo)}
-                                              <!-- <input type="hidden" id="shainNo" value="${f:h(form.shainNo)}"/> -->
                                           </td>
                                       </tr>
                                       <tr>

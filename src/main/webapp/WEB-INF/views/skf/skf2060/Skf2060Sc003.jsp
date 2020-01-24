@@ -160,7 +160,7 @@
 	                                                    <input type="radio" id="radioCandidateNo_${f:h(kariageObject.candidateNo)}" name="radioCandidateNo" value="${f:h(kariageObject.candidateNo)}" tabindex="1" />     
 	                                                    </td>
 	                                                    <td style="text-align:left;">
-	                                                        ${f:h(kariageObject.shatakuName)}
+	                                                        ${kariageObject.shatakuName}
 	                                                    </td>
 	                                                    <td style="text-align:left;">
 	                                                        ${f:h(kariageObject.shatakuNameAddress)}
@@ -231,12 +231,9 @@
 <script type="text/javascript">
 (function($) {		
 	$(document).ready(function() {	
-		var applStatus = '<%= form.getApplStatus() %>';
-		var sentakuZumi = '選択済';
-		var sentakuShinai = '選択しない';
 		var checkCandidateNo = $("#checkCandidateNo").val();
 		//選択物件番号の行のラジオボタンをチェックする
-		if(applStatus == sentakuZumi || applStatus == sentakuShinai){
+		if(checkCandidateNo != null && checkCandidateNo != ""){
 			$("#radioCandidateNo_"+checkCandidateNo).prop('checked', true);
 		}
 		//ラジオボタンを入力不可能にする

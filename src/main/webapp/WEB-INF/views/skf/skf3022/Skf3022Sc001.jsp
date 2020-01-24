@@ -37,7 +37,7 @@
 					</th>
 					<td  colspan="5">
 						<imui:textbox id="sc001ShatakuName" name="sc001ShatakuName" style="width:260px;"
-											value="${form.shatakuName}" placeholder="例　社宅名" tabindex="3" />
+											value="${form.shatakuName}" placeholder="例　社宅名" tabindex="301" />
 					</td>
 				</tr>
 				<tr>
@@ -46,8 +46,8 @@
 						<nfwui:LabelBox id="lblSc001RoomNo" code="<%= MessageIdConstant.SKF3022_SC001_ROOM_NO %>" />
 					</th>
 					<td  colspan="5">
-						<imui:textbox id="sc001RoomNo" name="sc001RoomNo" style="width:260px;" value="${form.roomNo}"
-																			placeholder="例　101（半角）" tabindex="4" />
+						<imui:textbox id="sc001RoomNo" name="sc001RoomNo" style="width:260px;" value="${f:h(form.roomNo)}"
+																			placeholder="例　101（半角）" tabindex="302" />
 					</td>
 				</tr>
 					<th style="width: 13%;">
@@ -56,7 +56,7 @@
 					</th>
 					<td style="width: 11%;">
 						<imui:select id="sc001YoutoSelect" name="sc001YoutoSelect" width="60"
-												list="${form.sc001YoutoSelectList}" tabindex="5" />
+												list="${form.sc001YoutoSelectList}" tabindex="303" />
 					</td>
 					<th style="width: 10%;">
 						<!-- 規格 -->
@@ -64,7 +64,7 @@
 					</th>
 					<td style="width: 14%;">
 						<imui:select id="sc001KikakuSelect" name="sc001KikakuSelect" width="70"
-													list="${form.sc001KikakuSelecteList}" tabindex="6" />
+													list="${form.sc001KikakuSelecteList}" tabindex="304" />
 					</td>
 					<th style="width: 13%;">
 						<!-- 空き部屋 -->
@@ -72,7 +72,7 @@
 					</th>
 					<td style="width: 12%;">
 						<imui:select id="sc001EmptyRoomSelect" name="sc001EmptyRoomSelect" width="60"
-													list="${form.sc001EmptyRoomSelectList}" tabindex="7" />
+													list="${form.sc001EmptyRoomSelectList}" tabindex="305" />
 					</td>
 					<th style="width: 15%;">
 						<!-- 空き駐車場 -->
@@ -80,13 +80,13 @@
 					</th>
 					<td style="width: 12%;">
 						<imui:select id="sc001EmptyParkingSelect" name="sc001EmptyParkingSelect" width="60"
-													list="${form.sc001EmptyParkingSelectList}" tabindex="8" />
+													list="${form.sc001EmptyParkingSelectList}" tabindex="306" />
 					</td>
 				</tr>
 			</tbody>
 		</nfwui:Table>
 		<div class="align-L">
-			<nfwui:Button id="searchBtn" name="searchBtn" code="<%=MessageIdConstant.SKF3022_SC001_BTN_SEARCH %>"  tabindex="9"
+			<nfwui:Button id="searchBtn" name="searchBtn" code="<%=MessageIdConstant.SKF3022_SC001_BTN_SEARCH %>"  tabindex="307"
 														preOnClick="refreshGridData();return false;" cssClass="imui-small-button" />
 		</div>
 		<br>
@@ -118,10 +118,6 @@
 		</imui:listTable>
 		<script type="text/javascript">
 			(function($) {
-				// テキストボックス、テキストエリアにフォーカス時、入力済み文字列全選択
-				jQuery(document).on("focus click", "input,textarea", function() {
-					$(this).select();
-				});
 				onBeforeSelectRow = function(rowId,e) {
 					//選択可の行がクリックされた場合のみTrueにする
 					// リストテーブル情報取得
@@ -158,9 +154,9 @@
 		</script>
 		<br/>	
 		<div class="align-R">
-			<nfwui:PopupButton id="closebtn" value="画面を閉じる" cssStyle="width:100px;" cssClass="imui-small-button" modalMode="true" use="cancel"  tabindex="10"/>
+			<nfwui:PopupButton id="closebtn" value="画面を閉じる" cssStyle="width:100px;" cssClass="imui-small-button" modalMode="true" use="cancel"  tabindex="308"/>
 			<nfwui:PopupButton id="selectBtn" value="選択する" cssStyle="width:100px;" cssClass="imui-small-button" modalMode="true" use="ok" 
-			 preOnClick="if(!check()){return(false)};"  tabindex="11" />
+			 preOnClick="if(!check()){return(false)};"  tabindex="309" />
 			<input type="hidden" id="targetRowId" value="" />
 		</div>
 

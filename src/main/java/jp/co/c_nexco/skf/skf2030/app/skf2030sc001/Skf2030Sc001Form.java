@@ -81,4 +81,14 @@ public class Skf2030Sc001Form extends Skf2030CommonForm {
 	// コメント
 	private String commentNote;
 	private boolean commentBtnVisibled;
+	
+	/** ボタン表示非表示 */
+	// 搬入完了ボタン
+	private String btnImportFinidhedDisabled;
+	
+	// 一時保存ボタン
+	private String btnSaveDisabled;
+	
+	// 申請ボタン
+	private String btnApplicationDisabled;
 }

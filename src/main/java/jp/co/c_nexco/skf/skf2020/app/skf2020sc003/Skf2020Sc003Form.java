@@ -189,5 +189,8 @@ public class Skf2020Sc003Form extends Skf2020CommonForm {
 
 	// 操作ガイド
 	private String operationGuide;
+	
+	// 編集前「必要とする社宅」
+	private String defaultHitsuyoShataku;
 
 }

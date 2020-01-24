@@ -15,140 +15,210 @@
 <%-- コンテンツエリア --%>
 <script type="text/javascript">
 	function back1() {
-		var url="skf/Skf3022Sc005/init?SKF3022_SC005&tokenCheck=0"
-		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？");
+		var url="skf/Skf3022Sc005/init?SKF3010_SC005&tokenCheck=0"
+		nfw.common.doBack(url, $("#litMessageBack").val());
 	}
 </script>
 
 <!-- コンテンツエリア -->
-<nfwui:Form id="form" name="form" modelAttribute="form">
-	<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3022_SC006 %>" />
- 	<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="${form.hdnShatakuKanriNo}" />
-	<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="${form.shatakuName}" />
-	<input type="hidden" name="roomNo" id="roomNo" value="${form.roomNo}" />
-	<input type="hidden" name="hdnParkingShienParkNo" id="hdnParkingShienParkNo" value="" />
-	<input type="hidden" name="hdnParkingShienParkBlock" id="hdnParkingShienParkBlock" value="" />
-	<input type="hidden" name="hdnParkingShienParkRentalAsjust" id="hdnParkingShienParkRentalAsjust" value="" />
-	<input type="hidden" name="hdnParkingShienEndDay" id="hdnParkingShienEndDay" value="" />
+<div class="imui-form-container-wide" >
+	<nfwui:Form id="form" name="form" modelAttribute="form">
+		<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3022_SC006 %>" />
+		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3022Sc006/init?SKF3010_SC006&tokenCheck=0" />
+		<!-- ** サーバー連携用 ** -->
+		<!-- 表示タブインデックス -->	<input type="hidden" name="hdnTabIndex" id="hdnTabIndex" value="${form.hdnTabIndex }" />
+		<!-- 使用料パターンID -->	<input type="hidden" name="hdnSiyouryoId" id="hdnSiyouryoId" value="${form.hdnSiyouryoId}" />
+		<!-- JSON可変ラベルリスト -->	<input type="hidden" name="jsonLabelList" id="jsonLabelList" />
+		<!-- JSON備品情報 -->		<input type="hidden" name="jsonBihin" id="jsonBihin" value="${form.jsonBihin }" />
+		<!-- 入退居区分 -->		<input type="hidden" name="hdnNyutaikyoKbn" id="hdnNyutaikyoKbn" value="${form.hdnNyutaikyoKbn }"/>
+		<!-- 生年月日 -->			<input type="hidden" name="hdnBirthday" id="hdnBirthday" value="${form.hdnBirthday }"/>
+		<!-- 入居予定日 -->		<input type="hidden" name="hdnNyukyoDate" id="hdnNyukyoDate" value="${form.hdnNyukyoDate }"/>
+		<!-- 退居予定日 -->		<input type="hidden" name="hdnTaikyoDate" id="hdnTaikyoDate" value="${form.hdnTaikyoDate }"/>
+		<!-- 利用開始日1 -->		<input type="hidden" name="hdnRiyouStartDayOne" id="hdnRiyouStartDayOne" value="${form.hdnRiyouStartDayOne }"/>
+		<!-- 利用開始日2 -->		<input type="hidden" name="hdnRiyouStartDayTwo" id="hdnRiyouStartDayTwo" value="${form.hdnRiyouStartDayTwo }"/>
+		<!-- 区画1管理番号 -->		<input type="hidden" name="hdnChushajoNoOne" id="hdnChushajoNoOne" value="${form.hdnChushajoNoOne }"/>
+		<!-- 旧区画1管理番号 -->	<input type="hidden" name="hdnChushajoNoOneOld" id="hdnChushajoNoOneOld" value="${form.hdnChushajoNoOneOld }"/>
+		<!-- 区画2管理番号 -->		<input type="hidden" name="hdnChushajoNoTwo" id="hdnChushajoNoTwo" value="${form.hdnChushajoNoTwo }"/>
+		<!-- 旧区画2管理番号 -->	<input type="hidden" name="hdnChushajoNoTwoOld" id="hdnChushajoNoTwoOld" value="${form.hdnChushajoNoTwoOld }"/>
+		<!-- 区画１ 終了日 -->		<input type="hidden" name="hdnEndDayOne" id="hdnEndDayOne" value="${form.hdnEndDayOne }"/>
+		<!-- 区画2 終了日 -->		<input type="hidden" name="hdnEndDayTwo" id="hdnEndDayTwo" value="${form.hdnEndDayTwo }"/>
+		<!-- 区画１更新日 -->		<input type="hidden" name="hdnShatakuParkingBlock1UpdateDate" id="hdnShatakuParkingBlock1UpdateDate" value="${form.hdnShatakuParkingBlock1UpdateDate }"/>
+		<!-- 区画2更新日 -->		<input type="hidden" name="hdnShatakuParkingBlock2UpdateDate" id="hdnShatakuParkingBlock2UpdateDate" value="${form.hdnShatakuParkingBlock2UpdateDate }"/>
+		<!-- 区画番号1 -->		<input type="hidden" name="hdnKukakuNoOne" id="hdnKukakuNoOne" value="${form.hdnKukakuNoOne }"/>
+		<!-- 区画番号2 -->		<input type="hidden" name="hdnKukakuNoTwo" id="hdnKukakuNoTwo" value="${form.hdnKukakuNoTwo }"/>
+		<!-- 協議中フラグ状態 -->	<input type="hidden" name="sc006KyoekihiKyogichuCheckState" id="sc006KyoekihiKyogichuCheckState" value="${form.sc006KyoekihiKyogichuCheck }"/>
+		<!-- 処理状態 -->			<input type="hidden" name="sc006Status" id="sc006Status" value="${form.sc006Status }"/>
+		<!-- 戻るボタンMSG -->		<input type="hidden" name="litMessageBack" id="litMessageBack" value="${form.litMessageBack }"/>
+		<!-- 作成完了ボタンMSG -->	<input type="hidden" name="litMessageCreate" id="litMessageCreate" value="${form.litMessageCreate }"/>
+		<!-- 一時保存ボタンMSG -->	<input type="hidden" name="litMessageTmpSave" id="litMessageTmpSave" value="${form.litMessageTmpSave }"/>
+		<!-- 台帳登録ボタンMSG -->	<input type="hidden" name="litMessageShatakuLogin" id="litMessageShatakuLogin" value="${form.litMessageShatakuLogin }"/>
 
-	<!-- ** 使用料入力支援：パラメータ(下記以外に社宅管理番号もパラメータ) ** -->
-	<!-- 部屋管理番号 -->		<input type="hidden" name="hdnRoomKanriNo" id="hdnRoomKanriNo" value="1" />
-	<!-- 社員番号 -->			<input type="hidden" name="hdnShainNo" id="hdnShainNo" value="00001007" />
-	<!-- 社員番号 -->			<!-- <input type="hidden" name="hdnShainNo" id="hdnShainNo" value="K0000089" /> -->
-	<!-- 役員区分 -->			<input type="hidden" name="hdnYakuinKbn" id="hdnYakuinKbn" value="00" />
-	<!-- 社宅賃貸料 -->		<input type="hidden" name="hdnShatakuChintairyo" id="hdnShatakuChintairyo" value="222222" />
-	<!-- 提示データフラグ -->		<input type="hidden" name="hdnTeijiFlag" id="hdnTeijiFlag" value="false" />
-	<!-- 申請書類管理番号 -->	<input type="hidden" name="hdnSyoruiKanriNo" id="hdnSyoruiKanriNo" value="R0100-00001863-20190121-01" />
+		<!-- ** 次月予約登録：パラメータ ** -->
+		<!-- 提示番号 -->			<input type="hidden" name="hdnJigetuYoyakuTeijiNo" id="hdnJigetuYoyakuTeijiNo" value="${form.hdnJigetuYoyakuTeijiNo }"/>
+		<!-- 基準年月 -->			<input type="hidden" name="hdnJigetuYoyakuYearMonth" id="hdnJigetuYoyakuYearMonth" value="${form.hdnJigetuYoyakuYearMonth }"/>
+		<!-- 社宅管理台帳ID -->	<input type="hidden" name="hdnJigetuYoyakuShatakuKanriId" id="hdnJigetuYoyakuShatakuKanriId" value="${form.hdnJigetuYoyakuShatakuKanriId }"/>
+		<!-- 社宅使用料月額 -->	<input type="hidden" name="hdnJigetuYoyakuRental" id="hdnJigetuYoyakuRental" value="${form.hdnJigetuYoyakuRental }"/>
+		<!-- 個人負担共益費月額 -->	<input type="hidden" name="hdnJigetuYoyakuKyoekihiPerson" id="hdnJigetuYoyakuKyoekihiPerson" value="${form.hdnJigetuYoyakuKyoekihiPerson }"/>
+		<!-- 駐車場1月額 -->		<input type="hidden" name="hdnJigetuYoyakuParkingRentalOne" id="hdnJigetuYoyakuParkingRentalOne" value="${form.hdnJigetuYoyakuParkingRentalOne }"/>
+		<!-- 駐車場2月額 -->		<input type="hidden" name="hdnJigetuYoyakuParkingRentalTwo" id="hdnJigetuYoyakuParkingRentalTwo" value="${form.hdnJigetuYoyakuParkingRentalTwo }"/>
 
-	<!-- ** 使用料入力支援：戻り値 & パラメータ(部屋情報) ** -->
-	<!-- 規格 -->				<input type="hidden" name="hdnRateShienKikaku" id="hdnRateShienKikaku" value="F3" />
-	<!-- 用途 -->				<input type="hidden" name="hdnRateShienYoto" id="hdnRateShienYoto" value="3" />
-	<!-- 延べ面積 -->			<input type="hidden" name="hdnRateShienNobeMenseki" id="hdnRateShienNobeMenseki" value="100.005" />
-	<!-- 基準面積 -->			<input type="hidden" name="hdnRateShienKijunMenseki" id="hdnRateShienKijunMenseki" value="110.005" /><!-- 基準使用料算定上延べ面積 -->
-	<!-- 社宅面積 -->			<input type="hidden" name="hdnRateShienShatakuMenseki" id="hdnRateShienShatakuMenseki" value="120.005" /><!-- 社宅使用料算定上延べ面積 -->
+		<!-- ** 社宅部屋入力支援：戻り値 ** -->
+		<!-- 社宅名 -->			<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="${form.sc006ShatakuName}" />
+		<!-- 社宅管理番号 -->		<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="${form.hdnShatakuKanriNo}" />
+		<!-- 部屋管理番号 -->		<input type="hidden" name="hdnRoomKanriNo" id="hdnRoomKanriNo" value="${form.hdnRoomKanriNo }" />
+		<!-- 部屋番号 -->			<input type="hidden" name="hdnRoomNo" id="hdnRoomNo" value="${form.sc006HeyaNo }" />
 
-	<!-- ** 使用料入力支援：戻り値 ** -->
-	<!-- 規格名 -->			<input type="hidden" name="hdnRateShienKikakuName" id="hdnRateShienKikakuName" value="" />
-	<!-- 用途名 -->			<input type="hidden" name="hdnRateShienYotoName" id="hdnRateShienYotoName" value="" />
-	<!-- サンルーム面積 -->		<input type="hidden" name="hdnRateShienSunroomMenseki" id="hdnRateShienSunroomMenseki" value="" />
-	<!-- 階段面積 -->			<input type="hidden" name="hdnRateShienKaidanMenseki" id="hdnRateShienKaidanMenseki" value="" />
-	<!-- 物置面積 -->			<input type="hidden" name="hdnRateShienMonookiMenseki" id="hdnRateShienMonookiMenseki" value="" />
-	<!-- 単価 -->				<input type="hidden" name="hdnRateShienTanka" id="hdnRateShienTanka" value="" />
-	<!-- 経年 -->				<input type="hidden" name="hdnRateShienKeinen" id="hdnRateShienKeinen" value="" />
-	<!-- 経年残価率 -->		<input type="hidden" name="hdnRateShienKeinenZankaRitsu" id="hdnRateShienKeinenZankaRitsu" value="" />
-	<!-- 使用料パターン名 -->	<input type="hidden" name="hdnRateShienPatternName" id="hdnRateShienPatternName" value="" />
-	<!-- 使用料パターン月額 -->	<input type="hidden" name="hdnRateShienPatternGetsugaku" id="hdnRateShienPatternGetsugaku" value="" />
-	<!-- 社宅使用料月額 -->	<input type="hidden" name="hdnRateShienShatakuGetsugaku" id="hdnRateShienShatakuGetsugaku" value="" />
-	<!-- 社宅基本使用料 -->	<input type="hidden" name="hdnRateShienKihonShiyoryo" id="hdnRateShienKihonShiyoryo" value="" />
+		<!-- ** 駐車場入力支援：パラメータ(下記以外に社宅管理番号、社宅名もパラメータ) ** -->
+		<!-- 利用開始日 -->		<input type="hidden" name="hdnRiyouStartDay" id="hdnRiyouStartDay" value="" />
 
-	<div class="imui-form-container-wide" width="1350px" style="width: 100%; min-width:1300px;max-width: 1350px;">
-		<table class="imui-form-search-condition">
+		<!-- ** 駐車場入力支援：戻り値 ** -->
+		<!-- 区画番号 -->			<input type="hidden" name="hdnParkingShienParkBlock" id="hdnParkingShienParkBlock" value="" />
+		<!-- 駐車場管理番号 -->	<input type="hidden" name="hdnParkingShienParkNo" id="hdnParkingShienParkNo" value="" />
+		<!-- 駐車場使用料月額 -->	<input type="hidden" name="hdnParkingShienParkRentalAsjust" id="hdnParkingShienParkRentalAsjust" value="" />
+		<!-- 終了日 -->			<input type="hidden" name="hdnParkingShienEndDay" id="hdnParkingShienEndDay" value="" />
+
+		<!-- ** 使用料計算入力支援：パラメータ(下記以外に社宅管理番号、部屋管理番号もパラメータ) ** -->
+		<!-- 社員番号 -->			<input type="hidden" name="hdnShainNo" id="hdnShainNo" value="${form.sc006ShainNo }" />
+		<!-- 社員番号 -->			<!-- <input type="hidden" name="hdnShainNo" id="hdnShainNo" value="K0000089" /> -->
+		<!-- 役員区分 -->			<input type="hidden" name="hdnYakuinKbn" id="hdnYakuinKbn" value="${form.sc006YakuinSanteiSelect }" />
+		<!-- 社宅賃貸料 -->		<input type="hidden" name="hdnShatakuChintairyo" id="hdnShatakuChintairyo" value="${form.sc006ChintaiRyo }" />
+		<!-- 提示データフラグ -->		<input type="hidden" name="hdnTeijiFlag" id="hdnTeijiFlag" value="true" /><!-- 「true」固定 -->
+		<!-- 申請書類管理番号 -->	<input type="hidden" name="hdnSyoruiKanriNo" id="hdnSyoruiKanriNo" value="${form.hdnShoruikanriNo }" />
+
+		<!-- ** 使用料計算入力支援：戻り値 & パラメータ(部屋情報) ** -->
+		<!-- 規格 -->				<input type="hidden" name="hdnRateShienKikaku" id="hdnRateShienKikaku" value="${form.hdnRateShienKikaku}" />
+		<!-- 用途 -->				<input type="hidden" name="hdnRateShienYoto" id="hdnRateShienYoto" value="${form.hdnRateShienYoto}" />
+		<!-- 延べ面積 -->			<input type="hidden" name="hdnRateShienNobeMenseki" id="hdnRateShienNobeMenseki" value="${form.hdnRateShienNobeMenseki}" />
+		<!-- 基準面積 -->			<input type="hidden" name="hdnRateShienKijunMenseki" id="hdnRateShienKijunMenseki" value="${form.hdnRateShienKijunMenseki}" /><!-- 基準使用料算定上延べ面積 -->
+		<!-- 社宅面積 -->			<input type="hidden" name="hdnRateShienShatakuMenseki" id="hdnRateShienShatakuMenseki" value="${form.hdnRateShienShatakuMenseki}" /><!-- 社宅使用料算定上延べ面積 -->
+
+		<!-- ** 使用料計算入力支援：戻り値 ** -->
+		<!-- 規格名 -->			<input type="hidden" name="hdnRateShienKikakuName" id="hdnRateShienKikakuName" value="${form.hdnRateShienKikakuName}" />
+		<!-- 用途名 -->			<input type="hidden" name="hdnRateShienYotoName" id="hdnRateShienYotoName" value="${form.hdnRateShienYotoName}" />
+		<!-- サンルーム面積 -->		<input type="hidden" name="hdnRateShienSunroomMenseki" id="hdnRateShienSunroomMenseki" value="${form.hdnRateShienSunroomMenseki}" />
+		<!-- 階段面積 -->			<input type="hidden" name="hdnRateShienKaidanMenseki" id="hdnRateShienKaidanMenseki" value="${form.hdnRateShienKaidanMenseki}" />
+		<!-- 物置面積 -->			<input type="hidden" name="hdnRateShienMonookiMenseki" id="hdnRateShienMonookiMenseki" value="${form.hdnRateShienMonookiMenseki}" />
+		<!-- 単価 -->				<input type="hidden" name="hdnRateShienTanka" id="hdnRateShienTanka" value="${form.hdnRateShienTanka}" />
+		<!-- 経年 -->				<input type="hidden" name="hdnRateShienKeinen" id="hdnRateShienKeinen" value="${form.hdnRateShienKeinen}" />
+		<!-- 経年残価率 -->		<input type="hidden" name="hdnRateShienKeinenZankaRitsu" id="hdnRateShienKeinenZankaRitsu" value="${form.hdnRateShienKeinenZankaRitsu}" />
+		<!-- 使用料パターン名 -->	<input type="hidden" name="hdnRateShienPatternName" id="hdnRateShienPatternName" value="${form.hdnRateShienPatternName}" />
+		<!-- 使用料パターン月額 -->	<input type="hidden" name="hdnRateShienPatternGetsugaku" id="hdnRateShienPatternGetsugaku" value="${form.hdnRateShienPatternGetsugaku}" />
+		<!-- 社宅使用料月額 -->	<input type="hidden" name="hdnRateShienShatakuGetsugaku" id="hdnRateShienShatakuGetsugaku" value="${form.hdnRateShienShatakuGetsugaku}" />
+		<!-- 社宅基本使用料 -->	<input type="hidden" name="hdnRateShienKihonShiyoryo" id="hdnRateShienKihonShiyoryo" value="${form.hdnRateShienKihonShiyoryo}" />
+
+		<!-- 社員名入力支援用 -->
+		<input type="hidden" id="insertFormName" value="" />
+		<nfwui:Table use="search">
 			<tbody>
 				<tr>
-					<th>
-						<label style="width:60px;">社員番号</label>
+					<!-- 社員番号-->
+					<th style="width: 8%;">
+<!--						<label style="width:60px;"></label> -->
+						<nfwui:LabelBox id="lblSc006ShainNo" code="<%=MessageIdConstant.SKF3022_SC006_SHAIN_NO %>" />
 					</th>
-					<td>
-						<div style="width:100px;">
-							00903906
-						</div>
+					<td style="width: 10%;">
+						<label id="sc006ShainNo" name="sc006ShainNo">${form.sc006ShainNo }</label>
 					</td>
-					<td>
-						<input type="button" value="申請内容" class="imui-small-button"/>
+					<!-- 申請内容-->
+					<td style="width: 7%;">
+						<nfwui:PopupButton id="sc006ShinseiNaiyo" name="sc006ShinseiNaiyo" value="申請内容" use="popup" 
+							cssClass="imui-small-button" popupWidth="800" popupHeight="650"  
+							modalMode="true" screenUrl="skf/Skf3021Sc002/init"
+							parameter="hdnShainNo:hdnRowShainNo,hdnNyutaikyoKbn:hdnRowNyutaikyoKbn,hdnSyoruiKanriNo:hdnRowApplNo" 
+							disabled="${form.sc006ShinseiNaiyoDisableFlg }" tabindex="3"/> 
 					</td>
-
-					<th>
-						<label style="width:60px;">社宅名</label>
+					<!-- 社宅名 -->
+					<th style="width: 8%;">
+					<!--	<label style="width:60px;">社宅名</label> -->
+						<nfwui:LabelBox id="lblSc006ShatakuName" code="<%=MessageIdConstant.SKF3022_SC006_SHATAKU_NAME %>" />
 					</th>
-					<td colspan="2">
-						<div style="width:200px;">稲沢A棟</div>
+					<td colspan="2" style="width: 15%;">
+						<label id="sc006ShatakuName" name="sc006ShatakuName">${form.sc006ShatakuName }</label>
 					</td>
-					<th>
-						<label style="width:100px;">貸与規格</label>
+					<!-- 貸与規格 -->
+					<th style="width: 11%;">
+					<!--	<label style="width:100px;">貸与規格</label> -->
+						<nfwui:LabelBox id="lblSc006SiyoryoPatName" code="<%=MessageIdConstant.SKF3022_SC006_SIYORYO_PAT_NAME %>" />
 					</th>
-					<td colspan="2">
-						<div style="width:200px;">2LDK ⇒ 2LDK</div>
+					<td colspan="2" style="width: 15%;">
+						<label id="sc006SiyoryoPatName" name="sc006SiyoryoPatName">${form.sc006SiyoryoPatName }</label>
 					</td>
-					<td style="border:none;"></td>
-					<td style="border:none;"></td>
-					<th>
-						<label style="width:60px;text-align:center;">入退居</label>
+					<td style="width: 3%; border:none; background-color:#ffffff; box-shadow:none;" ></td>
+					<!-- 入退居 -->
+					<th style="width: 7%;text-align:center;">
+					<!--	<label style="width:60px;text-align:center;">入退居</label> -->
+						<nfwui:LabelBox id="lblSc006NyutaikyoKbn" code="<%=MessageIdConstant.SKF3022_SC006_NYUTAIKYO_KBN %>" style="text-align:center;" />
 					</th>
-					<th>
-						<label style="width:60px;text-align:center;">社宅提示</label>
+					<!-- 社宅提示 -->
+					<th style="width: 7%;text-align:center;white-space: nowrap;">
+					<!--	<label style="width:60px;text-align:center;">社宅提示</label> -->
+						<nfwui:LabelBox id="lblSc006ShatakuStts" code="<%=MessageIdConstant.SKF3022_SC006_SHATAKU_STTS %>" style="text-align:center;" />
 					</th>
-					<th>
-						<label style="width:60px;text-align:center;">備品提示</label>
+					<!-- 備品提示 -->
+					<th style="width: 7%;text-align:center;white-space: nowrap;">
+					<!--	<label style="width:60px;text-align:center;">備品提示</label> -->
+						<nfwui:LabelBox id="lblSc006BihinStts" code="<%=MessageIdConstant.SKF3022_SC006_BIHIN_STTS %>" style="text-align:center;" />
 					</th>
-					<td style="width:20%;border:none;"></td>
+					<td style="width: 2%; border:none; background-color:#ffffff; box-shadow:none;" ></td>
 				</tr>
 				<tr>
+					<!-- 社員氏名-->
 					<th>
-						<label style="width:60px;">社員氏名</label>
+						<!-- <label style="width:60px;">社員氏名</label> -->
+						<nfwui:LabelBox id="lblSc006ShainName" code="<%=MessageIdConstant.SKF3022_SC006_SHAIN_NAME %>" />
 					</th>
 					<td colspan="2">
-						<div style="width:206px;">
-							中日本 3906
-						</div>
+						<label id="sc006ShainName" name="sc006ShainName">${form.sc006ShainName }</label>
 					</td>
+					<!-- 部屋番号-->
 					<th>
-						<label style="width:60px;">部屋番号</label>
+						<!-- <label style="width:60px;">部屋番号</label> -->
+						<nfwui:LabelBox id="lblSc006HeyaNo" code="<%=MessageIdConstant.SKF3022_SC006_HEYA_NO %>"/>
 					</th>
-					<td style="width:100px;">
-						504
+					<td style="width: 9%;">
+						<label id="sc006HeyaNo" name="sc006HeyaNo">${form.sc006HeyaNo }</label>
 					</td>
-					<td>
+					<td style="width: 6%;">
 						<nfwui:PopupButton id="shayakuHeyaShien" name="shayakuHeyaShien" value="社宅入力支援" use="popup" 
-								cssClass="imui-small-button" popupWidth="650" popupHeight="650"  
-								modalMode="true" screenUrl="skf/Skf3022Sc001/init" callbackFunc="shatakuShienCallback()" tabindex="6"/> 
+								cssClass="imui-small-button" popupWidth="650" popupHeight="650"
+								disabled="${form.shayakuHeyaShienDisableFlg }" modalMode="true" screenUrl="skf/Skf3022Sc001/init" callbackFunc="shatakuShienCallback()" tabindex="4"/> 
 					</td>
+					<!-- 社宅使用料月額-->
 					<th>
-						<label>社宅使用料月額</label>
+						<nfwui:LabelBox id="lblSc006SiyoryoMonthPay" code="<%=MessageIdConstant.SKF3022_SC006_SIYORYO_MONTH_PAY %>" />
 					</th>
-					<td style="width:100px;">
-						<label id="headShiyoryoMonthPay" name="headShiyoryoMonthPay">19,081円</label>
+					<td style="width: 9%;">
+						<label id="sc006SiyoryoMonthPay" name="sc006SiyoryoMonthPay">${form.sc006SiyoryoMonthPay }</label>
 					</td>
-					<td>
+					<td style="width: 6%;">
 						<nfwui:PopupButton id="shiyoryoShien" name="shiyoryoShien" value="使用料入力支援" use="popup" 
 								cssClass="imui-small-button" popupWidth="800" popupHeight="700"  
-								modalMode="true" screenUrl="skf/Skf3022Sc003/init" 
+								modalMode="true" screenUrl="skf/Skf3022Sc003/init" preOnclick="setShiyoryoShienParam()"
 								parameter="hdnShatakuKanriNo:hdnShatakuKanriNo,hdnRoomKanriNo:hdnRoomKanriNo,hdnShainNo:hdnShainNo,hdnYakuinKbn:hdnYakuinKbn,hdnShatakuChintairyo:hdnShatakuChintairyo,hdnTeijiFlag:hdnTeijiFlag,hdnSyoruiKanriNo:hdnSyoruiKanriNo,hdnRateShienKikaku:hdnRateShienKikaku,hdnRateShienYoto:hdnRateShienYoto,hdnRateShienNobeMenseki:hdnRateShienNobeMenseki,hdnRateShienKijunMenseki:hdnRateShienKijunMenseki,hdnRateShienShatakuMenseki:hdnRateShienShatakuMenseki"
-								disabled="" callbackFunc="shiyoryoShienCallback()" /> 
+								disabled="${form.shiyoryoShienDisableFlg }" callbackFunc="shiyoryoShienCallback()" tabindex="5"/> 
 					</td>
-					<td style="border:none;"></td>
-					<td style="border:none;"></td>
+					<td style="border:none; background-color:#ffffff; box-shadow:none;" ></td>
+					<!-- 入退居-->
 					<td style="text-align:center;">
-						入居
+						<label id="sc006NyutaikyoKbn" name="sc006NyutaikyoKbn" style="text-align:center;${form.sc006NyutaikyoKbnColor }">
+							${form.sc006NyutaikyoKbn }
+						</label>
 					</td>
+					<!-- 社宅提示-->
 					<td style="text-align:center;">
-						<font style="color:green">同意済</font>
+						<label id="sc006ShatakuStts" name="sc006ShatakuStts" style="text-align:center;${form.sc006ShatakuSttsColor }">
+							${form.sc006ShatakuStts }
+						</label>
 					</td>
+					<!-- 備品提示-->
 					<td style="text-align:center;">
-						<font style="color:green">作成中</font>
+						<label id="sc006BihinStts" name="sc006BihinStts" style="text-align:center;${form.sc006BihinSttsColor }">
+							${form.sc006BihinStts }
+						</label>
 					</td>
 				</tr>
 			</tbody>
-		</table>
+		</nfwui:Table>
 		<div id="tabs">
 			<ul>
 				<li><a href="#shataku_info">社宅情報</a></li>
@@ -156,1473 +226,1780 @@
 				<li><a href="#officer_info">役員情報／相互利用情報</a></li>
 			</ul>
 			<div id="shataku_info">
-				<table class="imui-form-search-condition">
+				<nfwui:Table use="search">
 					<tbody>
 						<tr>
-							<th rowspan="2">
-								<label style="width:115px;">入居者情報</label>
+							<!-- 入居者情報 -->
+							<th rowspan="2" style="width: 10%;">
+								<!-- <label style="width:115px;">入居者情報</label> -->
+								<nfwui:LabelBox id="lblSc006NyukyoShaInfo" code="<%=MessageIdConstant.SKF3022_SC006_NYUKYO_SHAINFO %>" />
 							</th>
-							<th>
-								<label style="width:198px;">原籍会社名</label>
+							<!-- 原籍会社 -->
+							<th style="width: 20%;">
+								<!-- <label style="width:198px;">原籍会社名</label> -->
+								<nfwui:LabelBox id="lblSc006OldKaisyaName" code="<%=MessageIdConstant.SKF3022_SC006_OLD_KAISYA_NAME %>" />
 							</th>
-							<td>
-								<div style="width:200px;">
-									<select style="width:180px">
-										<option value="0"></option>
-										<option value="1" selected>NEXCO中日本</option>
-										<option value="2">NEXCO東日本</option>
-										<option value="4">NEXCO西日本</option>
-										<option value="5">高速道路総合研究所</option>
-										<option value="6">外部機関</option>
-									</select>
-								</div>
+							<td style="width: 20%;">
+								<imui:select id="sc006OldKaisyaNameSelect" name="sc006OldKaisyaNameSelect" width="160" disabled="${form.sc006OldKaisyaNameSelectDisableFlg }"
+								list="${form.sc006OldKaisyaNameSelectList}" class="${form.sc006OldKaisyaNameSelectErr}" tabindex="6" />
 							</td>
-							<th rowspan="12">
-								<label style="width:100px;">貸与駐車場</label>
+							<!-- 貸与駐車場 -->
+							<th rowspan="12" style="width: 10%;">
+								<!-- <label style="width:100px;">貸与駐車場</label> -->
+								<nfwui:LabelBox id="lblSc006TaiyoTyusyajou" code="<%=MessageIdConstant.SKF3022_SC006_TAIYO_TYUSYAJOU %>" />
 							</th>
-							<th rowspan="5">
-								<label style="width:100px;">区画1</label>
+							<!-- 区画1 -->
+							<th rowspan="5" style="width: 8%;">
+								<!-- <label style="width:100px;">区画1</label> -->
+								<nfwui:LabelBox id="lblSc006KukakuOne" code="<%=MessageIdConstant.SKF3022_SC006_KUKAKU_ONE %>" />
 								&nbsp;
 								<nfwui:PopupButton id="parkingShien1" name="parkingShien1" value="支援" use="popup" 
 										cssClass="imui-small-button" popupWidth="650" popupHeight="700"  
-										modalMode="true" screenUrl="skf/Skf3022Sc002/init" 
-										parameter="hdnShatakuKanriNo:hdnShatakuKanriNo,hdnShatakuName:hdnShatakuName,hoge777:hdnRiyouStartDay" disabled="" 
-										callbackFunc="parkingShienCallback1()" tabindex="6"/> 
-								&nbsp;
-								<input type="button" value="クリア" class="imui-small-button" />
+										modalMode="true" screenUrl="skf/Skf3022Sc002/init" preOnclick="setParkingShienParam(1)"
+										parameter="hdnShatakuKanriNo:hdnShatakuKanriNo,hdnShatakuName:hdnShatakuName,hoge777:hdnRiyouStartDay"
+										disabled="${form.parkingShien1DisableFlg }" callbackFunc="parkingShienCallback(1)" tabindex="17"/> 
+								<br/>&nbsp;
+								<imui:button id="clearParking1" name="clearParking1" value="クリア" disabled="${form.clearParking1DisableFlg }"
+																			class="imui-small-button" onclick="clearParking(1)" tabindex="18" />
 							</th>
-							<th>
-								<label style="width:130px;">区画番号</label>
+							<!-- 区画番号1 -->
+							<th style="width: 14%;">
+								<!-- <label style="width:130px;">区画番号</label> -->
+								<nfwui:LabelBox id="lblSc006KukakuNoOne" code="<%=MessageIdConstant.SKF3022_SC006_KUKAKU_NO_ONE %>" />
 							</th>
-							<td>
-								<div style="width:185px;">
-									<span id="park1blockNo">A12</span>
-								</div>
+							<td style="width: 18%;">
+								<!-- <div style="width:185px;"> -->
+								<label id="sc006KukakuNoOne" name="sc006KukakuNoOne">${form.sc006KukakuNoOne }</label>
 							</td>
-							<td style="width:38%;border:none;"></td>
+							<!-- <td style="width:38%;border:none;"></td> -->
 						</tr>
 						<tr>
+							<!-- 給与支給会社名 -->
 							<th>
-								<label>給与支給会社名</label>
+								<nfwui:LabelBox id="lblSc006KyuyoKaisya" code="<%=MessageIdConstant.SKF3022_SC006_KYUYO_KAISYA %>" />
 							</th>
 							<td>
-								<select style="width:180px">
-									<option value="0"></option>
-									<option value="1" selected>NEXCO中日本</option>
-									<option value="2">NEXCO東日本</option>
-									<option value="4">NEXCO西日本</option>
-									<option value="5">高速道路総合研究所</option>
-									<option value="6">外部機関</option>
-								</select>
+								<imui:select id="sc006KyuyoKaisyaSelect" name="sc006KyuyoKaisyaSelect" width="160" disabled="${form.sc006KyuyoKaisyaSelectDisableFlg }"
+								list="${form.sc006KyuyoKaisyaSelectList}" class="${form.sc006KyuyoKaisyaSelectErr}" tabindex="7" />
 							</td>
+							<!-- 利用開始日1 -->
 							<th>
-								<label>利用開始日</label>
+								<nfwui:LabelBox id="lblSc006RiyouStartDayOne" code="<%=MessageIdConstant.SKF3022_SC006_RIYOU_START_DAY_ONE %>" />
 							</th>
 							<td>
-								<input class="ime-off" id="hoge777" style="text-align: right;" type="text" value="2018/12/01"/>
-								<script type="text/javascript">
-									(function($){
-										$.imDateUtil.setOffset(540);
-										$(function () {
-											$("#hoge777").imuiCalendar({
-												"altField":"#hoge777",
-												"nextText":"来月",
-												"format":"yyyy\/MM\/dd",
-												"dayNames":[
-													"日曜日",
-													"月曜日",
-													"火曜日",
-													"水曜日",
-													"木曜日",
-													"金曜日",
-													"土曜日"
-												],
-												"dayNamesShort":["日","月","火","水","木","金","土"],
-												"prevText":"先月",
-												"url":"calendar\/tag\/caljson",
-												"currentText":"現在",
-												"calendarId":"JPN_CAL",
-												"firstDay":0,
-												"closeText":"閉じる",
-												"dayNamesMin":["日","月","火","水","木","金","土"],
-												"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],
-												"monthNames":[
-													"1月",
-													"2月",
-													"3月",
-													"4月",
-													"5月",
-													"6月",
-													"7月",
-													"8月",
-													"9月",
-													"10月",
-													"11月",
-													"12月"
-												]
-											});
-										});
-									})(jQuery);
-								</script>
+								<nfwui:DateBox id="sc006RiyouStartDayOne" name="sc006RiyouStartDayOne" value="${f:h(form.sc006RiyouStartDayOne)}"
+								disabled="${form.sc006RiyouStartDayOneDisableFlg }" cssStyle="width:100px" cssClass="${form.sc006RiyouStartDayOneErr }" tabindex="19"/>
 							</td>
 						</tr>
 						<tr>
+							<!-- 貸与社宅 -->
 							<th rowspan="15">
-								<label>貸与社宅</label>
+								<nfwui:LabelBox id="lblSc006TaiyoShataku" code="<%=MessageIdConstant.SKF3022_SC006_TAIYO_SHATAKU %>" />
 							</th>
+							<!-- 入居予定日 -->
 							<th>
-								<label>入居予定日</label>
+								<nfwui:LabelBox id="lblSc006NyukyoYoteiDay" code="<%=MessageIdConstant.SKF3022_SC006_NYUKYO_YOTEI_DAY %>" />
 							</th>
 							<td>
-								<input class="ime-off" id="hoge778" style="text-align: right;" type="text" value="2018/12/01"/>
-								<script type="text/javascript">
-									(function($){
-										$.imDateUtil.setOffset(540);
-										$(function () {
-											$("#hoge778").imuiCalendar({
-												"altField":"#hoge778",
-												"nextText":"来月",
-												"format":"yyyy\/MM\/dd",
-												"dayNames":[
-													"日曜日",
-													"月曜日",
-													"火曜日",
-													"水曜日",
-													"木曜日",
-													"金曜日",
-													"土曜日"
-												],
-												"dayNamesShort":["日","月","火","水","木","金","土"],
-												"prevText":"先月",
-												"url":"calendar\/tag\/caljson",
-												"currentText":"現在",
-												"calendarId":"JPN_CAL",
-												"firstDay":0,
-												"closeText":"閉じる",
-												"dayNamesMin":["日","月","火","水","木","金","土"],
-												"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],
-												"monthNames":[
-													"1月",
-													"2月",
-													"3月",
-													"4月",
-													"5月",
-													"6月",
-													"7月",
-													"8月",
-													"9月",
-													"10月",
-													"11月",
-													"12月"
-												]
-											});
-										});
-									})(jQuery);
-								</script>
+								<nfwui:DateBox id="sc006NyukyoYoteiDay" name="sc006NyukyoYoteiDay" value="${f:h(form.sc006NyukyoYoteiDay)}"
+									disabled="${form.sc006NyukyoYoteiDayDisableFlg }" cssStyle="width:100px" cssClass="${form.sc006NyukyoYoteiDayErr }" tabindex="8"/>
 							</td>
+							<!-- 利用終了日1 -->
 							<th>
-								<label>利用終了日</label>
+								<nfwui:LabelBox id="lblSc006RiyouEndDayOne" code="<%=MessageIdConstant.SKF3022_SC006_RIYOU_END_DAY_ONE %>" />
 							</th>
 							<td>
-								<input class="ime-off" id="hoge779" style="text-align: right;" type="text" value="____/__/__"/>
-								<script type="text/javascript">
-									(function($){
-										$.imDateUtil.setOffset(540);
-										$(function () {
-											$("#hoge779").imuiCalendar({
-												"disabled":"true",
-												"altField":"#hoge779",
-												"nextText":"来月",
-												"format":"yyyy\/MM\/dd",
-												"dayNames":[
-													"日曜日",
-													"月曜日",
-													"火曜日",
-													"水曜日",
-													"木曜日",
-													"金曜日",
-													"土曜日"
-												],
-												"dayNamesShort":["日","月","火","水","木","金","土"],
-												"prevText":"先月",
-												"url":"calendar\/tag\/caljson",
-												"currentText":"現在",
-												"calendarId":"JPN_CAL",
-												"firstDay":0,
-												"closeText":"閉じる",
-												"dayNamesMin":["日","月","火","水","木","金","土"],
-												"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],
-												"monthNames":[
-													"1月",
-													"2月",
-													"3月",
-													"4月",
-													"5月",
-													"6月",
-													"7月",
-													"8月",
-													"9月",
-													"10月",
-													"11月",
-													"12月"
-												]
-											});
-										});
-									})(jQuery);
-								</script>
+								<nfwui:DateBox id="sc006RiyouEndDayOne" name="sc006RiyouEndDayOne" value="${f:h(form.sc006RiyouEndDayOne)}"
+								disabled="${form.sc006RiyouEndDayOneDisableFlg }" cssStyle="width:100px" cssClass="${form.sc006RiyouEndDayOneErr }" tabindex="20"/>
 							</td>
 						</tr>
 						<tr>
+							<!-- 退居予定日 -->
 							<th>
-								<label>退居予定日</label>
+								<nfwui:LabelBox id="lblSc006TaikyoYoteiDay" code="<%=MessageIdConstant.SKF3022_SC006_TAIKYO_YOTEI_DAY %>" />
 							</th>
 							<td>
-								<input class="ime-off" id="hoge780" style="text-align: right;" type="text" value="____/__/__"/>
-								<script type="text/javascript">
-									(function($){
-										$.imDateUtil.setOffset(540);
-										$(function () {
-											$("#hoge780").imuiCalendar({
-												"disabled":"true",
-												"altField":"#hoge780",
-												"nextText":"来月",
-												"format":"yyyy\/MM\/dd",
-												"dayNames":[
-													"日曜日",
-													"月曜日",
-													"火曜日",
-													"水曜日",
-													"木曜日",
-													"金曜日",
-													"土曜日"
-												],
-												"dayNamesShort":["日","月","火","水","木","金","土"],
-												"prevText":"先月",
-												"url":"calendar\/tag\/caljson",
-												"currentText":"現在",
-												"calendarId":"JPN_CAL",
-												"firstDay":0,
-												"closeText":"閉じる",
-												"dayNamesMin":["日","月","火","水","木","金","土"],
-												"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],
-												"monthNames":[
-													"1月",
-													"2月",
-													"3月",
-													"4月",
-													"5月",
-													"6月",
-													"7月",
-													"8月",
-													"9月",
-													"10月",
-													"11月",
-													"12月"
-												]
-											});
-										});
-									})(jQuery);
-								</script>
+								<nfwui:DateBox id="sc006TaikyoYoteiDay" name="sc006TaikyoYoteiDay" value="${f:h(form.sc006TaikyoYoteiDay)}"
+												disabled="${form.sc006TaikyoYoteiDayDisableFlg }" cssStyle="width:100px" cssClass="${form.sc006TaikyoYoteiDayErr }" tabindex="9"/>
 							</td>
+							<!-- 駐車場使用料月額1 -->
 							<th>
-								<label>駐車場使用料月額</label>
+								<nfwui:LabelBox id="lblSc006TyusyaMonthPayOne" code="<%=MessageIdConstant.SKF3022_SC006_TYUSYA_MONTH_PAY_ONE %>" />
 							</th>
 							<td>
-								2,412円
+								<label id="sc006TyusyaMonthPayOne" name="sc006TyusyaMonthPayOne">${form.sc006TyusyaMonthPayOne }</label>&nbsp;円
 							</td>
 						</tr>
 						<tr>
+							<!-- 居住者区分 -->
 							<th>
-								<label>居住者区分</label>
+								<nfwui:LabelBox id="lblSc006KyojyusyaKbn" code="<%=MessageIdConstant.SKF3022_SC006_KYOJYUSYA_KBN %>" />
 							</th>
 							<td>
-								<select style="width:106px">
-									<option value="0"></option>
-									<option value="1" selected>本人同居</option>
-								</select>
+								<imui:select id="sc006KyojyusyaKbnSelect" name="sc006KyojyusyaKbnSelect" width="160"
+								disabled="${form.sc006KyojyusyaKbnSelectDisableFlg }" list="${form.sc006KyojyusyaKbnSelectList}" class="${form.sc006KyojyusyaKbnSelectErr}" tabindex="10" />
 							</td>
-							<th>
-								<label>駐車場使用料日割金額</label>
+							<!-- 駐車場使用料日割金額1 -->
+							<th style="white-space: nowrap;">
+								<nfwui:LabelBox id="lblSc006TyusyaDayPayOne" code="<%=MessageIdConstant.SKF3022_SC006_TYUSYA_DAY_PAY_ONE %>" />
 							</th>
 							<td>
-								0円
+								<label id="sc006TyusyaDayPayOne" name="sc006TyusyaDayPayOne">${form.sc006TyusyaDayPayOne }</label>&nbsp;円
 							</td>
 						</tr>
-						<!--貸与用途-->
 						<tr>
+							<!--貸与用途-->
 							<th>
-								<label>貸与用途</label>
+								<nfwui:LabelBox id="lblSc006TaiyoYouto" code="<%=MessageIdConstant.SKF3022_SC006_TAIYO_YOUTO %>" />
 							</th>
 							<td>
-								世帯
+								<label id="sc006TaiyoYouto" name="sc006TaiyoYouto">${form.sc006TaiyoYouto }</label>
 							</td>
+							<!-- 区画2 -->
 							<th rowspan="5">
-								<label>区画2</label>
+								<nfwui:LabelBox id="lblSc006KukakuTwo" code="<%=MessageIdConstant.SKF3022_SC006_KUKAKU_TWO %>" />
 								&nbsp;
 								<nfwui:PopupButton id="parkingShien2" name="parkingShien2" value="支援" use="popup" 
 										cssClass="imui-small-button" popupWidth="650" popupHeight="700"  
-										modalMode="true" screenUrl="skf/Skf3022Sc002/init" 
+										modalMode="true" screenUrl="skf/Skf3022Sc002/init" preOnclick="setParkingShienParam(2)"
 										parameter="hdnShatakuKanriNo:hdnShatakuKanriNo,hdnShatakuName:hdnShatakuName,hoge781:hdnRiyouStartDay" 
-										callbackFunc="parkingShienCallback2()" tabindex="6"/> 
-								&nbsp;
-								<input type="button" value="クリア" class="imui-small-button" />
+										disabled="${form.parkingShien2DisableFlg }" callbackFunc="parkingShienCallback(2)" tabindex="21"/> 
+								<br />&nbsp;
+								<imui:button id="clearParking2" name="clearParking2" value="クリア"
+										disabled="${form.clearParking2DisableFlg }" class="imui-small-button" onclick="clearParking(2)" tabindex="22" />
 							</th>
+							<!-- 区画番号2 -->
 							<th>
-								<label>区画番号</label>
-							</th>
-							<td><span id="park2blockNo"></span></td>
-						</tr>
-						<!--貸与規格-->
-						<tr>
-							<th>
-								<label>貸与規格</label>
+								<nfwui:LabelBox id="lblSc006KukakuNoTwo" code="<%=MessageIdConstant.SKF3022_SC006_KUKAKU_NO_TWO %>" />
 							</th>
 							<td>
-								2LDK
-							</td>
-							<th>
-								<label>利用開始日</label>
-							</th>
-							<td>
-								<input class="ime-off" id="hoge781" style="width:160px;text-align: right;" type="text" value="____/__/__" />
-								<script type="text/javascript">
-									(function($){
-										$.imDateUtil.setOffset(540);
-										$(function () {
-											$("#hoge781").imuiCalendar({
-												"altField":"#hoge781",
-												"nextText":"来月",
-												"format":"yyyy\/MM\/dd",
-												"dayNames":[
-													"日曜日",
-													"月曜日",
-													"火曜日",
-													"水曜日",
-													"木曜日",
-													"金曜日",
-													"土曜日"
-												],
-												"dayNamesShort":["日","月","火","水","木","金","土"],
-												"prevText":"先月",
-												"url":"calendar\/tag\/caljson",
-												"currentText":"現在",
-												"calendarId":"JPN_CAL",
-												"firstDay":0,
-												"closeText":"閉じる",
-												"dayNamesMin":["日","月","火","水","木","金","土"],
-												"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],
-												"monthNames":[
-													"1月",
-													"2月",
-													"3月",
-													"4月",
-													"5月",
-													"6月",
-													"7月",
-													"8月",
-													"9月",
-													"10月",
-													"11月",
-													"12月"
-												]
-											});
-										});
-									})(jQuery);
-								</script>
+								<label id="sc006KukakuNoTwo" name="sc006KukakuNoTwo">${form.sc006KukakuNoTwo }</label>
 							</td>
 						</tr>
-						<!-- 役員算定 -->
 						<tr>
+							<!-- 貸与規格 -->
 							<th>
-								<label>役員算定</label>
+								<nfwui:LabelBox id="lblSc006TaiyoKikaku" code="<%=MessageIdConstant.SKF3022_SC006_TAIYO_KIKAKU %>" />
 							</th>
 							<td>
-								<select style="width:60px">
-									<option value="0"></option>
-									<option value="1" selected>なし</option>
-									<option value="2">あり</option>
-								</select>
+								<label id="sc006TaiyoKikaku" name="sc006TaiyoKikaku">${form.sc006TaiyoKikaku }</label>
 							</td>
+							<!-- 利用開始日2 -->
 							<th>
-								<label>利用終了日</label>
+								<nfwui:LabelBox id="lblSc006RiyouStartDayTwo" code="<%=MessageIdConstant.SKF3022_SC006_RIYOU_START_DAY_TWO %>" />
 							</th>
 							<td>
-								<input class="ime-off" id="hoge782" style="width:160px;text-align: right;" type="text" value="____/__/__" />
-								<script type="text/javascript">
-									(function($){
-										$.imDateUtil.setOffset(540);
-										$(function () {
-											$("#hoge782").imuiCalendar({
-												"disabled":"true",
-												"altField":"#hoge782",
-												"nextText":"来月",
-												"format":"yyyy\/MM\/dd",
-												"dayNames":[
-													"日曜日",
-													"月曜日",
-													"火曜日",
-													"水曜日",
-													"木曜日",
-													"金曜日",
-													"土曜日"
-												],
-												"dayNamesShort":["日","月","火","水","木","金","土"],
-												"prevText":"先月",
-												"url":"calendar\/tag\/caljson",
-												"currentText":"現在",
-												"calendarId":"JPN_CAL",
-												"firstDay":0,
-												"closeText":"閉じる",
-												"dayNamesMin":["日","月","火","水","木","金","土"],
-												"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],
-												"monthNames":[
-													"1月",
-													"2月",
-													"3月",
-													"4月",
-													"5月",
-													"6月",
-													"7月",
-													"8月",
-													"9月",
-													"10月",
-													"11月",
-													"12月"
-												]
-											});
-										});
-									})(jQuery);
-								</script>
+								<nfwui:DateBox id="sc006RiyouStartDayTwo" name="sc006RiyouStartDayTwo" value="${f:h(form.sc006RiyouStartDayTwo)}"
+								disabled="${form.sc006RiyouStartDayTwoDisableFlg }" cssStyle="width:100px" cssClass="${form.sc006RiyouStartDayTwoErr }" tabindex="23"/>
 							</td>
 						</tr>
-						<!-- 社宅使用料月額 -->
 						<tr>
+							<!-- 役員算定 -->
 							<th>
-								<label>社宅使用料月額</label>
+								<nfwui:LabelBox id="lblSc006YakuinSantei" code="<%=MessageIdConstant.SKF3022_SC006_YAKUIN_SANTEI %>" />
 							</th>
 							<td>
-								<label id="ShatakuShiyoryoMonthPay" name="ShatakuShiyoryoMonthPay">19,081円</label>
+								<imui:select id="sc006YakuinSanteiSelect" name="sc006YakuinSanteiSelect" width="90"
+								disabled="${form.sc006YakuinSanteiSelectDisableFlg }" list="${form.sc006YakuinSanteiSelectList}" class="${form.sc006YakuinSanteiSelectErr}" tabindex="11" />
 							</td>
+							<!-- 利用終了日2 -->
 							<th>
-								<label>駐車場使用料月額</label>
+								<nfwui:LabelBox id="lblSc006RiyouEndDayTwo" code="<%=MessageIdConstant.SKF3022_SC006_RIYOU_END_DAY_TWO %>" />
 							</th>
 							<td>
-								0円
+								<nfwui:DateBox id="sc006RiyouEndDayTwo" name="sc006RiyouEndDayTwo" value="${f:h(form.sc006RiyouEndDayTwo)}"
+								disabled="${form.sc006RiyouEndDayTwoDisableFlg }" cssStyle="width:100px" cssClass="${form.sc006RiyouEndDayTwoErr }" tabindex="24"/>
 							</td>
 						</tr>
-						<!-- 社宅使用料日割金額 -->
 						<tr>
+							<!-- 社宅使用料月額 -->
 							<th>
-								<label>社宅使用料日割金額</label>
+								<nfwui:LabelBox id="lblSc006ShiyoryoTsukigaku" code="<%=MessageIdConstant.SKF3022_SC006_SHIYORYO_TSUKIGAKU %>" />
 							</th>
 							<td>
-								0円
+								<label id="sc006ShiyoryoTsukigaku" name="sc006ShiyoryoTsukigaku">${form.sc006ShiyoryoTsukigaku }</label>&nbsp;円
 							</td>
+							<!-- 駐車場使用料月額2 -->
 							<th>
-								<label>駐車場使用料日割金額</label>
+								<nfwui:LabelBox id="lblSc006TyusyaMonthPayTwo" code="<%=MessageIdConstant.SKF3022_SC006_TYUSYA_MONTH_PAY_TWO %>" />
 							</th>
 							<td>
-								0円
+								<label id="sc006TyusyaMonthPayTwo" name="sc006TyusyaMonthPayTwo">${form.sc006TyusyaMonthPayTwo }</label>&nbsp;円
 							</td>
 						</tr>
-						<!-- 社宅使用料調整金額 -->
 						<tr>
+							<!-- 社宅使用料日割金額 -->
 							<th>
-								<label>社宅使用料調整金額</label>
+								<nfwui:LabelBox id="lblSc006SiyoryoHiwariPay" code="<%=MessageIdConstant.SKF3022_SC006_SIYORYO_HIWARI_PAY %>" />
 							</th>
 							<td>
-								<input class="ime-off" type="text" style="width:100px;text-align: right;" value="0"/>
-								円
+								<label id="sc006SiyoryoHiwariPay" name="sc006SiyoryoHiwariPay">${form.sc006SiyoryoHiwariPay }</label>&nbsp;円
 							</td>
+							<!-- 駐車場使用料日割金額 2-->
+							<th>
+								<nfwui:LabelBox id="lblSc006TyusyaDayPayTwo" code="<%=MessageIdConstant.SKF3022_SC006_TYUSYA_DAY_PAY_TWO %>" />
+							</th>
+							<td>
+								<label id="sc006TyusyaDayPayTwo" name="sc006TyusyaDayPayTwo">${form.sc006TyusyaDayPayTwo }</label>&nbsp;円
+							</td>
+						</tr>
+						<tr>
+							<!-- 社宅使用料調整金額 -->
+							<th>
+								<nfwui:LabelBox id="lblSc006SiyoroTyoseiPay" code="<%=MessageIdConstant.SKF3022_SC006_SIYORO_TYOSEI_PAY %>" />
+							</th>
+							<td>
+								<nfwui:NumberBox id="sc006SiyoroTyoseiPay" name="sc006SiyoroTyoseiPay" max="999999" min="-999999"
+									cssClass="${form.sc006SiyoroTyoseiPayErr }" cssStyle="width: 100px;"
+									maxlength="7" value="${form.sc006SiyoroTyoseiPay}" disabled="${form.sc006SiyoroTyoseiPayDisableFlg }" tabindex="12" />&nbsp;円
+							</td>
+							<!-- 駐車場使用料調整金額 -->
 							<th colspan="2">
-								<label>駐車場使用料調整金額</label>
+								<nfwui:LabelBox id="lblSc006TyusyaTyoseiPay" code="<%=MessageIdConstant.SKF3022_SC006_TYUSYA_TYOSEI_PAY %>" />
 							</th>
 							<td>
-								<input class="ime-off" type="text" style="width:100px;text-align: right;" value="0"/>
-								円
+								<nfwui:NumberBox id="sc006TyusyaTyoseiPay" name="sc006TyusyaTyoseiPay" max="999999" min="-999999"
+									cssClass="${form.sc006TyusyaTyoseiPayErr }" cssStyle="width: 100px;"
+									maxlength="7" value="${form.sc006TyusyaTyoseiPay}" disabled="${form.sc006TyusyaTyoseiPayDisableFlg }" tabindex="25" />&nbsp;円
 							</td>
 						</tr>
-						<!-- 社宅使用料月額(調整後) -->
 						<tr>
+							<!-- 社宅使用料月額(調整後) -->
 							<th>
-								<label>社宅使用料月額(調整後)</label>
+								<nfwui:LabelBox id="lblSc006SyatauMonthPayAfter" code="<%=MessageIdConstant.SKF3022_SC006_SYATAU_MONTH_PAY_AFTER %>" />
 							</th>
 							<td>
-								0円
+								<label id="sc006SyatauMonthPayAfter" name="sc006SyatauMonthPayAfter">${form.sc006SyatauMonthPayAfter }</label>&nbsp;円
 							</td>
+							<!-- 駐車場使用料月額(調整後) -->
 							<th colspan="2">
-								<label>駐車場使用料月額(調整後)</label>
+								<nfwui:LabelBox id="lblSc006TyusyaMonthPayAfter" code="<%=MessageIdConstant.SKF3022_SC006_TYUSYA_MONTH_PAY_AFTER %>" />
 							</th>
 							<td>
-								0円
+								<label id="sc006TyusyaMonthPayAfter" name="sc006TyusyaMonthPayAfter">${form.sc006TyusyaMonthPayAfter }</label>&nbsp;円
 							</td>
 						</tr>
-						<!-- 個人負担共益費 協議中 -->
 						<tr>
+							<!-- 個人負担共益費 協議中 -->
 							<th>
-								<label>個人負担共益費 協議中</label>
+								<nfwui:LabelBox id="lblSc006KyoekihiKyogichu" code="<%=MessageIdConstant.SKF3022_SC006_KYOEKIHI_KYOGICHU %>" />
 							</th>
 							<td>
-								<input type="checkbox"/>
+								<imui:checkbox id="sc006KyoekihiKyogichuCheck" name="sc006KyoekihiKyogichuCheck" value="1" onClick="kyogichuClick()"
+								checked="${form.sc006KyoekihiKyogichuCheck }" disabled="${form.sc006KyoekihiKyogichuCheckDisableFlg }" tabindex="13"/>
 							</td>
+							<!-- 備考 -->
 							<th rowspan="3">
-								<label>備考</label>
+								<nfwui:LabelBox id="lblSc006Bicou" code="<%=MessageIdConstant.SKF3022_SC006_BICOU %>" />
 							</th>
 							<td rowspan="3" colspan="3">
-								<textarea style="width:453px;" rows="5"></textarea>
+								<imui:textArea id="sc006Bicou" name="sc006Bicou" rows="5" clols="35" maxlength="400"
+									style="width:425px;" value="${form.sc006Bicou}" disabled="${form.sc006BicouDisableFlg }" tabindex="26" />
 							</td>
 						</tr>
-						<!-- 個人負担共益費月額 -->
 						<tr>
+							<!-- 個人負担共益費月額 -->
 							<th>
-								<label>個人負担共益費月額</label>
+								<nfwui:LabelBox id="lblSc006KyoekihiMonthPay" code="<%=MessageIdConstant.SKF3022_SC006_KYOEKIHI_MONTH_PAY %>" />
 							</th>
 							<td>
-								<input class="ime-off" type="text" style="width:100px;text-align: right;" value="0"/>
-								円
+								<nfwui:NumberBox id="sc006KyoekihiMonthPay" name="sc006KyoekihiMonthPay" max="999999" min="-999999"
+									cssClass="${form.sc006KyoekihiMonthPayErr }" cssStyle="width: 100px;"
+									maxlength="7" value="${form.sc006KyoekihiMonthPay}" disabled="${form.sc006KyoekihiMonthPayDisableFlg }" tabindex="14" />&nbsp;円
 							</td>
 						</tr>
-						<!-- 個人負担共益費調整金額 -->
 						<tr>
+							<!-- 個人負担共益費調整金額 -->
 							<th>
-								<label>個人負担共益費調整金額</label>
+								<nfwui:LabelBox id="lblSc006KyoekihiTyoseiPay" code="<%=MessageIdConstant.SKF3022_SC006_KYOEKIHI_TYOSEI_PAY %>" />
 							</th>
 							<td>
-								<input class="ime-off" type="text" style="width:100px;text-align: right;" value="0"/>
-								円
+								<nfwui:NumberBox id="sc006KyoekihiTyoseiPay" name="sc006KyoekihiTyoseiPay" max="999999" min="-999999"
+									cssClass="${form.sc006KyoekihiTyoseiPayErr }" cssStyle="width: 100px;"
+									maxlength="7" value="${form.sc006KyoekihiTyoseiPay}" disabled="${form.sc006KyoekihiTyoseiPayDisableFlg }" tabindex="15" />&nbsp;円
 							</td>
 						</tr>
-						<!-- 個人負担共益費月額(調整後) -->
 						<tr>
+							<!-- 個人負担共益費月額(調整後) -->
 							<th>
-								<label>個人負担共益費月額(調整後)</label>
+								<nfwui:LabelBox id="lblSc006KyoekihiPayAfter" code="<%=MessageIdConstant.SKF3022_SC006_KYOEKIHI_PAY_AFTER %>" />
 							</th>
 							<td>
-								0円
+								<label id="sc006KyoekihiPayAfter" name="sc006KyoekihiPayAfter">${form.sc006KyoekihiPayAfter }</label>&nbsp;円
 							</td>
 						</tr>
-						<!-- 共益費支払月 -->
 						<tr>
+							<!-- 共益費支払月 -->
 							<th>
-								<label>共益費支払月</label>
+								<nfwui:LabelBox id="lblSc006KyoekihiPayMonth" code="<%=MessageIdConstant.SKF3022_SC006_KYOEKIHI_PAY_MONTH %>" />
 							</th>
 							<td>
-								<select style="width:60px">
-									<option value="0"></option>
-									<option value="1">翌月</option>
-									<option value="2">当月</option>
-									<option value="3">前月</option>
-								</select>
+								<imui:select id="sc006KyoekihiPayMonthSelect" name="sc006KyoekihiPayMonthSelect" width="80"
+								disabled="${form.sc006KyoekihiPayMonthSelectDisableFlg }" list="${form.sc006KyoekihiPayMonthSelectList}" class="${form.sc006KyoekihiPayMonthSelectErr}" tabindex="16" />
 							</td>
 						</tr>
 					</tbody>
-				</table>
+				</nfwui:Table>
 			</div>
 			<div id="bihin_info">
-				<table class="imui-form-search-condition" width="1100px">
+				<nfwui:Table use="search">
 					<tbody>
 						<tr>
-							<td style="width: 35%;border:none;">
-								<script type="text/javascript">
-									(function($){
-									$.imui.util.loadCSS("../../ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
-									})(jQuery);
-								</script>
-
-								<table name="imui-8eqlrzst4hv6std" id="bihinListTable1"></table>
-
-								<div id="bihinListTable1-pager"></div>
-
-								<script type="text/javascript">
-									(function() {
-										function imuiListTable() {
-											var grid = jQuery('#bihinListTable1');
-											var parameter = {
-												"multiselect":false,
-												"colNames":[
-													"",
-													"備品名称",
-													"部屋備付状態",
-													"",
-													"備品貸与状態",
-													"指示書",
-												],
-												"datatype":"local",
-												"errorCell":function(xhr) { imuiShowErrorMessage($(xhr.responseText).find('dt').text()); },
-												"width":"540",
-												"shrinkToFit":"true",
-												"cellsubmit":"clientArray",
-												"loadonce":true,
-												"colModel":[
-													{"hidden":true,"name":"id","key":true}
-													,{"name":"bihin_name","width":"205","align":"left"}<!-- 備品名称 -->
-													,{"name":"sonaetsuke_status","width":"100","align":"center"}<!-- 部屋備付状態 -->
-													,{"name":"mark","width":"40","align":"center"}<!-- マーク -->
-													,{"name":"bihinTaiyo_status","width":"100","align":"center"}<!-- 備品貸与状態 -->
-													,{"name":"directions","width":"70","align":"center"}<!-- 指示書 -->
-												],
-												"rownumbers":false,
-												"height":"400"
-											};
-											parameter.data = [
-												{
-													"id":1,
-													"bihin_name":"洗濯機",
-													"sonaetsuke_status":"なし",
-													"mark":"<span class='im-ui-icon-common-16-arrow-right' />",
-													"bihinTaiyo_status":"<select style='width:95%;'><option value='1'>なし</option><option value='2'>会社保有</option><option value='3' selected>レンタル</option><option value='4'>備付</option><option value='5'>共有</option></select>",
-													"directions":"搬入"
-												},{
-													"id":2,
-													"bihin_name":"冷蔵庫",
-													"sonaetsuke_status":"なし",
-													"mark":"<span class='im-ui-icon-common-16-arrow-right' />",
-													"bihinTaiyo_status":"<select style='width:95%;'><option value='1'>なし</option><option value='2'>会社保有</option><option value='3' selected>レンタル</option><option value='4'>備付</option><option value='5'>共有</option></select>",
-													"directions":"搬入"
-												},{
-													"id":3,
-													"bihin_name":"オーブンレンジ",
-													"sonaetsuke_status":"なし",
-													"mark":"<span class='im-ui-icon-common-16-arrow-right' />",
-													"bihinTaiyo_status":"<select style='width:95%;'><option value='1'>なし</option><option value='2'>会社保有</option><option value='3' selected>レンタル</option><option value='4'>備付</option><option value='5'>共有</option></select>",
-													"directions":"搬入"
-												},{
-													"id":4,
-													"bihin_name":"掃除機",
-													"sonaetsuke_status":"なし",
-													"mark":"<span class='im-ui-icon-common-16-arrow-right' />",
-													"bihinTaiyo_status":"<select style='width:95%;'><option value='1'>なし</option><option value='2'>会社保有</option><option value='3' selected>レンタル</option><option value='4'>備付</option><option value='5'>共有</option></select>",
-													"directions":"搬入"
-												},{
-													"id":5,
-													"bihin_name":"電子炊飯ジャー",
-													"sonaetsuke_status":"なし",
-													"mark":"<span class='im-ui-icon-common-16-arrow-right' />",
-													"bihinTaiyo_status":"<select style='width:95%;'><option value='1'>なし</option><option value='2'>会社保有</option><option value='3' selected>レンタル</option><option value='4'>備付</option><option value='5'>共有</option></select>",
-													"directions":"搬入"
-												},{
-													"id":6,
-													"bihin_name":"テレビ",
-													"sonaetsuke_status":"なし",
-													"mark":"<span class='im-ui-icon-common-16-arrow-right' />",
-													"bihinTaiyo_status":"<select style='width:95%;'><option value='1'>なし</option><option value='2'>会社保有</option><option value='3' selected>レンタル</option><option value='4'>備付</option><option value='5'>共有</option></select>",
-													"directions":"搬入"
-												},{
-													"id":7,
-													"bihin_name":"テレビ台",
-													"sonaetsuke_status":"なし",
-													"mark":"<span class='im-ui-icon-common-16-arrow-right' />",
-													"bihinTaiyo_status":"<select style='width:95%;'><option value='1'>なし</option><option value='2'>会社保有</option><option value='3' selected>レンタル</option><option value='4'>備付</option><option value='5'>共有</option></select>",
-													"directions":"搬入"
-												},{
-													"id":8,
-													"bihin_name":"座卓(こたつ)",
-													"sonaetsuke_status":"なし",
-													"mark":"<span class='im-ui-icon-common-16-arrow-right' />",
-													"bihinTaiyo_status":"<select style='width:95%;'><option value='1'>なし</option><option value='2'>会社保有</option><option value='3' selected>レンタル</option><option value='4'>備付</option><option value='5'>共有</option></select>",
-													"directions":"搬入"
-												},{
-													"id":9,
-													"bihin_name":"キッチンキャビネット",
-													"sonaetsuke_status":"なし",
-													"mark":"<span class='im-ui-icon-common-16-arrow-right' />",
-													"bihinTaiyo_status":"<select style='width:95%;'><option value='1'>なし</option><option value='2' selected>会社保有</option><option value='3' >レンタル</option><option value='4'>備付</option><option value='5'>共有</option></select>",
-													"directions":""
-												},{
-													"id":10,
-													"bihin_name":"ルームエアコン",
-													"sonaetsuke_status":"なし",
-													"mark":"<span class='im-ui-icon-common-16-arrow-right' />",
-													"bihinTaiyo_status":"<select style='width:95%;'><option value='1' selected>なし</option><option value='2' >会社保有</option><option value='3' >レンタル</option><option value='4'>備付</option><option value='5'>共有</option></select>",
-													"directions":""
-												},{
-													"id":11,
-													"bihin_name":"カーテン",
-													"sonaetsuke_status":"なし",
-													"mark":"<span class='im-ui-icon-common-16-arrow-right' />",
-													"bihinTaiyo_status":"<select style='width:95%;'><option value='1' selected>なし</option><option value='2' >会社保有</option><option value='3' >レンタル</option><option value='4'>備付</option><option value='5'>共有</option></select>",
-													"directions":""
-												},{
-													"id":12,
-													"bihin_name":"照明器具",
-													"sonaetsuke_status":"なし",
-													"mark":"<span class='im-ui-icon-common-16-arrow-right' />",
-													"bihinTaiyo_status":"<select style='width:95%;'><option value='1' selected>なし</option><option value='2' >会社保有</option><option value='3' >レンタル</option><option value='4'>備付</option><option value='5'>共有</option></select>",
-													"directions":""
-												},{
-													"id":13,
-													"bihin_name":"ガステーブル",
-													"sonaetsuke_status":"なし",
-													"mark":"<span class='im-ui-icon-common-16-arrow-right' />",
-													"bihinTaiyo_status":"<select style='width:95%;'><option value='1' selected>なし</option><option value='2' >会社保有</option><option value='3' >レンタル</option><option value='4'>備付</option><option value='5'>共有</option></select>",
-													"directions":""
-												}
-											];
-
-											grid.jqGrid(parameter);
-
-											var gboxGridId	 = 'gbox_bihinListTable1';
-											var gboxGrid	   = jQuery('#' + gboxGridId);
-											var parentWidthOld = Number.MIN_VALUE;
-										}
-
-										(function($) {
-											$(document).ready(function() {
-												imuiListTable();
-											});
-										})(jQuery);
-
-									})();
-								</script>
-								<style type="text/css">  
-									<!--
-										/* ヘッダテキスト中央寄せ */
-										.ui-jqgrid .ui-jqgrid-htable th {
-											display:table-cell;
-											height: 32px;
-											text-align:center;
-											vertical-align:middle;
-										}
-										.ui-jqgrid .ui-jqgrid-htable th div {
-											display:table-cell;
-											height: 32px;
-											text-align:center;
-											vertical-align:middle;
-										}
-										/** 1行間隔で網掛け挑戦
-										.testcss {
-											border: 1px solid #a6c9e2;
-											background-color: #e6e6fa ;
-											color: #222222;
-										}
-
-										.ui-row-even {
-											background-color: #e6e6fa ;
-										}
-										*/
-
-										/* データ行の改行許容 */
-										#bihinListTable1 tr td{
-											white-space:normal;
-										}
-									-->
-								</style>
+							<!-- <td style="width: 35%;border:none;"> -->
+							<td style="width:575px;border:none;">
+								<imui:listTable id="bihinInfoList" process="jssp" autoEncode="false" autoWidth="false" rowNumbers="true" autoResize="false" 
+										onCellSelect="onCellSelect" multiSelect="false" data="${form.bihinInfoListTableData }" style="max-height: 800px;" height="auto">
+									<cols sortable="false">
+										<col name="rId" caption="RelativeID" hidden="true" key="true"/>
+										<col name="bihinCd" caption="備品コード" hidden="true" />
+										<col name="bihinName" caption="備品名称" width="200" sortable="false" align="left" wrap="true" />
+										<c:if test='${form.hdnNyutaikyoKbn != "2"}'>
+											<!-- 入居時 -->
+											<col name="heyaSonaetukeSttsStr" caption="部屋備付状態" width="100" sortable="false" align="center" wrap="true" />
+										</c:if>
+										<c:if test='${form.hdnNyutaikyoKbn == "2"}'>
+											<!-- 退居時 -->
+											<col name="bihinTaiyoStts" caption="備品貸与状態" width="100" sortable="false" align="center" wrap="true" />
+										</c:if>
+										<col name="bihinArrow" caption="" width="40" sortable="false" align="center" wrap="true" >
+											<showIcon iconClass="im-ui-icon-common-16-arrow-right" />
+										</col>
+										<c:if test='${form.hdnNyutaikyoKbn != "2"}'>
+											<!-- 入居時 -->
+											<col name="bihinTaiyoStts" caption="備品貸与状態" width="100" sortable="false" align="center" wrap="true" />
+										</c:if>
+										<c:if test='${form.hdnNyutaikyoKbn == "2"}'>
+											<!-- 退居時 -->
+											<col name="heyaSonaetukeSttsStr" caption="部屋備付状態" width="100" sortable="false" align="center" wrap="true" />
+										</c:if>
+										<col name="shijisho" caption="指示書" width="70" sortable="false" align="center" wrap="true" />
+										<col name="shijishoOld" caption="旧指示書" hidden="true" width="70" sortable="false" align="center" wrap="true" />
+										<col name="updateDate" caption="更新日時" hidden="true" />
+										<col name="updateFlg" caption="更新フラグ" hidden="true" />
+										<col name="bihinTeijiNo" caption="備品提示番号" hidden="true" />
+										<col name="bihinShatakuKanriNo" caption="備品社宅管理番号" hidden="true" />
+										<col name="bihinRoomKanriNo" caption="備品部屋管理番号" hidden="true" />
+										<col name="heyaSonaetukeStts" caption="部屋備付状態区分(DB取得値)" hidden="true" />
+										<col name="bihinTaiyoSttsKbn" caption="備品貸与状態選択値" hidden="true" />
+										<col name="bihinTaiyoSttsOldKbn" caption="備品貸与状態選択値元" hidden="true" />
+										<col name="shijishoBackColor" caption="指示書背景色" hidden="true" />
+										<col name="bihinTaiyoSttsErr" caption="貸与状態エラー" hidden="true" />
+									</cols>
+								</imui:listTable>
 							</td>
-							<td style="border:none;">
-								<div style="width:7px;"></div>
-							</td>
-							<td style="width: 80%;border:none;">
-								<table class="imui-form-search-condition">
+							<td style="width: 5px; border:none; background-color:#ffffff; box-shadow:none;" ></td>
+							<!-- <td style="width: 80%;border:none;"> -->
+							<td style="width:530px;border:none;white-space: nowrap;">
+								<nfwui:Table use="search">
 									<tbody>
 										<tr>
+											<!-- 貸与日 -->
+											<th colspan="2" style="width:250px">
+												<nfwui:LabelBox id="lblSc006TaiyoDay" code="<%=MessageIdConstant.SKF3022_SC006_TAIYO_DAY %>" />
+											</th>
+											<td style="width:250px">
+												<nfwui:DateBox id="sc006TaiyoDay" name="sc006TaiyoDay" value="${f:h(form.sc006TaiyoDay)}"
+												disabled="${form.sc006TaiyoDayDisableFlg }" cssStyle="width:100px" cssClass="${form.sc006TaiyoDayErr }" tabindex="27"/>
+											</td>
+										</tr>
+										<tr>
+											<!-- 返却日 -->
 											<th colspan="2">
-												<label style="width:308px;">貸与日</label>
+												<nfwui:LabelBox id="lblSc006HenkyakuDay" code="<%=MessageIdConstant.SKF3022_SC006_HENKYAKU_DAY %>" />
 											</th>
-											<td colspan="2">
-												<div style="width:251px;">
-													<input class="ime-off" id="hoge783" style="text-align: right;" type="text" value="2018/11/01" />
-													<script type="text/javascript">
-														(function($){
-															$.imDateUtil.setOffset(540);
-															$(function () {
-																$("#hoge783").imuiCalendar({
-																	"altField":"#hoge783",
-																	"nextText":"来月",
-																	"format":"yyyy\/MM\/dd",
-																	"dayNames":[
-																		"日曜日",
-																		"月曜日",
-																		"火曜日",
-																		"水曜日",
-																		"木曜日",
-																		"金曜日",
-																		"土曜日"
-																	],
-																	"dayNamesShort":["日","月","火","水","木","金","土"],
-																	"prevText":"先月",
-																	"url":"calendar\/tag\/caljson",
-																	"currentText":"現在",
-																	"calendarId":"JPN_CAL",
-																	"firstDay":0,
-																	"closeText":"閉じる",
-																	"dayNamesMin":["日","月","火","水","木","金","土"],
-																	"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],
-																	"monthNames":[
-																		"1月",
-																		"2月",
-																		"3月",
-																		"4月",
-																		"5月",
-																		"6月",
-																		"7月",
-																		"8月",
-																		"9月",
-																		"10月",
-																		"11月",
-																		"12月"
-																	]
-																});
-															});
-														})(jQuery);
-													</script>
-												</div>
-											</td>
-											<td style="width:40%;border:none;"></td>
-										</tr>
-										<tr>
-											<th colspan="2">
-												<label>返却日</label>
-											</th>
-											<td colspan="2">
-												<input class="ime-off" id="hoge784" style="text-align: right;" type="text" value="____/__/__" />
-												<script type="text/javascript">
-													(function($){
-														$.imDateUtil.setOffset(540);
-														$(function () {
-															$("#hoge784").imuiCalendar({
-																"disabled":"true",
-																"altField":"#hoge784",
-																"nextText":"来月",
-																"format":"yyyy\/MM\/dd",
-																"dayNames":[
-																	"日曜日",
-																	"月曜日",
-																	"火曜日",
-																	"水曜日",
-																	"木曜日",
-																	"金曜日",
-																	"土曜日"
-																],
-																"dayNamesShort":["日","月","火","水","木","金","土"],
-																"prevText":"先月",
-																"url":"calendar\/tag\/caljson",
-																"currentText":"現在",
-																"calendarId":"JPN_CAL",
-																"firstDay":0,
-																"closeText":"閉じる",
-																"dayNamesMin":["日","月","火","水","木","金","土"],
-																"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],
-																"monthNames":[
-																	"1月",
-																	"2月",
-																	"3月",
-																	"4月",
-																	"5月",
-																	"6月",
-																	"7月",
-																	"8月",
-																	"9月",
-																	"10月",
-																	"11月",
-																	"12月"
-																]
-															});
-														});
-													})(jQuery);
-												</script>
+											<td>
+												<nfwui:DateBox id="sc006HenkyakuDay" name="sc006HenkyakuDay" value="${f:h(form.sc006HenkyakuDay)}"
+												disabled="${form.sc006HenkyakuDayDisableFlg }" cssStyle="width:100px" cssClass="${form.sc006HenkyakuDayErr }" tabindex="28"/>
 											</td>
 										</tr>
 										<tr>
+											<!-- 搬入 -->
+											<th rowspan="4" style="width:100px;">
+												<nfwui:LabelBox id="lblSc006HannyuDay" code="<%=MessageIdConstant.SKF3022_SC006_HANNYU_DAY %>" />
+											</th>
+											<!-- 搬入希望日時 -->
+											<th style="width:150px">
+												<nfwui:LabelBox id="lblSc006KibouDayTimeIn" code="<%=MessageIdConstant.SKF3022_SC006_KIBOU_DAY_TIME_IN %>" />
+											</th>
+											<td>
+												<nfwui:DateBox id="sc006KibouDayIn" name="sc006KibouDayIn" value="${f:h(form.sc006KibouDayIn)}"
+												disabled="${form.sc006KibouDayInDisableFlg }" cssStyle="width:100px" cssClass="${form.sc006KibouDayInErr }" tabindex="29"/>
+												<imui:select id="sc006KibouTimeInSelect" name="sc006KibouTimeInSelect" width="158"
+												disabled="${form.sc006KibouTimeInSelectDisableFlg }" list="${form.sc006KibouTimeInSelectList}" class="${form.sc006KibouTimeInSelectErr}" tabindex="30" />
+											</td>
+										</tr>
+										<tr>
+											<!-- 搬入本人連絡先 -->
+											<th>
+												<nfwui:LabelBox id="lblSc006HonninAddrIn" code="<%=MessageIdConstant.SKF3022_SC006_HONNIN_ADDR_IN %>" />
+											</th>
+											<td>
+												<imui:textbox id="sc006HonninAddrIn" name="sc006HonninAddrIn" style="width:283px;height:98%"
+												maxlength="15" value="${f:h(form.sc006HonninAddrIn)}" tabindex="31" disabled="${form.sc006HonninAddrInDisableFlg }"
+												class="${form.sc006HonninAddrInErr}" />
+											</td>
+										</tr>
+										<tr>
+											<!-- 受取代理人 -->
+											<th>
+												<nfwui:LabelBox id="lblSc006UketoriDairiIn" code="<%=MessageIdConstant.SKF3022_SC006_UKETORI_DAIRI_IN %>" />
+											</th>
+											<!-- 受取代理人名 -->
+											<td>
+												<!-- <input type="text" style="100px;" /> -->
+												<imui:textbox id="sc006UketoriDairiInName" name="sc006UketoriDairiInName" style="width:178px;height:98%"
+												maxlength="30" value="${f:h(form.sc006UketoriDairiInName)}" tabindex="32" disabled="${form.sc006UketoriDairiInNameDisableFlg }"
+												class="${form.sc006UketoriDairiInNameErr}" />
+												<nfwui:PopupButton id="sc006UketoriDairiInShien" name="sc006UketoriDairiInShien" value="社員入力支援" use="popup"
+													cssClass="imui-small-button" popupWidth="650" popupHeight="700"
+													modalMode="true" screenUrl="skf/Skf2010Sc001/init"
+													disabled="${form.sc006UketoriDairiInShienDisableFlg }"
+													preOnclick="setShainShienPreparation(1)" tabindex="33"/> 
+											</td>
+										</tr>
+										<tr>
+											<!-- 受取代理人連絡先 -->
+											<th>
+												<nfwui:LabelBox id="lblSc006UketoriDairiAddr" code="<%=MessageIdConstant.SKF3022_SC006_UKETORI_DAIRI_ADDR %>" />
+											</th>
+											<td>
+												<!-- <input class="ime-off" type="text" style="width:244px;"/> -->
+												<imui:textbox id="sc006UketoriDairiAddr" name="sc006UketoriDairiAddr" style="width:283px;height:98%"
+												maxlength="15" value="${f:h(form.sc006UketoriDairiAddr)}" tabindex="34" disabled="${form.sc006UketoriDairiAddrDisableFlg }"
+												class="${form.sc006UketoriDairiAddrErr}" />
+											</td>
+										</tr>
+										<tr>
+											<!-- 搬出 -->
 											<th rowspan="4">
-												<label>搬入</label>
+												<nfwui:LabelBox id="lblSc006Hansyutu" code="<%=MessageIdConstant.SKF3022_SC006_HANSYUTU %>" />
 											</th>
+											<!-- 搬出希望日時 -->
 											<th>
-												<label style="width:181px;">希望日時</label>
+												<nfwui:LabelBox id="lblSc006KibouDayTimeOut" code="<%=MessageIdConstant.SKF3022_SC006_KIBOU_DAY_TIME_OUT %>" />
 											</th>
 											<td>
-												<div style="width:142px;">
-												<input class="ime-off" id="hoge785" style="text-align: right;" type="text" value="2018/11/01" />
-												<script type="text/javascript">
-													(function($){
-														$.imDateUtil.setOffset(540);
-														$(function () {
-															$("#hoge785").imuiCalendar({
-																"altField":"#hoge785",
-																"nextText":"来月",
-																"format":"yyyy\/MM\/dd",
-																"dayNames":[
-																	"日曜日",
-																	"月曜日",
-																	"火曜日",
-																	"水曜日",
-																	"木曜日",
-																	"金曜日",
-																	"土曜日"
-																],
-																"dayNamesShort":["日","月","火","水","木","金","土"],
-																"prevText":"先月",
-																"url":"calendar\/tag\/caljson",
-																"currentText":"現在",
-																"calendarId":"JPN_CAL",
-																"firstDay":0,
-																"closeText":"閉じる",
-																"dayNamesMin":["日","月","火","水","木","金","土"],
-																"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],
-																"monthNames":[
-																	"1月",
-																	"2月",
-																	"3月",
-																	"4月",
-																	"5月",
-																	"6月",
-																	"7月",
-																	"8月",
-																	"9月",
-																	"10月",
-																	"11月",
-																	"12月"
-																]
-															});
-														});
-													})(jQuery);
-												</script>
-												</div>
-											</td>
-											<td>
-												<select style="width:100px;">
-													<option value="0"></option>
-													<option value="1" selected>指定なし</option>
-													<option value="2" >8:00～12:00</option>
-													<option value="3" >12:00～15:00</option>
-													<option value="4" >15:00～18:00</option>
-												</select>
+												<nfwui:DateBox id="sc006KibouDayOut" name="sc006KibouDayOut" value="${f:h(form.sc006KibouDayOut)}"
+												disabled="${form.sc006KibouDayOutDisableFlg }" cssStyle="width:100px" cssClass="${form.sc006KibouDayOutErr }" tabindex="35"/>
+												<imui:select id="sc006KibouTimeOutSelect" name="sc006KibouTimeOutSelect" width="158" disabled="${form.sc006KibouTimeOutSelectDisableFlg }"
+												list="${form.sc006KibouTimeOutSelectList}" class="${form.sc006KibouTimeOutSelectErr}" tabindex="36" />
 											</td>
 										</tr>
 										<tr>
+											<!-- 搬出本人連絡先 -->
 											<th>
-												<label>本人連絡先</label>
-											</th>
-											<td colspan="2">
-												<input class="ime-off" type="text" style="width:244px;" value="000-0000-0000" />
-											</td>
-										</tr>
-										<tr>
-											<th>
-												<label>受取代理人</label>
+												<nfwui:LabelBox id="lblSc006HonninAddrOut" code="<%=MessageIdConstant.SKF3022_SC006_HONNIN_ADDR_OUT %>" />
 											</th>
 											<td>
-												<input type="text" style="100px;" />
-											</td>
-											<td>
-												<input type="button" value="社員入力支援" class="imui-small-button" />
-											</td>
-										</tr>
-										<tr>
-											<th>
-												<label>受取代理人連絡先</label>
-											</th>
-											<td colspan="2">
-												<input class="ime-off" type="text" style="width:244px;"/>
+												<!-- <input class="ime-off" type="text" style="width:244px;" disabled/> -->
+												<imui:textbox id="sc006HonninAddrOut" name="sc006HonninAddrOut" style="width:283px;height:98%"
+												maxlength="15" value="${f:h(form.sc006HonninAddrOut)}" tabindex="37" disabled="${form.sc006HonninAddrOutDisableFlg }"
+												class="${form.sc006HonninAddrOutErr}" />
 											</td>
 										</tr>
 										<tr>
-											<th rowspan="4">
-												<label>搬出</label>
-											</th>
+											<!-- 搬出立会代理人 -->
 											<th>
-												<label>希望日時</label>
+												<nfwui:LabelBox id="lblSc006TachiaiDairi" code="<%=MessageIdConstant.SKF3022_SC006_TACHIAI_DAIRI %>" />
 											</th>
 											<td>
-												<input class="ime-off" id="hoge786" style="text-align: right;" type="text" value="____/__/__" />
-												<script type="text/javascript">
-													(function($){
-														$.imDateUtil.setOffset(540);
-														$(function () {
-															$("#hoge786").imuiCalendar({
-																"disabled":"true",
-																"altField":"#hoge786",
-																"nextText":"来月",
-																"format":"yyyy\/MM\/dd",
-																"dayNames":[
-																	"日曜日",
-																	"月曜日",
-																	"火曜日",
-																	"水曜日",
-																	"木曜日",
-																	"金曜日",
-																	"土曜日"
-																],
-																"dayNamesShort":["日","月","火","水","木","金","土"],
-																"prevText":"先月",
-																"url":"calendar\/tag\/caljson",
-																"currentText":"現在",
-																"calendarId":"JPN_CAL",
-																"firstDay":0,
-																"closeText":"閉じる",
-																"dayNamesMin":["日","月","火","水","木","金","土"],
-																"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],
-																"monthNames":[
-																	"1月",
-																	"2月",
-																	"3月",
-																	"4月",
-																	"5月",
-																	"6月",
-																	"7月",
-																	"8月",
-																	"9月",
-																	"10月",
-																	"11月",
-																	"12月"
-																]
-															});
-														});
-													})(jQuery);
-												</script>
-											</td>
-											<td>
-												<select style="width:100px;" disabled>
-													<option value="0"></option>
-													<option value="1" selected>指定なし</option>
-													<option value="2" >8:00～12:00</option>
-													<option value="3" >12:00～15:00</option>
-													<option value="4" >15:00～18:00</option>
-												</select>
+												<!-- <input class="ime-off" type="text" style="100px;" disabled/> -->
+												<imui:textbox id="sc006TachiaiDairi" name="sc006TachiaiDairi" style="width:178px;height:98%"
+												maxlength="30" value="${f:h(form.sc006TachiaiDairi)}" tabindex="38" disabled="${form.sc006TachiaiDairiDisableFlg }"
+												class="${form.sc006TachiaiDairiErr}" />
+												<!-- <input type="button" value="社員入力支援" class="imui-small-button" disabled/> -->
+												<nfwui:PopupButton id="sc006TachiaiDairiShien" name="sc006TachiaiDairiShien" value="社員入力支援" use="popup"
+													cssClass="imui-small-button" popupWidth="650" popupHeight="700"
+													modalMode="true" screenUrl="skf/Skf2010Sc001/init"
+													disabled="${form.sc006TachiaiDairiShienDisableFlg }"
+													preOnclick="setShainShienPreparation(2)" tabindex="39"/> 
 											</td>
 										</tr>
 										<tr>
+											<!-- 搬出立会代理人連絡先 -->
 											<th>
-												<label>本人連絡先</label>
-											</th>
-											<td colspan="2">
-												<input class="ime-off" type="text" style="width:244px;" disabled/>
-											</td>
-										</tr>
-										<tr>
-											<th>
-												<label>立会代理人</label>
+												<nfwui:LabelBox id="lblSc006TachiaiDairiAddr" code="<%=MessageIdConstant.SKF3022_SC006_TACHIAI_DAIRI_ADDR %>" />
 											</th>
 											<td>
-												<input class="ime-off" type="text" style="100px;" disabled/>
-											</td>
-											<td>
-												<input type="button" value="社員入力支援" class="imui-small-button" disabled/>
-											</td>
-										</tr>
-										<tr>
-											<th>
-												<label>立会代理人連絡先</label>
-											</th>
-											<td colspan="2">
-												<input class="ime-off" type="text" style="width:244px;" disabled/>
+												<!-- <input class="ime-off" type="text" style="width:244px;" disabled/> -->
+												<imui:textbox id="sc006TachiaiDairiAddr" name="sc006TachiaiDairiAddr" style="width:283px;height:98%"
+												maxlength="15" value="${f:h(form.sc006TachiaiDairiAddr)}" tabindex="40"
+												class="${form.sc006TachiaiDairiAddrErr}" disabled="${form.sc006TachiaiDairiAddrDisableFlg }"/>
 											</td>
 										</tr>
 										<tr>
+											<!-- 代理人備考 -->
 											<th rowspan="3">
-												<label style="width:100px;">代理人備考</label>
+												<!-- <label style="width:100px;">代理人備考</label> -->
+												<nfwui:LabelBox id="lblSc006DairiBiko" code="<%=MessageIdConstant.SKF3022_SC006_DAIRI_BIKO %>" />
 											</th>
-											<td rowspan="3" colspan="3">
-												<textarea style="width:450px;" rows="5"></textarea>
+											<td rowspan="3" colspan="2">
+												<!-- <textarea style="width:450px;" rows="5"></textarea> -->
+												<imui:textArea id="sc006DairiBiko" name="sc006DairiBiko" rows="5" maxlength="100"
+													style="width:470px;" value="${form.sc006DairiBiko}" disabled="${form.sc006DairiBikoDisableFlg }" tabindex="41" />
 											</td>
 										</tr>
-										<tr></tr>
-										<tr></tr>
+										<tr style="display:table-row;"></tr>
+										<tr style="display:table-row;"></tr>
 										<tr>
+											<!-- 備品備考 -->
 											<th rowspan="3">
-												<label>備考</label>
+												<nfwui:LabelBox id="lblSc006BihinBiko" code="<%=MessageIdConstant.SKF3022_SC006_BIHIN_BIKO %>" />
 											</th>
-											<td rowspan="3" colspan="3">
-												<textarea style="width:450px;" rows="5"></textarea>
+											<td rowspan="3" colspan="2">
+												<!-- <textarea style="width:450px;" rows="5"></textarea> -->
+												<imui:textArea id="sc006BihinBiko" name="sc006BihinBiko" rows="5" maxlength="400"
+													style="width:470px;" value="${form.sc006BihinBiko}" disabled="${form.sc006BihinBikoDisableFlg }" tabindex="42" />
 											</td>
 										</tr>
-										<tr></tr>
-										<tr></tr>
-										<tr><td style="height:40%;border:none;"></td></tr>
+										<tr style="display:table-row;"></tr>
+										<tr style="display:table-row;"></tr>
 									</tbody>
-								</table>
+								</nfwui:Table>
 							</td>
+							<td style="width: 40%; border:none; background-color:#ffffff; box-shadow:none;" ></td>
 						</tr>
 					</tbody>
-				</table>
+				</nfwui:Table>
 			</div>
 			<div id="officer_info">
-				<table class="imui-form-search-condition">
+				<nfwui:Table use="search">
 					<tbody>
-						<!--相互利用協定-->
 						<tr >
+							<!-- 相互利用協定 -->
 							<th rowspan="9">
-								<label style="width:115px">相互利用協定</label>
+								<!-- <label style="width:115px">相互利用協定</label> -->
+								<nfwui:LabelBox id="lblSc006SougoRiyouKyotei" code="<%=MessageIdConstant.SKF3022_SC006_SOUGO_RIYOU_KYOTEI %>" />
 							</th>
+							<!-- 管理会社 -->
 							<th>
-								<label style="width:198px">管理会社</label>
+								<!-- <label style="width:198px">管理会社</label> -->
+								<nfwui:LabelBox id="lblSc006KanriKaisya" code="<%=MessageIdConstant.SKF3022_SC006_KANRI_KAISYA %>" />
 							</th>
 							<td>
-								<div style="width:200px;">
-									NEXCO中日本
-								</div>
+								<!-- <div style="width:200px;">NEXCO中日本</div> -->
+								<label id="sc006KanriKaisya" name="sc006KanriKaisya">${form.sc006KanriKaisya }</label>
 							</td>
+							<!-- 配属データ -->
 							<th rowspan="5">
-								<label style="width:100px;">配属データ</label>
+								<!-- <label style="width:100px;">配属データ</label> -->
+								<nfwui:LabelBox id="lblSc006HaizokuData" code="<%=MessageIdConstant.SKF3022_SC006_HAIZOKU_DATA %>" />
 							</th>
+							<!-- 配属会社名 -->
 							<th>
-								<label style="width:125px;">配属会社名</label>
+								<!-- <label style="width:125px;">配属会社名</label> -->
+								<nfwui:LabelBox id="lblSc006HaizokuKaisya" code="<%=MessageIdConstant.SKF3022_SC006_HAIZOKU_KAISYA %>" />
 							</th>
 							<td>
-								<div style="width:312px;">
-									<select style="width:185px">
-										<option value="0"></option>
-										<option value="1" selected>NEXCO中日本</option>
-										<option value="2">NEXCO東日本</option>
-										<option value="4">NEXCO西日本</option>
-										<option value="5">高速道路総合研究所</option>
-										<option value="6">外部機関</option>
-									</select>
-								</div>
+								<imui:select id="sc006HaizokuKaisyaSelect" name="sc006HaizokuKaisyaSelect" width="185"
+								disabled="${form.sc006HaizokuKaisyaSelectDisableFlg }" list="${form.sc006HaizokuKaisyaSelectList}"
+																		class="${form.sc006HaizokuKaisyaSelectErr}" tabindex="54" />
 							</td>
-							<td style="width:40%;border:none;"></td>
+							<!-- <td style="width:40%;border:none;"></td> -->
 						</tr>
-						<!-- 出向の有無 -->
 						<tr>
+							<!-- 出向の有無(相互利用状況) -->
 							<th>
-								<label>出向の有無</label>
+								<nfwui:LabelBox id="lblSc006SogoRyojokyo" code="<%=MessageIdConstant.SKF3022_SC006_SOGO_RYOJOKYO %>" />
 							</th>
 							<td>
-								<select style="width:60px">
-									<option value="0"></option>
-									<option value="1">なし</option>
-									<option value="2" selected>あり</option>
-								</select>
+								<imui:select id="sc006SogoRyojokyoSelect" name="sc006SogoRyojokyoSelect" width="60"
+								disabled="${form.sc006SogoRyojokyoSelectDisableFlg }" list="${form.sc006SogoRyojokyoSelectList}"
+																		class="${form.sc006SogoRyojokyoSelectErr}" tabindex="43" />
 							</td>
+							<!-- 所属機関 -->
 							<th>
-								<label>所属機関</label>
+								<nfwui:LabelBox id="lblSc006SyozokuKikan" code="<%=MessageIdConstant.SKF3022_SC006_SYOZOKU_KIKAN %>" />
 							</th>
 							<td>
-								<input type="text" style="width:306px;"/>
+								<!-- <input type="text" style="width:306px;"/> -->
+								<imui:textbox id="sc006SyozokuKikan" name="sc006SyozokuKikan" style="width:305;height:98%"
+								disabled="${form.sc006SyozokuKikanDisableFlg }" maxlength="30" value="${f:h(form.sc006SyozokuKikan)}" tabindex="55"
+								class="${form.sc006SyozokuKikanErr}" />
 							</td>
 						</tr>
-						<!-- 貸与会社 -->
 						<tr>
+							<!-- 貸付会社 -->
 							<th>
-								<label>貸与会社</label>
+								<nfwui:LabelBox id="lblSc006TaiyoKaisya" code="<%=MessageIdConstant.SKF3022_SC006_TAIYO_KAISYA %>" />
 							</th>
 							<td>
-								<select style="width:185px">
-									<option value="0"></option>
-									<option value="1">NEXCO中日本</option>
-									<option value="2">NEXCO東日本</option>
-									<option value="4">NEXCO西日本</option>
-									<option value="5" selected>高速道路総合研究所</option>
-									<option value="6">外部機関</option>
-								</select>
+								<imui:select id="sc006TaiyoKaisyaSelect" name="sc006TaiyoKaisyaSelect" width="185"
+								disabled="${form.sc006TaiyoKaisyaSelectDisableFlg }" list="${form.sc006TaiyoKaisyaSelectList}"
+																	class="${form.sc006TaiyoKaisyaSelectErr}" tabindex="44" />
 							</td>
+							<!-- 室・部名 -->
 							<th>
-								<label>室・部名</label>
+								<nfwui:LabelBox id="lblSc006SituBuName" code="<%=MessageIdConstant.SKF3022_SC006_SITU_BU_NAME %>" />
 							</th>
 							<td>
-								<input type="text" style="width:306px;"/>
+								<!-- <input type="text" style="width:306px;"/> -->
+								<imui:textbox id="sc006SituBuName" name="sc006SituBuName" style="width:305;height:98%"
+								disabled="${form.sc006SituBuNameDisableFlg }" maxlength="30" value="${f:h(form.sc006SituBuName)}" tabindex="56"
+								class="${form.sc006SituBuNameErr}" />
 							</td>
 						</tr>
-						<!-- 借受会社 -->
 						<tr>
+							<!-- 借受会社 -->
 							<th>
-								<label>借受会社</label>
+								<nfwui:LabelBox id="lblSc006KariukeKaisya" code="<%=MessageIdConstant.SKF3022_SC006_KARIUKE_KAISYA %>" />
 							</th>
 							<td>
-								<select style="width:185px">
-									<option value="0"></option>
-									<option value="1">NEXCO中日本</option>
-									<option value="2">NEXCO東日本</option>
-									<option value="4">NEXCO西日本</option>
-									<option value="5" selected>高速道路総合研究所</option>
-									<option value="6">外部機関</option>
-								</select>
+								<imui:select id="sc006KariukeKaisyaSelect" name="sc006KariukeKaisyaSelect" width="185"
+								disabled="${form.sc006KariukeKaisyaSelectDisableFlg }" list="${form.sc006KariukeKaisyaSelectList}"
+																		class="${form.sc006KariukeKaisyaSelectErr}" tabindex="45" />
 							</td>
+							<!-- 課等名 -->
 							<th>
-								<label>課等名</label>
+								<nfwui:LabelBox id="lblSc006KanadoMei" code="<%=MessageIdConstant.SKF3022_SC006_KANADO_MEI %>" />
 							</th>
 							<td>
-								<input type="text" style="width:306px;"/>
+								<imui:textbox id="sc006KanadoMei" name="sc006KanadoMei" style="width:305;height:98%"
+								disabled="${form.sc006KanadoMeiDisableFlg }" maxlength="30" value="${f:h(form.sc006KanadoMei)}" tabindex="57"
+								class="${form.sc006KanadoMeiErr}" />
 							</td>
 						</tr>
-						<!-- 相互利用判定区分 -->
 						<tr>
+							<!-- 相互利用判定区分 -->
 							<th>
-								<label>相互利用判定区分</label>
+								<nfwui:LabelBox id="lblSc006SogoHanteiKbn" code="<%=MessageIdConstant.SKF3022_SC006_SOGO_HANTEI_KBN %>" />
 							</th>
 							<td>
-								<select style="width:60px">
-									<option value="0"></option>
-									<option value="1" selected>なし</option>
-									<option value="2">あり</option>
-								</select>
+								<imui:select id="sc006SogoHanteiKbnSelect" name="sc006SogoHanteiKbnSelect" width="60"
+								disabled="${form.sc006SogoHanteiKbnSelectDisableFlg }" list="${form.sc006SogoHanteiKbnSelectList}"
+																		class="${form.sc006SogoHanteiKbnSelectErr}" tabindex="46" />
 							</td>
-							<th>
-								<label>配属データコード番号</label>
+							<!-- 配属データコード番号 -->
+							<th style="white-space: nowrap;">
+								<nfwui:LabelBox id="lblSc006HaizokuNo" code="<%=MessageIdConstant.SKF3022_SC006_HAIZOKU_NO %>" />
 							</th>
 							<td>
-								<input type="text" style="width:306px;"/>
-							</td>
-						</tr>
-						<!-- 社宅使用料会社間送金区分 -->
-						<tr>
-							<th>
-								<label>社宅使用料会社間送金区分</label>
-							</th>
-							<td>
-								<select style="width:60px">
-									<option value="0"></option>
-									<option value="1">なし</option>
-									<option value="2" selected>あり</option>
-								</select>
+								<imui:textbox id="sc006HaizokuNo" name="sc006HaizokuNo" style="width:305;height:98%"
+								disabled="${form.sc006HaizokuNoDisableFlg }" maxlength="12" value="${f:h(form.sc006HaizokuNo)}" tabindex="58"
+								class="${form.sc006HaizokuNoErr}" />
 							</td>
 						</tr>
-						<!-- 共益費会社間送付区分 -->
 						<tr>
-							<th>
-								<label>共益費会社間送付区分</label>
+							<!-- 社宅使用料会社間送金区分 -->
+							<th style="white-space: nowrap;">
+								<nfwui:LabelBox id="lblSc006SokinShataku" code="<%=MessageIdConstant.SKF3022_SC006_SOKIN_SHATAKU %>" />
 							</th>
 							<td>
-								<select style="width:60px">
-									<option value="0"></option>
-									<option value="1">なし</option>
-									<option value="2" selected>あり</option>
-								</select>
+								<imui:select id="sc006SokinShatakuSelect" name="sc006SokinShatakuSelect" width="60"
+								disabled="${form.sc006SokinShatakuSelectDisableFlg }" list="${form.sc006SokinShatakuSelectList}"
+																			class="${form.sc006SokinShatakuSelectErr}" tabindex="47" />
 							</td>
 						</tr>
-						<!-- 開始日 -->
 						<tr>
+							<!-- 共益費会社間送付区分 -->
 							<th>
-								<label>開始日</label>
+								<nfwui:LabelBox id="lblSc006SokinKyoekihi" code="<%=MessageIdConstant.SKF3022_SC006_SOKIN_KYOEKIHI %>" />
 							</th>
 							<td>
-								<input class="ime-off" id="hoge787" style="width:160px;text-align: right;" type="text" value="2018/12/01" />
-								<script type="text/javascript">
-									(function($){
-										$.imDateUtil.setOffset(540);
-										$(function () {
-											$("#hoge787").imuiCalendar({
-												"altField":"#hoge787",
-												"nextText":"来月",
-												"format":"yyyy\/MM\/dd",
-												"dayNames":[
-													"日曜日",
-													"月曜日",
-													"火曜日",
-													"水曜日",
-													"木曜日",
-													"金曜日",
-													"土曜日"
-												],
-												"dayNamesShort":["日","月","火","水","木","金","土"],
-												"prevText":"先月",
-												"url":"calendar\/tag\/caljson",
-												"currentText":"現在",
-												"calendarId":"JPN_CAL",
-												"firstDay":0,
-												"closeText":"閉じる",
-												"dayNamesMin":["日","月","火","水","木","金","土"],
-												"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],
-												"monthNames":[
-													"1月",
-													"2月",
-													"3月",
-													"4月",
-													"5月",
-													"6月",
-													"7月",
-													"8月",
-													"9月",
-													"10月",
-													"11月",
-													"12月"
-												]
-											});
-										});
-									})(jQuery);
-								</script>
+								<imui:select id="sc006SokinKyoekihiSelect" name="sc006SokinKyoekihiSelect" width="60"
+								disabled="${form.sc006SokinKyoekihiSelectDisableFlg }" list="${form.sc006SokinKyoekihiSelectList}"
+																			class="${form.sc006SokinKyoekihiSelectErr}" tabindex="48" />
 							</td>
 						</tr>
-						<!-- 終了日 -->
 						<tr>
+							<!-- 開始日 -->
 							<th>
-								<label>終了日</label>
+								<nfwui:LabelBox id="lblSc006StartDay" code="<%=MessageIdConstant.SKF3022_SC006_START_DAY %>" />
 							</th>
 							<td>
-								<input class="ime-off" id="hoge788" style="width:160px;text-align: right;" type="text" value="____/__/__" />
-								<script type="text/javascript">
-									(function($){
-										$.imDateUtil.setOffset(540);
-										$(function () {
-											$("#hoge788").imuiCalendar({
-												"disabled":"true",
-												"altField":"#hoge788",
-												"nextText":"来月",
-												"format":"yyyy\/MM\/dd",
-												"dayNames":[
-													"日曜日",
-													"月曜日",
-													"火曜日",
-													"水曜日",
-													"木曜日",
-													"金曜日",
-													"土曜日"
-												],
-												"dayNamesShort":["日","月","火","水","木","金","土"],
-												"prevText":"先月",
-												"url":"calendar\/tag\/caljson",
-												"currentText":"現在",
-												"calendarId":"JPN_CAL",
-												"firstDay":0,
-												"closeText":"閉じる",
-												"dayNamesMin":["日","月","火","水","木","金","土"],
-												"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],
-												"monthNames":[
-													"1月",
-													"2月",
-													"3月",
-													"4月",
-													"5月",
-													"6月",
-													"7月",
-													"8月",
-													"9月",
-													"10月",
-													"11月",
-													"12月"
-												]
-											});
-										});
-									})(jQuery);
-								</script>
+								<nfwui:DateBox id="sc006StartDay" name="sc006StartDay" value="${f:h(form.sc006StartDay)}"
+								disabled="${form.sc006StartDayDisableFlg }" cssStyle="width:100px" cssClass="${form.sc006StartDayErr }" tabindex="49"/>
 							</td>
 						</tr>
-						<!-- 社宅賃貸料 -->
 						<tr>
+							<!-- 終了日 -->
+							<th>
+								<nfwui:LabelBox id="lblSc006EndDay" code="<%=MessageIdConstant.SKF3022_SC006_END_DAY %>" />
+							</th>
+							<td>
+								<nfwui:DateBox id="sc006EndDay" name="sc006EndDay" value="${f:h(form.sc006EndDay)}"
+								disabled="${form.sc006EndDayDisableFlg }" cssStyle="width:100px" cssClass="${form.sc006EndDayErr }" tabindex="50"/>
+							</td>
+						</tr>
+						<tr>
+							<!-- 社宅賃貸料 -->
 							<th colspan="2">
-								<label>社宅賃貸料</label>
+								<nfwui:LabelBox id="lblSc006ChintaiRyo" code="<%=MessageIdConstant.SKF3022_SC006_CHINTAI_RYO %>" />
 							</th>
 							<td>
-								<input class="ime-off" type="text" style="width:100px;text-align: right;" value="0" />
-								円
+								<nfwui:NumberBox id="sc006ChintaiRyo" name="sc006ChintaiRyo" max="999999" min="-999999"
+									cssClass="${form.sc006ChintaiRyoErr }" cssStyle="width: 100px;"
+									maxlength="7" value="${form.sc006ChintaiRyo}" disabled="${form.sc006ChintaiRyoDisableFlg }" tabindex="51" />&nbsp;円
 							</td>
 						</tr>
-						<!-- 駐車場料金 -->
 						<tr>
+							<!-- 駐車場料金 -->
 							<th colspan="2">
-								<label>駐車場料金</label>
+								<nfwui:LabelBox id="lblSc006TyusyajoRyokin" code="<%=MessageIdConstant.SKF3022_SC006_TYUSYAJO_RYOKIN %>" />
 							</th>
 							<td>
-								<input class="ime-off" type="text" style="width:100px;text-align: right;" value="0" />
-								円
+								<nfwui:NumberBox id="sc006TyusyajoRyokin" name="sc006TyusyajoRyokin" max="999999" min="-999999"
+									cssClass="${form.sc006TyusyajoRyokinErr }" cssStyle="width: 100px;"
+									maxlength="7" value="${form.sc006TyusyajoRyokin}" disabled="${form.sc006TyusyajoRyokinDisableFlg }" tabindex="52" />&nbsp;円
 							</td>
 						</tr>
-						<!-- 共益費(事業者負担) -->
 						<tr>
+							<!-- 共益費(事業者負担) -->
 							<th colspan="2">
-								<label>共益費(事業者負担)</label>
+								<nfwui:LabelBox id="lblSc006Kyoekihi" code="<%=MessageIdConstant.SKF3022_SC006_KYOEKIHI %>" />
 							</th>
 							<td>
-								<input class="ime-off" type="text" style="width:100px;text-align: right;" value="0" />
-								円
+								<nfwui:NumberBox id="sc006Kyoekihi" name="sc006Kyoekihi" max="999999" min="-999999"
+									cssClass="${form.sc006KyoekihiErr }" cssStyle="width: 100px;"
+									maxlength="7" value="${form.sc006Kyoekihi}" disabled="${form.sc006KyoekihiDisableFlg }" tabindex="53" />&nbsp;円
 							</td>
 						</tr>
 					</tbody>
-				</table>
+				</nfwui:Table>
 			</div>
 		</div>
 		<br />
 		<div class="align-L float-L">	
-			<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="5" />
+			<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="59" />
+		</div>
+		<!-- メッセージ表示判定 -->
+		<label style="${form.sc006MsgBoxStyle}">
+				${form.sc006Msg }
+		</label>
+		<div class="align-R">
+			<nfwui:Button id="btnUnyonGuide" url="skf/Skf3022Sc006/OperationGuideDownload" value="運用ガイド" cssClass="imui-medium-button" cssStyle="width: 150px" tabindex="60" disabled="${form.btnUnyonGuideDisableFlg }" />
+<!--			<imui:button id="btnUnyonGuide" value="運用ガイド" class="imui-medium-button" style="width: 150px" onclick="window.open('/skf/template/skf3022/skf3022mn006/運用ガイド.zip', '_blank', 'menubar=no,toolbar=no,resizable=yes,location=no,status=no');return false;" tabindex="60" disabled="${form.btnUnyonGuideDisableFlg }" /> -->
+<!--			<imui:button id="btnUnyonGuide" value="運用ガイド" class="imui-medium-button" style="width: 150px" onclick="operationGuidDownLoad();" tabindex="60" disabled="${form.btnUnyonGuideDisableFlg }" /> -->
+			<imui:button id="btnTmpSave" value="一時保存" class="imui-medium-button" style="width: 150px" onclick="sc006PreButtonEvent(0)" tabindex="61" disabled="${form.btnTmpSaveDisableFlg }" />
+			<imui:button id="btnCreate" value="作成完了" class="imui-medium-button" style="width: 150px" onclick="sc006PreButtonEvent(1)" tabindex="62" disabled="${form.btnCreateDisableFlg }" />
 		</div>
 		<div class="align-R">
-			<input style="width:150px;" type="button" value="運用ガイド" class="imui-medium-button" />
-			<input style="width:150px;" type="button" value="一時保存" class="imui-medium-button"/>
-			<input style="width:150px;" type="button" value="作成完了" class="imui-medium-button"/>
+			<nfwui:PopupButton id="btnJigetuYoyaku" name="btnJigetuYoyaku" value="次月予約" use="popup"
+					cssClass="imui-medium-button" popupWidth="700" popupHeight="560"  cssStyle="width:150px;"
+					modalMode="true" screenUrl="skf/Skf3022Sc004/init" preOnClick="backUpStatus();" preUrl="skf/Skf3022Sc006/PreJigetsuYoyaku"
+					parameter="hdnJigetuYoyakuTeijiNo:hdnJigetuYoyakuTeijiNo,hdnJigetuYoyakuYearMonth:hdnJigetuYoyakuYearMonth,hdnJigetuYoyakuShatakuKanriId:hdnJigetuYoyakuShatakuKanriId,hdnJigetuYoyakuRental:hdnJigetuYoyakuRental,hdnJigetuYoyakuKyoekihiPerson:hdnJigetuYoyakuKyoekihiPerson,hdnJigetuYoyakuParkingRentalOne:hdnJigetuYoyakuParkingRentalOne,hdnJigetuYoyakuParkingRentalTwo:hdnJigetuYoyakuParkingRentalTwo"
+					disabled="${form.btnJigetuYoyakuDisableFlg }" tabindex="63"/> 
+			<imui:button id="btnKeizokuLogin" value="入居情報の継続登録" class="imui-medium-button" style="width: 150px" onclick="sc006PreButtonEvent(3)" tabindex="64" disabled="${form.btnKeizokuLoginDisableFlg }" />
+			<imui:button id="btnShatakuLogin" value="社宅管理台帳登録" class="imui-medium-button" style="width: 150px" onclick="sc006PreButtonEvent(2)" tabindex="65" disabled="${form.btnShatakuLoginDisableFlg }" />
 		</div>
-		<div class="align-R">
-			<input style="width:150px;" type="button" value="次月予約" class="imui-medium-button" onclick="openWindow4()"/>
-			<input style="width:150px;" type="button" value="入居情報の継続登録" class="imui-medium-button" disabled/>
-			<input style="width:150px;" type="button" value="社宅管理台帳登録" class="imui-medium-button" disabled/>
-		</div>
+		<br><br><br>
+		<script type="text/javascript">
+			(function($) {
+				// 画面表示時に定義される処理
+				$(document).ready(function(){
+
+					// 運用ガイドダウンロード
+					operationGuidDownLoad = function() {
+						$('#downloadForm').submit();
+					}
+
+					// JSON可変ラベルリスト設定
+					// 可変値ラベルをリスト形式にし、JSON文字列に変換後
+					// formのhidden変数「jsonLabelList」に格納する
+					sc006SetVariableLabelList = function() {
+						// 可変ラベルリスト
+						var labelArray = new Array();
+						{
+							// 可変ラベルリスト作成
+							var labelMap = new Object();
+							// 社宅名
+							labelMap['sc006ShatakuName'] = $("#sc006ShatakuName").text().trim();
+							// 部屋番号
+							labelMap['sc006HeyaNo'] = $("#sc006HeyaNo").text().trim();
+							// 駐車場使用料月額(調整後)
+							labelMap['sc006TyusyaMonthPayAfter'] = $("#sc006TyusyaMonthPayAfter").text().trim();
+							// 社宅使用料日割金額
+							labelMap['sc006SiyoryoHiwariPay'] = $("#sc006SiyoryoHiwariPay").text().trim();
+							// 社宅使用料月額(調整後)
+							labelMap['sc006SyatauMonthPayAfter'] = $("#sc006SyatauMonthPayAfter").text().trim();
+							// 社宅使用料月額
+							labelMap['sc006ShiyoryoTsukigaku'] = $("#sc006ShiyoryoTsukigaku").text().trim();
+							// 駐車場使用料日割金額1
+							labelMap['sc006TyusyaDayPayOne'] = $("#sc006TyusyaDayPayOne").text().trim();
+							// 駐車場使用料月額1
+							labelMap['sc006TyusyaMonthPayOne'] = $("#sc006TyusyaMonthPayOne").text().trim();
+							// 駐車場使用料日割金額 2
+							labelMap['sc006TyusyaDayPayTwo'] = $("#sc006TyusyaDayPayTwo").text().trim();
+							// 駐車場使用料月額2
+							labelMap['sc006TyusyaMonthPayTwo'] = $("#sc006TyusyaMonthPayTwo").text().trim();
+							// ヘッダ項目貸与用途(使用料計算パターン名)
+							labelMap['sc006SiyoryoPatName'] = $("#sc006SiyoryoPatName").text().trim();
+							// 社宅使用料月額
+							labelMap['sc006SiyoryoMonthPay'] = $("#sc006SiyoryoMonthPay").text().trim();
+							// 貸与用途
+							labelMap['sc006TaiyoYouto'] = $("#sc006TaiyoYouto").text().trim();
+							// 貸与規格
+							labelMap['sc006TaiyoKikaku'] = $("#sc006TaiyoKikaku").text().trim();
+							// 区画１ 区画番号
+							labelMap['sc006KukakuNoOne'] = $("#sc006KukakuNoOne").text().trim();
+							// 区画2 区画番号
+							labelMap['sc006KukakuNoTwo'] = $("#sc006KukakuNoTwo").text().trim();
+							// 個人負担共益費月額(調整後)
+							labelMap['sc006KyoekihiPayAfter'] = $("#sc006KyoekihiPayAfter").text().trim();
+							// 利用開始日
+//							labelMap['sc006RiyouStartDayOne'] = $("#sc006RiyouStartDayOne").val().trim();
+//							labelMap['sc006RiyouStartDayTwo'] = $("#sc006RiyouStartDayTwo").val().trim();
+							// 利用終了日
+//							labelMap['sc006RiyouEndDayOne'] = $("#sc006RiyouEndDayOne").val().trim();
+//							labelMap['sc006RiyouEndDayTwo'] = $("#sc006RiyouEndDayTwo").val().trim();
+							labelArray.push(labelMap);
+						}
+						// 可変ラベルリストをJSON文字列に変換
+						$('#jsonLabelList').val(JSON.stringify(labelArray));
+					}
+
+					// JSON備品リスト設定
+					// 備品リストをJSON文字列に変換し
+					// formのhidden変数「jsonBihin」に格納する
+					sc006SetJsonBihinList = function() {
+						// 備品情報リスト
+						var bihinArray = new Array();
+						{
+							// 備品情報取得
+							var bihinArrrows = $("#bihinInfoList").getRowData();
+							// 備品行数取得
+							var bihinRowNum = bihinArrrows.length;
+							// 備品情報リスト作成
+							for (var i = 0; i < bihinRowNum; i++) {
+								var bihinMap = new Object();
+								bihinMap['bihinCd'] = bihinArrrows[i].bihinCd;
+								bihinMap['bihinName'] = bihinArrrows[i].bihinName;
+//								bihinMap['shijisho'] = $("#shijisho" + i).text();
+								bihinMap['shijishoOld'] = bihinArrrows[i].shijishoOld;
+								bihinMap['bihinTeijiNo'] = bihinArrrows[i].bihinTeijiNo;
+								bihinMap['bihinShatakuKanriNo'] = bihinArrrows[i].bihinShatakuKanriNo;
+								bihinMap['bihinRoomKanriNo'] = bihinArrrows[i].bihinRoomKanriNo;
+								bihinMap['bihinTaiyoStts'] = $("#bihinTaiyoStts" + i).val();
+								bihinMap['bihinTaiyoSttsOldKbn'] = bihinArrrows[i].bihinTaiyoSttsOldKbn;
+								bihinMap['heyaSonaetukeStts'] = bihinArrrows[i].heyaSonaetukeStts;
+								bihinMap['updateFlg'] = bihinArrrows[i].updateFlg;
+								bihinMap['updateDate'] = bihinArrrows[i].updateDate;
+								bihinMap['bihinTaiyoSttsErr'] = bihinArrrows[i].bihinTaiyoSttsErr;
+								bihinArray.push(bihinMap);
+							}
+						}
+						// 備品情報リストをJSON文字列に変換
+						$('#jsonBihin').val(JSON.stringify(bihinArray));
+					}
+
+					/**
+					 * 使用料計算(提示データ登録内部)戻り値設定(非同期))
+					 * 使用料計算の戻り値をラベルに設定する
+					 *
+					 * @param resultMap	使用料計算(提示データ登録画面)戻り値
+					 */
+					function setSiyoryoKeiSanResultAsync(resultMap) {
+						// 駐車場使用料月額(調整後)
+						if (resultMap['sc006TyusyaMonthPayAfter']) {
+							$("#sc006TyusyaMonthPayAfter").text(resultMap.sc006TyusyaMonthPayAfter);
+						}
+						// 社宅使用料日割金額
+						if (resultMap['sc006SiyoryoHiwariPay']) {
+							$("#sc006SiyoryoHiwariPay").text(resultMap.sc006SiyoryoHiwariPay);
+						}
+						// 社宅使用料月額(調整後)
+						if (resultMap['sc006SyatauMonthPayAfter']) {
+							$("#sc006SyatauMonthPayAfter").text(resultMap.sc006SyatauMonthPayAfter);
+						}
+						// 社宅使用料月額
+						if (resultMap['sc006ShiyoryoTsukigaku']) {
+							$("#sc006ShiyoryoTsukigaku").text(resultMap.sc006ShiyoryoTsukigaku);
+						}
+						// 駐車場使用料日割金額1
+						if (resultMap['sc006TyusyaDayPayOne']) {
+							$("#sc006TyusyaDayPayOne").text(resultMap.sc006TyusyaDayPayOne);
+						}
+						// 駐車場使用料月額1
+						if (resultMap['sc006TyusyaMonthPayOne']) {
+							$("#sc006TyusyaMonthPayOne").text(resultMap.sc006TyusyaMonthPayOne);
+						}
+						// 駐車場使用料日割金額 2
+						if (resultMap['sc006TyusyaDayPayTwo']) {
+							$("#sc006TyusyaDayPayTwo").text(resultMap.sc006TyusyaDayPayTwo);
+						}
+						// 駐車場使用料月額2
+						if (resultMap['sc006TyusyaMonthPayTwo']) {
+							$("#sc006TyusyaMonthPayTwo").text(resultMap.sc006TyusyaMonthPayTwo);
+						}
+					}
+
+					/** 使用料計算パラメータ設定(非同期) */
+					function createSiyoryoKeiSanParamAsync() {
+						var map = new Object();
+						map['sc006YakuinSanteiSelect'] = $("#sc006YakuinSanteiSelect").val();
+						map['hdnShatakuKanriNo'] = $("#hdnShatakuKanriNo").val();
+						map['hdnRateShienYoto'] = $("#hdnRateShienYoto").val();
+						map['hdnRateShienNobeMenseki'] = $("#hdnRateShienNobeMenseki").val();
+						map['hdnRateShienSunroomMenseki'] = $("#hdnRateShienSunroomMenseki").val();
+						map['hdnRateShienKaidanMenseki'] = $("#hdnRateShienKaidanMenseki").val();
+						map['hdnRateShienMonookiMenseki'] = $("#hdnRateShienMonookiMenseki").val();
+						map['hdnRateShienKijunMenseki'] = $("#hdnRateShienKijunMenseki").val();
+						map['hdnRateShienShatakuMenseki'] = $("#hdnRateShienShatakuMenseki").val();
+						map['hdnBirthday'] = $("#hdnBirthday").val();
+						map['sc006ChintaiRyo'] = $("#sc006ChintaiRyo").val();
+						map['sc006TyusyajoRyokin'] = $("#sc006TyusyajoRyokin").val();
+						map['sc006SiyoroTyoseiPay'] = $("#sc006SiyoroTyoseiPay").val();
+						map['hdnNyutaikyoKbn'] = $("#hdnNyutaikyoKbn").val();
+						map['sc006NyukyoYoteiDay'] = $("#sc006NyukyoYoteiDay").val();
+						map['hdnNyukyoDate'] = $("#hdnNyukyoDate").val();
+						map['sc006TaikyoYoteiDay'] = $("#sc006TaikyoYoteiDay").val();
+						map['sc006TyusyaDayPayOne'] = $("#sc006TyusyaDayPayOne").text();
+						map['sc006TyusyaDayPayTwo'] = $("#sc006TyusyaDayPayTwo").text();
+						map['sc006RiyouStartDayOne'] = $("#sc006RiyouStartDayOne").val();
+						map['hdnRiyouStartDayOne'] = $("#hdnRiyouStartDayOne").val();
+						map['sc006RiyouEndDayOne'] = $("#sc006RiyouEndDayOne").val();
+						map['sc006RiyouStartDayTwo'] = $("#sc006RiyouStartDayTwo").val();
+						map['hdnRiyouStartDayTwo'] = $("#hdnRiyouStartDayTwo").val();
+						map['sc006RiyouEndDayTwo'] = $("#sc006RiyouEndDayTwo").val();
+						map['sc006TyusyaTyoseiPay'] = $("#sc006TyusyaTyoseiPay").val();
+						return map;
+					};
+
+					// 駐車場入力支援パラメータ設定
+					setParkingShienParam = function(p) {
+						// 区画判定
+						if (p == 1) {
+							// 利用開始日1をパラメータに設定
+							$("#hdnRiyouStartDay").val($("#sc006RiyouStartDayOne").val().replace(/\//g, "").trim());
+						} else {
+							// 利用開始日2をパラメータに設定
+							$("#hdnRiyouStartDay").val($("#sc006RiyouStartDayTwo").val().replace(/\//g, "").trim());
+						}
+					}
+
+					// 社員入力支援クリック
+					setShainShienPreparation = function(p) {
+						// 種別判定
+						if (p == 1) {
+							// 受取代理人入力支援
+							$("#insertFormName").val("sc006UketoriDairiInName");
+						} else {
+							// 立会代理人入力支援
+							$("#insertFormName").val("sc006TachiaiDairi");
+						}
+					}
+
+					// 個人負担共益費 協議中チェックボックスクリック
+					kyogichuClick = function() {
+						var state = $("#sc006KyoekihiKyogichuCheck:checked").val();
+						if(state == "1") {
+							// 個人負担共益費月額
+							$("#sc006KyoekihiMonthPay").prop('disabled', true);
+							// 個人負担共益費調整金額
+							$("#sc006KyoekihiTyoseiPay").prop('disabled', true);
+							// 共益費支払月
+							$("#sc006KyoekihiPayMonthSelect").prop('disabled', true);
+							// 個人負担共益費月額(調整後)
+							$("#sc006KyoekihiPayAfter").text("0");
+						} else {
+							// 個人負担共益費月額
+							$("#sc006KyoekihiMonthPay").prop('disabled', false);
+							$("#sc006KyoekihiMonthPayDiv").prop('disabled', false);
+							$("#sc006KyoekihiMonthPayDiv").removeClass("wj-state-disabled");
+							// 個人負担共益費調整金額
+							$("#sc006KyoekihiTyoseiPay").prop('disabled', false);
+							$("#sc006KyoekihiTyoseiPayDiv").prop('disabled', false);
+							$("#sc006KyoekihiTyoseiPayDiv").removeClass("wj-state-disabled");
+							// 共益費支払月
+							$("#sc006KyoekihiPayMonthSelect").prop('disabled', false);
+							// 共益費月額
+							var monthKyoekiPay = 0;
+							if ($("#sc006KyoekihiMonthPay").val() != null && $("#sc006KyoekihiMonthPay").val().trim().length > 0) {
+								monthKyoekiPay = parseInt($("#sc006KyoekihiMonthPay").val().trim().replace(/,/g, ""));
+							}
+							// 共益費調整金額
+							var tyoseiKyoekiPay = 0;
+							if ($("#sc006KyoekihiTyoseiPay").val() != null && $("#sc006KyoekihiTyoseiPay").val().trim().length > 0) {
+								tyoseiKyoekiPay = parseInt($("#sc006KyoekihiTyoseiPay").val().trim().replace(/,/g, ""));
+							}
+							// 個人負担共益費月額(調整後)
+							$("#sc006KyoekihiPayAfter").text((monthKyoekiPay + tyoseiKyoekiPay).toLocaleString());
+						}
+						$("#sc006KyoekihiKyogichuCheckState").val(state);
+					}
+
+					// 区画クリアボタン押下処理
+					clearParking = function(p) {
+						// 区画判定
+						if (p == 1) {
+							// 区画番号、利用開始日、利用終了日、終了日をクリア
+							$("#hdnChushajoNoOne").val("");
+							$("#hdnKukakuNoOne").val("");
+							$("#hdnEndDayOne").val("");
+							$("#sc006KukakuNoOne").text("");
+							$("#sc006RiyouStartDayOne").val("");
+//							$("#sc006RiyouStartDayOneDiv").val("");
+							$("#sc006RiyouEndDayOne").val("");
+							// 背景色をクリア
+							$("#sc006RiyouStartDayOne").removeClass("nfw-validation-error");
+							$("#sc006RiyouEndDayOne").removeClass("nfw-validation-error");
+							// 駐車場使用料月額、駐車場使用料日割金額に0を設定
+							$("#sc006TyusyaMonthPayOne").text("0");
+							$("#sc006TyusyaDayPayOne").text("0");
+						} else {
+							// 区画番号、利用開始日、利用終了日、終了日をクリア
+							$("#hdnChushajoNoTwo").val("");
+							$("#hdnKukakuNoTwo").val("");
+							$("#hdnEndDayTwo").val("");
+							$("#sc006KukakuNoTwo").text("");
+							$("#sc006RiyouStartDayTwo").val("");
+							$("#sc006RiyouEndDayTwo").val("");
+							// 背景色をクリア
+							$("#sc006RiyouStartDayTwo").removeClass("nfw-validation-error");
+							$("#sc006RiyouEndDayTwo").removeClass("nfw-validation-error");
+							// 駐車場使用料月額、駐車場使用料日割金額に0を設定
+							$("#sc006TyusyaMonthPayTwo").text("0");
+							$("#sc006TyusyaDayPayTwo").text("0");
+						}
+						// 駐車場使用料月額（調整後）再計算
+						calcParkingMonthPayAfter();
+					}
+
+					// 下部ボタン押下時のイベント
+					sc006PreButtonEvent = function (mode) {
+						// 押下ボタン判定
+						switch (mode) {
+							case 0:
+								// 一時保存★
+								// 現在状態バックアップ
+								backUpStatus();
+								$("#sc006Status").val("0");
+								nfw.common.submitForm("form", "skf/Skf3022Sc006/SetCheckMsg");
+								break;
+							case 1:
+								// 作成完了★
+								// 現在状態バックアップ
+								backUpStatus();
+								$("#sc006Status").val("1");
+								nfw.common.submitForm("form", "skf/Skf3022Sc006/SetCheckMsg");
+								break;
+							case 2:
+								// 社宅管理台帳登録★
+								// 現在状態バックアップ
+								backUpStatus();
+								$("#sc006Status").val("2");
+								nfw.common.submitForm("form", "skf/Skf3022Sc006/SetCheckMsg");
+								break;
+							case 3:
+								// 入居情報の継続登録
+								// 現在状態バックアップ
+								backUpStatus();
+								$("#sc006Status").val("");
+								// 確認ダイアログ表示(I-SKF-3065)
+								nfw.common.confirmPopup("入居情報の提示データを継続登録します。よろしいですか？",
+										"確認", "form", "skf/Skf3022Sc006/keizokuLogin", "ok", "キャンセル", this, true);
+								break;
+							default:
+								$("#sc006Status").val("");
+								nfw.common.showReserveMessage("warning", "未サポート(未実装機能)です。");
+								break;
+						};
+					}
+
+					// 使用料入力支援パラメータ設定
+					setShiyoryoShienParam = function() {
+//						$("#hdnShainNo").val($("#hdnShainNo").text().trim());
+						$("hdnYakuinKbn").val($("#sc006YakuinSanteiSelect").val().trim());	// 未使用
+						$("#hdnShatakuChintairyo").val($("#sc006ChintaiRyo").val().replace(/,/g, "").trim());
+//						$("hdnTeijiFlag").val($("#sc006ShainNo").val().trim());
+//						$("hdnSyoruiKanriNo").val($("#sc006ShainNo").text().trim());
+//						$("#hdnRateShienKikaku").val($("#sc006TaiyoKikaku").text().trim());
+
+//						$("#hdnRateShienYoto").val($("#sc006ShainNo").text().trim());
+//						$("#hdnRateShienNobeMenseki").val($("#sc006ShainNo").text().trim());
+//						$("#hdnRateShienKijunMenseki").val($("#sc006ShainNo").text().trim());
+//						$("#hdnRateShienShatakuMenseki").val($("#sc006ShainNo").text().trim());
+					}
+
+					// 現在状態バックアップ
+					// 可変ラベル、備品リストテーブル、協議中フラグのバックアップを行う
+					backUpStatus = function() {
+						// 可変ラベルリスト作成
+						sc006SetVariableLabelList();
+						// 備品リスト作成
+						sc006SetJsonBihinList();
+						// 協議中フラグ状態
+						$("#sc006KyoekihiKyogichuCheckState").val($("#sc006KyoekihiKyogichuCheck:checked").val());
+					}
+
+					// 社宅情報:個人負担共益費 協議中フラグ判定
+
+					// 社宅部屋入力支援コールバック
+					shatakuShienCallback = function() {
+						// 状態クリア
+						$("#sc006Status").val("");
+						// 社宅名
+						$("#sc006ShatakuName").text($("#hdnShatakuName").val().trim());
+						// 部屋番号
+						$("#sc006HeyaNo").text($("#hdnRoomNo").val().trim());
+						// 現在状態バックアップ
+						backUpStatus();
+						url = "skf/Skf3022Sc006/ShatakuSupportCallBack";
+						nfw.common.submitForm("form", url);
+					}
+
+					// 使用料支援コールバック
+					shiyoryoShienCallback = function() {
+						// 状態クリア
+						$("#sc006Status").val("");
+						// ヘッダ項目貸与用途(使用料計算パターン名)
+						$("#sc006SiyoryoPatName").text($("#hdnRateShienPatternName").val());
+						// 社宅使用料月額
+						$("#sc006SiyoryoMonthPay").text($("#hdnRateShienShatakuGetsugaku").val());
+						// 貸与用途
+						$("#sc006TaiyoYouto").text($("#hdnRateShienYotoName").val());
+						// 貸与規格
+						$("#sc006TaiyoKikaku").text($("#hdnRateShienKikakuName").val());
+						// 寒冷地減免
+						// 'Me.lblKanreiti.Text = shiyoryokeisanPatternShienInfo.Kanreichi
+						// '狭小減免
+						// 'Me.lblKyosyo.Text = shiyoryokeisanPatternShienInfo.Kyosho
+						// 使用料パターンID（hidden変数）
+						// 【使用料計算機能対応】ここでは画面制御として値を設定する。実際の使用料パターンIDは別処理にて付番する。
+						$("#hdnSiyouryoId").val("1");
+						// 現在状態バックアップ
+						backUpStatus();
+						url = "skf/Skf3022Sc006/ShiyoryoSupportCallBack";
+						nfw.common.submitForm("form", url);
+					}
+
+					// 駐車場入力支援(区画)コールバック
+					parkingShienCallback = function(p) {
+						// 区画判定
+						if (p == 1) {
+							// 区画1 駐車場管理番号
+							$("#hdnChushajoNoOne").val($("#hdnParkingShienParkNo").val());
+							// 区画1 区画番号
+							$("#sc006KukakuNoOne").text($("#hdnParkingShienParkBlock").val());
+							// 区画１ 駐車場使用料月額
+							$("#sc006TyusyaMonthPayOne").text($("#hdnParkingShienParkRentalAsjust").val());
+							// 区画１ 終了日
+							$("#hdnEndDayOne").val($("#hdnParkingShienEndDay").val());
+							// パラメータ作成 
+							var map = new Object();
+							map['mapParam'] = createSiyoryoKeiSanParamAsync();
+							map['sc006ChushajoKanriNo'] = $("#hdnParkingShienParkNo").val();
+							map['sc006ParkBlockKind'] = "1";
+							map['hdnShatakuKanriNo'] = $("#hdnShatakuKanriNo").val();
+							// 使用料再計算と更新日時取得
+							nfw.common.doAjaxAction("skf/Skf3022Sc006/ParkingSupportCallBackAsync", map, true, function(data) {
+								// 戻り値設定(使用料再計算分)
+								setSiyoryoKeiSanResultAsync(data);
+								// 社宅区画情報マスタ(区画1)更新日
+								$("#hdnShatakuParkingBlock1UpdateDate").val(data.hdnParkingBlockUpdateDate);
+							});
+						} else {
+							// 区画2 駐車場管理番号
+							$("#hdnChushajoNoTwo").val($("#hdnParkingShienParkNo").val());
+							// 区画2 区画番号
+							$("#sc006KukakuNoTwo").text($("#hdnParkingShienParkBlock").val());
+							// 区画2 駐車場使用料月額
+							$("#sc006TyusyaMonthPayTwo").text($("#hdnParkingShienParkRentalAsjust").val());
+							// 区画2 終了日
+							$("#hdnEndDayTwo").val($("#hdnParkingShienEndDay").val());
+							// パラメータ作成 
+							var map = new Object();
+							map['mapParam'] = createSiyoryoKeiSanParamAsync();
+							map['sc006ChushajoKanriNo'] = $("#hdnParkingShienParkNo").val();
+							map['sc006ParkBlockKind'] = "2";
+							map['hdnShatakuKanriNo'] = $("#hdnShatakuKanriNo").val();
+							// 使用料再計算と更新日時取得
+							nfw.common.doAjaxAction("skf/Skf3022Sc006/ParkingSupportCallBackAsync", map, true, function(data) {
+								// 戻り値設定(使用料再計算分)
+								setSiyoryoKeiSanResultAsync(data);
+								// 社宅区画情報マスタ(区画2)更新日
+								$("#hdnShatakuParkingBlock2UpdateDate").val(data.hdnParkingBlockUpdateDate);
+							});
+						}
+					}
+
+					// 相互利用自動判定処理
+					sogoriyoAutoSet = function(kind) {
+						// 種別判定
+						switch(kind) {
+							case 1:	// 給与支給
+								if ($("#sc006KyuyoKaisyaSelect").val() == $("#sc006KariukeKaisyaSelect").val()) {
+									$("#sc006SokinShatakuSelect").val("0");
+									$("#sc006SokinKyoekihiSelect").val("0");
+								} else {
+									$("#sc006SokinShatakuSelect").val("1");
+									$("#sc006SokinKyoekihiSelect").val("1");
+								}
+								break;
+							case 2:	// 貸付
+								if ($("#sc006TaiyoKaisyaSelect").val() == $("#sc006KariukeKaisyaSelect").val()) {
+									$("#sc006SogoHanteiKbnSelect").val("0");
+								} else {
+									$("#sc006SogoHanteiKbnSelect").val("1");
+								}
+								break;
+							case 3:	// 借受
+								if ($("#sc006KyuyoKaisyaSelect").val() == $("#sc006KariukeKaisyaSelect").val()) {
+									$("#sc006SokinShatakuSelect").val("0");
+									$("#sc006SokinKyoekihiSelect").val("0");
+								} else {
+									$("#sc006SokinShatakuSelect").val("1");
+									$("#sc006SokinKyoekihiSelect").val("1");
+								}
+								if ($("#sc006TaiyoKaisyaSelect").val() == $("#sc006KariukeKaisyaSelect").val()) {
+									$("#sc006SogoHanteiKbnSelect").val("0");
+								} else {
+									$("#sc006SogoHanteiKbnSelect").val("1");
+								}
+								break;
+						};
+					}
+
+					// 駐車場使用料月額（調整後）計算
+					calcParkingMonthPayAfter = function() {
+						// 駐車場１日割金額
+						var parkingOnePay = 0;
+						if ($("#sc006TyusyaDayPayOne").text() != null && $("#sc006TyusyaDayPayOne").text().trim().length > 0) {
+							parkingOnePay = parseInt($("#sc006TyusyaDayPayOne").text().trim().replace(/,/g, ""));
+						}
+						// 駐車場２日割金額
+						var parkingTwoPay = 0;
+						if ($("#sc006TyusyaDayPayTwo").text() != null && $("#sc006TyusyaDayPayTwo").text().trim().length > 0) {
+							parkingTwoPay = parseInt($("#sc006TyusyaDayPayTwo").text().trim().replace(/,/g, ""));
+						}
+						// 駐車場使用料調整金額 
+						if ($("#sc006TyusyaTyoseiPay").val() != null && $("#sc006TyusyaTyoseiPay").val().trim().length > 0) {
+							// 駐車場使用料調整金額
+							var tyoseiPay = 0;
+							tyoseiPay = parseInt($("#sc006TyusyaTyoseiPay").val().trim().replace(/,/g, ""));
+							$("#sc006TyusyaMonthPayAfter").text((parkingOnePay + parkingTwoPay + tyoseiPay).toLocaleString());
+						} else {
+							$("#sc006TyusyaMonthPayAfter").text((parkingOnePay + parkingTwoPay).toLocaleString());
+						}
+					}
+
+					/** テキストチェンジイベント */
+					// 入居予定日チェンジ
+					$("#sc006NyukyoYoteiDay").blur(function() {
+//					$("#sc006NyukyoYoteiDay").bind('change', function() {
+						// エラークリア
+						$("#sc006NyukyoYoteiDay").removeClass("nfw-validation-error");
+//						$("#hdnNyukyoDate").val($("#sc006NyukyoYoteiDay").val());
+						// パラメータ作成 
+						var map = new Object();
+						map['mapParam'] = createSiyoryoKeiSanParamAsync();
+						// 使用料再計算
+						nfw.common.doAjaxAction("skf/Skf3022Sc006/ChangeNyutaikyoYoteiAsync", map, true, function(data) {
+							// 戻り値設定(使用料再計算分)
+							setSiyoryoKeiSanResultAsync(data);
+						});
+					});
+
+					// 退居予定日チェンジ
+					$("#sc006TaikyoYoteiDay").blur(function() {
+//					$("#sc006TaikyoYoteiDay").bind('change', function() {
+						// エラークリア
+						$("#sc006TaikyoYoteiDay").removeClass("nfw-validation-error");
+//						$("#hdnTaikyoDate").val($("#sc006TaikyoYoteiDay").val());
+						// パラメータ作成 
+						var map = new Object();
+						map['mapParam'] = createSiyoryoKeiSanParamAsync();
+						// 使用料再計算
+						nfw.common.doAjaxAction("skf/Skf3022Sc006/ChangeNyutaikyoYoteiAsync", map, true, function(data) {
+							// 戻り値設定(使用料再計算分)
+							setSiyoryoKeiSanResultAsync(data);
+						});
+					});
+
+					// 給与支給会社ドロップダウンチェンジ
+					$("#sc006KyuyoKaisyaSelect").bind('change', function() {
+						// 給与支給会社ドロップダウン変更
+						sogoriyoAutoSet(1);
+					});
+
+					// 貸付会社ドロップダウンチェンジ
+					$("#sc006TaiyoKaisyaSelect").bind('change', function() {
+						// 貸付会社ドロップダウン変更
+						sogoriyoAutoSet(2);
+					});
+
+					// 借受会社ドロップダウンチェンジ
+					$("#sc006KariukeKaisyaSelect").bind('change', function() {
+						// 借受会社ドロップダウン変更
+						sogoriyoAutoSet(3);
+					});
+
+					// 出向の有無(相互利用状況)ドロップダウンチェンジ
+					$("#sc006SogoRyojokyoSelect").bind('change', function() {
+						if ("1" == $("#sc006SogoRyojokyoSelect").val()) {
+							// 相互利用判定区分
+							$("#sc006SogoHanteiKbnSelect").prop('disabled', false);
+							// 送金区分
+							$("#sc006SokinShatakuSelect").prop('disabled', false);
+							$("#sc006SokinKyoekihiSelect").prop('disabled', false);
+
+							// 共益費会社間送付区分
+							$("#sc006SokinKyoekihiSelect").prop('disabled', false);
+							// 貸付会社
+							$("#sc006TaiyoKaisyaSelect").prop('disabled', false);
+							// 借受会社
+							$("#sc006KariukeKaisyaSelect").prop('disabled', false);
+							// 社宅賃貸料
+							$("#sc006ChintaiRyo").prop('disabled', false);
+							// 駐車場賃貸料
+							$("#sc006TyusyajoRyokin").prop('disabled', false);
+							// 共益費(事業者負担)
+							$("#sc006Kyoekihi").prop('disabled', false);
+							// 配属情報
+							$("#sc006HaizokuKaisyaSelect").prop('disabled', false);
+							// 所属機関
+							$("#sc006SyozokuKikan").prop('disabled', false);
+							// 室・部名
+							$("#sc006SituBuName").prop('disabled', false);
+							// 課等名
+							$("#sc006KanadoMei").prop('disabled', false);
+							// 配属データコード番号
+							$("#sc006HaizokuNo").prop('disabled', false);
+							// 入退居区分判定
+							switch ($("#hdnNyutaikyoKbn").val()) {
+								case "1":	// 入退居区分＝"1"（入居）の場合
+									// 開始日
+									$("#sc006StartDay").prop('disabled', false);
+									$("#sc006StartDayDiv").prop('disabled', false);
+									$("#sc006StartDayDiv").removeClass("wj-state-disabled");
+									break;
+//								case "2":	// 入退居区分＝"2"（退居）の場合
+//									// 終了日
+//									$("#sc006EndDay").prop('disabled', false);
+//									break;
+								default:	// 入退居区分が上記以外（変更）の場合
+									// 開始日
+									$("#sc006StartDay").prop('disabled', false);
+									$("#sc006StartDayDiv").prop('disabled', false);
+									$("#sc006StartDayDiv").removeClass("wj-state-disabled");
+									// 終了日
+									$("#sc006EndDay").prop('disabled', false);
+									$("#sc006EndDayDiv").prop('disabled', false);
+									$("#sc006EndDayDiv").removeClass("wj-state-disabled");
+									break;
+							};
+							// 借受会社ドロップダウン変更
+							sogoriyoAutoSet(3);
+						} else {
+							// 相互利用判定区分
+							$("#sc006SogoHanteiKbnSelect").prop('disabled', true);
+							$("#sc006SogoHanteiKbnSelect").val("");
+							$("#sc006SogoHanteiKbnSelect").removeClass("nfw-validation-error");
+							// 送金区分
+							$("#sc006SokinShatakuSelect").prop('disabled', true);
+							$("#sc006SokinShatakuSelect").val("");
+							$("#sc006SokinShatakuSelect").removeClass("nfw-validation-error");
+							// 共益費会社間送付区分
+							$("#sc006SokinKyoekihiSelect").prop('disabled', true);
+							$("#sc006SokinKyoekihiSelect").val("");
+							$("#sc006SokinKyoekihiSelect").removeClass("nfw-validation-error");
+							// 貸付会社
+							$("#sc006TaiyoKaisyaSelect").prop('disabled', true);
+							$("#sc006TaiyoKaisyaSelect").removeClass("nfw-validation-error");
+							// 借受会社
+							$("#sc006KariukeKaisyaSelect").prop('disabled', true);
+							$("#sc006KariukeKaisyaSelect").removeClass("nfw-validation-error");
+							// 開始日
+							$("#sc006StartDay").prop('disabled', true);
+							$("#sc006StartDay").removeClass("nfw-validation-error");
+							$("#sc006StartDayDiv").addClass("wj-state-disabled");
+							// 終了日
+							$("#sc006EndDay").prop('disabled', true);
+							$("#sc006EndDay").removeClass("nfw-validation-error");
+							$("#sc006EndDayDiv").addClass("wj-state-disabled");
+							// 社宅賃貸料
+//							$("#sc006ChintaiRyo").prop('disabled', true);
+//							$("#sc006ChintaiRyo").removeClass("nfw-validation-error");
+							// 駐車場賃貸料
+//							$("#sc006TyusyajoRyokin").prop('disabled', true);
+//							$("#sc006TyusyajoRyokin").removeClass("nfw-validation-error");
+							// 共益費(事業者負担)
+//							$("#sc006Kyoekihi").prop('disabled', true);
+//							$("#sc006Kyoekihi").removeClass("nfw-validation-error");
+							// 配属情報
+							$("#sc006HaizokuKaisyaSelect").prop('disabled', true);
+							$("#sc006HaizokuKaisyaSelect").removeClass("nfw-validation-error");
+							// 所属機関
+							$("#sc006SyozokuKikan").prop('disabled', true);
+							$("#sc006SyozokuKikan").removeClass("nfw-validation-error");
+							// 室・部名
+							$("#sc006SituBuName").prop('disabled', true);
+							$("#sc006SituBuName").removeClass("nfw-validation-error");
+							// 課等名
+							$("#sc006KanadoMei").prop('disabled', true);
+							$("#sc006KanadoMei").removeClass("nfw-validation-error");
+							// 配属データコード番号
+							$("#sc006HaizokuNo").prop('disabled', true);
+							$("#sc006HaizokuNo").removeClass("nfw-validation-error");
+						}
+					});
+
+					// 備品ドロップダウンチェンジ
+					$("select[id^='bihinTaiyoStts']").bind('change', function(data) {
+						// RelativeID取得
+						var rId = data.target.id.replace("bihinTaiyoStts", "");
+						// 行データ取得
+						var rowData = $("#bihinInfoList").getRowData(rId);
+						// 備品貸与状態取得
+						var bihinTaiyoStts = $("#bihinTaiyoStts" + rId).val();
+						// 部屋備付状態取得
+						var heyaSonaetukeSttsStr = rowData.heyaSonaetukeSttsStr;
+						// 旧指示書
+						var shijishoOld = rowData.shijishoOld;
+						// 入退居区分判定
+						switch ($("#hdnNyutaikyoKbn").val()) {
+							case "1":	// 入退居区分＝"1"（入居）の場合
+								// 貸与状態判定
+								if(bihinTaiyoStts == '3' && (heyaSonaetukeSttsStr == 'なし' || heyaSonaetukeSttsStr == '共有')) {
+									// 貸与状態ドロップダウンリストが"3"（レンタル）で、表示されてる部屋備付状態が「なし」「共有」の場合、指示書欄に「搬入」を表示させる。
+									$("#shijisho" + rId).val("搬入");
+								} else {
+									$("#shijisho" + rId).val("");
+								}
+								// 変更前指示書文字列と異なる文言を設定した指示書欄の背景色は、ピンク色に設定する。
+								if($("#shijisho" + rId).val() != shijishoOld) {
+									$("#shijisho" + rId).css('background-color','#ffcecf')
+								} else {
+									$("#shijisho" + rId).css('background-color','transparent')
+								}
+								break;
+							case "2":	// 入退居区分＝"2"（退居）の場合
+								// 貸与状態判定
+								if(bihinTaiyoStts == '2' && (heyaSonaetukeSttsStr == 'なし' || heyaSonaetukeSttsStr == '共有')) {
+									// 貸与状態ドロップダウンリストが"2"（会社保有）で、表示されてる部屋備付状態が「なし」「共有」の場合、指示書欄に「下取」を表示させる
+									$("#shijisho" + rId).val("下取");
+								} else if(bihinTaiyoStts == '3' && (heyaSonaetukeSttsStr == 'なし' || heyaSonaetukeSttsStr == '共有')) {
+									// 貸与状態ドロップダウンリストが"3"（レンタル）で、表示されてる部屋備付状態が「なし」「共有」の場合、指示書欄に「搬出」を表示させる。
+									$("#shijisho" + rId).val("搬出");
+								} else {
+									$("#shijisho" + rId).val("");
+								}
+								// 変更前指示書文字列と異なる文言を設定した指示書欄の背景色は、ピンク色に設定する。
+								if($("#shijisho" + rId).val() != shijishoOld) {
+									$("#shijisho" + rId).css('background-color','#ffcecf')
+								} else {
+									$("#shijisho" + rId).css('background-color','transparent')
+								}
+								break;
+							default:	// 入退居区分が上記以外（変更）の場合
+								break;
+						};
+					});
+
+					// 役員算定ドロップダウンチェンジ
+					$("#sc006YakuinSanteiSelect").bind('change', function() {
+						// パラメータ作成 
+						var map = new Object();
+						map['mapParam'] = createSiyoryoKeiSanParamAsync();
+						map['sc006KukakuNoOne'] = $("#sc006KukakuNoOne").text();
+						map['hdnChushajoNoOne'] = $("#hdnChushajoNoOne").val();
+						map['hdnChushajoNoOneOld'] = $("#hdnChushajoNoOneOld").val();
+						map['sc006KukakuNoTwo'] = $("#sc006KukakuNoTwo").text();
+						map['hdnChushajoNoTwo'] = $("#hdnChushajoNoTwo").val();
+						map['hdnChushajoNoTwoOld'] = $("#hdnChushajoNoTwoOld").val();
+						// 使用料再計算
+						nfw.common.doAjaxAction("skf/Skf3022Sc006/ChangeYakuinSanteiAsync", map, true, function(data) {
+							// 戻り値設定(使用料再計算分)
+							setSiyoryoKeiSanResultAsync(data);
+						});
+					});
+
+					// 社宅使用料調整金額チェンジ
+					$("#sc006SiyoroTyoseiPay").blur(function() {
+//					$("#sc006SiyoroTyoseiPay").bind('change', function() {
+						// 社宅使用料調整金額 
+						if ($("#sc006SiyoroTyoseiPay").val() != null && $("#sc006SiyoroTyoseiPay").val().length > 0) {
+							// エラークリア
+							$("#sc006SiyoroTyoseiPay").removeClass("nfw-validation-error");
+							// 社宅使用料日割金額
+							var hiwariPay = 0;
+							if ($("#sc006SiyoryoHiwariPay").text() != null && $("#sc006SiyoryoHiwariPay").text().trim().length > 0) {
+								hiwariPay = parseInt($("#sc006SiyoryoHiwariPay").text().trim().replace(/,/g, ""));
+							}
+							// 社宅使用料調整金額
+							var tyoseiPay = 0;
+							tyoseiPay = parseInt($("#sc006SiyoroTyoseiPay").val().trim().replace(/,/g, ""));
+							// 社宅使用料月額(調整後)
+							$("#sc006SyatauMonthPayAfter").text((hiwariPay + tyoseiPay).toLocaleString());
+						} else {
+							if ($("#sc006SiyoryoHiwariPay").text() != null && $("#sc006SiyoryoHiwariPay").text().trim().length > 0) {
+								// 社宅使用料月額(調整後)を日割金額と同額に設定
+								$("#sc006SyatauMonthPayAfter").text($("#sc006SiyoryoHiwariPay").text().trim());
+							} else {
+								// 社宅使用料月額(調整後)を「0」に設定
+								$("#sc006SyatauMonthPayAfter").text("0");
+							}
+						}
+					});
+
+					// 個人負担共益費月額チェンジ
+					$("#sc006KyoekihiMonthPay").blur(function() {
+//					$("#sc006KyoekihiMonthPay").bind('change', function() {
+						// 個人負担共益費月額
+						if ($("#sc006KyoekihiMonthPay").val() != null && $("#sc006KyoekihiMonthPay").val().length > 0) {
+							// エラークリア
+							$("#sc006KyoekihiMonthPay").removeClass("nfw-validation-error");
+							// 共益費月額
+							var monthKyoekiPay = 0;
+							monthKyoekiPay = parseInt($("#sc006KyoekihiMonthPay").val().trim().replace(/,/g, ""));
+							// 共益費調整金額
+							var tyoseiKyoekiPay = 0;
+							if ($("#sc006KyoekihiTyoseiPay").val() != null && $("#sc006KyoekihiTyoseiPay").val().trim().length > 0) {
+								tyoseiKyoekiPay = parseInt($("#sc006KyoekihiTyoseiPay").val().trim().replace(/,/g, ""));
+							}
+							// 個人負担共益費月額(調整後)
+							$("#sc006KyoekihiPayAfter").text((monthKyoekiPay + tyoseiKyoekiPay).toLocaleString());
+						} else {
+							if ($("#sc006KyoekihiTyoseiPay").val() != null && $("#sc006KyoekihiTyoseiPay").val().trim().length > 0) {
+								// 社宅使用料月額(調整後)を日割金額と同額に設定
+								$("#sc006KyoekihiPayAfter").text($("#sc006KyoekihiTyoseiPay").val().trim());
+							} else {
+								// 社宅使用料月額(調整後)を「0」に設定
+								$("#sc006KyoekihiPayAfter").text("0");
+							}
+						}
+					});
+
+					// 個人負担共益費調整金額チェンジ
+					$("#sc006KyoekihiTyoseiPay").blur(function() {
+//					$("#sc006KyoekihiTyoseiPay").bind('change', function() {
+						// 個人負担共益費調整金額
+						if ($("#sc006KyoekihiTyoseiPay").val() != null && $("#sc006KyoekihiTyoseiPay").val().length > 0) {
+							// エラークリア
+							$("#sc006KyoekihiTyoseiPay").removeClass("nfw-validation-error");
+							// 共益費月額
+							var monthKyoekiPay = 0;
+							// 当月以前に退居の場合は0とする
+							if ($("#sc006KyoekihiMonthPay").val() != null && $("#sc006KyoekihiMonthPay").val().trim().length > 0) {
+								monthKyoekiPay = parseInt($("#sc006KyoekihiMonthPay").val().trim().replace(/,/g, ""));
+							}
+							// 共益費調整金額
+							var tyoseiKyoekiPay = 0;
+							tyoseiKyoekiPay = parseInt($("#sc006KyoekihiTyoseiPay").val().trim().replace(/,/g, ""));
+							// 個人負担共益費月額(調整後)
+							$("#sc006KyoekihiPayAfter").text((monthKyoekiPay + tyoseiKyoekiPay).toLocaleString());
+						} else {
+							if ($("#sc006KyoekihiMonthPay").val() != null && $("#sc006KyoekihiMonthPay").val().trim().length > 0) {
+								// 個人負担共益費月額(調整後)を日割金額と同額に設定
+								$("#sc006KyoekihiPayAfter").text($("#sc006KyoekihiMonthPay").val().trim());
+							} else {
+								// 個人負担共益費月額(調整後)を「0」に設定
+								$("#sc006KyoekihiPayAfter").text("0");
+							}
+						}
+					});
+
+					// 駐車場利用日チェンジ
+					$("input[id^='sc006Riyou']").blur(function() {
+//					$("input[id^='sc006Riyou']").bind('change', function() {
+						var id = $(this).attr("id");
+						// パラメータ作成 
+						var map = new Object();
+						map['mapParam'] = createSiyoryoKeiSanParamAsync();
+						// コントロール判定
+						switch (id) {
+							case "sc006RiyouStartDayOne":	// 利用開始日1
+								map['sc006ChushajoKanriNo'] = $("#hdnChushajoNoOne").val();
+								map['sc006ParkBlockKind'] = "1";
+								// エラークリア
+								$("#sc006RiyouStartDayOne").removeClass("nfw-validation-error");
+								break;
+							case "sc006RiyouEndDayOne":		// 利用終了日1
+								map['sc006ChushajoKanriNo'] = $("#hdnChushajoNoOne").val();
+								map['sc006ParkBlockKind'] = "1";
+								// エラークリア
+								$("#sc006RiyouEndDayOne").removeClass("nfw-validation-error");
+								break;
+							case "sc006RiyouStartDayTwo":	// 利用開始日2
+								map['sc006ChushajoKanriNo'] = $("#hdnChushajoNoTwo").val();
+								map['sc006ParkBlockKind'] = "2";
+								// エラークリア
+								$("#sc006RiyouStartDayTwo").removeClass("nfw-validation-error");
+								break;
+							case "sc006RiyouEndDayTwo":		// 利用終了日2
+								map['sc006ChushajoKanriNo'] = $("#hdnChushajoNoTwo").val();
+								map['sc006ParkBlockKind'] = "2";
+								// エラークリア
+								$("#sc006RiyouEndDayTwo").removeClass("nfw-validation-error");
+								break;
+						};
+						// 使用料再計算
+						nfw.common.doAjaxAction("skf/Skf3022Sc006/ChangeParkingUseDayAsync", map, true, function(data) {
+							// 戻り値設定(使用料再計算分)
+							setSiyoryoKeiSanResultAsync(data);
+						});
+					});
+
+					// 駐車場使用料調整金額チェンジ
+					$("#sc006TyusyaTyoseiPay").blur(function() {
+//					$("#sc006TyusyaTyoseiPay").bind('change', function() {
+						calcParkingMonthPayAfter();
+					});
+
+					// 貸与日チェンジ
+					$("#sc006TaiyoDay").bind('change', function() {
+						// エラークリア
+						$("#sc006TaiyoDay").removeClass("nfw-validation-error");
+					});
+
+					// 返却日チェンジ
+					$("#sc006HenkyakuDay").bind('change', function() {
+						// エラークリア
+						$("#sc006HenkyakuDay").removeClass("nfw-validation-error");
+					});
+
+					// 搬入日チェンジ
+					$("#sc006KibouDayIn").bind('change', function() {
+						// エラークリア
+						$("#sc006KibouDayIn").removeClass("nfw-validation-error");
+					});
+
+					// 搬出日チェンジ
+					$("#sc006KibouDayOut").bind('change', function() {
+						// エラークリア
+						$("#sc006KibouDayOut").removeClass("nfw-validation-error");
+					});
+
+					// 開始日チェンジ
+					$("#sc006StartDay").bind('change', function() {
+						// エラークリア
+						$("#sc006StartDay").removeClass("nfw-validation-error");
+					});
+
+					// 終了日チェンジ
+					$("#sc006EndDay").bind('change', function() {
+						// エラークリア
+						$("#sc006EndDay").removeClass("nfw-validation-error");
+					});
+
+					// 社宅賃貸料チェンジ
+//					$("#sc006ChintaiRyo").blur(function() {
+					$("#sc006ChintaiRyo").bind('change', function() {
+						// 社宅賃貸料 入力チェック
+						if ($("#sc006ChintaiRyo").val() != null && $("#sc006ChintaiRyo").val().trim().length > 0) {
+							// エラークリア
+							$("#sc006ChintaiRyo").removeClass("nfw-validation-error");
+							// パラメータ作成 
+							var map = new Object();
+							map['mapParam'] = createSiyoryoKeiSanParamAsync();
+							map['sc006KukakuNoOne'] = $("#sc006KukakuNoOne").text();
+							map['hdnChushajoNoOne'] = $("#hdnChushajoNoOne").val();
+							map['hdnChushajoNoOneOld'] = $("#hdnChushajoNoOneOld").val();
+							map['sc006KukakuNoTwo'] = $("#sc006KukakuNoTwo").text();
+							map['hdnChushajoNoTwo'] = $("#hdnChushajoNoTwo").val();
+							map['hdnChushajoNoTwoOld'] = $("#hdnChushajoNoTwoOld").val();
+							// 使用料再計算
+							nfw.common.doAjaxAction("skf/Skf3022Sc006/ChangeShatakuChintaiRyoAsync", map, true, function(data) {
+								// 戻り値設定(使用料再計算分)
+								setSiyoryoKeiSanResultAsync(data);
+							});
+						}
+					});
+
+					// 駐車場料金チェンジ
+//					$("#sc006TyusyajoRyokin").blur(function() {
+					$("#sc006TyusyajoRyokin").bind('change', function() {
+						// 駐車場料金入力チェック
+						if ($("#sc006TyusyajoRyokin").val() != null && $("#sc006TyusyajoRyokin").val().trim().length > 0) {
+							// エラークリア
+							$("#sc006TyusyajoRyokin").removeClass("nfw-validation-error");
+							// パラメータ作成 
+							var map = new Object();
+							map['mapParam'] = createSiyoryoKeiSanParamAsync();
+							map['sc006KukakuNoOne'] = $("#sc006KukakuNoOne").text();
+							map['hdnChushajoNoOne'] = $("#hdnChushajoNoOne").val();
+							map['hdnChushajoNoOneOld'] = $("#hdnChushajoNoOneOld").val();
+							map['sc006KukakuNoTwo'] = $("#sc006KukakuNoTwo").text();
+							map['hdnChushajoNoTwo'] = $("#hdnChushajoNoTwo").val();
+							map['hdnChushajoNoTwoOld'] = $("#hdnChushajoNoTwoOld").val();
+							// 使用料再計算
+							nfw.common.doAjaxAction("skf/Skf3022Sc006/ChangeParkingPayAsync", map, true, function(data) {
+								// 戻り値設定(使用料再計算分)
+								setSiyoryoKeiSanResultAsync(data);
+							});
+						}
+					});
+
+					// 共益費チェンジ(事業者負担)
+//					$("#sc006Kyoekihi").blur(function() {
+					$("#sc006Kyoekihi").bind('change', function() {
+						// 共益費入力チェック
+						if ($("#sc006Kyoekihi").val() != null && $("#sc006Kyoekihi").val().trim().length > 0) {
+							// エラークリア
+							$("#sc006Kyoekihi").removeClass("nfw-validation-error");
+						}
+					});
+
+					// 処理状態判定
+					// 押下ボタン判定
+					switch ($("#sc006Status").val()) {
+						case "0":
+							// 一時保存★
+							// 状態クリア
+							$("#sc006Status").val("");
+							// 現在状態バックアップ
+							backUpStatus();
+							// 確認ダイアログ表示
+							nfw.common.confirmPopup($("#litMessageTmpSave").val(),
+									"確認", "form", "skf/Skf3022Sc006/tmpSave", "ok", "キャンセル", this, true);
+							break;
+						case "1":
+							// 作成完了★
+							// 状態クリア
+							$("#sc006Status").val("");
+							// 現在状態バックアップ
+							backUpStatus();
+							// 確認ダイアログ表示
+							nfw.common.confirmPopup($("#litMessageCreate").val(),
+									"確認", "form", "skf/Skf3022Sc006/create", "ok", "キャンセル", this, true);
+							break;
+						case "2":
+							// 社宅管理台帳登録★
+							// 状態クリア
+							$("#sc006Status").val("");
+							// 現在状態バックアップ
+							backUpStatus();
+							// 確認ダイアログ表示
+							nfw.common.confirmPopup($("#litMessageShatakuLogin").val(),
+									"確認", "form", "skf/Skf3022Sc006/shatakuLogin", "ok", "キャンセル", this, true);
+							break;
+						default:
+							// 状態クリア
+							$("#sc006Status").val("");
+							break;
+					};
+				});
+			})(jQuery);
+		</script>
 		<script>
 			$(function() {
+				// タブ活性/非活性設定
+				var setTabDisp = new Array();
+				if (${form.tbpBihinInfo}) {
+					setTabDisp.push(1);
+				}
+				if (${form.tbpSougoRiyouInfo}) {
+					setTabDisp.push(2);
+				}
 				$( "#tabs" ).tabs();
+				$("#tabs").tabs({
+					selected:parseInt(${form.hdnTabIndex}),
+					disabled:setTabDisp,
+					activate: function(event, ui) {
+						// 選択タブインデックスを保存
+						$("#hdnTabIndex").val(ui.newTab.index());
+					},
+					select: function(event, ui){
+						// 選択タブインデックスを保存
+						$("#hdnTabIndex").val(ui.index);
+					}
+				});
 			});
 		</script>
-	</div>
-	<br><br><br>
-	<script type="text/javascript">
-		(function($) {
-			// 画面表示時に定義される処理
-			$(document).ready(function(){
-				// 社宅部屋入力支援コールバック
-				shatakuShienCallback = function() {
-					alert("社宅部屋入力支援コールバック！"
-							+ "\n社宅管理番号：" + $("#hdnShatakuKanriNo").val()
-							+ "\n社宅名：" + $("#hdnShatakuName").val()
-							+ "\n部屋管理番号：" + $("#hdnRoomKanriNo").val()
-							+ "\n部屋番号：" + $("#roomNo").val()
-						);
-				}
-
-				// 使用料支援コールバック
-				shiyoryoShienCallback = function() {
-					alert("使用料入力支援コールバック！"
-						+ "\n規格：" + $("#hdnRateShienKikaku").val()
-						+ "\n規格名：" + $("#hdnRateShienKikakuName").val()
-						+ "\n用途：" + $("#hdnRateShienYoto").val()
-						+ "\n用途名：" + $("#hdnRateShienYotoName").val()
-						+ "\n延べ面積：" + $("#hdnRateShienNobeMenseki").val()
-						+ "\nサンルーム面積：" + $("#hdnRateShienSunroomMenseki").val()
-						+ "\n階段面積：" + $("#hdnRateShienKaidanMenseki").val()
-						+ "\n物置面積：" + $("#hdnRateShienMonookiMenseki").val()
-						+ "\n基準面積：" + $("#hdnRateShienKijunMenseki").val()
-						+ "\n社宅面積：" + $("#hdnRateShienShatakuMenseki").val()
-						+ "\n単価：" + $("#hdnRateShienTanka").val()
-						+ "\n経年：" + $("#hdnRateShienKeinen").val()
-						+ "\n経年残価率：" + $("#hdnRateShienKeinenZankaRitsu").val()
-						+ "\n使用料パターン月額：" + $("#hdnRateShienPatternGetsugaku").val()
-						+ "\n社宅使用料月額：" + $("#hdnRateShienShatakuGetsugaku").val()
-						+ "\n社宅基本使用料：" + $("#hdnRateShienKihonShiyoryo").val()
-						+ "\n使用料パターン名：" + $("#hdnRateShienPatternName").val()
-					);
-				}
-				
-				parkingShienCallback1 = function() {
-					document.getElementById('park1blockNo').innerHTML = $("#hdnParkingShienParkBlock").val();
-				}
-				parkingShienCallback2 = function() {
-					document.getElementById('park2blockNo').innerHTML = $("#hdnParkingShienParkBlock").val();
-				}
-			});
-		})(jQuery);
-	</script>
-	<script type="text/javascript">
-		function ImageUp() {
-			window.open("../pop/pop_ShatakuHeyaNyuryokuShien.html","window1","width=650px,height=600px","menubar=no,resizable=yes");
-		}
-
-		function openWindow(){
-			info = 'toolbar=no,location=no,directories=no,status=no,menubar=no,' +
-			'scrollbars=no,left=0,top=0,resizable=yes,width=650px,height=680px,title=no';
-			var window1 = window.open("../pop/pop_ShatakuHeyaNyuryokuShien.html","window1",info);
-			window1.moveTo(0, 0);
-			window.opener = self;
-		}
-
-		function openWindow2(){
-			info = 'toolbar=no,location=no,directories=no,status=no,menubar=no,' +
-			'scrollbars=no,left=0,top=0,resizable=yes,width=650px,height=680px,title=no';
-			var window1 = window.open("../pop/pop_TyushajyoNyuryokuShien.html","window1",info);
-			window1.moveTo(0, 0);
-			window.opener = self;
-		}
-
-		function openWindow3(){
-			info = 'toolbar=no,location=no,directories=no,status=no,menubar=no,' +
-			'scrollbars=no,left=0,top=0,resizable=yes,width=750px,height=680px,title=no';
-			var window1 = window.open("../pop/pop_ShiyoryokeisanShien.html","window1",info);
-			window1.moveTo(0, 0);
-			window.opener = self;
-		}
-
-		function openWindow4(){
-			info = 'toolbar=no,location=no,directories=no,status=no,menubar=no,' +
-			'scrollbars=no,left=0,top=0,resizable=yes,width=650px,height=680px,title=no';
-			var window1 = window.open("../pop/pop_JigenTouroku.html","window1",info);
-			window1.moveTo(0, 0);
-			window.opener = self;
-		}
-	</script>
-</nfwui:Form>
+	</nfwui:Form>
+	<form id="downloadForm" action="tenant/maintenance/storage/file_download" method="post">
+		<input name="path" type="hidden" value="${form.operationGuidePath }" />
+		<input name="imui-theme-builder-module" type="hidden" value="notheme" />
+	</form>
+</div>
 <!-- コンテンツエリア　ここまで -->

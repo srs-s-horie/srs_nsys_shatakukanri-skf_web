@@ -33,7 +33,7 @@
 							<nfwui:LabelBox id="lblShatakuName" code="<%= MessageIdConstant.SKF3070_SC001_SHATAKU_NAME %>" />
 						</th>
 						<td colspan="2">
-	   						<imui:textbox id="shatakuName" name="shatakuName" value="${f:h(form.shatakuName)}" placeholder="例 社宅名"  tabindex="4"/>
+	   						<imui:textbox id="shatakuName" name="shatakuName" value="${form.shatakuName}" placeholder="例 社宅名"  tabindex="4"/>
 	   					</td>
 					</tr>
 					<tr>
@@ -174,7 +174,7 @@
 					
 			// ownerNo:賃貸人（代理人）管理番号
 			var ownerNo = row.ownerNo;		
-			$("#ownerNo").val(ownerNo);
+			$('input[name="ownerNo"]').val(ownerNo);
 			
 			var nextPageUrl = "skf/Skf3070Sc003/init";
     		nfw.common.submitForm("paramForm2", nextPageUrl);

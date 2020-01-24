@@ -8,6 +8,7 @@
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
 <script src="scripts/skf/skfCommon.js"></script>
+<link rel="stylesheet" type="text/css" href="styles/skf/listTableStyle.css" />
 
 <script type="text/javascript">
   // リストテーブルの申請状況の文字色変更
@@ -31,39 +32,38 @@
   }
 
   (function($){
-    // 機関ドロップダウン変更時のイベント
-    $("#agency").change(function() {
-    	var map = new Object();
-    	map['agency'] = $("#agency").val();
-    	
-    	nfw.common.doAjaxAction("skf/Skf2010Sc005/ChangeDropDownAsync", map, true, function(data) {
-    		$("#affiliation1").imuiSelect("replace", data.ddlAffiliation1List);
-    		$("#affiliation2").imuiSelect("replace", data.ddlAffiliation2List);
-    	});
-    });
-    // 部等ドロップダウン変更時のイベント
-    $("#affiliation1").change(function() {
-    	var map = new Object();
-    	map['agency'] = $("#agency").val();
-    	map['affiliation1'] = $("#affiliation1").val();
-    	
-    	nfw.common.doAjaxAction("skf/Skf2010Sc005/ChangeDropDownAsync", map, true, function(data) {
-    		$("#affiliation2").imuiSelect("replace", data.ddlAffiliation2List);
-    	});
-    });
-    
-    // 申請状況の「全選択」ボタン押下時のイベント
-    $("#allCheck").click(function() {
-    	$("input[name='applStatus']").prop("checked", true);
-    });
-    // 申請状況の「全解除」ボタン押下時のイベント
-    $("#allNoCheck").click(function() {
-    	$("input[name='applStatus']").prop("checked", false);
-    });
-    
-
     // 画面表示時に定義される処理
     $(document).ready(function(){
+        // 機関ドロップダウン変更時のイベント
+        $("#agency").change(function() {
+        	var map = new Object();
+        	map['agency'] = $("#agency").val();
+        	
+        	nfw.common.doAjaxAction("skf/Skf2010Sc005/ChangeDropDownAsync", map, true, function(data) {
+        		$("#affiliation1").imuiSelect("replace", data.ddlAffiliation1List);
+        		$("#affiliation2").imuiSelect("replace", data.ddlAffiliation2List);
+        	});
+        });
+        // 部等ドロップダウン変更時のイベント
+        $("#affiliation1").change(function() {
+        	var map = new Object();
+        	map['agency'] = $("#agency").val();
+        	map['affiliation1'] = $("#affiliation1").val();
+        	
+        	nfw.common.doAjaxAction("skf/Skf2010Sc005/ChangeDropDownAsync", map, true, function(data) {
+        		$("#affiliation2").imuiSelect("replace", data.ddlAffiliation2List);
+        	});
+        });
+        
+        // 申請状況の「全選択」ボタン押下時のイベント
+        $("#allCheck").click(function() {
+        	$("input[name='applStatus']").prop("checked", true);
+        });
+        // 申請状況の「全解除」ボタン押下時のイベント
+        $("#allNoCheck").click(function() {
+        	$("input[name='applStatus']").prop("checked", false);
+        });
+        
 	    // 「一括承認」ボタン押下時のイベント
 	    preUpdateEvent = function () {
 	        var ids = $("input[id^='applNo_']:not(:disabled):checkbox:checked");
@@ -124,7 +124,7 @@
     
     // リストテーブルの確認欄のアイコンをクリックした時のイベント
     onCellSelect = function(rowId, iCol, cellContent, e) {
-    	if ($(cellContent).hasClass('im-ui-icon-menu-24-document')) {
+    	if ($(cellContent).hasClass('im-ui-icon-common-16-document')) {
     		var grid = $("#ltResultListTable");
     		var rowData = grid.getRowData(rowId);
     		
@@ -165,6 +165,7 @@
 	height: 30px;
     white-space:normal;
 }
+
 </style>
 
 <!-- コンテンツエリア -->
@@ -177,7 +178,7 @@
                        <nfwui:Title id="searchTitle" code="<%= MessageIdConstant.SKF2010_SC005_SEARCH_TITLE %>" titleLevel="2" />
                             <nfwui:Form id="form" name="form" modelAttribute="form" encType="multipart/form-data">
                              <input type="hidden" id="nyukyoFlag" name="nyukyoFlag" value="false" />
-                             <input type="hidden" id="insertFormName" name="insertFormName" value="" />
+                             <input type="hidden" id="insertFormName" value="" />
                                 <table class="imui-form-search-condition" >
                                     <tr>
                                         <th style="width: 100px;">
@@ -245,7 +246,7 @@
                                             <nfwui:PopupButton id="supportName" name="supportName" value="支援"
                                             cssClass="imui-small-button" use="popup"
                                             screenUrl="skf/Skf2010Sc001/init"
-                                            popupWidth="650" popupHeight="700"
+                                            popupWidth="640" popupHeight="800"
                                             modalMode="true" />
                                         </th>
                                         <td style="width: 180px;" colspan="2">
@@ -376,7 +377,7 @@
 <!-- 明細＆細目未満 -->
   <!-- 明細部 -->
   <nfwui:Form id="resultListForm" name="resultListForm" modelAttribute="form" secureToken="false">
-    <div class="imui-chapter-title" style="max-width:1300px;"><h2>検索結果一覧</h2></div>
+    <div class="imui-chapter-title"><h2>検索結果一覧</h2></div>
 <input type="hidden" id="putApplNo" name="applNo" value="" />
 <input type="hidden" id="putApplId" name="applId" value="" />
 <input type="hidden" id="putApplStatus" name="sendApplStatus" value="" />
@@ -408,7 +409,7 @@ onCellSelect="onCellSelect" rowNumbers="true"
   <col name="agreName2" caption="承認者名2／修正依頼者名"  width="110" wrap="true" align="left" /><!-- 承認者名2／修正依頼者名 -->
   <col name="detail" caption="確認" width="50" align="center">
   
-    <showIcon iconClass="im-ui-icon-menu-24-document" />
+    <showIcon iconClass="im-ui-icon-common-16-document" />
   </col><!-- 確認 -->
 </cols>
 </imui:listTable>

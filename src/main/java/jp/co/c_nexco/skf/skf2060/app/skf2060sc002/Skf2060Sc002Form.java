@@ -57,6 +57,8 @@ public class Skf2060Sc002Form extends NfwfileScDwdForm {
     //隠し要素
     //申請書類管理番号
     private String applNo;
+    // 申請書類ID
+    private String applId;
     //提示回数
     private String teijiKaisu;
     
@@ -76,5 +78,8 @@ public class Skf2060Sc002Form extends NfwfileScDwdForm {
 	private String hdnCandidateNo;
 	//添付ファイル番号
 	private String hdnAttachedNo;
+	
+	// 選択された借上候補物件
+	private String selectedRadioCandidateNo;
 
 }

@@ -59,7 +59,7 @@
 			
 			// 搬入完了ボタンクリックイベント
 			$("#btnCarryIn").click(function(){
-				skf.common.confirmPopupForCallback("備品搬入を完了します。よろしいですか？", "搬入完了", "form", "OK", "cancel", this, function(){
+				skf.common.confirmPopupForCallback("備品搬入を完了します。よろしいですか？", "搬入完了", "form", "ok", "キャンセル", this, function(){
 					var map = new Object();
 					
 					map['applNo'] = $("#applNo").val();
@@ -70,7 +70,7 @@
 					nfw.common.doAjaxAction("skf/Skf2030Sc001/CheckAsync", map, true, function(res){
 						if (res.showDialogFlag == "true") {
 							var message = "搬入完了日が入居日より前ですがよろしいですか？(入居日:" + res.nyukyobi + "）";
-							skf.common.confirmPopup(message, "搬入完了", "form", "skf/Skf2030Sc001/Complete",  "OK", "cancel", this);
+							skf.common.confirmPopup(message, "搬入完了", "form", "skf/Skf2030Sc001/Complete",  "ok", "キャンセル", this);
 						} else {
 							skf.common.submitForm("form", "skf/Skf2030Sc001/Complete", this);
 						}
@@ -164,7 +164,7 @@
 <div class="align-R">
 </imart:condition>
 <imart:condition validity="<%= String.valueOf(form.isStatus24Flag()) %>" negative>
-      <imui:button class="imui-medium-button check" id="btnCarryIn" name="btnCarryIn" value="搬入完了" tabindex="11" style="width:150px;" />
+      <imui:button class="imui-medium-button check" id="btnCarryIn" name="btnCarryIn" value="搬入完了" disabled="${form.btnImportFinidhedDisabled}" tabindex="11" style="width:150px;" />
 </imart:condition>
 </div> 
 </imart:condition>
@@ -185,7 +185,7 @@
 </imart:condition>
 </div> 
 <div class="align-R">
-           <nfwui:Button id="saveBtn" name="saveBtn" value="一時保存" tabindex="8"
+           <nfwui:Button id="saveBtn" name="saveBtn" value="一時保存" disabled="${form.btnSaveDisabled}" tabindex="8"
            cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
            url="skf/Skf2030Sc001/Save" removePatterns="ST01" />
 </div> 
@@ -198,7 +198,7 @@
       <imui:button class="imui-medium-button check" id="backBtn" name="backBtn" value="前の画面へ" style="width:150px;" tabindex="13" onclick="back1()" />
 </div> 
 <div class="align-R">
-           <nfwui:ConfirmButton id="applyBtn" name="applyBtn" value="申請"
+           <nfwui:ConfirmButton id="applyBtn" name="applyBtn" value="申請" disabled="${form.btnApplicationDisabled}"
            cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
            title="<%= MessageIdConstant.SKF2020_SC003_CONFIRM_TITLE %>"
            message="<%= MessageIdConstant.I_SKF_2003 %>" tabindex="10"

@@ -30,16 +30,20 @@
     onGridComplete = function(rowId, iCol, cellContent, e) {
 
     	// テキストボックス、テキストエリアにフォーカス時、入力済み文字列全選択
+    	/*
     	document.getElementById("txtShainNo").addEventListener('click', function(){
     		$(this).select();
     		return false;
-    	}, false);    	
+    	}, false);
+    	*/
 
     	// テキストボックス、テキストエリアにフォーカス時、入力済み文字列全選択
+    	/*
     	document.getElementById("txtName").addEventListener('click', function(){
     		$(this).select();
     		return false;
     	}, false);    	
+    	*/
     	
     	
     	// ヘッダ行を変更
@@ -494,7 +498,7 @@
 								<nfwui:LabelBox id="lblShainNo" code="<%=MessageIdConstant.SKF3060_SC001_SHAIN_NO %>" />
 							</th>
 							<td colspan="2">
-								<imui:textbox id="txtShainNo" name="shainNo" style="ime-mode: disabled;width:150px;" placeholder="例  00123456(半角)" value="${form.shainNo}" tabindex="5" maxlength="8"/>
+								<imui:textbox id="txtShainNo" name="shainNo" style="ime-mode: disabled;width:150px;" placeholder="例  00123456(半角)" value="${f:h(form.shainNo)}" tabindex="5" maxlength="8"/>
 							</td>
 							<!-- 給与支給会社名 -->
 							<th style="width: 16%;">
@@ -511,7 +515,7 @@
 								<nfwui:LabelBox id="lblName" code="<%=MessageIdConstant.SKF3060_SC001_NAME %>" />
 							</th>
 							<td colspan="2">
-								<imui:textbox id="txtName" name="name" style="disabled;width:150px;" placeholder="例  中日本　太郎" value="${form.name}" tabindex="6" maxlength="20"/>
+								<imui:textbox id="txtName" name="name" style="disabled;width:150px;" placeholder="例  中日本　太郎" value="${f:h(form.name)}" tabindex="6" maxlength="20"/>
 							</td>
 							<!-- 送信状態 -->
 							<th style="width: 16%;">

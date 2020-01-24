@@ -27,41 +27,16 @@
 	function back1() {
 		var url = "skf/Skf2010Sc003/init?SKF2010_SC003&tokenCheck=0";
 		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
-	}
-	
-    /**
-     * メニュー画面へ遷移する。
-     */
-    function back() {
-        showConfirm(W_GFK_0002, function() {
-            $.StandardPost("../common/top.html");
-        });
-    }
-    
-    
-    /**
-     * 「同意する」ボタン押下時
-     */
-    function confreq() {
-        showConfirm(W_GFK_0001.replace('{0}', '選択'), function() {
-         $.StandardPost("../../skf/Skf2010_Sc003/init");
-        });
-    }
-        /**
-     * TOP画面へ遷移する。
-     */
-    function TOP() {
-        showConfirm(W_GFK_0007, function() {
-            $.StandardPost("../common/top.html");
-        });
-    }
-    
+	} 
 </script>
 
 <!-- コンテンツエリア -->
-<nfwui:Form id="form" name="form" modelAttribute="form">
 <div style="width:100%;">
+<div style="margin-left:1%;">
+<jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
+</div>
     	<!-- コンテンツエリア -->
+		<nfwui:Form id="form" name="form" modelAttribute="form">
      		<table class="imui-form-search-condition" style="width:20%; margin-left:2%;">
        			<tr>
          			<th style="width: 50%;">
@@ -195,7 +170,7 @@
 	                                                    <input type="radio" id="radioCandidateNo_${f:h(kariageObject.candidateNo)}" name="radioCandidateNo" value="${f:h(kariageObject.candidateNo)}" tabindex="1" />     
 	                                                    </td>
 	                                                    <td style="text-align:left;">
-	                                                        ${f:h(kariageObject.shatakuName)}
+	                                                        ${kariageObject.shatakuName}
 	                                                    </td>
 	                                                    <td style="text-align:left;">
 	                                                        ${f:h(kariageObject.shatakuNameAddress)}
@@ -207,7 +182,7 @@
 												</c:forEach>                
                                                 <tr>
                                                     <td style="text-align:center;">
-                                                    <input type="radio" id="radioCandidateNoNone" name="radioCandidateNo" value="0" tabindex="1" />
+                                                    <input type="radio" id="radioCandidateNo_0" name="radioCandidateNo" value="0" tabindex="1" />
                                                     </td>
                                                     <td style="text-align:left;">
 														選択しない
@@ -217,7 +192,7 @@
                                                     <br>
                                                     <imui:select id="riyuDropdown" name="riyuDropdown" width="185" list="${form.riyuList}" disabled="${form.riyuDropdownDisabled}" tabindex="2" />
                                                     <br>
-                                                    <imui:textArea style="width:100%;" rows="2" id="biko" name="biko" value="${f:h(form.biko)}" disabled="${form.bikoDisabled}" tabindex="3" />
+                                                    <imui:textArea style="width:100%;" rows="2" id="biko" name="biko" value="${form.biko}" disabled="${form.bikoDisabled}" tabindex="3" />
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -248,6 +223,7 @@
 <br>
 <br>
 </div>
+</nfwui:Form>
 </div>
 
 <script type="text/javascript">
@@ -265,6 +241,7 @@
 <input type="hidden" name="applNo" id="applNo" value="${form.applNo}" />　<!-- 申請書類管理番号 -->
 <!-- 前画面からの値取得用終わり -->
 <input type="hidden" name="teijiKaisu" id="teijiKaisu" value="${form.teijiKaisu}" />　<!-- 提示回数 -->
+<input type="hidden" name="hdnRadioCandidateNo" id="selectedRadioCandidateNo" value="${form.selectedRadioCandidateNo}" />　<!-- 選択されたラジオボタン -->
 <input type="hidden" name="hdnCandidateNo" id="sendCandidateNo" value="" /><!-- 添付ファイルダウンロード用借上候補物件番号 -->
 <input type="hidden" name="hdnAttachedNo" id="sendAttachedNo" value="" /><!-- 添付ファイルダウンロード用添付ファイル番号 -->
 <!-- 隠し項目終わり -->
@@ -281,6 +258,12 @@
 		}else{
 			$("[name=radioCandidateNo]").prop('disabled', true);
 		}
+		
+		var selectedRadioCandidateNo = $("#selectedRadioCandidateNo").val();
+		if(selectedRadioCandidateNo != null && selectedRadioCandidateNo != ""){
+			$("#radioCandidateNo_"+selectedRadioCandidateNo).prop('checked', true);
+		}
+		
 	});
 	
 	//添付ファイルリンククリック時
@@ -292,7 +275,7 @@
 	//ドロップダウン非同期処理
 	$("#riyuDropdown").bind('change', function() {
 		var riyuValue = $("#riyuDropdown").val();
-		if(riyuValue == <%= CodeConstant.FUYO_RIYU_OTHERS %>){
+		if(riyuValue == <%= CodeConstant.RELATION_OTHERS %>){
 			$("#biko").prop('disabled', false);
 		}else{
 			$("#biko").prop('disabled', true);
@@ -317,5 +300,4 @@
 })(jQuery);	
 
 </script>
-</nfwui:Form>
 <!-- コンテンツエリア　ここまで -->

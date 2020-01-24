@@ -258,10 +258,9 @@ $(function() {
            <!-- 添付ボタン -->
            <nfwui:PopupButton id="shiryoBtn" name="shiryoBtn" value="資料を添付"
            cssClass="imui-medium-button" cssStyle="width: 150px" 
-           use="popup" popupWidth="750" popupHeight="600"
-           parameter="applNo:applNo,applId:applId" modalMode="false" 
-           screenUrl="skf/Skf2010Sc009/init" formId="form" removePatterns="NON"
-           callbackFunc="updateAttachedFileArea" />
+           use="popup" popupWidth="790" popupHeight="700"
+           parameter="applNo:popApplNo,applId:popApplId" modalMode="true" 
+           screenUrl="skf/Skf2010Sc009/init" formId="form" removePatterns="NON" />
            <!-- 承認ボタン -->
            <nfwui:ConfirmButton id="syouninBtn" name="syouninBtn" value="承認"
            cssClass="imui-medium-button" cssStyle="width: 150px" 

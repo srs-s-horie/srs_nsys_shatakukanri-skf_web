@@ -26,9 +26,9 @@
 	<nfwui:Form id="form" name="form" modelAttribute="form"  enctype="multipart/form-data" >
 		<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC002 %>" />
 		<input type="hidden" name="ittoFlg" id="ittoFlg" value="${form.ittoFlg }" />
-		<input type="hidden" name="oldBuildDate" id="oldBuildDate" value="${f:h(form.buildDate)}" />
-		<input type="hidden" name="lendKbnSelectListString" id="lendKbnSelectListString" value="${f:h(form.lendKbnSelectListString)}" />
-		<input type="hidden" name="defaultParkingLendStatus" id="defaultParkingLendStatus" value="${f:h(form.defaultParkingLendStatus)}" />
+		<input type="hidden" name="oldBuildDate" id="oldBuildDate" value="${form.buildDate}" />
+		<input type="hidden" name="lendKbnSelectListString" id="lendKbnSelectListString" value="${form.lendKbnSelectListString}" />
+		<input type="hidden" name="defaultParkingLendStatus" id="defaultParkingLendStatus" value="${form.defaultParkingLendStatus}" />
 		<input type="hidden" name="contractOwnerNo" id="contractOwnerNo" value="${form.contractOwnerNo}" />
 		<input type="hidden" name="nowParkingInfoListTableData" id="nowParkingInfoListTableData" />
 		<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="${form.hdnShatakuKanriNo }"/>
@@ -47,6 +47,8 @@
 		<input type="hidden" name="startingAreaKbn" id="startingAreaKbn" value="${form.startingAreaKbn }"/>
 		<!-- 賃貸人(画面表示時データ) -->
 		<input type="hidden" name="startingContractOwnerName" id="startingContractOwnerName" value="${form.contractOwnerName }"/>
+		<!-- 賃貸人番号(画面表示時データ) -->
+		<input type="hidden" name="startingContractOwnerNo" id="startingContractOwnerNo" value="${form.contractOwnerNo }"/>
 		<!-- 経理連携用管理番号(画面表示時データ) -->
 		<input type="hidden" name="startingAssetRegisterNo" id="startingAssetRegisterNo" value="${form.assetRegisterNo }"/>
 		<!-- 契約開始日(画面表示時データ) -->
@@ -70,14 +72,19 @@
 		<input type="hidden" name="jsonDrpDwnList" id="jsonDrpDwnList" />
 		<!-- JSON可変ラベルリスト -->
 		<input type="hidden" name="jsonLabelList" id="jsonLabelList" />
-		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc002/init"/>
+		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc002/init?SKF3010_SC002&tokenCheck=0"/>
 		<!-- 補足ファイル -->
 		<input type="hidden" name="fileNo" id="fileNo"/>
 		<input type="hidden" name="hosokuType" id="hosokuType"/>
 		<input type="hidden" name="hdnHosoku" id="sendHosokuType"/>
 		<input type="hidden" name="hdnAttachedNo" id="sendAttachedNo"/>
 
-		<nfwui:Table use="input">
+		<!-- 社員名入力支援用 -->
+		<input type="hidden" id="insertFormName" value="" />
+		<!-- 賃貸人(代理人)入力支援用 -->
+		<input type="hidden" name="insertFormOwnerName" id="insertFormOwnerName" value="" />
+		<input type="hidden" name="insertFormOwnerNo" id="insertFormOwnerNo" value="" />
+		<nfwui:Table use="search">
 			<tbody>
 				<tr>
 					<th style="width: 5%;">
@@ -141,7 +148,7 @@
 				</c:if>
 			</ul>
 			<div id="kihon_info">
-				<nfwui:Table use="input">
+				<nfwui:Table use="search">
 					<tbody>
 						<!--利用区分-->
 						<tr>
@@ -242,7 +249,7 @@
 								<nfwui:LabelBox id="lblBuildDate" code="<%=MessageIdConstant.SKF3010_SC002_LBL_BUILD_DATE %>" />
 							</th>
 							<td>
-								<nfwui:DateBox id="buildDate" name="buildDate" value="${f:h(form.buildDate)}"
+								<nfwui:DateBox id="buildDate" name="buildDate" value="${form.buildDate}"
 												 cssStyle="width:100px" cssClass="${form.buildDateErr }" tabindex="17"/>
 							</td>
 							<th>
@@ -330,7 +337,7 @@
 				</nfwui:Table>
 			</div>
 			<div id="parking_info">
-				<nfwui:Table use="input">
+				<nfwui:Table use="search">
 					<tbody>
 						<!--駐車場構造-->
 						<tr >
@@ -443,7 +450,7 @@
 				<br />
 				<div>
 					<!--備考-->
-					<nfwui:Table use="input">
+					<nfwui:Table use="search">
 						<tbody>
 							<!--備考-->
 							<tr>
@@ -472,7 +479,7 @@
 				</imui:listTable>
 			</div>
 			<div id="admin_info">
-				<nfwui:Table use="input">
+				<nfwui:Table use="search">
 					<tbody>
 						<tr >
 							<td style="width:15%;"/>
@@ -520,28 +527,18 @@
 								<imui:textbox id="dormitoryLeaderName" name="dormitoryLeaderName" style="width:150px;"
 								maxlength="30" value="${form.dormitoryLeaderName}" placeholder="例　中日本　太郎" tabindex="47" />
 								<!-- 社員入力支援 -->
-								<nfwui:PopupButton id="leaderInputSupportShain" name="leaderInputSupportShain" value="社員入力支援" use="popup"
+								<nfwui:PopupButton id="supportDormitoryLeaderName" name="supportDormitoryLeaderName" value="社員入力支援" use="popup"
 									cssClass="imui-small-button" popupWidth="650" popupHeight="700"
-									modalMode="false" screenUrl="skf/Skf2010Sc001/init"
-									parameter="shainNo:shainNo"
-									callbackFunc="leaderShainInfoCallback" tabindex="48"/> 
-<%--                	<nfwui:PopupButton id="cShien" name="cShien" value="駐車支援" use="popup"  --%>
-<%--                		cssClass="imui-small-button" popupWidth="650" popupHeight="700"  --%>
-<%--                		modalMode="true" screenUrl="skf/Skf3022Sc002/init"  --%>
-<%--                		parameter="hdnShatakuKanriNo:hdnShatakuKanriNo,hdnShatakuName:hdnShatakuName,hdnBackupContractStartDate:hdnRiyouStartDay" disabled="${form.contractInfoDisabled}"  --%>
-<%--                		mappingArray="{'txtOwnerName':'resultList.colParkingBlock'}" --%>
-<%--                		 tabindex="48"/> --%>
+									modalMode="true" screenUrl="skf/Skf2010Sc001/init" tabindex="48"/> 
 							</td>
 							<td>
 								<!-- 鍵管理者 -->
 								<imui:textbox id="keyManagerName" name="keyManagerName" style="width:150px;" maxlength="30"
 								value="${form.keyManagerName}" placeholder="例　中日本　太郎" tabindex="54" />
 								<!-- 社員入力支援 -->
-								<nfwui:PopupButton id="keyManagerInputSupportShain" name="keyManagerInputSupportShain" value="社員入力支援" use="popup"
+								<nfwui:PopupButton id="supportKeyManagerName" name="supportKeyManagerName" value="社員入力支援" use="popup"
 									cssClass="imui-small-button" popupWidth="650" popupHeight="700"
-									modalMode="false" screenUrl="skf/Skf2010Sc001/init"
-									parameter="shainNo:shainNo"
-									callbackFunc="keyManagerShainInfoCallback" tabindex="55"/> 
+									modalMode="true" screenUrl="skf/Skf2010Sc001/init" tabindex="55"/> 
 							</td>
 							<td>
 								<!-- 寮母・管理会社 -->
@@ -649,7 +646,7 @@
 				</nfwui:Table>
 			</div>
 			<div id="keiyaku_info">
-				<nfwui:Table use="input">
+				<nfwui:Table use="search">
 					<tbody>
 						<tr>
 							<th rowspan="13" style="width:5%" >
@@ -697,16 +694,10 @@
 									style="width:150px;height:98%" value="${form.contractOwnerName}" disabled="${form.contractDelDisableFlg }" tabindex="69" />
 								<!-- 支援ボタン -->
 								<nfwui:PopupButton id="contractSupport" name="contractSupport" value="支援" use="popup"
-									cssClass="imui-small-button" popupWidth="650" popupHeight="700"
-									modalMode="false" screenUrl="skf/Skf2010Sc001/init"
+									cssClass="imui-small-button" popupWidth="640" popupHeight="800"
+									modalMode="true" screenUrl="skf/Skf3070Sc004/init"
 									parameter="parkinglendKbn:nyukyoFlag"  disabled="${form.contractDelDisableFlg }"
-									callbackFunc="contractOwnerInfoCallback" tabindex="70"/>
-<%--                	<nfwui:PopupButton id="cShien" name="cShien" value="駐車支援" use="popup"  --%>
-<%--                		cssClass="imui-small-button" popupWidth="650" popupHeight="700"  --%>
-<%--                		modalMode="true" screenUrl="skf/Skf3022Sc002/init"  --%>
-<%--                		parameter="hdnShatakuKanriNo:hdnShatakuKanriNo,hdnShatakuName:hdnShatakuName,hdnBackupContractStartDate:hdnRiyouStartDay" disabled="${form.contractInfoDisabled}"  --%>
-<%--                		mappingArray="{'txtOwnerName':'resultList.colParkingBlock'}" --%>
-<%--                		 tabindex="70"/> --%>
+									tabindex="70"/>
 							</td>
 						</tr>
 						<tr>
@@ -751,7 +742,7 @@
 							</th>
 							<td>
 								<nfwui:DateBox id="contractStartDay" name="contractStartDay" cssClass="${form.contractStartDayErr }"
-									value="${f:h(form.contractStartDay)}" cssStyle="width:100px" disabled="${form.contractDelDisableFlg }" tabindex="72"/>
+									value="${form.contractStartDay}" cssStyle="width:100px" disabled="${form.contractDelDisableFlg }" tabindex="72"/>
 							</td>
 						</tr>
 						<tr>
@@ -761,7 +752,7 @@
 							</th>
 							<td>
 								<nfwui:DateBox id="contractEndDay" name="contractEndDay" cssClass="${form.contractEndDayErr }"
-									value="${f:h(form.contractEndDay)}" cssStyle="width:100px" disabled="${form.contractDelDisableFlg }" tabindex="73"/>
+									value="${form.contractEndDay}" cssStyle="width:100px" disabled="${form.contractDelDisableFlg }" tabindex="73"/>
 							</td>
 						</tr>
 						<tr>
@@ -813,12 +804,12 @@
 			</div>
 			<script type="text/javascript">
 				(function($) {
-					// テキストボックス、テキストエリアにフォーカス時、入力済み文字列全選択
-					jQuery(document).on("focus click", "input,textarea", function() {
-						$(this).select();
-					});
 					// 画面表示時に定義される処理
 					$(document).ready(function(){
+						// 駐車場調整金額フォーカス時、入力済み文字列全選択
+						jQuery(document).on("focus", "input[id^='parkingRentalAdjust']", function(data) {
+							$(this).select();
+						});
 						if ($("#ittoFlg").val() != "true") {
 							// 一棟借上以外は非表示
 							$('#tabs div[id=keiyaku_info]').hide();
@@ -834,6 +825,7 @@
 						checkContractInfo = function() {
 							// 変更チェック(賃貸人、経理連携用管理番号、契約開始日、契約終了日、家賃、共益費、駐車場料、備考)
 							if ($("#startingContractOwnerName").val() != $("#contractOwnerName").val()
+								|| $("#startingContractOwnerNo").val() != $("#contractOwnerNo").val()
 								|| $("#startingAssetRegisterNo").val() != $("#assetRegisterNo").val()
 								|| $("#startingContractStartDay").val().replace(/\//g, "") != $("#contractStartDay").val().replace(/\//g, "")
 								|| $("#startingContractEndDay").val().replace(/\//g, "") != $("#contractEndDay").val().replace(/\//g, "")
@@ -973,6 +965,7 @@
 							// 可変ラベルリストをJSON文字列に変換
 							$('#jsonLabelList').val(JSON.stringify(labelArray));
 						}
+
 						// 現在状態バックアップ
 						// ドロップ選択値ダウンリスト、可変ラベルリスト、リストテーブルのバックアップを行う
 						backUpStatus = function() {
@@ -1015,7 +1008,7 @@
 								var dialogTitle = "確認";
 								//MessageIdConstant.：I-SKF-3005
 								var dialogMessage = "削除します。よろしいですか？";
-								nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc002/attachedFileDelete", "ok", "キャンセル", this, true);
+								nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc002/attachedFileDelete", "ok", "キャンセル", this, true);
 						}
 
 						// 登録ボタンクリック
@@ -1092,7 +1085,7 @@
 							var dialogTitle = "確認";
 							//MessageIdConstant.：I-SKF-3003
 							var dialogMessage = "社宅（" + $("#shatakuName").val() + "）の削除処理を実行します。よろしいですか？";
-							nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc002/delete", "ok", "キャンセル", this, true);
+							nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc002/delete", "ok", "キャンセル", this, true);
 						}
 
 						// 住所検索押下時のイベント
@@ -1293,34 +1286,9 @@
 							var dialogTitle = "確認";
 							//MessageIdConstant.：I-SKF-3110
 							var dialogMessage = "社宅情報は登録済みでしょうか。確認後、駐車場契約情報登録を行ってください。";
-							nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc007/init", "ok", "キャンセル", this, true);
+							nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc007/init", "ok", "キャンセル", this, true);
 						}
 
-						// 社員入力支援コールバック(寮長・自治会長)
-						shainInfoCallback = function(param) {
-//						leaderShainInfoCallback = function(param) {
-							if( param != null && typeof param == 'object' && param.name != null){
-								$("#dormitoryLeaderName").val(param.name);
-								$("#keyManagerName").val(param.name);	// ← 後で削除
-								$("#contractOwnerName").val(param.name);	// ← 後で削除
-								$("#contractOwnerNo").val(1);	// ← 後で削除
-							}
-						}
-
-						// 社員入力支援コールバック(鍵管理者)
-						keyManagerShainInfoCallback = function(param) {
-							if( param != null && typeof param == 'object' && param.name != null){
-								$("#keyManagerName").val(param.name);
-							}
-						}
-
-						// 賃貸人入力支援コールバック
-						contractOwnerInfoCallback = function(param) {
-							if( param != null && typeof param == 'object' && param.name != null){
-								$("#contractOwnerName").val(param.name);
-								$("#contractOwnerNo").val(param.shainNo);
-							}
-						}
 
 						/** ドロップダウンチェンジイベント */
 						// 管理会社ドロップダウンチェンジ
@@ -1504,6 +1472,21 @@
 						//添付ファイルリンククリック時
 						$("a[id^='attached_']").click(function(){
 							downloadShatakuHosokuFile(this);
+						});
+
+						// 社員入力支援戻り値設定用
+						$("#supportDormitoryLeaderName, #supportKeyManagerName").click(function(){
+							var id = $(this).attr("id");
+							var formName = id.replace(/^support/g, "").replace(/^[A-Z]/g, function(val) {
+								return val.toLowerCase();
+							});
+							$("#insertFormName").val(formName);
+						});
+
+						// 賃貸人入力支援戻り値設定用
+						$("#contractSupport").click(function(){
+							$("#insertFormOwnerName").val("contractOwnerName");
+							$("#insertFormOwnerNo").val("contractOwnerNo");
 						});
 					});
 

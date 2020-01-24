@@ -3,9 +3,10 @@
  */
 package jp.co.c_nexco.skf.skf3022.app.skf3022sc005;
 
-import jp.co.c_nexco.nfw.webcore.app.BaseForm;
+import java.util.List;
+import java.util.Map;
 
-import java.util.*;
+import jp.co.c_nexco.nfw.webcore.app.BaseForm;
 
 import lombok.EqualsAndHashCode;
 

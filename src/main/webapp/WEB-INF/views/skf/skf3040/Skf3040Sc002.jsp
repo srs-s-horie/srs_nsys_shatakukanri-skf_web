@@ -9,184 +9,91 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 
+<%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
+
+<script src="scripts/skf/skfCommon.js"></script>
 
 <%-- コンテンツエリア --%>
 <style type="text/css">
 
 </style>
+<script type="text/javascript">
+(function($) {
+    
+	// 画面表示時に定義される処理
+	$(document).ready(function(){
 
-<!-- コンテンツエリア:モックのまま -->
-<!-- 以下ツールバー -->
-		<div class="imui-toolbar-wrap">
-			<div class="imui-toolbar-inner">
-				<!-- ツールバー左側 -->
-				<ul class="imui-list-toolbar">
-					<!-- 戻る -->
-					<li>
-						<a class="imui-toolbar-icon" title="戻る" tabindex="23" onclick="back1()" href="javascript:void(0);">
-							<span class="im-ui-icon-common-16-back"></span>
-						</a>
-					</li>
+		// フォーカスを合わせる
+		document.getElementById('carryingInOutTermFromDiv').focus();
 
-				</ul>
-				<!-- ツールバー右側 -->
-				<ul class="imui-list-box-toolbar-utility">
-					<li>
-						<a onclick="back()" class="imui-toolbar-icon" tabindex="16">
-							<span class="im-ui-icon-common-16-home"></span>
-							社宅TOP
-						</a>
-					</li>
-				</ul>
+		// ボタン押下時のイベント
+		preButtonEvent = function (mode) {
+			var dialogTitle = "";
+			var dialogMessage = "";
+			var url = "";
+			var grid = null;
+			var row = null;
+			var id = null;
+
+			// 日付入力域のスタイルをもとに戻す（サーバ側では戻せない？）
+			document.getElementById('carryingInOutTermFrom').className = "";
+			document.getElementById('carryingInOutTermTo').className = "";
+			
+			// WARNINGメッセージ領域を削除
+			$('.imui-box-warning').css('display','none');
+			$('.imui-box-caution').css('display','none');
+			
+			dialogTitle = "確認";
+			dialogMessage = "備品搬入搬出確認リストを出力します。よろしいですか？";
+			url = "skf/Skf3040Sc002/download";
+			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+		}
+	});
+
+})(jQuery);
+</script>
+<nfwui:Form id="form" name="form" modelAttribute="form" enctype="multipart/form-data">
+
+	<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3040_SC002 %>" />
+
+	<div style="width:100%;" >
+	    <div class="imui-form-container-wide">
+			<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3040_SC002 %>" />
+				<nfwui:Table use="search">
+					<tbody>
+						<tr>
+							<th style="width: 11%;">
+								<nfwui:LabelBox id="lblCarryingInOutTerm" code="<%=MessageIdConstant.SKF3040_SC002_CARRYING_IN_OUT_TERM %>" />
+							</th>
+							<td colspan="2" style="width: 410px;">
+                                <nfwui:DateBox id="carryingInOutTermFrom" name="carryingInOutTermFrom" value="${f:h(form.carryingInOutTermFrom)}"
+                                               cssClass="${f:h(form.carryingInOutTermFromErr)}" tabindex="1" cssStyle="width:100px"/>
+								&nbsp;～&nbsp;
+                                <nfwui:DateBox id="carryingInOutTermTo" name="carryingInOutTermTo" value="${f:h(form.carryingInOutTermTo)}"
+                                               cssClass="${f:h(form.carryingInOutTermToErr)}" tabindex="2" cssStyle="width:100px"/>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								<nfwui:LabelBox id="lblOutSituation" code="<%=MessageIdConstant.SKF3040_SC002_OUT_SITUATION %>" />
+							</th>
+							<td colspan="2" style="width: 410px;">
+                                <nfwui:RadioButtonGroup id="outSituation">
+                                	<nfwui:RadioButton id="outSituationNotInclude" name="outSituation" value="<%=CodeConstant.NO %>" label="出力済みを含まない" tabindex="3"/>
+                                	&nbsp;<nfwui:RadioButton id="outSituationInclude" name="outSituation" value="<%=CodeConstant.YES %>" label="出力済みを含む" tabindex="4"/>
+                                </nfwui:RadioButtonGroup>
+							</td>
+						</tr>
+					</tbody>
+				</nfwui:Table>
+			<br/>
+			<div class="align-R">	
+				<imui:button id="download" name="download" value="備品搬入・搬出確認リスト出力" class="imui-medium-button" onclick="preButtonEvent()" tabindex="5" />
 			</div>
 		</div>
-		<script type="text/javascript">
-			/**
-			* 一つ前の画面へ戻る
-			*/
-			function back1() {
-				showConfirm(W_GFK_0002, function() {
-					history.back()
-				});
-			}
-
-			/**
-			* メニュー画面へ遷移する。
-			*/
-			function back() {
-				showConfirm(W_GFK_0007, function() {
-					$.StandardPost("../common/top.html");
-				});
-			}
-		</script>
-
-<!-- 		<div class="alertDiv imui-box-warning" style="padding: 15px;margin-top: 10px;text-align:left;" id="errMainDiv"> -->
-<!-- 			<div class="alert-errorIcon alert" style="margin:0;padding:0;margin-right:10px;"> -->
-<!-- 			</div>  -->
-<!-- 		</div> -->
-
-		<!-- コンテンツエリア -->
-		<div class="imui-form-container-wide" width="1350px" style="width: 100%; min-width:1300px;max-width: 1350px;">
-			<table class="imui-form-search-condition">
-				<tbody>
-					<tr>
-						<th>
-							<label style="width:115px;">搬入・搬出日</label>
-						</th>
-						<td style="width:98%;">
-							<input class="ime-off" id="hoge001" style="width:160px;text-align: right;" type="text" value="2017/08/01" />
-							<script type="text/javascript">
-								(function($){
-									$.imDateUtil.setOffset(540);
-									$(function () {
-										$("#hoge001").imuiCalendar({
-											"altField":"#hoge001",
-											"nextText":"来月",
-											"format":"yyyy\/MM\/dd",
-											"dayNames":[
-												"日曜日",
-												"月曜日",
-												"火曜日",
-												"水曜日",
-												"木曜日",
-												"金曜日",
-												"土曜日"
-											],
-											"dayNamesShort":["日","月","火","水","木","金","土"],
-											"prevText":"先月",
-											"url":"calendar\/tag\/caljson",
-											"currentText":"現在",
-											"calendarId":"JPN_CAL",
-											"firstDay":0,
-											"closeText":"閉じる",
-											"dayNamesMin":["日","月","火","水","木","金","土"],
-											"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],
-											"monthNames":[
-												"1月",
-												"2月",
-												"3月",
-												"4月",
-												"5月",
-												"6月",
-												"7月",
-												"8月",
-												"9月",
-												"10月",
-												"11月",
-												"12月"
-											]
-										});
-									});
-								})(jQuery);
-							</script>
-							　～　
-							<input class="ime-off" id="hoge002" style="width:160px;text-align: right;" type="text" value="2017/08/31" />
-							<script type="text/javascript">
-								(function($){
-									$.imDateUtil.setOffset(540);
-									$(function () {
-										$("#hoge002").imuiCalendar({
-											"altField":"#hoge002",
-											"nextText":"来月",
-											"format":"yyyy\/MM\/dd",
-											"dayNames":[
-												"日曜日",
-												"月曜日",
-												"火曜日",
-												"水曜日",
-												"木曜日",
-												"金曜日",
-												"土曜日"
-											],
-											"dayNamesShort":["日","月","火","水","木","金","土"],
-											"prevText":"先月",
-											"url":"calendar\/tag\/caljson",
-											"currentText":"現在",
-											"calendarId":"JPN_CAL",
-											"firstDay":0,
-											"closeText":"閉じる",
-											"dayNamesMin":["日","月","火","水","木","金","土"],
-											"monthNamesShort":["1","2","3","4","5","6","7","8","9","10","11","12"],
-											"monthNames":[
-												"1月",
-												"2月",
-												"3月",
-												"4月",
-												"5月",
-												"6月",
-												"7月",
-												"8月",
-												"9月",
-												"10月",
-												"11月",
-												"12月"
-											]
-										});
-									});
-								})(jQuery);
-							</script>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							<label>出力状況</label>
-						</th>
-						<td>
-							<input name="nm_radio1" id="id_radio1_1" type="radio" checked>
-								<label for="id_radio1_1">出力済みを含まない</label>
-							</input>&nbsp;&nbsp;
-							<input name="nm_radio1" id="id_radio1_2" type="radio">
-								<label for="id_radio1_2">出力済みを含む</label>
-							</input>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<br />
-			<div class="align-R">
-				<input type="button" value="備品搬入・搬出確認リスト出力" class="imui-medium-button" />
-			</div>
-		</div>
-	</div>
+    </div>
+</nfwui:Form>
 <!-- コンテンツエリア　ここまで -->
+

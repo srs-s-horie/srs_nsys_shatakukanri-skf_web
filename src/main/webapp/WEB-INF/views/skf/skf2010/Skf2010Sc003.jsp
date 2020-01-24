@@ -13,7 +13,9 @@
 
 <%-- コンテンツエリア --%>
 <style type="text/css">
-
+.im-ui-icon-common-16-update {
+cursor : pointer;
+}
 </style>
 
 <script type="text/javascript">
@@ -57,7 +59,7 @@ function back() {
 <table align="center">
     <tr>
         <td>
-            <div class="imui-form-container-wide" style="margin-top: 0px;"> 
+            <div class="imui-form-container-wide" style="width: 95%; margin-top: 0px;"> 
 <jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
                 <table class="imui-form-search-condition">
                     <td class="imui-form-container-wide" style="width: 45%; border: none;background-color: #fdfdff;" >
@@ -97,7 +99,7 @@ function back() {
                                         	<nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2010_SC003_APPL_STATUS %>" />
                                             &nbsp;&nbsp;<imui:button tabindex="19" name="imui-8euruuk15dn9qtq" id="allCheck" value="全選択" class="imui-small-button" align="right"/>&nbsp;&nbsp;<imui:button tabindex="19" name="imui-8euruuk15dn9qtq" id="allNoCheck" value="全解除" class="imui-small-button" align="right"/>
                                         </th>
-                                        <td style="width: 180px;" colspan="2">
+                                        <td style="width: 180px;" colspan="2" id="applStatusArea">
                                         <nfwui:CheckBoxGroupTag id="applStatus">
                                             <table>
                                                 <tr style="height: 25px;">
@@ -217,7 +219,7 @@ ${form.operationGuide}
 
 <!-- テーブル一覧箇所 -->
 <div style="width: 100%;">
-<div class="imui-form-container-wide"> 
+<div class="imui-form-container-wide" style="width: 95%"> 
 <!-- 明細＆細目未満 -->
   <!-- 明細部 -->
   <nfwui:Form id="listTableForm" name="listTableForm" modelAttribute="form">
@@ -229,9 +231,10 @@ ${form.operationGuide}
 
 <imui:listTable data="${form.ltResultList}"
 id="ltResultListTable" name="ltResultListTable"
-autoResize="true" autoWidth="true"
+autoResize="true" autoWidth="true" 
 rowNumbers="true" onCellSelect="onCellSelect"
 height="232" onGridComplete="gridComplete">
+<pager rowNum = "10" />
 <cols>
   <col name="detail" caption="表示" width="90" align="center">
      <showIcon iconClass="im-ui-icon-common-16-update" />
@@ -288,7 +291,7 @@ height="232" onGridComplete="gridComplete">
 	    		dialogMessage = "申請書を取下げします。よろしいですか？";
 	    	} else if ($(cellContent).hasClass('im-ui-icon-common-16-trashbox')) {
 	    		// 削除
-	    		url = url + "Delete";
+	    		dialogMessage = "削除します。よろしいですか？";
 	    	}
     		
     		var grid = $("#ltResultListTable");		// リストテーブル情報取得
@@ -319,7 +322,7 @@ height="232" onGridComplete="gridComplete">
 	    	if (dialogMessage == "") {
 	    		nfw.common.submitForm("form", url, this);
 	    	} else {
-	    		nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "CANCEL", this, true);
+	    		nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
 	    	}
     	}
     }

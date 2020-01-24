@@ -10,684 +10,588 @@
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
+<script src="scripts/skf/skfCommon.js"></script>
 
-<%-- コンテンツエリア --%>
 <style type="text/css">
-
+.ui-jqgrid .ui-jqgrid-bdiv {
+  overflow-x:hidden; 
+}
 </style>
-
-<!-- コンテンツエリア:モックのまま -->
-		<!-- 以下ツールバー -->
-		<div class="imui-toolbar-wrap">
-			<div class="imui-toolbar-inner">
-				<!-- ツールバー左側 -->
-				<ul class="imui-list-toolbar">
-					<!-- 戻る -->
-					<li>
-						<a class="imui-toolbar-icon" title="戻る" tabindex="23" onclick="back1()" href="javascript:void(0);">
-							<span class="im-ui-icon-common-16-back"></span>
-						</a>
-					</li>
-				</ul>
-				<!-- ツールバー右側 -->
-				<ul class="imui-list-box-toolbar-utility">
-					<li>
-						<a onclick="back()" class="imui-toolbar-icon" tabindex="16">
-							<span class="im-ui-icon-common-16-home"></span>
-							社宅TOP
-						</a>
-					</li>
-					<li>
-						<a class="imui-toolbar-icon" title="最新情報"  tabindex="26">
-							<span class="im-ui-icon-common-16-refresh" onclick="refresh()"></span>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<script type="text/javascript">
-			/**
-			* 一つ前の画面へ戻る
-			*/
-			function back1() {
-				showConfirm(W_GFK_0002, function() {
-					history.back()
-				});
-			}
-
-			/**
-			* メニュー画面へ遷移する。
-			*/
-			function back() {
-				showConfirm(W_GFK_0007, function() {
-					$.StandardPost("../common/top.html");
-				});
-			}
-		</script>
-
-<!-- 		<div class="alertDiv imui-box-warning" style="padding: 15px;margin-top: 10px;text-align:left;" id="errMainDiv"> -->
-<!-- 			<div class="alert-errorIcon alert" style="margin:0;padding:0;margin-right:10px;"> -->
-<!-- 			</div>  -->
-<!-- 		</div> -->
-
-		<!-- コンテンツエリア -->
-		<div class="imui-form-container-wide" width="1350px" style="width: 100%; min-width:1300px;max-width: 1350px;">
-			<div class="imui-form-container-wide"  style="width:1280px;">
-				<div class="imui-chapter-title"><h2>検索条件</h2></div>
+<script type="text/javascript">
+// リストテーブルの貸与区分の文字色変更
+function onCellAttr(rowId,val,rawObject,cm,rdata){
+	  var style;
+	  switch (val) {
+	  case '作成済':
+	      style = 'style="color:blue;"';
+	      break;
+	  case '未作成':
+	      style = 'style="color:red;"';
+	      break;
+	  case '-':
+	      style = 'style="color:black;"';
+	      break;
+	  default:
+	      style = 'style="color:green;"';
+    break;
+	  }
+    return style;
+}
+function onCellAttrNtk(rowId,val,rawObject,cm,rdata){
+	  var style;
+	  switch (val) {
+	  case '承認':
+	      style = 'style="color:blue;"';
+	      break;
+	  case '修正依頼':
+	  case '見直し依頼':
+	  case '差戻し':
+	  case '取下げ':
+	      style = 'style="color:red;"';
+	      break;
+	  case '-':
+	      style = 'style="color:black;"';
+	      break;
+	  default:
+	      style = 'style="color:green;"';
+  break;
+	  }
+  return style;
+}
+</script>
+	<!-- コンテンツエリア -->
+	<nfwui:Form id="form" name="form" modelAttribute="form">
+	<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3021_SC001%>" />
+		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3021Sc001/init"/>
+		
+		<input type="hidden" name="teijiListData" id="teijiListData" value="" /><!-- 提示リスト -->
+		<input type="hidden" name="mailListData" id="mailListData" value="" /><!-- メール送信リスト -->
+		<input type="hidden" name="hdnListSelectState" id="hdnListSelectState" value="" /><!-- リスト選択状態 -->
+		<input type="hidden" name="hdnPageMax" id="hdnPageMax" value="${form.listTableMaxRowCount}" /><!-- ページ最大数 -->
+		<input type="hidden" name="delShainNo" id="delShainNo" value="" /><!-- 削除パラメータ -->
+		<input type="hidden" name="delNyuTaikyoKbn" id="delNyuTaikyoKbn" value="" /><!-- 削除パラメータ -->
+		<input type="hidden" name="delApplNo" id="delApplNo" value="" /><!-- 削除パラメータ -->
+		<input type="hidden" name="hdnNyutaikyoYoteiUpdateDate" id="hdnNyutaikyoYoteiUpdateDate" value="" /><!-- 削除パラメータ -->
+		<input type="hidden" name="hdnTenninshaChoshoUpdateDate" id="hdnTenninshaChoshoUpdateDate" value="" /><!-- 削除パラメータ -->
+		<input type="hidden" name="hdnRowShainNo" id="hdnRowShainNo" value="" /><!-- 選択行社員番号 -->
+		<input type="hidden" name="hdnRowApplNo" id="hdnRowApplNo" value="" /><!-- 選択行申請書類管理番号 -->
+		<input type="hidden" name="hdnRowNyutaikyoKbn" id="hdnRowNyutaikyoKbn" value="" /><!-- 選択行入退居区分 -->
+		<div class="imui-form-container-wide" >
+			<div class="imui-chapter-title"><h2>検索条件</h2></div>
 				<table class="imui-form-search-condition">
 					<tbody>
 						<tr>
 							<th>
-								<label style="width:60px;">社員番号</label>
+<!-- 								<label style="width:60px;">社員番号</label> -->
+								<nfwui:LabelBox id="lblShainNo" code="<%=MessageIdConstant.SKF3021_SC001_SHAIN_NUMBER %>" />
 							</th>
 							<td>
-								<input class="ime-off" style="width:200px;" type="text" placeholder="例　00123456（半角）"/>
+								<imui:textbox id="shainNo" name="shainNo" style="ime-mode: disabled;width:200px;" value="${f:h(form.shainNo)}" placeholder="例　00123456（半角）" maxlength="8" tabindex="3"/>
 							</td>
 							<th>
-								<label style="width:60px;">入退居区分</label>
+<!-- 								<label style="width:60px;">入退居区分</label> -->
+								<nfwui:LabelBox id="lblNyutaikyoKbn" code="<%=MessageIdConstant.SKF3021_SC001_NTKYO_KBN %>" />
 							</th>
 							<td>
-								<select style="width:120px;">
-									<option value="0"></option>
-									<option value="1">入居</option>
-									<option value="2">退居</option>
-									<option value="3">変更</option>
-								</select>
+								<imui:select id="nyutaikyoKbn" name="nyutaikyoKbn" 
+									width="120px" list="${form.nyutaikyoKbnList}" tabindex="5" />
 							</td>
 							<th>
-								<label style="width:100px;">入退居申請状況</label>
+<!-- 								<label style="width:100px;">入退居申請状況</label> -->
+								<nfwui:LabelBox id="lblNyuTaikyoShinseiJokyo" code="<%=MessageIdConstant.SKF3021_SC001_NTKYO_SHINSEI_JOKYO %>" />
 							</th>
 							<td>
-								<select style="width:120px;">
-									<option value="0"></option>
-									<option value="1">申請なし</option>
-									<option value="2">申請あり</option>
-								</select>
+								<imui:select id="nyuTaikyoShinseiJokyo" name="nyuTaikyoShinseiJokyo" 
+									width="120px" list="${form.nyuTaikyoShinseiJokyoList}" tabindex="7" />
 							</td>
 							<th>
-								<label style="width:80px;">特殊事情</label>
+<!-- 								<label style="width:80px;">特殊事情</label> -->
+								<nfwui:LabelBox id="lblTokushuJijo" code="<%=MessageIdConstant.SKF3021_SC001_TOKUSHUJIJO %>" />
 							</th>
-							<td style="width:50%;">
-								<select style="width:80px;">
-									<option value="0"></option>
-									<option value="1">なし</option>
-									<option value="2">あり</option>
-								</select>
+							<td colspan="2">
+								<imui:select id="tokushuJijo" name="tokushuJijo" 
+									width="120px" list="${form.tokushuJijoList}" tabindex="9" />
 							</td>
 						</tr>
 						<tr>
 							<th>
-								<label>社員氏名</label>
+<!-- 								<label>社員氏名</label> -->
+								<nfwui:LabelBox id="lblShainName" code="<%=MessageIdConstant.SKF3021_SC001_SHAIN_NAME %>" />
 							</th>
 							<td>
-								<input style="width:200px;" type="text" placeholder="例　中日本　太郎"/>
+								<imui:textbox id="txtShainName" name="shainName" style="width:200px;" value="${f:h(form.shainName)}" placeholder="例　中日本　太郎" maxlength="20" tabindex="4"/>
 							</td>
 							<th>
-								<label style="width:120px;">提示対象</label>
+<!-- 								<label style="width:120px;">提示対象</label> -->
+								<nfwui:LabelBox id="lblTeijiDetaSakuseiKubun" code="<%=MessageIdConstant.SKF3021_SC001_TEIJIDATA_KBN %>" />
 							</th>
 							<td>
-								<select style="width:120px;">
-									<option value="0"></option>
-									<option value="1">未設定</option>
-									<option value="2">設定</option>
-								</select>
+								<imui:select id="teijiDetaSakuseiKbn" name="teijiDetaSakuseiKbn" 
+									width="120px" list="${form.teijiDetaSakuseiKbnList}" tabindex="6" />
 							</td>
 							<th>
-								<label>入退居申請督促</label>
+<!-- 								<label>入退居申請督促</label> -->
+								<nfwui:LabelBox id="lblNyuTaikyoShinseiTokusoku" code="<%=MessageIdConstant.SKF3021_SC001_NTKYO_SHINSI_TOKUSOKU %>" />
 							</th>
-							<td colspan="3">
-								<select style="width:120px;">
-									<option value="0"></option>
-									<option value="1">未送付</option>
-									<option value="2">送付済</option>
-								</select>
+							<td colspan="4">
+								<imui:select id="nyuTaikyoShinseiTokusoku" name="nyuTaikyoShinseiTokusoku" 
+									width="120px" list="${form.nyuTaikyoShinseiTokusokuList}" tabindex="8" />
 							</td>
 						</tr>
 					</tbody>
 				</table>
-				<div class="align-L">	
-					<input type="button" value="検索" class="imui-small-button" >
-				</div>
-			</div>
-			<!-- 明細＆細目未満 -->
-			<div class="imui-form-container-wide"  style="width:1280px;">
-				<!-- 明細部 -->
-				<form id="sampleList1">
-					<div class="imui-chapter-title" ><h2>検索結果一覧</h2></div>
-					<script type="text/javascript">
-					  (function($){
-					    $.imui.util.loadCSS("ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
-					  })(jQuery);
-					</script>
-
-					<table name="imui-8eqlrzst4hv6std" id="sampleListTable1"></table>
-
-					<div id="sampleListTable1-pager"></div>
-
-					<script type="text/javascript">
-						(function() {
-							function imuiListTable() {
-								var grid = jQuery('#sampleListTable1');
-								var parameter = {
-									"multiselect":false,
-									"pager":"#sampleListTable1-pager",
-									"colNames":[
-										"",
-										"提示<br /><INPUT type='checkbox'>",
-										"入退居<br/>区分",
-										"社員番号",
-										"社員氏名",
-										"申請<br />区分",
-										"入居予定日",
-										"退居予定日",
-										"用途",
-										"駐車場<br />希望",
-										"申請<br/>状況",
-										"督促<br /><INPUT type='checkbox'>",
-										"申請<br>督促",
-										"特殊<br />事情",
-										"提示対象",
-										"申請内容",
-										"削除",
-									],
-									"datatype":"local",
-									"errorCell":function(xhr) { imuiShowErrorMessage($(xhr.responseText).find('dt').text()); },
-									"rowNum":1000,
-									"width":"1280",
-									"shrinkToFit":"true",
-									"cellsubmit":"clientArray",
-									"loadonce":true,
-									"colModel":[
-										{"hidden":true,"name":"id","key":true}
-										,{"name":"teiji_flg","width":"50","align":"center"}<!-- 提示 -->
-										,{"name":"nyutaikyo_kbn","width":"60","align":"center"}<!-- 入退居区分 -->
-										,{"name":"syain_no","width":"80","align":"left"}<!-- 社員番号 -->
-										,{"name":"shain_name","width":"160","align":"left"}<!-- 社員氏名 -->
-										,{"name":"shinsei_kbn","width":"50","align":"center"}<!-- 申請区分 -->
-										,{"name":"nyukyo_yotei_date","width":"100","align":"center"}<!-- 入居予定日 -->
-										,{"name":"taikyo_yotei_date","width":"100","align":"center"}<!-- 退居予定日 -->
-										,{"name":"youto","width":"53","align":"center"}<!-- 用途-->
-										,{"name":"parking_request","width":"60","align":"center"}<!-- 駐車場希望 -->
-										,{"name":"status","width":"60","align":"center"}<!-- 状況 -->
-										,{"name":"mail","width":"60","align":"center"}<!-- メール -->
-										,{"name":"tokusoku","width":"60","align":"center"}<!-- 督促 -->
-										,{"name":"tokusyu_jijo","width":"40","align":"center"}<!-- 特殊事情-->
-										,{"name":"teiji_create_kbn","width":"80","align":"center"}<!-- 提示データ作成区分 -->
-										,{"name":"shinsei_naiyo","width":"90","align":"center"}<!-- 申請内容 -->
-										,{"name":"delete","width":"80","align":"center"}<!-- 削除 -->
-									],
-									"rownumbers":false,
-									"height":"400"
-								};
-								parameter.data = [
-									{
-										"id":1,
-										"teiji_flg":"<input type='checkbox'></input>",
-										"nyutaikyo_kbn":"変更",
-										"syain_no":"00000001＊",
-										"shain_name":"中日本 2148",
-										"shinsei_kbn":"―",
-										"nyukyo_yotei_date":"―",
-										"taikyo_yotei_date":"―",
-										"youto":"―",
-										"parking_request":"―",
-										"status":"<font style='color:green'>―</font>",
-										"mail":"<input type='checkbox' disabled></input>",
-										"tokusoku":"―",
-										"tokusyu_jijo":"",
-										"teiji_create_kbn":"<font style='color:red'>未設定",
-										"shinsei_naiyo":"",
-										"delete":"<input type='button' value='削除' class='imui-small-button'></input>"
-									},{
-										"id":2,
-										"teiji_flg":"<input type='checkbox' checked disabled></input>",
-										"nyutaikyo_kbn":"退居",
-										"syain_no":"00002241",
-										"shain_name":"中日本 2241",
-										"shinsei_kbn":"社宅",
-										"nyukyo_yotei_date":"",
-										"taikyo_yotei_date":"2018/06/29",
-										"youto":"単身",
-										"parking_request":"",
-										"status":"<font style='color:green'>審査中</font>",
-										"mail":"<input type='checkbox' disabled></input>",
-										"tokusoku":"",
-										"tokusyu_jijo":"",
-										"teiji_create_kbn":"<font style='color:blue'>設定",
-										"shinsei_naiyo":"<input type='button' style='text-align:center' value='申請内容' id='btnShisei' class='imui-small-button'></input>",
-										"delete":"<input type='button' value='削除' class='imui-small-button' style='visibility:hidden'></input>"
-									},{
-										"id":3,
-										"teiji_flg":"<input type='checkbox' checked disabled></input>",
-										"nyutaikyo_kbn":"退居",
-										"syain_no":"00015154",
-										"shain_name":"中日本 5154",
-										"shinsei_kbn":"社宅",
-										"nyukyo_yotei_date":"",
-										"taikyo_yotei_date":"2018/07/18",
-										"youto":"世帯",
-										"parking_request":"1",
-										"status":"<font style='color:blue'>承認</font>",
-										"mail":"<input type='checkbox' disabled></input>",
-										"tokusoku":"",
-										"tokusyu_jijo":"",
-										"teiji_create_kbn":"<font style='color:blue'>設定",
-										"shinsei_naiyo":"",
-										"delete":"<input type='button' value='削除' class='imui-small-button'></input>"
-									},{
-										"id":4,
-										"teiji_flg":"<input type='checkbox' disabled></input>",
-										"nyutaikyo_kbn":"入居",
-										"syain_no":"00016164",
-										"shain_name":"中日本 6164",
-										"shinsei_kbn":"",
-										"nyukyo_yotei_date":"",
-										"taikyo_yotei_date":"",
-										"youto":"単身",
-										"parking_request":"",
-										"status":"<font style='color:green'>審査中</font>",
-										"mail":"<input type='checkbox' disabled></input>",
-										"tokusoku":"",
-										"tokusyu_jijo":"",
-										"teiji_create_kbn":"<font style='color:red'>未設定",
-										"shinsei_naiyo":"<input type='button' style='text-align:center' value='申請内容' id='btnShisei' class='imui-small-button'></input>",
-										"delete":"<input type='button' value='削除' class='imui-small-button'></input>"
-									},{
-										"id":5,
-										"teiji_flg":"<input type='checkbox' checked disabled></input>",
-										"nyutaikyo_kbn":"変更",
-										"syain_no":"00016164",
-										"shain_name":"中日本 6164",
-										"shinsei_kbn":"社宅",
-										"nyukyo_yotei_date":"",
-										"taikyo_yotei_date":"2018/09/20",
-										"youto":"単身",
-										"parking_request":"1",
-										"status":"",
-										"mail":"<input type='checkbox' disabled></input>",
-										"tokusoku":"",
-										"tokusyu_jijo":"",
-										"teiji_create_kbn":"<font style='color:blue'>設定",
-										"shinsei_naiyo":"",
-										"delete":"<input type='button' value='削除' class='imui-small-button' style='visibility:hidden'></input>"
-									},{
-										"id":6,
-										"teiji_flg":"<input type='checkbox' checked disabled></input>",
-										"nyutaikyo_kbn":"入居",
-										"syain_no":"00016193",
-										"shain_name":"中日本 6193",
-										"shinsei_kbn":"社宅",
-										"nyukyo_yotei_date":"2018/10/10",
-										"taikyo_yotei_date":"",
-										"youto":"独身",
-										"parking_request":"1",
-										"status":"<font style='color:green'>申請中</font>",
-										"mail":"<input type='checkbox' disabled></input>",
-										"tokusoku":"",
-										"tokusyu_jijo":"",
-										"teiji_create_kbn":"<font style='color:blue'>設定",
-										"shinsei_naiyo":"<input type='button' style='text-align:center' value='申請内容' id='btnShisei' class='imui-small-button'></input>",
-										"delete":"<input type='button' value='削除' class='imui-small-button' style='visibility:hidden'></input>"
-									},{
-										"id":7,
-										"teiji_flg":"<input type='checkbox' checked disabled></input>",
-										"nyutaikyo_kbn":"退居",
-										"syain_no":"00016500",
-										"shain_name":"中日本 6500",
-										"shinsei_kbn":"社宅",
-										"nyukyo_yotei_date":"",
-										"taikyo_yotei_date":"2018/07/20",
-										"youto":"単身",
-										"parking_request":"",
-										"status":"<font style='color:blue'>承認</font>",
-										"mail":"<input type='checkbox' disabled></input>",
-										"tokusoku":"",
-										"tokusyu_jijo":"〇",
-										"teiji_create_kbn":"<font style='color:blue'>設定",
-										"shinsei_naiyo":"<input type='button' style='text-align:center' value='申請内容' id='btnShisei' class='imui-small-button'></input>",
-										"delete":"<input type='button' value='削除' class='imui-small-button' style='visibility:hidden'></input>"
-									},{
-										"id":8,
-										"teiji_flg":"<input type='checkbox' checked disabled></input>",
-										"nyutaikyo_kbn":"変更",
-										"syain_no":"00016501",
-										"shain_name":"中日本 6501",
-										"shinsei_kbn":"社宅",
-										"nyukyo_yotei_date":"",
-										"taikyo_yotei_date":"",
-										"youto":"世帯",
-										"parking_request":"",
-										"status":"<font style='color:green'>申請中</font>",
-										"mail":"<input type='checkbox' disabled></input>",
-										"tokusoku":"",
-										"tokusyu_jijo":"",
-										"teiji_create_kbn":"<font style='color:blue'>作成済",
-										"shinsei_naiyo":"<input type='button' style='text-align:center' value='申請内容' id='btnShisei' class='imui-small-button'></input>",
-										"delete":"<input type='button' value='削除' class='imui-small-button' style='visibility:hidden'></input>"
-									},{
-										"id":9,
-										"teiji_flg":"<input type='checkbox' checked disabled></input>",
-										"nyutaikyo_kbn":"変更",
-										"syain_no":"00016502",
-										"shain_name":"中日本 6502",
-										"shinsei_kbn":"社宅",
-										"nyukyo_yotei_date":"",
-										"taikyo_yotei_date":"",
-										"youto":"世帯",
-										"parking_request":"",
-										"status":"<font style='color:green'>申請中</font>",
-										"mail":"<input type='checkbox' disabled></input>",
-										"tokusoku":"",
-										"tokusyu_jijo":"",
-										"teiji_create_kbn":"<font style='color:blue'>作成済",
-										"shinsei_naiyo":"<input type='button' style='text-align:center' value='申請内容' id='btnShisei' class='imui-small-button'></input>",
-										"delete":"<input type='button' value='削除' class='imui-small-button' style='visibility:hidden'></input>"
-									},{
-										"id":10,
-										"teiji_flg":"<input type='checkbox' checked disabled></input>",
-										"nyutaikyo_kbn":"変更",
-										"syain_no":"00016503",
-										"shain_name":"中日本 6503",
-										"shinsei_kbn":"社宅",
-										"nyukyo_yotei_date":"",
-										"taikyo_yotei_date":"",
-										"youto":"世帯",
-										"parking_request":"",
-										"status":"<font style='color:green'>申請中</font>",
-										"mail":"<input type='checkbox' disabled></input>",
-										"tokusoku":"",
-										"tokusyu_jijo":"",
-										"teiji_create_kbn":"<font style='color:blue'>作成済",
-										"shinsei_naiyo":"<input type='button' style='text-align:center' value='申請内容' id='btnShisei' class='imui-small-button'></input>",
-										"delete":"<input type='button' value='削除' class='imui-small-button' style='visibility:hidden'></input>"
-									},{
-										"id":11,
-										"teiji_flg":"<input type='checkbox' checked disabled></input>",
-										"nyutaikyo_kbn":"変更",
-										"syain_no":"00016504",
-										"shain_name":"中日本 6504",
-										"shinsei_kbn":"社宅",
-										"nyukyo_yotei_date":"",
-										"taikyo_yotei_date":"",
-										"youto":"世帯",
-										"parking_request":"",
-										"status":"<font style='color:green'>申請中</font>",
-										"mail":"<input type='checkbox' disabled></input>",
-										"tokusoku":"",
-										"tokusyu_jijo":"",
-										"teiji_create_kbn":"<font style='color:blue'>作成済",
-										"shinsei_naiyo":"<input type='button' style='text-align:center' value='申請内容' id='btnShisei' class='imui-small-button'></input>",
-										"delete":"<input type='button' value='削除' class='imui-small-button' style='visibility:hidden'></input>"
-									},{
-										"id":12,
-										"teiji_flg":"<input type='checkbox' checked disabled></input>",
-										"nyutaikyo_kbn":"変更",
-										"syain_no":"00016505",
-										"shain_name":"中日本 6505",
-										"shinsei_kbn":"社宅",
-										"nyukyo_yotei_date":"",
-										"taikyo_yotei_date":"",
-										"youto":"世帯",
-										"parking_request":"",
-										"status":"<font style='color:green'>申請中</font>",
-										"mail":"<input type='checkbox' disabled></input>",
-										"tokusoku":"",
-										"tokusyu_jijo":"",
-										"teiji_create_kbn":"<font style='color:blue'>作成済",
-										"shinsei_naiyo":"<input type='button' style='text-align:center' value='申請内容' id='btnShisei' class='imui-small-button'></input>",
-										"delete":"<input type='button' value='削除' class='imui-small-button' style='visibility:hidden'></input>"
-									},{
-										"id":13,
-										"teiji_flg":"<input type='checkbox' checked disabled></input>",
-										"nyutaikyo_kbn":"変更",
-										"syain_no":"00016506",
-										"shain_name":"中日本 6506",
-										"shinsei_kbn":"社宅",
-										"nyukyo_yotei_date":"",
-										"taikyo_yotei_date":"",
-										"youto":"世帯",
-										"parking_request":"",
-										"status":"<font style='color:green'>申請中</font>",
-										"mail":"<input type='checkbox' disabled></input>",
-										"tokusoku":"",
-										"tokusyu_jijo":"",
-										"teiji_create_kbn":"<font style='color:blue'>作成済",
-										"shinsei_naiyo":"<input type='button' style='text-align:center' value='申請内容' id='btnShisei' class='imui-small-button'></input>",
-										"delete":"<input type='button' value='削除' class='imui-small-button' style='visibility:hidden'></input>"
-									},{
-										"id":14,
-										"teiji_flg":"<input type='checkbox' checked disabled></input>",
-										"nyutaikyo_kbn":"変更",
-										"syain_no":"00016507",
-										"shain_name":"中日本 6507",
-										"shinsei_kbn":"社宅",
-										"nyukyo_yotei_date":"",
-										"taikyo_yotei_date":"",
-										"youto":"世帯",
-										"parking_request":"",
-										"status":"<font style='color:green'>申請中</font>",
-										"mail":"<input type='checkbox' disabled></input>",
-										"tokusoku":"",
-										"tokusyu_jijo":"",
-										"teiji_create_kbn":"<font style='color:blue'>作成済",
-										"shinsei_naiyo":"<input type='button' style='text-align:center' value='申請内容' id='btnShisei' class='imui-small-button'></input>",
-										"delete":"<input type='button' value='削除' class='imui-small-button' style='visibility:hidden'></input>"
-									},{
-										"id":15,
-										"teiji_flg":"<input type='checkbox' checked disabled></input>",
-										"nyutaikyo_kbn":"変更",
-										"syain_no":"00016508",
-										"shain_name":"中日本 6508",
-										"shinsei_kbn":"社宅",
-										"nyukyo_yotei_date":"",
-										"taikyo_yotei_date":"",
-										"youto":"世帯",
-										"parking_request":"",
-										"status":"<font style='color:green'>申請中</font>",
-										"mail":"<input type='checkbox' disabled></input>",
-										"tokusoku":"",
-										"tokusyu_jijo":"",
-										"teiji_create_kbn":"<font style='color:blue'>作成済",
-										"shinsei_naiyo":"<input type='button' style='text-align:center' value='申請内容' id='btnShisei' class='imui-small-button'></input>",
-										"delete":"<input type='button' value='削除' class='imui-small-button' style='visibility:hidden'></input>"
-									},{
-										"id":16,
-										"teiji_flg":"<input type='checkbox' checked disabled></input>",
-										"nyutaikyo_kbn":"変更",
-										"syain_no":"00016509",
-										"shain_name":"中日本 6509",
-										"shinsei_kbn":"社宅",
-										"nyukyo_yotei_date":"",
-										"taikyo_yotei_date":"",
-										"youto":"世帯",
-										"parking_request":"",
-										"status":"<font style='color:green'>申請中</font>",
-										"mail":"<input type='checkbox' disabled></input>",
-										"tokusoku":"",
-										"tokusyu_jijo":"",
-										"teiji_create_kbn":"<font style='color:blue'>作成済",
-										"shinsei_naiyo":"<input type='button' style='text-align:center' value='申請内容' id='btnShisei' class='imui-small-button'></input>",
-										"delete":"<input type='button' value='削除' class='imui-small-button' style='visibility:hidden'></input>"
-									},{
-										"id":17,
-										"teiji_flg":"<input type='checkbox' checked disabled></input>",
-										"nyutaikyo_kbn":"変更",
-										"syain_no":"00016510",
-										"shain_name":"中日本 6510",
-										"shinsei_kbn":"社宅",
-										"nyukyo_yotei_date":"",
-										"taikyo_yotei_date":"",
-										"youto":"世帯",
-										"parking_request":"",
-										"status":"<font style='color:green'>申請中</font>",
-										"mail":"<input type='checkbox' disabled></input>",
-										"tokusoku":"",
-										"tokusyu_jijo":"",
-										"teiji_create_kbn":"<font style='color:blue'>作成済",
-										"shinsei_naiyo":"<input type='button' style='text-align:center' value='申請内容' id='btnShisei' class='imui-small-button'></input>",
-										"delete":"<input type='button' value='削除' class='imui-small-button' style='visibility:hidden'></input>"
-									},{
-										"id":18,
-										"teiji_flg":"<input type='checkbox' checked disabled></input>",
-										"nyutaikyo_kbn":"変更",
-										"syain_no":"00016511",
-										"shain_name":"中日本 6511",
-										"shinsei_kbn":"社宅",
-										"nyukyo_yotei_date":"",
-										"taikyo_yotei_date":"",
-										"youto":"世帯",
-										"parking_request":"",
-										"status":"<font style='color:green'>申請中</font>",
-										"mail":"<input type='checkbox' disabled></input>",
-										"tokusoku":"",
-										"tokusyu_jijo":"",
-										"teiji_create_kbn":"<font style='color:blue'>作成済",
-										"shinsei_naiyo":"<input type='button' style='text-align:center' value='申請内容' id='btnShisei' class='imui-small-button'></input>",
-										"delete":"<input type='button' value='削除' class='imui-small-button' style='visibility:hidden'></input>"
-									},{
-										"id":19,
-										"teiji_flg":"<input type='checkbox' checked disabled></input>",
-										"nyutaikyo_kbn":"変更",
-										"syain_no":"00016512",
-										"shain_name":"中日本 6512",
-										"shinsei_kbn":"社宅",
-										"nyukyo_yotei_date":"",
-										"taikyo_yotei_date":"",
-										"youto":"世帯",
-										"parking_request":"",
-										"status":"<font style='color:green'>申請中</font>",
-										"mail":"<input type='checkbox' disabled></input>",
-										"tokusoku":"",
-										"tokusyu_jijo":"",
-										"teiji_create_kbn":"<font style='color:blue'>作成済",
-										"shinsei_naiyo":"<input type='button' style='text-align:center' value='申請内容' id='btnShisei' class='imui-small-button'></input>",
-										"delete":"<input type='button' value='削除' class='imui-small-button' style='visibility:hidden'></input>"
-									},{
-										"id":20,
-										"teiji_flg":"<input type='checkbox' checked disabled></input>",
-										"nyutaikyo_kbn":"変更",
-										"syain_no":"00016513",
-										"shain_name":"中日本 6513",
-										"shinsei_kbn":"社宅",
-										"nyukyo_yotei_date":"",
-										"taikyo_yotei_date":"",
-										"youto":"世帯",
-										"parking_request":"",
-										"status":"<font style='color:green'>申請中</font>",
-										"mail":"<input type='checkbox' disabled></input>",
-										"tokusoku":"",
-										"tokusyu_jijo":"",
-										"teiji_create_kbn":"<font style='color:blue'>作成済",
-										"shinsei_naiyo":"<input type='button' style='text-align:center' value='申請内容' id='btnShisei' class='imui-small-button'></input>",
-										"delete":"<input type='button' value='削除' class='imui-small-button' style='visibility:hidden'></input>"
-									}
-								];
-
-								grid.jqGrid(parameter);
-
-//								// ヘッダ結合
-//								grid.jqGrid('setGroupHeaders', {
-//									useColSpanStyle: true,
-//									groupHeaders:[
-//										{startColumnName: 'status', numberOfColumns: 3,  titleText: '入退居申請'},
-//									]
-//								});
-
-// as
-//									// 1行づつ網掛け挑戦
-//									jQuery('#sampleListTable1').jqGrid({
-//										loadComplete: function () {
-//											var rowIDs = jQuery('#sampleListTable1').getDataIDs(); 
-//											$.each(rowIDs, function (i, item) {
-//												if (i % 2 == 0) {
-//													$('#'+item).removeClass('ui-widget-content');
-//													$('#'+item).addClass('testcss');
-//												}
-//											});
-//										},
-//									});
-//									jQuery('#sampleListTable1').jqGrid({
-//										gridComplete: function () {
-//											$('tbody > tr:even', this).addClass('ui-row-even');
-//										}
-//									});
-// ae
-
-								grid.jqGrid('navGrid','#sampleListTable1-pager',{
-									edit: false,
-									add: false,
-									del: false,
-									search: false,
-								});
-
-								var gboxGridId     = 'gbox_sampleListTable1';
-								var gboxGrid       = jQuery('#' + gboxGridId);
-								var parentWidthOld = Number.MIN_VALUE;
-							}
-
-							(function($) {
-								$(document).ready(function() {
-									imuiListTable();
-								});
-							})(jQuery);
-							
-							$(function () {
-								$("#createData").click(function() {
-									//alert("1");
-									window.location.href = "../../skf/Skf3030_Sc002/init"
-								});
-
-								$("#btnShisei").click(function() {
-									openWindow();
-								});
-								
-								function openWindow(e){
-								info = 'toolbar=no,location=no,directories=no,status=no,menubar=no,' +
-								'scrollbars=no,left=0,top=0,resizable=yes,width=850px,height=820px,title=no';
-								var window1 = window.open("../pop/pop_NyutaikyoShinseiShokai.html","window1",info);
-								window1.moveTo(0, 0);
-								window.opener = self;
-								}
-							});
-
-						})();
-					</script>
-					<style type="text/css">  
-						<!--
-							/* ヘッダテキスト中央寄せ */
-							.ui-jqgrid .ui-jqgrid-htable th div {
-								display:table-cell;
-							    height: 32px;
-								text-align:center;
-								vertical-align:middle;
-							}
-							/** 1行間隔で網掛け挑戦
-							.testcss {
-								border: 1px solid #a6c9e2;
-								background-color: #e6e6fa ;
-								color: #222222;
-							}
-
-							.ui-row-even {
-								background-color: #e6e6fa ;
-							}
-							*/
-
-							/* データ行の改行許容 */
-							#sampleListTable1 tr td{
-								white-space:normal;
-							}
-						-->
-					</style>
-				</form>
-			</div>
-			<br />
-			<div class="align-R">
-				<input style="width:150px;" type="button" value="空き社宅リスト出力" class="imui-medium-button" onclick=""/>
-				<input style="width:150px;" type="button" value="入退居申請督促" class="imui-medium-button" onclick=""/>
-				<input style="width:160px;" type="button" value="入退居予定リスト出力" class="imui-medium-button" onclick=""/>
-				<input style="width:150px;" id="createData" type="button" value="提示データ作成" class="imui-medium-button"/>
+			<div class="align-L">	
+				<nfwui:Button id="search" name="search" code="<%=MessageIdConstant.SKF3021_SC001_BTN_SEARCH %>" cssClass="imui-small-button" 
+					url="skf/Skf3021Sc001/search" formId="form" tabindex="10" />
 			</div>
 		</div>
-	</div>
+		<!-- 明細＆細目未満 -->
+		<div class="imui-form-container-wide">
+			<!-- 明細部 -->
+			<div class="imui-chapter-title" ><h2>検索結果一覧</h2></div>
+				<script type="text/javascript">
+					(function($){
+					$.imui.util.loadCSS("../../ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
+					})(jQuery);
+				</script>
+				<div id="listTableArea">
+					<imui:listTable id="mainList" process="jssp" autoEncode="false" autoWidth="true" rowNumbers="true"
+						autoResize="true" onCellSelect="onCellSelect" onGridComplete="gridComplete"
+						multiSelect="true" data="${form.listTableData}"
+						onBeforeSelectRow="onBeforeSelectRow" onSelectAll="onSelectAll" tabindex="11">
+						<pager rowNum="${form.listTableMaxRowCount }" />
+						<cols sortable="false">
+						<col name="colChkSelect" caption="提示" hidden="true"/>
+						<col name="colNyutaikyoKbn" caption="入退居区分" width="50" sortable="false" align="center" wrap="true"/>
+						<col name="colShainNo" caption="社員番号" width="75" sortable="false" align="left" wrap="true"/>
+						<col name="colShainName" caption="社員氏名" width="95" sortable="false" align="left" wrap="true"/>
+						<col name="colSinseiKbn" caption="申請区分"　width="55" sortable="false" align="center" wrap="true"/>
+						<col name="colNyukyoDate" caption="入居予定日" width="85" sortable="false" align="center" wrap="true"/>
+						<col name="colTaikyoDate" caption="退居予定日"  width="85" sortable="false" align="center" wrap="true"/>
+						<col name="colYouto" caption="用途" width="35" sortable="false" align="center" wrap="true"/>
+						<col name="colParkingReqest" caption="駐車場希望" width="35" sortable="false" align="center" wrap="true"/>
+						<col name="colShinseiJyokyo" caption="申請状況" width="60" sortable="false" align="center" wrap="true" onCellAttr="onCellAttrNtk"/>
+						<col name="colmail" caption="メール" width="35" sortable="false" align="center" wrap="true"/>
+						<col name="colNtkyoShinseiTokusoku" caption="申請督促" width="85" sortable="false" align="center" wrap="true"/>
+						<col name="colTokushuJijo" caption="特殊事情" width="30" sortable="false" align="center" wrap="true" />
+						<col name="colTeijiDataKbn" caption="提示対象" width="50" sortable="false" align="center" wrap="true" onCellAttr="onCellAttr"/>
+						<col name="colDetail" caption="申請内容" width="35" sortable="false" align="center" >
+							<showIcon iconClass="im-smart-icon-common-16-information" />
+						</col>
+						<col name="colDelete" caption="削除" width="35" sortable="false" align="center" >
+							<showIcon iconClass="im-ui-icon-common-16-trashbox" />
+						</col>
+						<col name="hdnTeijiNo" caption="" hidden="true"/>
+						<col name="hdnShainChangeFlg" caption="" hidden="true"/>
+						<col name="hdnUpdateDateNtkyo" caption="" hidden="true"/>
+						<col name="hdnUpdateDateTenninsha" caption="" hidden="true"/>
+						<col name="hdnApplNo" caption="" hidden="true"/>
+						<col name="hdnParking1StartDate" caption="" hidden="true"/>
+						<col name="hdnParking2StartDate" caption="" hidden="true"/>
+						<col name="hdnPreShainNo" caption="" hidden="true"/>
+						
+						<col name="hdnNyutaikyoKbnCd" caption="" hidden="true"/>
+						<col name="hdnSinseiKbn" caption="" hidden="true"/>
+						<col name="hdnShinseiJyokyo" caption="" hidden="true"/>
+						<col name="hdnTeijiDataKbn" caption="" hidden="true"/>
+						
+						<col name="chkSelect" caption="提示チェックボックス可否" hidden="true"/>
+						<col name="chkSelectChecked" caption="提示チェックボックスONOFF" hidden="true"/>
+						<col name="chkMailSelect" caption="メールチェックボックス可否" hidden="true"/>
+						<col name="hdnSinseiKbn" caption="入退居申請区分" hidden="true"/>
+						<col name="hdnShinseiJyokyo" caption="入退居申請状況" hidden="true"/>
+						<col name="hdnTokushuJijo" caption="特殊事情" hidden="true"/>
+						
+						<col name="hdnDeleteText" caption="削除時メッセージ" hidden="true"/>
+						</cols>
+					</imui:listTable>
+				</div>
+
+				<script type="text/javascript">
+					(function($) {
+						
+						//選択行チェック
+						onBeforeSelectRow = function(rowId,e) {
+							//チェックボックス可かアイコン列がクリックされた場合のみTrueにする
+							// リストテーブル情報取得
+							var grid = $("#mainList");
+							i =  $.jgrid.getCellIndex($(e.target).closest('td')[0]);
+							cm = grid.getGridParam('colModel');
+							var row = grid.getRowData(rowId);
+							//詳細列は照会画面表示
+							if(cm[i].name === 'colDetail'){
+								var hdnRowShainNo = row.colShainNo;
+								var hdnRowApplNo = row.hdnApplNo;
+								var hdnRowNyutaikyoKbn = row.hdnNyutaikyoKbnCd;
+								$("#hdnRowShainNo").val(hdnRowShainNo);
+								$("#hdnRowApplNo").val(hdnRowApplNo);
+								$("#hdnRowNyutaikyoKbn").val(hdnRowNyutaikyoKbn);
+
+								document.getElementById('shinseiNaiyo').click();
+								return false;
+							}
+							//削除列は許可
+							else if( cm[i].name === 'colDelete'){
+								return true;
+							}
+							else if( cm[i].name === 'colmail'){
+								if(row.chkMailSelect == 'true'){
+									var prop = $('#mailListCheck').prop('checked');
+									if(prop){
+										//チェックボックスがONの場合、OFFにする
+										$('#mailListCheck').prop('checked',false);
+									}
+								}
+								return false;
+							}else if(cm[i].name === 'cb'){
+								//チェックボックス選択可のみ許可
+								if(row.chkSelect == 'true'){
+									//選択不可
+									return true;
+								}
+							}
+							//他は選択不可
+							return false;
+						}
+						
+						
+						onCellSelect = function(rowId,iCol,cellcontent,e) {
+							// リストテーブル情報取得
+							var grid = $("#mainList");
+							// 行番号から選択した行の情報を取得
+							var row = grid.getRowData(rowId);
+
+							if ($(cellcontent).hasClass('im-smart-icon-common-16-information')) {
+								//連携パラメータ
+// 								var hdnRowShainNo = row.colShainNo;
+// 								var hdnRowApplNo = row.hdnApplNo;
+// 								var hdnRowNyutaikyoKbn = row.hdnNyutaikyoKbnCd;
+// 								$("#hdnRowShainNo").val(hdnRowShainNo);
+// 								$("#hdnRowApplNo").val(hdnRowApplNo);
+// 								$("#hdnRowNyutaikyoKbn").val(hdnRowNyutaikyoKbn);
+// 								if(row.chkSelect == 'true'){
+// 									$('#mainList').setSelection(rowId,false);
+// 								}
+// 								document.getElementById('shinseiNaiyo').click();
+
+							}else if($(cellcontent).hasClass('im-ui-icon-common-16-trashbox')) {
+									// 削除パラメータ
+									var delShainNo = row.colShainNo;
+									var delNyuTaikyoKbn = row.hdnNyutaikyoKbnCd;
+									var delApplNo = row.hdnApplNo;
+									var hdnNyutaikyoYoteiUpdateDate = row.hdnUpdateDateNtkyo;
+									var hdnTenninshaChoshoUpdateDate = row.hdnUpdateDateTenninsha;
+								
+									$("#delShainNo").val(delShainNo);
+									$("#delNyuTaikyoKbn").val(delNyuTaikyoKbn);
+									$("#delApplNo").val(delApplNo);
+									$("#hdnNyutaikyoYoteiUpdateDate").val(hdnNyutaikyoYoteiUpdateDate);
+									$("#hdnTenninshaChoshoUpdateDate").val(hdnTenninshaChoshoUpdateDate);
+									
+									$('#mainList').setSelection(rowId,false);
+									
+								var dialogTitle = "確認";
+								var dialogMessage = row.hdnDeleteText;
+								nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3021Sc001/delete", "ok", "キャンセル", this, true);
+
+							}
+							var prop = $('#allListCheck').prop('checked');
+							if(prop){
+								//督促チェックボックスがONの場合、OFFにする
+								$('#allListCheck').prop('checked',false);
+							}
+						}
+						
+						
+					})(jQuery);
+					
+					//提示チェックボックス処理
+					function allCheckBoxSelect(e){
+						//チェックボックス状態取得
+						var prop = $('#allListCheck').prop('checked');
+						//リスト選択全解除
+						$("#mainList").jqGrid('resetSelection');
+						//選択処理状態all
+						$('#hdnListSelectState').val("all");
+						//選択状態で選択処理
+						if(prop){
+							var grid = $('#mainList');
+							var rows = grid.getRowData(); //get data
+							//nfw.common.showReserveMessage("warning", "選択");
+							for (var idx in rows) {
+								var row = rows[idx];
+								var page = $('#mainList').getGridParam('page');
+								var pagem = $('#hdnPageMax').val();
+								var pagemax =  Number(pagem);
+								var rowidx = Number(idx) + 1 + ((page - 1) * pagemax);
+								if(row.chkSelect == 'true'){
+									$('#mainList').setSelection(rowidx,true);
+								}
+							}
+						}
+						$('#hdnListSelectState').val("solo");
+						
+					}
+					//メールチェックボックス
+					function allMailCheckBoxSelect(e){
+						//チェックボックス状態取得
+						var prop = $('#mailListCheck').prop('checked');
+						//選択状態で選択処理
+
+						var grid = $('#mainList');
+						var rows = grid.getRowData(); //get data
+						for (var idx in rows) {
+							var row = rows[idx];
+							var page = $('#mainList').getGridParam('page');
+							var pagem = $('#hdnPageMax').val();
+							var pagemax =  Number(pagem);
+							var rowidx = Number(idx) + 1 + ((page - 1) * pagemax);
+							var mailCheck = "mailCheck"+rowidx;
+							var mailCheckBox = document.getElementById(mailCheck);
+							if(row.chkMailSelect == 'true'){
+								//選択状態変更
+								mailCheckBox.checked = prop;
+							}
+						}
+
+					}
+					 
+					//リスト生成後イベント
+					 function gridComplete(){
+						var grid = $('#mainList');
+						var rows = grid.getRowData(); //get data
+						for (var idx in rows) {
+							var row = rows[idx];
+							var page = $('#mainList').getGridParam('page');
+							var pagem = $('#hdnPageMax').val();
+							var pagemax =  Number(pagem);
+							var rowidx = Number(idx) + 1 + ((page - 1) * pagemax);
+							if(row.chkSelect == 'false'){
+								//チェックボックスを非活性にする
+								var cbsdis = $("tr#"+rowidx+".jqgrow > td > input.cbox", grid);
+								if (cbsdis.length != 0) {
+									cbsdis.attr("disabled", true);
+						        }
+							}
+							if(row.chkSelectChecked == 'true'){
+								//チェックボックスを選択状態にする
+								var cbsdis = $("tr#"+rowidx+".jqgrow > td > input.cbox", grid);
+								if (cbsdis.length != 0) {
+									cbsdis.attr("checked", true);
+						        }
+							}
+							var mailCheck = "mailCheck"+rowidx;
+							var mailCheckBox = document.getElementById(mailCheck);
+							if(row.chkMailSelect == 'false'){
+								//非活性にする
+								mailCheckBox.disabled = true;
+							}
+							
+						}
+						
+
+						var $list = $('#mainList');
+						// 項目に指定した幅を設定する
+						//var $col = $('#mainList_cb');
+						//$col[0].style.width = "35px";
+						// ヘッダ項目に指定した幅を設定する
+						$(".jqgfirstrow > td")[1].style.width = "25px";
+						// JqGridの項目の幅情報の上書き.
+						var befHtml = $list[0].grid.headers[1].el.innerHTML;
+						$list[0].grid.headers[1].el.innerHTML="<span>提示<br /><input type=\"checkbox\" name=\"listCheck\" id=\"allListCheck\" onclick=\"allCheckBoxSelect(event)\"></span>";
+						//$list[0].grid.headers[1].el.innerHTML="<div id=\"jqgh_mainList_cb\">督促<input class=\"cbox\" id=\"cb_mainList\" role=\"checkbox\" type=\"checkbox\"></div>";
+						$list[0].grid.headers[1].el.style.width="25px";
+						$list[0].grid.headers[1].el.style.textAlign = "center";
+						$list[0].grid.headers[12].el.innerHTML="<span>メール<br /><input type=\"checkbox\" name=\"mailListCheck\" id=\"mailListCheck\" onclick=\"allMailCheckBoxSelect(event)\"></span>";
+						$list[0].grid.headers[12].el.style.textAlign = "center";
+						$list[0].grid.headers[3].el.innerText = "入退居\n区分";
+						$list[0].grid.headers[6].el.innerText = "申請\n区分";
+						$list[0].grid.headers[10].el.innerText = "駐車場\n希望";
+						$list[0].grid.headers[11].el.innerText = "申請\n状況";
+						$list[0].grid.headers[14].el.innerText = "特殊\n事情";
+						$list[0].grid.headers[16].el.innerText = "申請\n内容";
+						$list[0].grid.headers[3].el.style.textAlign = "center";
+					    $list[0].grid.headers[6].el.style.textAlign = "center";
+						$list[0].grid.headers[10].el.style.textAlign = "center";
+						$list[0].grid.headers[11].el.style.textAlign = "center";
+						$list[0].grid.headers[14].el.style.textAlign = "center";
+						$list[0].grid.headers[16].el.style.textAlign = "center";
+						$list[0].grid.headers[17].el.style.textAlign = "center";
+
+					};
+					
+
+					
+					//メール送信情報生成
+					function setDunningMailInfo(){
+						//選択行
+						var chkFlg = false;
+						var mailList=[];
+						var grid = $('#mainList');
+						var rows = grid.getRowData(); //get data
+						for (var idx in rows) {
+							var row = rows[idx];
+							var page = $('#mainList').getGridParam('page');
+							var pagem = $('#hdnPageMax').val();
+							var pagemax =  Number(pagem);
+							var rowidx = Number(idx) + 1 + ((page - 1) * pagemax);
+							
+							var mailCheck = "mailCheck"+rowidx;
+							var mailCheckBox = document.getElementById(mailCheck);
+							if(row.chkMailSelect == 'true'){
+								//非活性にする
+								if(mailCheckBox.checked){
+									//選択状態なら
+									var tempStr = [];
+									var shainNo = row.colShainNo;//社員番号
+									var shainName = row.colShainName;//社員名
+									var nyutaikyoKbn = row.hdnNyutaikyoKbnCd;//入退居区分
+									var nyukyoDate = row.colNyukyoDate;//入居予定日
+									var taikyoDate = row.colTaikyoDate//退居予定日
+									var updateDateNtkyo = row.hdnUpdateDateNtkyo;//入退居予定更新日時
+									
+									tempStr.push(shainNo);
+									tempStr.push(shainName);
+									tempStr.push(nyutaikyoKbn);
+									tempStr.push(nyukyoDate);
+									tempStr.push(taikyoDate);
+									tempStr.push(updateDateNtkyo);
+									
+									mailList.push(tempStr.join(","));		//配列で格納
+									//選択有
+									chkFlg=true;
+								}
+							}
+						}
+						if(chkFlg==false){
+							//選択無しの場合error.skf.e_skf_3017=入退居申請督促の電子メールを送信する社員が選択されていません。
+							//nfw.common.showReserveMessage("error", "入退居申請督促の電子メールを送信する社員が選択されていません。");
+							var map = new Object();
+							map['errCode'] = 'error.skf.e_skf_3017';
+							nfw.common.doAjaxAction("skf/Skf3021Sc001/selectErrAsync", map, true, function(data){});
+							return false;
+						}
+
+						//送信データ設定
+						$("#mailListData").val(mailList.join(";"));
+						return true;
+					};
+					//提示情報生成
+					function setDunningTeijiInfo(){
+						//選択行
+						var chkFlg = false;
+						var mailList=[];
+						var selrows = $('#mainList').getGridParam('selarrrow');
+						for (var i = 0; i < selrows.length; i++)
+						{
+							// 選択行
+							var row = $('#mainList').getRowData(selrows[i]);
+							
+							var tempStr = [];
+							var shainNo = row.colShainNo;//社員番号
+							var nyutaikyoKbn = row.hdnNyutaikyoKbnCd;//入退居区分
+							var shainName = row.colShainName;//社員氏名
+							var applKbn = row.hdnSinseiKbn;//申請区分
+							var applNo = row.hdnApplNo;//申請書類管理番号
+							var taikyoYoteiDate = row.colTaikyoDate.replace(/\//g, "");//退居予定日
+							var parking1StartDate = row.hdnParking1StartDate;//駐車場区画１開始日
+							var parking2StartDate = row.hdnParking2StartDate;//駐車場区画２開始日
+							var hdnUpdateDate = row.hdnUpdateDateNtkyo;//更新日時hidden変数
+							
+							//引数がない場合リストに入れない
+							if(shainNo == null || shainNo == ""){
+								continue;
+							}
+							if(nyutaikyoKbn == null || nyutaikyoKbn == ""){
+								continue;
+							}
+							
+							tempStr.push(shainNo);
+							tempStr.push(nyutaikyoKbn);
+							tempStr.push(shainName);
+							tempStr.push(applKbn);
+							tempStr.push(applNo);
+							tempStr.push(taikyoYoteiDate);
+							tempStr.push(parking1StartDate);
+							tempStr.push(parking2StartDate);
+							tempStr.push(hdnUpdateDate);
+							
+							mailList.push(tempStr.join(","));		//配列で格納
+							//選択有
+							chkFlg=true;
+							
+						}
+						if(chkFlg==false){
+							//選択無しの場合error.skf.e_skf_3018=提示データ作成対象が選択されていません。
+							//nfw.common.showReserveMessage("error", "提示データ作成対象が選択されていません。");
+							var map = new Object();
+							map['errCode'] = 'error.skf.e_skf_3018';
+							nfw.common.doAjaxAction("skf/Skf3021Sc001/selectErrAsync", map, true, function(data){});
+							return false;
+						}
+						//送信データ設定
+						$("#teijiListData").val(mailList.join(";"));
+
+						return true;
+					};
+				</script>	
+				<script type="text/javascript">
+				(function($) {
+					// 画面表示時に定義される処理
+				    $(document).ready(function(){
+				    	//リサイズ時イベント
+				    	$(window).bind('resize', function(){
+				    		$('#mainList').setGridWidth($('#listTableArea').width(), true);	
+				    	}).trigger('resize');
+				    				
+				    });
+					
+				})(jQuery);
+				</script>
+
+
+			<br />
+			<div class="align-R">
+				<nfwui:PopupButton id="shinseiNaiyo" style="visibility:hidden" 
+					value="a" cssClass="imui-medium-button" modalMode="true" popupWidth="850" 
+					popupHeight="740" parameter="hdnRowShainNo:hdnRowShainNo,hdnRowApplNo:hdnRowApplNo,hdnRowNyutaikyoKbn:hdnRowNyutaikyoKbn" 
+					screenUrl="skf/Skf3021Sc002/init" use="popup" />
+<!-- 				<input style="width:150px;" type="button" value="空き社宅リスト出力" class="imui-medium-button" onclick=""/> -->
+				<nfwui:ConfirmButton id="btnShatakuTeiji" name="btnAkiShatakuList" 
+							code="<%=MessageIdConstant.SKF3021_SC001_BTN_AKISHATAKU%>"  
+ 							cssStyle="width:160px;" cssClass="imui-medium-button" 
+							formId="form" 
+ 							title="<%= MessageIdConstant.SKF2020_SC002_CONFIRM_TITLE %>"  
+ 							message="<%= MessageIdConstant.I_SKF_3067 %>" 
+ 							url="skf/Skf3021Sc001/akiShatakuListDownload" tabindex="11"/> 
+<!-- 				<input style="width:150px;" type="button" value="入退居申請督促" class="imui-medium-button" onclick=""/> -->
+				<nfwui:ConfirmButton id="btnNtkyoShinsei" name="btnNtkyoShinsei" 
+							code="<%=MessageIdConstant.SKF3021_SC001_BTN_NTKYOSHINSEI%>"  
+ 							cssStyle="width:160px;" cssClass="imui-medium-button" 
+							formId="form" 
+ 							title="<%= MessageIdConstant.SKF2020_SC002_CONFIRM_TITLE %>"  
+ 							message="<%= MessageIdConstant.I_SKF_3021 %>"  
+ 							preOnclick="if(!setDunningMailInfo(1)){retrun(false)};" 
+ 							url="skf/Skf3021Sc001/sendMail" tabindex="12"/> 
+<!-- 				<input style="width:160px;" type="button" value="入退居予定リスト出力" class="imui-medium-button" onclick=""/> -->
+				<nfwui:ConfirmButton id="btnNtkyoYoteiList" name="btnNtkyoYoteiList" 
+							code="<%=MessageIdConstant.SKF3021_SC001_BTN_NTKYOYOTEILIST%>"  
+ 							cssStyle="width:160px;" cssClass="imui-medium-button" 
+							formId="form" 
+ 							title="<%= MessageIdConstant.SKF2020_SC002_CONFIRM_TITLE %>"  
+ 							message="<%= MessageIdConstant.I_SKF_3066 %>" 
+ 							url="skf/Skf3021Sc001/nyutaikyoYoteiListDownload" tabindex="13"/> 
+<!-- 				<input style="width:150px;" id="createData" type="button" value="提示データ作成" class="imui-medium-button"/> -->
+				<nfwui:ConfirmButton id="btnTeijiData" name="btnTeijiData" 
+							code="<%=MessageIdConstant.SKF3021_SC001_BTN_TEIJIDATA%>"  
+ 							cssStyle="width:160px;" cssClass="imui-medium-button" 
+							formId="form" 
+ 							title="<%= MessageIdConstant.SKF2020_SC002_CONFIRM_TITLE %>"  
+ 							message="<%= MessageIdConstant.I_SKF_3019 %>"  
+ 							preOnclick="if(!setDunningTeijiInfo()){retrun(false)};" 
+ 							url="skf/Skf3021Sc001/createTeijiData" tabindex="14"/> 
+			</div>
+		</div>
+	</nfwui:Form>
 <!-- コンテンツエリア　ここまで -->

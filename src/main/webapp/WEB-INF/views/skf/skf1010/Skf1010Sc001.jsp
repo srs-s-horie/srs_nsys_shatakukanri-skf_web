@@ -1,4 +1,4 @@
-﻿<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+﻿﻿<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%-- 共通JSP --%>
 <%@ include file="/WEB-INF/views/nfw/framework/common/CommonWithOutGrid.jsp" %>
@@ -11,6 +11,21 @@
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.SessionCacheKeyConstant" %>
+<%@ page import="java.util.Enumeration" %>
+<%@ page import="java.util.Map" %>
+
+<% 
+Map<String, Object> menuSesValTop = (Map<String, Object>)request.getSession().getAttribute("scopedTarget.menuScopeSessionBean");
+String alterLoginFlgTop= new String();
+if(menuSesValTop != null){
+	// 代行ログインフラグ
+	if(menuSesValTop.get(SessionCacheKeyConstant.ALTER_LOGIN_SESSION_KEY) == null){
+		menuSesValTop.put(SessionCacheKeyConstant.ALTER_LOGIN_SESSION_KEY, CodeConstant.NONLOGIN);
+	}
+	alterLoginFlgTop = (String)menuSesValTop.get(SessionCacheKeyConstant.ALTER_LOGIN_SESSION_KEY);
+}
+%>
 
 <%-- コンテンツエリア --%>
 <style type="text/css">
@@ -31,109 +46,11 @@
 
 <!-- ヘッド情報 -->
 
-<!-- インクルード -->
-
-<!-- メッセージを表示するためのJavaScript（モック時はコメント）
-<script type="text/javascript">
-    var INFO=""
-        if(INFO!=""){
-            imuiShowSuccessMessage(INFO);
-        }
-    window.onload=function(){
-        $(".hasDatepicker").each(function(e){
-            $(this).css("width","100px");
-        });
-        if($("#errMainDiv").children().length!=undefined && $("#errMainDiv").children().length>1){
-            $("#errMainDiv").css("display","inline-block");
-        }
-        
-    };
-    var W_GFK_0001 = "{0}を行います。<br/>よろしいですか？";
-    var W_GFK_0002 = "前画面に戻ります。<br/>入力途中のものがあれば破棄されます。よろしいですか？";
-    var W_GFK_0003 = "画面の再表示を行います。<br/>よろしいですか？";
-    var W_GFK_0004 = "入力情報が破棄されますが、よろしいですか？";
-    var W_GFK_0005 = "復旧工事を「無」に選択した工事担当の工事費用登録情報は削除されますが、よろしいですか？";
-    var W_GFK_0006 = "登録後の修正はできません。登録を続けてよろしいですか？";
-    var I_GFK_0001 = "{0}処理が正常に終了しました。{1}";
-
-    var E_GFK_0001 = "未入力の項目があります。";
-    var E_GFK_1001 = "当該データは他のユーザによって既に処理されました。{0}";
-    var E_GFK_0006 = "指定した文字列の属性が不正です。{type}";
-    var E_GFK_0012 = "登録対象を選択してください。";
-    var E_GFK_0014 = "選択されたファイルはCSVファイルでないため取込できません。";
-    var E_GFK_0015 = "取込対象ファイルが0件です。";
-    var E_GFK_0016 = "取込対象ファイルの項目数が不正です。";
-    var E_GFK_0020 = "削除対象を選択してください。";
-    var E_GFK_0022 = "登録ボタン押下前に計算ボタンを押下してください。";
-    var E_GFK_0023 = "債権の明細が0件となるため削除できません。";
-    var E_GFK_0070 = "{0}に、締め年月以前の日付は設定できません。";
-    var E_GFK_0071 = "{0}が締め年月以前のため、取消できません。";
-    var E_GFK_0073 = "削除対象の明細が存在しません。";
-    var E_GFK_0075 = "メニューグループが設定されていません。";
-    var E_GFK_0076 = "認可設定が存在しません。";
-</script>
--->
-
-    <!-- 確認ダイアログ表示用（モック作成時は特に変更する必要なし） -->
-    <div name="imui-8euqak4j4tsbrtq" id="confirm_dialog" style="display: none;">
-        <div>
-            <div style="float:left;width:15%;">
-                <span class="im-ui-icon-common-32-question imui-icon-float-left"></span>
-            </div>
-            <div style="float:left;width:85%;padding-top:10px;">
-                <span id="message_confirm"></span>
-            </div>
-        </div>
-    </div>
-    <!--                                   JavaScriptエラーなのでコメントアウト
-    <script type="text/javascript">
-        jQuery(function () {jQuery("#confirm_dialog").imuiDialog({"buttons":[{"name":"imui-8euqak4j4tsbttq","text":"はい","id":"imui-8euqak4j4tsbstq","click":button_ok},{"name":"imui-8euqak4j4tsbvtq","text":"いいえ","id":"imui-8euqak4j4tsbutq","click":button_ng}],"autoOpen":false,"show":{"effect":"fade"},"title":"確認","modal":true});});
-    </script>
-    -->
-    
-
-    <!-- アラートダイアログ表示用（モック作成時は特に変更する必要なし） -->
-    <!-- 
-    <div name="imui-8euqak4j4tsbwtq" id="alert_dialog" style="display: none;">
-        <span class="im-ui-icon-common-32-tick imui-icon-float-left"></span>
-        <span style="width:30px;"></span>
-        <span id="message_alert"></span>
-    </div>
-    <script type="text/javascript">
-        jQuery(function () {jQuery("#alert_dialog").imuiDialog({"buttons":[{"name":"imui-8euqak4j4tsbytq","text":"確認","id":"imui-8euqak4j4tsbxtq","click":button_alert}],"autoOpen":false,"show":{"effect":"fade"},"modal":true});});
-    </script>
-    -->
-    
-
-    <!-- ワーニングダイアログ表示用（モック作成時は特に変更する必要なし） -->
-<!--     <div name="imui-8euqak4j5tsbztq" id="warning_dialog" style="display: none;"> -->
-<!--         <span class="im-ui-icon-common-32-warning imui-icon-float-left"></span> -->
-<!--         <span id="message_warning"></span> -->
-<!--     </div> -->
-<!--     <script type="text/javascript"> -->
-<!--         jQuery(function () {jQuery("#warning_dialog").imuiDialog({"buttons":[{"name":"imui-8euqak4j5tsc1tq","text":"確認","id":"imui-8euqak4j5tsc0tq","click":button_warning}],"autoOpen":false,"show":{"effect":"fade"},"modal":true});}); -->
-<!--     </script> -->
-
-<!--     <div class="alertDiv imui-box-warning" style="padding: 15px;margin-top: 10px;text-align:left;" id="errMainDiv"> -->
-<!--         <div class="alert-errorIcon alert" style="margin:0;padding:0;margin-right:10px;"> -->
-<!--         </div>  -->
-<!--     </div> -->
-
-    <!-- 画面タイトル表示域（モック作成時は特に変更する必要なし） -->
-<!--     <div class="imui-title" style="width: 100%"> -->
-<!--         <h1>社宅申請システム</h1> -->
-<!--     </div> -->
-
-    <!-- エラーメッセージ表示域（モック作成時は特に変更する必要なし） -->
-    <div id="errdiv" class="alert alert-error notshow"></div>
-
-    <!-- コンテンツエリア -->
-    
 <div class="imui-form-container-wide" style="width: 95%;">
 <!-- 代行ログイン時のみ表示されるメッセージ -->
 <jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
 
-<nfwui:Form id="form" name="form" modelAttribute="form">
+<nfwui:Form id="form" name="form" modelAttribute="form" enctype="multipart/form-data">
 <table class="imui-form-search-condition" style="width: 100%; ">
             <td style="width: 50%; border: none;;background-color: #fdfdff;">
             
@@ -154,17 +71,6 @@
                            <nfwui:LabelBox id="syatakuNyukyoKibotouTyousyoMessage" code="<%= MessageIdConstant.SKF1010_SC001_SYATAKU_NYUKYO_KIBOTOU_TYOUSYO_MESSAGE %>" />
                         </td>
                     </tr> 
-                    
-                    <!--
-                    <tr>
-                        <th width="20%">
-                            <a href="http://localhost:8080/imart/skf/Skf3090Sc004/init?menuFlg=1" class="imui-accent" style="margin-left: 8px">備品希望申請</a>
-                        </th>
-                        <td width="30%">
-                            <font>備品を希望する場合に作成する申請です。<br>　　　</font>
-                        </td>
-                    </tr> 
-                    -->
                     
                     <tr>
                         <th>
@@ -192,8 +98,8 @@
 </imart:condition>
 </div>
 
-<div name="daikoHide">
 <imart:condition validity="${form.level2}" negative>
+<imart:decision case="<%= alterLoginFlgTop %>" value="<%= CodeConstant.NONLOGIN %>">
 <div class="imui-form-container-wide" style="width: 93%;">
        <!-- 社宅窓口 -->
             <nfwui:Title id="windowTitle" code="<%= MessageIdConstant.SKF1010_SC001_WINDOW_TITLE %>" titleLevel="2" />
@@ -201,10 +107,9 @@
         <table class="imui-form-search-condition">
 
                     <ul class='imui-list-link-side'>
-                     <tr>
-                     
                       <imart:condition validity="${form.level2_1}" negative> 
-                     <th>
+                      <tr>
+                      <th>
                           <a href="/imart/skf/Skf2010Sc005/init" class="imui-accent" style="margin-left: 8px">
                           	<nfwui:LabelBox id="sinseiSyoruiSyonin" code="<%= MessageIdConstant.SKF1010_SC001_SINSEI_SYORUI_SYONIN %>" />
                           </a>
@@ -212,27 +117,17 @@
                       <td style="width: 60%;">
                           <nfwui:LabelBox id="sinseiSyoruiSyoninMessage" code="<%= MessageIdConstant.SKF1010_SC001_SINSEI_SYORUI_SYONIN_MESSAGE %>" /><br>
                       </td>
+                      </tr>
                       </imart:condition>
-                    </tr>
-                    <!--
-                    <tr>
-                      <th width="20%">
-                          <a href="../S0011/S0011_ShatakuSearchPage.html" class="imui-accent" style="margin-left: 8px">申請書類を承認する（閲覧用）</a>
-                      </th>
-                      <td width="30%">
-                          <font>申請書類の申請状況を確認します。<br>　　　</font>
-                      </td>
-                    </tr>
-                    -->
-                    
+                
                     <!-- スペース-->
                     <tr style="border:none">
                        <td style="border:none">
                        </td>
                     </tr>
 
-                    <tr>
-                        <imart:condition validity="${form.level2_2}" negative> 
+                    <imart:condition validity="${form.level2_2}" negative> 
+                   	<tr>
                         <th>
                             <a href="/imart/skf/Skf3010Sc001/init" class="imui-accent" style="margin-left: 8px">
                             	<nfwui:LabelBox id="syatakuKanri" code="<%= MessageIdConstant.SKF1010_SC001_SYATAKU_KANRI %>" />
@@ -280,7 +175,7 @@
                             </a>
                         </th>
                         <td style="width: 60%;">
-                            <nfwui:LabelBox id="kariageKohoBukkenTeijiMessage" code="<%= MessageIdConstant.SKF1010_SC001_KARIAGE_KOHO_BUKKEN_TEIJI_MESSAGE %>" />
+                            <nfwui:LabelBox id="kariageKohoBukkenTeijiMessage" code="<%= MessageIdConstant.SKF1010_SC001_KARIAGE_KOHO_BUKKEN_TEIJI_MESSAGE %>" /><br>
                         </td>
                     </tr>
                     <tr>
@@ -304,11 +199,11 @@
                         <td style="width: 60%;">
                             <nfwui:LabelBox id="syainZyohoKosinMessage" code="<%= MessageIdConstant. SKF1010_SC001_SYAIN_ZYOHO_KOSIN_MESSAGE%>" /><br>
                         </td>
-                         </imart:condition>
                     </tr>                
+                    </imart:condition>
 
-                    <tr>  
                     <imart:condition validity="${form.level2_3}" negative>
+                    <tr>  
                         <th>
                             <a href="/imart/skf/Skf3050Sc002/init" class="imui-accent" style="margin-left: 8px">
                             	<nfwui:LabelBox id="tukizimeSyori" code="<%= MessageIdConstant.SKF1010_SC001_TUKIZIME_SYORI %>" />
@@ -317,8 +212,8 @@
                         <td style="width: 60%;">
                             <nfwui:LabelBox id="tukizimeSyoriMessage" code="<%= MessageIdConstant.SKF1010_SC001_TUKIZIME_SYORI_MESSAGE %>" /><br>
                         </td>
-                        </imart:condition>
                     </tr>  
+                    </imart:condition>
 
                     <!-- スペース-->
                     <tr style="border:none">
@@ -326,8 +221,8 @@
                        </td>
                     </tr>
 
-                    <tr>
                     <imart:condition validity="${form.level2_4}" negative>
+                    <tr>
                         <th>
                             <a href="/imart/skf/Skf3040Sc001/init" class="imui-accent" style="margin-left: 8px">
                             	<nfwui:LabelBox id="rentaruBihinSizisyoSakusei" code="<%= MessageIdConstant.SKF1010_SC001_RENTARU_BIHIN_SIZISYO_SAKUSEI %>" />
@@ -366,7 +261,7 @@
                             </a>
                         </th>
                         <td style="width: 60%;">
-                            <nfwui:LabelBox id="hoteiTyosyoDataKanriMessage" code="<%= MessageIdConstant.SKF1010_SC001_HOTEI_TYOSYO_DATA_KANRI_MESSAGE %>" />
+                            <nfwui:LabelBox id="hoteiTyosyoDataKanriMessage" code="<%= MessageIdConstant.SKF1010_SC001_HOTEI_TYOSYO_DATA_KANRI_MESSAGE %>" /><br>
                         </td>
                     </imart:condition>
                     </tr>
@@ -388,8 +283,9 @@
         </table>
         
         </div>
-        </div>
-</imart:condition>        
+</imart:decision>        
+</imart:condition>
+
 <imart:condition validity="${form.level3}" negative>      
         <div class="imui-form-container-wide" style="width: 93%;">
 
@@ -398,8 +294,8 @@
         <table class="imui-form-search-condition">
          <ul class='imui-list-link-side'>
     
+   					<imart:condition validity="${form.level3_1}" negative>
                     <tr>
-
                         <th>
                             <a href="/imart/skf/Skf2010Sc008/init" class="imui-accent" style="margin-left: 8px">
                             	<nfwui:LabelBox id="daikoLogin" code="<%= MessageIdConstant.SKF1010_SC001_DAIKO_LOGIN %>" />
@@ -409,8 +305,9 @@
                             <nfwui:LabelBox id="daikoLoginMessage" code="<%= MessageIdConstant.SKF1010_SC001_DAIKO_LOGIN_MESSAGE %>" /><br>
                         </td>
                     </tr>
-                    
-                    <tr name="daikoHide">
+                    </imart:condition>  
+                    <imart:decision case="<%= alterLoginFlgTop %>" value="<%= CodeConstant.NONLOGIN %>">
+                    <tr>
                         <th>
                             <a href="/imart/skf/Skf3090Sc008/init" class="imui-accent" style="margin-left: 8px">
                             	<nfwui:LabelBox id="osiraseMasutaMaintenance" code="<%= MessageIdConstant.SKF1010_SC001_OSIRASE_MASUTA_MAINTENANCE %>" />
@@ -421,7 +318,7 @@
                         </td>
                     </tr>
 
-                    <tr name="daikoHide">
+                    <tr>
                       <th>
                           <a href="/imart/skf/Skf3090Sc004/init" class="imui-accent" style="margin-left: 8px">
                           	<nfwui:LabelBox id="zyugyoinMasutaMaintenance" code="<%= MessageIdConstant.SKF1010_SC001_ZYUGYOIN_MASUTA_MAINTENANCE %>" />
@@ -431,8 +328,8 @@
                           <nfwui:LabelBox id="zyugyoMasutaMaintenanceMessage" code="<%= MessageIdConstant.SKF1010_SC001_ZYUGYOIN_MASUTA_MAINTENANCE_MESSAGE %>" /><br>
                       </td>
                     </tr>
-                    
-                    <tr name="daikoHide">
+                    <imart:condition validity="${form.level3_2}" negative>
+                    <tr>
                       <th>
                           <a href="/imart/skf/Skf3090Sc006/init" class="imui-accent" style="margin-left: 8px">
                           	<nfwui:LabelBox id="soshikiMasutaMaintenance" code="<%= MessageIdConstant.SKF1010_SC001_SOSHIKI_MASUTA_MAINTENANCE %>" /> 
@@ -442,6 +339,7 @@
                           <nfwui:LabelBox id="soshikiMasutaMaintenanceMessage"  code="<%= MessageIdConstant.SKF1010_SC001_SOSHIKI_MASUTA_MAINTENANCE_MESSAGE %>" /><br>
                       </td>
                     </tr>
+                    </imart:condition>
                     <!--
                     <tr>
                       <th width="20%">
@@ -453,7 +351,7 @@
                     </tr>
                     -->
                     
-                    <tr name="daikoHide">
+                    <tr>
                       <th>
                             <a href="/imart/skf/Skf3090Sc001/init" class="imui-accent" style="margin-left: 8px">
                             	<nfwui:LabelBox id="genbutuSikyuKagakuMasutaMaintenance" code="<%= MessageIdConstant.SKF1010_SC001_GENBUTU_SIKYU_KAGAKU_MASUTA_MAINTENANCE %>" />
@@ -464,7 +362,7 @@
                       </td>
                     </tr>
                     
-                    <tr name="daikoHide">
+                    <tr>
                         <th>
                             <a href="/imart/skf/Skf3090Sc003/init" class="imui-accent" style="margin-left: 8px">
                             	<nfwui:LabelBox id="zigyoRyoikiMasutaMaintenance" code="<%= MessageIdConstant.SKF1010_SC001_ZIGYO_RYOIKI_MASUTA_MAINTENANCE %>" />
@@ -474,6 +372,7 @@
                             <nfwui:LabelBox id="zigyoRyoikiMasutaMaintenanceMessage" code="<%= MessageIdConstant.SKF1010_SC001_ZIGYO_RYOIKI_MASUTA_MAINTENANCE_MESSAGE %>" /><br>
                         </td>
                     </tr>
+                    </imart:decision>
          </ul>
         </table>
         </div>
@@ -487,22 +386,23 @@
                     <ul class='imui-list-link-side'>
                     <tr style="width: 100px; max-width:100px;" >
                         <th>
-                            <a href="../S0000/S0010_ShinseiJokenKakunin.html" class="imui-accent" style="margin-left: 8px">
-                            	<nfwui:LabelBox id="manyuaruIppan" code="<%= MessageIdConstant.SKF1010_SC001_MANYUARU_IPPAN %>" />
-                            </a>
+                            <a id="downloadManualGeneral" name="downloadManual" >
+                            	マニュアル（一般）
+                            </a>	
+                            	<input type="hidden" id="manual" name="manual" value="${form.manual}" />
                         </th>
                     </tr>
                     <tr>
-                    <imart:condition validity="${form.level4_1}" negative> 
+                    <imart:condition validity="${form.level4_1}" negative>
+                    <tr style="width: 100px; max-width:100px;" >
                         <th>
-                            <a href="../S0000/S0010_SyatakuNyukyoKibouChoushoPage_UnderButton.html" class="imui-accent" style="margin-left: 8px">
-                            	<nfwui:LabelBox id="manyuaruKanri" code="<%= MessageIdConstant.SKF1010_SC001_MANYUARU_KANRI %>" />
-                            </a>
-                        </td>
-					 </imart:condition>
-                     <tr> 
-                    </ul>
-            </tr>
+                            <a id="downloadManualManager" name="downloadManual" >
+                            	マニュアル（管理）
+                            </a>	
+                            	<input type="hidden" id="manual" name="manual" value="${form.manual}" />
+                        </th>
+                    </tr>
+                     </imart:condition>
         </table>
 </imart:condition>
     </div>
@@ -514,12 +414,12 @@
             <td style="width: 49%; border: none;;background-color: #fdfdff;">
 <imart:condition validity="${form.level5}" negative> 
             <!-- 未処理情報 -->
-            <div name="daikoHide">
+            <imart:decision case="<%= alterLoginFlgTop %>" value="<%= CodeConstant.NONLOGIN %>">
                 <div class="imui-form-container-wide" style="width: 94%;">
                     <table>
                     <nfwui:Title id="rawInformation" code="<%= MessageIdConstant.SKF1010_SC001_RAW_INFORMATION_TITLE %>" titleLevel="2" />
                                 <tr>
-                                                                        <table class="imui-form-search-condition" style="width:100%;">
+                                      <table class="imui-form-search-condition" style="width:100%;">
                                             <tbody>
                                                 <tr>
                                                     <th style="width:520px;">
@@ -532,7 +432,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td style="text-align:left;">
-                                                    	<nfwui:LabelBox id="syatakuNyukyoNotKibo" code="<%= MessageIdConstant.SKF1010_SC001_SYATAKU_NYUKYO_NOT_KIBO %>" />
+                                                    	<nfwui:LabelBox id="syatakuNyukyoNotKibo" code="<%= MessageIdConstant.SKF1010_SC001_SYATAKU_NYUKYO_NOT_KIBO %>" /><br>
                                                     </td>
                                                     <td style="text-align:center;"   colspan="5" >
                                                      <nfwui:Link id="nyutaikyoCount1" name="nyutaikyoCount1" label="${form.nyutaikyoCount1}件" use="anchor" href="/imart/skf/Skf3022Sc005/init" />
@@ -540,7 +440,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td style="text-align:left;">
-                                                        <nfwui:LabelBox id="taikyoTodokeNotSinsei" code="<%= MessageIdConstant.SKF1010_SC001_TAIKYO_TODOKE_NOT_SINSEI %>" />
+                                                        <nfwui:LabelBox id="taikyoTodokeNotSinsei" code="<%= MessageIdConstant.SKF1010_SC001_TAIKYO_TODOKE_NOT_SINSEI %>" /><br>
                                                     </td>
                                                     <td style="text-align:center;"   colspan="5" >
                                                      <nfwui:Link id="nyutaikyoCount2" name="nyutaikyoCount2" label="${form.nyutaikyoCount2}件" use="anchor" href="/imart/skf/Skf3022Sc005/init" />
@@ -551,10 +451,10 @@
                                         <table class="imui-form-search-condition" style="width:100%;">
                                             <tbody>
                                                 <tr>
-                                                    <th style="width:520px;">
+                                                    <th style="width:420px;">
                                                     <nfwui:LabelBox id="lblMessage2" code="<%= MessageIdConstant.SKF1010_SC001_MESSAGE %>" />
                                                     </th>
-                                                    <th style="width:40px;text-align:center">
+                                                    <th style="width:40px;text-align:center;">
                                                     <nfwui:LabelBox id="lblHonsya" code="<%= MessageIdConstant.SKF1010_SC001_HONSYA %>" />
                                                     </th>
                                                     <th style="width:40px;text-align:center">
@@ -663,10 +563,10 @@
                                             </tbody>
                                         </table>
                 </div>  
-             </div>
+             </imart:decision>
 </imart:condition>              
             <!-- 個人に関するお知らせ -->
-            <div name="daikoHide">
+            <imart:decision case="<%= alterLoginFlgTop %>" value="<%= CodeConstant.NONLOGIN %>">
                 <div class="imui-form-container-wide" style="width: 94%;">
                     <table>
                             <nfwui:Title id="personalInformationTitle" code="<%= MessageIdConstant.SKF1010_SC001_PERSONAL_INFORMATION_TITLE %>" titleLevel="2"  />
@@ -677,10 +577,10 @@
                         		</div>
                     </table>
                 </div>
-             </div>
+             </imart:decision>
 </nfwui:Form>
               <!-- システムに関するお知らせ -->
-              <div name="daikoHide">
+              <imart:decision case="<%= alterLoginFlgTop %>" value="<%= CodeConstant.NONLOGIN %>">
                 <div class="imui-form-container-wide" style="width: 94%;">
                     <table style="width: 100%;">
                             <nfwui:Title id="sysytemAnnouncementsTitle" code="<%= MessageIdConstant.SKF1010_SC001_SYSTEM_ANNOUNCEMENTS_TITLE %>" titleLevel="2" />
@@ -689,22 +589,23 @@
                         		</div>
                     </table>
                 </div>
-             </div>
+             </imart:decision>
 
 </table>
     </div>
     
-    
+    </div>
     
     </div>
-
-    <!-- メッセージを表示するためのJavaScript（モック時はコメント）
+    
     <script type="text/javascript">
-        $(function() {
-            showWarningDialog('', 'true');
-        });
+    (function($) {
+    	$("[name=downloadManual]").click(function(){
+    		var id = $(this).attr("id");
+    		var manual = id.replace("downloadManual", "").toLowerCase();
+    		$('#manual').val(manual);
+    		nfw.common.submitForm("form", "skf/Skf1010Sc001/download", this);
+    	});
+    })(jQuery);
     </script>
-    -->
-
-    </div>
     <!-- コンテンツエリア　ここまで -->

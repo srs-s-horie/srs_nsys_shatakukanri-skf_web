@@ -28,7 +28,6 @@ function back1() {
 	<div >
 	<div class="imui-form-container-wide" >
 
-				<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC007 %>" />
 				<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="${form.hdnShatakuKanriNo}" />
 				<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="${form.hdnShatakuName}" />
 				<input type="hidden" name="hdnAreaKbn" id="hdnAreaKbn" value="${form.hdnAreaKbn}" />
@@ -55,13 +54,16 @@ function back1() {
 				<input type="hidden" name="parkingKanriNo" id="sendParkingKanriNo" value="${form.parkingKanriNo}" />
 				<input type="hidden" name="selectMode" id="selectMode" value="${form.selectMode}" />
 				<input type="hidden" name="hdnDelInfoFlg" id="hdnDelInfoFlg" value="${form.hdnDelInfoFlg}" />
-				<input type="hidden" name="ownerNo" id="sendOwnerNo" value="${form.ownerNo}" />
+				<input type="hidden" name="ownerNo" id="ownerNo" value="${form.ownerNo}" />
 				<input type="hidden" name="landRentNum" id="sendLandRent" value="" />
 				<input type="hidden" name="setContractStartDate" id="sendContractStartDate" value="" />
 				<input type="hidden" name="setContractEndDate" id="sendContractEndDate" value="" />
 				
 				
 				<input type="hidden" name="contractPropertyIdListData" id="contractPropertyIdListData" value="${form.contractPropertyIdListData}" />
+				<!-- 賃貸人(代理人)入力支援用 -->
+				<input type="hidden" name="insertFormOwnerName" id="insertFormOwnerName" value="" />
+				<input type="hidden" name="insertFormOwnerNo" id="insertFormOwnerNo" value="" />
 				<nfwui:Table use="search">
 						<tbody>
 							<tr>
@@ -204,13 +206,13 @@ function back1() {
                </th>
                <td colspan="3">
 <%--                		<imui:textbox id="txtOwnerName" name="ownerName" style="width:130px;" value="${f:h(form.ownerName)}" class="${form.ownerNameError}" disabled="${form.contractInfoDisabled}" maxlength="30" tabindex="5" readonly /> --%>
-<!-- TODO テスト用になっているので賃貸人支援呼び出しに修正必要 -->
-               		<imui:textbox id="txtOwnerName" name="ownerName" style="width:130px;" value="${f:h(form.ownerName)}" class="${form.ownerNameError}" disabled="${form.contractInfoDisabled}" maxlength="30" tabindex="5" />
+               		<imui:textbox id="contractOwnerName" name="ownerName" style="width:130px;" value="${f:h(form.ownerName)}" 
+               		class="${form.ownerNameError}" disabled="${form.contractInfoDisabled}" maxlength="30" tabindex="5" readonly="true" onKeyDown="contractOwnerName_KeyDown(event)"/>
                		<nfwui:PopupButton id="ownerShien" name="ownerShien" value="支援" use="popup" 
-                		cssClass="imui-small-button" popupWidth="650" popupHeight="550"  
-                		modalMode="false" screenUrl="skf/Skf2010Sc001/init"  
-                		parameter="parkinglendKbn:nyukyoFlag" disabled="${form.contractInfoDisabled}"  
-                		callbackFunc="shainInfoCallback" tabindex="6"/> 
+                		cssClass="imui-small-button" popupWidth="640" popupHeight="800"  
+                		modalMode="true" screenUrl="skf/Skf3070Sc004/init"  
+                		 disabled="${form.contractInfoDisabled}"  
+                		 tabindex="6"/> 
                </td>
                </tr>
 
@@ -345,7 +347,7 @@ function back1() {
 							map['contractPropertyIdListData'] = $("#contractPropertyIdListData").val();
 							//skf.common.setRawValue("form");
 							map['parkingContractType'] = $("#parkingContractType").val();
-							map['ownerName'] = $("#txtOwnerName").val();
+							map['ownerName'] = $("#contractOwnerName").val();
 							map['parkingZipCd'] = $("#txtParkingZipCd").val();
 							map['parkingAddress'] = $("#txtParkingAddress").val();
 							map['parkingName'] = $("#txtParkingName").val();
@@ -469,20 +471,6 @@ function back1() {
 					    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc007/regist", "ok", "キャンセル", this, true);
 				    	}
 				    	
-				    	updateOwnerName = function() {
-				            if( param != null && typeof param == 'object' && param.name != null && param.no != null){
-				                $("#txtOwnerName").val(param.name);
-				                $("#sendOwnerNo").val(param.no);
-				            }
-				    		
-				    	}
-				    	//TODO 賃貸人に修正が必要
-				    	shainInfoCallback = function(param) {
-				            if( param != null && typeof param == 'object' && param.name != null && param.shainNo != null){
-				                $("#txtOwnerName").val(param.name);
-				                $("#sendOwnerNo").val(param.shainNo);
-				            }
-				    	}
 				    	//戻るボタン
 				    	backOnClick = function () {
 					    	//確認メッセージ
@@ -498,9 +486,9 @@ function back1() {
 				    	
 				    	//契約形態変更時活性制御
 				    	setDisabled = function(state){
-				    		$("#txtOwnerName").prop("disabled",state);
-				    		$("#txtOwnerName").val("");
-				    		$("#sendOwnerNo").val(null);
+				    		$("#contractOwnerName").prop("disabled",state);
+				    		$("#contractOwnerName").val("");
+				    		$("#ownerNo").val(null);
 							$("#txtParkingZipCd").prop("disabled",state);
 							$("#txtParkingZipCd").val("");
 							$("#txtParkingAddress").prop("disabled",state);
@@ -544,6 +532,11 @@ function back1() {
 							
 				    	}
 				    	
+						// 賃貸人入力支援戻り値設定用
+						$("#ownerShien").click(function(){
+							$("#insertFormOwnerName").val("contractOwnerName");
+							$("#insertFormOwnerNo").val("ownerNo");
+						});
 				    });
 					
 					//駐車場契約番号ドロップダウン
@@ -578,6 +571,15 @@ function back1() {
 // 						$("#form").submit();
 					});
 					
+				    // 賃貸人名欄でDeleteKeyまたはBackSpaceを押下時イベント
+				    contractOwnerName_KeyDown = function(e) {
+				        var c = e.keyCode;
+				        if (c == 46 || c == 8) {
+				            $("#contractOwnerName").val("");
+				            // 裏で保持している社員番号をクリア
+				            $("#ownerNo").val("");
+				        }
+				    };
 				})(jQuery);
 				</script>
 
