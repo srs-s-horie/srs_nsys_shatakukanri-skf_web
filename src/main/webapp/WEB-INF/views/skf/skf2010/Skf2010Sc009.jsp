@@ -9,6 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 <script src="scripts/skf/skfCommon.js"></script>
+<link rel="stylesheet" type="text/css" href="styles/skf/listTableStyle.css" />
 
 <style>
    /* データ行の改行許容 */
