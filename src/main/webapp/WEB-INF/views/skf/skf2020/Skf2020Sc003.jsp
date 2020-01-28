@@ -74,6 +74,13 @@ $(function() {
 			$("input[name!='bihinKibo']:radio:not(:checked)").prop("disabled", true);
 		}
 		
+		// 「社宅の必要理由」活性非活性制御
+		// 初期表示時、「社宅の必要理由」の選択状態が「世帯」「単身」だった場合、「既婚」にもチェックを入れる
+		if($("#hitsuyoShatakuSetai, #hitsuyoShatakuTanshin").is(":checked")) {
+			$("#hitsuyoShatakuKikon").prop("checked", true);
+			$("#hitsuyoShatakuKikon").prop("disabled", true);
+		}
+		
 		// 「独身」のラジオボタンをクリックした場合
 		$("#hitsuyoShatakuDokushin").click(function() {
 			// 「既婚」のラジオボタンのチェックを外して活性化
@@ -89,13 +96,6 @@ $(function() {
 			// 「社宅の必要理由」のラジオボタンを全て活性化
     		$("input[name='hitsuyoShataku']:radio").prop("disabled", false);
 		});
-		// 「世帯」または「単身」をクリックした場合
-		$("#hitsuyoShatakuSetai, #hitsuyoShatakuTanshin").click(function() {
-			// 「既婚」のラジオボタンのチェックを外して非活性
-    		$("#hitsuyoShatakuKikon").prop("checked", false);
-    		$("#hitsuyoShatakuKikon").prop("disabled", true);
-		});
-		
 		// 「編集」ボタンを押下した時の処理
     	$("#edit").click(function() {
     		$("#editMode").show();
@@ -103,7 +103,7 @@ $(function() {
     		if (!$("#hitsuyoShatakuDokushin").prop("checked")) {
     			$("input[name='hitsuyoShataku']:radio").prop("disabled", false);
     		}
-    		//$("#hitsuyoShatakuKikon").prop("disabled", false);
+    		$("#hitsuyoShatakuKikon").prop("disabled", false);
     	});
     	// 「取消」ボタンを押下した時の処理
     	$("#cancel").click(function() {
@@ -116,12 +116,14 @@ $(function() {
     			$("#hitsuyoShatakuTanshin").prop("checked", false);
     			$("#hitsuyoShatakuDokushin").prop("checked", false);
     			$("#hitsuyoShatakuKikon").prop("checked", true);
+    			$("#hitsuyoShatakuKikon").prop("disabled", true);
     			break;
     		case '<%= CodeConstant.TANSHIN %>':
     			$("#hitsuyoShatakuSetai").prop("checked", false);
     			$("#hitsuyoShatakuTanshin").prop("checked", true);
     			$("#hitsuyoShatakuDokushin").prop("checked", false);
     			$("#hitsuyoShatakuKikon").prop("checked", true);
+    			$("#hitsuyoShatakuKikon").prop("disabled", true);
     			break;
     		case '<%= CodeConstant.DOKUSHIN %>':
     			$("#hitsuyoShatakuSetai").prop("checked", false);

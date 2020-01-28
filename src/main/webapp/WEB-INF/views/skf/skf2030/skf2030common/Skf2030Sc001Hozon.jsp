@@ -89,8 +89,12 @@ ${f:h(form.shatakuKikaku) }
 <tr>
 <th colspan="2"><nfwui:LabelBox id="lblRenrakusaki" code="<%= MessageIdConstant.SKF2030_SC001_RENRAKUSAKI %>" /></th>
 <td colspan="2">
+  <div style="float: left; width: 170px;">
 	<imui:textbox id="renrakuSaki" name="renrakuSaki" value="${f:h(form.renrakuSaki) }" maxlenght="13" style="width: 150px;" tabindex="4" />
+  </div>
+  <div style="margin-left: 170px; -ms-word-break: keep-all;">
 	<span style="color:red;">※搬入業者から連絡がありますので、連絡先は必ず入力してください。</span>
+  </div>
 	</td>
 </tr>
 <tr style="border:none">
@@ -154,9 +158,11 @@ ${f:h(form.shatakuKikaku) }
 	<td>${f:h(form.bihinState15) }</td>
 	<td colspan="2">
 	<nfwui:RadioButtonGroup id="bihinAppl15" >
-	 <nfwui:RadioButton id="bihinTrue15" name="bihinAppl15" value="2" label="申請する" /> 
-	 <nfwui:RadioButton id="bihinFalse15" name="bihinAppl15" value="1" label="申請しない" /> 
-	 <nfwui:LabelBox id="lblRiceCookComment" code="<%= MessageIdConstant.SKF2030_SC001_RICE_COOK_COMMENT %>" />
+	 <div style="float: left; width: 170px;">
+		<nfwui:RadioButton id="bihinTrue15" name="bihinAppl15" value="2" label="申請する" /> 
+	 	<nfwui:RadioButton id="bihinFalse15" name="bihinAppl15" value="1" label="申請しない" /> 
+	 </div>
+	 <div style="margin-left: 170px; -ms-word-break: keep-all;"><nfwui:LabelBox id="lblRiceCookComment" code="<%= MessageIdConstant.SKF2030_SC001_RICE_COOK_COMMENT %>" /></div>
 	</nfwui:RadioButtonGroup>
 	</td>
 </tr>

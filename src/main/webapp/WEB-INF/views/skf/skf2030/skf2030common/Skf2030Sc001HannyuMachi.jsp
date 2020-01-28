@@ -111,8 +111,12 @@
             <th colspan="4"><nfwui:LabelBox id="lblCompleteDate" code="<%= MessageIdConstant.SKF2030_SC001_COMPLETE_DATE %>" /></th>
                                     <td colspan="3">
 <imart:condition validity="<%= String.valueOf(form.isCompletionDayDisabled()) %>" negative>
+		<div style="float: left; width: 170px;">
                <nfwui:DateBox id="completionDay" name="completionDay" cssStyle="width: 150px;" />
+        </div>
+        <div style="margin-left: 170px;">
                <span style="color:red;">※備品の搬入が完了した日を入力してください</span>
+        </div>
 </imart:condition>
 <imart:condition validity="<%= String.valueOf(form.isCompletionDayDisabled()) %>">
                <imui:textbox id="completionDay" name="completionDay" value="${f:h(form.completionDay) }" cssStyle="width: 150px;" disabled="true" tabindex="5"  />
