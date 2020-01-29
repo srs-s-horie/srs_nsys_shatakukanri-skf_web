@@ -8,11 +8,14 @@
 <%@ taglib prefix="workflow" uri="http://www.intra-mart.co.jp/taglib/imw/workflow" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
+<%@ page import="java.util.Enumeration" %>
+<%@ page import="java.util.Map" %>
 
 <link rel="stylesheet" type="text/css" href="styles/skf/theme.css" />
 <%@ page import="jp.co.c_nexco.skf.skf2020.app.skf2020sc003.Skf2020Sc003Form" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.SessionCacheKeyConstant" %>
 <%  Skf2020Sc003Form form = (Skf2020Sc003Form)request.getAttribute("form"); %>
 
 <%-- コンテンツエリア --%>
@@ -136,6 +139,8 @@ $(function() {
     		$("input[name='hitsuyoShataku']:radio(:checked)").prop("disabled", false);
     		$("input[name='hitsuyoShataku']:radio:not(:checked)").prop("disabled", true);
     	});
+    	// 添付ファイル情報を初期表示する
+    	updateAttachedFileArea();
 	});
 	
 	// 添付ファイルリンクからのファイルダウンロード処理
@@ -160,11 +165,17 @@ $(function() {
 			$("a[id*='attached_']").bind("click", function(){
 				attachedFileDownload(this);
 			});
+			
 		});
 	}
 
+
+
 });
+
 </script>
+
+
 
     <!-- コンテンツエリア -->
     <div class="imui-form-container-wide" style="width: 95%" >
@@ -174,15 +185,7 @@ $(function() {
                             <td width="100px"><label>${form.applStatusText }</label></td>
                             <th width="100px"><nfwui:LabelBox id="lblAttachedFile" code="<%= MessageIdConstant.SKF2020_SC003_ATTACHED_FILE %>" /></th>
                             <td>
-                            <div id="shatakuAttachedFileAreaDiv" style="float:left;">
-<c:forEach var="objShataku" items="${form.shatakuAttachedFileList }">
-                            <a id="attached_${f:h(objShataku.attachedNo)}">${f:h(objShataku.attachedName)}</a>&nbsp;
-</c:forEach>
-							</div>
                             <div id="attachedFileAreaDiv">
-<c:forEach var="obj" items="${form.attachedFileList }">
-                            <a id="attached_${f:h(obj.attachedNo)}">${f:h(obj.attachedName)}</a>&nbsp;
-</c:forEach>
 							</div>
                             </td>
                       </tr>

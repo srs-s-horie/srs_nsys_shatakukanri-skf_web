@@ -61,11 +61,6 @@
 					<nfwui:LabelBox id="lblAttachedFile" code="<%= MessageIdConstant.SKF2010_SC006_LBL_ATTACHED_FILE %>" />
 				</th>
 				<td>
-					<div id="shatakuAttachedFileAreaDiv" style="float:left;">
-						<c:forEach var="objShataku" items="${form.shatakuAttachedFileList }">
-							<a id="attached_${f:h(objShataku.attachedNo)}">${f:h(objShataku.attachedName)}</a>&nbsp;
-						</c:forEach>
-					</div>
                     <div id="attachedFileAreaDiv">
 						<c:forEach var="obj" items="${form.attachedFileList }">
                             <a id="attached_${f:h(obj.attachedNo)}">${f:h(obj.attachedName)}</a>&nbsp;

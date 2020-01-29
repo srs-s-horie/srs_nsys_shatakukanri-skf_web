@@ -75,11 +75,15 @@ $(function() {
 		var map = new Object();
 		map['applNo'] = $("#applNo").val();
 		nfw.common.doAjaxAction("skf/Skf2010Sc006/AttachedFileAreaAsync", map, true, function(res){
-			$("#attachedFileAreaDiv").html(res.attachedFileArea);
-			
-			$("a[id^='attached_']").bind("click", function(){
-				attachedFileDownload(this);
-			});
+			if (res.attachedFileArea.length > 0) {
+				$("#attachedFileAreaDiv").html(res.attachedFileArea);
+				
+				$("a[id^='attached_']").bind("click", function(){
+					attachedFileDownload(this);
+				});
+			} else {
+				$("#attachedFileAreaDiv").remove();
+			}
 		});
 	}
 	
