@@ -376,7 +376,7 @@ $(function() {
                                                 </tr>
                                                 <tr>
                                                     <td style="text-align:left;">
-                                                        　                                                                       ${f:h(form.dokyoRelation3)}
+                                                        ${f:h(form.dokyoRelation3)}
                                                     </td>
                                                     <td style="text-align:left;">
                                                         ${f:h(form.dokyoName3)}
@@ -387,7 +387,7 @@ $(function() {
                                                 </tr>
                                                 <tr>
                                                     <td style="text-align:left;">
-                                                        　                                                                       ${f:h(form.dokyoRelation4)}
+                                                        ${f:h(form.dokyoRelation4)}
                                                     </td>
                                                     <td style="text-align:left;">
                                                         ${f:h(form.dokyoName4)}
@@ -398,7 +398,7 @@ $(function() {
                                                 </tr>
                                                 <tr>
                                                     <td style="text-align:left;">
-                                                        　                                                                       ${f:h(form.dokyoRelation5)}
+                                                        ${f:h(form.dokyoRelation5)}
                                                     </td>
                                                     <td style="text-align:left;">
                                                         ${f:h(form.dokyoName5)}
@@ -409,7 +409,7 @@ $(function() {
                                                 </tr>
                                                 <tr>
                                                     <td style="text-align:left;">
-                                                        　                                                                       ${f:h(form.dokyoRelation6)}
+                                                        ${f:h(form.dokyoRelation6)}
                                                     </td>
                                                     <td style="text-align:left;">
                                                         ${f:h(form.dokyoName6)}

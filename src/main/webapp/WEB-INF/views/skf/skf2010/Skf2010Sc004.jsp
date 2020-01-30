@@ -70,8 +70,11 @@ function back1() {
 				map['applStatus'] = $("#applStatus").val();
 				map['shainNo'] = $("#hdnShainNo").val();
 				map['bihinKibo'] = $("#bihinKibo").val();
+				map['nyukyobi'] = $("#nyukyobi").val();
 				map['taikyobi'] = $("#taikyobi").val();
 				map['henkanbi'] = $("#henkanbi").val();
+				map['shiyobi'] = $("#shiyobi").val();
+				map['shiyobi2'] = $("#shiyobi2").val();
 				map['commentNote'] = $("#commentNote").val();
 				nfw.common.doAjaxAction("skf/Skf2010Sc004/AgreeAsync", map, true, function(res){
 					if (res.dialogFlg) {
