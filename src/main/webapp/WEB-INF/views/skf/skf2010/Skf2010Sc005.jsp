@@ -38,6 +38,7 @@
         $("#agency").change(function() {
         	var map = new Object();
         	map['agency'] = $("#agency").val();
+        	map['shozokuKikan'] = $("input[name='shozokuKikan']:checked").val();
         	
         	nfw.common.doAjaxAction("skf/Skf2010Sc005/ChangeDropDownAsync", map, true, function(data) {
         		$("#affiliation1").imuiSelect("replace", data.ddlAffiliation1List);
@@ -49,11 +50,23 @@
         	var map = new Object();
         	map['agency'] = $("#agency").val();
         	map['affiliation1'] = $("#affiliation1").val();
+        	map['shozokuKikan'] = $("input[name='shozokuKikan']:checked").val();
         	
         	nfw.common.doAjaxAction("skf/Skf2010Sc005/ChangeDropDownAsync", map, true, function(data) {
         		$("#affiliation2").imuiSelect("replace", data.ddlAffiliation2List);
         	});
         });
+        // 所属機関を変更した場合、ドロップダウンを初期化
+        $("input[name='shozokuKikan']").change(function(){
+        	var map = new Object();
+        	
+        	nfw.common.doAjaxAction("skf/Skf2010Sc005/ChangeDropDownAsync", map, true, function(data) {
+        		$("#agency").val("");
+        		$("#affiliation1").imuiSelect("replace", data.ddlAffiliation1List);
+        		$("#affiliation2").imuiSelect("replace", data.ddlAffiliation2List);
+        	});
+        });
+        
         
         // 申請状況の「全選択」ボタン押下時のイベント
         $("#allCheck").click(function() {

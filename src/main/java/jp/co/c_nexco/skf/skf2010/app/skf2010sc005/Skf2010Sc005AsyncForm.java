@@ -59,4 +59,6 @@ public class Skf2010Sc005AsyncForm extends AsyncBaseForm {
 
 	/** 検索結果一覧 */
 	private List<Map<String, Object>> ltResultList;
+
+	private String shozokuKikan;
 }
