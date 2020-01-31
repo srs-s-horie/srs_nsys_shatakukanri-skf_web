@@ -10,11 +10,14 @@
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
+<script src="scripts/skf/skfCommon.js"></script>
+<link rel="stylesheet" type="text/css" href="styles/skf/listTableStyle.css" />
 
 <%-- コンテンツエリア --%>
 <style type="text/css">
-.im-ui-icon-common-16-update {
-cursor : pointer;
+.ui-jqgrid .ui-jqgrid-htable th div{
+	height: 34px;
+    white-space:normal;
 }
 </style>
 
@@ -38,22 +41,8 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 	  }
     return style;
 }
-/**
-* メニュー画面へ遷移する。
-*/
-function back() {
-	showConfirm(W_GFK_0007, function() {
-		$.StandardPost("../common/top.html");
-	});
-}
 </script>
 
-<style>
-.ui-jqgrid .ui-jqgrid-htable th div{
-	height: 34px;
-    white-space:normal;
-}
-</style>
 <!-- コンテンツエリア -->
 <div style="width: 100%; margin: auto;">
 <table align="center">
@@ -64,8 +53,7 @@ function back() {
                 <table class="imui-form-search-condition">
                     <td class="imui-form-container-wide" style="width: 45%; border: none;background-color: #fdfdff;" >
                        <nfwui:Title id="lblSearchTitle" code="<%= MessageIdConstant.SKF2010_SC003_SEARCH_TITLE %>" titleLevel="2" />
-                            <nfwui:Form id="form" name="form" modelAttribute="form">
-                            <input type="hidden" name="backUrl" value="skf/Skf2010Sc003/init" />
+                            <nfwui:Form id="form" name="form" modelAttribute="form" encType="multipart/form-data">
                                 <table class="imui-form-search-condition">
                                 検索条件を指定し、<span style="font-weight: bold;color:green;">「申請状況を確認」</span>をクリックしてください。
                                     <tr>
