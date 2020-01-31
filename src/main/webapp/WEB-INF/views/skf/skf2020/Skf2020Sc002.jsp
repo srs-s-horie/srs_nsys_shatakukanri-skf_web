@@ -1360,44 +1360,12 @@ function mesDisplayControl(isShow){
 				$('#rdoHitsuyoSetai').prop('disabled', false);
 				$('#rdoHitsuyoTanshin').prop('disabled', false);
 				
-				$('#dokyoRelation1').prop('disabled', true);
-				$('#dokyoName1').prop('disabled', true);
-				$('#dokyoAge1').prop('disabled', true);
-				$('#dokyoRelation2').prop('disabled', true);
-				$('#dokyoName2').prop('disabled', true);
-				$('#dokyoAge2').prop('disabled', true);
-				$('#dokyoRelation3').prop('disabled', true);
-				$('#dokyoName3').prop('disabled', true);
-				$('#dokyoAge3').prop('disabled', true);
-				$('#dokyoRelation4').prop('disabled', true);
-				$('#dokyoName4').prop('disabled', true);
-				$('#dokyoAge4').prop('disabled', true);
-				$('#dokyoRelation5').prop('disabled', true);
-				$('#dokyoName5').prop('disabled', true);
-				$('#dokyoAge5').prop('disabled', true);
-				$('#dokyoRelation6').prop('disabled', true);
-				$('#dokyoName6').prop('disabled', true);
-				$('#dokyoAge6').prop('disabled', true);
+				// 同居人情報の欄を非活性（世帯が選択されていないため）
+				$("input[id^='dokyo']").prop('disabled', true);
 						
 				$('#rdoHitsuyoSetai').prop('checked', false)
 				$('#rdoHitsuyoTanshin').prop('checked', false)
 				$('#rdoHitsuyoDokushin').prop('checked', false);
-		     }
-		 });
-		
-		$('#rdoHitsuyoSetai').click(function() {
-			//必要とする社宅-世帯にチェックがある場合
-			if($("#rdoHitsuyoSetai").prop('checked')) {
-				$('#rdoKikon').prop('disabled', true);
-				$('#rdoKikon').prop('checked', false);
-		     }
-		 });
-		
-		$('#rdoHitsuyoTanshin').click(function() {
-			//必要とする社宅-単身にチェックがある場合
-			if($("#rdoHitsuyoTanshin").prop('checked')) {
-				$('#rdoKikon').prop('disabled', true);
-				$('#rdoKikon').prop('checked', false);
 		     }
 		 });
 		

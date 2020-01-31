@@ -70,11 +70,21 @@ function back1() {
 				map['applStatus'] = $("#applStatus").val();
 				map['shainNo'] = $("#hdnShainNo").val();
 				map['bihinKibo'] = $("#bihinKibo").val();
-				map['nyukyobi'] = $("#nyukyobi").val();
-				map['taikyobi'] = $("#taikyobi").val();
-				map['henkanbi'] = $("#henkanbi").val();
-				map['shiyobi'] = $("#shiyobi").val();
-				map['shiyobi2'] = $("#shiyobi2").val();
+				if ($("#nyukyobi").val() != null) {
+					map['nyukyobi'] = $("#nyukyobi").val().replace(/\//g, "");
+				}
+				if ($("#taikyobi").val() != null) {
+					map['taikyobi'] = $("#taikyobi").val().replace(/\//g, "");
+				}
+				if ($("#henkanbi").val() != null) {
+					map['henkanbi'] = $("#henkanbi").val().replace(/\//g, "");
+				}
+				if ($("#shiyobi").val() != null) {
+					map['shiyobi'] = $("#shiyobi").val().replace(/\//g, "");
+				}
+				if ($("#shiyobi2").val() != null) {
+					map['shiyobi2'] = $("#shiyobi2").val().replace(/\//g, "");
+				}
 				map['commentNote'] = $("#commentNote").val();
 				nfw.common.doAjaxAction("skf/Skf2010Sc004/AgreeAsync", map, true, function(res){
 					if (res.dialogFlg) {
