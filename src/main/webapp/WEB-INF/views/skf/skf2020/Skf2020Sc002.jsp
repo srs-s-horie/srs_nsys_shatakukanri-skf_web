@@ -1664,7 +1664,7 @@ function mesDisplayControl(isShow){
     		if(prePageId=="Skf2010Sc007"){
     			//入居希望等調書申請
     			url = "skf/Skf2010Sc007/init?SKF2010_SC007&tokenCheck=0";
-    		}else if(prePageId=="Skf2020Sc002" || prePageId=="Skf2010Sc004"){
+    		}else if(prePageId=="Skf2020Sc002"){
     			//申請条件一覧
     			url="skf/Skf2010Sc003/init?SKF2010_SC003";
 			}
