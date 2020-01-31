@@ -169,6 +169,8 @@
 					});
 					
 					agencyCheckConfrim = function() {
+						//エラーメッセージ削除
+						$(".imui-box-caution, .imui-box-warning").remove();
 						// 会社と機関コード以外の内容が入力されているかの確認ダイアログ表示判定 yes:あり no:なし
 						var sRegistCompanyCd = $("#registCompanyCd").val();
 						var sRegistAgencyCd = $("#registAgencyCd").val();
@@ -220,6 +222,8 @@
 				}
 					
 					affiliation1CheckConfrim = function() {
+						//エラーメッセージ削除
+						$(".imui-box-caution, .imui-box-warning").remove();
 						// 会社と機関コードと部等コード以外の内容が入力されているかの確認ダイアログ表示判定 yes:あり no:なし
 						var sRegistCompanyCd = $("#registCompanyCd").val();
 						var sRegistAgencyCd = $("#registAgencyCd").val();
