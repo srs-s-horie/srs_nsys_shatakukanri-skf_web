@@ -148,7 +148,7 @@
 				<li><a href="#keiyaku_info">契約情報</a></li>
 			</ul>
 			<div id="kihon_info">
-				<nfwui:Table use="input">
+				<nfwui:Table use="search">
 					<tbody>
 						<!--利用区分-->
 						<tr>

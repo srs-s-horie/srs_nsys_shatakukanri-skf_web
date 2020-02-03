@@ -10,6 +10,7 @@
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
+<link rel="stylesheet" type="text/css" href="styles/skf/listTableStyle.css" />
 
 <%-- コンテンツエリア --%>
 <style type="text/css">

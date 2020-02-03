@@ -11,6 +11,7 @@
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
+<link rel="stylesheet" type="text/css" href="styles/skf/listTableStyle.css" />
 
 <style type="text/css">
 .ui-jqgrid .ui-jqgrid-bdiv {
@@ -195,12 +196,12 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 						<cols sortable="false">
 						<col name="colChkSelect" caption="督促" hidden="true"/>
 						<col name="colNyutaikyoKbn" caption="入退居区分" width="50" sortable="false" align="center" wrap="true"/>
-						<col name="colShainNo" caption="社員番号" width="75" sortable="false" align="left" wrap="true"/>
+						<col name="colShainNo" caption="社員番号" width="80" sortable="false" align="left" wrap="true"/>
 						<col name="colShainName" caption="社員氏名" width="95" sortable="false" align="left" wrap="true"/>
 						<col name="colSinseiKbn" caption="申請区分"　width="55" sortable="false" align="center" wrap="true"/>
 						<col name="colNyukyoDate" caption="入居予定日" width="85" sortable="false" align="center" wrap="true"/>
 						<col name="colTaikyoDate" caption="退居予定日"  width="85" sortable="false" align="center" wrap="true"/>
-						<col name="colShatakuName" caption="社宅名" width="140" sortable="false" align="left" wrap="true"/>
+						<col name="colShatakuName" caption="社宅名" width="135" sortable="false" align="left" wrap="true"/>
 						<col name="colRoomNo" caption="部屋番号" width="60" sortable="false" align="left" wrap="true"/>
 						<col name="colYouto" caption="用途" width="35" sortable="false" align="center" wrap="true"/>
 						<col name="colStJyokyo" caption="状況" width="60" sortable="false" align="center" wrap="true" onCellAttr="onCellAttr"/>
