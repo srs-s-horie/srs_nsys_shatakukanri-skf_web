@@ -375,7 +375,9 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 								<showIcon iconClass="im-ui-icon-common-16-trashbox" align="center" />
 							</col>
 							<col name="col16" caption="更新日時" hidden="true" />
-							
+							<col name="col17" caption="入居フラグ(取得値)" hidden="true" />
+							<col name="col18" caption="退居フラグ(取得値)" hidden="true" />
+							<col name="col19" caption="変更フラグ(取得値)" hidden="true" />
 						</cols>
 					</imui:listTable>
 				</nfwui:CheckBoxGroupTag>
