@@ -26,7 +26,8 @@
 		<input type="hidden" name="backMsg" id="backMsg" value="${form.backMsg}" />
 		<input type="hidden" id="hdnRowShainNo" name="hdnRowShainNo" value="${form.hdnRowShainNo}" />
 		<input type="hidden" id="hdnSelShainNo" name="hdnSelShainNo" value="${form.hdnSelShainNo}" />
-		
+		<input type="hidden" id="insertFormName" name="insertFormName" value="" />
+		<input type="hidden" id="callbackFlag" name="callbackFlag" value="" />
 		<table class="imui-form-search-condition">
 			<tbody>
 				<tr>
@@ -34,13 +35,12 @@
 						<label style="width:80px;">社員番号</label>
 					</th>
 					<td colspan="2" style="width:95%;">
-						<imui:textbox id="txtShainNo" name="txtShainNo" class="ime-off" style="width:200px; background:#ffead6;" type="text" readonly="true" value="${form.txtShainNo}" maxlength="8" placeholder="例 00123456（半角）"/>
+						<imui:textbox id="shainNo" name="shainNo" class="ime-off" style="width:200px; background:#ffead6;" type="text" readonly="true" value="${form.shainNo}" maxlength="8" placeholder="例 00123456（半角）"/>
 						<nfwui:PopupButton id="btnShainNyuryoku" name="btnShainNyuryoku"
 								value="社員入力支援" disabledPatterns="CREATED"
 								cssClass="imui-small-button" use="popup"
-								screenUrl="skf/Skf2010Sc001/init"
-								parameter="shainNo:shainNo" popupWidth="650"
-								popupHeight="700" modalMode="false" />
+								screenUrl="skf/Skf2010Sc001/init" popupWidth="650"
+								popupHeight="700" modalMode="true" preOnclick="setShainShienPreparation()"/>
 						<%-- <input id="btnShainNyuryoku" class="imui-small-button" type="button" value="社員入力支援" /> --%>
 						<nfwui:Button id="btnKariShainNo" cssClass="imui-small-button" url="skf/Skf3020Sc005/set" formId="form" value="仮社員番号設定" disabledPatterns="CHANGE,CREATED" />
 						<%-- <input id="btnKariShainNo" class="imui-small-button" type="button" value="仮社員番号設定" /> --%>
@@ -178,14 +178,24 @@
 					/*
 					 * 社員入力支援 コールバック関数
 					 */
-					shainInfoCallback = function(param){
-				        if( param != null && typeof param == 'object' && param.name != null){
+					shainInfoCallback = function(){
+				        //if( param != null && typeof param == 'object' && param.name != null){
 				        	// 社員入力支援にて選択された社員番号
-				        	$("#hdnSelShainNo").val(param.shainNo);
-				        	nfw.common.submitForm("form", "skf/Skf3020Sc005/support");
-				        }
+				        $("#txtShainNo").val($("#shainNo").val());
+				        $("#txtShainNo").text($("#shainNo").val());
+				        	//nfw.common.submitForm("form", "skf/Skf3020Sc005/support");
+				        //}
 					}
 					
+					// 社員入力支援クリック
+					setShainShienPreparation = function() {
+						// 種別判定
+						// 社員番号入力支援
+						$("#insertFormName").val("txtShainMei");
+						//$("#callbackFlag").val("true");
+
+					}
+
 					// 画面項目設定
 					setControlStatus();
 	
