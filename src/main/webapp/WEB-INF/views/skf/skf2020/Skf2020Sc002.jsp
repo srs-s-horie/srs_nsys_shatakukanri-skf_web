@@ -512,7 +512,7 @@
 													<nfwui:LabelBox id="lblHead2ndParkingUseDate" code="<%= MessageIdConstant.SKF2020_SC002_2ST_PARKING_USE_DATE %>" />
 												</th>
 												<td colspan="1">
-													<nfwui:DateBox id="parkingUseDate2" name="parkingUseDate2" value="${f:h(form.carExpirationDate2)}"
+													<nfwui:DateBox id="parkingUseDate2" name="parkingUseDate2" value="${f:h(form.parkingUseDate2)}"
 														 tabindex="43" disabled="true" cssStyle="width:100px"/>
 												</td>
 											</tr> 
