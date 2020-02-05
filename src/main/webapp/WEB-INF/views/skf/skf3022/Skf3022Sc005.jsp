@@ -315,7 +315,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
  									// 削除パラメータ
  									var delTeijiNo = row.hdnTeijiNo;
  									var delShainNo = row.colShainNo;
- 									var delNyutaikyoKbn = row.dhnNyutaikyoKbnCd;
+ 									var delNyutaikyoKbn = row.hdnNyutaikyoKbnCd;
  									var delUpdateDate = row.hdnUpdateDate;
  									var delUpdateDateNtk = row.hdnUpdateDateNtk;
  									var delUpdateDateShataku = row.hdnUpdateDateShataku;
