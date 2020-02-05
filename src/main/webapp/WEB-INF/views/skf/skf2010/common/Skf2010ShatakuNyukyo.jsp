@@ -63,7 +63,7 @@
 				<td width="220px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝">${f:h(form.nowAffiliation2)}</td>
 			</tr>
 			<tr>
-				<td style="font-size: 120%;font-family: ＭＳ Ｐ明朝">勤務先のTEL</td>
+				<td style="font-size: 120%;font-family: ＭＳ Ｐ明朝">TEL</td>
 				<td width="220px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝">${f:h(form.nowTel)}</td>
 			</tr>
 			<tr>
