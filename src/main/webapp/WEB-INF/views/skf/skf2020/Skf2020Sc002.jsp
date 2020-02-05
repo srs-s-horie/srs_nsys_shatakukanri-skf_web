@@ -400,7 +400,7 @@
 												</th>
 												<td colspan="3">
 													<imui:textbox id="carName" name="carName"  value="${f:h(form.carName)}"
-													 style="width: 50%;" placeholder="例 プリウス" disabled="true" tabindex="33"/>
+													 style="width:200px;" placeholder="例 プリウス" disabled="true" tabindex="33"/>
 												</td>
 											</tr>
 											<!-- 自動車の登録番号 -->
@@ -410,7 +410,7 @@
 												</th>
 												<td colspan="3">
 													<imui:textbox id="carNo" name="carNo"  value="${f:h(form.carNo)}"
-													 style="width: 50%;" placeholder="例 名古屋 300 あ 1235" disabled="true" tabindex="34"/>
+													 style="width:200px;" placeholder="例 名古屋 300 あ 1235" disabled="true" tabindex="34"/>
 												</td>
 											</tr>
 											<!-- 車検の有効期間満了日 -->																	
@@ -430,7 +430,7 @@
 												</th>
 												<td colspan="3">
 													<imui:textbox id="carUser" name="carUser"  value="${f:h(form.carUser)}"
-													 style="width: 50%;" placeholder="例 中日本 太郎" disabled="true" tabindex="36"/>
+													 style="width:200px;" placeholder="例 中日本 太郎" disabled="true" tabindex="36"/>
 												</td>
 											</tr>
 											<!-- 自動車の保管場所使用開始日（予定日） -->
@@ -452,7 +452,7 @@
 												<th colspan="2">
 													<nfwui:LabelBox id="lblHead2ndCarNoInputFlg" code="<%= MessageIdConstant.SKF2020_SC002_2ST_CAR_NO_INPUT_FLG %>" />
 												</th>
-												<td colspan="2" >
+												<td colspan="1" >
 													<nfwui:RadioButtonGroup id="carNoInputFlg2" dynamicMaskList="carNoInputFlg2Dynam" tabindex="38">
 														<nfwui:RadioButton name="carNoInputFlg2" id="rdo2stCarHoyu" label="保有している" value="<%= CodeConstant.CAR_HOYU %>"
 															disabled="${form.rdo2stCarHoyuDisabled}" checked="${form.rdo2stCarHoyuChecked}" tabindex="38"/>
@@ -460,7 +460,7 @@
 															disabled="${form.rdo2stCarHoyuDisabled}" checked="${form.rdo2stCarYoteiChecked}" tabindex="38"/>
 													</nfwui:RadioButtonGroup>
 												</td>
-												<td rowspan="6" colspan="1" style="color:red;">
+												<td rowspan="6" colspan="2" style="color:red;">
 													<div>
 														<nfwui:LabelBox id="lbl2ndExplanationCar" code="<%= MessageIdConstant.SKF2020_SC002_2ND_EXPLANATION_CAR %>" />
 													</div>
@@ -471,9 +471,9 @@
 												<th colspan="2">
 													<nfwui:LabelBox id="lblHead2ndCarName" code="<%= MessageIdConstant.SKF2020_SC002_2ST_CAR_NAME %>" />
 												</th>
-												<td colspan="2">
+												<td colspan="1">
 													<imui:textbox id="carName2" name="carName2" 
-														value="${f:h(form.carName2)}" style="width: 85%;" placeholder="例 プリウス" disabled="true" tabindex="39"/>
+														value="${f:h(form.carName2)}" style="width:200px;" placeholder="例 プリウス" disabled="true" tabindex="39"/>
 												</td>
 											</tr>
 											<!-- 自動車の登録番号 --> 
@@ -481,9 +481,9 @@
 												<th colspan="2">
 													<nfwui:LabelBox id="lblHead2ndCarNo" code="<%= MessageIdConstant.SKF2020_SC002_2ST_CAR_NO %>" />
 												</th>
-												<td colspan="2">
+												<td colspan="1">
 												<imui:textbox id="carNo2" name="carNo2" 
-													value="${f:h(form.carNo2)}" style="width: 85%;" placeholder="例 名古屋 300 あ 1235" disabled="true" tabindex="40"/>
+													value="${f:h(form.carNo2)}" style="width:200px;" placeholder="例 名古屋 300 あ 1235" disabled="true" tabindex="40"/>
 												</td>
 											</tr>
 											<!-- 車検の有効期間満了日 -->																	
@@ -491,7 +491,7 @@
 												<th colspan="2">
 													<nfwui:LabelBox id="lblHead2ndCarExpirationDate" code="<%= MessageIdConstant.SKF2020_SC002_2ST_CAR_EXCEPTION_DATA %>" />
 												</th>
-												<td colspan="2">
+												<td colspan="1">
 													<nfwui:DateBox id="carExpirationDate2" name="carExpirationDate2" value="${f:h(form.carExpirationDate2)}"
 														 tabindex="41" disabled="true" cssStyle="width:100px"/>
 												</td>
@@ -501,9 +501,9 @@
 												<th colspan="2">
 													<nfwui:LabelBox id="lblHead2ndCarUser" code="<%= MessageIdConstant.SKF2020_SC002_2ST_CAR_USE %>" />
 												</th>
-												<td colspan="2">
+												<td colspan="1">
 													<imui:textbox id="carUser2" name="carUser2"  value="${f:h(form.carUser2)}" 
-														style="width: 85%;" placeholder="例 中日本 太郎" disabled="true" tabindex="42"/>
+														style="width:200px;" placeholder="例 中日本 太郎" disabled="true" tabindex="42"/>
 												</td>
 											</tr>
 											<!-- 自動車の保管場所使用開始日（予定日） -->
@@ -511,7 +511,7 @@
 												<th colspan="2">
 													<nfwui:LabelBox id="lblHead2ndParkingUseDate" code="<%= MessageIdConstant.SKF2020_SC002_2ST_PARKING_USE_DATE %>" />
 												</th>
-												<td colspan="2">
+												<td colspan="1">
 													<nfwui:DateBox id="parkingUseDate2" name="parkingUseDate2" value="${f:h(form.carExpirationDate2)}"
 														 tabindex="43" disabled="true" cssStyle="width:100px"/>
 												</td>
@@ -601,7 +601,9 @@
 													<nfwui:LabelBox id="lblHead" code="<%= MessageIdConstant.SKF2020_SC002_TOKUSHU_JIJO %>" />
 												</th>
 												<td colspan="3">
-													<imui:textArea id="tokushuJijo" name="tokushuJijo" value="${form.tokushuJijo}" tabindex="46"/>
+													<imui:textArea id="tokushuJijo" name="tokushuJijo" value="${form.tokushuJijo}" tabindex="46"
+														style="width: 90%; height:100px"
+														placeholder="例　希望地域、間取り、階層、具体の社宅名、車の規格（車高 X 車幅）など記入"/>
 												</td>
 											</tr>                            	
 										<!-- 現保有社宅 -->   
@@ -869,17 +871,22 @@ function rdoCarUmuDisabled(ischecked){
 }
 
 /**
- * 自動車の保有の活性制御
+ * 自動車の保有の活性制御 チェック制御
  * disabled:非活性　abled:活性
  */ 
 function rdoCarHoyuDisabled(ischecked){
 	
     if(ischecked == "disabled"){
+			$('#rdo1stCarHoyu').attr('checked', false);
+			$('#rdo1stCarYotei').attr('checked', false);
+			$('#rdo2stCarHoyu').attr('checked', false);
+			$('#rdo2stCarYotei').attr('checked', false);
+	    		
 			$('#rdo1stCarHoyu').prop('disabled', true);
 			$('#rdo1stCarYotei').prop('disabled', true);
 			$('#rdo2stCarHoyu').prop('disabled', true);
 			$('#rdo2stCarYotei').prop('disabled', true);
-      } else {
+      } else {			
 			$('#rdo1stCarHoyu').prop('disabled', false);
 			$('#rdo1stCarYotei').prop('disabled', false);
 			$('#rdo2stCarHoyu').prop('disabled', false);
