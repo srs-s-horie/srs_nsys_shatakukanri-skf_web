@@ -263,7 +263,7 @@
                                     </th>
                                     <td colspan="2">
                                         <imui:textbox id="renrakuSaki" name="renrakuSaki" 
-                                                      value="${f:h(form.renrakuSaki)}" style="width: 90%;" placeholder="例 090-0000-0000"  
+                                                      value="${f:h(form.renrakuSaki)}" style="width: 90%; ime-mode:disabled;" placeholder="例 090-0000-0000"  
                                                       css="${f:h(form.renrakuSakiErr)}"
                                                       disabled="${form.renrakuSakiDisabled}" tabindex="10" />
                                         <br>

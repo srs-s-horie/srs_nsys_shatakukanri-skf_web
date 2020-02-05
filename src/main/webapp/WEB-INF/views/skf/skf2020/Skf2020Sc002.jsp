@@ -91,7 +91,7 @@
 												<nfwui:LabelBox id="lblHeadTel" code="<%= MessageIdConstant.SKF2020_SC002_TEL %>" />
 											</th>
 											<td colspan="3">
-												<imui:textbox id="tel" name="tel" value="${f:h(form.tel)}" style="width: 50%;" 
+												<imui:textbox id="tel" name="tel" value="${f:h(form.tel)}" style="width: 50%; ime-mode:disabled;" 
 												 	placeholder="例　84-3549（半角）" tabindex="1"/>
 											</td>
 										</tr>			
@@ -274,7 +274,7 @@
 																</td>
 																<td style="text-align:center;">
 																	<imui:textbox id="dokyoAge1" name="dokyoAge1" value="${f:h(form.dokyoAge1)}" 
-																		style="width: 90%;" placeholder="例 半角数字" disabled="true" tabindex="14"/>
+																		style="width: 90%; ime-mode:disabled;" placeholder="例 半角数字" disabled="true" tabindex="14"/>
 																</td>
 															</tr>
 															<tr>
@@ -288,7 +288,7 @@
 																</td>
 																<td style="text-align:center;">
 																	<imui:textbox id="dokyoAge2" name="dokyoAge2" value="${f:h(form.dokyoAge2)}" 
-																		style="width: 90%;" placeholder="例 半角数字" disabled="true" tabindex="17"/>
+																		style="width: 90%; ime-mode:disabled;" placeholder="例 半角数字" disabled="true" tabindex="17"/>
 															    </td>
 															</tr>
 															<tr>
@@ -302,7 +302,7 @@
 																</td>
 																<td style="text-align:center;">
 																	<imui:textbox id="dokyoAge3" name="dokyoAge3" value="${f:h(form.dokyoAge3)}" 
-																	 style="width: 90%;" placeholder="例 半角数字" disabled="true" tabindex="20"/>
+																	 style="width: 90%; ime-mode:disabled;" placeholder="例 半角数字" disabled="true" tabindex="20"/>
 														    	</td>
 															</tr>
 															<tr>
@@ -316,7 +316,7 @@
 																</td>
 																<td style="text-align:center;">
 																	<imui:textbox id="dokyoAge4" name="dokyoAge4" value="${f:h(form.dokyoAge4)}" 
-																		 style="width: 90%;" placeholder="例 半角数字" disabled="true" tabindex="23" />
+																		 style="width: 90%; ime-mode:disabled;" placeholder="例 半角数字" disabled="true" tabindex="23" />
 																</td>
 															</tr>
 															<tr>
@@ -330,7 +330,7 @@
 																</td>
 																<td style="text-align:center;">
 																	<imui:textbox id="dokyoAge5" name="dokyoAge5" 
-																	 value="${f:h(form.dokyoAge5)}" style="width: 90%;" placeholder="例 半角数字" disabled="true" tabindex="26"/>
+																	 value="${f:h(form.dokyoAge5)}" style="width: 90%; ime-mode:disabled;" placeholder="例 半角数字" disabled="true" tabindex="26"/>
 																</td>
 															</tr>
 															<tr>
@@ -344,7 +344,7 @@
 																</td>
 																<td style="text-align:center;">
 																	<imui:textbox id="dokyoAge6" name="dokyoAge6" 
-																	value="${f:h(form.dokyoAge6)}" style="width: 90%;" placeholder="例 半角数字" disabled="true" tabindex="29"/>
+																	value="${f:h(form.dokyoAge6)}" style="width: 90%; ime-mode:disabled;" placeholder="例 半角数字" disabled="true" tabindex="29"/>
 																</td>
 															</tr>
 														</tbody>
@@ -665,7 +665,7 @@
 												</th>
 												<td colspan="3">
 													<imui:textArea id="taikyogoRenrakuSaki" name="taikyogoRenrakuSaki" 
-														value="${form.taikyogoRenrakuSaki}" style="width: 90%;" placeholder="例 090-0000-0000" disabled="true"
+														value="${form.taikyogoRenrakuSaki}" style="width: 90%; ime-mode:disabled;" placeholder="例 090-0000-0000" disabled="true"
 														 tabindex="52"/>
 												</td>
 											</tr>
@@ -804,6 +804,9 @@ function rdoHitsuyoDisabled(ischecked){
 			$('#rdoHitsuyoIdo').prop('disabled', true);
 			$('#rdoHitsuyoKekkon').prop('disabled', true);
 			$('#rdoHitsuyoSonota').prop('disabled', true);
+			$('#rdoHitsuyoIdo').prop('checked', false);
+			$('#rdoHitsuyoKekkon').prop('checked', false);
+			$('#rdoHitsuyoSonota').prop('checked', false);
       } else {
 	  		$('#rdoHitsuyoIdo').prop('disabled', false);
 			$('#rdoHitsuyoKekkon').prop('disabled', false);
@@ -821,6 +824,9 @@ function rdoFuyouDisabled(ischecked){
 		$('#rdoFuyouJitakutsuukinn').prop('disabled', true);
 		$('#rdoFuyouJikokariage').prop('disabled', true);
 		$('#rdoFuyouSonota').prop('disabled', true);
+		$('#rdoFuyouJitakutsuukinn').prop('checked', false);
+		$('#rdoFuyouJikokariage').prop('checked', false);
+		$('#rdoFuyouSonota').prop('checked', false);
       } else {
 		$('#rdoFuyouJitakutsuukinn').prop('disabled', false);
 		$('#rdoFuyouJikokariage').prop('disabled', false);
@@ -837,9 +843,11 @@ function rdoHitsuyoShatakuDisabled(ischecked){
     if(ischecked == "disabled"){
 		$('#rdoKikon').prop('disabled', true);
 		$('#rdoHitsuyoDokushin').prop('disabled', true);
+		$('#rdoKikon').prop('checked', false);
+		$('#rdoHitsuyoDokushin').prop('checked', false);
       } else {
-			$('#rdoKikon').prop('disabled', false);
-			$('#rdoHitsuyoDokushin').prop('disabled', false);
+		$('#rdoKikon').prop('disabled', false);
+		$('#rdoHitsuyoDokushin').prop('disabled', false);
       }
 }
 
@@ -850,11 +858,13 @@ function rdoHitsuyoShatakuDisabled(ischecked){
 function rdoCarUmuDisabled(ischecked){
 	
     if(ischecked == "disabled"){
-			$('#rdoCarHitsuyo').prop('disabled', true);
-			$('#rdoCarFuyo').prop('disabled', true);
+		$('#rdoCarHitsuyo').prop('disabled', true);
+		$('#rdoCarFuyo').prop('disabled', true);
+		$('#rdoCarHitsuyo').prop('checked', false);
+		$('#rdoCarFuyo').prop('checked', false);
       } else {
-			$('#rdoCarHitsuyo').prop('disabled', false);
-			$('#rdoCarFuyo').prop('disabled', false);
+		$('#rdoCarHitsuyo').prop('disabled', false);
+		$('#rdoCarFuyo').prop('disabled', false);
       }
 }
 
@@ -1165,6 +1175,10 @@ function mesDisplayControl(isShow){
 				$('#rdoHitsuyoSetai').prop('disabled', true);
 				$('#rdoHitsuyoTanshin').prop('disabled', true);
 				$('#rdoHitsuyoDokushin').prop('disabled', true);
+				$('#rdoKikon').prop('checked', false);
+				$('#rdoHitsuyoSetai').prop('checked', false);
+				$('#rdoHitsuyoTanshin').prop('checked', false);
+				$('#rdoHitsuyoDokushin').prop('checked', false);
 				//自動車の保有　非活性
 				rdoCarHoyuDisabled("disabled");				
 				$('#rdoCarFuyo').prop('checked', true);　//駐車場を必要とするか
@@ -1470,6 +1484,13 @@ function mesDisplayControl(isShow){
 				//社宅が不要の場合は、退去項目を非表示
 				if ($("#rdoFuyou").attr("checked")) {
 					$("#shatakuStatus,#taikyoRiyuInfo,#trTaikyogoRenrakuSaki,#returnEquipment,#returnWitnessRequestDate,#trRenrakuSaki").hide();	
+				}
+				
+				// 「社宅の必要理由」活性非活性制御
+				// 初期表示時、「社宅の必要理由」の選択状態が「世帯」「単身」だった場合、「既婚」にもチェックを入れる
+				if($("#rdoHitsuyoSetai, #rdoHitsuyoTanshin").is(":checked")) {
+					$("#rdoKikon").prop("checked", true);
+					$("#rdoKikon").prop("disabled", false);
 				}
 				
 			});
