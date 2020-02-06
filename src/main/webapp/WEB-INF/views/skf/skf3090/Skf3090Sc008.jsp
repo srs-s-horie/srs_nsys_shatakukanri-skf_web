@@ -19,25 +19,13 @@
 <style type="text/css">
 </style>
 
-<script type="text/javascript">
-  (function($){
-    $.imui.util.loadCSS("../../ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
-  })(jQuery);
-</script>
-
 <!-- コンテンツエリア -->
 <nfwui:Form id="form" name="form" modelAttribute="form">
-<div class="imui-form-container-wide" style="width: 95%;">
+<div class="imui-form-container-wide" style="width: 95%; min-width:1575px;">
 		<table class="imui-form-search-condition">
 			<tbody>
 				<tr>
 					<td style="width: 70%; border: none; background-color: #fdfdff;">
-						<script type="text/javascript">
-						  (function($){
-						    $.imui.util.loadCSS("ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
-						  })(jQuery);
-						</script>
-
 						<div id="listTableArea">
 							<imui:listTable id="informationDataList" process="java" autoEncode="false" autoWidth="true" rowNumbers="true"
 								autoResize="true" onCellSelect="onCellSelect"
@@ -58,7 +46,7 @@
 						</div>
 
 					</td>
-					<td style="width: 30%; border: none; background-color: #fdfdff;">
+					<td style="width: 30%; border: none; background-color: #fdfdff; min-width: 300px;">
 						<table>
 							<!-- 右側の操作ガイドの部分 -->
 							<div class="imui-form-container-wide">
@@ -131,12 +119,6 @@
 			//高さ変更
 			//$(".ui-jqgrid-view").height(300);
 			$(".ui-jqgrid-bdiv").height(225);
-			
-			//ウィンドウリサイズ時
-			$(window).bind('resize',function(){
-				$('#informationDataList').setGridWidth($('#listTableArea').width(),true);
-			}).trigger('resize');
-			
 		});	
 		
 		//「お知らせを登録」ボタンクリック時
