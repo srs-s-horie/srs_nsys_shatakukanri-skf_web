@@ -371,7 +371,6 @@
     function back1() {
     	var prePageId = $("#prePageId").val();
     	var url = "";
-    	alert(prePageId);
     	//前の画面のＵＲＬ判定
    		if(prePageId=="Skf2010Sc007"){
    			url = "skf/Skf2010Sc007/init?SKF2010_SC007&tokenCheck=0";

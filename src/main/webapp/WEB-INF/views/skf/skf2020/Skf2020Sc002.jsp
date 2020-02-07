@@ -1181,7 +1181,7 @@ function mesDisplayControl(isShow){
 				//備品項目の表示非表示
 				if($("#hdnBihinHenkyakuUmu").val()=="0"){
 					returnEquipmentDisabled("disabled");
-				}else{
+				}else if($("#hdnBihinHenkyakuUmu").val()=="1" && $("rdoNowHoyuShatakuTaikyo").prop('checked')){
 					returnEquipmentDisabled("abled");
 				}
 			  		
@@ -1235,12 +1235,12 @@ function mesDisplayControl(isShow){
 				}
 								
 				//表示制御（現社宅情報） 非表示
-				shatakuDisplayControl("no");	
+				shatakuDisplayControl("no");
 	    		if($("#rdoNowHoyuShatakuTaikyo").prop('checked')){
 					//退居日活性
 	    			$('#taikyoYoteiDateDiv').removeClass("wj-state-disabled");
-	       			$('#taikyoYoteiDateDiv').prop('disabled', true);
-	    			$('#taikyoYoteiDate').prop('disabled', true);
+	       			$('#taikyoYoteiDateDiv').prop('disabled', false);
+	    			$('#taikyoYoteiDate').prop('disabled', false);
 	    			//退居を促すメッセージ制御（現社宅情報）　表示	
 	    			mesDisplayControl("yes");
 	    		}else{
@@ -1695,7 +1695,6 @@ function mesDisplayControl(isShow){
     function back1() {
     	var prePageId = $("#prePageId").val();
     	var url = "";
-    	alert(prePageId);
     	//前の画面のＵＲＬ判定
     		if(prePageId=="Skf2010Sc007"){
     			//入居希望等調書申請
