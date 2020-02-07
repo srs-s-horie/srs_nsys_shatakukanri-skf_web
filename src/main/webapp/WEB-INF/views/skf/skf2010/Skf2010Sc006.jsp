@@ -104,7 +104,7 @@ $(function() {
  <div class="imui-form-container-wide" style="width: 95%;">
 
     <!-- 状況、資料ヘッダ -->
-    <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;border:none;" height="100px">
+    <div class="imui-form-container-wide" style="width: 90%; max-width: 1000px;border:none;" height="100px">
                     <table class="imui-form-search-condition">
                        <tr>
                             <th width="100px"><nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2010_SC006_LBL_APPL_STATUS %>" /></th>

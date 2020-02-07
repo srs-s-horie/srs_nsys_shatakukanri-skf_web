@@ -143,7 +143,7 @@ function back1() {
    <jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
 
     <!-- 状況、資料ヘッダ -->
-    <div class="imui-form-container-wide" style="border: currentColor; border-image: none; width: 80%; padding-left: 0px; padding-bottom: 10px; margin-left: 100px;">
+    <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;border:none;" height="100px">
                     <table class="imui-form-search-condition">
                        <tr>
                             <th width="100px"><nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2010_SC006_LBL_APPL_STATUS %>" /></th>
@@ -263,16 +263,19 @@ ${form.operationGuide }
           <nfwui:DateBox id="shiyobi" name="shiyobi" />
         </td>
       </tr>
-<c:if test="${form.carNoInputFlg2 != null }">
       <tr style="width: 100%; max-width: 1000px;text-align:center;">
         <td style="border: none"></td>
         <td style="border: none"></td>
-        <th><nfwui:LabelBox id="lblNewCarSpaceStart2" code="<%= MessageIdConstant.SKF2010_SC004_NEW_CAR_SPACE_START %>" /></th>
+        <th><nfwui:LabelBox id="lblNewCarSpaceStart2" code="<%= MessageIdConstant.SKF2010_SC004_NEW_CAR_SPACE_START2 %>" /></th>
         <td align="left">
+<c:if test="${form.carNoInputFlg2 != null }">
           <nfwui:DateBox id="shiyobi2" name="shiyobi2" />
+</c:if>
+<c:if test="${form.carNoInputFlg2 == null }">
+          <nfwui:DateBox id="shiyobi2" name="shiyobi2" disabled="true" />
+</c:if>
         </td>
       </tr>
-</c:if>
       <tr>
         <td  style="color: red;border: none;" colspan="4">
                                    ※社宅申請機関と調整した入退居日を入力してください

@@ -30,6 +30,24 @@
 									width="185" list="${form.companyList}" tabindex="3" />
 								</td>
 								<th style="width: 10%;">
+									<nfwui:LabelBox id="lblAffiliation1" code="<%= MessageIdConstant.SKF3090_SC006_AFFILIATION1 %>" />
+								</th>
+								<td style="width: 15%;">
+									<imui:select id="affiliation1Cd" name="affiliation1Cd"
+									width="185" list="${form.affiliation1List}" tabindex="5" />
+								</td>
+
+								<th style="width: 10%;">
+									<nfwui:LabelBox id="lblBusinessArea" code="<%= MessageIdConstant.SKF3090_SC006_BUSINESS_AREA %>" />
+								</th>
+								<td style="width: 15%;">
+									<imui:select id="businessAreaCd" name="businessAreaCd"
+									width="185" list="${form.businessAreaList}" tabindex="7" />
+								</td>
+							</tr>
+							<tr>
+
+								<th style="width: 10%;">
 									<nfwui:LabelBox id="lblAgency" code="<%= MessageIdConstant.SKF3090_SC006_AGENCY %>" />
 								</th>
 								<td style="width: 15%;">
@@ -38,29 +56,11 @@
 								</td>
 
 								<th style="width: 10%;">
-									<nfwui:LabelBox id="lblBusinessArea" code="<%= MessageIdConstant.SKF3090_SC006_BUSINESS_AREA %>" />
-								</th>
-								<td style="width: 15%;">
-									<imui:select id="businessAreaCd" name="businessAreaCd"
-									width="185" list="${form.businessAreaList}" tabindex="5" />
-								</td>
-							</tr>
-							<tr>
-
-								<th style="width: 10%;">
-									<nfwui:LabelBox id="lblAffiliation1" code="<%= MessageIdConstant.SKF3090_SC006_AFFILIATION1 %>" />
-								</th>
-								<td style="width: 15%;">
-									<imui:select id="affiliation1Cd" name="affiliation1Cd"
-									width="185" list="${form.affiliation1List}" tabindex="6" />
-								</td>
-
-								<th style="width: 10%;">
 									<nfwui:LabelBox id="lblAffiliation2" code="<%= MessageIdConstant.SKF3090_SC006_AFFILIATION2 %>" />
 								</th>
 								<td style="width: 15%;">
 									<imui:select id="affiliation2Cd" name="affiliation2Cd"
-									width="185" list="${form.affiliation2List}" tabindex="7" />
+									width="185" list="${form.affiliation2List}" tabindex="6" />
 								</td>
 
 							</tr>
@@ -99,18 +99,18 @@
 						style="max-height: 800px" multiSelect="false" rowNumbers="true" data="${form.createTableList}">
 						<pager rowNum="${form.listTableMaxRowCount }" />
 						<cols sortable="false">
-						<col name="companyName" caption="会社名"　width="200" wrap="true" align="left" />
-						<col name="agencyName" caption="機関名"　width="200" wrap="true" align="left" />
-						<col name="affiliation1Name" caption="部等" width="250" wrap="true" align="left" />
-						<col name="affiliation2Name" caption="室、チーム又は課"　width="300" wrap="true" align="left" />
-						<col name="businessAreaName" caption="事業領域" width="150" wrap="true" align="left" />
-						<col name="companyCd" caption="会社コード" hidden="true" />
-						<col name="agencyCd" caption="機関コード" hidden="true" />
-						<col name="affiliation1Cd" caption="部等コード" hidden="true" />
-						<col name="affiliation2Cd" caption="室、チーム又は課コード" hidden="true" />
-						<col name="details" caption="詳細" width="100" align="center" >
-							<showIcon iconClass="im-ui-icon-common-16-update" />
-						</col>
+							<col name="companyName" caption="会社名"　width="200" wrap="true" align="left" sortable="false" />
+							<col name="agencyName" caption="機関名"　width="200" wrap="true" align="left" sortable="false" />
+							<col name="affiliation1Name" caption="部等" width="250" wrap="true" align="left" sortable="false" />
+							<col name="affiliation2Name" caption="室、チーム又は課"　width="300" wrap="true" align="left" sortable="false" />
+							<col name="businessAreaName" caption="事業領域" width="150" wrap="true" align="left" sortable="false" />
+							<col name="companyCd" caption="会社コード" hidden="true" />
+							<col name="agencyCd" caption="機関コード" hidden="true" />
+							<col name="affiliation1Cd" caption="部等コード" hidden="true" />
+							<col name="affiliation2Cd" caption="室、チーム又は課コード" hidden="true" />
+							<col name="details" caption="詳細" width="100" align="center" sortable="false" >
+								<showIcon iconClass="im-ui-icon-common-16-update" />
+							</col>
 						</cols> 
 						</imui:listTable>
 					</div>

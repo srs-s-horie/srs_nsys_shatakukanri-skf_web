@@ -52,7 +52,7 @@
 		</div>
 		<div class="align-R">
 			<tr>
-				<font size="3"  face="ＭＳ Ｐ明朝">中日本高速道路</font>
+				<font size="3"  face="ＭＳ Ｐ明朝">中日本高速道路株式会社</font>
 				<br>
 			</tr>
  		</div>
