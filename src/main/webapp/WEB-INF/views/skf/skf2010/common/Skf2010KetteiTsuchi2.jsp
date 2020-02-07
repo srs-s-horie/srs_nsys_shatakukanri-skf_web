@@ -71,7 +71,6 @@
           
           <br>
           <br>
-          <br>
 
           <tr width="500px">
               <td width="150px"><font size="3"  face="ＭＳ Ｐ明朝">3</font></td>
@@ -89,8 +88,6 @@
               <td width="330px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝"><font size="4"  face="ＭＳ Ｐ明朝"></font>
           </td>
           </tr>
-          
-          <br>
 
         <table class="imui-table" >
 
@@ -103,9 +100,9 @@
                                 </tr>
 
                                 <tr>
-                                    <td width="15%"  style="text-align:center;font-size: 120%;font-family: ＭＳ Ｐ明朝">${f:h(form.newShatakuNo)}</td>
-                                    <td width="15%"  style="text-align:center;font-size: 120%;font-family: ＭＳ Ｐ明朝">${f:h(form.newShatakuKikaku)}</td>
-                                    <td width="15%"  style="text-align:center;font-size: 120%;font-family: ＭＳ Ｐ明朝">${f:h(form.newShatakuMenseki)}&nbsp;&nbsp;㎡</td>
+                                    <td width="15%"  style="text-align:center;font-size: 120%;font-family: ＭＳ Ｐ明朝; vertical-align: bottom;">${f:h(form.newShatakuNo)}</td>
+                                    <td width="15%"  style="text-align:center;font-size: 120%;font-family: ＭＳ Ｐ明朝; vertical-align: bottom;">${f:h(form.newShatakuKikaku)}</td>
+                                    <td width="15%"  style="text-align:center;font-size: 120%;font-family: ＭＳ Ｐ明朝; vertical-align: bottom;">${f:h(form.newShatakuMenseki)}&nbsp;&nbsp;㎡</td>
                                     
                                     <td style="font-size: 120%;font-family: ＭＳ Ｐ明朝;border-style: none;" rowspan="2">
                                     
@@ -262,9 +259,6 @@
                                     </td>
                                     <td style="font-size: 120%;font-family: ＭＳ Ｐ明朝" width="120px" rowspan="3">自動車の保管場所に係る<br>社宅使用料（月）</td>
                                     <td style="font-size: 120%;font-family: ＭＳ Ｐ明朝;border-style: none;" rowspan="3">
-                                    <div class="align-L float-L">
-                                    ※
-                                    </div>
                                     <div class="align-R">
                                     円
                                     </div>                                    
