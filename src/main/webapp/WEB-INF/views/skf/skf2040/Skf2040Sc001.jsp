@@ -371,12 +371,16 @@
     function back1() {
     	var prePageId = $("#prePageId").val();
     	var url = "";
+    	alert(prePageId);
     	//前の画面のＵＲＬ判定
    		if(prePageId=="Skf2010Sc007"){
    			url = "skf/Skf2010Sc007/init?SKF2010_SC007&tokenCheck=0";
    		}else if(prePageId=="Skf2010Sc003"){
    			//申請条件一覧
    			url="skf/Skf2010Sc003/init?SKF2010_SC003";
+		}else if(prePageId=="Skf2040Sc001"){
+			//申請条件一覧
+			url="skf/Skf2010Sc003/init?SKF2010_SC003";
 		}
         nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。編集内容を保存する場合は「一時保存」をクリックして下さい。");
     }
