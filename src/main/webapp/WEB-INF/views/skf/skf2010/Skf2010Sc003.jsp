@@ -224,20 +224,20 @@ rowNumbers="true" onCellSelect="onCellSelect"
 height="232" onGridComplete="gridComplete">
 <pager rowNum = "10" />
 <cols>
-  <col name="detail" caption="表示" width="90" align="center">
+  <col name="detail" caption="表示" width="90" align="center" sortable="false">
      <showIcon iconClass="im-ui-icon-common-16-update" />
   </col>
   <col name="applId" hidden="true" />
   <col name="applStatus" hidden="true" />
-  <col name="applDate" caption="申請日" width="100" align="center" />
-  <col name="applStatusText" caption="申請状況" width="80" align="center" onCellAttr="onCellAttr" />
-  <col name="applNo" caption="申請書番号" width="250" align="center" />
-  <col name="applName" caption="申請書類名" width="390" align="left" />
-  <col name="agreDate" caption="承認日／修正依頼日" width="140" align="center" />
-  <col name="cancel" caption="取下げ" width="90" align="center">
+  <col name="applDate" caption="申請日" width="100" align="center" sortable="false" />
+  <col name="applStatusText" caption="申請状況" width="80" align="center" sortable="false" onCellAttr="onCellAttr" />
+  <col name="applNo" caption="申請書番号" width="250" align="center" sortable="false" />
+  <col name="applName" caption="申請書類名" width="390" align="left" sortable="false" />
+  <col name="agreDate" caption="承認日／修正依頼日" width="140" align="center" sortable="false" />
+  <col name="cancel" caption="取下げ" width="90" align="center" sortable="false">
      <showIcon iconClass="im-ui-icon-common-16-ng" />
   </col>
-  <col name="delete" caption="削除" width="90" align="center">
+  <col name="delete" caption="削除" width="90" align="center" sortable="false">
   　　　　<showIcon iconClass="im-ui-icon-common-16-trashbox" />
   </col>
 </cols>
