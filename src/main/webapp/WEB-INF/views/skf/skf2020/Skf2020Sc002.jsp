@@ -611,7 +611,7 @@
 											<th colspan="3">
 												<nfwui:LabelBox id="lblHeadNowHoyuShataku" code="<%= MessageIdConstant.SKF2020_SC002_NOW_HOYU_SHATAKU %>" />
 											</th>
-											<td colspan="2" id="taikyoYotei">
+											<td colspan="1" id="taikyoYotei">
 												<nfwui:RadioButtonGroup id="taikyoYotei" dynamicMaskList="taikyoYoteiDynam" tabindex="47">
 													<nfwui:RadioButton name="taikyoYotei" id="rdoNowHoyuShatakuTaikyo" label="退居する" value="<%= CodeConstant.LEAVE %>"
 														disabled="${form.rdoNowHoyuShatakuTaikyoDisabled}" checked="${form.rdoNowHoyuShatakuTaikyoChecked}" tabindex="47"/>
@@ -619,7 +619,7 @@
 														disabled="${form.rdoNowHoyuShatakuKeizokuDisabled}" checked="${form.rdoNowHoyuShatakuKeizokuChecked}" tabindex="47"/>
 												</nfwui:RadioButtonGroup>
 											</td>
-											<td rowspan="2" colspan="2" style="color:red;font-size:11.5px;">
+											<td rowspan="2" colspan="3" style="color:red;font-size:11.5px;">
 												<nfwui:LabelBox id="lblShatakuFuyouMsg" remove="${form.lblShatakuFuyouMsgRemove}"
 													code="<%= MessageIdConstant.SKF2020_SC002_SHATAKU_FUYOU_MSG %>"  />
 											</td>
@@ -629,7 +629,7 @@
 											<th colspan="3">
 												<nfwui:LabelBox id="lblHeadTaikyoYoteiDate" code="<%= MessageIdConstant.SKF2020_SC002_TAIKYO_YOTEI_DATE %>" />
 											</th>
-											<td colspan="2">
+											<td colspan="1">
 												<nfwui:DateBox id="taikyoYoteiDate" name="taikyoYoteiDate" value="${f:h(form.taikyoYoteiDate)}"
 												 	tabindex="48" disabled="true" cssStyle="width:100px"/>	
 											</td>
@@ -667,7 +667,7 @@
 												</th>
 												<td colspan="3">
 													<imui:textArea id="taikyogoRenrakuSaki" name="taikyogoRenrakuSaki" 
-														value="${form.taikyogoRenrakuSaki}" style="width: 90%; ime-mode:disabled;" placeholder="例 090-0000-0000" disabled="true"
+														value="${form.taikyogoRenrakuSaki}" style="width: 90%;" placeholder="例 090-0000-0000" disabled="true"
 														 tabindex="52"/>
 												</td>
 											</tr>
@@ -699,7 +699,7 @@
 												</th>
 												<td colspan="3">
 													<imui:textbox id="renrakuSaki" name="renrakuSaki" 
-														value="${f:h(form.renrakuSaki)}" style="width: 90%;" placeholder="例 090-0000-0000"  
+														value="${f:h(form.renrakuSaki)}" style="width: 90%; ime-mode:disabled;" placeholder="例 090-0000-0000"  
 														disabled="${form.renrakuSakiDisabled}" tabindex="55" />
 													<br>
 													<span style="color:red;">
@@ -850,6 +850,37 @@ function rdoHitsuyoShatakuDisabled(ischecked){
       } else {
 		$('#rdoKikon').prop('disabled', false);
 		$('#rdoHitsuyoDokushin').prop('disabled', false);
+      }
+}
+
+/**
+ * 同居家族の活性制御
+ * disabled:非活性　abled:活性
+ */ 
+function dokyoKazokuDisabled(ischecked){
+	
+    if(ischecked == "disabled"){
+		$('#dokyoRelation1').prop('disabled', true);
+		$('#dokyoRelation2').prop('disabled', true);
+		$('#dokyoRelation3').prop('disabled', true);
+		$('#dokyoRelation4').prop('disabled', true);
+		$('#dokyoRelation5').prop('disabled', true);
+		$('#dokyoRelation6').prop('disabled', true);
+		
+		$('#dokyoName1').prop('disabled', true);
+		$('#dokyoName2').prop('disabled', true);
+		$('#dokyoName3').prop('disabled', true);
+		$('#dokyoName4').prop('disabled', true);
+		$('#dokyoName5').prop('disabled', true);
+		$('#dokyoName6').prop('disabled', true);
+
+		$('#dokyoAge1').prop('disabled', true);
+		$('#dokyoAge2').prop('disabled', true);
+		$('#dokyoAge3').prop('disabled', true);
+		$('#dokyoAge4').prop('disabled', true);
+		$('#dokyoAge5').prop('disabled', true);
+		$('#dokyoAge6').prop('disabled', true);
+		
       }
 }
 
@@ -1150,7 +1181,7 @@ function mesDisplayControl(isShow){
 				//備品項目の表示非表示
 				if($("#hdnBihinHenkyakuUmu").val()=="0"){
 					returnEquipmentDisabled("disabled");
-				}else{
+				}else if($("#hdnBihinHenkyakuUmu").val()=="1" && $("rdoNowHoyuShatakuTaikyo").prop('checked')){
 					returnEquipmentDisabled("abled");
 				}
 			  		
@@ -1176,7 +1207,11 @@ function mesDisplayControl(isShow){
 				//新所属　非活性
 				$("#agencyCd").prop('disabled', true);
 				$("#affiliation1Cd").prop('disabled', true);
-				$("#affiliation2Cd").prop('disabled', true);		
+				$("#affiliation2Cd").prop('disabled', true);
+				$('#newAffiliation1Other').prop('disabled', true);
+				$('#newAffiliation2Other').prop('disabled', true);
+				//同居家族
+				dokyoKazokuDisabled("disabled");
 				//必要とする社宅　非活性
 				$('#rdoKikon').prop('disabled', true);
 				$('#rdoHitsuyoSetai').prop('disabled', true);
@@ -1200,12 +1235,12 @@ function mesDisplayControl(isShow){
 				}
 								
 				//表示制御（現社宅情報） 非表示
-				shatakuDisplayControl("no");	
+				shatakuDisplayControl("no");
 	    		if($("#rdoNowHoyuShatakuTaikyo").prop('checked')){
 					//退居日活性
 	    			$('#taikyoYoteiDateDiv').removeClass("wj-state-disabled");
-	       			$('#taikyoYoteiDateDiv').prop('disabled', true);
-	    			$('#taikyoYoteiDate').prop('disabled', true);
+	       			$('#taikyoYoteiDateDiv').prop('disabled', false);
+	    			$('#taikyoYoteiDate').prop('disabled', false);
 	    			//退居を促すメッセージ制御（現社宅情報）　表示	
 	    			mesDisplayControl("yes");
 	    		}else{
@@ -1233,6 +1268,8 @@ function mesDisplayControl(isShow){
 				$("#affiliation2Cd").prop('disabled', true);
 				$('#newAffiliation1Other').prop('disabled', true);
 				$('#newAffiliation2Other').prop('disabled', true);
+				//同居家族
+				dokyoKazokuDisabled("disabled");
 				//自動車の保管場所　必要　活性
 				$('#rdoCarHitsuyo').prop('disabled', false);
 				//自動車の保管場所	不要　非活性		
@@ -1252,13 +1289,15 @@ function mesDisplayControl(isShow){
 				$('#rdoHitsuyoDokushin').prop('disabled', true);
 				//社宅項目の非活性化
 				taikyoItemDisabled("disabled");
+
 				//返却希望立会日　非活性
-				returnEquipmentDisabled("disabled");
-			
+				returnEquipmentDisabled("disabled");			
 				//チェック状態
 				$('#rdoHitsuyoSonota').prop('checked', true);// 社宅を必要とする理由　その他
 				$('#rdoFuyouSonota').prop('checked', true);// 社宅を必要としない理由　その他
 				$('#rdoCarHitsuyo').prop('checked', true);　//駐車場を必要とするか
+				$('#rdoNowHoyuShatakuTaikyo').prop('checked', false); //現保有の社宅　退居する
+				$('#rdoNowHoyuShatakuKeizoku').prop('checked', false); //継続利用する
 
 	    		//表示制御（現社宅情報） 表示
 				shatakuDisplayControl("yes");
@@ -1498,6 +1537,9 @@ function mesDisplayControl(isShow){
 				if($("#rdoHitsuyoSetai, #rdoHitsuyoTanshin").is(":checked")) {
 					$("#rdoKikon").prop("checked", true);
 					$("#rdoKikon").prop("disabled", false);
+				}else{
+					$("#rdoKikon").prop("checked", false);
+					$("#rdoKikon").prop("disabled",true);
 				}
 				
 			});
@@ -1530,11 +1572,11 @@ function mesDisplayControl(isShow){
 				},
 				"2" : {
 					// 社宅を必要とする理由の「結婚のため」押下時に発動
-					"disabled" : [ "agencyCd","affiliation1Cd","affiliation2Cd"]
+					"disabled" : [ "agencyCd","affiliation1Cd","affiliation2Cd","newAffiliation1Other","newAffiliation2Other"]
 				},
 				"9" : {
 					// 社宅を必要とする理由の「その他」押下時に発動
-					"disabled" : [ "agencyCd","affiliation1Cd","affiliation2Cd"]
+					"disabled" : [ "agencyCd","affiliation1Cd","affiliation2Cd","newAffiliation1Other","newAffiliation2Other"]
 				}
 			}
 		
@@ -1661,6 +1703,9 @@ function mesDisplayControl(isShow){
     			//入居希望等調書申請
     			url = "skf/Skf2010Sc007/init?SKF2010_SC007&tokenCheck=0";
     		}else if(prePageId=="Skf2020Sc002"){
+    			//申請条件一覧
+    			url="skf/Skf2010Sc003/init?SKF2010_SC003";
+			}else if(prePageId=="Skf2010Sc003"){
     			//申請条件一覧
     			url="skf/Skf2010Sc003/init?SKF2010_SC003";
 			}
