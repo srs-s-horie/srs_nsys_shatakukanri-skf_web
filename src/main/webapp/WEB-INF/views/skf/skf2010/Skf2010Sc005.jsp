@@ -251,6 +251,15 @@
                                         	list="${form.ddlAffiliation2List}" width="100%" />
                                         </td>
                                     </tr>
+
+                                    <tr>
+                                        <th style="width: 100px;">
+                                            <nfwui:LabelBox id="lblApplShainNo" code="<%= MessageIdConstant.SKF2010_SC005_APPLICANT_SHAIN_NO %>" />
+                                        </th>
+                                        <td style="width: 180px;" colspan="2">
+                                            <imui:textbox id="shainNo" name="shainNo" value="${form.shainNo}" />
+                                        </td>
+                                    </tr>
                     
                                     <tr>
                                         <th style="width: 100px;">
