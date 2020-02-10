@@ -897,6 +897,7 @@ $(function() {
                                     <th colspan="3"><label>${f:h(bihinObj.bihinName)}</label></th>
                                     <td colspan="1"><label>${f:h(bihinObj.bihinState)}</label></td>
                                     <td colspan="1">
+                                    	<input type="hidden" id="bihinState${f:h(bihinObj.bihinCd)}" name="bihinState${f:h(bihinObj.bihinCd)}" value="${f:h(bihinObj.bihinState)}" />
                                         <imui:select id="bihinWish${f:h(bihinObj.bihinCd)}" name="bihinWish${f:h(bihinObj.bihinCd)}" list="${bihinObj.dropDown}" disabled="${bihinObj.disabled}" />
                                     </td>
                                 </tr>
