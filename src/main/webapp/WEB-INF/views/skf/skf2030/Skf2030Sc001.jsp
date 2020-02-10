@@ -27,7 +27,8 @@
      * 一つ前の画面へ戻る
      */
     function back1() {
-    	var url="skf/Skf2010Sc003/init"
+    	var prePageId = $("#prePageId").val();
+    	var url="skf/" + prePageId + "/init";
     	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
     }
 	$(function() {
@@ -105,6 +106,7 @@
 <nfwui:Hidden id="applId" name="applId" />
 <nfwui:Hidden id="applStatus" name="applStatus" />
 <nfwui:Hidden id="hdnShainNo" name="hdnShainNo" />
+<nfwui:Hidden id="prePageId" name="prePageId" />
 <input type="hidden" id="bihinCheckFlag" name="bihinCheckFlag" value="false" />
 <!-- コンテンツエリア -->
 <div style="max-width: 300px;">

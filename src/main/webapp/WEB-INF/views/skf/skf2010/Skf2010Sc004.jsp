@@ -306,6 +306,7 @@ ${form.operationGuide }
       <nfwui:Hidden id="bihinKibo" name="bihinKibo" />
       <nfwui:Hidden id="applStatus" name="applStatus" />
       <nfwui:Hidden id="applUpdateDate" name="applUpdateDate" />
+      <input type="hidden" name="prePageId" value="Skf2010Sc004" />
       <!-- 添付資料番号 -->
       <input type="hidden" id="attachedNo" name="attachedNo" value="" />
       <table width="100%">

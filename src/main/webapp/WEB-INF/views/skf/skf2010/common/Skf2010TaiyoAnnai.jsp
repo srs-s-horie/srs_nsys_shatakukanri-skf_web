@@ -105,7 +105,6 @@
 	    	</td>
 		</tr>
 		</table>
-		<br>
 		<table class="imui-table" >
 			<tr>
 				<td width="15%"  style="text-align:center;font-size: 120%;font-family: ＭＳ Ｐ明朝">室番号</td>
@@ -223,7 +222,6 @@
 				<td style="font-size: 120%;font-family: ＭＳ Ｐ明朝">${f:h(form.carNo )}</td>
 				<td style="font-size: 120%;font-family: ＭＳ Ｐ明朝" width="120px" rowspan="3">自動車の保管場所に係る<br>社宅使用料（月）</td>
 				<td style="font-size: 120%;font-family: ＭＳ Ｐ明朝;border-style: none;" rowspan="3">
-					<div class="align-L float-L">※</div>
 					<div class="align-R">円</div>                                    
 					<div class="align-C">${f:h(form.parkingRental )}</div>
 				</td>
@@ -257,7 +255,6 @@
 				<td style="font-size: 120%;font-family: ＭＳ Ｐ明朝">${f:h(form.carNo2 )}</td>
 				<td style="font-size: 120%;font-family: ＭＳ Ｐ明朝" width="120px" rowspan="3">自動車の保管場所に係る<br>社宅使用料（月）</td>
 				<td style="font-size: 120%;font-family: ＭＳ Ｐ明朝;border-style: none;" rowspan="3">
-					<div class="align-L float-L">※</div>
 					<div class="align-R">円</div>                                    
 					<div class="align-C">${f:h(form.parkingRental2 )}</div>
 				</td>
