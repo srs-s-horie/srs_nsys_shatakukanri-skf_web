@@ -90,7 +90,7 @@ ${f:h(form.shatakuKikaku) }
 <th colspan="2"><nfwui:LabelBox id="lblRenrakusaki" code="<%= MessageIdConstant.SKF2030_SC001_RENRAKUSAKI %>" /></th>
 <td colspan="2">
   <div style="float: left; width: 170px;">
-	<imui:textbox id="renrakuSaki" name="renrakuSaki" value="${f:h(form.renrakuSaki) }" maxlenght="13" style="width: 150px;" tabindex="4" />
+	<imui:textbox id="renrakuSaki" name="renrakuSaki" value="${f:h(form.renrakuSaki) }" placeholder="例　090-0000-0000" maxlenght="13" style="width: 150px; ime-mode:disabled;" tabindex="4" />
   </div>
   <div style="margin-left: 170px; -ms-word-break: keep-all;">
 	<span style="color:red;">※搬入業者から連絡がありますので、連絡先は必ず入力してください。</span>
