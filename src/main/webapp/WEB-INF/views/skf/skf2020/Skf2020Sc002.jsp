@@ -1515,7 +1515,7 @@ function mesDisplayControl(isShow){
 					$('#sessionDay').prop('disabled', true);
 				}else{					
 					// 社宅を必要としますか？の「必要とする」かつ「退居する」にチェックが入っている場合
-					if($("#rdoHitsuyo").prop('checked')　&& ('#rdoNowHoyuShatakuTaikyo').prop('checkd')) {
+					if($("#rdoHitsuyo").prop('checked')　&& $('#rdoNowHoyuShatakuTaikyo').prop('checked')) {
 						$('#sessionDayDiv').removeClass("wj-state-disabled");
 						$('#sessionDayDiv').prop('disabled', false);
 						$('#sessionDay').prop('disabled', false);
