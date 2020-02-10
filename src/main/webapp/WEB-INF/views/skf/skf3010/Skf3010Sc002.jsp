@@ -10,6 +10,7 @@
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
+<link rel="stylesheet" type="text/css" href="styles/skf/listTableStyle.css" />
 <script src="scripts/skf/skfCommon.js"></script>
 
 <%-- コンテンツエリア --%>
@@ -566,7 +567,7 @@
 							<td>
 								<!-- 寮母・管理会社 -->
 								<imui:textbox id="matronMailAddress" name="matronMailAddress" style="width:260px;"
-								maxlength="30" value="${form.matronMailAddress}" placeholder="例　t.nakanihon.aa@" tabindex="62"
+								maxlength="50" value="${form.matronMailAddress}" placeholder="例　t.nakanihon.aa@" tabindex="62"
 								class="${form.matronMailAddressErr}" />
 							</td>
 						</tr>
