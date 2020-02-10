@@ -278,7 +278,7 @@ ${form.operationGuide }
       </tr>
       <tr>
         <td  style="color: red;border: none;" colspan="4">
-                                   ※社宅申請機関と調整した入退居日を入力してください
+                                   ※社宅の入退居日及び駐車場使用開始・終了日に変更がある場合は修正してください。 
         </td>
       </tr>
       </table>
