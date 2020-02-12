@@ -505,17 +505,17 @@
 							<td>
 								<!-- 寮長・自治会長 -->
 								<imui:textbox id="dormitoryLeaderRoomNo" name="dormitoryLeaderRoomNo" style="width:150px;"
-								maxlength="30" value="${form.dormitoryLeaderRoomNo}" placeholder="例　101（半角）" tabindex="46" />
+								maxlength="30" value="${form.dormitoryLeaderRoomNo}" placeholder="例　101" tabindex="46" />
 							</td>
 							<td>
 								<!-- 鍵管理者 -->
 								<imui:textbox id="keyManagerRoomNo" name="keyManagerRoomNo" style="width:150px;"
-								maxlength="30" value="${form.keyManagerRoomNo}" placeholder="例　101（半角）" tabindex="53" />
+								maxlength="30" value="${form.keyManagerRoomNo}" placeholder="例　101" tabindex="53" />
 							</td>
 							<td>
 								<!-- 寮母・管理会社 -->
 								<imui:textbox id="matronRoomNo" name="matronRoomNo" style="width:150px;"
-								maxlength="30" value="${form.matronRoomNo}" placeholder="例　101（半角）" tabindex="60" />
+								maxlength="30" value="${form.matronRoomNo}" placeholder="例　101" tabindex="60" />
 							</td>
 						</tr>
 						<tr>
@@ -1123,7 +1123,7 @@
 								"rId": nextRid,
 								"parkingKanriNo":"",
 								"parkingBlock":"<input id='parkingBlockNo" + nextRid + "' name='parkingBlockNo" + nextRid
-										+ "' type='text' value='' placeholder='例　01（半角）' style='width:140px;' maxlength='30'/>",
+										+ "' type='text' value='' placeholder='例　01' style='width:140px;' maxlength='30'/>",
 								"parkingLendKbn":"<select id='parkingLendKbn" + nextRid + "' name='parkingLendKbn" + nextRid
 										+ " 'style='width:90px;'>" + $("#lendKbnSelectListString").val() + "</select>",
 								"parkingLendStatus":defaultParkingLendStatus,
