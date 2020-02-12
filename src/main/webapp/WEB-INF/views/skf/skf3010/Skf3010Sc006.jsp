@@ -640,12 +640,12 @@
 							<td>
 								<!-- 管理会社 -->
 								<imui:textbox id="manageCompanyName" name="manageCompanyName" style="width:150px;"
-								maxlength="30" value="${f:h(form.manageCompanyName)}" placeholder="例　○○管理会社" tabindex="57" />
+								maxlength="60" value="${f:h(form.manageCompanyName)}" placeholder="例　○○管理会社" tabindex="57" />
 							</td>
 							<td>
 								<!-- 鍵管理者 -->
 								<imui:textbox id="keyManagerCompanyName" name="keyManagerCompanyName" style="width:150px;"
-								maxlength="30" value="${f:h(form.keyManagerCompanyName)}" placeholder="例　○○管理会社" tabindex="62" />
+								maxlength="60" value="${f:h(form.keyManagerCompanyName)}" placeholder="例　○○管理会社" tabindex="62" />
 							</td>
 						</tr>
 						<tr>
@@ -672,7 +672,7 @@
 							<td>
 								<!-- 管理会社 -->
 								<imui:textbox id="manageMailAddress" name="manageMailAddress" style="width:260px;"
-								maxlength="30" value="${f:h(form.manageMailAddress)}" placeholder="例　t.nakanihon.aa@" tabindex="59" 
+								maxlength="50" value="${f:h(form.manageMailAddress)}" placeholder="例　t.nakanihon.aa@" tabindex="59" 
 								class="${form.manageMailAddressError}"/>
 							</td>
 							<td>
@@ -2103,7 +2103,7 @@
 		</div>
 		<br />
 		<div class="align-L float-L">
-			<input style="width:150px;" type="button" value="前の画面へ" class="imui-medium-button" onclick="backOnClick()" tabindex="94"/>
+			<input style="width:150px;" type="button" value="前の画面へ" class="imui-medium-button" onclick="back1()" tabindex="94"/>
 		</div>
 		<div class="align-R">
 			<!-- 登録 -->

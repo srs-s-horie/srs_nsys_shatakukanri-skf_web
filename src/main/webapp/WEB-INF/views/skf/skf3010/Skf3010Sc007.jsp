@@ -257,7 +257,7 @@ function back1() {
                		<nfwui:LabelBox id="lblAssetRegisterNo" code="<%=MessageIdConstant.SKF3010_SC007_ASSET_REGISTER_NO %>" />
                </th>
                <td  colspan="3">
-               		<imui:textbox id="txtAssetRegisterNo" name="assetRegisterNo" style="ime-mode: disabled;width:200px;" value="${f:h(form.assetRegisterNo)}" class="${form.assetRegisterNoError}" disabled="${form.contractInfoDisabled}" placeholder="例　1234-56-7890-1-001" maxlength="15" tabindex="11"/>
+               		<imui:textbox id="txtAssetRegisterNo" name="assetRegisterNo" style="ime-mode: disabled;width:200px;" value="${f:h(form.assetRegisterNo)}" class="${form.assetRegisterNoError}" disabled="${form.contractInfoDisabled}" placeholder="例　A001002003004" maxlength="15" tabindex="11"/>
                </td>
                
 			</tr>

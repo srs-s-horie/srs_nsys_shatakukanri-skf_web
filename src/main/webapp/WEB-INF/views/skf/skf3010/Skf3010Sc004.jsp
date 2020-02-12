@@ -122,7 +122,9 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 					<input type="hidden" name="hdnOriginalAuse" id="hdnOriginalAuse" value="${form.originalAuse}" />
 					<input type="hidden" name="hdnLendKbn" id="hdnLendKbn" value="${form.lendKbn}" />
 					<input type="hidden" name="hdnEmptyRoomCount" id="hdnEmptyRoomCount" value="${form.emptyRoomCount}" />
-					<input type="hidden" name="hdnEmptyParkingCount" id="hdnEmptyParkingCount" value="${form.emptyParkingCount}" />
+					<input type="hidden" name="hdnEmptyParkingCount" id="hdnEmptyParkingCount" value="${form.hdnEmptyParkingCount}" />
+					<input type="hidden" name="emptyRoomCount" id="emptyRoomCount" value="${form.emptyRoomCount}" />
+					<input type="hidden" name="emptyParkingCount" id="emptyParkingCount" value="${form.emptyParkingCount}" />
 					<input type="hidden" name="hdnRoomKanriNo" id="sendRoomKanriNo" value="" />
 					<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc004/init"/>
 				
@@ -210,8 +212,10 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 					<input type="hidden" name="hdnShatakuName" id="hdnShatakuName" value="${form.hdnShatakuName}" />
 					<input type="hidden" name="hdnAreaKbn" id="hdnAreaKbn" value="${form.hdnAreaKbn}" />
 					<input type="hidden" name="hdnShatakuKbn" id="hdnShatakuKbn" value="${form.hdnShatakuKbn}" />
-					<input type="hidden" name="hdnEmptyRoomCount" id="hdnEmptyRoomCount" value="${form.emptyRoomCount}" />
-					<input type="hidden" name="hdnEmptyParkingCount" id="hdnEmptyParkingCount" value="${form.emptyParkingCount}" />
+					<input type="hidden" name="emptyRoomCount" id="emptyRoomCount" value="${form.emptyRoomCount}" />
+					<input type="hidden" name="hdnEmptyRoomCount" id="hdnEmptyRoomCount" value="${form.hdnEmptyRoomCount}" />
+					<input type="hidden" name="emptyParkingCount" id="emptyParkingCount" value="${form.emptyParkingCount}" />
+					<input type="hidden" name="hdnEmptyParkingCount" id="hdnEmptyParkingCount" value="${form.hdnEmptyParkingCount}" />
 					<input type="hidden" name="hdnOriginalAuse" id="hdnOriginalAuse" value="" />
 					<input type="hidden" name="hdnRoomKanriNo" id="sendRoomKanriNo" value="" />
 					<input type="hidden" name="hdnLendKbn" id="hdnLendKbn" value="" />

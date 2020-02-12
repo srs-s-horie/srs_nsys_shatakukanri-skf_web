@@ -22,7 +22,7 @@
 		<input type="hidden" name="hdnShatakuKbn" id="hdnShatakuKbn" value="${form.hdnShatakuKbn}" />
 		<input type="hidden" name="hdnOriginalAuse" id="hdnOriginalAuse" value="${form.hdnOriginalAuse}" />
 		<input type="hidden" name="hdnLendKbn" id="hdnLendKbn" value="${form.hdnLendKbn}" />
-		<input type="hidden" name="hdnEmptyParkingCount" id="hdnEmptyParkingCount" value="${form.emptyParkingCount}" />
+		<input type="hidden" name="hdnEmptyParkingCount" id="hdnEmptyParkingCount" value="${form.hdnEmptyParkingCount}" />
 		<input type="hidden" name="hdnBarnMensekiAdjust" id="hdnBarnMensekiAdjust" value="${form.barnMensekiAdjust}" />
 		<input type="hidden" name="registBihinData" id="registBihinData" value="${form.registBihinData}" />
 		<input type="hidden" name="hdnBihinStatusList" id="hdnBihinStatusList" value="${form.hdnBihinStatusList}" />
