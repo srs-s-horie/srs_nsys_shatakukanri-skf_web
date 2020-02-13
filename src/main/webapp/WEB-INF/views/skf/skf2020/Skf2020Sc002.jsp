@@ -1537,7 +1537,7 @@ function mesDisplayControl(isShow){
 				if($("#rdoHitsuyoSetai, #rdoHitsuyoTanshin").is(":checked")) {
 					$("#rdoKikon").prop("checked", true);
 					$("#rdoKikon").prop("disabled", false);
-				}else if($("#rdoHitsuyoDokushin").is(":checked")){	
+				}else if($("#rdoHitsuyoDokushin, #rdoHitsuyo").is(":checked")){	
 					$("#rdoKikon").prop("checked", false);
 					$("#rdoKikon").prop("disabled", false);
 				}else{
