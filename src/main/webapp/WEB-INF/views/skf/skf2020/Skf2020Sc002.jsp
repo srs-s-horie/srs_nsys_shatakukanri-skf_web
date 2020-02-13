@@ -1537,11 +1537,21 @@ function mesDisplayControl(isShow){
 				if($("#rdoHitsuyoSetai, #rdoHitsuyoTanshin").is(":checked")) {
 					$("#rdoKikon").prop("checked", true);
 					$("#rdoKikon").prop("disabled", false);
+				}else if($("#rdoHitsuyoDokushin").is(":checked")){	
+					$("#rdoKikon").prop("checked", false);
+					$("#rdoKikon").prop("disabled", false);
 				}else{
 					$("#rdoKikon").prop("checked", false);
 					$("#rdoKikon").prop("disabled",true);
 				}
 				
+				//新所属　その他が選択された場合、その他ボックスを活性化する
+				if($("#rdoHitsuyoIdo").prop('checked') && $('#affiliation1Cd option:selected').val()=="99"){
+					$('#newAffiliation1Other').prop('disabled', false);
+				}
+				if($("#rdoHitsuyoIdo").prop('checked') && $('#affiliation2Cd option:selected').val()=="99"){
+					$('#newAffiliation2Other').prop('disabled', false);
+				}
 			});
 	    								
 		})(jQuery);
