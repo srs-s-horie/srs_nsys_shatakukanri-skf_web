@@ -584,7 +584,7 @@ if(menuSesValTop != null){
                 <div class="imui-form-container-wide" style="width: 94%;">
                     <table style="width: 100%;">
                             <nfwui:Title id="sysytemAnnouncementsTitle" code="<%= MessageIdConstant.SKF1010_SC001_SYSTEM_ANNOUNCEMENTS_TITLE %>" titleLevel="2" />
-                        		<div style="overflow-y:scroll;height:280px;max-height: 280px;">
+                        		<div style="overflow-y:scroll;height:280px;max-height: 280px; word-break: break-all;">
                             		${form.note}
                         		</div>
                     </table>

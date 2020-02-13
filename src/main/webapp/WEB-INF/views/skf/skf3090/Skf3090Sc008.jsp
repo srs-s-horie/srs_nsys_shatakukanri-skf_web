@@ -21,24 +21,24 @@
 
 <!-- コンテンツエリア -->
 <nfwui:Form id="form" name="form" modelAttribute="form">
-<div class="imui-form-container-wide" style="width: 95%; min-width:1575px;">
+<div class="imui-form-container-wide" style="width: 95%;">
 		<table class="imui-form-search-condition">
 			<tbody>
 				<tr>
-					<td style="width: 70%; border: none; background-color: #fdfdff;">
+					<td style="width: 65%; border: none; background-color: #fdfdff;">
 						<div id="listTableArea">
-							<imui:listTable id="informationDataList" process="java" autoEncode="false" autoWidth="true" rowNumbers="true"
+							<imui:listTable id="informationDataList" process="jssp" autoEncode="false" autoWidth="true" rowNumbers="true"
 								autoResize="true" onCellSelect="onCellSelect"
 								multiSelect="false" data="${form.listTableData }"
 								style="max-height: 800px;" >
 								<pager rowNum="${form.listTableMaxRowCount }" />
 								<cols sortable="false">
-								<col name="edit" caption="編集" width="5" sortable="false" align="center" >
+								<col name="edit" caption="編集" width="6" sortable="false" align="center" >
 									<showIcon iconClass="im-ui-icon-common-16-update" />
 								</col>
-								<col name="openDate" caption="公開開始日" width="10" sortable="false" />
-								<col name="information" caption="お知らせ" width="80" sortable="false" />
-								<col name="delete" caption="削除" width="5" sortable="false" align="center" >
+								<col name="openDate" caption="公開開始日" width="10" sortable="false" align="center" />
+								<col name="information" caption="お知らせ" width="62.5" sortable="false" />
+								<col name="delete" caption="削除" width="6" sortable="false" align="center" >
 									<showIcon iconClass="im-ui-icon-common-16-trashbox" />
 								</col>
 								</cols>
@@ -46,7 +46,7 @@
 						</div>
 
 					</td>
-					<td style="width: 30%; border: none; background-color: #fdfdff; min-width: 300px;">
+					<td style="width: 35%; border: none; background-color: #fdfdff;">
 						<table>
 							<!-- 右側の操作ガイドの部分 -->
 							<div class="imui-form-container-wide">
@@ -184,6 +184,12 @@
 				nfw.common.confirmPopup("削除します。よろしいですか？", "確認", formId, url, "ok", "キャンセル", this, true);
 			}
 		}
+		
+	    //ウィンドウリサイズ時イベント
+	    $(window).bind('resize', function(){
+	        // 一覧の横幅を変更
+	        $('#informationDataList').setGridWidth($("#listTableArea").width() * 0.95 ,true);
+	    }).trigger('resize');
 		
 	})(jQuery);	
 </script>
