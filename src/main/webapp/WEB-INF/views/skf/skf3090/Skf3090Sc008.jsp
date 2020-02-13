@@ -25,7 +25,7 @@
 		<table class="imui-form-search-condition">
 			<tbody>
 				<tr>
-					<td style="width: 65%; border: none; background-color: #fdfdff;" id="testTableArea">
+					<td style="width: 65%; border: none; background-color: #fdfdff;">
 						<div id="listTableArea">
 							<imui:listTable id="informationDataList" process="jssp" autoEncode="false" autoWidth="true" rowNumbers="true"
 								autoResize="true" onCellSelect="onCellSelect"
