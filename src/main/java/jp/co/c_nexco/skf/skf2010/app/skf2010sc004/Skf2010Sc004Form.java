@@ -53,6 +53,8 @@ public class Skf2010Sc004Form extends Skf2010NyukyoCommonForm {
 	private String syokiTaikyoDate;
 	// 初期駐車場返還日
 	private String syokiParkingDate;
+	// 駐車場要不要
+	private boolean parkingDateDisabled = false;
 
 	// 操作ガイド
 	private String operationGuide;

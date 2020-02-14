@@ -916,7 +916,7 @@ $(function() {
                                 <tr>
                                     <th colspan="2"><nfwui:LabelBox id="lblComment" code="<%= MessageIdConstant.SKF2020_SC003_COMMENT %>" /></th>
                                     <td colspan="1">
-                                        <imui:textArea id="commentNote" name="commentNote" rows="4" cols="118" placeholder="修正依頼/差戻し理由" style="max-width: 700px;"></imui:textArea>
+                                        <imui:textArea id="commentNote" name="commentNote" rows="4" cols="118" placeholder="修正依頼/差戻し理由" style="width: 100%;"></imui:textArea>
                                     </td>
                                 </tr>
                             </tbody>

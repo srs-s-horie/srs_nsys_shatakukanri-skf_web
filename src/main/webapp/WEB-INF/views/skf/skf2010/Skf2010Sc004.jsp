@@ -262,7 +262,7 @@ ${form.operationGuide }
         </td>
         <th><nfwui:LabelBox id="lblNewCarSpaceStart" code="<%= MessageIdConstant.SKF2010_SC004_NEW_CAR_SPACE_START %>" /></th>
         <td align="left">
-          <nfwui:DateBox id="shiyobi" name="shiyobi" />
+          <nfwui:DateBox id="shiyobi" name="shiyobi" disabled="${form.parkingDateDisabled }" />
         </td>
       </tr>
       <tr style="width: 100%; max-width: 1000px;text-align:center;">
