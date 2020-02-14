@@ -113,8 +113,8 @@ ${f:h(form.shatakuKikaku) }
 	<th colspan="3"><nfwui:LabelBox id="lblWasher" code="<%= MessageIdConstant.SKF2030_SC001_WASHER %>" /></th>
 	<td>${f:h(form.bihinState11) }</td>
 	<td colspan="2">
-	<nfwui:RadioButtonGroup id="bihinAppl11" >
-	 <nfwui:RadioButton id="bihinTrue11" name="bihinAppl11" value="2" label="申請する" /> 
+	<nfwui:RadioButtonGroup id="bihinAppl11">
+	 <nfwui:RadioButton id="bihinTrue11" name="bihinAppl11" value="2" label="申請する" disabled="${form.bihinDisabled11 }" /> 
 	 <nfwui:RadioButton id="bihinFalse11" name="bihinAppl11" value="1" label="申請しない" /> 
 	</nfwui:RadioButtonGroup>
 	</td>
@@ -125,7 +125,7 @@ ${f:h(form.shatakuKikaku) }
 	<td>${f:h(form.bihinState12) }</td>
 	<td colspan="2">
 	<nfwui:RadioButtonGroup id="bihinAppl12" >
-	 <nfwui:RadioButton id="bihinTrue12" name="bihinAppl12" value="2" label="申請する" /> 
+	 <nfwui:RadioButton id="bihinTrue12" name="bihinAppl12" value="2" label="申請する" disabled="${form.bihinDisabled12 }" /> 
 	 <nfwui:RadioButton id="bihinFalse12" name="bihinAppl12" value="1" label="申請しない" /> 
 	</nfwui:RadioButtonGroup>
 	</td>
@@ -136,7 +136,7 @@ ${f:h(form.shatakuKikaku) }
 	<td>${f:h(form.bihinState13) }</td>
 	<td colspan="2">
 	<nfwui:RadioButtonGroup id="bihinAppl13" >
-	  <nfwui:RadioButton id="bihinTrue13" name="bihinAppl13" value="2" label="申請する" /> 
+	  <nfwui:RadioButton id="bihinTrue13" name="bihinAppl13" value="2" label="申請する" disabled="${form.bihinDisabled13}" /> 
 	  <nfwui:RadioButton id="bihinFalse13" name="bihinAppl13" value="1" label="申請しない" /> 
 	</nfwui:RadioButtonGroup>
 	</td>
@@ -147,7 +147,7 @@ ${f:h(form.shatakuKikaku) }
 	<td>${f:h(form.bihinState14) }</td>
 	<td colspan="2">
 	<nfwui:RadioButtonGroup id="bihinAppl14" >
-	 <nfwui:RadioButton id="bihinTrue14" name="bihinAppl14" value="2" label="申請する" /> 
+	 <nfwui:RadioButton id="bihinTrue14" name="bihinAppl14" value="2" label="申請する" disabled="${form.bihinDisabled14 }" /> 
 	 <nfwui:RadioButton id="bihinFalse14" name="bihinAppl14" value="1" label="申請しない" /> 
 	</nfwui:RadioButtonGroup>
 	</td>
@@ -159,7 +159,7 @@ ${f:h(form.shatakuKikaku) }
 	<td colspan="2">
 	<nfwui:RadioButtonGroup id="bihinAppl15" >
 	 <div style="float: left; width: 170px;">
-		<nfwui:RadioButton id="bihinTrue15" name="bihinAppl15" value="2" label="申請する" /> 
+		<nfwui:RadioButton id="bihinTrue15" name="bihinAppl15" value="2" label="申請する" disabled="${form.bihinDisabled15 }" /> 
 	 	<nfwui:RadioButton id="bihinFalse15" name="bihinAppl15" value="1" label="申請しない" /> 
 	 </div>
 	 <div style="margin-left: 170px; -ms-word-break: keep-all;"><nfwui:LabelBox id="lblRiceCookComment" code="<%= MessageIdConstant.SKF2030_SC001_RICE_COOK_COMMENT %>" /></div>
@@ -168,11 +168,11 @@ ${f:h(form.shatakuKikaku) }
 </tr>
 
 <tr>
-	<th colspan="3"><nfwui:LabelBox id="lblTv" code="<%= MessageIdConstant.SKF2030_SC001_TV %>" /></th>
+	<th colspan="3"><nfwui:LabelBox id="lblTv" code="<%= MessageIdConstant.SKF2030_SC001_TV %>"  /></th>
 	<td>${f:h(form.bihinState16) }</td>
 	<td colspan="2">
-	<nfwui:RadioButtonGroup id="bihinAppl16" >
-	 <nfwui:RadioButton id="bihinTrue16" name="bihinAppl16" value="2" label="申請する" /> 
+	<nfwui:RadioButtonGroup id="bihinAppl16">
+	 <nfwui:RadioButton id="bihinTrue16" name="bihinAppl16" value="2" label="申請する" disabled="${form.bihinDisabled16 }" /> 
 	 <nfwui:RadioButton id="bihinFalse16" name="bihinAppl16" value="1" label="申請しない" /> 
 	</nfwui:RadioButtonGroup>
 	</td>
@@ -183,7 +183,7 @@ ${f:h(form.shatakuKikaku) }
 	<td>${f:h(form.bihinState17) }</td>
 	<td colspan="2">
 	<nfwui:RadioButtonGroup id="bihinAppl17" >
-	 <nfwui:RadioButton id="bihinTrue17" name="bihinAppl17" value="2" label="申請する" /> 
+	 <nfwui:RadioButton id="bihinTrue17" name="bihinAppl17" value="2" label="申請する" disabled="${form.bihinDisabled17 }" /> 
 	 <nfwui:RadioButton id="bihinFalse17" name="bihinAppl17" value="1" label="申請しない" /> 
 	</nfwui:RadioButtonGroup>
 	</td>
@@ -194,7 +194,7 @@ ${f:h(form.shatakuKikaku) }
 	<td>${f:h(form.bihinState18) }</td>
 	<td colspan="2">
 	<nfwui:RadioButtonGroup id="bihinAppl18" >
-	 <nfwui:RadioButton id="bihinTrue18" name="bihinAppl18" value="2" label="申請する" /> 
+	 <nfwui:RadioButton id="bihinTrue18" name="bihinAppl18" value="2" label="申請する" disabled="${form.bihinDisabled18 }" /> 
 	 <nfwui:RadioButton id="bihinFalse18" name="bihinAppl18" value="1" label="申請しない" /> 
 	</nfwui:RadioButtonGroup>
 	</td>
@@ -205,7 +205,7 @@ ${f:h(form.shatakuKikaku) }
 	<td>${f:h(form.bihinState19) }</td>
 	<td colspan="2">
 	<nfwui:RadioButtonGroup id="bihinAppl19" >
-	 <nfwui:RadioButton id="bihinTrue19" name="bihinAppl19" value="2" label="申請する" /> 
+	 <nfwui:RadioButton id="bihinTrue19" name="bihinAppl19" value="2" label="申請する" disabled="${form.bihinDisabled19 }" /> 
 	 <nfwui:RadioButton id="bihinFalse19" name="bihinAppl19" value="1" label="申請しない" /> 
 	</nfwui:RadioButtonGroup>
 	</td>
