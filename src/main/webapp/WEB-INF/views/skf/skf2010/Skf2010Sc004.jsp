@@ -70,6 +70,8 @@ function back1() {
 				map['applStatus'] = $("#applStatus").val();
 				map['shainNo'] = $("#hdnShainNo").val();
 				map['bihinKibo'] = $("#bihinKibo").val();
+				map['syokiTaikyoDate'] = $("#syokiTaikyoDate").val();
+				map['syokiParkingDate'] = $("#syokiParkingDate").val();
 				if ($("#nyukyobi").val() != null) {
 					map['nyukyobi'] = $("#nyukyobi").val().replace(/\//g, "");
 				}
@@ -306,7 +308,8 @@ ${form.operationGuide }
       <nfwui:Hidden id="bihinKibo" name="bihinKibo" />
       <nfwui:Hidden id="applStatus" name="applStatus" />
       <nfwui:Hidden id="applUpdateDate" name="applUpdateDate" />
-      <input type="hidden" name="prePageId" value="Skf2010Sc004" />
+      <nfwui:Hidden id="syokiTaikyoDate" name="syokiTaikyoDate" />
+      <nfwui:Hidden id="syokiParkingDate" name="syokiParkingDate" />
       <!-- 添付資料番号 -->
       <input type="hidden" id="attachedNo" name="attachedNo" value="" />
       <table width="100%">

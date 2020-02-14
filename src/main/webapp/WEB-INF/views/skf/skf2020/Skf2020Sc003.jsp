@@ -623,7 +623,7 @@ $(function() {
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblReturnBihin" code="<%= MessageIdConstant.SKF2020_SC003_RETURN_EQUIPMENT %>" /></th>
                                     <td colspan="2">
-                                    ${f:h(form.returnEquipment)}
+                                    ${form.returnEquipment}
                                     </td>
                                 </tr>
                                 

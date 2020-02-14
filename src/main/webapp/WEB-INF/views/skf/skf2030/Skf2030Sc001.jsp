@@ -41,9 +41,13 @@
 				}
 			}
 			if (bihinAllFalse == "true") {
+				// 備品全て「申請しない」場合、備品搬入希望日、備品搬入希望時刻、連絡先を初期化して非活性にする
 				$("#sessionDayDiv").prop("disabled", true);
+				$("#sessionDay").val(null);
 				$("#sessionDay").prop("disabled", true);
+				$("#sessionTime").val(0);
 				$("#sessionTime").prop("disabled", true);
+				$("#renrakuSaki").val(null);
 				$("#renrakuSaki").prop("disabled", true);
 				$("#bihinCheckFlag").val("false");
 			} else {

@@ -238,7 +238,7 @@
 			</tr>
 			<tr>
 				<td style="font-size: 120%;font-family: ＭＳ Ｐ明朝"   width="200px">規格（間取り）</td>
-				<td style="font-size: 120%;font-family: ＭＳ Ｐ明朝">${f:h(form.nowShatakuKikakuName)}</td>
+				<td style="font-size: 120%;font-family: ＭＳ Ｐ明朝">${f:h(form.nowShatakuKikaku)}</td>
 				<td style="font-size: 120%;font-family: ＭＳ Ｐ明朝">面積</td>
 				<td style="font-size: 120%;font-family: ＭＳ Ｐ明朝">${f:h(form.nowShatakuMenseki)}㎡</td>
 			</tr>
