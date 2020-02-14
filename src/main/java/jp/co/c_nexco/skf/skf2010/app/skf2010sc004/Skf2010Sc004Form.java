@@ -49,6 +49,11 @@ public class Skf2010Sc004Form extends Skf2010NyukyoCommonForm {
 	// 退居フラグ
 	private boolean notTaikyo = false;
 
+	// 初期退居日
+	private String syokiTaikyoDate;
+	// 初期駐車場返還日
+	private String syokiParkingDate;
+
 	// 操作ガイド
 	private String operationGuide;
 
