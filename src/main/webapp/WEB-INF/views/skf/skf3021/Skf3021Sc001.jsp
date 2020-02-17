@@ -24,10 +24,10 @@
 function onCellAttr(rowId,val,rawObject,cm,rdata){
 	  var style;
 	  switch (val) {
-	  case '作成済':
+	  case '設定':
 	      style = 'style="color:blue;"';
 	      break;
-	  case '未作成':
+	  case '未設定':
 	      style = 'style="color:red;"';
 	      break;
 	  case '-':
