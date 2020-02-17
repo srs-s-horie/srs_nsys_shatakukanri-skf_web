@@ -86,7 +86,7 @@
 							</th>
 							<td style="width:21.3%;" >
 <!-- 									<input style="width:130px;" type="text" value="101" /> -->
-								<imui:textbox id="txtRoomNo" name="roomNo" style="ime-mode: disabled;width:130px;" value="${form.roomNo}" class="${form.roomNoError}" placeholder="例　101（半角）" tabindex="1"/>
+								<imui:textbox id="txtRoomNo" name="roomNo" style="width:130px;" value="${form.roomNo}" class="${form.roomNoError}" maxlength="10"  placeholder="例　101" tabindex="1"/>
 							</td>
 							<th style="width:12%">
 <!-- 									<label>本来延面積</label> -->
