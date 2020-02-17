@@ -74,7 +74,7 @@
 						<label>年齢</label>
 					</th>
 					<td>
-						<imui:textbox id="txtNenrei" name="txtNenrei" class="ime-off" style="width:100px;" type="text" value="${form.txtNenrei}" maxlength="4" placeholder="例 半角数字"/>
+						<imui:textbox id="txtNenrei" name="txtNenrei" style="ime-mode: disabled; width:100px;" type="text" value="${form.txtNenrei}" maxlength="4" placeholder="例 半角数字"/>
 					</td>
 				</tr>
 				<tr>
