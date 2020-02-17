@@ -345,8 +345,8 @@
 								<nfwui:LabelBox id="lblRoomNo" code="<%=MessageIdConstant.SKF3010_SC006_ROOMNO%>" />
 							</th>
 							<td style="width: 40%;">
-								<imui:textbox id="roomNo" name="roomNo" style="ime-mode: disabled;width:120px;" value="${f:h(form.roomNo)}" 
-								class="${form.roomNoError}" placeholder="例　101（半角）" maxlength="10" tabindex="31"/>
+								<imui:textbox id="roomNo" name="roomNo" style="width:120px;" value="${f:h(form.roomNo)}" 
+								class="${form.roomNoError}" placeholder="例　101" maxlength="10" tabindex="31"/>
 							</td>
 							<th style="width: 15%;">
 		<!-- 				<label>本来延面積</label> -->
@@ -533,8 +533,8 @@
 								<nfwui:LabelBox id="lblParkingBlock" code="<%=MessageIdConstant.SKF3010_SC006_PARKING_BLOCK %>" />
 							</th>
 							<td colspan="2">
-								<imui:textbox id="parkingBlock" name="parkingBlock" style="text-align: right;ime-mode: disabled;width:100px;" 
-								value="${f:h(form.parkingBlock)}" class="${form.parkingBlockError}" placeholder="例　01（半角）" maxlength="10" tabindex="53"/>
+								<imui:textbox id="parkingBlock" name="parkingBlock" style="width:100px;" 
+								value="${f:h(form.parkingBlock)}" class="${form.parkingBlockError}" placeholder="例　01" maxlength="10" tabindex="53"/>
 							</td>
 						</tr>
 						<tr>
