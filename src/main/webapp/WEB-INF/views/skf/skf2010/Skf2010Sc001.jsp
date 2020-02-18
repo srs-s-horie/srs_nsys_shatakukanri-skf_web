@@ -160,7 +160,7 @@ $(function(){
 	<br>
 <div class="align-R">
 	<imui:button id="closeBtn" name="closeBtn" value="画面を閉じる" style="width:100px;" class="imui-small-button" />
-	<imui:button id="selectBtn" name="selectBtn" value="選択" style="width:100px;" class="imui-small-button" />
+	<imui:button id="selectBtn" name="selectBtn" value="選択する" style="width:100px;" class="imui-small-button" />
 	<!--<input style="width:100px;" id="" type="button" value="キャンセル" class="imui-small-button"  onclick="window.close()"/>-->
 	<input type="hidden" id="targetRowId" value="" />
 </div>

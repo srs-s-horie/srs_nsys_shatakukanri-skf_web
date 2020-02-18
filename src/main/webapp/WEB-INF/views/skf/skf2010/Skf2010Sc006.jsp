@@ -251,6 +251,20 @@ $(function() {
         </div>
           </td>
           <td class="vertical-top" style="vertical-align:top">
+        <div class="align-R" style="margin-bottom: 5px;">
+           <!-- 修正依頼ボタン -->
+           <nfwui:ConfirmButton id="revisionBtn" name="revisionBtn"
+           value="修正依頼" cssClass="imui-medium-button" cssStyle="width: 150px" 
+           title="<%= MessageIdConstant.SKF2010_SC006_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2005 %>"
+           url="skf/Skf2010Sc006/Revision" formId="form"
+           remove="${form.revisionRemandBtnFlg }" />
+           <!-- 差戻しボタン -->
+           <nfwui:ConfirmButton id="sendoutBtn" name="sendoutBtn"
+           value="差戻し" cssClass="imui-medium-button" cssStyle="width: 150px" 
+           title="<%= MessageIdConstant.SKF2010_SC006_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2010 %>"
+           url="skf/Skf2010Sc006/Sendout" formId="form"
+           remove="${form.revisionRemandBtnFlg }" />
+         </div>
 <c:if test="${form.shoninBtnViewFlag == 'true'}">
         <div class="align-R">
            <!-- 再提示ボタン -->

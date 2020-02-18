@@ -31,6 +31,9 @@
 		}
 		return style;
 	}
+	function cellAttrEllipsis(rowId,val,rawObject,cm,rdata){
+		return 'style="text-overflow: ellipsis; white-space: nowrap;"'
+	}
 </script>
 <!-- コンテンツエリア -->
 <div class="imui-form-container-wide">
@@ -164,19 +167,19 @@
 		<div class="imui-chapter-title"><h2>検索結果一覧</h2></div>
 		<div id="listTable">
 			<imui:listTable id="mainList" process="jssp" autoEncode="true" autoWidth="true" rowNumbers="true" autoResize="true"
-				onCellSelect="onCellSelect" multiSelect="false" data="${form.listTableData }" style="max-height: 800px" tabindex="12">
+				onCellSelect="onCellSelect" multiSelect="false" data="${form.listTableData }" height="300" tabindex="12">
 				<pager rowNum="${form.listTableMaxRowCount }" />
 				<cols sortable="false">
-					<col name="companyName" caption="管理会社" width="115" sortable="false" align="left" wrap="true" />
-					<col name="agencyName" caption="管理機関" width="100" sortable="false" align="left" wrap="true" />
+					<col name="companyName" caption="管理会社" width="115" sortable="false" align="left" onCellAttr="cellAttrEllipsis"/>
+					<col name="agencyName" caption="管理機関" width="115" sortable="false" align="left" onCellAttr="cellAttrEllipsis"/>
 					<col name="shatakuKbn" caption="社宅区分" width="100" sortable="false" align="center" wrap="true" />
 					<col name="useKbn" caption="利用区分" width="100" sortable="false" align="center" onCellAttr="onCellAttr" wrap="true" />
-					<col name="shatakuName" caption="社宅名" width="175" sortable="false" align="left" wrap="true" />
-					<col name="shatakuAddress" caption="社宅所在地" width="343" sortable="false" align="left" wrap="true" />
+					<col name="shatakuName" caption="社宅名" width="175" sortable="false" align="left" onCellAttr="cellAttrEllipsis"/>
+					<col name="shatakuAddress" caption="社宅所在地" width="343" sortable="false" align="left" onCellAttr="cellAttrEllipsis"/>
 					<col name="structureKbn" caption="構造" width="50" sortable="false" align="center" wrap="true" />
 					<col name="aging" caption="経年" width="50" sortable="false" align="center" wrap="true" />
-					<col name="emptyRoomCount" caption="空き部屋数" width="125" sortable="false" align="right" wrap="true" />
-					<col name="emptyParkingCount" caption="空き駐車場数" width="150" sortable="false" align="right" wrap="true" />
+					<col name="emptyRoomCount" caption="空き部屋数" width="90" sortable="false" align="right" wrap="true" />
+					<col name="emptyParkingCount" caption="空き駐車場数" width="105" sortable="false" align="right" wrap="true" />
 					<col name="col11" caption="基本" width="50" sortable="false" align="center" >
 						<showIcon iconClass="im-ui-icon-common-16-update" />
 					</col>
@@ -267,10 +270,10 @@
 				// 画面表示時に定義される処理
 				$(document).ready(function(){
 
-					// リサイズ時イベント
-					$(window).bind('resize', function(){
-						$('#mainList').setGridWidth($('#listTableArea').width(), true);
-					}).trigger('resize');
+//					// リサイズ時イベント
+//					$(window).bind('resize', function(){
+//						$('#mainList').setGridWidth($('#listTableArea').width(), true);
+//					}).trigger('resize');
 
 					// 下部ボタン押下時のイベント
 					preButtonEvent = function (mode) {
