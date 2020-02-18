@@ -29,7 +29,6 @@
 }
 </style>
  <!-- コンテンツエリア -->
-    <div class="imui-form-container-wide" style="width: 90%; height: 100%;">
 
     <!-- コンテンツエリア -->
       
@@ -96,6 +95,5 @@
                </tbody>
              </table>
     
-  </div>
 
   

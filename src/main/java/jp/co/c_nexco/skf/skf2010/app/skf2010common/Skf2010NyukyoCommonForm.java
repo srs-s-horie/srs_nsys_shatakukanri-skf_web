@@ -29,6 +29,7 @@ public class Skf2010NyukyoCommonForm extends NfwfileScDwdForm {
 	private String commentViewFlag;
 	private String representBtnFlg;
 	private String shoninBtnViewFlag;
+	private boolean revisionRemandBtnFlg;
 
 	/** 入居希望申請調書 **/
 	// 社宅必要可否
