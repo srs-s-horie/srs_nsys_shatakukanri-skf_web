@@ -157,7 +157,7 @@ function onCellAttrNtk(rowId,val,rawObject,cm,rdata){
 					})(jQuery);
 				</script>
 				<div id="listTableArea">
-					<imui:listTable id="mainList" process="jssp" autoEncode="false" autoWidth="true" rowNumbers="true"
+					<imui:listTable id="mainList" process="jssp" autoEncode="false" autoWidth="true" rowNumbers="true" rowNumWidth="35"
 						autoResize="true" onCellSelect="onCellSelect" onGridComplete="gridComplete"
 						multiSelect="true" data="${form.listTableData}"
 						onBeforeSelectRow="onBeforeSelectRow" onSelectAll="onSelectAll" tabindex="11">
