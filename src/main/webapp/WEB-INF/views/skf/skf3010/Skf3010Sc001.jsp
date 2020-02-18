@@ -166,7 +166,7 @@
 		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc001/init"/>
 		<div class="imui-chapter-title"><h2>検索結果一覧</h2></div>
 		<div id="listTable">
-			<imui:listTable id="mainList" process="jssp" autoEncode="true" autoWidth="true" rowNumbers="true" autoResize="true"
+			<imui:listTable id="mainList" process="jssp" autoEncode="true" autoWidth="true" rowNumbers="true" autoResize="true" rowNumWidth="35"
 				onCellSelect="onCellSelect" multiSelect="false" data="${form.listTableData }" height="300" tabindex="12">
 				<pager rowNum="${form.listTableMaxRowCount }" />
 				<cols sortable="false">
