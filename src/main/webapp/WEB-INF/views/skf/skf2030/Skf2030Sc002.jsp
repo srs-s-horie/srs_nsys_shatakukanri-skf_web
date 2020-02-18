@@ -246,7 +246,7 @@ function back1() {
 <imart:condition validity="<%= form.getBihinCheckFlag() %>" negative>      
       <nfwui:ConfirmButton id="approveBtn" name="approveBtn"
       value="承認" cssClass="imui-medium-button" cssStyle="width: 150px" 
-      title="<%= MessageIdConstant.SKF2030_SC002_REVISION %>" message="<%= MessageIdConstant.I_SKF_2006 %>"
+      title="<%= MessageIdConstant.SKF2030_SC002_APPLY %>" message="<%= MessageIdConstant.I_SKF_2006 %>"
       url="skf/Skf2030Sc002/Approve" formId="form" disabledPatterns="NONADMIN" />
 </imart:condition>
 </div>
@@ -259,7 +259,7 @@ function back1() {
       url="skf/Skf2030Sc002/Revision" formId="form" disabledPatterns="NONADMIN" />
       <nfwui:ConfirmButton id="approveBtn" name="approveBtn"
       value="承認" cssClass="imui-medium-button" cssStyle="width: 150px" 
-      title="<%= MessageIdConstant.SKF2030_SC002_REVISION %>" message="<%= MessageIdConstant.I_SKF_2006 %>"
+      title="<%= MessageIdConstant.SKF2030_SC002_APPLY %>" message="<%= MessageIdConstant.I_SKF_2006 %>"
       url="skf/Skf2030Sc002/Approve" formId="form" disabledPatterns="NONADMIN" />
 	</div>  
 </imart:decision>  
