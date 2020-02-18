@@ -341,19 +341,19 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 					<imui:listTable id="mainList" process="jssp" autoEncode="false" autoWidth="true" rowNumbers="true"
 						autoResize="true" onCellSelect="onCellSelect" onGridComplete="onGridComplete"
 						multiSelect="false" data="${form.listTableData }"
-						style="max-height: 800px" >
-						<pager rowNum="${form.listTableMaxRowCount }" />
+						 height="800" maxHeight="800" rowNumWidth="35">
+						<pager rowNum="${form.listTableMaxRowCount }"/>
 						<cols sortable="false">
 							<col name="col1" caption="入居" width="35" sortable="false" align="center" tabindex="14"/>
 							<col name="col2" caption="退居" width="35" sortable="false" align="center" tabindex="15"/>
 							<col name="col3" caption="変更" width="35" sortable="false" align="center" tabindex="16"/>
-							<col name="col4" caption="社員番号" width="80" sortable="false" wrap="true"/>
+							<col name="col4" caption="社員番号" width="85" sortable="false" wrap="true"/>
 							<col name="col5" caption="社員氏名" width="100" sortable="false" wrap="true"/>
 							<col name="col6" caption="等級" width="35" sortable="false" wrap="true"/>
 							<col name="col7" caption="年齢" width="35" sortable="false" align="right" wrap="true"/>
 							<col name="col8" caption="新所属" width="185" sortable="false" wrap="true"/>
 							<col name="col9" caption="現所属" width="185" sortable="false" wrap="true" />
-							<col name="col10" caption="備考" width="120" sortable="false" wrap="true" />
+							<col name="col10" caption="備考" width="115" sortable="false" wrap="true" />
 							<col name="col11" caption="取込日" width="90" sortable="false" align="center" wrap="true"/>
 							<col name="col12" caption="入退居予定作成区分" width="80" sortable="false" align="center" onCellAttr="onCellAttr" wrap="true"/>
 							<!-- 
