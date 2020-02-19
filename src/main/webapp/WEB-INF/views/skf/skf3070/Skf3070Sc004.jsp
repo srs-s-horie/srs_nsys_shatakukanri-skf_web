@@ -25,7 +25,7 @@
 		white-space:normal;
 	}
 </style>
-
+<script src="scripts/skf/skfCommon.js"></script>
 <script type="text/javascript">
 $(function(){
 	$(document).ready(function(){
@@ -149,11 +149,11 @@ $(function(){
 		width="550" height="200" multiSelect="false" autoEncode="true">
 		<pager rowNum="${form.listTableMaxRowCount}"/>
 		<cols>
-		  <col name="ownerName" width="160" sortable="false" caption="氏名又は名称" wrap="true" />
-		  <col name="ownerNameKk" width="180" sortable="false" caption="氏名又は名称(フリガナ）" wrap="true" />
-		  <col name="businessKbn" width="90" sortable="false" caption="個人法人区分" wrap="true" />
-		  <col name="address" width="320" sortable="false" caption="住所" wrap="true" />
-		  <col name="ownerNo" caption="賃貸人(代理人)番号" hidden="true" />
+		  <col name="ownerName" width="160" sortable="false" caption="氏名又は名称" wrap="true" sortable="false" onCellAttr="cellAttrEllipsis"/>
+		  <col name="ownerNameKk" width="180" sortable="false" caption="氏名又は名称(フリガナ）" wrap="true" sortable="false" onCellAttr="cellAttrEllipsis"/>
+		  <col name="businessKbn" width="90" sortable="false" caption="個人法人区分" wrap="true" sortable="false"  />
+		  <col name="address" width="320" sortable="false" caption="住所" wrap="true" sortable="false" onCellAttr="cellAttrEllipsis"/>
+		  <col name="ownerNo" caption="賃貸人(代理人)番号" hidden="true" sortable="false"  />
 		</cols>
 		</imui:listTable>
 	</nfwui:Form>

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+x<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%-- 共通JSP --%>
 <%@ include file="/WEB-INF/views/nfw/framework/common/CommonWithOutGrid.jsp" %>
