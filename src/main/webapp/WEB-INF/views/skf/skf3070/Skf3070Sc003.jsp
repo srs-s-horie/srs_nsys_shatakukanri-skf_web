@@ -13,6 +13,7 @@
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
 
+<script src="scripts/skf/skfCommon.js"></script>
 <style>
 .ui-jqgrid .ui-jqgrid-htable th div{
 	height: 34px;
@@ -96,19 +97,19 @@
 	                multiSelect="false" data="${form.listTableData}"
 	                style="max-height: 1000px"  height="232">
 	                	<cols>
-							<col name="agencyName" caption="管理機関" width="120" align="left" wrap="true"/>
-							<col name="shatakuName" caption="社宅名" width="130" align="left" wrap="true" />
-							<col name="contractKbn" caption="社宅・駐車場区分" width="90" align="left" wrap="false" />
-							<col name="address" caption="住所" width="265" align="left" wrap="true" />
-							<col name="roomNo" caption="部屋番号" width="70" align="center" wrap="false" />
-							<col name="structureSupplement" caption="構造" width="65" align="center" wrap="false" />
-							<col name="originalMenseki" caption="面積(㎡)" width="50" sortable="false" align="right" wrap="false" />
-							<col name="assetRegisterNo" caption="経理連携用管理番号" width="100" align="center" wrap="false" />
-							<col name="contractStartDate" caption="契約開始日" width="75" align="center" wrap="false" />
-							<col name="contractEndDate" caption="契約終了日" width="75" align="center" wrap="false" />
-							<col name="rent" caption="賃料" width="60" align="right" wrap="false" />
-							<col name="kyoekihi" caption="共益費" width="60" align="right" wrap="false" />
-							<col name="landRent" caption="駐車場料（地代）" width="60" align="right" wrap="false" />
+							<col name="agencyName" caption="管理機関" width="120" align="left" wrap="true" sortable="false"/>
+							<col name="shatakuName" caption="社宅名" width="130" align="left" wrap="true" sortable="false" onCellAttr="cellAttrEllipsis"/>
+							<col name="contractKbn" caption="社宅・駐車場区分" width="90" align="left" wrap="false" sortable="false" />
+							<col name="address" caption="住所" width="265" align="left" wrap="true" sortable="false" onCellAttr="cellAttrEllipsis"/>
+							<col name="roomNo" caption="部屋番号" width="70" align="center" wrap="false" sortable="false"/>
+							<col name="structureSupplement" caption="構造" width="65" align="center" wrap="false" sortable="false" />
+							<col name="originalMenseki" caption="面積(㎡)" width="50" sortable="false" align="right" wrap="false" sortable="false" />
+							<col name="assetRegisterNo" caption="経理連携用管理番号" width="100" align="center" wrap="false" sortable="false" />
+							<col name="contractStartDate" caption="契約開始日" width="75" align="center" wrap="false" sortable="false" />
+							<col name="contractEndDate" caption="契約終了日" width="75" align="center" wrap="false" sortable="false" />
+							<col name="rent" caption="賃料" width="60" align="right" wrap="false" sortable="false" />
+							<col name="kyoekihi" caption="共益費" width="60" align="right" wrap="false" sortable="false" />
+							<col name="landRent" caption="駐車場料（地代）" width="60" align="right" wrap="false" sortable="false" />
 						</cols>
 				</imui:listTable>
 				<table name="imui-8eqlrzst4hv6std" id="sampleListTable1"></table>
@@ -137,6 +138,7 @@
     	<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="3" />
 	</div>
 </div>
+
 <script type="text/javascript">
 /**
  * 一つ前の画面へ戻る

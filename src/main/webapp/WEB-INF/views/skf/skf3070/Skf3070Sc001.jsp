@@ -104,16 +104,16 @@
 			         <pager rowNum="${form.listTableMaxRowCount}" />
 						<cols sortable="false">
 							<col name="ownerNo" hidden="true" />
-							<col name="ownerName" caption="氏名又は名称" width="150" align="left" wrap="true"/>
-							<col name="ownerNameKk" caption="氏名又は名称（フリガナ）" width="200" align="left" wrap="true" />
-							<col name="address" caption="住所(居所）又は所在地" width="200" align="left" wrap="true" />
-							<col name="businessKbn" caption="法人個人" width="50" align="center" wrap="false" />
-							<col name="acceptFlg" caption="個人番号" width="230" align="left" wrap="false" />
-							<col name="propertiesOwnedCnt" caption="所有物件数" width="60" align="right" wrap="false" />
-							<col name="edit" caption="編集" width="30" sortable="false" align="center">
+							<col name="ownerName" caption="氏名又は名称" width="150" align="left" wrap="true" sortable="false" onCellAttr="cellAttrEllipsis"/>
+							<col name="ownerNameKk" caption="氏名又は名称（フリガナ）" width="200" align="left" wrap="true" sortable="false" onCellAttr="cellAttrEllipsis"/>
+							<col name="address" caption="住所(居所）又は所在地" width="200" align="left" wrap="true" sortable="false" onCellAttr="cellAttrEllipsis"/>
+							<col name="businessKbn" caption="法人個人" width="50" align="center" wrap="false" sortable="false" />
+							<col name="acceptFlg" caption="個人番号" width="230" align="left" wrap="false" sortable="false" />
+							<col name="propertiesOwnedCnt" caption="所有物件数" width="60" align="right" wrap="false" sortable="false" />
+							<col name="edit" caption="編集" width="30" sortable="false" align="center" sortable="false" >
 								<showIcon iconClass="im-ui-icon-common-16-update" />
 							</col>
-							<col name="properties" caption="物件" width="30" sortable="false" align="center" >
+							<col name="properties" caption="物件" width="30" sortable="false" align="center" sortable="false" >
 								<showIcon iconClass="im-smart-icon-common-16-information" />
 							</col>
 						</cols>
