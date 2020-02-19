@@ -158,7 +158,7 @@ function onCellAttrNtk(rowId,val,rawObject,cm,rdata){
 				</script>
 				<div id="listTableArea">
 					<imui:listTable id="mainList" process="jssp" autoEncode="false" autoWidth="true" rowNumbers="true" rowNumWidth="35"
-						autoResize="true" onCellSelect="onCellSelect" onGridComplete="gridComplete"
+						autoResize="true" onCellSelect="onCellSelect" onGridComplete="gridComplete" height="300"
 						multiSelect="true" data="${form.listTableData}"
 						onBeforeSelectRow="onBeforeSelectRow" onSelectAll="onSelectAll" tabindex="11">
 						<pager rowNum="${form.listTableMaxRowCount }" />
@@ -191,7 +191,10 @@ function onCellAttrNtk(rowId,val,rawObject,cm,rdata){
 						<col name="hdnParking1StartDate" caption="" hidden="true"/>
 						<col name="hdnParking2StartDate" caption="" hidden="true"/>
 						<col name="hdnPreShainNo" caption="" hidden="true"/>
-						
+<!-- AS 結合1041対応 -->
+						<col name="hdnNowAffiliation" caption="現所属" hidden="true"/>
+						<col name="hdnNewAffiliation" caption="新所属" hidden="true"/>
+<!-- AE 結合1041対応 -->
 						<col name="hdnNyutaikyoKbnCd" caption="" hidden="true"/>
 						<col name="hdnSinseiKbn" caption="" hidden="true"/>
 						<col name="hdnShinseiJyokyo" caption="" hidden="true"/>
@@ -499,7 +502,10 @@ function onCellAttrNtk(rowId,val,rawObject,cm,rdata){
 							var parking1StartDate = row.hdnParking1StartDate;//駐車場区画１開始日
 							var parking2StartDate = row.hdnParking2StartDate;//駐車場区画２開始日
 							var hdnUpdateDate = row.hdnUpdateDateNtkyo;//更新日時hidden変数
-							
+							/* AS 結合1041対応 */
+							var hdnNowAffiliation = row.hdnNowAffiliation;	// 現所属
+							var hdnNewAffiliation = row.hdnNewAffiliation;	// 新所属
+							/* AE 結合1041対応 */
 							//引数がない場合リストに入れない
 							if(shainNo == null || shainNo == ""){
 								continue;
@@ -517,6 +523,10 @@ function onCellAttrNtk(rowId,val,rawObject,cm,rdata){
 							tempStr.push(parking1StartDate);
 							tempStr.push(parking2StartDate);
 							tempStr.push(hdnUpdateDate);
+							/* AS 結合1041対応 */
+							tempStr.push(hdnNowAffiliation);
+							tempStr.push(hdnNewAffiliation);
+							/* AE 結合1041対応 */
 							
 							mailList.push(tempStr.join(","));		//配列で格納
 							//選択有
