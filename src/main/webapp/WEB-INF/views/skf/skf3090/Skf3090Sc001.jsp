@@ -157,7 +157,7 @@
 				<div id="listTableArea">
 					<imui:listTable id="mainList" process="jssp" autoEncode="false" autoWidth="true" rowNumbers="true"
 						autoResize="true" onCellSelect="onCellSelect" onGridComplete="onGridComplete"
-						multiSelect="false" data="${form.listTableData }"
+						multiSelect="false" data="${form.listTableData }" height="300" maxHeight="800"
 						>
 						<cols sortable="false">
 							<col name="col1" caption="改定日" width="70" sortable="false" align="center" wrap="true"/>
