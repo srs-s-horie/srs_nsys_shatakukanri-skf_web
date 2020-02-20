@@ -177,10 +177,13 @@ function back1() {
 <c:forEach var="bihinInfo" items="${form.bihinList }">
                                                 <tr>
                                                    <th colspan="4"><label>${f:h(bihinInfo.bihinName) }</label></th>
-                                                   <td>${f:h(bihinInfo.bihinState) }</td>
-                                                   <td>${f:h(bihinInfo.bihinAppl) }</td>
-                                                   <td>${f:h(bihinInfo.bihinAdjust) }</td>
+                                                   <td>${f:h(bihinInfo.bihinStateText) }</td>
+                                                   <td>${f:h(bihinInfo.bihinApplText) }</td>
+                                                   <td>${f:h(bihinInfo.bihinAdjustText) }</td>
                                                 </tr>
+                                                <input type="hidden" name="bihinState${f:h(bihinInfo.bihinIndex) }" value="${f:h(bihinInfo.bihinState) }" />
+                                                <input type="hidden" name="bihinAppl${f:h(bihinInfo.bihinIndex) }" value="${f:h(bihinInfo.bihinAppl) }" />
+                                                <input type="hidden" name="bihinAdjust${f:h(bihinInfo.bihinIndex) }" value="${f:h(bihinInfo.bihinAdjust) }" />
 </c:forEach>
 <tr style="border:none">
    <td style="border:none">

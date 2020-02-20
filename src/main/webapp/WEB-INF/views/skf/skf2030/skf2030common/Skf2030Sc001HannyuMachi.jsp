@@ -140,57 +140,57 @@
 
                         <tr>
                            <th colspan="4"><nfwui:LabelBox id="lblWasher" code="<%= MessageIdConstant.SKF2030_SC001_WASHER %>" /></th>
-                           <td>${f:h(form.bihinState11) }</td>
+                           <td>${f:h(form.bihinStateText11) }</td>
                            <td>${f:h(form.bihinApplText11) }</td>
-                           <td>${f:h(form.bihinAdjust11) }</td>
+                           <td>${f:h(form.bihinAdjustText11) }</td>
                         </tr>
                         <tr>
                            <th colspan="4"><nfwui:LabelBox id="lblFreezer" code="<%= MessageIdConstant.SKF2030_SC001_FREEZER %>" /></th>
-                           <td>${f:h(form.bihinState12) }</td>
+                           <td>${f:h(form.bihinStateText12) }</td>
                            <td>${f:h(form.bihinApplText12) }</td>
-                           <td>${f:h(form.bihinAdjust12) }</td>
+                           <td>${f:h(form.bihinAdjustText12) }</td>
                         </tr>
                         <tr>
                            <th colspan="4"><nfwui:LabelBox id="lblOven" code="<%= MessageIdConstant.SKF2030_SC001_OVEN %>" /></th>
-                           <td>${f:h(form.bihinState13) }</td>
+                           <td>${f:h(form.bihinStateText13) }</td>
                            <td>${f:h(form.bihinApplText13) }</td>
-                           <td>${f:h(form.bihinAdjust13) }</td>
+                           <td>${f:h(form.bihinAdjustText13) }</td>
                         </tr>
                         <tr>
                            <th colspan="4"><nfwui:LabelBox id="lblCleaner" code="<%= MessageIdConstant.SKF2030_SC001_CLEANER %>" /></th>
-                           <td>${f:h(form.bihinState14) }</td>
+                           <td>${f:h(form.bihinStateText14) }</td>
                            <td>${f:h(form.bihinApplText14) }</td>
-                           <td>${f:h(form.bihinAdjust14) }</td>
+                           <td>${f:h(form.bihinAdjustText14) }</td>
                         </tr>
                         <tr>
                            <th colspan="4"><nfwui:LabelBox id="lblRiceCook" code="<%= MessageIdConstant.SKF2030_SC001_RICE_COOK %>" /></th>
-                           <td>${f:h(form.bihinState15) }</td>
+                           <td>${f:h(form.bihinStateText15) }</td>
                            <td>${f:h(form.bihinApplText15) }</td>
-                           <td>${f:h(form.bihinAdjust15) }</td>
+                           <td>${f:h(form.bihinAdjustText15) }</td>
                         </tr>
                         <tr>
                            <th colspan="4"><nfwui:LabelBox id="lblTv" code="<%= MessageIdConstant.SKF2030_SC001_TV %>" /></th>
-                           <td>${f:h(form.bihinState16) }</td>
+                           <td>${f:h(form.bihinStateText16) }</td>
                            <td>${f:h(form.bihinApplText16) }</td>
-                           <td>${f:h(form.bihinAdjust16) }</td>
+                           <td>${f:h(form.bihinAdjustText16) }</td>
                         </tr>
                         <tr>
                            <th colspan="4"><nfwui:LabelBox id="lblTvStand" code="<%= MessageIdConstant.SKF2030_SC001_TV_STAND %>" /></th>
-                           <td>${f:h(form.bihinState17) }</td>
+                           <td>${f:h(form.bihinStateText17) }</td>
                            <td>${f:h(form.bihinApplText17) }</td>
-                           <td>${f:h(form.bihinAdjust17) }</td>
+                           <td>${f:h(form.bihinAdjustText17) }</td>
                         </tr>
                         <tr>
                            <th colspan="4"><nfwui:LabelBox id="lblKotatsu" code="<%= MessageIdConstant.SKF2030_SC001_KOTATSU %>" /></th>
-                           <td>${f:h(form.bihinState18) }</td>
+                           <td>${f:h(form.bihinStateText18) }</td>
                            <td>${f:h(form.bihinApplText18) }</td>
-                           <td>${f:h(form.bihinAdjust18) }</td>
+                           <td>${f:h(form.bihinAdjustText18) }</td>
                         </tr>
                         <tr>
                            <th colspan="4"><nfwui:LabelBox id="lblKitchenCabinet" code="<%= MessageIdConstant.SKF2030_SC001_KITCHEN_CABNET %>" /></th>
-                           <td>${f:h(form.bihinState19) }</td>
+                           <td>${f:h(form.bihinStateText19) }</td>
                            <td>${f:h(form.bihinApplText19) }</td>
-                           <td>${f:h(form.bihinAdjust19) }</td>
+                           <td>${f:h(form.bihinAdjustText19) }</td>
                                                 </tr>
                                 </tr>
 <imart:condition validity="<%= String.valueOf(form.isStatus24Flag()) %>" negative>
