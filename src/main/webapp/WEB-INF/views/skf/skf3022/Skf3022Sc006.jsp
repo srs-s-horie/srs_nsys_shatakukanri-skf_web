@@ -256,7 +256,7 @@
 								<nfwui:PopupButton id="parkingShien1" name="parkingShien1" value="支援" use="popup" 
 										cssClass="imui-small-button" popupWidth="650" popupHeight="700"  
 										modalMode="true" screenUrl="skf/Skf3022Sc002/init" preOnclick="setParkingShienParam(1)"
-										parameter="hdnShatakuKanriNo:hdnShatakuKanriNo,hdnShatakuName:hdnShatakuName,hoge777:hdnRiyouStartDay"
+										parameter="hdnShatakuKanriNo:hdnShatakuKanriNo,hdnShatakuName:hdnShatakuName,hdnRiyouStartDay:hdnRiyouStartDay"
 										disabled="${form.parkingShien1DisableFlg }" callbackFunc="parkingShienCallback(1)" tabindex="17"/> 
 								<br/>&nbsp;
 								<imui:button id="clearParking1" name="clearParking1" value="クリア" disabled="${form.clearParking1DisableFlg }"
@@ -362,7 +362,7 @@
 								<nfwui:PopupButton id="parkingShien2" name="parkingShien2" value="支援" use="popup" 
 										cssClass="imui-small-button" popupWidth="650" popupHeight="700"  
 										modalMode="true" screenUrl="skf/Skf3022Sc002/init" preOnclick="setParkingShienParam(2)"
-										parameter="hdnShatakuKanriNo:hdnShatakuKanriNo,hdnShatakuName:hdnShatakuName,hoge781:hdnRiyouStartDay" 
+										parameter="hdnShatakuKanriNo:hdnShatakuKanriNo,hdnShatakuName:hdnShatakuName,hdnRiyouStartDay:hdnRiyouStartDay" 
 										disabled="${form.parkingShien2DisableFlg }" callbackFunc="parkingShienCallback(2)" tabindex="21"/> 
 								<br />&nbsp;
 								<imui:button id="clearParking2" name="clearParking2" value="クリア"
