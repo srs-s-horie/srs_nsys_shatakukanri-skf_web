@@ -415,7 +415,7 @@
 				</script>
 				<div id="listTableArea">
 					<imui:listTable id="mainList" process="jssp" autoEncode="false" autoWidth="true" rowNumbers="true"
-						autoResize="true" onCellSelect="onCellSelect" onGridComplete="onGridComplete"
+						autoResize="true" onCellSelect="onCellSelect" onGridComplete="onGridComplete" height="350" maxHeight="800"
 						multiSelect="false" data="${form.listTableData }"
 						style="max-height: 100px" >
 						<pager rowNum="${form.listTableMaxRowCount }" />
