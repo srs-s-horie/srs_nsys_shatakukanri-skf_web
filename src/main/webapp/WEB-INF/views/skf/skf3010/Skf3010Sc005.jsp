@@ -12,6 +12,12 @@
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
 
+<script type="text/javascript">
+	function back1() {
+		var url="skf/Skf3010Sc004/init?SKF3010_SC001&tokenCheck=0"
+		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
+	}
+</script>
 <!-- コンテンツエリア -->
 <div class="imui-form-container-wide" style="width: 95%;">
 	<nfwui:Form id="form" name="form" modelAttribute="form">
@@ -319,7 +325,7 @@
 		<br />
 		<nfwui:Form id="btnForm" name="btnForm">
 		<div class="align-L float-L">	
-			<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="backOnClick()" tabindex="16" />
+			<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="16" />
 		</div>
 		<div class="align-R">
 			<imui:button id="regist" name="regist" value="登録" class="imui-medium-button" style="width: 150px" onclick="registOnClick()" tabindex="17" />

@@ -1778,6 +1778,7 @@
 							$("#parkingContractBiko").prop("disabled",state);
 							$("#parkingAddressSearch").prop("disabled",state);
 							$("#parkingContractSupport").prop("disabled",state);
+							$("#parkingContractInfoDisabled").val(state);
 							
 							if(reset){
 								//入力値リセット
@@ -1848,18 +1849,38 @@
 								
 								if($("#parkingStructure").val() != "5" && $("#parkingStructure").val() != ""){
 									//駐車場構造がなしまたは空以外
-									if($("#parkingEditFlg").val() != "true"){
-										//追加中でない
+									if($('#parkingContractNo').val() != null && $('#parkingContractNo').val() != ""){
+										//契約情報有
+										$("#parkingContractNo").prop("disabled",false);
+										$("#parkingContractDel").prop("disabled",false);
+										$('#parkingContractDel').removeClass("imui-disabled-button");
+										$("#parkingContractType").prop("disabled",false);
+										if($("#parkingEditFlg").val() != "true"){
+											//追加中でない
+											$("#parkingContractAdd").prop("disabled",false);
+											$('#parkingContractAdd').removeClass("imui-disabled-button");
+										}
+										//契約形態変更
+										if($("#parkingContractType").val()=="2"){
+											setDisabled(false,true);
+										}else{
+											setDisabled(true,true);
+										}
+									}else{
+										//契約情報無し⇒追加ボタン有効
 										$("#parkingContractAdd").prop("disabled",false);
 										$('#parkingContractAdd').removeClass("imui-disabled-button");
 									}
+									
 								}else{
 									$("#parkingContractAdd").prop("disabled",true);
 									$('#parkingContractAdd').addClass("imui-disabled-button");
 									$("#parkingContractDel").prop("disabled",true);
 									$('#parkingContractDel').addClass("imui-disabled-button");
+									$("#parkingContractNo").prop("disabled",true);
 									$("#parkingContractType").prop("disabled",true);
 									setDisabled(true,false);
+									$("#parkingEditFlg").val("false");
 								}
 								setParkingLendKbn($("#parkingStructure").val());
 							});
