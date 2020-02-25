@@ -98,9 +98,9 @@
 	                style="max-height: 1000px"  height="232">
 	                	<cols>
 							<col name="agencyName" caption="管理機関" width="120" align="left" wrap="true" sortable="false"/>
-							<col name="shatakuName" caption="社宅名" width="130" align="left" wrap="true" sortable="false" onCellAttr="cellAttrEllipsis"/>
+							<col name="shatakuName" caption="社宅名" width="130" align="left" wrap="true" sortable="false"/>
 							<col name="contractKbn" caption="社宅・駐車場区分" width="90" align="left" wrap="false" sortable="false" />
-							<col name="address" caption="住所" width="265" align="left" wrap="true" sortable="false" onCellAttr="cellAttrEllipsis"/>
+							<col name="address" caption="住所" width="265" align="left" wrap="true" sortable="false" />
 							<col name="roomNo" caption="部屋番号" width="70" align="center" wrap="false" sortable="false"/>
 							<col name="structureSupplement" caption="構造" width="65" align="center" wrap="false" sortable="false" />
 							<col name="originalMenseki" caption="面積(㎡)" width="50" sortable="false" align="right" wrap="false" sortable="false" />
