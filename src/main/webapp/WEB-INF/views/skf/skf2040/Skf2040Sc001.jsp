@@ -301,8 +301,7 @@
                 </tr>
             </tbody>
         </table>
-    </div>
-    <!-- フッターエリア -->
+        <!-- フッターエリア -->
     <div class="imui-box-layout" style="width:100%; margin:0 auto;">
         <table>
             <tr>
@@ -348,7 +347,9 @@
              </tr>    
          </table>
     </div>
-<!-- NFWUIフォーム終了位置 -->
+        
+    </div>
+    <!-- NFWUIフォーム終了位置 -->
 </nfwui:Form>
 
 <script type="text/javascript">

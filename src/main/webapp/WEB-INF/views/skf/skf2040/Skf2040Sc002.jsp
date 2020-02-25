@@ -144,7 +144,7 @@
  				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" />
 		 		<!-- 退居届PDFダウンロード -->
 				<imart:condition validity="${form.taikyoPdfViewFlg}">
-					<input name="doDelRow1" id="doDelRow1" type="button" value="退居（自動車の保管場所変換）届PDF出力ボタン" class="imui-medium-button" onclick="" />
+					<input name="doDelRow1" id="doDelRow1" type="button" value="退居（自動車の保管場所変換）届PDF出力" class="imui-medium-button" onclick="onClickOutputPdfR0103()" />
 				</imart:condition>
 				<!-- コメントボタン -->
 				<imart:condition validity="${form.commentViewFlg}">
@@ -160,8 +160,8 @@
  					<!-- 資料を添付 -->
 						<nfwui:PopupButton id="shiryoBtn" name="shiryoBtn" value="資料を添付"
 						cssClass="imui-medium-button" cssStyle="width: 150px" 
-						use="popup" popupWidth="750" popupHeight="600"
-						parameter="applNo:applNo,applId:applId" modalMode="false" 
+						use="popup" popupWidth="780" popupHeight="700"
+						parameter="applNo:popApplNo,applId:popApplId" modalMode="true" 
 						screenUrl="skf/Skf2010Sc009/init" formId="form" removePatterns="PTN_A,PTN_B,PTN_D,PTN_F"
 						callbackFunc="updateAttachedFileArea" />
 					<!-- 差戻しボタン -->
@@ -230,7 +230,10 @@ $(function() {
 			});
 		});
 	}
-
+	
+    //「退居（自動車の保管場所返還）届」ボタン押下時のイベント
+    onClickOutputPdfR0103 = function () {
+    	nfw.common.submitForm("form", "skf/Skf2040Sc002/OutputPdfR0103");
+    }
 });
 </script>
-
