@@ -104,9 +104,9 @@
 			         <pager rowNum="${form.listTableMaxRowCount}" />
 						<cols sortable="false">
 							<col name="ownerNo" hidden="true" />
-							<col name="ownerName" caption="氏名又は名称" width="150" align="left" wrap="true" sortable="false" onCellAttr="cellAttrEllipsis"/>
-							<col name="ownerNameKk" caption="氏名又は名称（フリガナ）" width="200" align="left" wrap="true" sortable="false" onCellAttr="cellAttrEllipsis"/>
-							<col name="address" caption="住所(居所）又は所在地" width="200" align="left" wrap="true" sortable="false" onCellAttr="cellAttrEllipsis"/>
+							<col name="ownerName" caption="氏名又は名称" width="150" align="left" wrap="true" sortable="false"/>
+							<col name="ownerNameKk" caption="氏名又は名称（フリガナ）" width="200" align="left" wrap="true" sortable="false"/>
+							<col name="address" caption="住所(居所）又は所在地" width="200" align="left" wrap="true" sortable="false"/>
 							<col name="businessKbn" caption="法人個人" width="50" align="center" wrap="false" sortable="false" />
 							<col name="acceptFlg" caption="個人番号" width="230" align="left" wrap="false" sortable="false" />
 							<col name="propertiesOwnedCnt" caption="所有物件数" width="60" align="right" wrap="false" sortable="false" />

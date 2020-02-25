@@ -46,7 +46,7 @@ if(menuSesValTop != null){
 
 <!-- ヘッド情報 -->
 
-<div class="imui-form-container-wide" style="width: 95%;">
+<div class="imui-form-container-wide">
 <!-- 代行ログイン時のみ表示されるメッセージ -->
 <jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
 
@@ -451,7 +451,7 @@ if(menuSesValTop != null){
                                         <table class="imui-form-search-condition" style="width:100%;">
                                             <tbody>
                                                 <tr>
-                                                    <th style="width:420px;">
+                                                    <th style="width:400px;">
                                                     <nfwui:LabelBox id="lblMessage2" code="<%= MessageIdConstant.SKF1010_SC001_MESSAGE %>" />
                                                     </th>
                                                     <th style="width:40px;text-align:center;">
