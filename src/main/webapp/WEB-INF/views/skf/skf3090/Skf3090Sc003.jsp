@@ -395,7 +395,7 @@
 								<nfwui:LabelBox id="lblBusinessAreaName" code="<%=MessageIdConstant.SKF3090_SC003_BUSINESS_NAME %>" />
 							</th>
 							<td>
-								<imui:textbox id="txtBusinessAreaName" name="businessAreaName" style="width:300px;" placeholder="例 本社 〇〇部" value="${f:h(form.businessAreaName)}" tabindex="5" maxlength="255"/>
+								<imui:textbox id="txtBusinessAreaName" name="businessAreaName" style="width:300px;" placeholder="例 本社 〇〇部" value="${form.businessAreaName}" tabindex="5" maxlength="255"/>
 							</td>
 						</tr>
 					</tbody>
