@@ -1600,6 +1600,16 @@
 							window.scrollTo(0, 0);
 						}
 					}
+					
+				    // 賃貸人名欄でDeleteKeyまたはBackSpaceを押下時イベント
+				    contractOwnerName_KeyDown = function(e) {
+				        var c = e.keyCode;
+				        if (c == 46 || c == 8) {
+				            $("#contractOwnerName").val("");
+				            // 裏で保持している社員番号をクリア
+				            $("#ownerNo").val("");
+				        }
+				    };
 				})(jQuery);
 			</script>
 		</div>
