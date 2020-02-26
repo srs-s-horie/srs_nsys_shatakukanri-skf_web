@@ -14,12 +14,12 @@
 
 <script type="text/javascript">
 	function back1() {
-		var url="skf/Skf3010Sc004/init?SKF3010_SC001&tokenCheck=0"
+		var url="skf/Skf3010Sc004/init?SKF3010_SC004&tokenCheck=0"
 		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
 	}
 </script>
 <!-- コンテンツエリア -->
-<div class="imui-form-container-wide" style="width: 95%;">
+<div class="imui-form-container-wide" >
 	<nfwui:Form id="form" name="form" modelAttribute="form">
 		<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3010_SC005 %>" />
 		<input type="hidden" name="hdnShatakuKanriNo" id="hdnShatakuKanriNo" value="${form.hdnShatakuKanriNo}" />

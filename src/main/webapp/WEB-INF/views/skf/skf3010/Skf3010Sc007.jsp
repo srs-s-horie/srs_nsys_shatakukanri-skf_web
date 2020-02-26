@@ -58,7 +58,7 @@ function back1() {
 				<input type="hidden" name="landRentNum" id="sendLandRent" value="" />
 				<input type="hidden" name="setContractStartDate" id="sendContractStartDate" value="" />
 				<input type="hidden" name="setContractEndDate" id="sendContractEndDate" value="" />
-				
+				<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc002/init?SKF3010_SC002&tokenCheck=0"/>
 				
 				<input type="hidden" name="contractPropertyIdListData" id="contractPropertyIdListData" value="${form.contractPropertyIdListData}" />
 				<!-- 賃貸人(代理人)入力支援用 -->
