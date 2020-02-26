@@ -559,6 +559,12 @@
                 $('#sessionDay').prop('disabled', false);
                 $('#sessionTime').prop('disabled', false);
                 $('#renrakuSaki').prop('disabled', false);
+            }else{
+                // 返却備品が存在しない場合は備品返却関連項目を非活性化
+                $('#sessionDayDiv').prop('disabled', true);
+                $('#sessionDay').prop('disabled', true);
+                $('#sessionTime').prop('disabled', true);
+                $('#renrakuSaki').prop('disabled', true);
             }
         }else{
             // 「社宅を退居する」チェック外し時
@@ -638,6 +644,12 @@
                 $('#sessionDay').prop('disabled', false);
                 $('#sessionTime').prop('disabled', false);
                 $('#renrakuSaki').prop('disabled', false);
+            }else{
+                // 返却備品が存在しない場合は備品返却関連項目を非活性化
+                $('#sessionDayDiv').prop('disabled', true);
+                $('#sessionDay').prop('disabled', true);
+                $('#sessionTime').prop('disabled', true);
+                $('#renrakuSaki').prop('disabled', true);
             }
         }else{
             // 「社宅を退居する」チェック外し時
