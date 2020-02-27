@@ -275,7 +275,7 @@
 		<table>
 			<tr width="800px">
 				<td width="700px"><font size="3"  face="ＭＳ Ｐ明朝">(1) 入居予定日</font></td>
-				<td width="150px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝"><font size="3"  face="ＭＳ Ｐ明朝">${f:h(form.nyukyoYoteiDate )}</font></td>
+				<td width="150px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝"><font size="3"  face="ＭＳ Ｐ明朝">${f:h(form.nyukyoKanoDate )}</font></td>
 			</tr>
 			<tr>
 				<td width="500px"><font size="3"  face="ＭＳ Ｐ明朝">(2) 自動車の保管場所（1台目）の使用開始予定日</font></td>

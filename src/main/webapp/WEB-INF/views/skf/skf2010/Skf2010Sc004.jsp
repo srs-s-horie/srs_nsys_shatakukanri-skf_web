@@ -25,12 +25,12 @@
 }
 
 <imart:decision case="${form.nyukyoDateFlg}" value="<%= SkfCommonConstant.DATE_CHANGE %>">
-#nyukyoKanoDate {
+.nyukyoDateChange {
 	color : red;
 }
 </imart:decision>
 <imart:decision case="${form.parkingSDateFlg}" value="<%= SkfCommonConstant.DATE_CHANGE %>">
-#parkingKanoDate {
+.parkingDateChange {
 	color : red;
 }
 </imart:decision>
@@ -70,6 +70,10 @@ function back1() {
 				map['applStatus'] = $("#applStatus").val();
 				map['shainNo'] = $("#hdnShainNo").val();
 				map['bihinKibo'] = $("#bihinKibo").val();
+				map['syokiNyukyoDate'] = $("#syokiNyukyoDate").val();
+				map['syokiParkingUseDate'] = $("#syokiParkingUseDate").val();
+				map['syokiParkingUseDate2'] = $("#syokiParkingUseDate2").val();
+				map['syokiParkingDate'] = $("#syokiParkingDate").val();
 				map['syokiTaikyoDate'] = $("#syokiTaikyoDate").val();
 				map['syokiParkingDate'] = $("#syokiParkingDate").val();
 				if ($("#nyukyobi").val() != null) {
@@ -308,6 +312,8 @@ ${form.operationGuide }
       <nfwui:Hidden id="bihinKibo" name="bihinKibo" />
       <nfwui:Hidden id="applStatus" name="applStatus" />
       <nfwui:Hidden id="applUpdateDate" name="applUpdateDate" />
+      <nfwui:Hidden id="syokiNyukyoDate" name="syokiNyukyoDate" />
+      <nfwui:Hidden id="syokiParkingUseDate" name="syokiParkingUseDate" />
       <nfwui:Hidden id="syokiTaikyoDate" name="syokiTaikyoDate" />
       <nfwui:Hidden id="syokiParkingDate" name="syokiParkingDate" />
       <!-- 添付資料番号 -->

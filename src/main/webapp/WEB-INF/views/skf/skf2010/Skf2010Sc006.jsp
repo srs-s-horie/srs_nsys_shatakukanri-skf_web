@@ -23,12 +23,22 @@
 }
 
 <imart:decision case="${form.nyukyoDateFlg}" value="<%= SkfCommonConstant.DATE_CHANGE %>">
-#nyukyoKanoDate {
+.nyukyoDateChange {
+	color : red;
+}
+</imart:decision>
+<imart:decision case="${form.parkingSDateFlg}" value="<%= SkfCommonConstant.DATE_CHANGE_COM %>">
+.parkingDateChange .parkingDateChange2 {
 	color : red;
 }
 </imart:decision>
 <imart:decision case="${form.parkingSDateFlg}" value="<%= SkfCommonConstant.DATE_CHANGE %>">
-#parkingKanoDate {
+.parkingDateChange {
+	color : red;
+}
+</imart:decision>
+<imart:decision case="${form.parkingSDateFlg}" value="<%= SkfCommonConstant.DATE_CHANGE2 %>">
+.parkingDateChange2 {
 	color : red;
 }
 </imart:decision>
