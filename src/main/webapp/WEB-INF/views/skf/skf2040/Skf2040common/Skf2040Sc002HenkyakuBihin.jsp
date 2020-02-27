@@ -4,7 +4,7 @@
 
 <table class="imui-form-search-condition">
 	<tbody>
-		<imart:condition validity="${form.henkyakuBihinNothing}" negative>
+		<imart:condition validity="${form.bihinViewFlg}">
 			<nfwui:Title id="searchTitle" code="<%= MessageIdConstant.SKF2040_SC002_BIHIN %>" titleLevel="2" />
 					<tr>
 						<th></th>
