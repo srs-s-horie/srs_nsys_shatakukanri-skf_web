@@ -120,7 +120,7 @@
                                     円
                                     </div>                                    
                                     <div class="align-C">
-                                    ${f:h(form.newKyoekihi)}
+                                    ${f:h(form.ketteiKyoekihi)}
                                     </div>
                                     </td>
 
