@@ -25,7 +25,7 @@
 					<td  width="100px">
            				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
            			</td>
-            		<td width="300px">
+            		<td width="300px" style="text-align: left; padding-left: 150px;">
             			<font size="3"  face="ＭＳ Ｐ明朝">機&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;関</font>
            			</td>
             		<td width="500px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝; text-align: left;">
@@ -33,7 +33,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td width="400px">
+					<td width="400px" style="text-align: left; padding-left: 150px;">
 						<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
 					</td>
 				</tr>
@@ -41,7 +41,7 @@
 					<td  width="100px">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					</td>
-					<td width="400px">
+					<td width="300px" style="text-align: left; padding-left: 150px;">
 						<font size="3"  face="ＭＳ Ｐ明朝">部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;等</font>
 					</td>
 					<td width="500px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝; text-align: left;">
@@ -57,7 +57,7 @@
 					<td  width="100px">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					</td>
-					<td width="400px">
+					<td width="300px" style="text-align: left; padding-left: 150px;">
 						<font size="3"  face="ＭＳ Ｐ明朝">室、チーム又は課</font>
 					</td>
 					<td width="500px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝; text-align: left;">
@@ -73,7 +73,7 @@
 					<td  width="100px">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					</td>
-					<td width="400px">
+					<td width="300px" style="text-align: left; padding-left: 150px;">
 						<font size="3"  face="ＭＳ Ｐ明朝">現&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;住&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所</font>
 					</td>
 					<td width="500px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝; text-align: left;">
@@ -94,7 +94,7 @@
 					<td  width="100px">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					</td>
-					<td width="400px">
+					<td width="300px" style="text-align: left; padding-left: 150px;">
 						<font size="3"  face="ＭＳ Ｐ明朝">氏&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</font>
 					</td>
 					<td width="500px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝; text-align: left;">
@@ -167,35 +167,41 @@
         	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${f:h(form.parkingAddress2)}</font>
         </td>
         <br><br>
-        <td width="150px">
+        <table>
+        <tr>
+        <td rowspan="2" width="150px">
         	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;２．退居日</font>
         </td>
-        	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;社宅等:</font>
-        	<font size="3" id="taikyoDate"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;${f:h(form.taikyoDate)}</font>
-        <br>
-        <font size="3"  face="ＭＳ Ｐ明朝">
-	        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	        	駐車場:
-	    </font>
-	        <font size="3" id="parkingHenkanDate" face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;${f:h(form.parkingHenkanDate )}</font>
+        <td>
+        <font size="3"  face="ＭＳ Ｐ明朝">社宅等:</font><font size="3" id="taikyoDate"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;${f:h(form.taikyoDate)}</font>
+        </td>
+        </tr>
+        <tr>
+        <td>
+        <font size="3"  face="ＭＳ Ｐ明朝">駐車場:</font><font size="3" id="parkingHenkanDate" face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;${f:h(form.parkingHenkanDate )}</font>
+        </td>
+        </tr>
+        </table>
+
         <br><br>
         <td width="150px">
         	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;３．退居（返還）理由</font>
         </td>
         <br>
-        <td width="150px">
+        <div style="padding-top: 5px; padding-left: 33px;">
         	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${f:h(form.taikyoRiyu )}</font>
-        </td>
+        </div>
         <br><br>
         <td width="150px">
         	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;４．退居後の連絡先</font>
         </td>
         <br>
-        <td width="150px">
+        <div style="padding-top: 5px; padding-left: 33px;">
         	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${f:h(form.taikyogoRenrakusaki )}</font>
-        </td>
+        <div style="padding-top: 5px; padding-left: 33px;">
+        </div>
         <br><br>
         <br><br>
+	</div>
 	</div>
 </tbody>
