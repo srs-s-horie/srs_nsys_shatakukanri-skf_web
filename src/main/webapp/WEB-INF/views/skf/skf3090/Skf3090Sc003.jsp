@@ -11,6 +11,7 @@
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
+<link rel="stylesheet" type="text/css" href="styles/skf/listTableStyle.css" />
 
 <script src="scripts/skf/skfCommon.js"></script>
 
