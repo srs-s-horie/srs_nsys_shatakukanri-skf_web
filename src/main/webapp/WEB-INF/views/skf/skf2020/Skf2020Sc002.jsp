@@ -204,8 +204,8 @@
 												<td colspan="3">
 													<imui:select id="affiliation1Cd" name="affiliation1Cd" list="${form.ddlAffiliation1List}" disabled="true" width="50%" tabindex="6"/>
 													<div>
-														<imui:textbox id="newAffiliation1Other" name="newAffiliation1Other" value="${f:h(form.newAffiliation1Other)}" 
-														style="width: 50%;" placeholder="例 〇〇部"  disabled="${form.newAffiliation1OtherDisabled}"  tabindex="7"/>
+														<imui:textbox id="newAffiliation1Other" name="newAffiliation1Other" value="${form.newAffiliation1Other}" 
+														style="width: 50%; ime-mode:active;" placeholder="例 〇〇部"  disabled="${form.newAffiliation1OtherDisabled}"  tabindex="7"/>
 													</div>
 												</td>
 											</tr>
@@ -217,8 +217,8 @@
 											 	<td colspan="3">
 													<imui:select id="affiliation2Cd" name="affiliation2Cd" list="${form.ddlAffiliation2List}" width="50%" disabled="true" tabindex="8"/>
 													<div>
-														<imui:textbox id="newAffiliation2Other" name="newAffiliation2Other" value="${f:h(form.newAffiliation2Other)}" 
-															style="width: 50%;"  placeholder="例 〇〇事業所" disabled="${form.newAffiliation2OtherDisabled}" tabindex="9"/>
+														<imui:textbox id="newAffiliation2Other" name="newAffiliation2Other" value="${form.newAffiliation2Other}" 
+															style="width: 50%; ime-mode:active;"  placeholder="例 〇〇事業所" disabled="${form.newAffiliation2OtherDisabled}" tabindex="9"/>
 													</div>
 												</td>
 											</tr>
@@ -265,12 +265,12 @@
 															</tr>
 															<tr>
 																<td style="text-align:center;">
-																	<imui:textbox id="dokyoRelation1" name="dokyoRelation1" value="${f:h(form.dokyoRelation1)}" style="width: 95%;" 
-																		placeholder="例 祖父" disabled="true" tabindex="12"/> 
+																	<imui:textbox id="dokyoRelation1" name="dokyoRelation1" value="${form.dokyoRelation1}" 
+																	style="width: 95%; ime-mode:active;" placeholder="例 祖父" disabled="true" tabindex="12"/> 
 																</td>
 																<td style="text-align:center;" >
-																	<imui:textbox id="dokyoName1" name="dokyoName1" value="${f:h(form.dokyoName1)}" 
-																		 style="width: 95%;" placeholder="例 中日本 一郎" disabled="true" tabindex="13"/>
+																	<imui:textbox id="dokyoName1" name="dokyoName1" value="${form.dokyoName1}" 
+																		 style="width: 95%; ime-mode:active;" placeholder="例 中日本 一郎" disabled="true" tabindex="13"/>
 																</td>
 																<td style="text-align:center;">
 																	<imui:textbox id="dokyoAge1" name="dokyoAge1" value="${f:h(form.dokyoAge1)}" 
@@ -279,12 +279,12 @@
 															</tr>
 															<tr>
 																<td style="text-align:center;">
-																	<imui:textbox id="dokyoRelation2" name="dokyoRelation2" value="${f:h(form.dokyoRelation2)}" 
-																	 style="width: 95%;" placeholder="例 祖父" disabled="true" tabindex="15" />
+																	<imui:textbox id="dokyoRelation2" name="dokyoRelation2" value="${form.dokyoRelation2}" 
+																	 style="width: 95%; ime-mode:active;" placeholder="例 祖父" disabled="true" tabindex="15" />
 																</td>
 																<td style="text-align:center;">
-																	<imui:textbox id="dokyoName2" name="dokyoName2" value="${f:h(form.dokyoName2)}" 
-																	 style="width: 95%;" placeholder="例 中日本 一郎" disabled="true" tabindex="16" />	    
+																	<imui:textbox id="dokyoName2" name="dokyoName2" value="${form.dokyoName2}" 
+																	 style="width: 95%; ime-mode:active;" placeholder="例 中日本 一郎" disabled="true" tabindex="16" />	    
 																</td>
 																<td style="text-align:center;">
 																	<imui:textbox id="dokyoAge2" name="dokyoAge2" value="${f:h(form.dokyoAge2)}" 
@@ -293,12 +293,12 @@
 															</tr>
 															<tr>
 														    	<td  style="text-align:center;">
-																	<imui:textbox id="dokyoRelation3" name="dokyoRelation3" value="${f:h(form.dokyoRelation3)}"
-																		 style="width: 95%;" placeholder="例 祖父" disabled="true" tabindex="18" />		    
+																	<imui:textbox id="dokyoRelation3" name="dokyoRelation3" value="${form.dokyoRelation3}"
+																		 style="width: 95%; ime-mode:active;" placeholder="例 祖父" disabled="true" tabindex="18" />		    
 																</td>
 																<td style="text-align:center;">
-																	<imui:textbox id="dokyoName3" name="dokyoName3" value="${f:h(form.dokyoName3)}" 
-																		 style="width: 95%;" placeholder="例 中日本 一郎" disabled="true" tabindex="19" />		    
+																	<imui:textbox id="dokyoName3" name="dokyoName3" value="${form.dokyoName3}" 
+																		 style="width: 95%; ime-mode:active;" placeholder="例 中日本 一郎" disabled="true" tabindex="19" />		    
 																</td>
 																<td style="text-align:center;">
 																	<imui:textbox id="dokyoAge3" name="dokyoAge3" value="${f:h(form.dokyoAge3)}" 
@@ -307,12 +307,12 @@
 															</tr>
 															<tr>
 																<td style="text-align:center;">
-																	<imui:textbox id="dokyoRelation4" name="dokyoRelation4" value="${f:h(form.dokyoRelation4)}" 
-																	 style="width: 95%;" placeholder="例 祖父" disabled="true" tabindex="21" />   
+																	<imui:textbox id="dokyoRelation4" name="dokyoRelation4" value="${form.dokyoRelation4}" 
+																	 style="width: 95%; ime-mode:active;" placeholder="例 祖父" disabled="true" tabindex="21" />   
 																</td>
 																<td style="text-align:center;">
-																	<imui:textbox id="dokyoName4" name="dokyoName4" value="${f:h(form.dokyoName4)}" 
-																		 style="width: 95%;" placeholder="例 中日本 一郎" disabled="true" tabindex="22" />    
+																	<imui:textbox id="dokyoName4" name="dokyoName4" value="${form.dokyoName4}" 
+																		 style="width: 95%; ime-mode:active;" placeholder="例 中日本 一郎" disabled="true" tabindex="22" />    
 																</td>
 																<td style="text-align:center;">
 																	<imui:textbox id="dokyoAge4" name="dokyoAge4" value="${f:h(form.dokyoAge4)}" 
@@ -322,11 +322,11 @@
 															<tr>
 																<td style="text-align:center;">
 																	<imui:textbox id="dokyoRelation5" name="dokyoRelation5" 
-																	 value="${f:h(form.dokyoRelation5)}" style="width: 95%;" placeholder="例 祖父" disabled="true" tabindex="24" />
+																	 value="${form.dokyoRelation5}" style="width: 95%; ime-mode:active;" placeholder="例 祖父" disabled="true" tabindex="24" />
 																</td>					  
 																<td style="text-align:center;">
-																	<imui:textbox id="dokyoName5" name="dokyoName5" value="${f:h(form.dokyoName5)}"
-																		 style="width: 95%;" placeholder="例 中日本 一郎" disabled="true" tabindex="25" />					    
+																	<imui:textbox id="dokyoName5" name="dokyoName5" value="${form.dokyoName5}"
+																		 style="width: 95%; ime-mode:active;" placeholder="例 中日本 一郎" disabled="true" tabindex="25" />					    
 																</td>
 																<td style="text-align:center;">
 																	<imui:textbox id="dokyoAge5" name="dokyoAge5" 
@@ -336,11 +336,11 @@
 															<tr>
 																<td  style="text-align:center;">
 																	<imui:textbox id="dokyoRelation6" name="dokyoRelation6" 
-																	value="${f:h(form.dokyoRelation6)}" style="width: 95%;" placeholder="例 祖父" disabled="true" tabindex="27"/>                                                      
+																	value="${form.dokyoRelation6}" style="width: 95%; ime-mode:active;" placeholder="例 祖父" disabled="true" tabindex="27"/>                                                      
 																</td>
 																<td style="text-align:center;">
 																	<imui:textbox id="dokyoName6" name="dokyoName6" 
-																	value="${f:h(form.dokyoName6)}" style="width: 95%;" placeholder="例 中日本 一郎" disabled="true" tabindex="28" /> 
+																	value="${form.dokyoName6}" style="width: 95%; ime-mode:active;" placeholder="例 中日本 一郎" disabled="true" tabindex="28" /> 
 																</td>
 																<td style="text-align:center;">
 																	<imui:textbox id="dokyoAge6" name="dokyoAge6" 
@@ -399,8 +399,8 @@
 													<nfwui:LabelBox id="lblHead1stCarName" code="<%= MessageIdConstant.SKF2020_SC002_1ST_CAR_NAME %>" />	
 												</th>
 												<td colspan="3">
-													<imui:textbox id="carName" name="carName"  value="${f:h(form.carName)}"
-													 style="width:200px;" placeholder="例 プリウス" disabled="true" tabindex="33"/>
+													<imui:textbox id="carName" name="carName"  value="${form.carName}"
+													 style="width:200px; ime-mode:active;" placeholder="例 プリウス" disabled="true" tabindex="33"/>
 												</td>
 											</tr>
 											<!-- 自動車の登録番号 -->
@@ -409,8 +409,8 @@
 													<nfwui:LabelBox id="lblHead1stCarNo" code="<%= MessageIdConstant.SKF2020_SC002_1ST_CAR_NO %>" />
 												</th>
 												<td colspan="3">
-													<imui:textbox id="carNo" name="carNo"  value="${f:h(form.carNo)}"
-													 style="width:200px;" placeholder="例 名古屋 300 あ 1235" disabled="true" tabindex="34"/>
+													<imui:textbox id="carNo" name="carNo"  value="${form.carNo}"
+													 style="width:200px; ime-mode:active;" placeholder="例 名古屋 300 あ 1235" disabled="true" tabindex="34"/>
 												</td>
 											</tr>
 											<!-- 車検の有効期間満了日 -->																	
@@ -429,8 +429,8 @@
 													<nfwui:LabelBox id="lblHead1stCarUser" code="<%= MessageIdConstant.SKF2020_SC002_1ST_CAR_USE %>" />
 												</th>
 												<td colspan="3">
-													<imui:textbox id="carUser" name="carUser"  value="${f:h(form.carUser)}"
-													 style="width:200px;" placeholder="例 中日本 太郎" disabled="true" tabindex="36"/>
+													<imui:textbox id="carUser" name="carUser"  value="${form.carUser}"
+													 style="width:200px; ime-mode:active;" placeholder="例 中日本 太郎" disabled="true" tabindex="36"/>
 												</td>
 											</tr>
 											<!-- 自動車の保管場所使用開始日（予定日） -->
@@ -473,7 +473,7 @@
 												</th>
 												<td colspan="1">
 													<imui:textbox id="carName2" name="carName2" 
-														value="${f:h(form.carName2)}" style="width:200px;" placeholder="例 プリウス" disabled="true" tabindex="39"/>
+														value="${form.carName2}" style="width:200px; ime-mode:active;" placeholder="例 プリウス" disabled="true" tabindex="39"/>
 												</td>
 											</tr>
 											<!-- 自動車の登録番号 --> 
@@ -483,7 +483,7 @@
 												</th>
 												<td colspan="1">
 												<imui:textbox id="carNo2" name="carNo2" 
-													value="${f:h(form.carNo2)}" style="width:200px;" placeholder="例 名古屋 300 あ 1235" disabled="true" tabindex="40"/>
+													value="${form.carNo2}" style="width:200px; ime-mode:active;" placeholder="例 名古屋 300 あ 1235" disabled="true" tabindex="40"/>
 												</td>
 											</tr>
 											<!-- 車検の有効期間満了日 -->																	
@@ -502,8 +502,8 @@
 													<nfwui:LabelBox id="lblHead2ndCarUser" code="<%= MessageIdConstant.SKF2020_SC002_2ST_CAR_USE %>" />
 												</th>
 												<td colspan="1">
-													<imui:textbox id="carUser2" name="carUser2"  value="${f:h(form.carUser2)}" 
-														style="width:200px;" placeholder="例 中日本 太郎" disabled="true" tabindex="42"/>
+													<imui:textbox id="carUser2" name="carUser2"  value="${form.carUser2}" 
+														style="width:200px; ime-mode:active;" placeholder="例 中日本 太郎" disabled="true" tabindex="42"/>
 												</td>
 											</tr>
 											<!-- 自動車の保管場所使用開始日（予定日） -->
@@ -602,7 +602,7 @@
 												</th>
 												<td colspan="3">
 													<imui:textArea id="tokushuJijo" name="tokushuJijo" value="${form.tokushuJijo}" tabindex="46"
-														style="width: 90%; height:100px"
+														style="width: 90%; height:100px; ime-mode:active;"
 														placeholder="例　希望地域、間取り、階層、具体の社宅名、車の規格（車高 X 車幅）など記入"/>
 												</td>
 											</tr>                            	
@@ -642,7 +642,7 @@
 												</th>
 												<td colspan="3">
 													<imui:textArea id="shatakuJotai" name="shatakuJotai" 
-														value="${form.shatakuJotai}" style="width: 90%;" placeholder="例 壁紙に破損あり"
+														value="${form.shatakuJotai}" style="width: 90%; ime-mode:active;" placeholder="例 壁紙に破損あり"
 														  disabled="true" hidden="false"  tabindex="49"/>
 												</td>
 											</tr>											
@@ -656,7 +656,7 @@
 														list="${form.ddlTaikyoRiyuKbnList}"  disabled="true" tabindex="50"/>
 													<div>
 														<imui:textArea id="taikyoRiyu" name="taikyoRiyu"
-															value="${form.taikyoRiyu}" style="width: 90%;" placeholder="例 退職のため" disabled="true" tabindex="51" />
+															value="${form.taikyoRiyu}" style="width: 90%; ime-mode:active;" placeholder="例 退職のため" disabled="true" tabindex="51" />
 													</div>
 												</td>
 											</tr> 
@@ -667,7 +667,7 @@
 												</th>
 												<td colspan="3">
 													<imui:textArea id="taikyogoRenrakuSaki" name="taikyogoRenrakuSaki" 
-														value="${form.taikyogoRenrakuSaki}" style="width: 90%;" placeholder="例 090-0000-0000" disabled="true"
+														value="${form.taikyogoRenrakuSaki}" style="width: 90%; ime-mode:active;" placeholder="例 090-0000-0000" disabled="true"
 														 tabindex="52"/>
 												</td>
 											</tr>
