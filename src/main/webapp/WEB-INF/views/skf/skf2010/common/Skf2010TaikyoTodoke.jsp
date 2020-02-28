@@ -143,7 +143,7 @@
         	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;１．退居（返還）する社宅又は、自動車の保管場所</font>
         </td>
         <br>
-        <div style="padding-left: 15px;">
+        <div style="padding-left: 15px; padding-top: 7px;">
         	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;■社宅</font>
         <br>
         	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${f:h(form.taikyoArea )}</font>
