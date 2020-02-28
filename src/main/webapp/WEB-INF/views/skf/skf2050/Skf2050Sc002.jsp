@@ -46,7 +46,7 @@
 <nfwui:Hidden id="commentAddDate" name="commentAddDate" />
 <nfwui:Hidden id="applNo" name="applNo" />
 <nfwui:Hidden id="applStatus" name="applStatus" />
-<div class="imui-form-container-wide" style="width: 95%;">
+<div class="imui-form-container-wide">
 <!-- コンテンツエリア -->
     <table class="imui-form-search-condition">
        <tr>
@@ -142,7 +142,7 @@
                             </tr>
                             
                             <tr>
-                                <th colspan="2"><nfwui:LabelBox id="lblShatakuKikaku" code="<%= MessageIdConstant.SKF2050_SC002_SHATAKU_KIKAKU %>" /></th>
+                                <th colspan="2"><nfwui:LabelBox id="lblShatakuKikaku" code="<%= MessageIdConstant.SKF2050_SC002_SHATAKU_MENSEKI %>" /></th>
                                 <td colspan="2">
                                     ${f:h(form.shatakuMenseki) }
                                 </td>
@@ -271,7 +271,7 @@
       cssClass="imui-medium-button check" cssStyle="width:150px;"
       url="skf/Skf2050Sc002/Confirm" formId="form" tabIndex="4"
       title="<%= MessageIdConstant.SKF2050_SC002_CONFIRM_TITLE %>"
-      message="<%= MessageIdConstant.I_SKF_2011 %>" />
+      message="<%= MessageIdConstant.I_SKF_2063 %>" />
 </div> 
 </imart:condition>
 <imart:condition validity="<%= String.valueOf(form.isCarryOut()) %>">                         

@@ -143,29 +143,19 @@
         	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;１．退居（返還）する社宅又は、自動車の保管場所</font>
         </td>
         <br>
-        <td width="150px">
+        <div style="padding-left: 15px; padding-top: 7px;">
         	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;■社宅</font>
-        </td>
         <br>
-        <td width="150px">
         	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${f:h(form.taikyoArea )}</font>
-        </td>
         <br><br>
-        <td width="150px">
         	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;■駐車場１</font>
-        </td>
         <br>
-        <td width="150px">
         	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${f:h(form.parkingAddress1)}</font>
-        </td>
         <br><br>
-        <td width="150px">
         	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;■駐車場2</font>
-        </td>
         <br>
-        <td width="150px">
         	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${f:h(form.parkingAddress2)}</font>
-        </td>
+        </div>
         <br><br>
         <table>
         <tr>
