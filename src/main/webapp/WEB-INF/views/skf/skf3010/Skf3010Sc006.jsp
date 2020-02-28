@@ -52,6 +52,18 @@
 		<input type="hidden" name="startingParkingStructure" id="startingParkingStructure" value="${form.startingParkingStructure }"/>
 		<!-- 地域区分(初期画面起動時データ) -->
 		<input type="hidden" name="startingAreaKbn" id="startingAreaKbn" value="${form.startingAreaKbn }"/>
+		<!-- 貸与延面積(初期画面起動時データ) -->
+		<input type="hidden" name="startingLendMenseki" id="startingLendMenseki" value="${form.startingLendMenseki }"/>
+		<!-- 本来用途(初期画面起動時データ) -->
+		<input type="hidden" name="startingOriginalAuse" id="startingOriginalAuse" value="${form.startingOriginalAuse }"/>
+		<!-- サンルーム面積(初期画面起動時データ) -->
+		<input type="hidden" name="startingSunRoomMenseki" id="startingSunRoomMenseki" value="${form.startingSunRoomMenseki }"/>
+		<!-- 階段面積(初期画面起動時データ) -->
+		<input type="hidden" name="startingStairsMenseki" id="startingStairsMenseki" value="${form.startingStairsMenseki }"/>
+		<!-- 物置面積(初期画面起動時データ) -->
+		<input type="hidden" name="startingBarnMenseki" id="startingBarnMenseki" value="${form.startingBarnMenseki }"/>
+		<!-- 寒冷地減免区分事由区分(初期画面起動時データ) -->
+		<input type="hidden" name="startingColdExemptionKbn" id="startingColdExemptionKbn" value="${form.startingColdExemptionKbn }"/>
 		<!-- 賃貸人(画面表示時データ) -->
 		<input type="hidden" name="startingContractOwnerName" id="startingContractOwnerName" value="${form.contractOwnerName }"/>
 		<!-- 賃貸人番号(画面表示時データ) -->
@@ -1218,7 +1230,13 @@
 								&& ($("#startingBuildDate").val() != $("#buildDate").val().replace(/\//g, "")
 								|| $("#startingShatakuStructure").val() != $("#shatakuStructure").val()
 								|| $("#startingParkingStructure").val() != $("#parkingStructure").val()
-								|| $("#startingAreaKbn").val() != $("#areaKbn").val()))
+								|| $("#startingAreaKbn").val() != $("#areaKbn").val()
+								|| $("#startingLendMenseki").val() != $("#lendMenseki").val()
+								|| $("#startingOriginalAuse").val() != $("#originalAuse").val()
+								|| $("#startingSunRoomMenseki").val() != $("#sunRoomMenseki").val()
+								|| $("#startingStairsMenseki").val() != $("#stairsMenseki").val()
+								|| $("#startingBarnMenseki").val() != $("#barnMenseki").val()
+								|| $("#startingColdExemptionKbn").val() != $("#coldExemptionKbn").val()))
 							{
 								//MessageIdConstant.：I-SKF-3033
 								$("<div>使用料計算に影響する項目が更新されました。登録処理を実行してよろしいですか？</div>").imuiMessageDialog({
