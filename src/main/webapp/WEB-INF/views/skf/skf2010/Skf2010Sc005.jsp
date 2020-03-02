@@ -175,7 +175,6 @@
 }
 
 .ui-jqgrid .ui-jqgrid-htable th div{
-	height: 30px;
     white-space:normal;
 }
 

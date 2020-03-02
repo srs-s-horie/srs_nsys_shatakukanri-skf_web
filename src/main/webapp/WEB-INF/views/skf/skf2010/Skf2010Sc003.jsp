@@ -16,7 +16,6 @@
 <%-- コンテンツエリア --%>
 <style type="text/css">
 .ui-jqgrid .ui-jqgrid-htable th div{
-	height: 34px;
     white-space:normal;
 }
 </style>
