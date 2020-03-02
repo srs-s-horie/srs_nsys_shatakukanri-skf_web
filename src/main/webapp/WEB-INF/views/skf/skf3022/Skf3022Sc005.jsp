@@ -191,18 +191,18 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 						autoResize="true" onCellSelect="onCellSelect" onGridComplete="gridComplete"
 						multiSelect="true" data="${form.listTableData}"
 						onBeforeSelectRow="onBeforeSelectRow" onSelectRow="onSelectRow" onSelectAll="onSelectAll"
-						style="max-height: 800px;" tabindex="11">
+						style="max-height: 800px;" tabindex="11" height="300">
 						<pager rowNum="${form.listTableMaxRowCount }" />
 						<cols sortable="false">
 						<col name="colChkSelect" caption="督促" hidden="true"/>
 						<col name="colNyutaikyoKbn" caption="入退居区分" width="50" sortable="false" align="center" wrap="true"/>
-						<col name="colShainNo" caption="社員番号" width="80" sortable="false" align="left" wrap="true"/>
+						<col name="colShainNo" caption="社員番号" width="85" sortable="false" align="left" wrap="true"/>
 						<col name="colShainName" caption="社員氏名" width="95" sortable="false" align="left" wrap="true"/>
 						<col name="colSinseiKbn" caption="申請区分"　width="55" sortable="false" align="center" wrap="true"/>
 						<col name="colNyukyoDate" caption="入居予定日" width="85" sortable="false" align="center" wrap="true"/>
 						<col name="colTaikyoDate" caption="退居予定日"  width="85" sortable="false" align="center" wrap="true"/>
 						<col name="colShatakuName" caption="社宅名" width="135" sortable="false" align="left" wrap="true"/>
-						<col name="colRoomNo" caption="部屋番号" width="60" sortable="false" align="left" wrap="true"/>
+						<col name="colRoomNo" caption="部屋番号" width="55" sortable="false" align="left" wrap="true"/>
 						<col name="colYouto" caption="用途" width="35" sortable="false" align="center" wrap="true"/>
 						<col name="colStJyokyo" caption="状況" width="60" sortable="false" align="center" wrap="true" onCellAttr="onCellAttr"/>
 						<col name="colStKakunin" caption="確認督促" width="85" sortable="false" align="center" wrap="true"/>
