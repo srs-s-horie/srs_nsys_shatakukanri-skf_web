@@ -7,7 +7,7 @@
             <tr><font size="4"  face="ＭＳ Ｐ明朝">${f:h(form.applNo )}</font><br></tr>
         </div>
         <div class="align-L" style="margin-top: 10px">
-          <tr><font size="4"  face="ＭＳ Ｐ明朝">別記様式３号</font><br></tr>
+          <tr><font size="4"  face="ＭＳ Ｐ明朝">別記様式第３号</font><br></tr>
           
         </div>
         <div class="align-R" style="margin-top: 10px">
