@@ -27,7 +27,7 @@ function back1() {
 </style>
 
     <!-- コンテンツエリア -->
-    <div class="imui-form-container-wide" style="width: 95%;">
+    <div class="imui-form-container-wide">
 
     <!-- コンテンツエリア -->
     <div style="max-width: 300px;margin: 0px;">
