@@ -314,6 +314,7 @@ ${form.operationGuide }
       <nfwui:Hidden id="applUpdateDate" name="applUpdateDate" />
       <nfwui:Hidden id="syokiNyukyoDate" name="syokiNyukyoDate" />
       <nfwui:Hidden id="syokiParkingUseDate" name="syokiParkingUseDate" />
+      <nfwui:Hidden id="syokiParkingUseDate2" name="syokiParkingUseDate2" />
       <nfwui:Hidden id="syokiTaikyoDate" name="syokiTaikyoDate" />
       <nfwui:Hidden id="syokiParkingDate" name="syokiParkingDate" />
       <!-- 添付資料番号 -->
