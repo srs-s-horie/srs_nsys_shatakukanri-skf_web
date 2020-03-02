@@ -63,7 +63,9 @@ public class Skf2040Sc001Form extends NfwfileScDwdForm {
 	// ユーザＩＤ
 	private String userId;
 	// 等級
-	private String Tokyu;
+	private String tokyuName;
+	// TEL
+	private String tel;
 
 	// 駐車場1台目
 	private String parking1stPlace;
