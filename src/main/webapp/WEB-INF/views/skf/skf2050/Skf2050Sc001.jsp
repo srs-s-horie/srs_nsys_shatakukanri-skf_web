@@ -45,7 +45,7 @@
 					nfw.common.doAjaxAction("skf/Skf2050Sc001/CarryOutAsync", map, true, function(res){
 						if (res.showDialogFlag == "true") {
 							var message = "搬出完了日が退居日より後ですがよろしいですか？(退居日:" + res.dialogTaikyoDay + "）";
-							skf.common.confirmPopup(message, "確認", "form", "skf/Skf2050Sc001/CarryOut",  "OK", "cancel", this);
+							skf.common.confirmPopup(message, "確認", "form", "skf/Skf2050Sc001/CarryOut",  "ok", "キャンセル", this);
 						} else {
 							skf.common.submitForm("form", "skf/Skf2050Sc001/CarryOut", this);
 						}
