@@ -27,7 +27,7 @@ function back1() {
 function onCellAttr(rowId,val,rawObject,cm,rdata){
 	  var style;
 	  switch (val) {
-	  case '貸与可能':
+	  case '貸与可':
 	      style = 'style="color:blue;"';
 	      break;
 	  case '貸与不可':
@@ -139,7 +139,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 					<imui:listTable id="mainList" process="jssp" autoEncode="true" autoWidth="true" rowNumbers="true"
 						autoResize="true" onCellSelect="onCellSelect"
 						multiSelect="false" data="${form.listTableData }"
-						style="max-height: 800px" >
+						style="max-height: 800px" height="300">
 						<pager rowNum="${form.listTableMaxRowCount }" />
 						<cols sortable="false">
 						<col name="col1" caption="部屋番号" width="80" sortable="false" />
