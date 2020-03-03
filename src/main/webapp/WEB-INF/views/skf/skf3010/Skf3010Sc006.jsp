@@ -1668,7 +1668,7 @@
 								if(data.parkingContractAddress != null && data.parkingContractAddress!=""){
 									$("#parkingContractAddress").val(data.parkingContractAddress);
 									if(checkMaxParkingContract()){
-										$("#parkingAddress").val(data.parkingContractAddress);
+										$("#parkingAddress").text(data.parkingContractAddress);
 									}
 								}
 								$("#parkingZipCd").removeClass("nfw-validation-error");
@@ -1791,7 +1791,6 @@
 							$("#parkingAssetRegisterNo").prop("disabled",state);
 							$("#parkingContractStartDay").prop("disabled",state);
 							$("#parkingContractEndDay").prop("disabled",state);
-							$("#parkingLandRent").val(null);
 							$("#parkingLandRent").prop("disabled",state);
 							$("#parkingContractBiko").prop("disabled",state);
 							$("#parkingAddressSearch").prop("disabled",state);
@@ -1810,6 +1809,7 @@
 								$("#parkingContractEndDay").val("");
 								wjObj = wijmo.Control.getControl('#parkingLandRentDiv');
 								wjObj.value = null;
+								$("#parkingLandRent").val(null);
 								$('#parkingLandRent').prop("value", "");
 								$("#parkingContractBiko").val("");
 							}
@@ -1839,6 +1839,17 @@
 								setDisabled(false,true);
 							}else{
 								setDisabled(true,true);
+							}
+							//最新の契約情報かチェック
+							if(checkMaxParkingContract()){
+								// 最新の情報の場合、駐車場情報の所在地に設定
+								if($("#parkingContractType").val()=="2"){
+									//社宅と別契約
+									$("#parkingAddress").text($("#parkingContractAddress").val());
+								}else{
+									$('#parkingAddress').text($('#pref option:selected').text() + $('#shatakuAddress').val());
+								}
+								
 							}
 						});
 						
@@ -1880,9 +1891,9 @@
 										}
 										//契約形態変更
 										if($("#parkingContractType").val()=="2"){
-											setDisabled(false,true);
+											setDisabled(false,false);
 										}else{
-											setDisabled(true,true);
+											setDisabled(true,false);
 										}
 									}else{
 										//契約情報無し⇒追加ボタン有効
@@ -2032,7 +2043,13 @@
 							//最新の契約情報かチェック
 							if(checkMaxParkingContract()){
 								// 最新の情報の場合、駐車場情報の所在地に設定
-								$("#parkingAddress").text($("#parkingContractAddress").val());
+								if($("#parkingContractType").val()=="2"){
+									//社宅と別契約
+									$("#parkingAddress").text($("#parkingContractAddress").val());
+								}else{
+									$('#parkingAddress').text($('#pref option:selected').text() + $('#shatakuAddress').val());
+								}
+								
 							}
 						});
 						
