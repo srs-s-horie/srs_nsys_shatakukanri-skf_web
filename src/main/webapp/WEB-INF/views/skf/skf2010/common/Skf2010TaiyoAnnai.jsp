@@ -216,7 +216,7 @@
 				<td width="150px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝">${f:h(form.carName )}</td>
 				<td style="font-size: 120%;font-family: ＭＳ Ｐ明朝" width="180px">位置番号等</td>
 				<td width="180p" style="font-size: 120%;font-family: ＭＳ Ｐ明朝"></td>
-				<input type="hidden" name="carIchiNo" id="carIchiNo" value="${f:h(form.carIchiNo )}" />
+				<input type="hidden" name="hdnCarIchiNo" id="taiyoAnnaiHdnCarIchiNo" value="${f:h(form.carIchiNo )}" />
 			</tr>
 			<tr>
 				<td style="font-size: 120%;font-family: ＭＳ Ｐ明朝">自動車の登録番号</td>
@@ -250,7 +250,7 @@
 				<td width="150px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝">${f:h(form.carName2 )}</td>
 				<td style="font-size: 120%;font-family: ＭＳ Ｐ明朝" width="180px">位置番号等</td>
 				<td width="180p" style="font-size: 120%;font-family: ＭＳ Ｐ明朝"></td>
-				<input type="hidden" name="carIchiNo2" id="carIchiNo2" value="${f:h(form.carIchiNo2 )}" />
+				<input type="hidden" name="hdnCarIchiNo2" id="taiyoAnnaiHdnCarIchiNo2" value="${f:h(form.carIchiNo2 )}" />
 			</tr>
 			<tr>
 				<td style="font-size: 120%;font-family: ＭＳ Ｐ明朝">自動車の登録番号</td>
