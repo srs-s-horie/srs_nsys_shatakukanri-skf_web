@@ -341,7 +341,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 					<imui:listTable id="mainList" process="jssp" autoEncode="false" autoWidth="true" rowNumbers="true"
 						autoResize="true" onCellSelect="onCellSelect" onGridComplete="onGridComplete"
 						multiSelect="false" data="${form.listTableData }"
-						 height="800" maxHeight="800" rowNumWidth="35">
+						 height="400" maxHeight="400" rowNumWidth="35">
 						<pager rowNum="${form.listTableMaxRowCount }"/>
 						<cols sortable="false">
 							<col name="col1" caption="入居" width="35" sortable="false" align="center" tabindex="14"/>
