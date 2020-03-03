@@ -487,8 +487,8 @@
         }
     });
 
-    //社宅プルダウン
-    $("#nowShatakuName").bind('change', function() {
+    // 社宅プルダウン変更時のイベント
+    onChangeDropDown = function() {
         var map = new Object();
         var hShainNo = $('#hdnShainNo').val();
         map['shatakuKanriId'] = $('#nowShatakuName option:selected').val();
@@ -532,7 +532,10 @@
             // 「社宅を退居する」チェック時のイベント
             onClickTaikyoType01();
         });
-    });
+    }
+
+    //社宅プルダウン
+    $("#nowShatakuName").bind('change', onChangeDropDown);
 
     // 「社宅を退居する」チェック時のイベント
     onClickTaikyoType01 = function () {
@@ -605,6 +608,8 @@
     
     // 画面表示時に定義される処理
     $(document).ready(function(){
+        onChangeDropDown();
+        
         var isTaikyoChecked = $('#taikyoType01').prop('checked');
         
         if($('#parking1stPlace').val() == ""){
