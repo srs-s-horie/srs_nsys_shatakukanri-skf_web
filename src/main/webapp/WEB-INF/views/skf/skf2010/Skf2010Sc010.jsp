@@ -28,72 +28,65 @@
   overflow-y: auto;
 }
 </style>
- <!-- コンテンツエリア -->
+<!-- コンテンツエリア -->
+<div class="imui-form-container-wide" >
+  <nfwui:Title code="<%= MessageIdConstant.SKF2010_SC010_TITLE_LABEL %>" />
+  <div class="main-area">
 
-    <!-- コンテンツエリア -->
-      
-        <table class="imui-form-search-condition" style="min-width: 95%">
-        
-            <tbody>
+    <c:forEach var="obj" items="${form.commentList}" >
+      <div class="imui-form-container-wide comment-area" style="width: 98%; border: none">
+        <div class="imui-chapter-title" style="margin-bottom: 10px;">
+          <c:if test="${obj.isShouninTitle == 'true' }">
+            <h2>${f:h(obj.titleCommentName)}　さんから　承認者　へのコメント</h2>
+          </c:if>
+          <c:if test="${obj.isShouninTitle == 'false' }">
+            <h2>承認者　から　${f:h(obj.titleCommentName)}　さんへのコメント</h2>
+          </c:if>
+        </div>
+        <table>
+          <tr>
+            <td colspan="2">
+              <table class="imui-form-search-condition" style="width:100%;">
+                <tbody>
                 <tr>
-                    <td style="width: 100%; border: none;background-color: #fdfdff;">
-                        <!-- 左側の入力域の部分 -->
-                        
-                        <div class="imui-form-container-wide" >
-                        <nfwui:Title code="<%= MessageIdConstant.SKF2010_SC010_TITLE_LABEL %>" />
-                        <div class="main-area">
-
-<c:forEach var="obj" items="${form.commentList}" >
-                       <div class="imui-form-container-wide comment-area" style="width: 98%; border: none">
-                          <div class="imui-chapter-title" style="margin-bottom: 10px;">
-  <c:if test="${obj.isShouninTitle == 'true' }">
-                            <h2>${f:h(obj.titleCommentName)}　さんから　承認者　へのコメント</h2>
-  </c:if>
-  <c:if test="${obj.isShouninTitle == 'false' }">
-                            <h2>承認者　から　${f:h(obj.titleCommentName)}　さんへのコメント</h2>
-  </c:if>
-                        </div>
-                        <table>
-                           <tr>
-                             <td colspan="2">
-                                <table class="imui-form-search-condition" style="width:100%;">
-                                  <tbody>
-                                  <tr>
-                                    <th  style="width:250px"><nfwui:LabelBox id="lblInputName" code="<%= MessageIdConstant.SKF2010_SC010_INPUT_NAME %>" /></th>
-                                    <th style="width:200px;"><nfwui:LabelBox id="lblInputDate" code="<%= MessageIdConstant.SKF2010_SC010_INPUT_DATE %>" /></th>
-                                    <th style="width:150px;"><nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2010_SC010_APPL_STATUS %>" /></th>                                                   
-                                    <th style="width:500px;"><nfwui:LabelBox id="lblCommentNote" code="<%= MessageIdConstant.SKF2010_SC010_COMMENT_NOTE %>" /></th>
-                                  </tr>
-                                  <tr style="height: 60px;">
-                                    <td style="text-align:center;">
-                                       ${obj.commentName}
-                                    </td>
-                                    <td style="text-align:center;">
-                                         ${f:h(obj.commentDate)}
-                                    </td>
-                                    <td style="text-align:center;" >
-                                                        ${f:h(obj.applStatus)}
-                                    </td>
-                                    <td style="text-align:left;">
-                                      <div class="comment-row">
-                                         ${obj.commentNote}
-                                       </div>
-                                    </td>
-
-                                    </tbody>
-                                   </table>
-                                 </td>
-                                </tr>
-                            </table>
-                     </div>
-</c:forEach>                    
-                   </div>
+                  <th  style="width:250px"><nfwui:LabelBox id="lblInputName" code="<%= MessageIdConstant.SKF2010_SC010_INPUT_NAME %>" /></th>
+                  <th style="width:200px;"><nfwui:LabelBox id="lblInputDate" code="<%= MessageIdConstant.SKF2010_SC010_INPUT_DATE %>" /></th>
+                  <th style="width:150px;"><nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2010_SC010_APPL_STATUS %>" /></th>                                                   
+                  <th style="width:500px;"><nfwui:LabelBox id="lblCommentNote" code="<%= MessageIdConstant.SKF2010_SC010_COMMENT_NOTE %>" /></th>
+                </tr>
+                <tr style="height: 60px;">
+                  <td style="text-align:center;">
+                    ${obj.commentName}
+                  </td>
+                  <td style="text-align:center;">
+                    ${f:h(obj.commentDate)}
+                  </td>
+                  <td style="text-align:center;" >
+                    ${f:h(obj.applStatus)}
+                  </td>
+                  <td style="text-align:left;">
+                    <div class="comment-row">
+                      ${obj.commentNote}
                     </div>
-                   
-                 </td>
-               </tr>
-               </tbody>
-             </table>
-    
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </c:forEach>
+  </div>
+</div>
 
+<%-- コンテンツエリア javascript--%>
+<script type="text/javascript">
+(function($) {
+	$(document).ready(function(){
+		 // ツールバーの戻るボタンを非表示
+		 $(".imui-list-toolbar").hide();
+	});
+})(jQuery);
+</script>
   

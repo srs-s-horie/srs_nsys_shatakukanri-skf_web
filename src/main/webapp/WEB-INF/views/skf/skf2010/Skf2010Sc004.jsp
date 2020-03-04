@@ -344,7 +344,7 @@ ${form.operationGuide }
           <br />
           <nfwui:PopupButton id="commentPop" value="コメント表示" 
           cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
-          modalMode="false" popupWidth="1350" popupHeight="550"
+          modalMode="false" popupWidth="1350" popupHeight="488"
           parameter="applNo:applNo,applStatus:applStatus"
           screenUrl="skf/Skf2010Sc010/init" use="popup" />
 </c:if>
