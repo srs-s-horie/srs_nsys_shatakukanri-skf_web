@@ -1,11 +1,13 @@
 package jp.co.c_nexco.skf.skf3040.app.skf3040sc002;
 
-import jp.co.c_nexco.nfw.webcore.app.BaseForm;
 import jp.co.c_nexco.nfw.nfwfile.app.nfwfilescdwd.NfwfileScDwdForm;
-import java.util.*;
 
 import lombok.EqualsAndHashCode;
-
+/**
+ * Skf3040Sc002Form 備品搬入・搬出確認リスト出力画面クラス。　 
+ * 
+ * @author NEXCOシステムズ
+ */
 @lombok.Data
 @EqualsAndHashCode(callSuper = true)
 public class Skf3040Sc002Form extends NfwfileScDwdForm {
