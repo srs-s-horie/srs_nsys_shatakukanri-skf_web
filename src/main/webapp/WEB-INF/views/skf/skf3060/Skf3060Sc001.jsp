@@ -557,8 +557,7 @@
 			<imui:listTable id="mainList" process="jssp" autoEncode="false" autoWidth="true" rowNumbers="true"
 				autoResize="true" onGridComplete="onGridComplete" onSelectAll="onSelectAll" onCellSelect="onCellSelect" onPaging="onPaging"
 				multiSelect="true" onBeforeSelectRow="onBeforeSelectRow" data="${form.listTableData }"
-				style="max-height: 100px" 
-				shrinkToFit="false">
+				height="310" shrinkToFit="false">
 				<pager rowNum="${form.listTableMaxRowCount }" />
 				<cols sortable="false">
 					<!-- 
