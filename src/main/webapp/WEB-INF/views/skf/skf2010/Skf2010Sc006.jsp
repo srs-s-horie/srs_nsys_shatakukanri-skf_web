@@ -293,7 +293,7 @@ $(function() {
            <nfwui:ConfirmButton id="syouninBtn" name="syouninBtn" value="承認"
            cssClass="imui-medium-button" cssStyle="width: 150px" 
            title="<%= MessageIdConstant.SKF2010_SC006_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2006 %>"
-           url="skf/Skf2010Sc006/Update" formId="form" removePatterns="NON" />
+           url="skf/Skf2010Sc006/Update" formId="form" removePatterns="NON" disabled="${form.confirmBtnDisabled }" />
 </c:if>
         </div>
           </td>
