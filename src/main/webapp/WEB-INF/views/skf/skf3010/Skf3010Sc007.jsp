@@ -34,6 +34,7 @@ function back1() {
 				<input type="hidden" name="hdnShatakuKbn" id="hdnShatakuKbn" value="${form.hdnShatakuKbn}" />
 				<input type="hidden" name="hdnListData" id="hdnListData" value="${form.hdnListData}" />
 				<input type="hidden" name="hdnParkingBlock" id="sendParkingBlock" value="${form.hdnParkingBlock}" />
+				<input type="hidden" name="hdnSelectParkingBlock" id="hdnSelectParkingBlock" value="${form.hdnParkingBlock}" />
 				<input type="hidden" name="hdnBackupContractPropertyId" id="hdnBackupContractPropertyId" value="${form.hdnBackupContractPropertyId}" />
 				<input type="hidden" name="hdnBackupMaxContractPropertyId" id="hdnBackupMaxContractPropertyId" value="${form.hdnBackupMaxContractPropertyId}" />
 				<input type="hidden" name="hdnRegistContractPropertyId" id="hdnRegistContractPropertyId" value="${form.hdnRegistContractPropertyId}" />
@@ -52,6 +53,7 @@ function back1() {
 				<input type="hidden" name="contractPropertyId" id="sendContractPropertyId" value="" />
 				<input type="hidden" name="parkingContractType" id="sendParkingContractType" value="" />
 				<input type="hidden" name="parkingKanriNo" id="sendParkingKanriNo" value="${form.parkingKanriNo}" />
+				<input type="hidden" name="hdnParkingKanriNo" id="hdnParkingKanriNo" value="${form.parkingKanriNo}" />
 				<input type="hidden" name="selectMode" id="selectMode" value="${form.selectMode}" />
 				<input type="hidden" name="hdnDelInfoFlg" id="hdnDelInfoFlg" value="${form.hdnDelInfoFlg}" />
 				<input type="hidden" name="ownerNo" id="ownerNo" value="${form.ownerNo}" />
@@ -137,12 +139,13 @@ function back1() {
 									// 行番号から選択した行の情報を取得
 									var row = grid.getRowData(rowId);
 									
-									$("#sendParkingBlock").val(row.colParkingBlock);
+									$("#hdnSelectParkingBlock").val(row.colParkingBlock);
 									$("#sendContractPropertyId").val(row.colContractPropertyId);
-									$("#sendParkingKanriNo").val(row.colParkingKanriNo);
+									$("#hdnParkingKanriNo").val(row.colParkingKanriNo);
 									if($("#selectMode").val() == 'init'){
 										$("#selectMode").val('mainlList');
-										
+										$("#sendParkingBlock").val(row.colParkingBlock);
+										$("#sendParkingKanriNo").val(row.colParkingKanriNo);
 										url = "skf/Skf3010Sc007/selectList";
 // 										$("#form").attr("action", url);
 // 										$("#form").submit();
@@ -303,7 +306,7 @@ function back1() {
                </th>
                     <td colspan="3">
 <%--                          <imui:textbox name="landRent" id="landRent" value="${f:h(form.landRent)}" class="${form.landRentError}" disabled="${form.contractInfoDisabled}" style="text-align: right;ime-mode: disabled;width:100px" placeholder="例　半角数字" maxlength="6" tabindex="15"/>  --%>
-                         <nfwui:NumberBox name="landRent" id="landRent" cssClass="${form.landRentError}" disabled="${form.contractInfoDisabled}" cssStyle="width:100px;" inputFormat="n0" maxlength="8" tabindex="15"/> 
+                         <nfwui:NumberBox name="landRent" id="landRent" cssClass="${form.landRentError}" disabled="${form.contractInfoDisabled}" cssStyle="width:100px;" inputFormat="n0" max="999999" min="0" maxlength="6" tabindex="15"/> 
 					&nbsp;円
                     </td>
                </tr>
@@ -328,7 +331,7 @@ function back1() {
 							
 							//入力内容チェック
 							var map = new Object();
-							map['parkingBlock'] = $("#sendParkingBlock").val();
+							map['parkingBlock'] = $("#hdnSelectParkingBlock").val();
 							map['contractPropertyId'] = $("#contractPropertyId").val();
 							map['hdnBackupContractPropertyId'] = $("#hdnBackupContractPropertyId").val();
 							map['hdnBackupMaxContractPropertyId'] = $("#hdnBackupMaxContractPropertyId").val();
@@ -370,13 +373,31 @@ function back1() {
 									//確認メッセージ
 										var dialogTitle = "確認";
 										//MessageIdConstant.：I-SKF-2024
-										var dialogMessage = "入力内容が無効になります。破棄してもよろしいですか？";
-								    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc007/selectList", "ok", "キャンセル", this, true);
+										//var dialogMessage = "入力内容が無効になります。破棄してもよろしいですか？";
+								    	//nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc007/selectList", "ok", "キャンセル", this, true);
+								    	$("<div>入力内容が無効になります。破棄してもよろしいですか？</div>").imuiMessageDialog({
+							    			iconType : 'question',
+							    			title : '確認',
+							    			modal : true,
+							    		    buttons: [
+							    		      {
+							    		        'id': 'okbutton',
+							    		        'text': 'ok',
+							    		        'click': function() { 
+							    		        	$("#sendParkingBlock").val($("#hdnSelectParkingBlock").val());
+							    		        	$("#sendParkingKanriNo").val($("#hdnParkingKanriNo").val());
+							    		        	nfw.common.submitForm("form", "skf/Skf3010Sc007/selectList"); }
+							    		      },
+							    		      {
+							    		        'text': 'キャンセル',
+							    		        'click': function() { $(this).imuiMessageDialog('close'); }
+							    		      }
+							    		    ]
+							    		});
 								}else{
-									
+									$("#sendParkingKanriNo").val($("#hdnParkingKanriNo").val());
+									$("#sendParkingBlock").val($("#hdnSelectParkingBlock").val());
 									url = "skf/Skf3010Sc007/selectList";
-// 									$("#form").attr("action", url);
-// 									$("#form").submit();
 									nfw.common.submitForm("form", url);
 								}
 								
@@ -394,7 +415,7 @@ function back1() {
 				    		    buttons: [
 				    		      {
 				    		        'id': 'okbutton',
-				    		        'text': 'OK',
+				    		        'text': 'ok',
 				    		        'click': function() { checkInput('addButton'); }
 				    		      },
 				    		      {
@@ -417,7 +438,7 @@ function back1() {
 								
 								//MessageIdConstant.：I-SKF-2024
 								var dialogMessage = "入力内容が無効になります。破棄してもよろしいですか？";
-						    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc007/selectList", "ok", "キャンセル", this, true);
+						    	nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc007/selectList", "ok", "キャンセル", this, true);
 				    		}else{
 				    			//登録済み情報の削除
 				    			$("#sendParkingBlock").val($("#sendParkingBlock").val());
@@ -427,7 +448,7 @@ function back1() {
 				    			
 								//MessageIdConstant.：I-SKF-3064
 								var dialogMessage = "駐車場の契約情報を削除します。よろしいですか？";
-						    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc007/selectList", "ok", "キャンセル", this, true);
+						    	nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc007/selectList", "ok", "キャンセル", this, true);
 				    		}
 				    	}
 				    	
@@ -451,7 +472,7 @@ function back1() {
 				    		
 			    			var dialogTitle = "確認";
 							var dialogMessage = "編集が無効になります。よろしいですか？";
-					    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc007/selectList", "ok", "キャンセル", this, true);
+					    	nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc007/selectList", "ok", "キャンセル", this, true);
 				    	}
 				    	
 				    	registOnClick = function () {
@@ -468,7 +489,7 @@ function back1() {
 				    		
 			    			var dialogTitle = "確認";
 							var dialogMessage = "駐車場契約情報を登録します。よろしいですか？";
-					    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc007/regist", "ok", "キャンセル", this, true);
+					    	nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc007/regist", "ok", "キャンセル", this, true);
 				    	}
 				    	
 				    	//戻るボタン
@@ -476,7 +497,7 @@ function back1() {
 					    	//確認メッセージ
 							dialogTitle = "確認";
 							dialogMessage = "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。";
-					    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc002/init", "ok", "キャンセル", this, true);	
+					    	nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc002/init", "ok", "キャンセル", this, true);	
 					    }
 				    	
 				    	//リサイズ時イベント

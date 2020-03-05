@@ -2082,7 +2082,7 @@
 						$("#parkingRentalAdjust").bind('keypress', function(e) {
 							  // 数字以外の不要な文字を削除
 							  var st = String.fromCharCode(e.which);
-							  if ("0123456789".indexOf(st,0) < 0) { return false; }
+							  if ("-0123456789".indexOf(st,0) < 0) { return false; }
 							  return true;  
 						});
 						
