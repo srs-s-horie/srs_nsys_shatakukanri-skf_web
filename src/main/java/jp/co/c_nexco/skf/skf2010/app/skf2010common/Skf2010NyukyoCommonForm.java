@@ -30,6 +30,7 @@ public class Skf2010NyukyoCommonForm extends NfwfileScDwdForm {
 	private String representBtnFlg;
 	private String shoninBtnViewFlag;
 	private boolean revisionRemandBtnFlg;
+	private boolean confirmBtnDisabled = false;
 
 	/** 入居希望申請調書 **/
 	// 社宅必要可否
