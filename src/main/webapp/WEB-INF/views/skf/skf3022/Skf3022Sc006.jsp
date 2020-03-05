@@ -15,7 +15,7 @@
 <%-- コンテンツエリア --%>
 <script type="text/javascript">
 	function back1() {
-		var url="skf/Skf3022Sc005/init?SKF3010_SC005&tokenCheck=0"
+		var url="skf/Skf3022Sc005/init?SKF3022_SC005&tokenCheck=0"
 		nfw.common.doBack(url, $("#litMessageBack").val());
 	}
 </script>
@@ -24,7 +24,8 @@
 <div class="imui-form-container-wide" >
 	<nfwui:Form id="form" name="form" modelAttribute="form">
 		<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3022_SC006 %>" />
-		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3022Sc006/init?SKF3010_SC006&tokenCheck=0" />
+<!-- 		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3022Sc005/init"/> -->
+		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3022Sc005/init?SKF3022_SC005&tokenCheck=0" />
 		<!-- ** サーバー連携用 ** -->
 		<!-- 表示タブインデックス -->	<input type="hidden" name="hdnTabIndex" id="hdnTabIndex" value="${form.hdnTabIndex }" />
 		<!-- 使用料パターンID -->	<input type="hidden" name="hdnSiyouryoId" id="hdnSiyouryoId" value="${form.hdnSiyouryoId}" />
