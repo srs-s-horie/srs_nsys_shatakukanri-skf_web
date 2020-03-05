@@ -158,7 +158,7 @@
 <imart:condition validity="<%= String.valueOf(form.isCommentViewFlag()) %>" >
     <nfwui:PopupButton id="commentPop" value="コメント表示" 
     cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
-    modalMode="false" popupWidth="1350" popupHeight="550"
+    modalMode="false" popupWidth="1350" popupHeight="488"
     parameter="applNo:applNo" formId="form" tabindex="12"
     screenUrl="skf/Skf2010Sc010/init" use="popup" />
 </imart:condition>
@@ -185,7 +185,7 @@
 <imart:condition validity="<%= String.valueOf(form.isCommentViewFlag()) %>" >
           <nfwui:PopupButton id="commentPop" value="コメント表示" 
           cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
-          modalMode="false" popupWidth="1350" popupHeight="550"
+          modalMode="false" popupWidth="1350" popupHeight="488"
           parameter="applNo:applNo" formId="form" tabindex="12"
           screenUrl="skf/Skf2010Sc010/init" use="popup" />
 </imart:condition>

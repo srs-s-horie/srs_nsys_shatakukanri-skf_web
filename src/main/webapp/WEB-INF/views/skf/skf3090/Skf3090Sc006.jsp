@@ -95,7 +95,7 @@
 					
 					<div id="listTableArea">
 					<imui:listTable id="mainList" process="java" autoEncode="true" autoWidth="true"
-						autoResize="true"  onCellSelect="onCellSelect"
+						autoResize="true"  onCellSelect="onCellSelect" rowNumWidth="35"
 						style="max-height: 800px" multiSelect="false" rowNumbers="true" data="${form.createTableList}">
 						<pager rowNum="${form.listTableMaxRowCount }" />
 						<cols sortable="false">

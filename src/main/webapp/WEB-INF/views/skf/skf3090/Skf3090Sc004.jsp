@@ -131,7 +131,7 @@
 					</script>
 
 					<imui:listTable id="mainList" process="jssp" autoEncode="true" autoWidth="true" rowNumbers="true"
-						autoResize="true" onCellSelect="onCellSelect"
+						autoResize="true" onCellSelect="onCellSelect" rowNumWidth="35"
 						multiSelect="false" data="${form.listTableData }"
 						style="max-height: 800px" >
 						<pager rowNum="${form.listTableMaxRowCount }" />

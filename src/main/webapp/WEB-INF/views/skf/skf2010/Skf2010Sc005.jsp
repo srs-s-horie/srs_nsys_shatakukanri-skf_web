@@ -411,7 +411,7 @@
 <imui:listTable data="${form.ltResultList}"
 id="ltResultListTable" name="ltResultListTable"
 autoResize="true" autoWidth="true"
-onCellSelect="onCellSelect" rowNumbers="true"
+onCellSelect="onCellSelect" rowNumbers="true" rowNumWidth="35"
  height="232" onGridComplete="gridComplete"
 >
 <pager num="30" />
