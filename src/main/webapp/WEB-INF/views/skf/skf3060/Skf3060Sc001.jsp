@@ -454,92 +454,89 @@
 
     <div class="imui-form-container-wide">
         <table class="imui-form-search-condition" width="100%" style="border: none;" >
-            <td style="width: 59%; border: none;" >
+            <td style="width: 56%; border: none;" >
 	            <!-- 左側の検索部分 -->
-                <div>
-					<div class="imui-chapter-title"><h2>検索条件</h2></div>
-                    <table class="imui-form-search-condition">
-						<tr>
-							<!-- 基準期間 -->
-							<th style="width: 11%;">
-								<nfwui:LabelBox id="lblBaseTerm" code="<%=MessageIdConstant.SKF3060_SC001_BASE_TERM %>" />
-							</th>
-							<td colspan="2" style="width: 410px;">
-                                <nfwui:DateBox id="baseTermFrom" name="baseTermFrom" value="${f:h(form.baseTermFrom)}"
-                                               cssClass="${f:h(form.baseTermFromErr)}" tabindex="3" cssStyle="width:100px"/>
-								&nbsp;～&nbsp;
-                                <nfwui:DateBox id="baseTermTo" name="baseTermTo" value="${f:h(form.baseTermTo)}"
-                                               cssClass="${f:h(form.baseTermToErr)}" tabindex="4" cssStyle="width:100px"/>
-                                               <!-- 
-                                <nfwui:DateBox id="baseTermFrom" name="baseTermFrom"
-                                               cssClass="${f:h(form.baseTermFromErr)}" tabindex="1" cssStyle="width:100px"/>
-								&nbsp;～&nbsp;
-                                <nfwui:DateBox id="baseTermTo" name="baseTermTo"
-                                               cssClass="${f:h(form.baseTermToErr)}" tabindex="2" cssStyle="width:100px"/>
-
-                                                -->
-								<!-- 
-								<nfwui:DateBox name="baseTermFrom" id="baseTermFrom" cssStyle="width:100px" tabindex="1"/>
-								<nfwui:DateBox name="baseTermTo" id="baseTermTo" cssStyle="width:100px" tabindex="2"/>					
-								 -->	
-							</td>
-							<!-- 原籍会社 -->
-							<th style="width: 16%;">
-								<nfwui:LabelBox id="lblOriginalCompanyCd" code="<%=MessageIdConstant.SKF3060_SC001_ORIGINAL_COMPANY_CD %>" />
-							</th>
-							<td>
-								<imui:select id="selectedOriginalCompanyCd" name="selectedOriginalCompanyCd" 
-									width="200px" list="${form.originalCompanyCdList}" tabindex="7" />
-							</td>
-						</tr>
-						<tr>
-							<!-- 社員番号 -->
-							<th style="width: 11%;">
-								<nfwui:LabelBox id="lblShainNo" code="<%=MessageIdConstant.SKF3060_SC001_SHAIN_NO %>" />
-							</th>
-							<td colspan="2">
-								<imui:textbox id="txtShainNo" name="shainNo" style="ime-mode: disabled;width:150px;" placeholder="例  00123456(半角)" value="${f:h(form.shainNo)}" tabindex="5" maxlength="8"/>
-							</td>
-							<!-- 給与支給会社名 -->
-							<th style="width: 16%;">
-								<nfwui:LabelBox id="lblSalaryCompanyCd" code="<%=MessageIdConstant.SKF3060_SC001_SALARY_COMPANY_CD %>" />
-							</th>
-							<td>
-								<imui:select id="selectedSalaryCompanyCd" name="selectedSalaryCompanyCd" 
-									width="200px" list="${form.salaryCompanyCdList}" tabindex="8" />
-							</td>
-						</tr>
-						<tr>
-							<!-- 社員名 -->
-							<th style="width: 11%;">
-								<nfwui:LabelBox id="lblName" code="<%=MessageIdConstant.SKF3060_SC001_NAME %>" />
-							</th>
-							<td colspan="2">
-								<imui:textbox id="txtName" name="name" style="disabled;width:150px;" placeholder="例  中日本　太郎" value="${f:h(form.name)}" tabindex="6" maxlength="20"/>
-							</td>
-							<!-- 送信状態 -->
-							<th style="width: 16%;">
-								<nfwui:LabelBox id="lblSendMailStatus" code="<%=MessageIdConstant.SKF3060_SC001_SEND_MAIL_STATUS %>" />
-							</th>
-							<td>
-								<imui:select id="selectedSendMailStatus" name="selectedSendMailStatus" 
-									width="100px" list="${form.sendMailStatusList}" tabindex="9" />
-							</td>
-						</tr>
-					</table>    
-					<div class="align-L">	
-						<imui:button id="search" name="search" value="検索" class="imui-small-button" onclick="preButtonEvent(0)" tabindex="10" />
-					</div>
-                </div>
-                <!-- 操作ガイド -->
-                <td style="width: 45%; border: none;background-color: #fdfdff;">
-                    <div style="overflow-y:scroll; max-height:140px; height:140px; margin-left: 20px; background-color:#eeeeee;">
-                        <div class="imui-chapter-title" style="margin-bottom: 10px;"><h2>操作ガイド</h2></div>
-                        <div style="margin-left: 20px;">
-                            ${form.operationGuide}
-                        </div>
-                    </div>  
-                </td>
+				<div class="imui-chapter-title"><h2>検索条件</h2></div>
+				<table class="imui-form-search-condition">
+					<tr>
+						<!-- 基準期間 -->
+						<th style="width: 11%;">
+							<nfwui:LabelBox id="lblBaseTerm" code="<%=MessageIdConstant.SKF3060_SC001_BASE_TERM %>" />
+						</th>
+						<td colspan="2" style="width: 280px;">
+							<nfwui:DateBox id="baseTermFrom" name="baseTermFrom" value="${f:h(form.baseTermFrom)}"
+										cssClass="${f:h(form.baseTermFromErr)}" tabindex="3" cssStyle="width:100px"/>
+							～&nbsp;
+							<nfwui:DateBox id="baseTermTo" name="baseTermTo" value="${f:h(form.baseTermTo)}"
+									cssClass="${f:h(form.baseTermToErr)}" tabindex="4" cssStyle="width:100px"/>
+							<!-- 
+                               <nfwui:DateBox id="baseTermFrom" name="baseTermFrom"
+                                              cssClass="${f:h(form.baseTermFromErr)}" tabindex="1" cssStyle="width:100px"/>
+							&nbsp;～&nbsp;
+                               <nfwui:DateBox id="baseTermTo" name="baseTermTo"
+                                              cssClass="${f:h(form.baseTermToErr)}" tabindex="2" cssStyle="width:100px"/>
+							-->
+							<!-- 
+							<nfwui:DateBox name="baseTermFrom" id="baseTermFrom" cssStyle="width:100px" tabindex="1"/>
+							<nfwui:DateBox name="baseTermTo" id="baseTermTo" cssStyle="width:100px" tabindex="2"/>					
+							 -->	
+						</td>
+						<!-- 原籍会社 -->
+						<th style="width: 17%;">
+							<nfwui:LabelBox id="lblOriginalCompanyCd" code="<%=MessageIdConstant.SKF3060_SC001_ORIGINAL_COMPANY_CD %>" />
+						</th>
+						<td>
+							<imui:select id="selectedOriginalCompanyCd" name="selectedOriginalCompanyCd" 
+											width="160px" list="${form.originalCompanyCdList}" tabindex="7" />
+						</td>
+					</tr>
+					<tr>
+						<!-- 社員番号 -->
+						<th>
+							<nfwui:LabelBox id="lblShainNo" code="<%=MessageIdConstant.SKF3060_SC001_SHAIN_NO %>" />
+						</th>
+						<td colspan="2">
+							<imui:textbox id="txtShainNo" name="shainNo" style="ime-mode: disabled;width:150px;" placeholder="例  00123456(半角)" value="${f:h(form.shainNo)}" tabindex="5" maxlength="8"/>
+						</td>
+						<!-- 給与支給会社名 -->
+						<th>
+							<nfwui:LabelBox id="lblSalaryCompanyCd" code="<%=MessageIdConstant.SKF3060_SC001_SALARY_COMPANY_CD %>" />
+						</th>
+						<td>
+							<imui:select id="selectedSalaryCompanyCd" name="selectedSalaryCompanyCd" 
+								width="160px" list="${form.salaryCompanyCdList}" tabindex="8" />
+						</td>
+					</tr>
+					<tr>
+						<!-- 社員名 -->
+						<th>
+							<nfwui:LabelBox id="lblName" code="<%=MessageIdConstant.SKF3060_SC001_NAME %>" />
+						</th>
+						<td colspan="2">
+							<imui:textbox id="txtName" name="name" style="disabled;width:150px;" placeholder="例  中日本　太郎" value="${f:h(form.name)}" tabindex="6" maxlength="20"/>
+						</td>
+						<!-- 送信状態 -->
+						<th>
+							<nfwui:LabelBox id="lblSendMailStatus" code="<%=MessageIdConstant.SKF3060_SC001_SEND_MAIL_STATUS %>" />
+						</th>
+						<td>
+							<imui:select id="selectedSendMailStatus" name="selectedSendMailStatus" 
+								width="100px" list="${form.sendMailStatusList}" tabindex="9" />
+						</td>
+					</tr>
+				</table>
+				<div class="align-L">	
+					<imui:button id="search" name="search" value="検索" class="imui-small-button" onclick="preButtonEvent(0)" tabindex="10" />
+				</div>
+            </td>
+            <!-- 操作ガイド -->
+            <td style="width: 44%; border: none;background-color: #fdfdff;">
+                <div style="overflow-y:scroll; max-height:140px; height:140px; margin-left: 20px; background-color:rgb(238, 238, 238);">
+                    <div class="imui-chapter-title" style="margin-bottom: 10px;"><h2>操作ガイド</h2></div>
+                    <div style="margin-left: 20px;">
+                        ${form.operationGuide}
+                    </div>
+                </div>  
             </td>
 	    </table>
     </div>
