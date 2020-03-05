@@ -78,6 +78,11 @@ $(function() {
 			$("input[name!='bihinKibo']:radio:not(:checked)").prop("disabled", true);
 		}
 		
+		// 初期表示時、「新たに社宅を必要としますか？」の選択状態が「駐車場のみ」だった場合の制御
+		if($("#taiyoHitsuyoParking").is(":checked")){
+			$("#bihinKibo").prop("disabled", true);
+		}
+		
 		// 「社宅の必要理由」活性非活性制御
 		// 初期表示時、「社宅の必要理由」の選択状態が「世帯」「単身」だった場合、「既婚」にもチェックを入れる
 		if($("#hitsuyoShatakuSetai, #hitsuyoShatakuTanshin").is(":checked")) {
