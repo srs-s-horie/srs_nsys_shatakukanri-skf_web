@@ -39,8 +39,7 @@
 <script type="text/javascript">
 // 前の画面に戻る
 function back1() {
-	var prePageId = $("#prePageId").val();
-	var url="skf/" + prePageId + "/init";
+	var url="skf/Skf2010Sc005/init"
 	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
 }
 
