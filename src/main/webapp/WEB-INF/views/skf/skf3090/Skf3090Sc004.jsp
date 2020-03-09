@@ -51,7 +51,7 @@
 								</th>
 								<td style="width: 15%;">
 								<imui:textbox id="name" name="name" value="${form.name}" 
-									  placeholder="例 中日本　太郎" tabindex="4" />
+									  placeholder="例 中日本　太郎" style="ime-mode:active;" tabindex="4" />
 								</td>
 								<th style="width: 10%;">
 									<nfwui:LabelBox id="lblAgency" code="<%=MessageIdConstant.SKF3090_SC004_AGENCY %>" />
@@ -71,7 +71,7 @@
 									<nfwui:LabelBox id="lblNameKk" code="<%=MessageIdConstant.SKF3090_SC004_NAME_KK %>" />
 								</th>
 								<td style="width: 15%;">
-								<imui:textbox id="nameKk" name="nameKk" value="${form.nameKk}" placeholder="例 ナカニホン　タロウ" tabindex="5" />
+								<imui:textbox id="nameKk" name="nameKk" value="${form.nameKk}" placeholder="例 ナカニホン　タロウ" style="ime-mode:active;" tabindex="5" />
 								</td>
 
 								<th style="width: 10%;">

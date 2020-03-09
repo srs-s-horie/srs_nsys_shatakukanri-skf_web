@@ -76,7 +76,7 @@
 									<nfwui:LabelBox id="lblAgencyName" code="<%= MessageIdConstant.SKF3090_SC007_AGENCY %>" />
 								</th>
 								<td style="width: 30%;">
-								<imui:textbox id="registAgencyName" name="registAgencyName" value="${f:h(form.registAgencyName)}" disabled="${form.agencyNameDisabled}" style="width: 95%" placeholder="例 機関の名称" tabindex="7" />
+								<imui:textbox id="registAgencyName" name="registAgencyName" value="${f:h(form.registAgencyName)}" disabled="${form.agencyNameDisabled}" style="width: 95%; ime-mode:active;" placeholder="例 機関の名称" tabindex="7" />
 								</td>
 							</tr>
 							<tr>
@@ -84,7 +84,7 @@
 									<nfwui:LabelBox id="lblAffiliation1Name" code="<%= MessageIdConstant.SKF3090_SC007_AFFILIATION1 %>" />
 								</th>
 								<td style="width: 30%;">
-									<imui:textbox id="registAffiliation1Name" name="registAffiliation1Name" value="${f:h(form.registAffiliation1Name)}" disabled="${form.affiliation1NameDisabled}" style="width: 95%" placeholder="例 部等の名称" tabindex="8" />
+									<imui:textbox id="registAffiliation1Name" name="registAffiliation1Name" value="${f:h(form.registAffiliation1Name)}" disabled="${form.affiliation1NameDisabled}" style="width: 95%; ime-mode:active;" placeholder="例 部等の名称" tabindex="8" />
 								</td>
 							</tr>
 							<tr>
@@ -92,7 +92,7 @@
 									<nfwui:LabelBox id="lblAffiliation2Name" code="<%= MessageIdConstant.SKF3090_SC007_AFFILIATION2 %>" />
 								</th>
 								<td style="width: 30%;">
-								<imui:textbox id="registAffiliation2Name" name="registAffiliation2Name" value="${f:h(form.registAffiliation2Name)}" disabled="${form.affiliation2NameDisabled}" style="width: 95%" placeholder="例 室、チーム又は課の名称" tabindex="9" />
+								<imui:textbox id="registAffiliation2Name" name="registAffiliation2Name" value="${f:h(form.registAffiliation2Name)}" disabled="${form.affiliation2NameDisabled}" style="width: 95%; ime-mode:active;" placeholder="例 室、チーム又は課の名称" tabindex="9" />
 								</td>
 							</tr>
 							<tr>
