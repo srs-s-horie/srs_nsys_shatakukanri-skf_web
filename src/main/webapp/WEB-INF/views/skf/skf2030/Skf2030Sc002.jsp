@@ -193,7 +193,7 @@ function back1() {
                                 <tr>
                                     <th colspan="4"><nfwui:LabelBox id="lblComment" code="<%= MessageIdConstant.SKF2030_SC002_COMMENT %>" /></th>
                                     <td colspan="3" >
-                						<imui:textArea id="commentNote" name="commentNote" style="height:80px;width:98%;" placeholder="例  申請者へのコメント" disabled="${form.commentDisabled }" />
+                						<imui:textArea id="commentNote" name="commentNote" style="height:80px;width:98%;" value="${form.commentNote }" placeholder="例  申請者へのコメント" disabled="${form.commentDisabled }" />
                                     </td>
                                 </tr>
 </imart:condition>                                

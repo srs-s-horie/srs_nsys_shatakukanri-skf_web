@@ -105,7 +105,7 @@
 					<nfwui:LabelBox id="lblComment" code="<%= MessageIdConstant.SKF2040_SC002_COMMENT %>" />
 				</th>
 				<td>
-					<imui:textArea id="commentNote" name="commentNote" style="height:50px;width:100%;" placeholder="例 添付資料が間違っています。" />
+					<imui:textArea id="commentNote" name="commentNote" value="${form.commentNote }" style="height:50px;width:100%;" placeholder="例 添付資料が間違っています。" />
 				</td>
 			</tr>
 		</table>

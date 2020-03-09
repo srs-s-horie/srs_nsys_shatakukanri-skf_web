@@ -215,7 +215,7 @@ $(function() {
             <tr  style="width: 100%; max-width: 1000px;text-align:center;">
                 <th style="width: 200px; max-width: 200px;"><label>申請者へのコメント</label></th>
             <td>
-                <imui:textArea id="commentNote" name="commentNote" style="height:50px;width:100%;" placeholder="例 添付資料が間違っています。" />
+                <imui:textArea id="commentNote" name="commentNote" style="height:50px;width:100%;" placeholder="例 添付資料が間違っています。" value="${form.commentNote }" />
            </td>
            </tr>
         </table>
