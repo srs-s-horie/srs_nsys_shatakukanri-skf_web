@@ -80,7 +80,7 @@
                                             <nfwui:LabelBox id="shatakuNamelbl" code="<%= MessageIdConstant.SKF2060_SC001_SHATAKU_NAME %>" style="float:left" />
                                         </th>
                                         <td>
-                                        <imui:textbox style="width:30%;" id="shatakuName" name="shatakuName" value="${form.shatakuName}" class="${form.shatakuNameError}" tabindex="5" />
+                                        <imui:textbox style="width:30%; ime-mode:active;" id="shatakuName" name="shatakuName" value="${form.shatakuName}" class="${form.shatakuNameError}" tabindex="5" />
                                         </td>
                                     </tr>   
 
@@ -93,7 +93,7 @@
                                             
                                         </th>
                                         <td>
-                                        <imui:textbox style="width:30%;" id="postalCd" name="postalCd" value="${f:h(form.postalCd)}" class="${form.postalCdError}" tabindex="6" />
+                                        <imui:textbox style="width:30%; ime-mode:disabled;" id="postalCd" name="postalCd" value="${f:h(form.postalCd)}" class="${form.postalCdError}" tabindex="6" />
                                        <nfwui:Button id="searchAddress" name="searchAddress" formId="form" value="住所検索" cssClass="imui-small-button" url="skf/Skf2060Sc001/searchAddress" tabindex="7" />
                                         </td>
 
@@ -105,7 +105,7 @@
                                             
                                         </th>
                                         <td>
-                                        <imui:textArea style="width:100%;" rows="3" id="address" name="address" value="${f:h(form.address)}" class="${form.addressError}" tabindex="8" /></input>
+                                        <imui:textArea style="width:100%; ime-mode:active;" rows="3" id="address" name="address" value="${f:h(form.address)}" class="${form.addressError}" tabindex="8" /></input>
                                         </td>
 
                                     </tr>   
@@ -187,7 +187,7 @@
             <tr  >
                 <th style="width: 20%"><nfwui:LabelBox id="applicantCommentlbl" code="<%= MessageIdConstant.SKF2060_SC001_APPLICANT_COMMENT %>" style="float:left" /></th>
             <td>
-            	<imui:textArea style="width:100%;" rows="3" id="comment" name="comment" value="${f:h(form.comment)}" placeholder="例 物件の再提示を行います。" tabindex="10" />
+            	<imui:textArea style="width:100%; ime-mode:active;" rows="3" id="comment" name="comment" value="${f:h(form.comment)}" placeholder="例 物件の再提示を行います。" tabindex="10" />
            </td>
            </tr>
         </table>

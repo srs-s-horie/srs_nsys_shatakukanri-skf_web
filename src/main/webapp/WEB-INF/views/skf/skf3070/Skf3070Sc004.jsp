@@ -101,7 +101,7 @@ $(function(){
 					  <nfwui:LabelBox id="lblOwnerName" code="<%= MessageIdConstant.SKF3070_SC004_OWNER_NAME %>" />
 					</th>
 					<td style="width: 10%;">
-					    <imui:textbox id="popOwnerName" name="popShainNo" style="width:260px;" value="${form.popOwnerName}" tabIndex="3" />
+					    <imui:textbox id="popOwnerName" name="popShainNo" style="width:260px; ime-mode:active;" value="${form.popOwnerName}" tabIndex="3" />
 					</td>
 				</tr>
 				<tr>
@@ -109,14 +109,14 @@ $(function(){
 					  <nfwui:LabelBox id="lblOwnerNameKk" code="<%= MessageIdConstant.SKF3070_SC004_OWNER_NAME_KK %>" />
 					</th>
 					<td style="width: 10%;">
-					  <imui:textbox id="popOwnerNameKk" name="popName" style="width:260px;" value="${form.popOwnerNameKk}" tabIndex="4" />
+					  <imui:textbox id="popOwnerNameKk" name="popName" style="width:260px; ime-mode:active;" value="${form.popOwnerNameKk}" tabIndex="4" />
 					</td>
 				</tr>
 					<th style="width: 7%;">
 					  <nfwui:LabelBox id="lblAddress" code="<%= MessageIdConstant.SKF3070_SC004_ADDRESS %>" />
 					</th>
 					<td style="width: 10%;">
-					  <imui:textbox id="popAddress" name="popNameKk" style="width:260px;" value="${form.popAddress}" tabIndex="5" />
+					  <imui:textbox id="popAddress" name="popNameKk" style="width:260px; ime-mode:active;" value="${form.popAddress}" tabIndex="5" />
 					</td>
 				</tr>
 				<tr>
