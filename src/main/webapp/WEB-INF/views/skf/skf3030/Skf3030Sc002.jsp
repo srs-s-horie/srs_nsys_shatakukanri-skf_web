@@ -1359,17 +1359,9 @@
 
 					// 使用料入力支援パラメータ設定
 					setShiyoryoShienParam = function() {
-						//$("#hdnShainNo").val($("#shainNo").val().trim());
+						$("#hdnShainNo").val($("#sc006ShainNo").text().trim());
 						$("hdnYakuinKbn").val($("#sc006YakuinSanteiSelect").val().trim());	// 未使用
 						$("#hdnShatakuChintairyo").val($("#sc006ChintaiRyo").val().replace(/,/g, "").trim());
-//						$("hdnTeijiFlag").val($("#sc006ShainNo").val().trim());
-//						$("hdnSyoruiKanriNo").val($("#sc006ShainNo").text().trim());
-//						$("#hdnRateShienKikaku").val($("#sc006TaiyoKikaku").text().trim());
-
-//						$("#hdnRateShienYoto").val($("#sc006ShainNo").text().trim());
-//						$("#hdnRateShienNobeMenseki").val($("#sc006ShainNo").text().trim());
-//						$("#hdnRateShienKijunMenseki").val($("#sc006ShainNo").text().trim());
-//						$("#hdnRateShienShatakuMenseki").val($("#sc006ShainNo").text().trim());
 					}
 
 					// 現在状態バックアップ
