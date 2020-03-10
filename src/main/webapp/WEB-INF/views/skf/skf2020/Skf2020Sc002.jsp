@@ -202,7 +202,7 @@
 											   		<nfwui:LabelBox id="lblHeadNewAffiliation1" dynamicMaskList="otherEnabled" code="<%= MessageIdConstant.SKF2020_SC002_NEW_AFFLIATION1 %>" />
 												</th>
 												<td colspan="3">
-													<imui:select id="affiliation1Cd" name="affiliation1Cd" list="${form.ddlAffiliation1List}" disabled="true" width="50%" tabindex="6"/>
+													<imui:select id="affiliation1Cd" name="affiliation1Cd" list="${form.ddlAffiliation1List}" disabled="true" width="" tabindex="6"/>
 													<div>
 														<imui:textbox id="newAffiliation1Other" name="newAffiliation1Other" value="${form.newAffiliation1Other}" 
 														style="width: 50%; ime-mode:active;" placeholder="例 〇〇部"  disabled="${form.newAffiliation1OtherDisabled}"  tabindex="7"/>
@@ -215,7 +215,7 @@
 													<nfwui:LabelBox id="lblHeadNewAffiliation2" code="<%= MessageIdConstant.SKF2020_SC002_NEW_AFFLIATION2 %>" />
 												</th>
 											 	<td colspan="3">
-													<imui:select id="affiliation2Cd" name="affiliation2Cd" list="${form.ddlAffiliation2List}" width="50%" disabled="true" tabindex="8"/>
+													<imui:select id="affiliation2Cd" name="affiliation2Cd" list="${form.ddlAffiliation2List}" width="" disabled="true" tabindex="8"/>
 													<div>
 														<imui:textbox id="newAffiliation2Other" name="newAffiliation2Other" value="${form.newAffiliation2Other}" 
 															style="width: 50%; ime-mode:active;"  placeholder="例 〇〇事業所" disabled="${form.newAffiliation2OtherDisabled}" tabindex="9"/>
@@ -1316,6 +1316,14 @@ function mesDisplayControl(isShow){
 				$("#affiliation2Cd").imuiSelect('replace', data.ddlAffiliation2List);
 				$("#agencyCd").addClass(className);
 			});
+			
+			//部等ドロップダウン その他ボックスを非活性化する
+				$('#newAffiliation1Other').prop('disabled', true);
+				$('#newAffiliation1Other').val("");
+					
+			//チーム又は課ドロップダウン その他ボックスを非活性化する
+				$('#newAffiliation2Other').prop('disabled', true);
+				$('#newAffiliation2Other').val("");
 		});
 	
 		//部等ドロップダウン
@@ -1336,6 +1344,15 @@ function mesDisplayControl(isShow){
 			}else{
 				$('#newAffiliation1Other').prop('disabled', true);
 				$('#newAffiliation1Other').val("");
+			}
+			
+			//チーム又は課ドロップダウン その他が選択された場合、その他ボックスを活性化する
+			var selAffiliation2Cd = $('#affiliation2Cd option:selected').val();
+			if(selAffiliation2Cd　==　"99"){
+				$('#newAffiliation2Other').prop('disabled', false);
+			}else{
+				$('#newAffiliation2Other').prop('disabled', true);
+				$('#newAffiliation2Other').val("");
 			}
 		});
 		
