@@ -262,19 +262,19 @@
                 height="232">
                 <pager rowNum="${form.listTableMaxRowCount}" />
                 <cols sortable="false">
-                <col name="completeChk" caption="完了" width="40" sortable="false" align="center" />
-                <col name="reminderChk" caption="督促" width="40" sortable="false" align="center" />
-                <col name="candidateStatus" caption="提示状況" width="80" sortable="false" onCellAttr="onCellAttr"/>
-                <col name="candidateDate" caption="提示日" width="80" sortable="false" wrap="true"/>
-                <col name="candidatePersonNo" caption="社員番号" width="70" sortable="false" wrap="true"/>
-                <col name="candidatePersonName" caption="提示対象者" width="120" sortable="false" wrap="true"/>
-                <col name="shatakuName" caption="借上社宅名" sortable="false" wrap="true"/>
-                <col name="shatakuAddress" caption="社宅所在地" sortable="false" wrap="true"/>
+                <col name="completeChk" caption="完了" width="30" sortable="false" align="center" />
+                <col name="reminderChk" caption="督促" width="30" sortable="false" align="center" />
+                <col name="candidateStatus" caption="提示状況" width="50" sortable="false" onCellAttr="onCellAttr" align="center" />
+                <col name="candidateDate" caption="提示日" width="50" sortable="false" wrap="true" align="center" />
+                <col name="candidatePersonNo" caption="社員番号" width="60" sortable="false" wrap="true"/>
+                <col name="candidatePersonName" caption="提示対象者" width="90" sortable="false" wrap="true"/>
+                <col name="shatakuName" caption="借上社宅名" width="140" sortable="false" wrap="true"/>
+                <col name="shatakuAddress" caption="社宅所在地" sortable="false" wrap="true" onCellAttr="cellAttrEllipsis"/>
                 <col name="biko" caption="備考" width="125" sortable="false" wrap="true"/>
-                <col name="recandidate" caption="再提示" width="50" sortable="false" align="center" >
+                <col name="recandidate" caption="再提示" width="30" sortable="false" align="center" >
                     <showIcon iconClass="im-ui-icon-common-16-update" />
                 </col>
-                <col name="confirm" caption="確認" width="50" sortable="false" align="center" >
+                <col name="confirm" caption="確認" width="30" sortable="false" align="center" >
                     <showIcon iconClass="im-smart-icon-common-16-information" />
                 </col>
                 <col name="applId" hidden="true" />

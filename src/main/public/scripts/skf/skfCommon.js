@@ -1197,3 +1197,7 @@ skf.util.createAjaxForFile = function(url, data, asyncFlg) {
 		async: asyncFlg
 	});
 };
+
+function cellAttrEllipsis(rowId,val,rawObject,cm,rdata){
+	  return 'style="text-overflow: ellipsis; white-space: nowrap;"'
+}

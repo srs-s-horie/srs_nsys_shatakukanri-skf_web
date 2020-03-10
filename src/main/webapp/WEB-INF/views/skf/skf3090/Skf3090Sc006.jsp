@@ -34,7 +34,7 @@
 								</th>
 								<td style="width: 15%;">
 									<imui:select id="affiliation1Cd" name="affiliation1Cd"
-									width="185" list="${form.affiliation1List}" tabindex="5" />
+									width="320" list="${form.affiliation1List}" tabindex="5" />
 								</td>
 
 								<th style="width: 10%;">
@@ -60,7 +60,7 @@
 								</th>
 								<td style="width: 15%;">
 									<imui:select id="affiliation2Cd" name="affiliation2Cd"
-									width="185" list="${form.affiliation2List}" tabindex="6" />
+									width="320" list="${form.affiliation2List}" tabindex="6" />
 								</td>
 
 							</tr>
@@ -99,9 +99,9 @@
 						style="max-height: 800px" multiSelect="false" rowNumbers="true" data="${form.createTableList}">
 						<pager rowNum="${form.listTableMaxRowCount }" />
 						<cols sortable="false">
-							<col name="companyName" caption="会社名"　width="200" wrap="true" align="left" sortable="false" />
-							<col name="agencyName" caption="機関名"　width="200" wrap="true" align="left" sortable="false" />
-							<col name="affiliation1Name" caption="部等" width="250" wrap="true" align="left" sortable="false" />
+							<col name="companyName" caption="会社名"　width="150" wrap="true" align="left" sortable="false" />
+							<col name="agencyName" caption="機関名"　width="150" wrap="true" align="left" sortable="false" />
+							<col name="affiliation1Name" caption="部等" width="300" wrap="true" align="left" sortable="false" />
 							<col name="affiliation2Name" caption="室、チーム又は課"　width="300" wrap="true" align="left" sortable="false" />
 							<col name="businessAreaName" caption="事業領域" width="150" wrap="true" align="left" sortable="false" />
 							<col name="companyCd" caption="会社コード" hidden="true" />

@@ -151,12 +151,12 @@
 						<pager rowNum="30" />
 						<cols sortable="false">
 						<col name="teiji" caption="提示" width="35" sortable="false" align="center" />
-						<col name="insertDate" caption="登録日" width="90" sortable="false" />
-						<col name="candidateDate" caption="提示日" width="90" sortable="false" />
+						<col name="insertDate" caption="登録日" width="80" sortable="false" />
+						<col name="candidateDate" caption="提示日" width="80" sortable="false" />
 						<col name="shatakuName" caption="借上社宅名" width="150" sortable="false" wrap="true" />
-						<col name="address" caption="社宅所在地" width="250" sortable="false" wrap="true" />
-						<col name="attachedName" caption="添付ファイル"　width="150" sortable="false" />
-						<col name="attachedFile" caption="ファイルの添付/削除" width="100" sortable="false" align="center" >
+						<col name="address" caption="社宅所在地" width="250" sortable="false" wrap="true" onCellAttr="cellAttrEllipsis" />
+						<col name="attachedName" caption="添付ファイル"　width="200" sortable="false" />
+						<col name="attachedFile" caption="ファイルの添付/削除" width="50" sortable="false" align="center" >
 						<showIcon iconClass="im-ui-icon-common-16-attachment" />
 						</col>
 						<col name="deleteBukken" caption="物件削除" width="50" sortable="false" align="center" />
