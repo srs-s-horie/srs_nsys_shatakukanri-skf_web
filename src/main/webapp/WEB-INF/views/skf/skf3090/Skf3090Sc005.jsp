@@ -86,7 +86,7 @@
 								</th>
 
 								<td style="width: 20%;">
-								<imui:textbox id="name" name="name" style="width: 95%;" placeholder="例 中日本　太郎" value="${f:h(form.name)}" class="${form.nameError}" tabindex="4" />
+								<imui:textbox id="name" name="name" style="width: 95%; ime-mode:active;" placeholder="例 中日本　太郎" value="${f:h(form.name)}" class="${form.nameError}" tabindex="4" />
 								</td>
 							</tr>
 							<tr>
@@ -94,7 +94,7 @@
 									<nfwui:LabelBox id="lblName" code="<%=MessageIdConstant.SKF3090_SC005_NAME_KK %>" />
 								</th>
 								<td style="width: 20%;">
-								<imui:textbox id="nameKk" name="nameKk" style="width: 95%;" placeholder="例 ナカニホン　タロウ" value="${f:h(form.nameKk)}" class="${form.nameKkError}" tabindex="5" />
+								<imui:textbox id="nameKk" name="nameKk" style="width: 95%; ime-mode:active;" placeholder="例 ナカニホン　タロウ" value="${f:h(form.nameKk)}" class="${form.nameKkError}" tabindex="5" />
 								</td>
 							</tr>
 							<tr>
