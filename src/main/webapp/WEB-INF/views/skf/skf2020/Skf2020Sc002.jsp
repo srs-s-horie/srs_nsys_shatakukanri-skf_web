@@ -1346,14 +1346,9 @@ function mesDisplayControl(isShow){
 				$('#newAffiliation1Other').val("");
 			}
 			
-			//チーム又は課ドロップダウン その他が選択された場合、その他ボックスを活性化する
-			var selAffiliation2Cd = $('#affiliation2Cd option:selected').val();
-			if(selAffiliation2Cd　==　"99"){
-				$('#newAffiliation2Other').prop('disabled', false);
-			}else{
-				$('#newAffiliation2Other').prop('disabled', true);
-				$('#newAffiliation2Other').val("");
-			}
+			//チーム又は課ドロップダウン その他ボックスを非活性化する
+			$('#newAffiliation2Other').prop('disabled', true);
+			$('#newAffiliation2Other').val("");
 		});
 		
 		//チーム又は課ドロップダウン
