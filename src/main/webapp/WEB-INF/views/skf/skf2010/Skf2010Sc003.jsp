@@ -216,7 +216,7 @@ ${form.operationGuide}
 id="ltResultListTable" name="ltResultListTable"
 autoResize="true" autoWidth="true" 
 rowNumbers="true" onCellSelect="onCellSelect"
-height="232" onGridComplete="gridComplete">
+height="300" onGridComplete="gridComplete">
 <pager rowNum = "10" />
 <cols>
   <col name="detail" caption="表示" width="90" align="center" sortable="false">

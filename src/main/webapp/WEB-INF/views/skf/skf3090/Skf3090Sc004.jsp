@@ -133,7 +133,7 @@
 					<imui:listTable id="mainList" process="jssp" autoEncode="true" autoWidth="true" rowNumbers="true"
 						autoResize="true" onCellSelect="onCellSelect" rowNumWidth="35"
 						multiSelect="false" data="${form.listTableData }"
-						style="max-height: 800px" >
+						height="300" style="max-height: 800px" >
 						<pager rowNum="${form.listTableMaxRowCount }" />
 						<cols sortable="false">
 						<col name="col1" caption="社員番号" width="80" sortable="false" />

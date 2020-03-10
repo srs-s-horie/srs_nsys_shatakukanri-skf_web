@@ -96,7 +96,7 @@
 					<div id="listTableArea">
 					<imui:listTable id="mainList" process="java" autoEncode="true" autoWidth="true"
 						autoResize="true"  onCellSelect="onCellSelect" rowNumWidth="35"
-						style="max-height: 800px" multiSelect="false" rowNumbers="true" data="${form.createTableList}">
+						height="300" style="max-height: 800px" multiSelect="false" rowNumbers="true" data="${form.createTableList}">
 						<pager rowNum="${form.listTableMaxRowCount }" />
 						<cols sortable="false">
 							<col name="companyName" caption="会社名"　width="150" wrap="true" align="left" sortable="false" />
