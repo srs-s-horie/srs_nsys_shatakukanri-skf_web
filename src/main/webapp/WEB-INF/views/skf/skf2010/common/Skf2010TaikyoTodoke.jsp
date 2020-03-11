@@ -178,17 +178,16 @@
         	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;３．退居（返還）理由</font>
         </td>
         <br>
-        <div style="padding-top: 5px; padding-left: 33px;">
-        	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${f:h(form.taikyoRiyu )}</font>
+        <div style="padding-top: 5px; padding-left: 33px; margin-left:33px;">
+        	<font size="3"  face="ＭＳ Ｐ明朝">${f:h(form.taikyoRiyu )}</font>
         </div>
         <br><br>
         <td width="150px">
         	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;４．退居後の連絡先</font>
         </td>
         <br>
-        <div style="padding-top: 5px; padding-left: 33px;">
-        	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${f:h(form.taikyogoRenrakusaki )}</font>
-        <div style="padding-top: 5px; padding-left: 33px;">
+        <div style="padding-top: 5px; padding-left: 33px; margin-left:33px;">
+        	<font size="3"  face="ＭＳ Ｐ明朝">${f:h(form.taikyogoRenrakusaki )}</font>
         </div>
         <br><br>
         <br><br>
