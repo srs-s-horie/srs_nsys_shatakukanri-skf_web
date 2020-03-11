@@ -250,12 +250,14 @@ $(function() {
           <nfwui:Button id="outputTaikyoBtn" name="outputTaikyoBtn" value="退居（自動車の保管場所返還）届PDF出力" 
           cssClass="imui-medium-button" url="skf/Skf2010Sc006/OutputPdfR0103" />
 </c:if>
+<c:if test="${form.commentViewFlag == 'true'}">
           <br />
           <nfwui:PopupButton id="commentPop" value="コメント表示" 
           cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
           modalMode="false" popupWidth="1350" popupHeight="488"
           parameter="applNo:applNo"  
           screenUrl="skf/Skf2010Sc010/init" use="popup" />
+</c:if>
         </div>
           </td>
           <td class="vertical-top" style="vertical-align:top">
