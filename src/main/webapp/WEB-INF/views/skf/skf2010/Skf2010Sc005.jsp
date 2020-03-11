@@ -412,7 +412,7 @@
 id="ltResultListTable" name="ltResultListTable"
 autoResize="true" autoWidth="true"
 onCellSelect="onCellSelect" rowNumbers="true" rowNumWidth="35"
- height="232" onGridComplete="gridComplete"
+ height="300" onGridComplete="gridComplete"
 >
 <pager num="30" />
 <cols sortable="false">
