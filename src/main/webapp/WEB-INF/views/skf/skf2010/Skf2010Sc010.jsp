@@ -40,7 +40,7 @@
             <h2>${f:h(obj.titleCommentName)}　さんから　承認者　へのコメント</h2>
           </c:if>
           <c:if test="${obj.isShouninTitle == 'false' }">
-            <h2>承認者　から　${f:h(obj.titleCommentName)}　さんへのコメント</h2>
+            <h2>承認者　から　${f:h(obj.applShainName)}　さんへのコメント</h2>
           </c:if>
         </div>
         <table>
