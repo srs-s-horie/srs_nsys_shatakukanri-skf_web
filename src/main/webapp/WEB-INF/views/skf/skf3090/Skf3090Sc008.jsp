@@ -21,7 +21,7 @@
 
 <!-- コンテンツエリア -->
 <nfwui:Form id="form" name="form" modelAttribute="form">
-<div class="imui-form-container-wide" style="width: 95%;">
+<div class="imui-form-container-wide">
 		<table class="imui-form-search-condition">
 			<tbody>
 				<tr>
