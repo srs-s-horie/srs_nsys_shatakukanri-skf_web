@@ -26,7 +26,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 	  case '承認':
 	      style = 'style="color:blue;"';
 	      break;
-	  case '未作成':
+	  case '未申請':
 	      style = 'style="color:red;"';
 	      break;
 	  case '-':
