@@ -240,7 +240,7 @@
                                 <tr>
                                     <th colspan="3"><nfwui:LabelBox id="lblComment" code="<%= MessageIdConstant.SKF2050_SC001_COMMENT %>" /></th>
                                     <td colspan="3" >
-                                        <imui:textArea id="commentNote" name="commentNote" rows="4" style="width: 98%" placeholder="例  承認者へのコメント" />
+                                        <imui:textArea id="commentNote" name="commentNote" rows="4" style="width: 98%; ime-mode:active;" placeholder="例  承認者へのコメント" />
                                     </td>
                                 </tr>
   </imart:condition>
@@ -302,7 +302,7 @@
   <imart:condition validity="<%= String.valueOf(form.isCommentBtnVisible()) %>" >
     <nfwui:PopupButton id="commentPop" value="コメント表示" 
     cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
-    modalMode="true" popupWidth="1250" popupHeight="488"
+    modalMode="false" popupWidth="1250" popupHeight="488"
     parameter="applNo:applNo" formId="form" tabindex="12"
     screenUrl="skf/Skf2010Sc010/init" use="popup" />
   </imart:condition>

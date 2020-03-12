@@ -24,7 +24,7 @@ ${f:h(form.affiliation2) }
 <tr>
 	<th colspan="2"><nfwui:LabelBox id="lblTel" code="<%= MessageIdConstant.SKF2030_SC001_TEL %>" /></th>
 	<td colspan="2">
-	<imui:textbox id="tel" name="tel" maxlength="14" value="${f:h(form.tel) }" tabindex="1" />
+	<imui:textbox id="tel" name="tel" maxlength="14" style="ime-mode:disabled;" value="${f:h(form.tel) }" tabindex="1" />
 </td>
 </tr>
 <tr>
@@ -221,7 +221,7 @@ ${f:h(form.shatakuKikaku) }
 <tr>
 	<th colspan="3"><nfwui:LabelBox id="lblComment" code="<%= MessageIdConstant.SKF2030_SC001_COMMENT %>" /></th>
 	<td colspan="3" >
-		<imui:textArea id="commentNote" name="commentNote" rows="4" placeholder="例  承認者へのコメント" style="width: 90%;" tabindex="6"></imui:textArea>
+		<imui:textArea id="commentNote" name="commentNote" rows="4" placeholder="例  承認者へのコメント" style="width: 90%; ime-mode:active;" tabindex="6"></imui:textArea>
 	</td>
 </tr>
 </imart:condition>

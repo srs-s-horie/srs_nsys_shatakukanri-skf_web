@@ -68,7 +68,7 @@
 </script>
 
     <!-- コンテンツエリア -->
-    <div style="width: 100%;">
+<div class="imui-form-container-wide">
     <!-- 代行ログイン時のみ表示されるメッセージ -->
 	<jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
       <nfwui:Form id="form" name="form" modelAttribute="form" encType="multipart/form-data">
@@ -197,8 +197,5 @@
             </tbody>
         </table>
       </nfwui:Form>
-    </div>
-
-
 </div>
 	<!-- コンテンツエリア　ここまで -->
