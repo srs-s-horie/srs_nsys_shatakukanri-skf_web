@@ -201,7 +201,7 @@
                                 <tr>
                                     <th colspan="4"><nfwui:LabelBox id="lblComment" code="<%= MessageIdConstant.SKF2030_SC001_COMMENT %>" /></th>
             <td colspan="3" >
-                <imui:textArea id="commentNote" name="commentNote" rows="4" placeholder="例  承認者へのコメント" style="width: 98%;"></imui:textArea></textarea>
+                <imui:textArea id="commentNote" name="commentNote" rows="4" placeholder="例  承認者へのコメント" style="width: 98%; ime-mode:active;"></imui:textArea></textarea>
             </td>
         </tr>
 </imart:condition>        
