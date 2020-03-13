@@ -43,7 +43,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 	<!-- コンテンツエリア -->
 	<nfwui:Form id="form" name="form" modelAttribute="form">
 		<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3022_SC005%>" />
-<!-- 		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3022Sc005/init"/> -->
+		<input type="hidden" name="backUrl" id="backUrl" value=""/>
 		<input type="hidden" name="hdnStTeijiCnt" id="hdnStTeijiCnt" value="${form.hdnStTeijiCnt}" />
 		<input type="hidden" name="hdnBhTeijiCnt" id="hdnBhTeijiCnt" value="${form.hdnBhTeijiCnt}" />
 		<input type="hidden" name="hdnMoveInOutCnt" id="hdnMoveInOutCnt" value="${form.hdnMoveInOutCnt}" />
@@ -307,6 +307,8 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
  	 									nfw.common.confirmPopup(dialogMessage, "", "form", "skf/Skf3022Sc006/init", "ok", "キャンセル", this, true);
 
  									}else{
+ 										
+ 										$("#backUrl").val("skf/Skf3022Sc005/init?SKF3022_SC005&tokenCheck=0");
  										// サービス呼び出し
  	 									url = "skf/Skf3022Sc006/init";
  										nfw.common.submitForm("form", url);
