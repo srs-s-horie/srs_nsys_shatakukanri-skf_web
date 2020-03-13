@@ -183,8 +183,8 @@ $(function() {
 
 
     <!-- コンテンツエリア -->
-    <div class="imui-form-container-wide" >
-                    <table class="imui-form-search-condition" >
+    <div class="imui-form-container-wide">
+                    <table class="imui-form-search-condition" style="margin-left:3.8%; max-width:94.5%; margin-top:-7px;">
                        <tr>
                             <th width="100px"><nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2020_SC003_APPL_STATUS %>" /></th>
                             <td width="100px"><label>${form.applStatusText }</label></td>
@@ -202,13 +202,13 @@ $(function() {
         <nfwui:Hidden id="shatakuKanriNo" name="shatakuKanriNo" />
         <input type="hidden" id="attachedNo" name="attachedNo" value="" />
         <input type="hidden" id="attachedType" name="attachedType" value="" />
-        <table class="imui-form-search-condition" style="box-sizing:border-box;">
+        <table class="imui-form-search-condition" style="box-sizing:border-box; margin-top:-11px;">
             <tbody>
                         
                 <tr>
                     <td style="width: 70%; border: none;background-color: #fdfdff; max-width: 750px;">
                         <!-- 左側の入力域の部分 -->
-                        <div class="imui-form-container-wide" >
+                        <div class="imui-form-container-wide">
                         <table class="imui-form-search-condition">
                             <tbody>
                             <div class="imui-chapter-title" style="margin-bottom: 10px;"><h2>申請内容表示</h2></div>

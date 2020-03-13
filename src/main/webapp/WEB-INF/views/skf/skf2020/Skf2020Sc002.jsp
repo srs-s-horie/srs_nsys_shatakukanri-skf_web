@@ -771,7 +771,7 @@
 	 			<!-- 左エリア -->
 	 			<div class="btnLeft">
 					<!-- 前の画面へ -->
-	 				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" />
+	 				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px; margin-top:5px;" onclick="back1()" />
 					<!-- コメントボタン -->
 					<c:if test="${form.commentViewFlag == 'true'}">
 					<nfwui:PopupButton id="commentPop" value="コメント表示" 
@@ -785,7 +785,7 @@
 	 			<div id="dCheck1" class="btnRight">
 	 				<!-- 申請内容を確認 -->
 	 				  <imui:button id="checkBtn" value="申請内容を確認" class="imui-medium-button" 
-	 				  	style="width: 150px" onclick="checkConfrirm()"  disabled="${form.btnCheckDisabled}"/> 
+	 				  	style="width: 150px; margin-top:5px;" onclick="checkConfrirm()"  disabled="${form.btnCheckDisabled}"/> 
 	 			</div>
 	 		</tr>	
 	 	</table>

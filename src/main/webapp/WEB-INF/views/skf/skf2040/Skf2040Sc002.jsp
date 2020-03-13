@@ -32,12 +32,12 @@
 
 
 <!-- コンテンツエリア -->
-<div class="imui-form-container-wide" width="1350px" style="width: 95%; max-width: 1350px;">
+<div class="imui-form-container-wide" style="padding-top:2px;">
 	<!-- 状況、資料ヘッダ -->
 	<nfwui:Form id="form" name="form" modelAttribute="form">
 	<!-- 添付資料表示あり -->
 	<imart:condition validity="${form.tenpViewFlg}" >
-		<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;border:none;" height="100px">
+		<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;border:none; padding:0px;">
 			<table class="imui-form-search-condition">
 				<tr>
 					<th width="100px">

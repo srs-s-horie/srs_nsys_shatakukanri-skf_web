@@ -61,16 +61,16 @@
     <!-- コンテンツエリア -->
 <nfwui:Form id="form" name="form" modelAttribute="form">
 <nfwui:Hidden id="applNo" name="applNo" />
-<div class="imui-form-container-wide">
+<div class="imui-form-container-wide" style="padding-top: 12px;">
 <div style="margin: 0px;">
 <jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
 </div>
 
     <!-- コンテンツエリア -->
-                     <table class="imui-form-search-condition" style="width:200px;">
+                     <table class="imui-form-search-condition" style="margin-bottom:0px; margin-left:3.8%; max-width: 300px;">
                        <tr style="background-color: #fdfdff;">
-                            <th style="width: 40%;"><nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2050_SC001_APPL_STATUS %>" /></th>
-                            <td style="width: 60%;"><label>${f:h(form.applStatusText) }</label></td>
+                            <th style="width:10%;"><nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2050_SC001_APPL_STATUS %>" /></th>
+                            <td style="width:10%;"><label>${f:h(form.applStatusText) }</label></td>
                       </tr>
                     </table>
         <table class="imui-form-search-condition">
