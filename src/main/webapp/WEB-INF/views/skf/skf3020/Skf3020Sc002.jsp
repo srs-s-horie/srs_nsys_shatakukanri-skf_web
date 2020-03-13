@@ -19,8 +19,9 @@
 
 <!-- コンテンツエリア:モックのまま -->
 <!-- コンテンツエリア -->
-		<div class="imui-form-container-wide" width="1350px" style="width: 100%; min-width:1300px;max-width: 1350px;">
-			<nfwui:Form id="form" name="form" enctype="multipart/form-data" >
+<nfwui:Form id="form" name="form" enctype="multipart/form-data">
+	<div style="width:100%;" >
+		<div class="imui-form-container-wide">
 			<table class="imui-form-search-condition">
 				<tbody>
 					<tr>
@@ -34,18 +35,20 @@
 					</tr>
 				</tbody>
 			</table>
-			</nfwui:Form>
 			<div class="align-L">
-				<input type="button" value="取込" class="imui-small-button" onclick="clickTorikomiBtn()"/>
+				<input type="button" value="取込" class="imui-medium-button" onclick="clickTorikomiBtn()"/>
 			</div>
-			<br /><br /><br />
+			<br /><br />
 			<div class="align-L">
 				<c:if test="${form.backBtnHiddenFlg == 'false'}">
 					<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()"  />
 				</c:if>
 			</div>
+
 		</div>
-		
+	</div>
+</nfwui:Form>
+
 		<script type="text/javascript">
 			/*
 			* 「取込」ボタンクリックイベント
