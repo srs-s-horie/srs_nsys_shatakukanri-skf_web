@@ -100,7 +100,7 @@ $(function(){
 					  <nfwui:LabelBox id="lblShainNo" code="<%= MessageIdConstant.SKF2010_SC001_SHAIN_NO %>" />
 					</th>
 					<td style="width: 10%;">
-					    <imui:textbox id="popShainNo" name="popShainNo" style="width:260px;" value="${form.popShainNo}" tabIndex="3" />
+					    <imui:textbox id="popShainNo" name="popShainNo" style="width:260px; ime-mode:disabled;" value="${form.popShainNo}" tabIndex="3" />
 					</td>
 				</tr>
 				<tr>
@@ -108,14 +108,14 @@ $(function(){
 					  <nfwui:LabelBox id="lblName" code="<%= MessageIdConstant.SKF2010_SC001_NAME %>" />
 					</th>
 					<td style="width: 10%;">
-					  <imui:textbox id="popName" name="popName" style="width:260px;" value="${form.popName}" tabIndex="4" />
+					  <imui:textbox id="popName" name="popName" style="width:260px; ime-mode:active;" value="${form.popName}" tabIndex="4" />
 					</td>
 				</tr>
 					<th style="width: 7%;">
 					  <nfwui:LabelBox id="lblNameKk" code="<%= MessageIdConstant.SKF2010_SC001_NAME_KK %>" />
 					</th>
 					<td style="width: 10%;">
-					  <imui:textbox id="popNameKk" name="popNameKk" style="width:260px;" value="${form.popNameKk}" tabIndex="5" />
+					  <imui:textbox id="popNameKk" name="popNameKk" style="width:260px; ime-mode:active;" value="${form.popNameKk}" tabIndex="5" />
 					</td>
 				</tr>
 				<tr>
@@ -123,7 +123,7 @@ $(function(){
 					  <nfwui:LabelBox id="lblGenShozoku" code="<%= MessageIdConstant.SKF2010_SC001_AGENCY %>" />
 					</th>
 					<td style="width: 10%;">
-					  <imui:textbox id="popAgency" name="popAgency" style="width:260px;" value="${form.popAgency}" tabIndex="6" />
+					  <imui:textbox id="popAgency" name="popAgency" style="width:260px; ime-mode:active;" value="${form.popAgency}" tabIndex="6" />
 					</td>
 				</tr>
 

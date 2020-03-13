@@ -73,7 +73,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
                                             
                                         </th>
                                         <td style="width: 180px;" colspan="2">
-                                        <imui:textbox id="applName" name="applName" placeholder="例 入居" value="${f:h(form.applName)}" />
+                                        <imui:textbox id="applName" name="applName" placeholder="例 入居" style="ime-mode:active;" value="${f:h(form.applName)}" />
                                         </td>
                                     </tr>   
                     

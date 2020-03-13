@@ -50,11 +50,11 @@
 	<br><br><br><br><br><br><br><br><br>
 		<!-- 下部ボタン -->
 		<table width="95%">
-			<div class="align-L float-L">
+			<div class="align-L float-L" style="margin-left:5%;">
 	   			<nfwui:Button id="doSendBack" name="doSendBack" formId="form" cssStyle="width:150px;"
 	   				value="前の画面へ" cssClass="imui-medium-button" url="skf/Skf1010Sc001/init" />  
 			</div>    
-			<div class="align-R">
+			<div class="align-R" style="margin-right:5%;">
 				<nfwui:Button id="transfer" value="申請書類を作成" 
 				cssClass="imui-medium-button" cssStyle="width:150px;"
 				url="skf/Skf2010Sc007/transfer" formID="form" />

@@ -145,7 +145,7 @@ function back1() {
 </script>
 
 <!-- コンテンツエリア -->
- <div class="imui-form-container-wide" style="width: 95%;">
+ <div class="imui-form-container-wide">
    <jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
 
     <!-- 状況、資料ヘッダ -->
@@ -300,7 +300,7 @@ ${form.operationGuide }
             <tr  style="width: 100%; max-width: 1000px;text-align:center;">
                 <th style="width: 200px; max-width: 200px;"><label>承認者へのコメント</label></th>
             <td>
-                <imui:textArea id="commentNote" name="commentNote" style="height:80px;width:100%;" placeholder="例 添付資料が間違っています。" />
+                <imui:textArea id="commentNote" name="commentNote" style="height:80px;width:100%; ime-mode:active;" placeholder="例 添付資料が間違っています。" />
            </td>
            </tr>
         </table>
