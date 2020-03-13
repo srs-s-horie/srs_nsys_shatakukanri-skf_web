@@ -108,6 +108,8 @@
 			// リストテーブルをリロード
 			grid.trigger("reloadGrid");
 			
+			$("#Skf2010Sc009_popup_attachedFile").val("");
+			
 	    }
 	});
 </script>
@@ -167,7 +169,7 @@ width="650" height="200"
 <cols>
   <col name="attachedNo" hidden="true" />
   <col name="attachedName" sortable="false" caption="添付資料" width="225" align="left" />
-  <col name="fileSize" sortable="false" caption="ファイルサイズ" width="100" align="left"/>
+  <col name="fileSize" sortable="false" caption="ファイルサイズ" width="100" align="right"/>
   <col name="applDate" sortable="false" caption="登録日時" width="200" align="left" />
 　　<col name="view" sortable="false" caption="表示" width="50" align="center">
 	<showIcon iconClass="im-ui-icon-menu-24-document" />
