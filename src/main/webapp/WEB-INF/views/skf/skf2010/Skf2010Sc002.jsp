@@ -43,11 +43,11 @@
 </imart:decision>
 </style>
 <!-- コンテンツエリア -->
-<div class="imui-form-container-wide">
+<div class="imui-form-container-wide" style="padding-top:2px;">
    	<!-- 代行ログイン時のみ表示されるメッセージ -->
    	<jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
 	<!-- 状況、資料ヘッダ -->
-	<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;border:none;" height="100px">
+	<div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;border:none; padding:0px;">
 	<nfwui:Form id="form" name="form" modelAttribute="form">
 		<table class="imui-form-search-condition">
 			<tr>

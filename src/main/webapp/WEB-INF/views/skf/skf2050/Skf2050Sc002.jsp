@@ -46,16 +46,13 @@
 <nfwui:Hidden id="commentAddDate" name="commentAddDate" />
 <nfwui:Hidden id="applNo" name="applNo" />
 <nfwui:Hidden id="applStatus" name="applStatus" />
-<div class="imui-form-container-wide">
+<div class="imui-form-container-wide" style="padding-top: 12px;">
 <!-- コンテンツエリア -->
-    <table class="imui-form-search-condition">
-       <tr>
-            <th style="width: 10%;"><nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2050_SC002_APPL_STATUS %>" /></th>
-            <td style="width: 10%;"><label>${f:h(form.applStatusText) }</label></td>
-            <td style="border:none;background-color: #fdfdff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-            <td style="border:none;background-color: #fdfdff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-
-      </tr>
+    <table class="imui-form-search-condition" style="margin-bottom:0px; margin-left:3.8%; max-width: 300px;">
+       <tr style="background-color: #fdfdff;">
+          <th style="width:10%;"><nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2050_SC001_APPL_STATUS %>" /></th>
+          <td style="width:10%;"><label>${f:h(form.applStatusText) }</label></td>
+       </tr>
     </table>
 
     <table class="imui-form-search-condition">

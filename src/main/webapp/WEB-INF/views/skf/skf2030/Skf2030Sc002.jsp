@@ -30,7 +30,7 @@ function back1() {
     <div class="imui-form-container-wide">
 
     <!-- コンテンツエリア -->
-    <div style="max-width: 300px;margin: 0px;">
+    <div style="max-width: 300px; margin-left:64px; margin-top:-7px;">
     <table class="imui-form-search-condition">
        <tr>
             <th style="width: 5%;"><nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2030_SC002_APPL_STATUS %>" /></th>
@@ -40,7 +40,7 @@ function back1() {
     </div>
     <nfwui:Form id="form" name="form" modelAttribute="form" encType="multipart/form-data">
       <nfwui:Hidden id="applNo" name="applNo" />
-        <table class="imui-form-search-condition">
+        <table class="imui-form-search-condition" style="margin-top:-11px;">
             <tbody>
                 <tr>
                     <td style="width: 70%; border: none;background-color: #fdfdff;">
