@@ -43,7 +43,7 @@
 </imart:decision>
 </style>
 <!-- コンテンツエリア -->
-<div class="imui-form-container-wide" width="1350px" style="width: 95%; max-width: 1350px;">
+<div class="imui-form-container-wide">
    	<!-- 代行ログイン時のみ表示されるメッセージ -->
    	<jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
 	<!-- 状況、資料ヘッダ -->
@@ -133,7 +133,7 @@
 							<nfwui:LabelBox id="lblComment2" code="<%= MessageIdConstant.SKF2010_SC002_COMMENT_2 %>" />
 						</th>
 						<td>
-							<imui:textArea id="commentNote" name="commentNote" style="height:50px;width:100%;" placeholder="例 添付資料が間違っています。" />
+							<imui:textArea id="commentNote" name="commentNote" style="height:50px;width:100%; ime-mode:active;" placeholder="例 添付資料が間違っています。" />
 						</td>
 					</tr>
 				</table>

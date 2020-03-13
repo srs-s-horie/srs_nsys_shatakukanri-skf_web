@@ -12,8 +12,9 @@
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
 
+<div class="imui-form-container-wide">
 		<!-- コンテンツエリア -->
-		<div class="imui-form-container-wide">
+		<div class="imui-form-container-wide" style="width:95%;">
 				<div class="imui-chapter-title"><h2>組織情報</h2></div>
 				<nfwui:Form id="form" name="form" modelAttribute="form">
 				<input type="hidden" name="hdnCompanyCd" id="hdnCompanyCd" value="${form.hdnCompanyCd}" />
@@ -294,4 +295,5 @@
 			
 			</div>
 		</div>
+</div>		
 	<!-- コンテンツエリア　ここまで -->

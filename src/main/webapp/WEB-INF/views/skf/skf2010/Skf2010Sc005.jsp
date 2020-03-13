@@ -256,7 +256,7 @@
                                             <nfwui:LabelBox id="lblApplShainNo" code="<%= MessageIdConstant.SKF2010_SC005_APPLICANT_SHAIN_NO %>" />
                                         </th>
                                         <td style="width: 180px;" colspan="2">
-                                            <imui:textbox id="shainNo" name="shainNo" value="${form.shainNo}" />
+                                            <imui:textbox id="shainNo" name="shainNo" style="ime-mode:disabled;" value="${form.shainNo}" />
                                         </td>
                                     </tr>
                     
@@ -271,7 +271,7 @@
                                             modalMode="true" />
                                         </th>
                                         <td style="width: 180px;" colspan="2">
-                                        <imui:textbox id="name" name="name" value="${form.name}" />
+                                        <imui:textbox id="name" name="name" style="ime-mode:active;" value="${form.name}" />
                                         </td>
                                     </tr>            
                     
@@ -280,7 +280,7 @@
                                             <nfwui:LabelBox id="lblApplName2" code="<%= MessageIdConstant.SKF2010_SC005_APPL_NAME %>" />
                                         </th>
                                         <td style="width: 180px;" colspan="2">
-                                        <imui:textbox id="applName" name="applName" value="${form.applName}" placeholder="例 入居" />
+                                        <imui:textbox id="applName" name="applName" style="ime-mode:active;" value="${form.applName}" placeholder="例 入居" />
                                         </td>
                                     </tr>   
                     
@@ -289,7 +289,7 @@
                                             <nfwui:LabelBox id="lblAgreementName" code="<%= MessageIdConstant.SKF2010_SC005_AGREEMENT_NAME %>" />
                                         </th>
                                         <td style="width: 180px;" colspan="2">
-                                        <imui:textbox id="agreementName" name="agreementName" value="${form.agreementName}" />
+                                        <imui:textbox id="agreementName" name="agreementName" style="ime-mode:active;" value="${form.agreementName}" />
                                         </td>
                                     </tr>   
                     
