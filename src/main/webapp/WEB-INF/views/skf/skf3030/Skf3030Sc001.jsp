@@ -214,7 +214,7 @@
 			    $.imui.util.loadCSS("ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
 			  })(jQuery);
 			</script>
-			<imui:listTable id="mainList" process="jssp" autoWidth="true" shrinkToFit="false"
+			<imui:listTable id="mainList" process="jssp" autoWidth="true" shrinkToFit="false" rowNumbers="true" height="320"
 				autoResize="true" onCellSelect="onCellSelect" multiSelect="false" data="${form.searchDataList }"
 				style="max-height:1000px;" >
 				<pager rowNum="100" />
@@ -224,20 +224,20 @@
 					</col>
 					<col name="col2" caption="管理会社" width="140" sortable="false" wrap="true" align="left"/>
 					<col name="col3" caption="管理機関" width="140" sortable="false" wrap="true" align="left"/>
-					<col name="col4" caption="社宅区分" width="80" sortable="false" wrap="true" align="center"/>
-					<col name="col5" caption="社宅名" width="170" sortable="false" wrap="true" align="left"/>
-					<col name="col6" caption="部屋番号" width="80" sortable="false" wrap="true" align="left"/>
-					<col name="col7" caption="社員番号" width="110" sortable="false" wrap="true" align="left"/>
-					<col name="col8" caption="社員氏名" width="140" sortable="false" wrap="true" align="left"/>
-					<col name="col9" caption="社宅提示" width="80" sortable="false" wrap="true" align="center" onCellAttr="onCellTeijiStsAttr"/>
-					<col name="col10" caption="備品提示" width="80" sortable="false" wrap="true" align="center" onCellAttr="onCellTeijiBihinAttr"/>
-					<col name="col11" caption="社宅使用料" width="100" sortable="false" wrap="true" align="right"/>
-					<col name="col12" caption="共益費" width="100" sortable="false" wrap="true" align="right"/>
-					<col name="col13" caption="駐車場料金" width="100" sortable="false" wrap="true" align="right"/>
-					<col name="col14" caption="入居日" width="110" sortable="false" wrap="true" align="center"/>
-					<col name="col15" caption="退居日" width="110" sortable="false" wrap="true" align="center"/>
+					<col name="col4" caption="社宅区分" width="60" sortable="false" wrap="true" align="center"/>
+					<col name="col5" caption="社宅名" width="259" sortable="false" wrap="true" align="left"/>
+					<col name="col6" caption="部屋番号" width="60" sortable="false" wrap="true" align="left"/>
+					<col name="col7" caption="社員番号" width="70" sortable="false" wrap="true" align="left"/>
+					<col name="col8" caption="社員氏名" width="100" sortable="false" wrap="true" align="left"/>
+					<col name="col9" caption="社宅提示" width="60" sortable="false" wrap="true" align="center" onCellAttr="onCellTeijiStsAttr"/>
+					<col name="col10" caption="備品提示" width="60" sortable="false" wrap="true" align="center" onCellAttr="onCellTeijiBihinAttr"/>
+					<col name="col11" caption="社宅使用料" width="70" sortable="false" wrap="true" align="right"/>
+					<col name="col12" caption="共益費" width="70" sortable="false" wrap="true" align="right"/>
+					<col name="col13" caption="駐車場料金" width="70" sortable="false" wrap="true" align="right"/>
+					<col name="col14" caption="入居日" width="80" sortable="false" wrap="true" align="center"/>
+					<col name="col15" caption="退居日" width="80" sortable="false" wrap="true" align="center"/>
 					<col name="col16" caption="管理事業領域" width="170" sortable="false" wrap="true" align="left"/>
-					<col name="col17" caption="相互利用" width="80" sortable="false" wrap="true" align="center"/>
+					<col name="col17" caption="相互利用" width="60" sortable="false" wrap="true" align="center"/>
 					<col name="col18" hidden="true"/>
 					<col name="col19" hidden="true"/>
 					<col name="col20" hidden="true"/>
