@@ -219,15 +219,15 @@
 				style="max-height:1000px;" >
 				<pager rowNum="100" />
 				<cols sortable="false">
-					<col name="col1" caption="" width="50" sortable="false" align="center" tabindex="14">
+					<col name="col1" caption="詳細" width="40" sortable="false" align="center" tabindex="14">
 						<showIcon iconClass="im-ui-icon-common-16-update" align="center" />
 					</col>
-					<col name="col2" caption="管理会社" width="140" sortable="false" wrap="true" align="left"/>
-					<col name="col3" caption="管理機関" width="140" sortable="false" wrap="true" align="left"/>
+					<col name="col2" caption="管理会社" width="115" sortable="false" wrap="true" align="left"/>
+					<col name="col3" caption="管理機関" width="115" sortable="false" wrap="true" align="left"/>
 					<col name="col4" caption="社宅区分" width="60" sortable="false" wrap="true" align="center"/>
-					<col name="col5" caption="社宅名" width="259" sortable="false" wrap="true" align="left"/>
+					<col name="col5" caption="社宅名" width="189" sortable="false" wrap="true" align="left"/>
 					<col name="col6" caption="部屋番号" width="60" sortable="false" wrap="true" align="left"/>
-					<col name="col7" caption="社員番号" width="70" sortable="false" wrap="true" align="left"/>
+					<col name="col7" caption="社員番号" width="85" sortable="false" wrap="true" align="left"/>
 					<col name="col8" caption="社員氏名" width="100" sortable="false" wrap="true" align="left"/>
 					<col name="col9" caption="社宅提示" width="60" sortable="false" wrap="true" align="center" onCellAttr="onCellTeijiStsAttr"/>
 					<col name="col10" caption="備品提示" width="60" sortable="false" wrap="true" align="center" onCellAttr="onCellTeijiBihinAttr"/>
@@ -236,7 +236,7 @@
 					<col name="col13" caption="駐車場料金" width="70" sortable="false" wrap="true" align="right"/>
 					<col name="col14" caption="入居日" width="80" sortable="false" wrap="true" align="center"/>
 					<col name="col15" caption="退居日" width="80" sortable="false" wrap="true" align="center"/>
-					<col name="col16" caption="管理事業領域" width="170" sortable="false" wrap="true" align="left"/>
+					<col name="col16" caption="管理事業領域" width="115" sortable="false" wrap="true" align="left"/>
 					<col name="col17" caption="相互利用" width="60" sortable="false" wrap="true" align="center"/>
 					<col name="col18" hidden="true"/>
 					<col name="col19" hidden="true"/>
