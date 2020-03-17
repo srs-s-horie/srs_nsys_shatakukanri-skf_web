@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
  */
 @lombok.Data
 @EqualsAndHashCode(callSuper = true)
-public class Skf3030Sc002Form extends BaseForm {
+public class Skf3030Sc002Form extends GridForm {
 
 	private static final long serialVersionUID = 5285848663756806913L;
 
