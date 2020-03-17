@@ -37,7 +37,8 @@
 </div>
     	<!-- コンテンツエリア -->
 		<nfwui:Form id="form" name="form" modelAttribute="form">
-     		<table class="imui-form-search-condition" style="width:20%; margin-left:2%;">
+            <div class="imui-form-container-wide">
+              <table class="imui-form-search-condition" style="width:20%; margin-left:5px;">
        			<tr>
          			<th style="width: 50%;">
          				<nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2060_SC002_APPL_STATUS %>" />
@@ -46,9 +47,7 @@
           				${f:h(form.applStatus)}
       				</td>
         		 </tr>
-     		</table>
-
-            <div class="imui-form-container-wide" style="width:95%;">
+     		  </table>
                 <table class="imui-form-search-condition">
                     <td class="imui-form-container-wide" style="width: 50%; border: none;background-color: #fdfdff;" >
                        <nfwui:Title id="candidatePersonInfoTitle" code="<%= MessageIdConstant.SKF2060_SC002_CANDIDATE_PERSON_INFO %>" titleLevel="2" />
@@ -143,7 +142,7 @@
 </div>
 
 <!-- テーブル一覧箇所 -->
-<div class="imui-form-container" style="width: 95%;">
+<div class="imui-form-container-wide">
   <table style="width:100%;">
                                 <tr>
                                     <td colspan="2">

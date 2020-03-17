@@ -172,7 +172,7 @@
 						removePatterns="PTN_A,PTN_B,PTN_D,PTN_F"
 						url="skf/Skf2040Sc002/Remand"/>
 					<!-- 提示ボタン --> 							
-						<nfwui:ConfirmButton id="presentBtn" name="presentBtn" value="提示"
+						<nfwui:ConfirmButton id="presentBtn" name="presentBtn" value="提示" style="margin-top:5px;"
 						cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
 						title="<%= MessageIdConstant.SKF2040_SC002_CONFIRM_TITLE %>"
 						message="<%= MessageIdConstant.I_SKF_2011 %>"
