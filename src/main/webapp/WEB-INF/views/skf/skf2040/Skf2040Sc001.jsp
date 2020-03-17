@@ -328,7 +328,7 @@
                  <!-- 左エリア -->
                  <div class="btnLeft">
                     <!-- 前の画面へ -->
-                     <imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" />
+                     <imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px; margin-top:5px;" onclick="back1()" />
                     <!-- コメントボタン -->
                     <c:if test="${form.commentViewFlag == 'true'}">
                     <nfwui:PopupButton id="commentPop" value="コメント表示" 
@@ -342,7 +342,7 @@
                  <div id="dCheck1" class="btnRight">
                      <!-- 申請内容を確認 -->
                        <imui:button id="checkBtn" value="申請内容を確認" class="imui-medium-button" 
-                           style="width: 150px" onclick="onClickConfirm()"  disabled="${form.btnCheckDisabled}"/> 
+                           style="width: 150px; margin-top:5px;" onclick="onClickConfirm()"  disabled="${form.btnCheckDisabled}"/> 
                  </div>
              </tr>    
          </table>
@@ -375,7 +375,7 @@
     	//前の画面のＵＲＬ判定
    		if(prePageId=="Skf2010Sc007"){
    			url = "skf/Skf2010Sc007/init?SKF2010_SC007&tokenCheck=0";
-   		}else if(prePageId=="Skf2010Sc003"){
+   		}else if(prePageId=="Skf2010Sc003" || prePageId=="Skf2010Sc004"){
    			//申請条件一覧
    			url="skf/Skf2010Sc003/init?SKF2010_SC003";
 		}else if(prePageId=="Skf2040Sc001"){

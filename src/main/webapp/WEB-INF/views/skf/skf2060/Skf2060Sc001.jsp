@@ -22,7 +22,7 @@
 <table align="center" style="width:100%;">
     <tr>
         <td>
-            <div class="imui-form-container-wide" style="width:95%;">
+            <div class="imui-form-container-wide">
                 <table>
                     <td class="imui-form-container-wide" style="width:35%; border:none;" >
                        <div class="imui-chapter-title" style="margin-bottom: 10px;" >
@@ -131,7 +131,7 @@
 
 
 <!-- テーブル一覧箇所 -->
-<div class="imui-form-container" style="width:95%;">
+<div class="imui-form-container-wide">
 <!-- 明細＆細目未満 -->
   <!-- 明細部 -->
   <!--<form id="sampleList1">-->
@@ -178,7 +178,7 @@
 </div>
 
     <!-- コメント欄 -->
-    <div class="imui-form-container-wide" style="width:95%;">
+    <div class="imui-form-container-wide">
         <div class="imui-chapter-title" style="margin-bottom: 10px;">
             <h2>コメント</h2>
         </div>
