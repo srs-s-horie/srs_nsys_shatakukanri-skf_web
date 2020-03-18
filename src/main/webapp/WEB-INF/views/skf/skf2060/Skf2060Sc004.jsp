@@ -88,16 +88,11 @@
 
     // 再提示押下時の処理
     onClickRecandidate = function(rowId){
-        // TODO メッセージConstから取得
-        if(!confirm("既に選択済みですが、再提示します。よろしいですか？")){
-            return;
-        }
         setParamFromGridRowData(rowId);
-
-        var nextPageUrl = "skf/Skf2060Sc001/Init";
-        $("#paramForm").attr("action", nextPageUrl);
-
-        nfw.common.submitForm("paramForm", nextPageUrl);
+        
+        skf.common.confirmPopup("選択された申請書を一括で承認します。よろしいですか？", 
+                "確認", "paramForm", "skf/Skf2060Sc001/init", 
+                "ok", "キャンセル", this, false);
     }
 
     // 確認押下時の処理

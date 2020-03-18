@@ -291,6 +291,7 @@ ${form.operationGuide }
     </div>
 </c:if>
     <!-- コメント欄 -->
+ <imart:condition validity="<%= String.valueOf(form.isCommentAreaVisible()) %>">   
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;" height="100px">
         <div class="imui-chapter-title" style="margin-bottom: 10px;">
             <h2>コメント</h2>
@@ -304,7 +305,8 @@ ${form.operationGuide }
            </td>
            </tr>
         </table>
-    </div>
+    </div>   
+ </imart:condition>   
     <br>
       <nfwui:Hidden id="applNo" name="applNo" />
       <nfwui:Hidden id="applId" name="applId" />
