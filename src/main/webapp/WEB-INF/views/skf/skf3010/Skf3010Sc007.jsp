@@ -117,11 +117,11 @@ function back1() {
 						<col name="colParkingContractType" caption="契約形態" width="100" sortable="false" align="left" wrap="true"/>
 						<col name="colContractPropertyId" caption="契約番号" width="65" sortable="false" align="center" wrap="true"/>
 						<col name="colOwnerName" caption="賃貸人（代理人）" width="130" sortable="false" align="left" wrap="true"/>
-						<col name="colParkingAddress" caption="所在地"　width="250" sortable="false" align="left" wrap="true"/>
+						<col name="colParkingAddress" caption="所在地"　width="240" sortable="false" align="left" wrap="true"/>
 						<col name="colParkingName" caption="駐車場名" width="120" sortable="false" align="left" wrap="true"/>
 						<col name="colAssetRegisterNo" caption="経理連携用管理番号"  width="130" sortable="false" align="center" wrap="true"/>
-						<col name="colContractStartDate" caption="契約開始日" width="80" sortable="false" align="center" wrap="true"/>
-						<col name="colContractEndDate" caption="契約終了日" width="80" sortable="false" align="center" wrap="true"/>
+						<col name="colContractStartDate" caption="契約開始日" width="85" sortable="false" align="center" wrap="true"/>
+						<col name="colContractEndDate" caption="契約終了日" width="85" sortable="false" align="center" wrap="true"/>
 						<col name="colLandRent" caption="地代" width="70" sortable="false" align="right" wrap="true"/>
 						<col name="colBiko" caption="備考" width="80" sortable="false" align="left" wrap="true"/>
 						<col name="colParkingKanriNo" caption="駐車場管理番号" hidden="true"/>
