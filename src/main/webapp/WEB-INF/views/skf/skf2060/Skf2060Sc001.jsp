@@ -16,6 +16,12 @@
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
 <link rel="stylesheet" type="text/css" href="styles/skf/listTableStyle.css" />
 
+<style type="text/css">
+.ui-jqgrid .ui-jqgrid-bdiv {
+  overflow-x:hidden; 
+}
+</style>
+
 <!-- コンテンツエリア -->
 <div style ="width:100%; ">
 <nfwui:Form id="form" name="form" modelAttribute="form" encType="multipart/form-data" >
@@ -145,7 +151,7 @@
 				<div id="listTableArea">
 				<nfwui:CheckBoxGroupTag id="teijiVal">
 					 <imui:listTable id="kariageCandidateList" process="java" autoEncode="false" autoWidth="true" rowNumbers="true"
-						autoResize="true" onCellSelect="onCellSelect"
+						autoResize="true" onCellSelect="onCellSelect" onGridComplete="kariageGridComplete"
 						multiSelect="false" data="${form.listTableData }"
 						style="max-height: 800px" >
 						<pager rowNum="30" />
@@ -386,6 +392,11 @@
 							nfw.common.submitForm("form", "skf/Skf2060Sc001/Support", this);
 						}
 						
+					    // リストテーブル完成時に実行する関数
+					    kariageGridComplete = function() {
+					    	var grid = $("#kariageCandidateList");
+					    	grid[0].grid.headers[7].el.innerHTML = "ファイルの添付<br />&nbsp;/削除";
+					    }	
 						
 					})(jQuery);	
 					</script>
