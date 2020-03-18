@@ -98,7 +98,15 @@
 						<font size="3"  face="ＭＳ Ｐ明朝">氏&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</font>
 					</td>
 					<td width="500px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝; text-align: left;">
+					<table width="100%">
+					<tr><td>
 						<font size="3"  face="ＭＳ Ｐ明朝">${f:h(form.name )}</font>
+						</td>
+						<td width="10" style="padding-left: 10px;padding-right: 10px;">
+						<font size="4"  face="ＭＳ Ｐ明朝">印</font>
+						</td>
+						</tr>
+						</table>
 					</td>
 				</tr>
 			</table>          
