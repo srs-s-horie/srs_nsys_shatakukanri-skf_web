@@ -227,7 +227,7 @@
 					${f:h(form.nowShatakuPossession)}&nbsp;保有（会社借上含む）
 					${f:h(form.nowShatakuMyHome)}&nbsp;自宅
 					${f:h(form.nowShatakuSelfRental)}&nbsp;自己借上
-					${f:h(form.nowShatakuOther)}&nbsp;自己借上
+					${f:h(form.nowShatakuOther)}&nbsp;その他
 				</td>
 			</tr>
 			<tr>
