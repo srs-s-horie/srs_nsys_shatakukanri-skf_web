@@ -214,8 +214,9 @@ $(function() {
         <table class="imui-form-search-condition">
             <tr  style="width: 100%; max-width: 1000px;text-align:center;">
                 <th style="width: 200px; max-width: 200px;"><label>申請者へのコメント</label></th>
-            <td>
-                <imui:textArea id="commentNote" name="commentNote" style="height:50px;width:100%; ime-mode:active;" placeholder="例 添付資料が間違っています。" value="${form.commentNote }" />
+            <td style="text-align: left;">
+                <imui:textArea id="commentNote" name="commentNote" style="height:50px;width:100%; ime-mode:active;" placeholder="例 添付資料が間違っています。" value="${form.commentNote }" /><br />
+               	<span style="color: red;">※再提示の場合はコメントが登録されません。</span>
            </td>
            </tr>
         </table>
