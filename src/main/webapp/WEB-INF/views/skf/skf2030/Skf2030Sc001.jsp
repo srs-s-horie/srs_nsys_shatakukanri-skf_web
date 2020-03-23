@@ -104,6 +104,7 @@
 <div class="imui-form-container-wide">
 <div style="margin: 0px;">
 <jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
+<br>
 </div>
 <nfwui:Form id="form" name="form" modelAttribute="form">
 <nfwui:Hidden id="applNo" name="applNo" />
