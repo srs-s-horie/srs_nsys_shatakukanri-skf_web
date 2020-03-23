@@ -92,7 +92,7 @@
 											</th>
 											<td colspan="3">
 												<imui:textbox id="tel" name="tel" value="${f:h(form.tel)}" style="width: 50%; ime-mode:disabled;" 
-												 	placeholder="例　84-3549（半角）" tabindex="1"/>
+												 	maxlength="13" placeholder="例　84-3549（半角）" tabindex="1"/>
 											</td>
 										</tr>			
 										<!-- 申請者情報 -->
