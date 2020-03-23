@@ -17,8 +17,10 @@
 <style type="text/css"></style>
 <script type="text/javascript">
 	function back1() {
-		var url="skf/Skf3010Sc001/init?SKF3010_SC001&tokenCheck=0"
-		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
+//		var url="skf/Skf3010Sc001/init?SKF3010_SC001&tokenCheck=0"
+//		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
+		var backMessage = "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。";
+		nfw.common.confirmPopup(backMessage, "確認", "form", "skf/Skf3010Sc001/init", "ok", "キャンセル", this, true);	
 	}
 	
 </script>
@@ -1004,6 +1006,10 @@
 				(function($) {
 					// 画面表示時に定義される処理
 					$(document).ready(function(){
+						$(".imui-toolbar-icon").removeAttr("onclick");
+						$(".imui-toolbar-icon").click(function(e) {
+							back1();
+						});
 						// 契約情報タブの郵便番号を基本情報タブの郵便番号に設定
 						$('#contractZipCd').text($('#zipCd').val());
 						// 契約情報タブの住所を基本情報タブの県名 + 住所に設定

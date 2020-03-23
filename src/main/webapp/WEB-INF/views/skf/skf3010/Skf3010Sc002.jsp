@@ -17,8 +17,10 @@
 <style type="text/css"></style>
 <script type="text/javascript">
 	function back1() {
-		var url="skf/Skf3010Sc001/init?SKF3010_SC001&tokenCheck=0"
-		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
+//		var url="skf/Skf3010Sc001/init?SKF3010_SC001&tokenCheck=0"
+//		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
+		var backMessage = "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。";
+		nfw.common.confirmPopup(backMessage, "確認", "form", "skf/Skf3010Sc001/init", "ok", "キャンセル", this, true);	
 	}
 </script>
 
@@ -806,6 +808,10 @@
 				(function($) {
 					// 画面表示時に定義される処理
 					$(document).ready(function(){
+						$(".imui-toolbar-icon").removeAttr("onclick");
+						$(".imui-toolbar-icon").click(function(e) {
+							back1();
+						});
 						// 駐車場調整金額フォーカス時、入力済み文字列全選択
 						jQuery(document).on("focus", "input[id^='parkingRentalAdjust']", function(data) {
 							$(this).select();

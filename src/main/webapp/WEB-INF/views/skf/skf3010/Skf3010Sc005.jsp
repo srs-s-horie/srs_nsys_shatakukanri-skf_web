@@ -14,8 +14,8 @@
 
 <script type="text/javascript">
 	function back1() {
-		var url="skf/Skf3010Sc004/init?SKF3010_SC004&tokenCheck=0"
-		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
+		var backMessage = "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。";
+		nfw.common.confirmPopup(backMessage, "確認", "form", "skf/Skf3010Sc004/init", "ok", "キャンセル", this, true);	
 	}
 </script>
 <!-- コンテンツエリア -->
@@ -253,9 +253,14 @@
 				});
 				
 				// 画面表示時に定義される処理
-			    $(document).ready(function(){
-				    // 下部ボタン押下時のイベント
-				    registOnClick = function () {
+				$(document).ready(function(){
+					$(".imui-toolbar-icon").removeAttr("onclick");
+					$(".imui-toolbar-icon").click(function(e) {
+						back1();
+					});
+
+					// 下部ボタン押下時のイベント
+					registOnClick = function () {
 						var dialogTitle = "";
 						var dialogMessage = "";
 						var url = "";
@@ -265,12 +270,11 @@
 
 						//備品ステータス取得
 						// リストテーブル情報取得
-				        grid = $("#bihinList");
+						grid = $("#bihinList");
 						datas = grid.getGridParam("data");//全行
 						
 						if( datas.length > 0 )
-						{								
-							
+						{
 							var strs = [];
 							for( var i=0; i<datas.length; ++i )
 							{
@@ -300,7 +304,7 @@
 						dialogTitle = "確認";
 						//MessageIdConstant.I_SKF_3035[{0}を登録します。よろしいですか？]
 						dialogMessage = "社宅部屋情報を登録します。よろしいですか？";
-				    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc005/regist", "ok", "キャンセル", this, true);						    	
+						nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc005/regist", "ok", "キャンセル", this, true);	
 				    }
 				    deleteOnClick = function () {
 				    	var shatakuname = $("#dialogShatakuName").val();

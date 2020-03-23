@@ -144,7 +144,7 @@
 		<!-- 検索キー：空き駐車場コード -->
 		<input type = "hidden" name="hdnEmptyParkingCd" id="hdnEmptyParkingCd" value="${form.hdnEmptyParkingCd}" />
 		<!-- 検索キー：社宅名 -->
-		<input type = "hidden" name="hdnShatakuName" id="hdnShatakuName" value="${form.hdnShatakuName}" />
+		<input type = "hidden" name="hdnSearchShatakuName" id="hdnSearchShatakuName" value="${form.hdnSearchShatakuName}" />
 		<!-- 検索キー：社宅住所 -->
 		<input type = "hidden" name="hdnShatakuAddress" id="hdnShatakuAddress" value="${form.hdnShatakuAddress}" />
 		
@@ -366,7 +366,7 @@
 			<!-- 検索キー：空き駐車場コード -->
 			<input type = "hidden" name="hdnEmptyParkingCd" id="hdnEmptyParkingCd" value="${form.hdnEmptyParkingCd}" />
 			<!-- 検索キー：社宅名 -->
-			<input type = "hidden" name="hdnShatakuName" id="hdnShatakuName" value="${form.hdnShatakuName}" />
+			<input type = "hidden" name="hdnSearchShatakuName" id="hdnSearchShatakuName" value="${form.hdnSearchShatakuName}" />
 			<!-- 検索キー：社宅住所 -->
 			<input type = "hidden" name="hdnShatakuAddress" id="hdnShatakuAddress" value="${form.hdnShatakuAddress}" />
 			<!-- 社宅リスト -->
