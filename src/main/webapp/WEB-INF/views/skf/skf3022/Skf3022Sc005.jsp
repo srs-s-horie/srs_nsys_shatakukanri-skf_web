@@ -19,25 +19,30 @@
 }
 </style>
 <script type="text/javascript">
-// リストテーブルの貸与区分の文字色変更
-function onCellAttr(rowId,val,rawObject,cm,rdata){
-	  var style;
-	  switch (val) {
-	  case '承認':
-	      style = 'style="color:blue;"';
-	      break;
-	  case '未申請':
-	      style = 'style="color:red;"';
-	      break;
-	  case '-':
-	      style = 'style="color:black;"';
-	      break;
-	  default:
-	      style = 'style="color:green;"';
-    break;
-	  }
-    return style;
-}
+	function back1() {
+		var backMessage = "戻ります。よろしいですか？";
+		nfw.common.confirmPopup(backMessage, "確認", "form", "skf/Skf1010Sc001/init", "ok", "キャンセル", this, true);	
+	}
+
+	// リストテーブルの貸与区分の文字色変更
+	function onCellAttr(rowId,val,rawObject,cm,rdata){
+		  var style;
+		  switch (val) {
+		  case '承認':
+		      style = 'style="color:blue;"';
+		      break;
+		  case '未申請':
+		      style = 'style="color:red;"';
+		      break;
+		  case '-':
+		      style = 'style="color:black;"';
+		      break;
+		  default:
+		      style = 'style="color:green;"';
+	    break;
+		  }
+	    return style;
+	}
 </script>
 
 	<!-- コンテンツエリア -->
@@ -556,6 +561,10 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 				(function($) {
 					// 画面表示時に定義される処理
 				    $(document).ready(function(){
+						$(".imui-toolbar-icon").removeAttr("onclick");
+						$(".imui-toolbar-icon").click(function(e) {
+							back1();
+						});
 				    	//リサイズ時イベント
 				    	$(window).bind('resize', function(){
 				    		$('#mainList').setGridWidth($('#listTableArea').width(), true);	

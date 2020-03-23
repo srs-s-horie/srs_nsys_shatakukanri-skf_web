@@ -15,8 +15,10 @@
 <%-- コンテンツエリア --%>
 <script type="text/javascript">
 	function back1() {
-		var url="skf/Skf3022Sc005/init?SKF3022_SC005&tokenCheck=0"
-		nfw.common.doBack(url, $("#litMessageBack").val());
+//		var url="skf/Skf3022Sc005/init?SKF3022_SC005&tokenCheck=0"
+//		nfw.common.doBack(url, $("#litMessageBack").val());
+		var backMessage = "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。";
+		nfw.common.confirmPopup($("#litMessageBack").val(), "確認", "form", "skf/Skf3022Sc005/init", "ok", "キャンセル", this, true);	
 	}
 </script>
 
@@ -988,6 +990,11 @@
 			(function($) {
 				// 画面表示時に定義される処理
 				$(document).ready(function(){
+					// ツールバーの「戻る」ボタン効果削除&設定
+					$(".imui-toolbar-icon").removeAttr("onclick");
+					$(".imui-toolbar-icon").click(function(e) {
+						back1();
+					});
 
 					// 運用ガイドダウンロード
 					operationGuidDownLoad = function() {
