@@ -20,23 +20,13 @@
 <!-- コンテンツエリア:モックのまま -->
 <script type="text/javascript">
 	/**
-	* 一つ前の画面へ戻る
-	*/
-	function back1() {
-		showConfirm(W_GFK_0002, function() {
-			history.back()
-		});
-	}
-
-	/**
 	* メニュー画面へ遷移する。
 	*/
-	function back() {
-		showConfirm(W_GFK_0007, function() {
-			$.StandardPost("../common/top.html");
-		});
+	function back1() {
+		var backMessage = "戻ります。よろしいですか？";
+		nfw.common.confirmPopup(backMessage, "確認", "form", "skf/Skf1010Sc001/init", "ok", "キャンセル", this, true);	
 	}
-	
+
 	/*
 	 * リストテーブルの「社宅提示」の文字色を取得する。
 	 */
@@ -256,6 +246,10 @@
 	<script type="text/javascript">
 	(function($) {
 		$(document).ready(function() {
+			$(".imui-toolbar-icon").removeAttr("onclick");
+			$(".imui-toolbar-icon").click(function(e) {
+				back1();
+			});
 		
 			/*
 			 * 「年」ドロップダウン変更

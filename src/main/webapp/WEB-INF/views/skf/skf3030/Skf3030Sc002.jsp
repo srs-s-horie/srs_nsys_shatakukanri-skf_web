@@ -16,8 +16,8 @@
 <%-- コンテンツエリア --%>
 <script type="text/javascript">
 	function back1() {
-		var url="skf/Skf3030Sc001/init?SKF3030_SC001&tokenCheck=0"
-		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
+		var backMessage = "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。";
+		nfw.common.confirmPopup(backMessage, "確認", "form", "skf/Skf3030Sc001/init", "ok", "キャンセル", this, true);	
 	}
 </script>
 
@@ -985,6 +985,10 @@
 			(function($) {
 				// 画面表示時に定義される処理
 				$(document).ready(function(){
+					$(".imui-toolbar-icon").removeAttr("onclick");
+					$(".imui-toolbar-icon").click(function(e) {
+						back1();
+					});
 
 					// 運用ガイドダウンロード
 					operationGuidDownLoad = function() {
