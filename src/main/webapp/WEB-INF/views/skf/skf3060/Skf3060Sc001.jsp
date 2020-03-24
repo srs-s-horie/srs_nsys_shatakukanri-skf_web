@@ -465,16 +465,16 @@
 						</th>
 						<td colspan="2" style="width: 280px;">
 							<nfwui:DateBox id="baseTermFrom" name="baseTermFrom" value="${f:h(form.baseTermFrom)}"
-										cssClass="${f:h(form.baseTermFromErr)}" tabindex="3" cssStyle="width:100px"/>
+										cssClass="${form.baseTermFromErr}" tabindex="3" cssStyle="width:100px"/>
 							～&nbsp;
 							<nfwui:DateBox id="baseTermTo" name="baseTermTo" value="${f:h(form.baseTermTo)}"
-									cssClass="${f:h(form.baseTermToErr)}" tabindex="4" cssStyle="width:100px"/>
+									cssClass="${form.baseTermToErr}" tabindex="4" cssStyle="width:100px"/>
 							<!-- 
                                <nfwui:DateBox id="baseTermFrom" name="baseTermFrom"
-                                              cssClass="${f:h(form.baseTermFromErr)}" tabindex="1" cssStyle="width:100px"/>
+                                              cssClass="${form.baseTermFromErr}" tabindex="1" cssStyle="width:100px"/>
 							&nbsp;～&nbsp;
                                <nfwui:DateBox id="baseTermTo" name="baseTermTo"
-                                              cssClass="${f:h(form.baseTermToErr)}" tabindex="2" cssStyle="width:100px"/>
+                                              cssClass="${form.baseTermToErr}" tabindex="2" cssStyle="width:100px"/>
 							-->
 							<!-- 
 							<nfwui:DateBox name="baseTermFrom" id="baseTermFrom" cssStyle="width:100px" tabindex="1"/>
@@ -513,7 +513,7 @@
 							<nfwui:LabelBox id="lblName" code="<%=MessageIdConstant.SKF3060_SC001_NAME %>" />
 						</th>
 						<td colspan="2">
-							<imui:textbox id="txtName" name="name" style="disabled;width:150px;" placeholder="例  中日本　太郎" value="${f:h(form.name)}" tabindex="6" maxlength="20"/>
+							<imui:textbox id="txtName" name="name" style="disabled;width:150px;" placeholder="例  中日本　太郎" value="${form.name}" tabindex="6" maxlength="20"/>
 						</td>
 						<!-- 送信状態 -->
 						<th>

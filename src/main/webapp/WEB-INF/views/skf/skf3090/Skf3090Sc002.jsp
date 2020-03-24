@@ -104,7 +104,7 @@ function back1() {
 							</th>
 							<td style="width:98%;">
                                 <nfwui:DateBox id="effectiveDate" name="effectiveDate" value="${f:h(form.effectiveDate)}"
-                                               cssClass="${f:h(form.effectiveDateErr)}" disabled="${f:h(form.effectiveDateDisabled)}" tabindex="1" cssStyle="width:110px"/>
+                                               cssClass="${form.effectiveDateErr}" disabled="${form.effectiveDateDisabled}" tabindex="1" cssStyle="width:110px"/>
 							</td>
 						</tr>
 					</tbody>
@@ -566,7 +566,7 @@ function back1() {
 								<label style="width:100px;">備考</label>
 							</th>
 							<td colspan="7">
-								<imui:textArea id="biko" name="biko" rows="2" style="width:990px;" maxlength="400" value="${f:h(form.biko)}" class="${form.bikoErr}" tabindex="49" />
+								<imui:textArea id="biko" name="biko" rows="2" style="width:990px;" maxlength="400" value="${form.biko}" class="${form.bikoErr}" tabindex="49" />
 							</td>
 						</tr>
 					</tbody>

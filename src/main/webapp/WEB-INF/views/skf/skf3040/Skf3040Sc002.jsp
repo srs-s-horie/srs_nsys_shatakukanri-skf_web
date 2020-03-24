@@ -69,10 +69,10 @@
 							</th>
 							<td colspan="2" style="width: 410px;">
                                 <nfwui:DateBox id="carryingInOutTermFrom" name="carryingInOutTermFrom" value="${f:h(form.carryingInOutTermFrom)}"
-                                               cssClass="${f:h(form.carryingInOutTermFromErr)}" tabindex="1" cssStyle="width:100px"/>
+                                               cssClass="${form.carryingInOutTermFromErr}" tabindex="1" cssStyle="width:100px"/>
 								&nbsp;～&nbsp;
                                 <nfwui:DateBox id="carryingInOutTermTo" name="carryingInOutTermTo" value="${f:h(form.carryingInOutTermTo)}"
-                                               cssClass="${f:h(form.carryingInOutTermToErr)}" tabindex="2" cssStyle="width:100px"/>
+                                               cssClass="${form.carryingInOutTermToErr}" tabindex="2" cssStyle="width:100px"/>
 							</td>
 						</tr>
 						<tr>

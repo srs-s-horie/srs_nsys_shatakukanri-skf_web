@@ -125,7 +125,7 @@
 						</th>
 						<td>
 <!-- 							<input style="width:200px;" type="text" placeholder="例　中日本　太郎"/> -->
-							<imui:textbox id="txtShainName" name="shainName" style="width:200px;" value="${f:h(form.shainName)}" placeholder="例　中日本　太郎" maxlength="20" tabindex="4"/>
+							<imui:textbox id="txtShainName" name="shainName" style="width:200px;" value="${form.shainName}" placeholder="例　中日本　太郎" maxlength="20" tabindex="4"/>
 						</td>
 						<th rowspan="2">
 <!-- 							<label style="width:80px;">社宅提示</label> -->
@@ -155,7 +155,7 @@
 						</th>
 						<td>
 <!-- 							<input style="width:200px;" type="text" placeholder="例　社宅名"/> -->
-							<imui:textbox id="txtShatakuName" name="shatakuName" style="width:200px;" value="${f:h(form.shatakuName)}" placeholder="例　社宅名" maxlength="30" tabindex="5"/>
+							<imui:textbox id="txtShatakuName" name="shatakuName" style="width:200px;" value="${form.shatakuName}" placeholder="例　社宅名" maxlength="30" tabindex="5"/>
 						</td>
 						<th>
 <!-- 							<label>確認督促</label> -->

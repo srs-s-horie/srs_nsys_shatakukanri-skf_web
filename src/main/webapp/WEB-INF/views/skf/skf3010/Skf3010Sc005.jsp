@@ -101,7 +101,7 @@
 							<td style="width:21.3%;" >
 <!-- 									<input class="ime-off" style="text-align: right;width:130px;" type="text" value="79.83">㎡</input> -->
 <%-- 									<nfwui:NumberBox id="txtOriginalMenseki" name="txtOriginalMenseki" inputFormat="N2" cssStyle="width:130px;" value="${form.originalMenseki}" maxlength="8" tabindex="9" /> --%>
-								<imui:textbox id="txtOriginalMenseki" name="originalMenseki" style="text-align: right;ime-mode: disabled;width:130px;" value="${f:h(form.originalMenseki)}"  class="${form.originalMensekiError}" placeholder="例　70.5" maxlength="8" tabindex="9"/>㎡
+								<imui:textbox id="txtOriginalMenseki" name="originalMenseki" style="text-align: right;ime-mode: disabled;width:130px;" value="${form.originalMenseki}"  class="${form.originalMensekiError}" placeholder="例　70.5" maxlength="8" tabindex="9"/>㎡
 							</td>
 						</tr>
 						<tr>
@@ -113,7 +113,7 @@
 								<imui:select id="originalKikaku" name="originalKikaku" 
 								width="110" list="${form.originalKikakuList}" class="${form.originalKikakuError}" tabindex="2" />
 <!-- 									本来規格（補助）<input style="width:130px;" type="text" value="１２畳" /> -->
-								<imui:textbox id="txtOriginalKikakuHosoku" name="originalKikakuHosoku" style="width:130px;" value="${f:h(form.originalKikakuHosoku)}" class="${form.originalKikakuHosokuError}" placeholder="例　本来規格" maxlength="5" tabindex="3"/>
+								<imui:textbox id="txtOriginalKikakuHosoku" name="originalKikakuHosoku" style="width:130px;" value="${form.originalKikakuHosoku}" class="${form.originalKikakuHosokuError}" placeholder="例　本来規格" maxlength="5" tabindex="3"/>
 							</td>
 							<th>
 <!-- 									<label style="width:135px;">貸与延面積</label> -->
@@ -122,7 +122,7 @@
 							<td>
 <!-- 									<input class="ime-off" style="text-align: right;width:130px;" type="text" value="79.83">㎡</input> -->
 <%-- 									<nfwui:NumberBox id="txtLendMenseki" name="lendMenseki" inputFormat="N2" cssStyle="width:130px;" value="${form.lendMenseki}" maxlength="8" tabindex="10" /> --%>
-								<imui:textbox id="txtLendMenseki" name="lendMenseki" style="text-align: right;ime-mode: disabled;width:130px;" value="${f:h(form.lendMenseki)}" class="${form.lendMensekiError}" placeholder="例　70.5" maxlength="8" tabindex="10"/>㎡
+								<imui:textbox id="txtLendMenseki" name="lendMenseki" style="text-align: right;ime-mode: disabled;width:130px;" value="${form.lendMenseki}" class="${form.lendMensekiError}" placeholder="例　70.5" maxlength="8" tabindex="10"/>㎡
 							</td>
 						</tr>
 						<tr>
@@ -134,7 +134,7 @@
 								<imui:select id="originalAuse" name="originalAuse" 
 								width="110" list="${form.originalAuseList}" class="${form.originalAuseError}" tabindex="4" />
 <!-- 									<input style="width:130px;" type="text" placeholder="例　本来用途" /> -->
-								<imui:textbox id="txtOriginalAuseHosoku" name="originalAuseHosoku" style="width:130px;" value="${f:h(form.originalAuseHosoku)}" class="${form.originalAuseHosokuError}" placeholder="例　本来用途" maxlength="5" tabindex="5"/>
+								<imui:textbox id="txtOriginalAuseHosoku" name="originalAuseHosoku" style="width:130px;" value="${form.originalAuseHosoku}" class="${form.originalAuseHosokuError}" placeholder="例　本来用途" maxlength="5" tabindex="5"/>
 							</td>
 							<th>
 <!-- 									<label>サンルーム面積</label> -->
@@ -143,7 +143,7 @@
 							<td>
 <!-- 									<input class="ime-off" style="text-align: right;width:130px;" type="text" value="0.00">㎡</input> -->
 <%-- 									<nfwui:NumberBox id="txtSunRoomMenseki" name="sunRoomMenseki" inputFormat="N2" cssStyle="width:130px;" value="${form.sunRoomMenseki}" maxlength="8" tabindex="11" /> --%>
-								<imui:textbox id="txtSunRoomMenseki" name="sunRoomMenseki" style="text-align: right;ime-mode: disabled;width:130px;" value="${f:h(form.sunRoomMenseki)}" class="${form.sunRoomMensekiError}" placeholder="例　1.0" maxlength="8" tabindex="11"/>㎡
+								<imui:textbox id="txtSunRoomMenseki" name="sunRoomMenseki" style="text-align: right;ime-mode: disabled;width:130px;" value="${form.sunRoomMenseki}" class="${form.sunRoomMensekiError}" placeholder="例　1.0" maxlength="8" tabindex="11"/>㎡
 							</td>
 						</tr>
 						<tr>
@@ -155,7 +155,7 @@
 								<imui:select id="lendKbn" name="lendKbn" 
 								width="110" list="${form.lendKbnList}" class="${form.lendKbnError}" tabindex="6" />
 <!-- 									<input style="width:130px;" type="text" placeholder="例　貸与区分" /> -->
-								<imui:textbox id="txtLendKbnHosoku" name="lendKbnHosoku" style="width:130px;" value="${f:h(form.lendKbnHosoku)}" class="${form.lendKbnHosokuError}" placeholder="例　貸与区分" maxlength="5" tabindex="7"/>
+								<imui:textbox id="txtLendKbnHosoku" name="lendKbnHosoku" style="width:130px;" value="${form.lendKbnHosoku}" class="${form.lendKbnHosokuError}" placeholder="例　貸与区分" maxlength="5" tabindex="7"/>
 							</td>
 							<th>
 <!-- 									<label>寒冷地減免事由区分</label> -->
@@ -174,7 +174,7 @@
 							</th>
 							<td rowspan="3">
 <!-- 									<textarea style="width:270px;" rows="6"></textarea> -->
-								<imui:textArea id="txtBiko" name="biko" style="width:270px;" value="${f:h(form.biko)}" class="${form.bikoError}" cols="30" rows="6" tabindex="8"/>
+								<imui:textArea id="txtBiko" name="biko" style="width:270px;" value="${form.biko}" class="${form.bikoError}" cols="30" rows="6" tabindex="8"/>
 							</td>
 							<th>
 <!-- 									<label>階段面積</label> -->
@@ -183,7 +183,7 @@
 							<td>
 <!-- 									<input class="ime-off" style="text-align: right;width:130px;" type="text" value="0.00">㎡</input> -->
 <%-- 									<nfwui:NumberBox id="txtStairsMenseki" name="stairsMenseki" inputFormat="N2" cssStyle="width:130px;" value="${form.stairsMenseki}" maxlength="8" tabindex="13" /> --%>
-								<imui:textbox id="txtStairsMenseki" name="stairsMenseki" style="text-align: right;ime-mode: disabled;width:130px;" value="${f:h(form.stairsMenseki)}" class="${form.stairsMensekiError}" placeholder="例　1.0" maxlength="8" tabindex="13"/>㎡
+								<imui:textbox id="txtStairsMenseki" name="stairsMenseki" style="text-align: right;ime-mode: disabled;width:130px;" value="${form.stairsMenseki}" class="${form.stairsMensekiError}" placeholder="例　1.0" maxlength="8" tabindex="13"/>㎡
 							</td>
 						</tr>
 						<tr>
@@ -193,7 +193,7 @@
 							</th>
 							<td>
 <%-- 									<nfwui:NumberBox id="txtBarnMenseki" name="barnMenseki" inputFormat="N2" cssStyle="width:130px;" value="${form.barnMenseki}" maxlength="8" tabindex="14" /> --%>
-								<imui:textbox id="txtBarnMenseki" name="barnMenseki" style="text-align: right;ime-mode: disabled;width:130px;" value="${f:h(form.barnMenseki)}" class="${form.barnMensekiError}" placeholder="例　1.0" maxlength="8" tabindex="14"/>㎡
+								<imui:textbox id="txtBarnMenseki" name="barnMenseki" style="text-align: right;ime-mode: disabled;width:130px;" value="${form.barnMenseki}" class="${form.barnMensekiError}" placeholder="例　1.0" maxlength="8" tabindex="14"/>㎡
 							</td>
 						</tr>
 						<tr>

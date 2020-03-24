@@ -118,7 +118,7 @@
 					</th>
 					<td>
 						<imui:textbox id="shatakuAddress" name="shatakuAddress" style="width:260px;" maxlength="100"
-								value="${f:h(form.shatakuAddress)}" placeholder="例　愛知県名古屋市中区錦2-18-19" tabindex="10" />
+								value="${form.shatakuAddress}" placeholder="例　愛知県名古屋市中区錦2-18-19" tabindex="10" />
 					</td>
 				</tr>
 			</tbody>
