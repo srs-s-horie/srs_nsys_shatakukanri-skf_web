@@ -619,7 +619,7 @@
 											</th>
 											<td>
 												<imui:textbox id="sc006HonninAddrIn" name="sc006HonninAddrIn" style="width:283px;"
-												maxlength="15" value="${f:h(form.sc006HonninAddrIn)}" tabindex="31" disabled="${form.sc006HonninAddrInDisableFlg }"
+												maxlength="15" value="${form.sc006HonninAddrIn}" tabindex="31" disabled="${form.sc006HonninAddrInDisableFlg }"
 												class="${form.sc006HonninAddrInErr}" placeholder="例　090-0000-0000"/>
 											</td>
 										</tr>
@@ -632,7 +632,7 @@
 											<td>
 												<!-- <input type="text" style="100px;" /> -->
 												<imui:textbox id="sc006UketoriDairiInName" name="sc006UketoriDairiInName" style="width:178px;"
-												maxlength="30" value="${f:h(form.sc006UketoriDairiInName)}" tabindex="32" disabled="${form.sc006UketoriDairiInNameDisableFlg }"
+												maxlength="30" value="${form.sc006UketoriDairiInName}" tabindex="32" disabled="${form.sc006UketoriDairiInNameDisableFlg }"
 												class="${form.sc006UketoriDairiInNameErr}" placeholder="例　中日本　太郎"/>
 												<nfwui:PopupButton id="sc006UketoriDairiInShien" name="sc006UketoriDairiInShien" value="社員入力支援" use="popup"
 													cssClass="imui-small-button" popupWidth="650" popupHeight="700"
@@ -649,7 +649,7 @@
 											<td>
 												<!-- <input class="ime-off" type="text" style="width:244px;"/> -->
 												<imui:textbox id="sc006UketoriDairiAddr" name="sc006UketoriDairiAddr" style="width:283px;"
-												maxlength="15" value="${f:h(form.sc006UketoriDairiAddr)}" tabindex="34" disabled="${form.sc006UketoriDairiAddrDisableFlg }"
+												maxlength="15" value="${form.sc006UketoriDairiAddr}" tabindex="34" disabled="${form.sc006UketoriDairiAddrDisableFlg }"
 												class="${form.sc006UketoriDairiAddrErr}" placeholder="例　090-0000-0000"/>
 											</td>
 										</tr>
@@ -659,7 +659,7 @@
 												<nfwui:LabelBox id="lblHannyuRentalBihinShijishoZenkaiHakkoubi" code="<%=MessageIdConstant.SKF3030_SC002_RENTAL_SHIJISHO_HAKKOUBI %>" />
 											</th>
 											<td>
-												${f:h(form.sc006HannyuShijisyoHakkoubi)}
+												${form.sc006HannyuShijisyoHakkoubi}
 											</td>
 										</tr>
 										<tr>
@@ -686,7 +686,7 @@
 											<td>
 												<!-- <input class="ime-off" type="text" style="width:244px;" disabled/> -->
 												<imui:textbox id="sc006HonninAddrOut" name="sc006HonninAddrOut" style="width:283px;"
-												maxlength="15" value="${f:h(form.sc006HonninAddrOut)}" tabindex="37" disabled="${form.sc006HonninAddrOutDisableFlg }"
+												maxlength="15" value="${form.sc006HonninAddrOut}" tabindex="37" disabled="${form.sc006HonninAddrOutDisableFlg }"
 												class="${form.sc006HonninAddrOutErr}" placeholder="例　090-0000-0000"/>
 											</td>
 										</tr>
@@ -698,7 +698,7 @@
 											<td>
 												<!-- <input class="ime-off" type="text" style="100px;" disabled/> -->
 												<imui:textbox id="sc006TachiaiDairi" name="sc006TachiaiDairi" style="width:178px;"
-												maxlength="30" value="${f:h(form.sc006TachiaiDairi)}" tabindex="38" disabled="${form.sc006TachiaiDairiDisableFlg }"
+												maxlength="30" value="${form.sc006TachiaiDairi}" tabindex="38" disabled="${form.sc006TachiaiDairiDisableFlg }"
 												class="${form.sc006TachiaiDairiErr}" placeholder="例　中日本　太郎"/>
 												<!-- <input type="button" value="社員入力支援" class="imui-small-button" disabled/> -->
 												<nfwui:PopupButton id="sc006TachiaiDairiShien" name="sc006TachiaiDairiShien" value="社員入力支援" use="popup"
@@ -716,7 +716,7 @@
 											<td>
 												<!-- <input class="ime-off" type="text" style="width:244px;" disabled/> -->
 												<imui:textbox id="sc006TachiaiDairiAddr" name="sc006TachiaiDairiAddr" style="width:283px;"
-												maxlength="15" value="${f:h(form.sc006TachiaiDairiAddr)}" tabindex="40"
+												maxlength="15" value="${form.sc006TachiaiDairiAddr}" tabindex="40"
 												class="${form.sc006TachiaiDairiAddrErr}" disabled="${form.sc006TachiaiDairiAddrDisableFlg }" placeholder="例　090-0000-0000"/>
 											</td>
 										</tr>
@@ -726,7 +726,7 @@
 												<nfwui:LabelBox id="lblHanshutsuRentalBihinShijishoZenkaiHakkoubi" code="<%=MessageIdConstant.SKF3030_SC002_RENTAL_SHIJISHO_HAKKOUBI %>" />
 											</th>
 											<td>
-												${f:h(form.sc006HanshutuShijisyoHakkoubi)}
+												${form.sc006HanshutuShijisyoHakkoubi}
 											</td>
 										</tr>
 										<tr>
@@ -816,7 +816,7 @@
 							<td>
 								<!-- <input type="text" style="width:306px;"/> -->
 								<imui:textbox id="sc006SyozokuKikan" name="sc006SyozokuKikan" style="width:305;height:98%"
-								disabled="${form.sc006SyozokuKikanDisableFlg }" maxlength="30" value="${f:h(form.sc006SyozokuKikan)}" tabindex="55"
+								disabled="${form.sc006SyozokuKikanDisableFlg }" maxlength="30" value="${form.sc006SyozokuKikan}" tabindex="55"
 								class="${form.sc006SyozokuKikanErr}" placeholder="例　○○会社"/>
 							</td>
 						</tr>
@@ -837,7 +837,7 @@
 							<td>
 								<!-- <input type="text" style="width:306px;"/> -->
 								<imui:textbox id="sc006SituBuName" name="sc006SituBuName" style="width:305;height:98%"
-								disabled="${form.sc006SituBuNameDisableFlg }" maxlength="30" value="${f:h(form.sc006SituBuName)}" tabindex="56"
+								disabled="${form.sc006SituBuNameDisableFlg }" maxlength="30" value="${form.sc006SituBuName}" tabindex="56"
 								class="${form.sc006SituBuNameErr}" placeholder="例　○○部"/>
 							</td>
 						</tr>
@@ -857,7 +857,7 @@
 							</th>
 							<td>
 								<imui:textbox id="sc006KanadoMei" name="sc006KanadoMei" style="width:305;height:98%"
-								disabled="${form.sc006KanadoMeiDisableFlg }" maxlength="30" value="${f:h(form.sc006KanadoMei)}" tabindex="57"
+								disabled="${form.sc006KanadoMeiDisableFlg }" maxlength="30" value="${form.sc006KanadoMei}" tabindex="57"
 								class="${form.sc006KanadoMeiErr}" placeholder="例　○○事業所"/>
 							</td>
 						</tr>
@@ -877,7 +877,7 @@
 							</th>
 							<td>
 								<imui:textbox id="sc006HaizokuNo" name="sc006HaizokuNo" style="width:305;height:98%"
-								disabled="${form.sc006HaizokuNoDisableFlg }" maxlength="30" value="${f:h(form.sc006HaizokuNo)}" tabindex="58"
+								disabled="${form.sc006HaizokuNoDisableFlg }" maxlength="30" value="${form.sc006HaizokuNo}" tabindex="58"
 								class="${form.sc006HaizokuNoErr}" placeholder="例　000000000"/>
 							</td>
 						</tr>
