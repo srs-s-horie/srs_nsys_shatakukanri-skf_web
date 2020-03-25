@@ -10,6 +10,7 @@
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
 <link rel="stylesheet" type="text/css" href="styles/skf/listTableStyle.css" />
 
 <%-- コンテンツエリア --%>
@@ -43,6 +44,9 @@
 		case '承認':
 			style = 'style="color:blue;"';
 			break;
+		case '未申請':
+			style = 'style="color:red;"';
+			break;
 		default:
 			style = 'style="color:black;"';
 			break;
@@ -64,6 +68,8 @@
 		case '同意済':
 		case '搬入待ち':
 		case '搬入済':
+		case '搬出待ち':
+		case '搬出済':
 			style = 'style="color:green;"';
 			break;
 		case '承認':
@@ -88,6 +94,7 @@
 		<div class="imui-chapter-title"><h2>検索条件</h2></div>
 		<nfwui:Form id="form" name="form" modelAttribute="form" enctype="multipart/form-data">
 			<!-- hidden項目 -->
+			<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3030_SC001 %>" />
 			<input type="hidden" id="hdnCompanyAgencySelect" name="hdnCompanyAgencySelect" value="${form.hdnCompanyAgencySelect}" />
 			<input type="hidden" id="hdnAgencySelect" name="hdnAgencySelect" value="${form.hdnAgencySelect}" />
 			<input type="hidden" id="hdnYearSelect" name="hdnYearSelect" value="${form.hdnYearSelect}" />
