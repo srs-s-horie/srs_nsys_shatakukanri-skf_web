@@ -18,7 +18,7 @@
 <script type="text/javascript">
 	function back1() {
 		var backMessage = "戻ります。よろしいですか？";
-		nfw.common.confirmPopup(backMessage, "確認", "form", "skf/Skf1010Sc001/init", "ok", "キャンセル", this, true);	
+		nfw.common.confirmPopup(backMessage, "確認", "form", "skf/Skf3010Sc001/prevPage", "ok", "キャンセル", this, true);	
 	}
 	// リストテーブルの利用区分の文字色変更
 	function onCellAttr(rowId,val,rawObject,cm,rdata){
