@@ -54,7 +54,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 <!-- 									<label style="height:24px;">社宅名</label> -->
 									<nfwui:LabelBox id="lblShatakuName" code="<%=MessageIdConstant.SKF3010_SC004_SHATAKU_NAME %>" />
 								</th>
-								<td style="width: 5%;">
+								<td style="width: 10%;">
  									<label>${form.shatakuName}<label>
 								</td>
 								<th style="width: 5%;">
@@ -75,14 +75,14 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 <!-- 									<label>空き部屋数</label> -->
 									<nfwui:LabelBox id="lblEmptyRoomCount" code="<%=MessageIdConstant.SKF3010_SC004_EMPTY_ROOM_COUNT %>" />
 								</th>
-								<td style="width: 5%;">
+								<td style="width: 4%;">
 									<label>${form.emptyRoomCount}<label>
 								</td>
 								<th style="width: 7%;">
 <!-- 									<label>空き駐車場数</label> -->
 									<nfwui:LabelBox id="lblEmptyParkingCount" code="<%=MessageIdConstant.SKF3010_SC004_EMPTY_PARKING_COUNT %>" />
 								</th>
-								<td style="width: 5%;">
+								<td style="width: 4%;">
 									<label>${form.emptyParkingCount}<label>
 								</td>
 							</tr>
