@@ -17,7 +17,7 @@
 <script type="text/javascript">
 	function back1() {
 		var backMessage = "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。";
-		nfw.common.confirmPopup(backMessage, "確認", "form", "skf/Skf3030Sc001/init", "ok", "キャンセル", this, true);	
+		nfw.common.confirmPopup(backMessage, "確認", "form", "skf/Skf3030Sc002/back", "ok", "キャンセル", this, true);	
 	}
 </script>
 
@@ -1076,6 +1076,7 @@
 								bihinMap['bihinName'] = bihinArrrows[i].bihinName;
 								bihinMap['heyaSonaetukeSttsStr'] = bihinArrrows[i].heyaSonaetukeSttsStr;
 								bihinMap['bihinTaiyoStts'] = $("#bihinTaiyoStatus" + i).val();
+								bihinMap['bihinTaiyoSttsList'] = bihinArrrows[i].bihinTaiyoStts;
 								bihinMap['bihinStatusOld'] = bihinArrrows[i].bihinStatusOld;
 								bihinMap['updateFlg'] = bihinArrrows[i].updateFlg;
 								bihinMap['updateDate'] = bihinArrrows[i].updateDate;
