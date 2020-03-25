@@ -24,7 +24,7 @@
 	*/
 	function back1() {
 		var backMessage = "戻ります。よろしいですか？";
-		nfw.common.confirmPopup(backMessage, "確認", "form", "skf/Skf3030Sc001/prevPage", "ok", "キャンセル", this, true);	
+		nfw.common.confirmPopup(backMessage, "戻る確認", "form", "skf/Skf3030Sc001/prevPage", "ok", "キャンセル", this, true);	
 	}
 
 	/*
