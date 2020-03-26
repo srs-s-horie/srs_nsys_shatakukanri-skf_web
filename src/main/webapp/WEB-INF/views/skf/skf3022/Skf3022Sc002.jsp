@@ -98,11 +98,11 @@
 		<pager rowNum="${form.maxCount}" />
 		<cols>
 			<col name="colSelect" width="20" sortable="false" caption="" />
-			<col name="colParkingBlock" width="150" sortable="false" align="left" caption="区画番号" />
-			<col name="colLendKbn" width="60" sortable="false" align="center" caption="貸与区分" />
-			<col name="collendJokyo" width="60" sortable="false" align="center" caption="貸与状況" />
-			<col name="colShiyosha" width="150" sortable="false" align="left" caption="使用者" />
-			<col name="colBiko" width="80" sortable="false" align="left" caption="備考" />
+			<col name="colParkingBlock" width="150" sortable="false" align="left" caption="区画番号" wrap="true" />
+			<col name="colLendKbn" width="60" sortable="false" align="center" caption="貸与区分" wrap="true" />
+			<col name="collendJokyo" width="60" sortable="false" align="center" caption="貸与状況" wrap="true" />
+			<col name="colShiyosha" width="150" sortable="false" align="left" caption="使用者" wrap="true" />
+			<col name="colBiko" width="80" sortable="false" align="left" caption="備考" wrap="true" />
 			<col name="colParkRentalAsjust" hidden="true" />
 			<col name="colParkingKanriNo" hidden="true" />
 			<col name="colhdnEndDate1" hidden="true" />
