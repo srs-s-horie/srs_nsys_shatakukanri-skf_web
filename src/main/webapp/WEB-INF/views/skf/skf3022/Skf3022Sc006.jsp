@@ -18,7 +18,7 @@
 //		var url="skf/Skf3022Sc005/init?SKF3022_SC005&tokenCheck=0"
 //		nfw.common.doBack(url, $("#litMessageBack").val());
 		var backMessage = "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。";
-		nfw.common.confirmPopup($("#litMessageBack").val(), "確認", "form", "skf/Skf3022Sc005/init", "ok", "キャンセル", this, true);	
+		nfw.common.confirmPopup($("#litMessageBack").val(), "戻る確認", "form", "skf/Skf3022Sc005/init", "ok", "キャンセル", this, true);	
 	}
 </script>
 

@@ -22,7 +22,7 @@ function back1() {
 //	var url="skf/Skf3010Sc001/init?SKF3010_SC001&tokenCheck=0"
 //	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？");
 	var backMessage = "前の画面へ戻ります。よろしいですか？";
-	nfw.common.confirmPopup(backMessage, "確認", "form", "skf/Skf3010Sc001/init", "ok", "キャンセル", this, true);	
+	nfw.common.confirmPopup(backMessage, "戻る確認", "form", "skf/Skf3010Sc001/init", "ok", "キャンセル", this, true);	
 }
 
 // リストテーブルの貸与区分の文字色変更
