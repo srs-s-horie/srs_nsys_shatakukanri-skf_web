@@ -24,7 +24,7 @@
 					})(jQuery);
 				</script>
 				
-				<imui:listTable id="grvTenninshaIchiran" process="jssp" autoEncode="false" autoWidth="true"
+				<imui:listTable id="grvTenninshaIchiran" process="jssp" autoEncode="false" autoWidth="true" rowNumbers="true"
 					autoResize="true" height="400" style="word-wrap:break-word;"
 					multiSelect="false" data="${form.tenninshaChoshoDataTable }" >
 					<pager rowNum="100" />
