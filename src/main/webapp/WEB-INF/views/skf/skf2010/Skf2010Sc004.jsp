@@ -244,8 +244,7 @@ ${form.operationGuide }
 </c:if>
 
 <nfwui:Form id="form" name="form"  modelAttribute="form" encType="multipart/form-data">
-<c:if test="${form.displayLevel == 2}" >
-<input type="hidden" name="inputAreaVisible" value="true" />
+<imart:condition validity="<%= String.valueOf(form.isInputAreaVisible()) %>">
     <!-- 日付け入力エリア -->
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;" height="100px">
       <table class="imui-form-search-condition">
@@ -289,7 +288,7 @@ ${form.operationGuide }
       </tr>
       </table>
     </div>
-</c:if>
+</imart:condition>
     <!-- コメント欄 -->
  <imart:condition validity="<%= String.valueOf(form.isCommentAreaVisible()) %>">   
     <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;" height="100px">
