@@ -86,7 +86,7 @@
                                             <nfwui:LabelBox id="shatakuNamelbl" code="<%= MessageIdConstant.SKF2060_SC001_SHATAKU_NAME %>" style="float:left" />
                                         </th>
                                         <td>
-                                        <imui:textbox style="width:30%; ime-mode:active;" id="shatakuName" name="shatakuName" value="${form.shatakuName}" class="${form.shatakuNameError}" tabindex="5" />
+                                        <imui:textbox style="width:30%; ime-mode:active;" id="shatakuName" name="shatakuName" placeholder="例　借上社宅名" value="${form.shatakuName}" class="${form.shatakuNameError}" tabindex="5" />
                                         </td>
                                     </tr>   
 
@@ -99,7 +99,7 @@
                                             
                                         </th>
                                         <td>
-                                        <imui:textbox style="width:30%; ime-mode:disabled;" id="postalCd" name="postalCd" value="${f:h(form.postalCd)}" class="${form.postalCdError}" tabindex="6" />
+                                        <imui:textbox style="width:30%; ime-mode:disabled;" id="postalCd" name="postalCd" value="${f:h(form.postalCd)}" class="${form.postalCdError}" placeholder="例　4600003" maxlength="7" tabindex="6" />
                                        <nfwui:Button id="searchAddress" name="searchAddress" formId="form" value="住所検索" cssClass="imui-small-button" url="skf/Skf2060Sc001/searchAddress" tabindex="7" />
                                         </td>
 
@@ -111,7 +111,7 @@
                                             
                                         </th>
                                         <td>
-                                        <imui:textArea style="width:100%; ime-mode:active;" rows="3" id="address" name="address" value="${f:h(form.address)}" class="${form.addressError}" tabindex="8" /></input>
+                                        <imui:textArea style="width:100%; ime-mode:active;" rows="3" id="address" name="address" placeholder="例　名古屋市中区錦2-18-19" value="${f:h(form.address)}" class="${form.addressError}" tabindex="8" /></input>
                                         </td>
 
                                     </tr>   
@@ -365,6 +365,9 @@
 							map['shatakuName'] = $("#shatakuName").val();
 							map['address'] = $("#address").val();
 							$(".imui-box-caution, .imui-box-warning").remove();
+							
+							// エラー背景が残らないようにする
+							$("*").removeClass("nfw-validation-error");
 							
 							nfw.common.doAjaxAction("skf/Skf2060Sc001/CheckAsync", map, true, function(data){
 								var formId = "form";
