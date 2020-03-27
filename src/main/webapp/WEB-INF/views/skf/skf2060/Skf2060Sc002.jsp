@@ -254,8 +254,20 @@
 		var kakuninIrai = '確認依頼';
 		if(applStatus == kakuninIrai){
 			$("[name=radioCandidateNo]").prop('disabled', false);
+			
+			var riyuValue = $("#riyuDropdown").val();
+			if(riyuValue == <%= CodeConstant.RELATION_OTHERS %>){
+				$("#biko").prop('disabled', false);
+			}else{
+				$("#biko").prop('disabled', true);
+			}
+			
 		}else{
 			$("[name=radioCandidateNo]").prop('disabled', true);
+		}
+		
+		if(<%= form.getRadioCandidateNo() %> != null){
+			$("#radioCandidateNo_"+<%= form.getRadioCandidateNo() %>).prop('checked', true);
 		}
 		
 		var selectedRadioCandidateNo = $("#selectedRadioCandidateNo").val();
