@@ -99,7 +99,7 @@
                                             
                                         </th>
                                         <td>
-                                        <imui:textbox style="width:30%; ime-mode:disabled;" id="postalCd" name="postalCd" value="${f:h(form.postalCd)}" class="${form.postalCdError}" tabindex="6" />
+                                        <imui:textbox style="width:30%; ime-mode:disabled;" id="postalCd" name="postalCd" value="${f:h(form.postalCd)}" class="${form.postalCdError}" placeholder="例　4600003" maxlength="7" tabindex="6" />
                                        <nfwui:Button id="searchAddress" name="searchAddress" formId="form" value="住所検索" cssClass="imui-small-button" url="skf/Skf2060Sc001/searchAddress" tabindex="7" />
                                         </td>
 

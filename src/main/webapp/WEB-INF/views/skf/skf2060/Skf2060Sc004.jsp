@@ -59,9 +59,7 @@
 
     // 「一括完了」ボタン押下時のイベント
     onClickBulkComplete = function () {
-        // TODO メッセージConstから取得
-        //W_GFK_0001.replace('{0}', '申請内容を確認')
-        skf.common.confirmPopup("選択された申請書を一括で承認します。よろしいですか？", 
+        skf.common.confirmPopup("すでに選択済みですが、再提示します。よろしいですか？", 
                 "確認", "form", "skf/Skf2060Sc004/BulkComplete", 
                 "OK", "キャンセル", this, false);
     }
