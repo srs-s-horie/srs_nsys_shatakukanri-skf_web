@@ -222,6 +222,15 @@
 <br>
 <br>
 </div>
+<!-- 隠し項目 -->
+<!-- 前画面からの値取得用 -->
+<input type="hidden" name="applNo" id="applNo" value="${form.applNo}" />　<!-- 申請書類管理番号 -->
+<!-- 前画面からの値取得用終わり -->
+<input type="hidden" name="teijiKaisu" id="teijiKaisu" value="${form.teijiKaisu}" />　<!-- 提示回数 -->
+<input type="hidden" name="hdnRadioCandidateNo" id="selectedRadioCandidateNo" value="${form.selectedRadioCandidateNo}" />　<!-- 選択されたラジオボタン -->
+<input type="hidden" name="hdnCandidateNo" id="sendCandidateNo" value="" /><!-- 添付ファイルダウンロード用借上候補物件番号 -->
+<input type="hidden" name="hdnAttachedNo" id="sendAttachedNo" value="" /><!-- 添付ファイルダウンロード用添付ファイル番号 -->
+<!-- 隠し項目終わり -->
 </nfwui:Form>
 </div>
 
@@ -235,15 +244,6 @@
     }
 </script>
 
-<!-- 隠し項目 -->
-<!-- 前画面からの値取得用 -->
-<input type="hidden" name="applNo" id="applNo" value="${form.applNo}" />　<!-- 申請書類管理番号 -->
-<!-- 前画面からの値取得用終わり -->
-<input type="hidden" name="teijiKaisu" id="teijiKaisu" value="${form.teijiKaisu}" />　<!-- 提示回数 -->
-<input type="hidden" name="hdnRadioCandidateNo" id="selectedRadioCandidateNo" value="${form.selectedRadioCandidateNo}" />　<!-- 選択されたラジオボタン -->
-<input type="hidden" name="hdnCandidateNo" id="sendCandidateNo" value="" /><!-- 添付ファイルダウンロード用借上候補物件番号 -->
-<input type="hidden" name="hdnAttachedNo" id="sendAttachedNo" value="" /><!-- 添付ファイルダウンロード用添付ファイル番号 -->
-<!-- 隠し項目終わり -->
 
 <script src="scripts/skf/skfCommon.js"></script>
 <script type="text/javascript">

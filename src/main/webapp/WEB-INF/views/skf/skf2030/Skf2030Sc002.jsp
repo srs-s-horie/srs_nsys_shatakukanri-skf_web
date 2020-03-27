@@ -230,12 +230,6 @@ function back1() {
 
 <imart:decision case="${form.dispMode}" value="<%= String.valueOf(CodeConstant.VIEW_LEVEL_2) %>">
 <div class="align-R">
-      <!-- 差戻しボタン -->
-      <nfwui:ConfirmButton id="sendbackBtn" name="sendbackBtn"
-      value="差戻し" cssClass="imui-medium-button" cssStyle="width: 150px" 
-      title="<%= MessageIdConstant.SKF2030_SC002_SENDBACK %>" message="<%= MessageIdConstant.I_SKF_2010 %>"
-      url="skf/Skf2030Sc002/Sendback" formId="form" disabledPatterns="NONADMIN" />
-      
       <nfwui:ConfirmButton id="revisionBtn" name="revisionBtn"
       value="修正依頼" cssClass="imui-medium-button" cssStyle="width: 150px" 
       title="<%= MessageIdConstant.SKF2030_SC002_REVISION %>" message="<%= MessageIdConstant.I_SKF_2005 %>"
