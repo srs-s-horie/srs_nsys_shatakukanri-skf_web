@@ -18,7 +18,7 @@
 <script type="text/javascript">
 	function back1() {
 		var backMessage = "戻ります。よろしいですか？";
-		nfw.common.confirmPopup(backMessage, "確認", "form", "skf/Skf1010Sc001/init", "ok", "キャンセル", this, true);	
+		nfw.common.confirmPopup(backMessage, "戻る確認", "form", "skf/Skf3010Sc001/prevPage", "ok", "キャンセル", this, true);	
 	}
 	// リストテーブルの利用区分の文字色変更
 	function onCellAttr(rowId,val,rawObject,cm,rdata){
@@ -118,7 +118,7 @@
 					</th>
 					<td>
 						<imui:textbox id="shatakuAddress" name="shatakuAddress" style="width:260px;" maxlength="100"
-								value="${f:h(form.shatakuAddress)}" placeholder="例　愛知県名古屋市中区錦2-18-19" tabindex="10" />
+								value="${form.shatakuAddress}" placeholder="例　愛知県名古屋市中区錦2-18-19" tabindex="10" />
 					</td>
 				</tr>
 			</tbody>

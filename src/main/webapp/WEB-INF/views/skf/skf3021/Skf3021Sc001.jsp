@@ -121,7 +121,7 @@ function onCellAttrNtk(rowId,val,rawObject,cm,rdata){
 								<nfwui:LabelBox id="lblShainName" code="<%=MessageIdConstant.SKF3021_SC001_SHAIN_NAME %>" />
 							</th>
 							<td>
-								<imui:textbox id="txtShainName" name="shainName" style="width:200px;" value="${f:h(form.shainName)}" placeholder="例　中日本　太郎" maxlength="20" tabindex="4"/>
+								<imui:textbox id="txtShainName" name="shainName" style="width:200px;" value="${form.shainName}" placeholder="例　中日本　太郎" maxlength="20" tabindex="4"/>
 							</td>
 							<th>
 <!-- 								<label style="width:120px;">提示対象</label> -->

@@ -123,7 +123,7 @@
 					<td>
 						<!-- 延べ面積テキストボックス -->
 						<imui:textbox id="sc003InputNobeMenseki" name="sc003InputNobeMenseki" style="ime-mode: disabled;width:95px; text-align:right;" maxlength="8"
-						value="${f:h(form.sc003InputNobeMenseki)}" placeholder="例　70.5" class="${form.sc003InputNobeMensekiErr}" tabindex="303"/>&nbsp;㎡
+						value="${form.sc003InputNobeMenseki}" placeholder="例　70.5" class="${form.sc003InputNobeMensekiErr}" tabindex="303"/>&nbsp;㎡
 					</td>
 				</tr>
 				<tr>

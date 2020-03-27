@@ -69,10 +69,10 @@
 							</th>
 							<td colspan="2" style="width: 410px;">
                                 <nfwui:DateBox id="desiredTermFrom" name="desiredTermFrom" value="${f:h(form.desiredTermFrom)}"
-                                               cssClass="${f:h(form.desiredTermFromErr)}" tabindex="1" cssStyle="width:100px"/>
+                                               cssClass="${form.desiredTermFromErr}" tabindex="1" cssStyle="width:100px"/>
 								&nbsp;～&nbsp;
                                 <nfwui:DateBox id="desiredTermTo" name="desiredTermTo" value="${f:h(form.desiredTermTo)}"
-                                               cssClass="${f:h(form.desiredTermToErr)}" tabindex="2" cssStyle="width:100px"/>
+                                               cssClass="${form.desiredTermToErr}" tabindex="2" cssStyle="width:100px"/>
 							</td>
 						</tr>
 						<tr>

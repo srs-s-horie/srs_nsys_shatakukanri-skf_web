@@ -44,7 +44,7 @@ public class Skf2010Sc004Form extends Skf2010NyukyoCommonForm {
 	private String representBtnFlg = "true";
 
 	// 入力フォーム表示フラグ
-	private String inputAreaVisible;
+	private boolean inputAreaVisible;
 
 	// 退居フラグ
 	private boolean notTaikyo = false;

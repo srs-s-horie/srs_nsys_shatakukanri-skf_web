@@ -57,7 +57,7 @@
 										<nfwui:LabelBox id="lblShainNumber" code="<%=MessageIdConstant.SKF3021_SC002_SHAIN_NAME %>" />
 									</th>
 									<td  >
-										${f:h(form.shainName)}
+										${form.shainName}
 									</td>
 								</tr>
 								<tr>
@@ -66,7 +66,7 @@
 										<nfwui:LabelBox id="lblTokyu" code="<%=MessageIdConstant.SKF3021_SC002_TOKYU %>" />
 									</th>
 									<td  >
-										${f:h(form.tokyu)}
+										${form.tokyu}
 									</td>
 								</tr>
 								<tr>
@@ -75,7 +75,7 @@
 										<nfwui:LabelBox id="lblNenrei" code="<%=MessageIdConstant.SKF3021_SC002_NENREI %>" />
 									</th>
 									<td  >
-										${f:h(form.nenrei)}
+										${form.nenrei}
 									</td>
 								</tr>	
 								<tr> <td colspan="3">&nbsp;</td></tr>
@@ -85,7 +85,7 @@
 										<nfwui:LabelBox id="lblHitsuyoFuyo" code="<%=MessageIdConstant.SKF3021_SC002_HITSUYOFUYO %>" />
 									</th>
 									<td  >
-										${f:h(form.hitsuyofuyo)}
+										${form.hitsuyofuyo}
 									</td>
 								</tr>
 								<tr>
@@ -94,7 +94,7 @@
 										<nfwui:LabelBox id="lblHitsuyoRiyu" code="<%=MessageIdConstant.SKF3021_SC002_HITSUYORIYU %>" />
 									</th>
 									<td  >
-										${f:h(form.hitsuyoriyu)}
+										${form.hitsuyoriyu}
 									</td>
 								</tr>
 								<tr>
@@ -103,7 +103,7 @@
 										<nfwui:LabelBox id="lblFuyoRiyu" code="<%=MessageIdConstant.SKF3021_SC002_FUYORIYU %>" />
 									</th>
 									<td  >
-										${f:h(form.fuyoriyu)}
+										${form.fuyoriyu}
 									</td>
 								</tr>
 								<tr>
@@ -112,7 +112,7 @@
 										<nfwui:LabelBox id="lblHitsuyoShataku" code="<%=MessageIdConstant.SKF3021_SC002_HITSUYO_SHATAKU %>" />
 									</th>
 									<td  >
-										${f:h(form.hitsuyoShataku)}
+										${form.hitsuyoShataku}
 									</td>
 								</tr>
 								<tr>
@@ -130,7 +130,7 @@
 										<nfwui:LabelBox id="lblJidoshaHokambasho" code="<%=MessageIdConstant.SKF3021_SC002_JIDOSHA_HOKAN %>" />
 									</th>
 									<td  >
-										${f:h(form.jidoshaHokan)}
+										${form.jidoshaHokan}
 									</td>
 								</tr>	
 							</table>
@@ -144,7 +144,7 @@
 											<nfwui:LabelBox id="lblTaikyoShatakuOrChushajo" code="<%=MessageIdConstant.SKF3021_SC002_TAIKYO_SHATAKU_OR_CHUSHAJO %>" />
 										</th>
 										<td >
-											${f:h(form.taikyoShatakuOrChushajo)}
+											${form.taikyoShatakuOrChushajo}
 										</td>
 
 									</tr>
@@ -159,7 +159,7 @@
 											<nfwui:LabelBox id="lblShatakuName" code="<%=MessageIdConstant.SKF3021_SC002_SHATAKU_NAME %>" />
 										</th>
 										<td >
-											${f:h(form.shatakuName)}
+											${form.shatakuName}
 										</td>
 									</tr>
 									<tr>
@@ -168,7 +168,7 @@
 											<nfwui:LabelBox id="lblRoomNo" code="<%=MessageIdConstant.SKF3021_SC002_ROOM_NO %>" />
 										</th>
 										<td  >
-											${f:h(form.roomNo)}
+											${form.roomNo}
 										</td>
 									
 									</tr>	
@@ -178,7 +178,7 @@
 										<nfwui:LabelBox id="lblKikaku" code="<%=MessageIdConstant.SKF3021_SC002_KIKAKU %>" />
 										</th>
 										<td >
-											${f:h(form.kikaku)}
+											${form.kikaku}
 										</td>
 									</tr>
 									<tr>
@@ -187,7 +187,7 @@
 										<nfwui:LabelBox id="lblYoto" code="<%=MessageIdConstant.SKF3021_SC002_YOTO %>" />
 										</th>
 										<td >
-											${f:h(form.yoto)}
+											${form.yoto}
 										</td>
 									</tr>
 									<tr>
@@ -196,7 +196,7 @@
 										<nfwui:LabelBox id="lblMenseki" code="<%=MessageIdConstant.SKF3021_SC002_MENSEKI %>" />
 										</th>
 										<td >
-											${f:h(form.menseki)}
+											${form.menseki}
 										</td>
 									</tr>
 									<tr>
@@ -205,7 +205,7 @@
 										<nfwui:LabelBox id="lblShiyojokyo" code="<%=MessageIdConstant.SKF3021_SC002_SHIYOJOKYO %>" />
 										</th>
 										<td >
-											${f:h(form.shiyojokyo)}
+											${form.shiyojokyo}
 										</td>
 									</tr>
 									<tr>
@@ -223,7 +223,7 @@
 										<nfwui:LabelBox id="lblTaikyoRiyu" code="<%=MessageIdConstant.SKF3021_SC002_TAIKYO_RIYU %>" />
 										</th>
 										<td >
-											${f:h(form.taikyoRiyu)}
+											${form.taikyoRiyu}
 										</td>
 									</tr>
 									<tr>
@@ -232,7 +232,7 @@
 										<nfwui:LabelBox id="lblTaikyogoRenrakusaki" code="<%=MessageIdConstant.SKF3021_SC002_TAIKYOGO_RENRAKUSAKI %>" />
 										</th>
 										<td >
-											${f:h(form.taikyogoRenrakusaki)}
+											${form.taikyogoRenrakusaki}
 										</td>
 									</tr>
 							</table>
@@ -249,7 +249,7 @@
 										<nfwui:LabelBox id="lblTokushuJijo" code="<%=MessageIdConstant.SKF3021_SC002_TOKUSHUJIJO %>" />
 									</th>
 									<td >
-										<imui:textArea id="tokushujijo" name="tokushujijo" readonly="true" style="width:98%;" value="${f:h(form.tokushujijo)}"  cols="30" rows="4"/>
+										<imui:textArea id="tokushujijo" name="tokushujijo" readonly="true" style="width:98%;" value="${form.tokushujijo}"  cols="30" rows="4"/>
 									</td>
 								</tr>
 							</tbody>

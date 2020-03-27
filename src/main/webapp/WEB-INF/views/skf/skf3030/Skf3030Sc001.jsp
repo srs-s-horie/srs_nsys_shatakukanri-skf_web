@@ -10,6 +10,7 @@
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
 <link rel="stylesheet" type="text/css" href="styles/skf/listTableStyle.css" />
 
 <%-- コンテンツエリア --%>
@@ -24,7 +25,7 @@
 	*/
 	function back1() {
 		var backMessage = "戻ります。よろしいですか？";
-		nfw.common.confirmPopup(backMessage, "確認", "form", "skf/Skf1010Sc001/init", "ok", "キャンセル", this, true);	
+		nfw.common.confirmPopup(backMessage, "戻る確認", "form", "skf/Skf3030Sc001/prevPage", "ok", "キャンセル", this, true);	
 	}
 
 	/*
@@ -42,6 +43,9 @@
 			break;
 		case '承認':
 			style = 'style="color:blue;"';
+			break;
+		case '未申請':
+			style = 'style="color:red;"';
 			break;
 		default:
 			style = 'style="color:black;"';
@@ -64,6 +68,8 @@
 		case '同意済':
 		case '搬入待ち':
 		case '搬入済':
+		case '搬出待ち':
+		case '搬出済':
 			style = 'style="color:green;"';
 			break;
 		case '承認':
@@ -88,13 +94,14 @@
 		<div class="imui-chapter-title"><h2>検索条件</h2></div>
 		<nfwui:Form id="form" name="form" modelAttribute="form" enctype="multipart/form-data">
 			<!-- hidden項目 -->
-			<input type="hidden" id="hdnCompanyAgencySelect" name="hdnCompanyAgencySelect" value="${f:h(form.hdnCompanyAgencySelect)}" />
-			<input type="hidden" id="hdnAgencySelect" name="hdnAgencySelect" value="${f:h(form.hdnAgencySelect)}" />
-			<input type="hidden" id="hdnYearSelect" name="hdnYearSelect" value="${f:h(form.hdnYearSelect)}" />
-			<input type="hidden" id="hdnMonthSelect" name="hdnMonthSelect" value="${f:h(form.hdnMonthSelect)}" />	
-			<input type="hidden" id="hdnShatakuKbnSelect" name="hdnShatakuKbnSelect" value="${f:h(form.hdnShatakuKbnSelect)}" />
-			<input type="hidden" id="hdnMutualuseSelect" name="hdnMutualuseSelect" value="${f:h(form.hdnMutualuseSelect)}" />
-			<input type="hidden" id="hdnSelIdx" name="hdnSelIdx" value="${f:h(form.hdnSelIdx)}" />
+			<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3030_SC001 %>" />
+			<input type="hidden" id="hdnCompanyAgencySelect" name="hdnCompanyAgencySelect" value="${form.hdnCompanyAgencySelect}" />
+			<input type="hidden" id="hdnAgencySelect" name="hdnAgencySelect" value="${form.hdnAgencySelect}" />
+			<input type="hidden" id="hdnYearSelect" name="hdnYearSelect" value="${form.hdnYearSelect}" />
+			<input type="hidden" id="hdnMonthSelect" name="hdnMonthSelect" value="${form.hdnMonthSelect}" />	
+			<input type="hidden" id="hdnShatakuKbnSelect" name="hdnShatakuKbnSelect" value="${form.hdnShatakuKbnSelect}" />
+			<input type="hidden" id="hdnMutualuseSelect" name="hdnMutualuseSelect" value="${form.hdnMutualuseSelect}" />
+			<input type="hidden" id="hdnSelIdx" name="hdnSelIdx" value="${form.hdnSelIdx}" />
 			
 			<nfwui:Table use="search">
 				<tbody>
@@ -119,7 +126,7 @@
 						</th>
 						<td style="width:60px;">
 							<div>
-								<label id="labelShimeShori">${f:h(form.labelShimeShori)}</label>
+								<label id="labelShimeShori">${form.labelShimeShori}</label>
 							</div>
 						</td>
 						<th style="width:5%;">
@@ -128,7 +135,7 @@
 						</th>
 						<td style="width:60px;">
 							<div>
-								<label id="labelPositiveRenkei">${f:h(form.labelPositiveRenkei)}</label>
+								<label id="labelPositiveRenkei">${form.labelPositiveRenkei}</label>
 							</div>
 						</td>
 					</tr>
@@ -154,7 +161,7 @@
 						</th>
 						<td style="width:200px;">
 							<imui:textbox id="txtShatakuName" name="txtShatakuName" class="ime-off" style="width:200px;"
-								type="text" value="${f:h(form.txtShatakuName)}" maxlength="255" placeholder="例 社宅名" tabindex="9"/>
+								type="text" value="${form.txtShatakuName}" maxlength="255" placeholder="例 社宅名" tabindex="9"/>
 						</td>
 						<th style="width:0%;">
 							<!-- <label style="width:60px;">相互利用</label> -->
@@ -179,7 +186,7 @@
 						</th>
 						<td colspan="3">
 							<imui:textbox id="txtShainName" name="txtShainName" class="ime-off" style="width:220px;"
-								type="text" value="${f:h(form.txtShainName)}" maxlength="255" placeholder="例 中日本　太郎" tabindex="8"/>	
+								type="text" value="${form.txtShainName}" maxlength="255" placeholder="例 中日本　太郎" tabindex="8"/>	
 						</td>
 						<th>
 							<nfwui:LabelBox id="lblShatakKbn" code="<%=MessageIdConstant.SKF3030_SC001_LABEL_SHATAK_KBN %>" />

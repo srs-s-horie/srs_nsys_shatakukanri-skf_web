@@ -53,7 +53,7 @@
 							<nfwui:LabelBox id="lblShiyosha" code="<%= MessageIdConstant.SKF3022_SC002_SHIYOSYA %>" />
 						</th>
 						<td>
-							<imui:textbox id="shiyosha" name="shiyosha" style="width:150px;" value="${f:h(form.shiyosha)}" placeholder="例  中日本  太郎" tabindex="51" />
+							<imui:textbox id="shiyosha" name="shiyosha" style="width:150px;" value="${form.shiyosha}" placeholder="例  中日本  太郎" tabindex="51" />
 						</td>
 						<th style="width: 15%;">
 <!-- 							<label>駐車場</label> -->
@@ -72,7 +72,7 @@
 							<nfwui:LabelBox id="lblBiko" code="<%= MessageIdConstant.SKF3022_SC002_BIKO %>" />
 						</th>
 						<td colspan="3">
-							<imui:textbox id="parkingBiko" name="parkingBiko" style="width:80%;" value="${f:h(form.parkingBiko)}" tabindex="53" />
+							<imui:textbox id="parkingBiko" name="parkingBiko" style="width:80%;" value="${form.parkingBiko}" tabindex="53" />
 						</td>
 					</tr>
 				</tbody>
@@ -98,11 +98,11 @@
 		<pager rowNum="${form.maxCount}" />
 		<cols>
 			<col name="colSelect" width="20" sortable="false" caption="" />
-			<col name="colParkingBlock" width="150" sortable="false" align="left" caption="区画番号" />
-			<col name="colLendKbn" width="60" sortable="false" align="center" caption="貸与区分" />
-			<col name="collendJokyo" width="60" sortable="false" align="center" caption="貸与状況" />
-			<col name="colShiyosha" width="150" sortable="false" align="left" caption="使用者" />
-			<col name="colBiko" width="80" sortable="false" align="left" caption="備考" />
+			<col name="colParkingBlock" width="150" sortable="false" align="left" caption="区画番号" wrap="true" />
+			<col name="colLendKbn" width="60" sortable="false" align="center" caption="貸与区分" wrap="true" />
+			<col name="collendJokyo" width="60" sortable="false" align="center" caption="貸与状況" wrap="true" />
+			<col name="colShiyosha" width="150" sortable="false" align="left" caption="使用者" wrap="true" />
+			<col name="colBiko" width="80" sortable="false" align="left" caption="備考" wrap="true" />
 			<col name="colParkRentalAsjust" hidden="true" />
 			<col name="colParkingKanriNo" hidden="true" />
 			<col name="colhdnEndDate1" hidden="true" />

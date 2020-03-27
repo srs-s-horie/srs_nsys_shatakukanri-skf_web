@@ -42,20 +42,20 @@
 	<div class="imui-form-container-wide">
 	<nfwui:Form id="form" name="form" modelAttribute="form" enctype="multipart/form-data">
 		<!-- hidden項目 -->
-		<input type="hidden" id="hdnBtnKariKeisanDisabled" name="hdnBtnKariKeisanDisabled" value="${f:h(form.hdnBtnKariKeisanDisabled)}" />
-		<input type="hidden" id="hdnBtnShimeShoriDisabled" name="hdnBtnShimeShoriDisabled" value="${f:h(form.hdnBtnShimeShoriDisabled)}" />
-		<input type="hidden" id="hdnBtnRenkeiDataSakuseiDisabled" name="hdnBtnRenkeiDataSakuseiDisabled" value="${f:h(form.hdnBtnRenkeiDataSakuseiDisabled)}" />
-		<input type="hidden" id="hdnBtnShimeKaijoDisabled" name="hdnBtnShimeKaijoDisabled" value="${f:h(form.hdnBtnShimeKaijoDisabled)}" />
-		<input type="hidden" id="hdnBtnRenkeiDataKakuteiDisabled" name="hdnBtnRenkeiDataKakuteiDisabled" value="${f:h(form.hdnBtnRenkeiDataKakuteiDisabled)}" />
-		<input type="hidden" id="hdnSelectedTaisyonendo" name="hdnSelectedTaisyonendo" value="${f:h(form.hdnSelectedTaisyonendo)}" />
-		<input type="hidden" id="hdnJikkouShijiYoteiNengetsu" name="hdnJikkouShijiYoteiNengetsu" value="${f:h(form.hdnJikkouShijiYoteiNengetsu)}" />
-		<input type="hidden" id="hdnJikkouShijiYoteiShoriCol" name="hdnJikkouShijiYoteiShoriCol" value="${f:h(form.hdnJikkouShijiYoteiShoriCol)}" />
-		<input type="hidden" id="hdnJikkouShijiYoteiShoriIdx" name="hdnJikkouShijiYoteiShoriIdx" value="${f:h(form.hdnJikkouShijiYoteiShoriIdx)}" />
-		<input type="hidden" id="hdnKariKeisanBtnMsg" name="hdnKariKeisanBtnMsg" value="${f:h(form.hdnKariKeisanBtnMsg)}" />
-		<input type="hidden" id="hdnShimeShoriBtnMsg" name="hdnShimeShoriBtnMsg" value="${f:h(form.hdnShimeShoriBtnMsg)}" />
-		<input type="hidden" id="hdnRenkeiDataSakuseiBtnMsg" name="hdnRenkeiDataSakuseiBtnMsg" value="${f:h(form.hdnRenkeiDataSakuseiBtnMsg)}" />
-		<input type="hidden" id="hdnShimeKaijoBtnMsg" name="hdnShimeKaijoBtnMsg" value="${f:h(form.hdnShimeKaijoBtnMsg)}" />
-		<input type="hidden" id="hdnRenkeiDataKakuteiBtnMsg" name="hdnRenkeiDataKakuteiBtnMsg" value="${f:h(form.hdnRenkeiDataKakuteiBtnMsg)}" />
+		<input type="hidden" id="hdnBtnKariKeisanDisabled" name="hdnBtnKariKeisanDisabled" value="${form.hdnBtnKariKeisanDisabled}" />
+		<input type="hidden" id="hdnBtnShimeShoriDisabled" name="hdnBtnShimeShoriDisabled" value="${form.hdnBtnShimeShoriDisabled}" />
+		<input type="hidden" id="hdnBtnRenkeiDataSakuseiDisabled" name="hdnBtnRenkeiDataSakuseiDisabled" value="${form.hdnBtnRenkeiDataSakuseiDisabled}" />
+		<input type="hidden" id="hdnBtnShimeKaijoDisabled" name="hdnBtnShimeKaijoDisabled" value="${form.hdnBtnShimeKaijoDisabled}" />
+		<input type="hidden" id="hdnBtnRenkeiDataKakuteiDisabled" name="hdnBtnRenkeiDataKakuteiDisabled" value="${form.hdnBtnRenkeiDataKakuteiDisabled}" />
+		<input type="hidden" id="hdnSelectedTaisyonendo" name="hdnSelectedTaisyonendo" value="${form.hdnSelectedTaisyonendo}" />
+		<input type="hidden" id="hdnJikkouShijiYoteiNengetsu" name="hdnJikkouShijiYoteiNengetsu" value="${form.hdnJikkouShijiYoteiNengetsu}" />
+		<input type="hidden" id="hdnJikkouShijiYoteiShoriCol" name="hdnJikkouShijiYoteiShoriCol" value="${form.hdnJikkouShijiYoteiShoriCol}" />
+		<input type="hidden" id="hdnJikkouShijiYoteiShoriIdx" name="hdnJikkouShijiYoteiShoriIdx" value="${form.hdnJikkouShijiYoteiShoriIdx}" />
+		<input type="hidden" id="hdnKariKeisanBtnMsg" name="hdnKariKeisanBtnMsg" value="${form.hdnKariKeisanBtnMsg}" />
+		<input type="hidden" id="hdnShimeShoriBtnMsg" name="hdnShimeShoriBtnMsg" value="${form.hdnShimeShoriBtnMsg}" />
+		<input type="hidden" id="hdnRenkeiDataSakuseiBtnMsg" name="hdnRenkeiDataSakuseiBtnMsg" value="${form.hdnRenkeiDataSakuseiBtnMsg}" />
+		<input type="hidden" id="hdnShimeKaijoBtnMsg" name="hdnShimeKaijoBtnMsg" value="${form.hdnShimeKaijoBtnMsg}" />
+		<input type="hidden" id="hdnRenkeiDataKakuteiBtnMsg" name="hdnRenkeiDataKakuteiBtnMsg" value="${form.hdnRenkeiDataKakuteiBtnMsg}" />
 	
 		<table class="imui-form-search-condition">
 			<tbody>
@@ -93,10 +93,10 @@
 	</nfwui:Form>
 		
 	<nfwui:Form id="batchForm" name="batchForm" modelAttribute="form" enctype="multipart/form-data">
-		<input type="hidden" id="hdnJikkouShijiYoteiNengetsu" name="hdnJikkouShijiYoteiNengetsu" value="${f:h(batchForm.hdnJikkouShijiYoteiNengetsu)}" />
-		<input type="hidden" id="hdnBihinTaiyoWarnContinueFlg" name="hdnBihinTaiyoWarnContinueFlg" value="${f:h(batchForm.hdnBihinTaiyoWarnContinueFlg)}" />
-		<input type="hidden" id="hdnBihinHenkyakuWarnContinueFlg" name="asyncUserId" value="${f:h(batchForm.hdnBihinHenkyakuWarnContinueFlg)}" />
-		<input type="hidden" id="taskMsgId" name="taskMsgId" value="${f:h(batchForm.taskMsgId)}" />
+		<input type="hidden" id="hdnJikkouShijiYoteiNengetsu" name="hdnJikkouShijiYoteiNengetsu" value="${batchForm.hdnJikkouShijiYoteiNengetsu}" />
+		<input type="hidden" id="hdnBihinTaiyoWarnContinueFlg" name="hdnBihinTaiyoWarnContinueFlg" value="${batchForm.hdnBihinTaiyoWarnContinueFlg}" />
+		<input type="hidden" id="hdnBihinHenkyakuWarnContinueFlg" name="asyncUserId" value="${batchForm.hdnBihinHenkyakuWarnContinueFlg}" />
+		<input type="hidden" id="taskMsgId" name="taskMsgId" value="${batchForm.taskMsgId}" />
 	
 		<div class="align-R">
 			<input id="kariKeisanBtn" name="kariKeisanBtn" style="width:150px;" type="button" value="仮計算処理" class="imui-medium-button" />

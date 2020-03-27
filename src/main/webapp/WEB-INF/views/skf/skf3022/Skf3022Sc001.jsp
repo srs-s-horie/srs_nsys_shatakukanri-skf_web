@@ -46,7 +46,7 @@
 						<nfwui:LabelBox id="lblSc001RoomNo" code="<%= MessageIdConstant.SKF3022_SC001_ROOM_NO %>" />
 					</th>
 					<td  colspan="5">
-						<imui:textbox id="sc001RoomNo" name="sc001RoomNo" style="width:260px;" value="${f:h(form.roomNo)}"
+						<imui:textbox id="sc001RoomNo" name="sc001RoomNo" style="width:260px;" value="${form.roomNo}"
 																			placeholder="例　101（半角）" tabindex="302" />
 					</td>
 				</tr>

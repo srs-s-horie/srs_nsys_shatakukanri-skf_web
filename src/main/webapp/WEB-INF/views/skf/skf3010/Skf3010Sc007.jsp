@@ -21,7 +21,7 @@ function back1() {
 //	var url="skf/Skf3010Sc002/init?SKF3010_SC002&tokenCheck=0"
 //	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
 	var backMessage = "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。";
-	nfw.common.confirmPopup(backMessage, "確認", "form", "skf/Skf3010Sc002/init", "ok", "キャンセル", this, true);	
+	nfw.common.confirmPopup(backMessage, "戻る確認", "form", "skf/Skf3010Sc002/init", "ok", "キャンセル", this, true);	
 }
 </script>
 
@@ -210,8 +210,8 @@ function back1() {
                		<nfwui:LabelBox id="lblOwnerName" code="<%=MessageIdConstant.SKF3010_SC007_OWNER_NAME %>" />
                </th>
                <td colspan="3">
-<%--                		<imui:textbox id="txtOwnerName" name="ownerName" style="width:130px;" value="${f:h(form.ownerName)}" class="${form.ownerNameError}" disabled="${form.contractInfoDisabled}" maxlength="30" tabindex="5" readonly /> --%>
-               		<imui:textbox id="contractOwnerName" name="ownerName" style="width:130px;" value="${f:h(form.ownerName)}" 
+<%--                		<imui:textbox id="txtOwnerName" name="ownerName" style="width:130px;" value="${form.ownerName}" class="${form.ownerNameError}" disabled="${form.contractInfoDisabled}" maxlength="30" tabindex="5" readonly /> --%>
+               		<imui:textbox id="contractOwnerName" name="ownerName" style="width:130px;" value="${form.ownerName}" 
                		class="${form.ownerNameError}" disabled="${form.contractInfoDisabled}" maxlength="30" tabindex="5" readonly="true" onKeyDown="contractOwnerName_KeyDown(event)"/>
                		<nfwui:PopupButton id="ownerShien" name="ownerShien" value="支援" use="popup" 
                 		cssClass="imui-small-button" popupWidth="640" popupHeight="800"  
@@ -231,7 +231,7 @@ function back1() {
                		<nfwui:LabelBox id="lblParkingZipCd" code="<%=MessageIdConstant.SKF3010_SC007_PARKING_ZIP_CD %>" />
                </th>
                <td colspan="3">
-               	<imui:textbox id="txtParkingZipCd" name="parkingZipCd" style="ime-mode: disabled;width:130px;" value="${f:h(form.parkingZipCd)}" class="${form.parkingZipCdError}" disabled="${form.contractInfoDisabled}" placeholder="例　4600003" maxlength="7" tabindex="7"/>
+               	<imui:textbox id="txtParkingZipCd" name="parkingZipCd" style="ime-mode: disabled;width:130px;" value="${form.parkingZipCd}" class="${form.parkingZipCdError}" disabled="${form.contractInfoDisabled}" placeholder="例　4600003" maxlength="7" tabindex="7"/>
               	<imui:button id="addressSearch" name="addressSearch" value="住所検索" class="imui-small-button" disabled="${form.contractInfoDisabled}" onclick="addressOnClick()" tabindex="8" />
                
 <%--               	<nfwui:Button id="addressSearch" name="addressSearch" code="<%=MessageIdConstant.SKF3010_SC007_ADDRESS_SEARCH %>" cssClass="imui-small-button"  --%>
@@ -243,7 +243,7 @@ function back1() {
 <!--                <label>住所</label> -->
 					<nfwui:LabelBox id="lblParkingAddress" code="<%=MessageIdConstant.SKF3010_SC007_PARKING_ADDRESS %>" />
                <td colspan="3">
-               		<imui:textbox id="txtParkingAddress" name="parkingAddress" style="width:50%;" value="${f:h(form.parkingAddress)}" class="${form.parkingAddressError}" placeholder="例　愛知県名古屋市中区錦2-18-19" maxlength="50" tabindex="9" disabled="${form.contractInfoDisabled}"/>
+               		<imui:textbox id="txtParkingAddress" name="parkingAddress" style="width:50%;" value="${form.parkingAddress}" class="${form.parkingAddressError}" placeholder="例　愛知県名古屋市中区錦2-18-19" maxlength="50" tabindex="9" disabled="${form.contractInfoDisabled}"/>
                </td>
                </tr>
   
@@ -252,7 +252,7 @@ function back1() {
                		<nfwui:LabelBox id="lblParkingName" code="<%=MessageIdConstant.SKF3010_SC007_PARKING_NAME %>" />
                </th>
                <td colspan="3">
-               		<imui:textbox id="txtParkingName" name="parkingName" style="width:200px;" value="${f:h(form.parkingName)}" class="${form.parkingNameError}" disabled="${form.contractInfoDisabled}" placeholder="例　駐車場名" maxlength="30" tabindex="10"/>
+               		<imui:textbox id="txtParkingName" name="parkingName" style="width:200px;" value="${form.parkingName}" class="${form.parkingNameError}" disabled="${form.contractInfoDisabled}" placeholder="例　駐車場名" maxlength="30" tabindex="10"/>
                </td>
              </tr>
 
@@ -262,7 +262,7 @@ function back1() {
                		<nfwui:LabelBox id="lblAssetRegisterNo" code="<%=MessageIdConstant.SKF3010_SC007_ASSET_REGISTER_NO %>" />
                </th>
                <td  colspan="3">
-               		<imui:textbox id="txtAssetRegisterNo" name="assetRegisterNo" style="ime-mode: disabled;width:200px;" value="${f:h(form.assetRegisterNo)}" class="${form.assetRegisterNoError}" disabled="${form.contractInfoDisabled}" placeholder="例　A001002003004" maxlength="15" tabindex="11"/>
+               		<imui:textbox id="txtAssetRegisterNo" name="assetRegisterNo" style="ime-mode: disabled;width:200px;" value="${form.assetRegisterNo}" class="${form.assetRegisterNoError}" disabled="${form.contractInfoDisabled}" placeholder="例　A001002003004" maxlength="15" tabindex="11"/>
                </td>
                
 			</tr>
@@ -284,9 +284,9 @@ function back1() {
                </th>
                <td>
                		<nfwui:DateBox id="contractStartDate" name="contractStartDate" value="${f:h(form.contractStartDate)}"
-                                               cssClass="${f:h(form.contractStartDateError)}" tabindex="13" cssStyle="width:100px" disabled="${form.contractInfoDisabled}"/>
+                                               cssClass="${form.contractStartDateError}" tabindex="13" cssStyle="width:100px" disabled="${form.contractInfoDisabled}"/>
                
-<%--                  <imui:textbox name="contractStartDate" id="contractStartDate" value="${f:h(form.contractStartDate)}" class="${form.contractStartDateError}" disabled="${form.contractInfoDisabled}" style="width:100px"  tabindex="13"/> --%>
+<%--                  <imui:textbox name="contractStartDate" id="contractStartDate" value="${form.contractStartDate}" class="${form.contractStartDateError}" disabled="${form.contractInfoDisabled}" style="width:100px"  tabindex="13"/> --%>
                </td>
                <th style="width: 150px;">
 <!--                <label>契約終了日<label> -->
@@ -294,8 +294,8 @@ function back1() {
                </th>
                     <td>
                     <nfwui:DateBox id="contractEndDate" name="contractEndDate" value="${f:h(form.contractEndDate)}"
-                                               cssClass="${f:h(form.contractEndDateError)}" tabindex="14" cssStyle="width:100px" disabled="${form.contractInfoDisabled}"/>
-<%--                        <imui:textbox name="contractEndDate" id="contractEndDate" value="${f:h(form.contractEndDate)}" class="${form.contractEndDateError}" disabled="${form.contractInfoDisabled}" style="width:100px"  tabindex="14"/> --%>
+                                               cssClass="${form.contractEndDateError}" tabindex="14" cssStyle="width:100px" disabled="${form.contractInfoDisabled}"/>
+<%--                        <imui:textbox name="contractEndDate" id="contractEndDate" value="${form.contractEndDate}" class="${form.contractEndDateError}" disabled="${form.contractInfoDisabled}" style="width:100px"  tabindex="14"/> --%>
                     </td>
 <%-- 				<im:calendar floatable="true" altField="#contractStartDate" disabled="${form.contractInfoDisabled}"/> --%>
 <%-- 				<im:calendar floatable="true" altField="#contractEndDate" disabled="${form.contractInfoDisabled}"/> --%>
@@ -307,7 +307,7 @@ function back1() {
                		<nfwui:LabelBox id="lblLandRent" code="<%=MessageIdConstant.SKF3010_SC007_LAND_RENT %>" />
                </th>
                     <td colspan="3">
-<%--                          <imui:textbox name="landRent" id="landRent" value="${f:h(form.landRent)}" class="${form.landRentError}" disabled="${form.contractInfoDisabled}" style="text-align: right;ime-mode: disabled;width:100px" placeholder="例　半角数字" maxlength="6" tabindex="15"/>  --%>
+<%--                          <imui:textbox name="landRent" id="landRent" value="${form.landRent}" class="${form.landRentError}" disabled="${form.contractInfoDisabled}" style="text-align: right;ime-mode: disabled;width:100px" placeholder="例　半角数字" maxlength="6" tabindex="15"/>  --%>
                          <nfwui:NumberBox name="landRent" id="landRent" cssClass="${form.landRentError}" disabled="${form.contractInfoDisabled}" cssStyle="width:100px;" inputFormat="n0" max="999999" min="0" maxlength="6" tabindex="15"/> 
 					&nbsp;円
                     </td>
@@ -319,7 +319,7 @@ function back1() {
                		<nfwui:LabelBox id="lblBiko" code="<%=MessageIdConstant.SKF3010_SC007_BIKO %>" />
                </th>
                <td colspan="3">
-                    <imui:textbox name="biko" id="biko" value="${f:h(form.biko)}" disabled="${form.contractInfoDisabled}" style="width:500px" maxlength="100" tabindex="16"/>
+                    <imui:textbox name="biko" id="biko" value="${form.biko}" disabled="${form.contractInfoDisabled}" style="width:500px" maxlength="100" tabindex="16"/>
                </td>
                </tr>
 		</table>
