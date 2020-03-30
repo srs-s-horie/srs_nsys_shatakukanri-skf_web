@@ -59,7 +59,7 @@
 
     // 「一括完了」ボタン押下時のイベント
     onClickBulkComplete = function () {
-        skf.common.confirmPopup("すでに選択済みですが、再提示します。よろしいですか？", 
+        skf.common.confirmPopup("選択された申請書を一括で承認します。よろしいですか？", 
                 "確認", "form", "skf/Skf2060Sc004/BulkComplete", 
                 "OK", "キャンセル", this, false);
     }
@@ -88,7 +88,7 @@
     onClickRecandidate = function(rowId){
         setParamFromGridRowData(rowId);
         
-        skf.common.confirmPopup("選択された申請書を一括で承認します。よろしいですか？", 
+        skf.common.confirmPopup("すでに選択済みですが、再提示します。よろしいですか？", 
                 "確認", "paramForm", "skf/Skf2060Sc001/init", 
                 "ok", "キャンセル", this, false);
     }
