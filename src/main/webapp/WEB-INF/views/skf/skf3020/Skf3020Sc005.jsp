@@ -45,7 +45,7 @@
 						<nfwui:Button id="btnKariShainNo" cssClass="imui-small-button" url="skf/Skf3020Sc005/set" formId="form" value="仮社員番号設定" disabledPatterns="CHANGE,CREATED" />
 						<%-- <input id="btnKariShainNo" class="imui-small-button" type="button" value="仮社員番号設定" /> --%>
 						<br />
-						<nfwui:CheckBoxGroupTag id="id_check_shainNo">
+						<nfwui:CheckBoxGroupTag id="id_check_shainNo" disabledPatterns="CREATED">
 							<nfwui:CheckBox id="check_shainNo" name="id_check_shainNo" value="1" label="社員番号の変更が必要" />
 						</nfwui:CheckBoxGroupTag>
 						<%-- <label for="id_check_shainNo">社員番号の変更が必要</label> --%>
