@@ -29,7 +29,7 @@
 		<div id="listTableArea">
 			<imui:listTable id="mainList" process="jssp" autoEncode="false" autoWidth="true" rowNumbers="false"
 				autoResize="true" multiSelect="false" data="${form.listTableData}" page="${form.listPage}" onPaging="onPaging"
-				 tabindex="1">
+				 tabindex="1" height="360" >
 				<pager rowNum="${form.listTableMaxRowCount}" />
 				<cols sortable="false">
 				<col name="colShainNo" caption="社員番号" width="120" sortable="false" align="left" wrap="true"/>
