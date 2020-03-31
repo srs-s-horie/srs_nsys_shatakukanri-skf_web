@@ -174,6 +174,22 @@
 	        });
 			(function($) {
 				onPaging = function(e,index) {
+					
+					var map = new Object();
+					map['listPage'] = $("#listPage").val();
+					map['listTableData'] = $("#listTableData").val();
+					//$("#resultList").jqGrid("clearGridData");
+					
+					nfw.common.doAjaxAction("skf/Skf3050Sc001/pageIndexChangingAsync",map,true,function(data) {
+						// リストテーブル情報更新
+						var grid = $("#mainList");
+				
+						 $("#mainList").jqGrid("setGridParam",{
+					            data : data.listTableData,
+					        }).trigger("reloadGrid");
+					
+					});
+					
 	                $("#regist").attr("disabled", true); // 登録ボタンを非活性にする
 	                $('#regist').addClass("imui-disabled-button");
 				}
@@ -186,6 +202,5 @@
 			style="width: 150px" tabindex="4" disabled="${form.btnRegistDisabled}" onclick="setRegistListData()"/>
 		</div>
 	</div>
-</div>
 </nfwui:Form>
 <!-- コンテンツエリア　ここまで -->
