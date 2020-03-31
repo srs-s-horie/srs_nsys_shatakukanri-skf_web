@@ -20,6 +20,19 @@
   (function($){
     // 画面表示時に定義される処理
     $(document).ready(function(){
+    	// 提示対象者名のフォームからフォーカスが外れた時のイベント
+		$("#candidatePersonName").blur(function() {
+			// 提示対象者名の値が無ければHidden値の社員番号の値も初期化する
+			if ($("#candidatePersonName").val() == null || $("#candidatePersonName").val() == "") {
+				$("#shainNo").val("");
+			}
+		});
+    	
+	    //ウィンドウリサイズ時イベント
+	    $(window).bind('resize', function(){
+	        // 一覧の横幅を変更
+	        $('#mainList').setGridWidth($("#listTableArea").width(), true);
+	    }).trigger('resize');
 
     });
 
@@ -125,11 +138,6 @@
         }
     }
 
-    //ウィンドウリサイズ時イベント
-    $(window).bind('resize', function(){
-        // 一覧の横幅を変更
-        $('#mainList').setGridWidth($("#listTableArea").width(), true);
-    }).trigger('resize');
 
   })(jQuery);
 </script>
