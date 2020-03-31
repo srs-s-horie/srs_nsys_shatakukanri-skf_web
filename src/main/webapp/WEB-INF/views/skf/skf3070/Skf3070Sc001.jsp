@@ -28,13 +28,13 @@
 							<nfwui:LabelBox id="lblOwnerName" code="<%= MessageIdConstant.SKF3070_SC001_OWNER_NAME %>" />
 						</th>
 						<td colspan="2">
-	   						<imui:textbox id="ownerName" name="ownerName" value="${f:h(form.ownerName)}" placeholder="例 中日本 一郎" tabindex="3"/>
+	   						<imui:textbox id="ownerName" name="ownerName" value="${f:h(form.ownerName)}" style="ime-mode:active;" placeholder="例 中日本 一郎" tabindex="3"/>
 	   					</td>
 	   					<th style="width: 200px;">
 							<nfwui:LabelBox id="lblShatakuName" code="<%= MessageIdConstant.SKF3070_SC001_SHATAKU_NAME %>" />
 						</th>
 						<td colspan="2">
-	   						<imui:textbox id="shatakuName" name="shatakuName" value="${form.shatakuName}" placeholder="例 社宅名"  tabindex="4"/>
+	   						<imui:textbox id="shatakuName" name="shatakuName" value="${form.shatakuName}" style="ime-mode:active;" placeholder="例 社宅名"  tabindex="4"/>
 	   					</td>
 					</tr>
 					<tr>
@@ -42,14 +42,14 @@
 							<nfwui:LabelBox id="lblOwnerNameKk" code="<%= MessageIdConstant.SKF3070_SC001_OWNER_NAME_KK %>" />
 						</th>
 						<td colspan="2">
-	   						<imui:textbox id="ownerNameKk" name="ownerNameKk" value="${f:h(form.ownerNameKk)}" placeholder="例 ナカニホン　イチロウ" tabindex="5"/>
+	   						<imui:textbox id="ownerNameKk" name="ownerNameKk" value="${f:h(form.ownerNameKk)}" style="ime-mode:active;" placeholder="例 ナカニホン　イチロウ" tabindex="5"/>
 	   					</td>
 	   					<th style="width: 200px;">
 							<nfwui:LabelBox id="lblShatakuAddress" code="<%= MessageIdConstant.SKF3070_SC001_SHATAKU_ADDRESS %>" />
 						</th>
 						<td colspan="2">
 	   						<imui:textbox id="shatakuAddress" name="shatakuAddress" value="${f:h(form.shatakuAddress)}" 
-	   						placeholder="例 愛知県名古屋市中区錦2-18-19" tabindex="6"/>
+	   						style="ime-mode:active;" placeholder="例 愛知県名古屋市中区錦2-18-19" tabindex="6"/>
 	   					</td>
 					</tr>
 					<tr>
@@ -58,7 +58,7 @@
 						</th>
 						<td colspan="2">
 	   						<imui:textbox id="address" name="address" value="${f:h(form.address)}"  width="100%" 
-	   							placeholder="例 愛知県名古屋市中区錦2-18-19"  tabindex="7"/>
+	   							style="ime-mode:active;" placeholder="例 愛知県名古屋市中区錦2-18-19"  tabindex="7"/>
 	   					</td>
 	   					<th style="width: 200px;">
 							<nfwui:LabelBox id="lblTargetYear" code="<%= MessageIdConstant.SKF3070_SC001_TARGET_YEAR %>" />
