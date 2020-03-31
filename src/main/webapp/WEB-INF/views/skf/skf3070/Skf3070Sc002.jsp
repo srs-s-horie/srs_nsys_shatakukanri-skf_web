@@ -28,7 +28,7 @@
 					</th>				
 					<td colspan="3">
 						<imui:textbox id="ownerName" name="ownerName" value="${f:h(form.ownerName)}" placeholder="例 中日本 一郎" 
-							style="width: 95%;" tabindex="1"/>
+							style="width: 95%; ime-mode:active;" tabindex="1"/>
 					</td>
 					<th rowspan="2" style="width: 160px;">
 						<nfwui:LabelBox id="lblAddressLocation" code="<%= MessageIdConstant.SKF3070_SC002_ADDRESS_LOCATION %>" />
@@ -37,7 +37,7 @@
 						<nfwui:LabelBox id="lblZipCode" code="<%= MessageIdConstant.SKF3070_SC002_ZIP_CODE %>" />
 					</th>
 					<td colspan="3">
-						<imui:textbox id="zipCode" name="zipCode" value="${f:h(form.zipCode)}" 	maxlength="7" style="width: 20%;" 
+						<imui:textbox id="zipCode" name="zipCode" value="${f:h(form.zipCode)}" 	maxlength="7" style="width: 20%; ime-mode:disabled;" 
 							placeholder="例  4600003" tabindex="3"/>
 					<nfwui:Button id="searchAddress" name="searchAddress" formId="form" value="住所検索" cssClass="imui-small-button" url="skf/Skf3070Sc002/searchAddress" tabindex="4" />
 					</td>
@@ -48,14 +48,14 @@
 					</th>
 					<td colspan="3">
 						<imui:textbox id="ownerNameKk" name="ownerNameKk" value="${f:h(form.ownerNameKk)}" placeholder="例 ナカニホン　イチロウ"
-							 style="width: 95%;" tabindex="2"/>
+							 style="width: 95%; ime-mode:active;" tabindex="2"/>
 					</td>
 					<th style="width: 100px;">
 						<nfwui:LabelBox id="lblAddress" code="<%= MessageIdConstant.SKF3070_SC002_ADDRESS %>" />
 					</th>
 					<td colspan="3">
 						<imui:textbox id="address" name="address" value="${f:h(form.address)}" 
-							placeholder="例 愛知県名古屋市中区錦2-18-19"  style="width: 95%;"  tabindex="5"/>
+							placeholder="例 愛知県名古屋市中区錦2-18-19"  style="width: 95%; ime-mode:active;"  tabindex="5"/>
 					</td>
 				</tr>
 				<tr>
@@ -73,7 +73,7 @@
 					<td colspan="6">
 						<imui:select id="acceptFlg" name="acceptFlg" list="${form.ddlAcceptFlgList}" tabindex="7"/>
 						<imui:textbox id="acceptStatus" name="acceptStatus" value="${f:h(form.acceptStatus)}" placeholder="例 督促状況" 
-							style="width: 30%;" tabindex="8"/>
+							style="width: 30%; ime-mode:active;" tabindex="8"/>
 					</td>
 				</tr>
 				<tr>
@@ -82,7 +82,7 @@
 					</th>
 					<td colspan="6">
 						<imui:textArea id="remarks" name="remarks" 
-							value="${form.remarks}" style="width: 90%;" placeholder="例 共有持分不明につき総額" tabindex="9"/>
+							value="${form.remarks}" style="width: 90%; ime-mode:active;" placeholder="例 共有持分不明につき総額" tabindex="9"/>
 					</td>
 				</tr>
 			</table>
