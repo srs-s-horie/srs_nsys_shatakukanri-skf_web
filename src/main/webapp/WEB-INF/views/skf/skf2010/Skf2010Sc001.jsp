@@ -43,10 +43,11 @@ $(function(){
 			if (map['popShatakuKanriNo'] == null) {
 				map['popShatakuKanriNo'] = $("#hdnShatakuKanriNo").val();
 			}
+			// 現在のリストテーブルの内容を初期化
+    		grid.clearGridData();
+			
 			// 非同期で検索処理を実行
 			nfw.common.doAjaxAction("skf/Skf2010Sc001/SearchAsync", map, true, function(data) {
-				// 現在のリストテーブルの内容を初期化
-	    		grid.clearGridData();
 				// リストテーブルのデータをセット
 				grid.jqGrid('setGridParam', {data:data.popListTableList});
 				// リストテーブルをリロード
