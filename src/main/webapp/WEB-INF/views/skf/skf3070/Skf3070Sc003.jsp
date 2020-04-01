@@ -21,9 +21,8 @@
 }
 </style>
 <!-- コンテンツエリア -->
-<div class="imui-form-container-wide" style="width: 95%;">
 	<nfwui:Form id="form" name="form" modelAttribute="form">
-		<div class="imui-form-container-wide" style="width:95%;">
+		<div class="imui-form-container-wide">
 			<table class="imui-form-search-condition">
 				<nfwui:Title id="ownerInfoTitle" code="<%= MessageIdConstant.SKF3070_SC003_OWNER_INFO_TITLE %>" titleLevel="2" />
 				 	<tr>
@@ -87,7 +86,7 @@
 			</table>
 		</div>
 		<!-- テーブル一覧箇所 -->
-		<div class="imui-form-container-wide" style="width:95%;">
+		<div class="imui-form-container-wide">
 		<!-- 明細部 -->
 			<nfwui:Title id="listTitle" code="<%= MessageIdConstant.SKF3070_SC003_BUKKEN_RESULT %>" titleLevel="2" />
 		    <!-- listTable表示領域 -->
@@ -114,6 +113,11 @@
 				</imui:listTable>
 				<table name="imui-8eqlrzst4hv6std" id="sampleListTable1"></table>
 		    </div>
+		    <br>
+			<%-- フッターエリア --%>		    
+		      	<div class="align-L">
+    				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="3" />
+				</div>
 		</div>
 		<!-- hidden項目 -->
 		<input type="hidden" name="ownerNo" id="ownerNo" value="" />
@@ -133,11 +137,6 @@
 	})(jQuery);	
 	</script>
 	<br>
-	<%-- フッターエリア --%>
-  	<div class="align-L">
-    	<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="3" />
-	</div>
-</div>
 
 <script type="text/javascript">
 /**
