@@ -170,7 +170,7 @@ if(menuSesValTop != null){
                     </tr>
                     <tr>
                         <th>
-                            <a href="/imart/skf/Skf2060Sc004/init" class="imui-accent" style="margin-left: 8px">
+                            <a href="/imart/skf/Skf2060Sc004/init?menuFlg=1" class="imui-accent" style="margin-left: 8px">
                             	<nfwui:LabelBox id="kariageKohoBukkenTeiji" code="<%= MessageIdConstant.SKF1010_SC001_KARIAGE_KOHO_BUKKEN_TEIJI %>" />
                             </a>
                         </th>

@@ -79,4 +79,7 @@ public class Skf2030CommonForm extends BaseForm {
 	// 操作ガイド
 	private String operationGuide;
 
+	// 戻るボタン遷移先用URL
+	private String backUrl;
+
 }
