@@ -36,7 +36,7 @@
 				</tbody>
 			</table>
 			<div class="align-L">
-				<input type="button" value="取込" class="imui-medium-button" onclick="clickTorikomiBtn()"/>
+				<input type="button" value="取込" class="imui-small-button" onclick="clickTorikomiBtn()"/>
 			</div>
 			<br /><br />
 			<div class="align-L">
