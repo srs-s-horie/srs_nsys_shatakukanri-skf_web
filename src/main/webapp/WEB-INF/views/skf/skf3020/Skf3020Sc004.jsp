@@ -192,6 +192,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 				// 転任者調書取込
 				case 1:
 					// 転入者調書取込画面（SKF3020_SC002）
+					$("#prePageId").val("Skf3020Sc004");
 					var formId= "form";
 					url = "skf/Skf3020Sc002/init";
 					nfw.common.submitForm(formId, url);					
@@ -203,6 +204,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 				// 新規
 				case 2:
 					// 転任者登録画面（SKF3020_SC005）
+					$("#prePageId").val("Skf3020Sc004");
 					var formId= "form";
 					url = "skf/Skf3020Sc005/init";
 					nfw.common.submitForm(formId, url);					
@@ -233,7 +235,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 <!-- コンテンツエリア -->
 <nfwui:Form id="form" name="form" modelAttribute="form">
 
-	<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3020_SC004 %>" />
+	<input type="hidden" name="prePageId" id="prePageId" value="" />
 	<input type="hidden" name="hdnShainNo" id="hdnShainNo" value="${form.hdnShainNo}" />
 	<input type="hidden" name="hdnShainName" id="hdnShainName" value="${form.hdnShainName}" />
 	<input type="hidden" name="hdnNyukyo" id="hdnNyukyo" value="${form.hdnNyukyo}" />
@@ -244,12 +246,10 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 	<input type="hidden" name="hdnShinShozoku" id="hdnShinShozoku" value="${form.hdnShinShozoku}" />
 	<input type="hidden" name="hdnNyutaikyoYoteiSakuseiKubun" id="hdnNyutaikyoYoteiSakuseiKubun" value="${form.hdnNyutaikyoYoteiSakuseiKubun}" />
 	<input type="hidden" name="hdnBiko" id="hdnBiko" value="${form.hdnBiko}" />
-	<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3020Sc004/init"/>
 	
 	<div style="width:100%;" >
 		<div class="imui-form-container-wide">
 			<div class="imui-chapter-title"><h2>検索条件</h2></div>
-			<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3020_SC004 %>" />
 				<nfwui:Table use="search">
 				<tbody>
 					<tr>
@@ -421,7 +421,6 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 		<input type="hidden" name="hdnShinShozoku" id="hdnShinShozoku" value="${form.hdnShinShozoku}" />
 		<input type="hidden" name="hdnNyutaikyoYoteiSakuseiKubun" id="hdnNyutaikyoYoteiSakuseiKubun" value="${form.hdnNyutaikyoYoteiSakuseiKubun}" />
 		<input type="hidden" name="hdnBiko" id="hdnBiko" value="${form.hdnBiko}" />
-		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3020Sc004/init"/>
 
 		<!-- 選択行 -->
 		<!-- 選択行:入居 -->

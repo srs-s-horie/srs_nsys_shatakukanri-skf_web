@@ -28,6 +28,7 @@
 		<input type="hidden" id="hdnSelShainNo" name="hdnSelShainNo" value="${form.hdnSelShainNo}" />
 		<input type="hidden" id="insertFormName" name="insertFormName" value="" />
 		<input type="hidden" id="callbackFlag" name="callbackFlag" value="" />
+		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3020Sc004/init"/>
 		<table class="imui-form-search-condition">
 			<tbody>
 				<tr>
