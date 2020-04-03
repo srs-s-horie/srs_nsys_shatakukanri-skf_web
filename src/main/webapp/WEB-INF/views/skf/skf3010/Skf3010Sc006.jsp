@@ -20,7 +20,7 @@
 //		var url="skf/Skf3010Sc001/init?SKF3010_SC001&tokenCheck=0"
 //		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
 		var backMessage = "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。";
-		nfw.common.confirmPopup(backMessage, "戻る確認", "form", "skf/Skf3010Sc001/init", "ok", "キャンセル", this, true);	
+		nfw.common.confirmPopup(backMessage, "戻る確認", "form", "skf/Skf3010Sc001/init", "OK", "キャンセル", this, true);	
 	}
 	
 </script>
@@ -1210,7 +1210,7 @@
 								buttons: [
 									{
 										'id': 'tourokuOk',
-										'text': 'ok',
+										'text': 'OK',
 										'click': function() {
 											$(this).imuiMessageDialog('close');
 											// 登録処理
@@ -1252,7 +1252,7 @@
 									buttons: [
 										{
 											'id': 'tourokuOk',
-											'text': 'ok',
+											'text': 'OK',
 											'click': function() {
 												$(this).imuiMessageDialog('close');
 // 												url = "skf/Skf3010Sc006/regist";
@@ -1321,7 +1321,7 @@
 								buttons: [
 									{
 										'id': 'contractAddOk',
-										'text': 'ok',
+										'text': 'OK',
 										'click': function() {
 											$(this).imuiMessageDialog('close');
 											// 契約情報変更チェック
@@ -1340,7 +1340,7 @@
 													buttons: [
 														{
 															'id': 'contractChangeAddOk',
-															'text': 'ok',
+															'text': 'OK',
 															'click': function() {
 																$(this).imuiMessageDialog('close');
 																// 現在状態バックアップ
@@ -1401,7 +1401,7 @@
 									buttons: [
 										{
 											'id': 'contractDelOk1',
-											'text': 'ok',
+											'text': 'OK',
 											'click': function() {
 												$(this).imuiMessageDialog('close');
 												// 現在状態バックアップ
@@ -1433,7 +1433,7 @@
 									buttons: [
 										{
 											'id': 'contractDelOk2',
-											'text': 'ok',
+											'text': 'OK',
 											'click': function() {
 												$(this).imuiMessageDialog('close');
 												// 現在状態バックアップ
@@ -1469,7 +1469,7 @@
 								buttons: [
 									{
 										'id': 'contractAddOk',
-										'text': 'ok',
+										'text': 'OK',
 										'click': function() {
 											$(this).imuiMessageDialog('close');
 											// 契約情報変更チェック
@@ -1492,7 +1492,7 @@
 													buttons: [
 														{
 															'id': 'contractChangeAddOk',
-															'text': 'ok',
+															'text': 'OK',
 															'click': function() {
 																$(this).imuiMessageDialog('close');
 																// 現在状態バックアップ
@@ -1553,7 +1553,7 @@
 									buttons: [
 										{
 											'id': 'contractDelOk1',
-											'text': 'ok',
+											'text': 'OK',
 											'click': function() {
 												$(this).imuiMessageDialog('close');
 												// 現在状態バックアップ
@@ -1586,7 +1586,7 @@
 									buttons: [
 										{
 											'id': 'contractDelOk2',
-											'text': 'ok',
+											'text': 'OK',
 											'click': function() {
 												$(this).imuiMessageDialog('close');
 												// 現在状態バックアップ
@@ -1942,7 +1942,7 @@
 									buttons: [
 										{
 											'id': 'contractChangeOk',
-											'text': 'ok',
+											'text': 'OK',
 											'click': function() {
 												$(this).imuiMessageDialog('close');
 												// 現在状態バックアップ
@@ -1989,7 +1989,7 @@
 									buttons: [
 										{
 											'id': 'contractChangeOk',
-											'text': 'ok',
+											'text': 'OK',
 											'click': function() {
 												$(this).imuiMessageDialog('close');
 												// 現在状態バックアップ
