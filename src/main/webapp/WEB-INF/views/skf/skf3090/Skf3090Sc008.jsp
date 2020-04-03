@@ -95,14 +95,14 @@
 			
 			        menubar: false,
 			        toolbar_items_size: 'small',
+			        height: 240
 			});</script>
 			<imui:textbox id="note" name="note" value="${form.note}" tabindex="4" />
 			</div>
 		</tr>
 	</table>
-	<!----------------a---------------------------------------------------->
 	<div class="imui-box-layout">
-		<table style="width: 95%;">
+		<table style="width: 100%;">
 			<tbody>
 				<td align="right">
 				<imui:button id="regist" name="regist" value="お知らせ内容を登録" class="imui-medium-button" tabindex="5" />
@@ -118,7 +118,7 @@
 		$(document).ready(function(){	
 			//高さ変更
 			//$(".ui-jqgrid-view").height(300);
-			$(".ui-jqgrid-bdiv").height(225);
+			$(".ui-jqgrid-bdiv").height(225);		
 		});	
 		
 		//「お知らせを登録」ボタンクリック時
