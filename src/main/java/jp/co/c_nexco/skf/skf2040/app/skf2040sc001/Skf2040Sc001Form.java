@@ -228,4 +228,7 @@ public class Skf2040Sc001Form extends NfwfileScDwdForm {
 	private String hdnConfirmFlg;
 	// ステータス
 	private String hdnstatus;
+
+	// 戻るボタンの遷移先
+	private String backUrl;
 }

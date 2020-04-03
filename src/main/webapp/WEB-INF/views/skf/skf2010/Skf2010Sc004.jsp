@@ -50,7 +50,7 @@
 <script src="scripts/skf/skfCommon.js"></script>
 <script type="text/javascript">
 function back1() {
-	var url="skf/Skf2010Sc003/Search"
+	var url="${form.backUrl}";
 	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
 }
 
