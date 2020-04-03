@@ -125,7 +125,7 @@
 					<!-- 申請内容-->
 					<td style="width: 7%;">
 						<nfwui:PopupButton id="sc006ShinseiNaiyo" name="sc006ShinseiNaiyo" value="申請内容" use="popup" 
-							cssClass="imui-small-button" popupWidth="800" popupHeight="650"  
+							cssClass="imui-small-button" popupWidth="850" popupHeight="650"  
 							modalMode="true" screenUrl="skf/Skf3021Sc002/init"
 							parameter="hdnShainNo:hdnRowShainNo,hdnNyutaikyoKbn:hdnRowNyutaikyoKbn,hdnSyoruiKanriNo:hdnRowApplNo" 
 							disabled="${form.sc006ShinseiNaiyoDisableFlg }" tabindex="3"/> 
