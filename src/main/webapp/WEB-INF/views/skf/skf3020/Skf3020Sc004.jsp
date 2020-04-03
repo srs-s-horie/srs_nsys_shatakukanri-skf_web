@@ -147,7 +147,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 			dialogTitle = "確認";
 			dialogMessage = "削除します。よろしいですか？";
 			var url = "skf/Skf3020Sc004/delete";
-			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form2", url, "ok", "キャンセル", this, true);
+			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form2", url, "OK", "キャンセル", this, true);
 		}else{
 			// 何もしない
 		}
@@ -187,12 +187,11 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 					dialogTitle = "確認";
 					dialogMessage = "仮社員番号の転任者調書データを一括削除します。よろしいですか？";
 					url = "skf/Skf3020Sc004/shainDelete";
-					nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+					nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
 					break;
 				// 転任者調書取込
 				case 1:
 					// 転入者調書取込画面（SKF3020_SC002）
-					$("#prePageId").val("Skf3020Sc004");
 					var formId= "form";
 					url = "skf/Skf3020Sc002/init";
 					nfw.common.submitForm(formId, url);					
@@ -204,7 +203,6 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 				// 新規
 				case 2:
 					// 転任者登録画面（SKF3020_SC005）
-					$("#prePageId").val("Skf3020Sc004");
 					var formId= "form";
 					url = "skf/Skf3020Sc005/init";
 					nfw.common.submitForm(formId, url);					
@@ -218,7 +216,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 					dialogTitle = "登録";
 					dialogMessage = "入居・退居情報を更新し、入退居予定データを作成します。よろしいですか？";
 					url = "skf/Skf3020Sc004/regist";
-					nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+					nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
 					break;
 				default:
 					nfw.common.showReserveMessage("warning", "未サポート(未実装機能)です。");
@@ -235,7 +233,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 <!-- コンテンツエリア -->
 <nfwui:Form id="form" name="form" modelAttribute="form">
 
-	<input type="hidden" name="prePageId" id="prePageId" value="" />
+	<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3020_SC004 %>" />
 	<input type="hidden" name="hdnShainNo" id="hdnShainNo" value="${form.hdnShainNo}" />
 	<input type="hidden" name="hdnShainName" id="hdnShainName" value="${form.hdnShainName}" />
 	<input type="hidden" name="hdnNyukyo" id="hdnNyukyo" value="${form.hdnNyukyo}" />

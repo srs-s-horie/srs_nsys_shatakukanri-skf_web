@@ -380,7 +380,7 @@ function back1() {
 										var dialogTitle = "確認";
 										//MessageIdConstant.：I-SKF-2024
 										//var dialogMessage = "入力内容が無効になります。破棄してもよろしいですか？";
-								    	//nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc007/selectList", "ok", "キャンセル", this, true);
+								    	//nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc007/selectList", "OK", "キャンセル", this, true);
 								    	$("<div>入力内容が無効になります。破棄してもよろしいですか？</div>").imuiMessageDialog({
 							    			iconType : 'question',
 							    			title : '確認',

@@ -299,7 +299,7 @@
 								dialogTitle = "確認";
 								dialogMessage = "契約情報を出力します。よろしいですか？";
 								url = "skf/Skf3010Sc001/contractDownLoad";
-								nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form2", url, "ok", "キャンセル", this, true);
+								nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form2", url, "OK", "キャンセル", this, true);
 								break;
 							// 新規（保有・区分）
 							case 1:

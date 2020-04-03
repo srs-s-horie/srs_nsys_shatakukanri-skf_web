@@ -1195,7 +1195,7 @@
 								var dialogTitle = "確認";
 								//MessageIdConstant.：I-SKF-3005
 								var dialogMessage = "削除します。よろしいですか？";
-								nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc006/attachedFileDelete", "ok", "キャンセル", this, true);
+								nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc006/attachedFileDelete", "OK", "キャンセル", this, true);
 							
 						}
 						
@@ -1289,7 +1289,7 @@
 							var dialogTitle = "確認";
 							//MessageIdConstant.：I-SKF-3004
 							var dialogMessage = "（" + $("#shatakuName").val() + "・" + $("#roomNo").val() + "）の削除処理を実行します。よろしいですか？";
-							nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc006/delete", "ok", "キャンセル", this, true);
+							nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc006/delete", "OK", "キャンセル", this, true);
 						}
 						
 						// 住所検索押下時のイベント
@@ -1632,7 +1632,7 @@
 							var dialogTitle = "確認";
 							//MessageIdConstant.：I-SKF-3110
 							var dialogMessage = "社宅情報は登録済みでしょうか。確認後、駐車場契約情報登録を行ってください。";
-							nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc007/init", "ok", "キャンセル", this, true);
+							nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc007/init", "OK", "キャンセル", this, true);
 						}
 						
 						// 社員入力支援コールバック(寮長・自治会長)
@@ -2102,7 +2102,7 @@
 					    	//確認メッセージ
 							dialogTitle = "確認";
 							dialogMessage = "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。";
-					    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc001/init", "ok", "キャンセル", this, true);	
+					    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3010Sc001/init", "OK", "キャンセル", this, true);	
 					    }
 					    
 						// 賃貸人入力支援戻り値設定用

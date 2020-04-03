@@ -164,7 +164,7 @@
 						var url = 'skf/Skf3020Sc005/registe';
 						var dialogTitle = '確認';
 				    	var dialogMessage = $("#enterMsg").val();
-				    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+				    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
 					}
 					
 					/*

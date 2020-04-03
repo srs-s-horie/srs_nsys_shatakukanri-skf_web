@@ -295,7 +295,7 @@ function onCellAttrNtk(rowId,val,rawObject,cm,rdata){
 									
 								var dialogTitle = "確認";
 								var dialogMessage = row.hdnDeleteText;
-								nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3021Sc001/delete", "ok", "キャンセル", this, true);
+								nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3021Sc001/delete", "OK", "キャンセル", this, true);
 
 							}
 							var prop = $('#allListCheck').prop('checked');

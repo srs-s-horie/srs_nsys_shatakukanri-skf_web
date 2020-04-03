@@ -25,7 +25,7 @@
 	*/
 	function back1() {
 		var backMessage = "戻ります。よろしいですか？";
-		nfw.common.confirmPopup(backMessage, "戻る確認", "form", "skf/Skf3030Sc001/prevPage", "ok", "キャンセル", this, true);	
+		nfw.common.confirmPopup(backMessage, "戻る確認", "form", "skf/Skf3030Sc001/prevPage", "OK", "キャンセル", this, true);	
 	}
 
 	/*
@@ -316,7 +316,7 @@
 				var dialogMessage = '社宅管理台帳リストを出力します。<br />出力に20秒～30秒くらいかかります。<br />よろしいですか？';
 				var url = 'skf/Skf3030Sc001/downloadRp002';
 				
-				nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+				nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
 			});
 			
 			/*
@@ -334,7 +334,7 @@
 				var dialogMessage = '前月比較確認リストを出力します。<br />出力に20秒～30秒くらいかかります。<br />よろしいですか？';
 				var url = 'skf/Skf3030Sc001/downloadRp003';
 				
-				nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+				nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
 			});
 		
 			/*
