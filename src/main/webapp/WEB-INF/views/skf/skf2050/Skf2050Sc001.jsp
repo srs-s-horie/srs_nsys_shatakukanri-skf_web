@@ -27,7 +27,7 @@
      * 一つ前の画面へ戻る
      */
     function back1() {
-    	var url="skf/Skf2010Sc003/init"
+    	var url="${form.backUrl}";
     	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
     }
     
