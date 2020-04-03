@@ -118,7 +118,7 @@
 		$(document).ready(function(){	
 			//高さ変更
 			//$(".ui-jqgrid-view").height(300);
-			$(".ui-jqgrid-bdiv").height(225);		
+			$(".ui-jqgrid-bdiv").height(225);
 		});	
 		
 		//「お知らせを登録」ボタンクリック時
