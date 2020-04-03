@@ -167,7 +167,6 @@
 					
 					nfw.common.doAjaxAction("skf/Skf3050Sc002/closeTaskExecutionAsync", reParamMap, true, function(data) {
 						checkBatchProc(data);
-						alert("締め処理タスク登録。メッセージID:" + data.taskMsgId);
 					});
 				});
 			}
@@ -194,7 +193,7 @@
 				paramMap['hdnJikkouShijiYoteiNengetsu'] = $("#hdnJikkouShijiYoteiNengetsu").val();
 				
 				nfw.common.doAjaxAction("skf/Skf3050Sc002/closeCancelTaskExecutionAsync", paramMap, true, function(data) {
-					alert("締め解除処理タスク登録。メッセージID:" + data.taskMsgId);
+//					alert("締め解除処理タスク登録。メッセージID:" + data.taskMsgId);
 				});
 			});
 		});
@@ -210,7 +209,7 @@
 				paramMap['hdnJikkouShijiYoteiNengetsu'] = $("#hdnJikkouShijiYoteiNengetsu").val();
 				
 				nfw.common.doAjaxAction("skf/Skf3050Sc002/confirmPositiveCooperationTaskExecutionAsync", paramMap, true, function(data) {
-					alert("給与連携データ確定処理タスク登録。メッセージID:" + data.taskMsgId);
+//					alert("給与連携データ確定処理タスク登録。メッセージID:" + data.taskMsgId);
 				});
 			});
 		});
