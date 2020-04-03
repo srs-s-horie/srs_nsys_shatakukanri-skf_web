@@ -57,6 +57,7 @@ public class Skf3090Sc004Form extends BaseForm {
 	// 室、チーム又は課リスト
 	private List<Map<String, Object>> affiliation2List; // IM標準版
 
+	// 検索フラグ
 	private String searchFlag;
 
 	/** 従業員マスタ登録画面hidden項目連携用 */

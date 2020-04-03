@@ -112,16 +112,17 @@
 				<!-- 明細部 -->
 				<nfwui:Form id="form2" name="form2" action="/skf/Skf3090Sc005/init" modelAttribute="form">
 					<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3090_SC004 %>" />
+					<input type="hidden" name="hdnOriginalCompanyCd" id="hdnOriginalCompanyCd" value="${form.hdnOriginalCompanyCd}" />
 					<input type="hidden" name="hdnShainNo" id="hdnShainNo" value="${form.hdnShainNo}" />
 					<input type="hidden" name="hdnName" id="hdnName" value="${form.hdnName}"  />
 					<input type="hidden" name="hdnNameKk" id="hdnNameKk" value="${form.hdnNameKk}" />
-					<input type="hidden" name="hdnOriginalCompanyCd" id="sendCompanyCd" value="" />
 					<input type="hidden" name="hdnAgencyCd" id="hdnAgencyCd" value="${form.hdnAgencyCd}" />
 					<input type="hidden" name="hdnAffiliation1Cd" id="hdnAffiliation1Cd" value="${form.hdnAffiliation1Cd}" />
 					<input type="hidden" name="hdnAffiliation2Cd" id="hdnAffiliation2Cd" value="${form.hdnAffiliation2Cd}" />
+					<input type="hidden" name="hdnSendCompanyCd" id="sendCompanyCd" value="" />
 					<input type="hidden" name="hdnSelectedShainNo" id="sendShainNo" value="" />
 					<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3090Sc004/init"/>
-				
+
 					<input type="hidden" name="updateFlag" id="updateFlag" value="1" />
 					<div class="imui-chapter-title"><h2>検索結果一覧</h2></div>
 					<script type="text/javascript">
@@ -213,6 +214,13 @@
 			<div class="align-R">
 			<nfwui:Form id="new" name="new">
 				<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3090_SC004 %>" />
+				<input type="hidden" name="hdnOriginalCompanyCd" id="hdnOriginalCompanyCd" value="${form.hdnOriginalCompanyCd}" />
+				<input type="hidden" name="hdnShainNo" id="hdnShainNo" value="${form.hdnShainNo}" />
+				<input type="hidden" name="hdnName" id="hdnName" value="${form.hdnName}"  />
+				<input type="hidden" name="hdnNameKk" id="hdnNameKk" value="${form.hdnNameKk}" />
+				<input type="hidden" name="hdnAgencyCd" id="hdnAgencyCd" value="${form.hdnAgencyCd}" />
+				<input type="hidden" name="hdnAffiliation1Cd" id="hdnAffiliation1Cd" value="${form.hdnAffiliation1Cd}" />
+				<input type="hidden" name="hdnAffiliation2Cd" id="hdnAffiliation2Cd" value="${form.hdnAffiliation2Cd}" />
 				<input type="hidden" name="updateFlag" id="updateFlag" value="0"/>
 				<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3090Sc004/init"/>
 				<nfwui:Button id="regist" value="新規" cssClass="imui-medium-button" url="skf/Skf3090Sc005/init" formId="new"  tabindex="11"/>

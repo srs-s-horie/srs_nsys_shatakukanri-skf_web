@@ -93,6 +93,8 @@ public class Skf3090Sc005Form extends BaseForm {
 	private String roleId;
 	// 登録フラグ
 	private String registFlg;
+	// 検索フラグ
+	private String searchFlag;
 
 	/** コントロール設定値 */
 	private String shainNoDisabled;
