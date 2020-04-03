@@ -691,6 +691,11 @@ public class Skf2020CommonForm extends NfwfileScDwdForm {
 	private String rdoParkingOnly;
 
 	/**
+	 * 戻るボタンの遷移先
+	 */
+	private String backUrl;
+
+	/**
 	 * データダウンロード処理。
 	 */
 	public static interface DataDownload {
