@@ -1295,7 +1295,7 @@
 								$("#sc006Status").val("");
 								// 確認ダイアログ表示(I-SKF-3065)
 								nfw.common.confirmPopup("入居情報の提示データを継続登録します。よろしいですか？",
-										"確認", "form", "skf/Skf3022Sc006/keizokuLogin", "ok", "キャンセル", this, true);
+										"確認", "form", "skf/Skf3022Sc006/keizokuLogin", "OK", "キャンセル", this, true);
 								break;
 							default:
 								$("#sc006Status").val("");
@@ -1949,7 +1949,7 @@
 							backUpStatus();
 							// 確認ダイアログ表示
 							nfw.common.confirmPopup($("#litMessageTmpSave").val(),
-									"確認", "form", "skf/Skf3022Sc006/tmpSave", "ok", "キャンセル", this, true);
+									"確認", "form", "skf/Skf3022Sc006/tmpSave", "OK", "キャンセル", this, true);
 							break;
 						case "1":
 							// 作成完了★
@@ -1959,7 +1959,7 @@
 							backUpStatus();
 							// 確認ダイアログ表示
 							nfw.common.confirmPopup($("#litMessageCreate").val(),
-									"確認", "form", "skf/Skf3022Sc006/create", "ok", "キャンセル", this, true);
+									"確認", "form", "skf/Skf3022Sc006/create", "OK", "キャンセル", this, true);
 							break;
 						case "2":
 							// 社宅管理台帳登録★
@@ -1969,7 +1969,7 @@
 							backUpStatus();
 							// 確認ダイアログ表示
 							nfw.common.confirmPopup($("#litMessageShatakuLogin").val(),
-									"確認", "form", "skf/Skf3022Sc006/shatakuLogin", "ok", "キャンセル", this, true);
+									"確認", "form", "skf/Skf3022Sc006/shatakuLogin", "OK", "キャンセル", this, true);
 							break;
 						default:
 							// 状態クリア

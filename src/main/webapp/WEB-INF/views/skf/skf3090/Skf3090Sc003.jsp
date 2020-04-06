@@ -104,7 +104,7 @@
 			dialogTitle = "確認";
 			dialogMessage = "事業領域情報を削除します。よろしいですか？";
 			var url = "skf/Skf3090Sc003/delete";
-			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
 		}else{
 			// 何もしない
 		}
@@ -210,7 +210,7 @@
 			dialogTitle = "確認";
 			dialogMessage = "事業領域情報を追加します。よろしいですか？";
 			var url = "skf/Skf3090Sc003/AddRegist";
-			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
 		}else{
 			// 何もしない
 		}
@@ -318,7 +318,7 @@
 					dialogTitle = "登録";
 					dialogMessage = "上書き登録処理を実行します。よろしいですか？";
 					url = "skf/Skf3090Sc003/registe";
-					nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+					nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
 					break;
 				// 検索
 				case 1:
