@@ -380,7 +380,7 @@
 					dialogTitle = "確認";
 					dialogMessage = "年齢加算対象者一覧CSVを出力します。よろしいですか？";
 					url = "skf/Skf3060Sc001/download";
-					nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+					nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
 					break;
 				// メール送信
 				case 2:
@@ -429,7 +429,7 @@
 					dialogTitle = "確認";
 					dialogMessage = "年齢加算対象の電子メールを送信します。よろしいですか？";
 					url = "skf/Skf3060Sc001/sendMail";
-					nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+					nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
 					break;
 				default:
 					nfw.common.showReserveMessage("warning", "未サポート(未実装機能)です。");

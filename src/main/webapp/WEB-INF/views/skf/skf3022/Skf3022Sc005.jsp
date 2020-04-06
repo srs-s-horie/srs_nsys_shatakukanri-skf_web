@@ -309,7 +309,7 @@
  									if(row.sameAppNoCount != ""){
  										//同一申請書類管理番号存在する場合メッセージ表示
  	 									var dialogMessage = row.sameAppNoCount;
- 	 									nfw.common.confirmPopup(dialogMessage, "", "form", "skf/Skf3022Sc006/init", "ok", "キャンセル", this, true);
+ 	 									nfw.common.confirmPopup(dialogMessage, "", "form", "skf/Skf3022Sc006/init", "OK", "キャンセル", this, true);
 
  									}else{
  										
@@ -350,7 +350,7 @@
  									
 									var dialogTitle = "確認";
 									var dialogMessage = "提示データ（"+row.colShainName+"）を削除します。よろしいですか？";//I-SKF-3022
-									nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3022Sc005/delete", "ok", "キャンセル", this, true);
+									nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3022Sc005/delete", "OK", "キャンセル", this, true);
 
 								}
 								else if($(cellcontent).hasClass('cbox')){

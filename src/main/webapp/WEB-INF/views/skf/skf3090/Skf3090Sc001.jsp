@@ -105,7 +105,7 @@
 					dialogTitle = "確認";
 					dialogMessage = "現物支給価額ファイルの取込を開始します。よろしいですか？";
 					url = "skf/Skf3090Sc001/import";
-					nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+					nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
 					break;
 				// 新規
 				case 1:
