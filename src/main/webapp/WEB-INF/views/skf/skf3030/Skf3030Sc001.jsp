@@ -198,7 +198,7 @@
 				</tbody>
 			</nfwui:Table>
 			<div class="align-L">
-				<imui:button id="search" name="search" value="検索" class="imui-medium-button" tabindex="13" />
+				<imui:button id="search" name="search" value="検索" class="imui-small-button" tabindex="13" />
 			</div>
 		</div>
 
