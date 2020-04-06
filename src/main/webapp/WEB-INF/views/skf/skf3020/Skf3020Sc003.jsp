@@ -51,6 +51,11 @@
 		
 		<script type="text/javascript">
 			$(document).ready(function() {
+				$(".imui-toolbar-icon").removeAttr("onclick");
+				$(".imui-toolbar-icon").click(function(e) {
+					back1();
+				});
+
 				var grid = $("#grvTenninshaIchiran"); // 転任者情報テーブル
 				var datas = grid.getGridParam("data"); // テーブル内全行
 				

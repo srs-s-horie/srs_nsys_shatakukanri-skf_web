@@ -50,7 +50,19 @@
 </nfwui:Form>
 
 		<script type="text/javascript">
-			/*
+		(function($) {
+		    
+			// 画面表示時に定義される処理
+			$(document).ready(function(){
+				$(".imui-toolbar-icon").removeAttr("onclick");
+				$(".imui-toolbar-icon").click(function(e) {
+					back1();
+				});
+			});
+
+		})(jQuery);
+		
+		　　 /*
 			* 「取込」ボタンクリックイベント
 			*/
 			function clickTorikomiBtn() {

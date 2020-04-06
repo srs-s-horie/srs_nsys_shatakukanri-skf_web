@@ -124,6 +124,10 @@
 				];
 				
 				$(document).ready(function() {
+					$(".imui-toolbar-icon").removeAttr("onclick");
+					$(".imui-toolbar-icon").click(function(e) {
+						back1();
+					});
 					/*
 					 * 画面のテキスト項目の活性状態を設定
 					 */
