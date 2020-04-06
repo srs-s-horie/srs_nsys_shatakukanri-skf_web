@@ -2062,7 +2062,7 @@ function mesDisplayControl(isShow){
 					if(dialogue=="yes"){
 			    	//退居予定日と返却希望立会日の確認ダイアログが必要な場合
 						//ダイアログ
-						skf.common.confirmPopup("返却立会希望日が退居予定日以降で入力されています。申請してもよろしいですか？", "確認", form ,url, "ok", "キャンセル",this);			
+						skf.common.confirmPopup("返却立会希望日が退居予定日以降で入力されています。申請してもよろしいですか？", "確認", form ,url, "OK", "キャンセル",this);			
 					}else if(dialogue=="no"){
 						//退居予定日と返却希望立会日の確認ダイアログが不要な場合
 						nfw.common.submitForm(form,url,"checkBtn");

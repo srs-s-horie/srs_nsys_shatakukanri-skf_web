@@ -96,7 +96,7 @@
 			$("#submitApplNo").val(submitStr);
 			skf.common.confirmPopup("選択された申請書を一括で承認します。よろしいですか？", 
 					"確認", "resultListForm", "skf/Skf2010Sc005/Update", 
-					"ok", "キャンセル", this, false);
+					"OK", "キャンセル", this, false);
 			
 			return true;
 	    }

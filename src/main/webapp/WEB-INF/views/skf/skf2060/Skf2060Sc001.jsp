@@ -291,7 +291,7 @@
 								var formId = "form2";
 								var url = "skf/Skf2060Sc001/delete";
 								
-								nfw.common.confirmPopup("削除します。よろしいですか？", "確認", formId, url, "ok", "キャンセル", this, true);
+								nfw.common.confirmPopup("削除します。よろしいですか？", "確認", formId, url, "OK", "キャンセル", this, true);
 							}
 							
 							//添付ファイルアイコンクリック時
@@ -376,7 +376,7 @@
 									var shainName = data.dialogShainName;
 									var message = "入力した借上候補物件は"+shainName+"さんに提示し完了しています。登録してもよろしいですか？";
 									
-									nfw.common.confirmPopup(message, "確認", formId, url, "ok", "キャンセル", this, true);
+									nfw.common.confirmPopup(message, "確認", formId, url, "OK", "キャンセル", this, true);
 								}else{
 									nfw.common.submitForm(formId, url, this);
 								}
@@ -387,7 +387,7 @@
 						
 						//提示ボタンクリック時
 						$("#candidate").click(function(){
-							nfw.common.confirmPopup("選択した借上候補物件を提示します。よろしいですか?", "確認", "form", "skf/Skf2060Sc001/Candidate", "ok", "キャンセル", this, true);
+							nfw.common.confirmPopup("選択した借上候補物件を提示します。よろしいですか?", "確認", "form", "skf/Skf2060Sc001/Candidate", "OK", "キャンセル", this, true);
 						});
 						
 						//支援ポップアップコールバック時

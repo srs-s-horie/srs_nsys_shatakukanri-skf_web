@@ -103,7 +103,7 @@
         
         skf.common.confirmPopup("すでに選択済みですが、再提示します。よろしいですか？", 
                 "確認", "paramForm", "skf/Skf2060Sc001/init", 
-                "ok", "キャンセル", this, false);
+                "OK", "キャンセル", this, false);
     }
 
     // 確認押下時の処理

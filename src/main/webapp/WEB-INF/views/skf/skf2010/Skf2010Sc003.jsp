@@ -305,7 +305,7 @@ height="300" onGridComplete="gridComplete">
 	    	if (dialogMessage == "") {
 	    		nfw.common.submitForm("form", url, this);
 	    	} else {
-	    		nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+	    		nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
 	    	}
     	}
     }
