@@ -244,7 +244,7 @@
 		var dialogTitle = "確認";
 		var dialogMessage = "再提示します。よろしいですか？";
 		var url = "skf/Skf2060Sc001/init";
-		nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+		nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
     }
 	
 	//「完了」ボタンクリック時
@@ -252,7 +252,7 @@
 		var dialogTitle = "確認";
 		var dialogMessage = "完了された借上候補物件の提示を完了します。よろしいですか？";
 		var url = "skf/Skf2060Sc003/complete";
-		nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+		nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
     }
 	
 	//添付ファイルリンククリック時

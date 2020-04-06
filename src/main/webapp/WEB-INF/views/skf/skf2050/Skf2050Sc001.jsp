@@ -34,7 +34,7 @@
     $(function() {
     	$(document).ready(function() {
     		$("#carryOutBtn").click(function() {
-    			skf.common.confirmPopupForCallback("備品搬出を完了します。よろしいですか？", "確認", "form", "ok", "キャンセル", this, function(){
+    			skf.common.confirmPopupForCallback("備品搬出を完了します。よろしいですか？", "確認", "form", "OK", "キャンセル", this, function(){
 					var map = new Object();
 					
 					map['applNo'] = $("#applNo").val();
@@ -45,7 +45,7 @@
 					nfw.common.doAjaxAction("skf/Skf2050Sc001/CarryOutAsync", map, true, function(res){
 						if (res.showDialogFlag == "true") {
 							var message = "搬出完了日が退居日より後ですがよろしいですか？(退居日:" + res.dialogTaikyoDay + "）";
-							skf.common.confirmPopup(message, "確認", "form", "skf/Skf2050Sc001/CarryOut",  "ok", "キャンセル", this);
+							skf.common.confirmPopup(message, "確認", "form", "skf/Skf2050Sc001/CarryOut",  "OK", "キャンセル", this);
 						} else {
 							skf.common.submitForm("form", "skf/Skf2050Sc001/CarryOut", this);
 						}
