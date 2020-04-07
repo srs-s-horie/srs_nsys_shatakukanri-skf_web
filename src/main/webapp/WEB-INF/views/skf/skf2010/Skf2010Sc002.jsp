@@ -214,6 +214,10 @@ function back1() {
 
 (function($) {
 	$(document).ready(function(){
+		$(".imui-toolbar-icon").removeAttr("onclick");
+		$(".imui-toolbar-icon").click(function(e) {
+			back1();
+		});
 		// 添付資料のリンクをクリックした時のイベント
 		$("a[id^='attached_']").click(function(){
 			attachedFileDownload(this);
