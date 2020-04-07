@@ -11,6 +11,10 @@
 <link rel="stylesheet" type="text/css" href="styles/skf/listTableStyle.css" />
 
 <script type="text/javascript">
+function back1() {
+	var backMessage = "戻ります。よろしいですか？";
+	nfw.common.confirmPopup(backMessage, "戻る確認", "form", "skf/Skf1010Sc001/init", "ok", "キャンセル", this, true);	
+}
   // リストテーブルの申請状況の文字色変更
   function onCellAttr(rowId,val,rawObject,cm,rdata){
 	  var style;
@@ -34,6 +38,10 @@
   (function($){
     // 画面表示時に定義される処理
     $(document).ready(function(){
+    	$(".imui-toolbar-icon").removeAttr("onclick");
+		$(".imui-toolbar-icon").click(function(e) {
+			back1();
+		});
         // 機関ドロップダウン変更時のイベント
         $("#agency").change(function() {
         	var map = new Object();
