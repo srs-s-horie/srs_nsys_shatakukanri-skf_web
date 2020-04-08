@@ -51,6 +51,11 @@
 		
 		<script type="text/javascript">
 			$(document).ready(function() {
+				$(".imui-toolbar-icon").removeAttr("onclick");
+				$(".imui-toolbar-icon").click(function(e) {
+					back1();
+				});
+
 				var grid = $("#grvTenninshaIchiran"); // 転任者情報テーブル
 				var datas = grid.getGridParam("data"); // テーブル内全行
 				
@@ -99,7 +104,7 @@
 				var dialogTitle = "確認";
 				var dialogMessage = "転任者調書データを取り込みます。よろしいですか？";
 				var url = "skf/Skf3020Sc003/import";
-				nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+				nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
 			}
 			
 			/*

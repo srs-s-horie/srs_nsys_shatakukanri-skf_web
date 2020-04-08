@@ -21,7 +21,7 @@ function back1() {
 //	var url="skf/Skf3010Sc002/init?SKF3010_SC002&tokenCheck=0"
 //	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
 	var backMessage = "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。";
-	nfw.common.confirmPopup(backMessage, "戻る確認", "form", "skf/Skf3010Sc002/init", "ok", "キャンセル", this, true);	
+	nfw.common.confirmPopup(backMessage, "戻る確認", "form", "skf/Skf3010Sc002/init", "OK", "キャンセル", this, true);	
 }
 </script>
 
@@ -380,7 +380,7 @@ function back1() {
 										var dialogTitle = "確認";
 										//MessageIdConstant.：I-SKF-2024
 										//var dialogMessage = "入力内容が無効になります。破棄してもよろしいですか？";
-								    	//nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc007/selectList", "ok", "キャンセル", this, true);
+								    	//nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc007/selectList", "OK", "キャンセル", this, true);
 								    	$("<div>入力内容が無効になります。破棄してもよろしいですか？</div>").imuiMessageDialog({
 							    			iconType : 'question',
 							    			title : '確認',
@@ -388,7 +388,7 @@ function back1() {
 							    		    buttons: [
 							    		      {
 							    		        'id': 'okbutton',
-							    		        'text': 'ok',
+							    		        'text': 'OK',
 							    		        'click': function() { 
 							    		        	$("#sendParkingBlock").val($("#hdnSelectParkingBlock").val());
 							    		        	$("#sendParkingKanriNo").val($("#hdnParkingKanriNo").val());
@@ -421,7 +421,7 @@ function back1() {
 				    		    buttons: [
 				    		      {
 				    		        'id': 'okbutton',
-				    		        'text': 'ok',
+				    		        'text': 'OK',
 				    		        'click': function() { checkInput('addButton'); }
 				    		      },
 				    		      {
@@ -444,7 +444,7 @@ function back1() {
 								
 								//MessageIdConstant.：I-SKF-2024
 								var dialogMessage = "入力内容が無効になります。破棄してもよろしいですか？";
-						    	nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc007/selectList", "ok", "キャンセル", this, true);
+						    	nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc007/selectList", "OK", "キャンセル", this, true);
 				    		}else{
 				    			//登録済み情報の削除
 				    			$("#sendParkingBlock").val($("#sendParkingBlock").val());
@@ -454,7 +454,7 @@ function back1() {
 				    			
 								//MessageIdConstant.：I-SKF-3064
 								var dialogMessage = "駐車場の契約情報を削除します。よろしいですか？";
-						    	nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc007/selectList", "ok", "キャンセル", this, true);
+						    	nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc007/selectList", "OK", "キャンセル", this, true);
 				    		}
 				    	}
 				    	
@@ -478,7 +478,7 @@ function back1() {
 				    		
 			    			var dialogTitle = "確認";
 							var dialogMessage = "編集が無効になります。よろしいですか？";
-					    	nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc007/selectList", "ok", "キャンセル", this, true);
+					    	nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc007/selectList", "OK", "キャンセル", this, true);
 				    	}
 				    	
 				    	registOnClick = function () {
@@ -495,7 +495,7 @@ function back1() {
 				    		
 			    			var dialogTitle = "確認";
 							var dialogMessage = "駐車場契約情報を登録します。よろしいですか？";
-					    	nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc007/regist", "ok", "キャンセル", this, true);
+					    	nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc007/regist", "OK", "キャンセル", this, true);
 				    	}
 				    	
 				    	//戻るボタン
@@ -503,7 +503,7 @@ function back1() {
 					    	//確認メッセージ
 							dialogTitle = "確認";
 							dialogMessage = "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。";
-					    	nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc002/init", "ok", "キャンセル", this, true);	
+					    	nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc002/init", "OK", "キャンセル", this, true);	
 					    }
 				    	
 				    	//リサイズ時イベント

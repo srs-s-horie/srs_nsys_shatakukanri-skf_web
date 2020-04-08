@@ -28,6 +28,7 @@
 		<input type="hidden" id="hdnSelShainNo" name="hdnSelShainNo" value="${form.hdnSelShainNo}" />
 		<input type="hidden" id="insertFormName" name="insertFormName" value="" />
 		<input type="hidden" id="callbackFlag" name="callbackFlag" value="" />
+		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3020Sc004/init"/>
 		<table class="imui-form-search-condition">
 			<tbody>
 				<tr>
@@ -123,6 +124,10 @@
 				];
 				
 				$(document).ready(function() {
+					$(".imui-toolbar-icon").removeAttr("onclick");
+					$(".imui-toolbar-icon").click(function(e) {
+						back1();
+					});
 					/*
 					 * 画面のテキスト項目の活性状態を設定
 					 */
@@ -163,7 +168,7 @@
 						var url = 'skf/Skf3020Sc005/registe';
 						var dialogTitle = '確認';
 				    	var dialogMessage = $("#enterMsg").val();
-				    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+				    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
 					}
 					
 					/*

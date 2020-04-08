@@ -20,7 +20,7 @@
 //		var url="skf/Skf3010Sc001/init?SKF3010_SC001&tokenCheck=0"
 //		nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
 		var backMessage = "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。";
-		nfw.common.confirmPopup(backMessage, "戻る確認", "form", "skf/Skf3010Sc001/init", "ok", "キャンセル", this, true);	
+		nfw.common.confirmPopup(backMessage, "戻る確認", "form", "skf/Skf3010Sc001/init", "OK", "キャンセル", this, true);	
 	}
 </script>
 
@@ -1014,7 +1014,7 @@
 								var dialogTitle = "確認";
 								//MessageIdConstant.：I-SKF-3005
 								var dialogMessage = "削除します。よろしいですか？";
-								nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc002/attachedFileDelete", "ok", "キャンセル", this, true);
+								nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc002/attachedFileDelete", "OK", "キャンセル", this, true);
 						}
 
 						// 登録ボタンクリック
@@ -1027,7 +1027,7 @@
 								buttons: [
 									{
 										'id': 'tourokuOk',
-										'text': 'ok',
+										'text': 'OK',
 										'click': function() {
 											$(this).imuiMessageDialog('close');
 											// 登録処理
@@ -1063,7 +1063,7 @@
 									buttons: [
 										{
 											'id': 'tourokuOk',
-											'text': 'ok',
+											'text': 'OK',
 											'click': function() {
 												$(this).imuiMessageDialog('close');
 												url = "skf/Skf3010Sc002/regist";
@@ -1091,7 +1091,7 @@
 							var dialogTitle = "確認";
 							//MessageIdConstant.：I-SKF-3003
 							var dialogMessage = "社宅（" + $("#shatakuName").val() + "）の削除処理を実行します。よろしいですか？";
-							nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc002/delete", "ok", "キャンセル", this, true);
+							nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc002/delete", "OK", "キャンセル", this, true);
 						}
 
 						// 住所検索押下時のイベント
@@ -1162,7 +1162,7 @@
 								buttons: [
 									{
 										'id': 'contractAddOk',
-										'text': 'ok',
+										'text': 'OK',
 										'click': function() {
 											$(this).imuiMessageDialog('close');
 											// 契約情報変更チェック
@@ -1180,7 +1180,7 @@
 													buttons: [
 														{
 															'id': 'contractChangeAddOk',
-															'text': 'ok',
+															'text': 'OK',
 															'click': function() {
 																$(this).imuiMessageDialog('close');
 																// 現在状態バックアップ
@@ -1237,7 +1237,7 @@
 									buttons: [
 										{
 											'id': 'contractDelOk1',
-											'text': 'ok',
+											'text': 'OK',
 											'click': function() {
 												$(this).imuiMessageDialog('close');
 												// 現在状態バックアップ
@@ -1265,7 +1265,7 @@
 									buttons: [
 										{
 											'id': 'contractDelOk2',
-											'text': 'ok',
+											'text': 'OK',
 											'click': function() {
 												$(this).imuiMessageDialog('close');
 												// 現在状態バックアップ
@@ -1292,7 +1292,7 @@
 							var dialogTitle = "確認";
 							//MessageIdConstant.：I-SKF-3110
 							var dialogMessage = "社宅情報は登録済みでしょうか。確認後、駐車場契約情報登録を行ってください。";
-							nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc007/init", "ok", "キャンセル", this, true);
+							nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc007/init", "OK", "キャンセル", this, true);
 						}
 
 
@@ -1425,7 +1425,7 @@
 									buttons: [
 										{
 											'id': 'contractChangeOk',
-											'text': 'ok',
+											'text': 'OK',
 											'click': function() {
 												$(this).imuiMessageDialog('close');
 												// 現在状態バックアップ

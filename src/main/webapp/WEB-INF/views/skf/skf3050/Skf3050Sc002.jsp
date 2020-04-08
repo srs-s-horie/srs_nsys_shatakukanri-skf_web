@@ -131,7 +131,7 @@
 			var dialogTitle = "確認";
 			var dialogMessage = $("#hdnKariKeisanBtnMsg").val();
 			var url = "skf/Skf3050Sc002/provCalc";
-			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
 		});
 		
 		/*
@@ -140,7 +140,7 @@
 		$("#" + SHIME_SHORI_BTN).click(function() {
 			var dialogMessage = $("#hdnShimeShoriBtnMsg").val();
 			
-			skf.common.confirmPopupForCallback(dialogMessage, "確認", "batchForm", "ok", "キャンセル", this, function() {
+			skf.common.confirmPopupForCallback(dialogMessage, "確認", "batchForm", "OK", "キャンセル", this, function() {
 				var paramMap = new Object();
 				paramMap['hdnJikkouShijiYoteiNengetsu'] = $("#hdnJikkouShijiYoteiNengetsu").val();
 				paramMap['hdnBihinTaiyoWarnContinueFlg'] = '';
@@ -158,7 +158,7 @@
 		 */
 		checkBatchProc = function(inData) {
 			if (inData.hdnWarnMsg !== null && inData.hdnWarnMsg !== '') {
-				skf.common.confirmPopupForCallback(inData.hdnWarnMsg, "確認", "batchForm", "ok", "キャンセル", this, function() {
+				skf.common.confirmPopupForCallback(inData.hdnWarnMsg, "確認", "batchForm", "OK", "キャンセル", this, function() {
 					
 					var reParamMap = new Object();
 					reParamMap['hdnJikkouShijiYoteiNengetsu'] = inData.hdnJikkouShijiYoteiNengetsu;
@@ -167,7 +167,6 @@
 					
 					nfw.common.doAjaxAction("skf/Skf3050Sc002/closeTaskExecutionAsync", reParamMap, true, function(data) {
 						checkBatchProc(data);
-						alert("締め処理タスク登録。メッセージID:" + data.taskMsgId);
 					});
 				});
 			}
@@ -180,7 +179,7 @@
 			var dialogTitle = "確認";
 			var dialogMessage = $("#hdnRenkeiDataSakuseiBtnMsg").val();
 			var url = "skf/Skf3050Sc002/createPositiveCooperationData";
-			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
 		});
 		
 		/*
@@ -189,12 +188,12 @@
 		$("#" + SHIME_KAIJO_SHORI_BTN).click(function() {
 			var dialogMessage = $("#hdnShimeKaijoBtnMsg").val();
 			
-			skf.common.confirmPopupForCallback(dialogMessage, "確認", "batchForm", "ok", "キャンセル", this, function() {
+			skf.common.confirmPopupForCallback(dialogMessage, "確認", "batchForm", "OK", "キャンセル", this, function() {
 				var paramMap = new Object();
 				paramMap['hdnJikkouShijiYoteiNengetsu'] = $("#hdnJikkouShijiYoteiNengetsu").val();
 				
 				nfw.common.doAjaxAction("skf/Skf3050Sc002/closeCancelTaskExecutionAsync", paramMap, true, function(data) {
-					alert("締め解除処理タスク登録。メッセージID:" + data.taskMsgId);
+//					alert("締め解除処理タスク登録。メッセージID:" + data.taskMsgId);
 				});
 			});
 		});
@@ -205,12 +204,12 @@
 		$("#" + POSITIVE_DATA_CONFIRM_BTN).click(function() {
 			var dialogMessage = $("#hdnRenkeiDataKakuteiBtnMsg").val();
 			
-			skf.common.confirmPopupForCallback(dialogMessage, "確認", "batchForm", "ok", "キャンセル", this, function() {
+			skf.common.confirmPopupForCallback(dialogMessage, "確認", "batchForm", "OK", "キャンセル", this, function() {
 				var paramMap = new Object();
 				paramMap['hdnJikkouShijiYoteiNengetsu'] = $("#hdnJikkouShijiYoteiNengetsu").val();
 				
 				nfw.common.doAjaxAction("skf/Skf3050Sc002/confirmPositiveCooperationTaskExecutionAsync", paramMap, true, function(data) {
-					alert("給与連携データ確定処理タスク登録。メッセージID:" + data.taskMsgId);
+//					alert("給与連携データ確定処理タスク登録。メッセージID:" + data.taskMsgId);
 				});
 			});
 		});

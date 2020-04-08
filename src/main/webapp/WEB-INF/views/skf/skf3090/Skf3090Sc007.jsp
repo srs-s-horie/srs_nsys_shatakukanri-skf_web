@@ -139,7 +139,7 @@
 							var form = "form";
 						
 							if (dialogue == "yes") {
-								skf.common.confirmPopupForCallback("会社コード以外の内容がクリアされます。よろしいですか?", "確認", "form", "ok", "キャンセル", this, function(){
+								skf.common.confirmPopupForCallback("会社コード以外の内容がクリアされます。よろしいですか?", "確認", "form", "OK", "キャンセル", this, function(){
 									$("#registAgencyCd").val("");
 									$('#registAgencyName').val("");
 									$("#registAffiliation1Cd").val("");
@@ -207,7 +207,7 @@
 							var form = "form";
 						
 							if (dialogue == "yes") {
-								skf.common.confirmPopupForCallback("部等（コード・名称）と室、チーム又は課（コード・名称）の内容がクリアされ、機関（名称）はマスタに登録されている内容に変更されます。よろしいですか?", "確認", "form", "ok", "キャンセル", this, function(){
+								skf.common.confirmPopupForCallback("部等（コード・名称）と室、チーム又は課（コード・名称）の内容がクリアされ、機関（名称）はマスタに登録されている内容に変更されます。よろしいですか?", "確認", "form", "OK", "キャンセル", this, function(){
 									$("#registAffiliation1Cd").val("");
 									$("#registAffiliation2Cd").val("");
 									$("#registAgencyName").val(data.registAgencyName);
@@ -260,7 +260,7 @@
 							var form = "form";
 						
 							if (dialogue == "yes") {
-								skf.common.confirmPopupForCallback("室、チーム又は課（コード・名称）の内容がクリアされ、部等（名称）はマスタに登録されている内容に変更されます。よろしいですか?", "確認", "form", "ok", "キャンセル", this, function(){
+								skf.common.confirmPopupForCallback("室、チーム又は課（コード・名称）の内容がクリアされ、部等（名称）はマスタに登録されている内容に変更されます。よろしいですか?", "確認", "form", "OK", "キャンセル", this, function(){
 									$("#registAffiliation2Cd").val("");
 									$("#registAffiliation1Name").val(data.registAffiliation1Name);
 									$("#registAffiliation2Name").val("");

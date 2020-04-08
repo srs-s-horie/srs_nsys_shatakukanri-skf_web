@@ -48,7 +48,7 @@
 			dialogTitle = "確認";
 			dialogMessage = "備品搬入搬出確認リストを出力します。よろしいですか？";
 			url = "skf/Skf3040Sc002/download";
-			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
 		}
 	});
 

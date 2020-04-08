@@ -188,7 +188,7 @@
 		  dialogTitle = "確認";
 		  dialogMessage = "法定調書データを出力します。よろしいですか？";
 		  url = "skf/Skf3070Sc001/StatutoryRecordDownload";
-	      nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);  
+	      nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);  
 	  });
 	  
 	  // 賃貸人（代理人）情報出力ボタン押下時のイベント
@@ -196,7 +196,7 @@
 		  dialogTitle = "確認";
 		  dialogMessage = "賃貸人（代理人）情報を出力します。よろしいですか？";
 		  url = "skf/Skf3070Sc001/LessorInfoDownload";
-	      nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);  
+	      nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);  
 	  });
 	
 

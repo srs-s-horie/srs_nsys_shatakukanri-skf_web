@@ -29,6 +29,10 @@ function back1() {
     
 	// 画面表示時に定義される処理
 	$(document).ready(function(){
+		$(".imui-toolbar-icon").removeAttr("onclick");
+		$(".imui-toolbar-icon").click(function(e) {
+			back1();
+		});
 
 		// フォーカスを合わせる
 		document.getElementById('txtTodoufukenn01Div').focus();
@@ -54,7 +58,7 @@ function back1() {
 					dialogTitle = "確認";
 					dialogMessage = "現物支給価額を登録します。よろしいですか？";
 					url = "skf/Skf3090Sc002/registe";
-					nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+					nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
 					break;
 				// 複写
 				case 1:
@@ -76,7 +80,7 @@ function back1() {
 					dialogTitle = "確認";
 					dialogMessage = "現物支給価額を削除します。よろしいですか？";
 					url = "skf/Skf3090Sc002/delete";
-					nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+					nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
 					break;
 				default:
 					nfw.common.showReserveMessage("warning", "未サポート(未実装機能)です。");

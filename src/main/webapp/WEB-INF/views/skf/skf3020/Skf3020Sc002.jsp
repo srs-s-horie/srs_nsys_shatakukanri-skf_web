@@ -50,14 +50,26 @@
 </nfwui:Form>
 
 		<script type="text/javascript">
-			/*
+		(function($) {
+		    
+			// 画面表示時に定義される処理
+			$(document).ready(function(){
+				$(".imui-toolbar-icon").removeAttr("onclick");
+				$(".imui-toolbar-icon").click(function(e) {
+					back1();
+				});
+			});
+
+		})(jQuery);
+		
+		　　 /*
 			* 「取込」ボタンクリックイベント
 			*/
 			function clickTorikomiBtn() {
 				var dialogTitle = "確認";
 				var dialogMessage = "転任者調書ファイルの取込を開始します。よろしいですか？";
 				var url = "skf/Skf3020Sc002/import";
-				nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+				nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
 			}
 			
 			 /**

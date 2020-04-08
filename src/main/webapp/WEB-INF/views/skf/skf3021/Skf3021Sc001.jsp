@@ -63,9 +63,7 @@ function onCellAttrNtk(rowId,val,rawObject,cm,rdata){
 </script>
 	<!-- コンテンツエリア -->
 	<nfwui:Form id="form" name="form" modelAttribute="form">
-	<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3021_SC001%>" />
-		<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3021Sc001/init"/>
-		
+	<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3021_SC001%>" />		
 		<input type="hidden" name="teijiListData" id="teijiListData" value="" /><!-- 提示リスト -->
 		<input type="hidden" name="mailListData" id="mailListData" value="" /><!-- メール送信リスト -->
 		<input type="hidden" name="hdnListSelectState" id="hdnListSelectState" value="" /><!-- リスト選択状態 -->
@@ -297,7 +295,7 @@ function onCellAttrNtk(rowId,val,rawObject,cm,rdata){
 									
 								var dialogTitle = "確認";
 								var dialogMessage = row.hdnDeleteText;
-								nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3021Sc001/delete", "ok", "キャンセル", this, true);
+								nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3021Sc001/delete", "OK", "キャンセル", this, true);
 
 							}
 							var prop = $('#allListCheck').prop('checked');

@@ -48,7 +48,7 @@
 			dialogTitle = "確認";
 			dialogMessage = "レンタル備品指示書を出力します。よろしいですか？";
 			url = "skf/Skf3040Sc001/download";
-			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "ok", "キャンセル", this, true);
+			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
 		}
 	});
 

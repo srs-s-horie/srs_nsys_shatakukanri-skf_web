@@ -95,14 +95,14 @@
 			
 			        menubar: false,
 			        toolbar_items_size: 'small',
+			        height: 240
 			});</script>
 			<imui:textbox id="note" name="note" value="${form.note}" tabindex="4" />
 			</div>
 		</tr>
 	</table>
-	<!----------------a---------------------------------------------------->
 	<div class="imui-box-layout">
-		<table style="width: 95%;">
+		<table style="width: 100%;">
 			<tbody>
 				<td align="right">
 				<imui:button id="regist" name="regist" value="お知らせ内容を登録" class="imui-medium-button" tabindex="5" />
@@ -123,7 +123,7 @@
 		
 		//「お知らせを登録」ボタンクリック時
 		$("#regist").click(function(){
-			skf.common.confirmPopupForCallback("入力した内容で登録します。よろしいですか？", "確認", "form", "ok", "キャンセル", this, function(){
+			skf.common.confirmPopupForCallback("入力した内容で登録します。よろしいですか？", "確認", "form", "OK", "キャンセル", this, function(){
 				var map = new Object();
 				//map['note'] = $("#note").val();
 				map['openDateBox'] = $("#openDateBox").val();
@@ -133,7 +133,7 @@
 					var url = "skf/Skf3090Sc008/Regist";
 					if(data.dialogFlg){
 						$('#dialogFlg').val(data.dialogFlg);
-						nfw.common.confirmPopup("上書き登録処理を実行します。よろしいですか？", "確認", formId, url, "ok", "キャンセル", this, true);
+						nfw.common.confirmPopup("上書き登録処理を実行します。よろしいですか？", "確認", formId, url, "OK", "キャンセル", this, true);
 					}else{
 						nfw.common.submitForm(formId, url, this);
 					}
@@ -181,7 +181,7 @@
 				var formId = "form";
 				var url = "skf/Skf3090Sc008/delete";
 				
-				nfw.common.confirmPopup("削除します。よろしいですか？", "確認", formId, url, "ok", "キャンセル", this, true);
+				nfw.common.confirmPopup("削除します。よろしいですか？", "確認", formId, url, "OK", "キャンセル", this, true);
 			}
 		}
 		

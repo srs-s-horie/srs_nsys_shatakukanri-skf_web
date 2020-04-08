@@ -122,7 +122,7 @@ function onChangeJijigetu() {
 				alert($("#txtParkingChangePayJijigetuDisable").val());
 				*/
 				
-				skf.common.confirmPopupForCallback(dialogMessage, "確認", "form", "ok", "キャンセル", this, function(){
+				skf.common.confirmPopupForCallback(dialogMessage, "確認", "form", "OK", "キャンセル", this, function(){
 					nfw.common.modalPopupWithPreHandler('skf/Skf3022Sc004/registe', 'Skf3022Sc004_popup_form', 'Skf3022Sc004_popup_Sc004regist');
 					nfw.common.modalPopupClose($('#Skf3022Sc004_popup_closeBtn'));
 				});
@@ -131,7 +131,7 @@ function onChangeJijigetu() {
 			// 閉じる
 			case 1:
 				skf.common.confirmPopupForCallback("画面を閉じます。よろしいですか？",
-						"確認", "form", "ok", "キャンセル", this, function(){
+						"確認", "form", "OK", "キャンセル", this, function(){
 					nfw.common.modalPopupClose($('#Skf3022Sc004_popup_closeBtn'));
 				});
 				break;

@@ -150,7 +150,7 @@
 				$("#shainListData").val(shainList.join(";"));
 				dialogTitle = "確認";
 				dialogMessage = "社員番号一括設定処理を実行します。よろしいですか？";//infomation.skf.i_skf_3034
-		    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3050Sc001/regist", "ok", "キャンセル", this, true);	
+		    	nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", "skf/Skf3050Sc001/regist", "OK", "キャンセル", this, true);	
 				//nfw.common.submitForm("form", "skf/Skf3050Sc001/regist");
 			};
 			

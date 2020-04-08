@@ -17,7 +17,7 @@
 <script type="text/javascript">
 	function back1() {
 		var backMessage = "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。";
-		nfw.common.confirmPopup(backMessage, "戻る確認", "form", "skf/Skf3030Sc002/back", "ok", "キャンセル", this, true);	
+		nfw.common.confirmPopup(backMessage, "戻る確認", "form", "skf/Skf3030Sc002/back", "OK", "キャンセル", this, true);	
 	}
 </script>
 
@@ -1329,7 +1329,7 @@
 								$("#sc006Status").val("0");
 								//infomation.skf.i_skf_3027=すべてのタブの画面項目を登録します。よろしいですか？
 								nfw.common.confirmPopup("すべてのタブの画面項目を登録します。よろしいですか？",
-										"確認", "form", "skf/Skf3030Sc002/regist", "ok", "キャンセル", this, true);
+										"確認", "form", "skf/Skf3030Sc002/regist", "OK", "キャンセル", this, true);
 								break;
 // 							case 1:
 // 								// 作成完了★
@@ -1353,7 +1353,7 @@
 								var mes = "社宅管理台帳データ（" +$("#sc006ShainName").text().trim() + "）を削除します。よろしいですか？";
 								// 確認ダイアログ表示(infomation.skf.i_skf_3029=社宅管理台帳データ（{0}）を削除します。よろしいですか？)
 								nfw.common.confirmPopup(mes,
-										"確認", "form", "skf/Skf3030Sc002/delete", "ok", "キャンセル", this, true);
+										"確認", "form", "skf/Skf3030Sc002/delete", "OK", "キャンセル", this, true);
 								break;
 							default:
 								$("#sc006Status").val("");
@@ -2118,7 +2118,7 @@
 // 							backUpStatus();
 // 							// 確認ダイアログ表示
 // 							nfw.common.confirmPopup($("#litMessageTmpSave").val(),
-// 									"確認", "form", "skf/Skf3022Sc006/tmpSave", "ok", "キャンセル", this, true);
+// 									"確認", "form", "skf/Skf3022Sc006/tmpSave", "OK", "キャンセル", this, true);
 // 							break;
 // 						case "1":
 // 							// 作成完了★
@@ -2128,7 +2128,7 @@
 // 							backUpStatus();
 // 							// 確認ダイアログ表示
 // 							nfw.common.confirmPopup($("#litMessageCreate").val(),
-// 									"確認", "form", "skf/Skf3022Sc006/create", "ok", "キャンセル", this, true);
+// 									"確認", "form", "skf/Skf3022Sc006/create", "OK", "キャンセル", this, true);
 // 							break;
 // 						case "2":
 // 							// 社宅管理台帳登録★
@@ -2138,7 +2138,7 @@
 // 							backUpStatus();
 // 							// 確認ダイアログ表示
 // 							nfw.common.confirmPopup($("#litMessageShatakuLogin").val(),
-// 									"確認", "form", "skf/Skf3022Sc006/shatakuLogin", "ok", "キャンセル", this, true);
+// 									"確認", "form", "skf/Skf3022Sc006/shatakuLogin", "OK", "キャンセル", this, true);
 // 							break;
 // 						default:
 // 							// 状態クリア
