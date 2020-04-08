@@ -162,7 +162,12 @@ $(function() {
 	// 添付資料設定時に上部表示エリアに追記する処理
 	updateAttachedFileArea = function () {
 		var map = new Object();
-		map['applNo'] = $("#applNo").val();
+		var applNo = $("#applNo").val();
+		// 申請書類管理番号が無い場合は何もしない
+		if (applNo == null || applNo == "") {
+			return;
+		}
+		map['applNo'] = applNo;
 		nfw.common.doAjaxAction("skf/Skf2020Sc003/AttachedFileAreaAsync", map, true, function(res){
 			$("#attachedFileAreaDiv").html(res.attachedFileArea);
 			
