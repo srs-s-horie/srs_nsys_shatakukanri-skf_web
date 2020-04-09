@@ -24,6 +24,14 @@
 	#shainList tr td{
 		white-space:normal;
 	}
+	
+	.imui-box-warning ul li {
+		display:inline;
+	}
+	
+	.imui-box-warning {
+		width:60%;
+	}
 </style>
 
 <script type="text/javascript">
@@ -58,7 +66,7 @@ $(function(){
 		$("#selectBtn").click (function() {
 			var rowId = $("#targetRowId").val();
 			if (rowId == null || rowId == "") {
-				nfw.common.showReserveMessage("warning", "選択してください");
+				nfw.common.setResultMessage("warning", "社員を選択してください。");
 				return;
 			}
 			
