@@ -23,13 +23,29 @@
 
 <script src="scripts/skf/skfCommon.js"></script>
 <script type="text/javascript">
+	$(document).ready(function(){
+		$(".imui-toolbar-icon").removeAttr("onclick");
+		$(".imui-toolbar-icon").click(function(e) {
+			back1("toolbar");
+		});
+	});
     /**
      * 一つ前の画面へ戻る
      */
-    function back1() {
-    	var prePageId = $("#prePageId").val();
-    	var url="skf/" + prePageId + "/init";
-    	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
+    function back1(btnType) {
+		var message = "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。";
+    	if (btnType == "toolbar") {
+    		message = "戻ります。よろしいですか？";
+		}
+    	var url="${form.backUrl}";
+    	nfw.common.confirmPopup(message
+    			, "戻る確認"
+    			, "form"
+    			, url
+    			, "ok"
+    			, "キャンセル"
+    			, this
+    			, false);
     }
 	$(function() {
 		// 備品申請のラジオボタン操作

@@ -31,6 +31,7 @@
 	
 }
 </style>
+
 <!-- コンテンツエリア -->
 <div class="imui-form-container-wide" >
 <!-- 代行ログイン時のみ表示-->
@@ -1713,17 +1714,29 @@ function mesDisplayControl(isShow){
 <!-- フッターエリア  text/JavaSclipt -->
 <script src="scripts/skf/skfCommon.js"></script>
 <script type="text/javascript">
+    $(document).ready(function(){
+		$(".imui-toolbar-icon").removeAttr("onclick");
+		$(".imui-toolbar-icon").click(function(e) {
+			back1("toolbar");
+		});
+    });
     
 	/**
 	 * ひとつ前の画面に戻る
 	 */
-    function back1() {
+    function back1(btnType) {
     	var prePageId = $("#prePageId").val();
     	var url = "";
+    	var message = "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。編集内容を保存する場合は「一時保存」をクリックして下さい。";
+    	if (btnType == "toolbar") {
+    		message = "戻ります。よろしいですか？";
+    	}
     	//前の画面のＵＲＬ判定
     		if(prePageId=="Skf2010Sc007"){
     			//入居希望等調書申請
     			url = "skf/Skf2010Sc007/init?SKF2010_SC007&tokenCheck=0";
+    			nfw.common.doBack(url, message);
+    			return;
     		}else if(prePageId=="Skf2020Sc002" || prePageId=="Skf2010Sc004"){
     			//申請条件一覧
     			url="skf/Skf2010Sc003/init?SKF2010_SC003";
@@ -1731,7 +1744,14 @@ function mesDisplayControl(isShow){
     			//申請条件一覧
     			url="skf/Skf2010Sc003/init?SKF2010_SC003";
 			}　
-    	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。編集内容を保存する場合は「一時保存」をクリックして下さい。");
+    	nfw.common.confirmPopup(message
+    			, "戻る確認"
+    			, "form"
+    			, url
+    			, "ok"
+    			, "キャンセル"
+    			, this
+    			, false);
     }  
 	
 	/**
