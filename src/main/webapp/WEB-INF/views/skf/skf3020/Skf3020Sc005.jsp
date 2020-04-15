@@ -59,7 +59,7 @@
 						<label>社員氏名</label>
 					</th>
 					<td>
-						<imui:textbox id="txtShainMei" name="txtShainMei" style="width:200px;" type="text" value="${form.txtShainMei}" maxlength="20" placeholder="例 中日本　太郎"/>
+						<imui:textbox id="txtShainMei" name="txtShainMei" style="width:200px; ime-mode:active;" type="text" value="${form.txtShainMei}" maxlength="20" placeholder="例 中日本　太郎"/>
 					</td>
 				</tr>
 				<tr>
@@ -67,7 +67,7 @@
 						<label>等級</label>
 					</th>
 					<td>
-						<imui:textbox id="txtTokyu" name="txtTokyu" style="width:100px;" type="text" value="${form.txtTokyu}" maxlength="255" placeholder="例 担当職〇級"/>
+						<imui:textbox id="txtTokyu" name="txtTokyu" style="width:100px; ime-mode:active;" type="text" value="${form.txtTokyu}" maxlength="255" placeholder="例 担当職〇級"/>
 					</td>
 				</tr>
 				<tr>
@@ -83,7 +83,7 @@
 						<label>新所属</label>
 					</th>
 					<td rowspan="4" colspan="3">
-						<imui:textArea id="txtShinShozoku" name="txtShinShozoku" rows="4" style="width:500px;" value="${form.txtShinShozoku}" maxlength="255" placeholder="例 名古屋支社" />
+						<imui:textArea id="txtShinShozoku" name="txtShinShozoku" rows="4" style="width:500px; ime-mode:active;" value="${form.txtShinShozoku}" maxlength="255" placeholder="例 名古屋支社" />
 					</td>
 				</tr>
 				<tr /><tr /><tr />
@@ -92,7 +92,7 @@
 						<label>現所属</label>
 					</th>
 						<td rowspan="4" colspan="3">
-							<imui:textArea id="txtGenShozoku" name="txtGenShozoku" rows="4" style="width:500px;" value="${form.txtGenShozoku}" maxlength="255" placeholder="例 名古屋支社" />
+							<imui:textArea id="txtGenShozoku" name="txtGenShozoku" rows="4" style="width:500px; ime-mode:active;" value="${form.txtGenShozoku}" maxlength="255" placeholder="例 名古屋支社" />
 						</td>
 					</tr>
 					<tr /><tr /><tr />
@@ -101,7 +101,7 @@
 							<label>備考</label>
 						</th>
 						<td rowspan="3" colspan="3">
-							<imui:textArea id="txtBiko" name="txtBiko" rows="3" style="width:500px;" value="${form.txtBiko}" maxlength="100" />
+							<imui:textArea id="txtBiko" name="txtBiko" rows="3" style="width:500px; ime-mode:active;" value="${form.txtBiko}" maxlength="100" />
 						</td>
 					</tr>
 					<tr /><tr />
