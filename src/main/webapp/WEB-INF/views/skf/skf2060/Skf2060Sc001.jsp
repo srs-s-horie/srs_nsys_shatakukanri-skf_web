@@ -292,10 +292,9 @@
 								var url = "skf/Skf2060Sc001/delete";
 								
 								nfw.common.confirmPopup("削除します。よろしいですか？", "確認", formId, url, "OK", "キャンセル", this, true);
-							}
-							
+								
 							//添付ファイルアイコンクリック時
-							if ($(cellcontent).hasClass('im-ui-icon-common-16-attachment')) {
+							}else if ($(cellcontent).hasClass('im-ui-icon-common-16-attachment')) {
 								// リストテーブル情報取得
 								var grid = $("#kariageCandidateList");
 								// 行番号から選択した行の情報を取得
@@ -319,6 +318,23 @@
 								
 								var popupUrl = "skf/Skf2010Sc009/init";
 								nfw.common.modalPopup("Skf2060Sc001", popupUrl, null, map, 790, 700);
+								
+							}else{
+								// リストテーブル情報取得
+								var grid = $("#kariageCandidateList");
+								// 行番号から選択した行の情報を取得
+								var row = grid.getRowData(rowId);
+								
+								// 借上社宅名
+								var shatakuName = row.shatakuName;
+								// 社宅所在地
+								var address = row.address;
+								
+								// 選択行のデータを各テキストボックスに設定
+								$("#shatakuName").val(shatakuName);
+								$("#address").val(address);
+								
+								
 							}
 						}
 						});
