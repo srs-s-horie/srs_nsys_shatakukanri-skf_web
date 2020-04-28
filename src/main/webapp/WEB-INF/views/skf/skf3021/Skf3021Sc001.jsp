@@ -171,7 +171,7 @@ function onCellAttrNtk(rowId,val,rawObject,cm,rdata){
 						<col name="colYouto" caption="用途" width="35" sortable="false" align="center" wrap="true"/>
 						<col name="colParkingReqest" caption="駐車場希望" width="35" sortable="false" align="center" wrap="true"/>
 						<col name="colShinseiJyokyo" caption="申請状況" width="60" sortable="false" align="center" wrap="true" onCellAttr="onCellAttrNtk"/>
-						<col name="colmail" caption="メール" width="35" sortable="false" align="center" wrap="true"/>
+						<col name="colmail" caption="督促" width="35" sortable="false" align="center" wrap="true"/>
 						<col name="colNtkyoShinseiTokusoku" caption="申請督促" width="85" sortable="false" align="center" wrap="true"/>
 						<col name="colTokushuJijo" caption="特殊事情" width="30" sortable="false" align="center" wrap="true" />
 						<col name="colTeijiDataKbn" caption="提示対象" width="50" sortable="false" align="center" wrap="true" onCellAttr="onCellAttr"/>
@@ -405,7 +405,7 @@ function onCellAttrNtk(rowId,val,rawObject,cm,rdata){
 						//$list[0].grid.headers[1].el.innerHTML="<div id=\"jqgh_mainList_cb\">督促<input class=\"cbox\" id=\"cb_mainList\" role=\"checkbox\" type=\"checkbox\"></div>";
 						$list[0].grid.headers[1].el.style.width="25px";
 						$list[0].grid.headers[1].el.style.textAlign = "center";
-						$list[0].grid.headers[12].el.innerHTML="<span>メール<br /><input type=\"checkbox\" name=\"mailListCheck\" id=\"mailListCheck\" onclick=\"allMailCheckBoxSelect(event)\"></span>";
+						$list[0].grid.headers[12].el.innerHTML="<span>督促<br /><input type=\"checkbox\" name=\"mailListCheck\" id=\"mailListCheck\" onclick=\"allMailCheckBoxSelect(event)\"></span>";
 						$list[0].grid.headers[12].el.style.textAlign = "center";
 						$list[0].grid.headers[3].el.innerText = "入退居\n区分";
 						$list[0].grid.headers[6].el.innerText = "申請\n区分";

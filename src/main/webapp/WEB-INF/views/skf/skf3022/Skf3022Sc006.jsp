@@ -558,7 +558,7 @@
 										<col name="bihinName" caption="備品名称" width="200" sortable="false" align="left" wrap="true" />
 										<c:if test='${form.hdnNyutaikyoKbn != "2"}'>
 											<!-- 入居時 -->
-											<col name="heyaSonaetukeSttsStr" caption="部屋備付状態" width="100" sortable="false" align="center" wrap="true" />
+											<col name="heyaSonaetukeSttsStr" caption="備付状況" width="100" sortable="false" align="center" wrap="true" />
 										</c:if>
 										<c:if test='${form.hdnNyutaikyoKbn == "2"}'>
 											<!-- 退居時 -->
@@ -573,7 +573,7 @@
 										</c:if>
 										<c:if test='${form.hdnNyutaikyoKbn == "2"}'>
 											<!-- 退居時 -->
-											<col name="heyaSonaetukeSttsStr" caption="部屋備付状態" width="100" sortable="false" align="center" wrap="true" />
+											<col name="heyaSonaetukeSttsStr" caption="備付状況" width="100" sortable="false" align="center" wrap="true" />
 										</c:if>
 										<col name="shijisho" caption="指示書" width="70" sortable="false" align="center" wrap="true" />
 										<col name="shijishoOld" caption="旧指示書" hidden="true" width="70" sortable="false" align="center" wrap="true" />
@@ -582,7 +582,7 @@
 										<col name="bihinTeijiNo" caption="備品提示番号" hidden="true" />
 										<col name="bihinShatakuKanriNo" caption="備品社宅管理番号" hidden="true" />
 										<col name="bihinRoomKanriNo" caption="備品部屋管理番号" hidden="true" />
-										<col name="heyaSonaetukeStts" caption="部屋備付状態区分(DB取得値)" hidden="true" />
+										<col name="heyaSonaetukeStts" caption="備付状況区分(DB取得値)" hidden="true" />
 										<col name="bihinTaiyoSttsKbn" caption="備品貸与状態選択値" hidden="true" />
 										<col name="bihinTaiyoSttsOldKbn" caption="備品貸与状態選択値元" hidden="true" />
 										<col name="shijishoBackColor" caption="指示書背景色" hidden="true" />
@@ -1650,7 +1650,7 @@
 						var rowData = $("#bihinInfoList").getRowData(rId);
 						// 備品貸与状態取得
 						var bihinTaiyoStts = $("#bihinTaiyoStts" + rId).val();
-						// 部屋備付状態取得
+						// 備付状況取得
 						var heyaSonaetukeSttsStr = rowData.heyaSonaetukeSttsStr;
 						// 旧指示書
 						var shijishoOld = rowData.shijishoOld;
@@ -1659,7 +1659,7 @@
 							case "1":	// 入退居区分＝"1"（入居）の場合
 								// 貸与状態判定
 								if(bihinTaiyoStts == '3' && (heyaSonaetukeSttsStr == 'なし' || heyaSonaetukeSttsStr == '共有')) {
-									// 貸与状態ドロップダウンリストが"3"（レンタル）で、表示されてる部屋備付状態が「なし」「共有」の場合、指示書欄に「搬入」を表示させる。
+									// 貸与状態ドロップダウンリストが"3"（レンタル）で、表示されてる備付状況が「なし」「共有」の場合、指示書欄に「搬入」を表示させる。
 									$("#shijisho" + rId).val("搬入");
 								} else {
 									$("#shijisho" + rId).val("");
@@ -1674,10 +1674,10 @@
 							case "2":	// 入退居区分＝"2"（退居）の場合
 								// 貸与状態判定
 								if(bihinTaiyoStts == '2' && (heyaSonaetukeSttsStr == 'なし' || heyaSonaetukeSttsStr == '共有')) {
-									// 貸与状態ドロップダウンリストが"2"（会社保有）で、表示されてる部屋備付状態が「なし」「共有」の場合、指示書欄に「下取」を表示させる
+									// 貸与状態ドロップダウンリストが"2"（会社保有）で、表示されてる備付状況が「なし」「共有」の場合、指示書欄に「下取」を表示させる
 									$("#shijisho" + rId).val("下取");
 								} else if(bihinTaiyoStts == '3' && (heyaSonaetukeSttsStr == 'なし' || heyaSonaetukeSttsStr == '共有')) {
-									// 貸与状態ドロップダウンリストが"3"（レンタル）で、表示されてる部屋備付状態が「なし」「共有」の場合、指示書欄に「搬出」を表示させる。
+									// 貸与状態ドロップダウンリストが"3"（レンタル）で、表示されてる備付状況が「なし」「共有」の場合、指示書欄に「搬出」を表示させる。
 									$("#shijisho" + rId).val("搬出");
 								} else {
 									$("#shijisho" + rId).val("");
