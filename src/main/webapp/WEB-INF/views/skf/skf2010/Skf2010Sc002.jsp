@@ -170,7 +170,6 @@
 							parameter="applNo:applNo"
 							screenUrl="skf/Skf2010Sc010/init" use="popup" />
 					</imart:condition>
-						<input name="doDelRow1" id="doDelRow1" type="button" value="テストPDF出力" class="imui-medium-button" onclick="onClickOutputPdfTabular()" />
 				</div>
 			</td>
 			<!-- 右側 -->
@@ -262,11 +261,6 @@ function back1() {
     //「退居（自動車の保管場所返還）届」ボタン押下時のイベント
     onClickOutputPdfR0103 = function () {
     	nfw.common.submitForm("form", "skf/Skf2010Sc002/OutputPdfR0103");
-    }
-    
-    //「テスト表形式PDF」ボタン押下時のイベント
-    onClickOutputPdfTabular = function () {
-    	nfw.common.submitForm("form", "skf/Skf2010Sc002/OutputPdfTabular");
     }
 })(jQuery);
 </script>
