@@ -194,6 +194,8 @@
 </script>
 <style type="text/css">
 .mce-ico {font-family:"tinymce",Arial !important;}
+
+#listTableArea td{white-space:normal;}
 </style>
 
 </div>
