@@ -119,6 +119,12 @@
 			//高さ変更
 			//$(".ui-jqgrid-view").height(300);
 			$(".ui-jqgrid-bdiv").height(225);
+			
+		    //ウィンドウリサイズ時イベント
+		    $(window).bind('resize', function(){
+		        // 一覧の横幅を変更
+		        $('#informationDataList').setGridWidth($("#listTableArea").width() * 0.95 ,true);
+		    }).trigger('resize');
 		});	
 		
 		//「お知らせを登録」ボタンクリック時
@@ -184,13 +190,6 @@
 				nfw.common.confirmPopup("削除します。よろしいですか？", "確認", formId, url, "OK", "キャンセル", this, true);
 			}
 		}
-		
-	    //ウィンドウリサイズ時イベント
-	    $(window).bind('resize', function(){
-	        // 一覧の横幅を変更
-	        $('#informationDataList').setGridWidth($("#listTableArea").width() * 0.95 ,true);
-	    }).trigger('resize');
-		
 	})(jQuery);	
 </script>
 <style type="text/css">
