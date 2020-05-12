@@ -15,10 +15,6 @@
 
 <script src="scripts/skf/skfCommon.js"></script>
 
-<%-- コンテンツエリア --%>
-<style type="text/css">
-
-</style>
 <script type="text/javascript">
 function onChangeJigetu() {
 		

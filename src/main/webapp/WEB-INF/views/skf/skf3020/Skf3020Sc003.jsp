@@ -10,11 +10,6 @@
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
-<%-- コンテンツエリア --%>
-
-</style>
-
-<!-- コンテンツエリア:モックのまま -->
 <!-- コンテンツエリア -->
 		<div class="imui-form-container-wide"  style="width:1280px;">
 			<nfwui:Form id="form">
@@ -24,8 +19,8 @@
 					})(jQuery);
 				</script>
 				
-				<imui:listTable id="grvTenninshaIchiran" process="jssp" autoEncode="false" autoWidth="true" rowNumbers="true"
-					autoResize="true" height="400" style="word-wrap:break-word;"
+				<imui:listTable id="grvTenninshaIchiran" process="jssp" autoEncode="false" autoWidth="true" rowNumbers="true" 
+					autoResize="true" height="400" style="word-wrap:break-word;" rowNumWidth="35"
 					multiSelect="false" data="${form.tenninshaChoshoDataTable }" >
 					<pager rowNum="100" />
 					<cols sortable="false">

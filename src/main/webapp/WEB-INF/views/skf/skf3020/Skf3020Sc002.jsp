@@ -12,12 +12,6 @@
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
 
-<%-- コンテンツエリア --%>
-<style type="text/css">
-
-</style>
-
-<!-- コンテンツエリア:モックのまま -->
 <!-- コンテンツエリア -->
 <nfwui:Form id="form" name="form" enctype="multipart/form-data">
 	<div style="width:100%;" >

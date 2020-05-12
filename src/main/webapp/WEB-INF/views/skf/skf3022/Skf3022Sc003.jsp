@@ -14,10 +14,6 @@
 <%@ page import="jp.co.c_nexco.nfw.common.utils.MessageUtils"%>
 <script src="scripts/skf/skfCommon.js"></script>
 
-<%-- コンテンツエリア --%>
-<style type="text/css">
-</style>
-
 <!-- コンテンツエリア -->
 <nfwui:Form id="rateShienform" name="rateShienform" modelAttribute="form" >
 	<div class="imui-form-container-wide">

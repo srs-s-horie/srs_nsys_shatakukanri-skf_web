@@ -43,41 +43,12 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 }
 
 (function($) {
-	/*
-	jQuery(document).on("focus click", "input,textarea", function() {
-		$(this).select();
-		return false;
-	});
-	*/
 	
 	onGridComplete = function(rowId,iCol,cellcontent,e) {
 		var $list = $('#mainList');
 		$list[0].grid.headers[12].el.innerText = "入退去予定\n作成区分";
 		$list[0].grid.headers[12].el.style.textAlign = "center";
 
-		// テキストボックス、テキストエリアにフォーカス時、入力済み文字列全選択
-		/*
-	   	document.getElementById("txtShainNo").addEventListener('click', function(){
-	   		$(this).select();
-	   		return false;
-	   	}, false);    	
-		document.getElementById("txtShinShozoku").addEventListener('click', function(){
-	   		$(this).select();
-	   		return false;
-	   	}, false);    	
-		document.getElementById("txtShainMei").addEventListener('click', function(){
-	   		$(this).select();
-	   		return false;
-	   	}, false);    	
-		document.getElementById("txtGenShozoku").addEventListener('click', function(){
-	   		$(this).select();
-	   		return false;
-	   	}, false);    	
-		document.getElementById("txtBiko").addEventListener('click', function(){
-	   		$(this).select();
-	   		return false;
-	   	}, false);    	
-		*/
 	}
 	
 	
