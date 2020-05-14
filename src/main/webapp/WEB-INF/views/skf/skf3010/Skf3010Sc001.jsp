@@ -76,7 +76,7 @@
 						<nfwui:LabelBox id="lblShatakuName" code="<%=MessageIdConstant.SKF3010_SC001_LBL_SHATAKU_NAME %>" />
 					</th>
 					<td style="width: 10%;">
-						<imui:textbox id="shatakuName" name="shatakuName" style="width:260px;"
+						<imui:textbox id="shatakuName" name="shatakuName" style="width:320px;"
 							maxlength="30" value="${form.shatakuName}" placeholder="例　社宅名" tabindex="9" />
 					</td>
 				</tr>
@@ -117,7 +117,7 @@
 						<nfwui:LabelBox id="lblShatakuAddress" code="<%=MessageIdConstant.SKF3010_SC001_LBL_SHATAKU_ADDRESS %>" />
 					</th>
 					<td>
-						<imui:textbox id="shatakuAddress" name="shatakuAddress" style="width:260px;" maxlength="100"
+						<imui:textbox id="shatakuAddress" name="shatakuAddress" style="width:320px;" maxlength="100"
 								value="${form.shatakuAddress}" placeholder="例　愛知県名古屋市中区錦2-18-19" tabindex="10" />
 					</td>
 				</tr>

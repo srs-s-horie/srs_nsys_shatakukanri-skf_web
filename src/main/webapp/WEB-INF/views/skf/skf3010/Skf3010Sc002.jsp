@@ -94,7 +94,7 @@
 						<nfwui:LabelBox id="lblShatakuName" code="<%=MessageIdConstant.SKF3010_SC002_LBL_SHATAKU_NAME %>" />
 					</th>
 					<td style="width: 10%;">
-						<imui:textbox id="shatakuName" name="shatakuName" style="width:200px;" maxlength="30"
+						<imui:textbox id="shatakuName" name="shatakuName" style="width:320px;" maxlength="30"
 							class="${form.shatakuNameErr}" value="${form.shatakuName}" placeholder="例　社宅名" tabindex="3" />
 					</td>
 					<th style="width: 5%;">

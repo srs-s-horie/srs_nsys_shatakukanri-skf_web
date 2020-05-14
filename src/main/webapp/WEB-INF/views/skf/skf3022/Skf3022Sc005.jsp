@@ -95,7 +95,7 @@
 						</th>
 						<td>
 <!-- 							<input class="ime-off" style="width:200px;" type="text" placeholder="例　00123456（半角）"/> -->
-							<imui:textbox id="txtShainNo" name="shainNo" style="ime-mode: disabled;width:200px;" value="${f:h(form.shainNo)}" placeholder="例　00123456（半角）" maxlength="8" tabindex="3"/>
+							<imui:textbox id="txtShainNo" name="shainNo" style="ime-mode: disabled;width:320px;" value="${f:h(form.shainNo)}" placeholder="例　00123456（半角）" maxlength="8" tabindex="3"/>
 						</td>
 						<th colspan="2">
 <!-- 							<label style="width:80px;">入退居区分</label> -->
@@ -113,7 +113,7 @@
 <!-- 							<label style="width:80px;">状況</label> -->
 							<nfwui:LabelBox id="lblJyokyo" code="<%=MessageIdConstant.SKF3022_SC005_BIHINTEIJI_JYOKYO %>" />
 						</th>
-						<td style="width:40%;">
+						<td style="width:20%;">
 							<imui:select id="bhJyokyo" name="bhJyokyo" 
 									width="120px" list="${form.bhJyokyoList}" tabindex="9" />
 						</td>
@@ -125,7 +125,7 @@
 						</th>
 						<td>
 <!-- 							<input style="width:200px;" type="text" placeholder="例　中日本　太郎"/> -->
-							<imui:textbox id="txtShainName" name="shainName" style="width:200px;" value="${form.shainName}" placeholder="例　中日本　太郎" maxlength="20" tabindex="4"/>
+							<imui:textbox id="txtShainName" name="shainName" style="width:320px;" value="${form.shainName}" placeholder="例　中日本　太郎" maxlength="20" tabindex="4"/>
 						</td>
 						<th rowspan="2">
 <!-- 							<label style="width:80px;">社宅提示</label> -->
@@ -155,7 +155,7 @@
 						</th>
 						<td>
 <!-- 							<input style="width:200px;" type="text" placeholder="例　社宅名"/> -->
-							<imui:textbox id="txtShatakuName" name="shatakuName" style="width:200px;" value="${form.shatakuName}" placeholder="例　社宅名" maxlength="30" tabindex="5"/>
+							<imui:textbox id="txtShatakuName" name="shatakuName" style="width:320px;" value="${form.shatakuName}" placeholder="例　社宅名" maxlength="30" tabindex="5"/>
 						</td>
 						<th>
 <!-- 							<label>確認督促</label> -->

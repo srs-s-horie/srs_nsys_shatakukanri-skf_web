@@ -75,7 +75,7 @@ function back1() {
 <!-- 									<label style="height:24px;">社宅名</label> -->
 									<nfwui:LabelBox id="lblShatakuName" code="<%=MessageIdConstant.SKF3010_SC007_SHATAKU_NAME %>" />
 								</th>
-								<td style="width: 15%;">
+								<td style="width: 20%;">
 									<label>${form.shatakuName}<label>
 								</td>
 								<th style="width: 5%;">
