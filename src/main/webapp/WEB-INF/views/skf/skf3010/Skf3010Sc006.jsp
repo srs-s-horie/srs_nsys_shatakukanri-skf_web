@@ -788,7 +788,7 @@
 							<td>
 								<!-- 賃貸人（代理人）テキストボックス -->
 								<imui:textbox readonly="true" id="contractOwnerName" name="contractOwnerName" class="${form.contractOwnerNameErr }"
-									style="width:150px;" value="${form.contractOwnerName}" disabled="${form.contractDelDisableFlg }" tabindex="70"
+									style="width:258px;" value="${form.contractOwnerName}" disabled="${form.contractDelDisableFlg }" tabindex="70"
 									onKeyDown="contractOwnerName_KeyDown(event)" />
 								<!-- 支援ボタン -->
 								<nfwui:PopupButton id="contractSupport" name="contractSupport" value="支援" use="popup"
@@ -825,7 +825,7 @@
 							<td>
 								<!-- 賃貸人（代理人）テキストボックス -->
 								<imui:textbox readonly="true" id="parkingOwnerName" name="parkingOwnerName" class="${form.parkingOwnerNameError }"
-									style="width:150px;height:98%" value="${form.parkingOwnerName}" disabled="${form.parkingContractInfoDisabled}" tabindex="83" 
+									style="width:258px;height:98%" value="${form.parkingOwnerName}" disabled="${form.parkingContractInfoDisabled}" tabindex="83" 
 									onKeyDown="parkingOwnerName_KeyDown(event)"/>
 								<!-- 支援ボタン -->
 								<nfwui:PopupButton id="parkingContractSupport" name="parkingContractSupport" value="支援" use="popup"

@@ -693,7 +693,7 @@
 							<td>
 								<!-- 賃貸人（代理人）テキストボックス -->
 								<imui:textbox readonly="true" id="contractOwnerName" name="contractOwnerName" class="${form.contractOwnerNameErr }"
-									style="width:150px;height:98%" value="${form.contractOwnerName}" disabled="${form.contractDelDisableFlg }" tabindex="69" />
+									style="width:257px;height:98%" value="${form.contractOwnerName}" disabled="${form.contractDelDisableFlg }" tabindex="69" />
 								<!-- 支援ボタン -->
 								<nfwui:PopupButton id="contractSupport" name="contractSupport" value="支援" use="popup"
 									cssClass="imui-small-button" popupWidth="640" popupHeight="800"
