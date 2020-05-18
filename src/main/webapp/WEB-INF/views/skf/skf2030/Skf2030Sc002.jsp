@@ -33,7 +33,7 @@ function back1() {
     <div style="max-width: 300px; margin-left:64px; margin-top:-7px;">
     <table class="imui-form-search-condition">
        <tr>
-            <th style="width: 5%;"><nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2030_SC002_APPL_STATUS %>" /></th>
+            <th style="width: 10%;"><nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2030_SC002_APPL_STATUS %>" /></th>
             <td style="width: 10%;"><label>${f:h(form.applStatusText) }</label></td>
       </tr>
     </table>

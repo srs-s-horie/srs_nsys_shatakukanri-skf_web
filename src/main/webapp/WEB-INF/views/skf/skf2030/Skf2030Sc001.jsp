@@ -117,7 +117,7 @@
 </script>
 
     <!-- コンテンツエリア -->
-<div class="imui-form-container-wide">
+<div class="imui-form-container-wide" style="padding-top:2px;">
 <div style="margin: 0px;">
 <jsp:include page="../common/INC_SkfAlterLoginCss.jsp"/>
 <br>
