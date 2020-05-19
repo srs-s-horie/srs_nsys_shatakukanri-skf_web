@@ -11,7 +11,7 @@
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <!-- コンテンツエリア -->
-		<div class="imui-form-container-wide"  style="width:1280px;">
+		<div class="imui-form-container-wide" >
 			<nfwui:Form id="form">
 				<script type="text/javascript">
 					(function($){
