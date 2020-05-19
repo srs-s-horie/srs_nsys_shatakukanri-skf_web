@@ -165,16 +165,18 @@
                         </tr>
                         <tr>
                             <th style="width: 200px;">
-                                <div style="float:right" >
+                                <nobr>
+                                <span style="padding:0px 3px 0px 10px">
+                                <nfwui:LabelBox id="lblCandidatePersonName" code="<%= MessageIdConstant.SKF2060_SC004_CANDIDATE_PERSON_NAME %>"/>
+                                </span>
+                                <span style="padding-left:25%">
                                     <nfwui:PopupButton id="support" name="support" value="支援"
                                         cssClass="imui-small-button" use="popup"
                                         screenUrl="skf/Skf2010Sc001/init"
                                         popupWidth="640" popupHeight="800"
                                         modalMode="true"  tabindex="5"/>
-                                </div>
-                                <nfwui:LabelBox id="lblCandidatePersonName" code="<%= MessageIdConstant.SKF2060_SC004_CANDIDATE_PERSON_NAME %>"/>
-                                &nbsp;&nbsp;
-                                
+                                </span>
+                                </nobr>
                             </th>
                             <td colspan="2">
                                 <input type="hidden" name="candidatePersonNo" id="shainNo" value="${form.candidatePersonNo}" />

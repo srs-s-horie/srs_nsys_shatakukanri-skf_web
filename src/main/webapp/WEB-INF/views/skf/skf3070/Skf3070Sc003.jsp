@@ -23,7 +23,7 @@
 <!-- コンテンツエリア -->
 	<nfwui:Form id="form" name="form" modelAttribute="form">
 		<div class="imui-form-container-wide">
-			<table class="imui-form-search-condition">
+			<table class="imui-form-search-condition" style="margin-top:-1%;">
 				<nfwui:Title id="ownerInfoTitle" code="<%= MessageIdConstant.SKF3070_SC003_OWNER_INFO_TITLE %>" titleLevel="2" />
 				 	<tr>
                         　				<th rowspan="5" style="width:9%;">
