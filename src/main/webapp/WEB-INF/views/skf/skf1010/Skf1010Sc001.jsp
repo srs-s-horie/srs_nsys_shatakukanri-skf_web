@@ -435,7 +435,7 @@ if(menuSesValTop != null){
                                                     	<nfwui:LabelBox id="syatakuNyukyoNotKibo" code="<%= MessageIdConstant.SKF1010_SC001_SYATAKU_NYUKYO_NOT_KIBO %>" /><br>
                                                     </td>
                                                     <td style="text-align:center;"   colspan="5" >
-                                                     <nfwui:Link id="nyutaikyoCount1" name="nyutaikyoCount1" label="${form.nyutaikyoCount1}件" use="anchor" href="/imart/skf/Skf3022Sc005/init" />
+                                                     <nfwui:Link id="nyutaikyoCount1" name="nyutaikyoCount1" label="${form.nyutaikyoCount1}件" use="anchor" href="/imart/skf/Skf3021Sc001/init" />
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -443,7 +443,7 @@ if(menuSesValTop != null){
                                                         <nfwui:LabelBox id="taikyoTodokeNotSinsei" code="<%= MessageIdConstant.SKF1010_SC001_TAIKYO_TODOKE_NOT_SINSEI %>" /><br>
                                                     </td>
                                                     <td style="text-align:center;"   colspan="5" >
-                                                     <nfwui:Link id="nyutaikyoCount2" name="nyutaikyoCount2" label="${form.nyutaikyoCount2}件" use="anchor" href="/imart/skf/Skf3022Sc005/init" />
+                                                     <nfwui:Link id="nyutaikyoCount2" name="nyutaikyoCount2" label="${form.nyutaikyoCount2}件" use="anchor" href="/imart/skf/Skf3021Sc001/init" />
                                                     </td>
                                                 </tr>
                                             </tbody>
