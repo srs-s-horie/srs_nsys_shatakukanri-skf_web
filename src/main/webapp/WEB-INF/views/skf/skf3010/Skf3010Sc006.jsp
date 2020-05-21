@@ -131,7 +131,7 @@
 						<nfwui:LabelBox id="lblShatakuName" code="<%=MessageIdConstant.SKF3010_SC002_LBL_SHATAKU_NAME %>" />
 					</th>
 					<td style="width: 10%;">
-						<imui:textbox id="shatakuName" name="shatakuName" style="width:200px;" maxlength="30"
+						<imui:textbox id="shatakuName" name="shatakuName" style="width:320px;" maxlength="30"
 							class="${form.shatakuNameErr}" value="${form.shatakuName}" placeholder="例　社宅名" tabindex="3" />
 					</td>
 					<th style="width: 5%;">
@@ -788,7 +788,7 @@
 							<td>
 								<!-- 賃貸人（代理人）テキストボックス -->
 								<imui:textbox readonly="true" id="contractOwnerName" name="contractOwnerName" class="${form.contractOwnerNameErr }"
-									style="width:150px;" value="${form.contractOwnerName}" disabled="${form.contractDelDisableFlg }" tabindex="70"
+									style="width:258px;" value="${form.contractOwnerName}" disabled="${form.contractDelDisableFlg }" tabindex="70"
 									onKeyDown="contractOwnerName_KeyDown(event)" />
 								<!-- 支援ボタン -->
 								<nfwui:PopupButton id="contractSupport" name="contractSupport" value="支援" use="popup"
@@ -825,7 +825,7 @@
 							<td>
 								<!-- 賃貸人（代理人）テキストボックス -->
 								<imui:textbox readonly="true" id="parkingOwnerName" name="parkingOwnerName" class="${form.parkingOwnerNameError }"
-									style="width:150px;height:98%" value="${form.parkingOwnerName}" disabled="${form.parkingContractInfoDisabled}" tabindex="83" 
+									style="width:258px;height:98%" value="${form.parkingOwnerName}" disabled="${form.parkingContractInfoDisabled}" tabindex="83" 
 									onKeyDown="parkingOwnerName_KeyDown(event)"/>
 								<!-- 支援ボタン -->
 								<nfwui:PopupButton id="parkingContractSupport" name="parkingContractSupport" value="支援" use="popup"

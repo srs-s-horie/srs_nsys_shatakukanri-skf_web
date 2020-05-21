@@ -55,14 +55,14 @@
                   <th style="width:500px;"><nfwui:LabelBox id="lblCommentNote" code="<%= MessageIdConstant.SKF2010_SC010_COMMENT_NOTE %>" /></th>
                 </tr>
                 <tr style="height: 60px;">
-                  <td style="text-align:center;">
+                  <td style="text-align:center; vertical-align: middle;">
                     ${obj.commentName}
                   </td>
-                  <td style="text-align:center;">
+                  <td style="text-align:center; vertical-align: middle;">
                     ${f:h(obj.commentDate)}
                   </td>
-                  <td style="text-align:center;" >
-                    ${f:h(obj.applStatus)}
+                  <td style="text-align:center; vertical-align: middle;">
+                  	${f:h(obj.applStatus)}
                   </td>
                   <td style="text-align:left;">
                     <div class="comment-row">

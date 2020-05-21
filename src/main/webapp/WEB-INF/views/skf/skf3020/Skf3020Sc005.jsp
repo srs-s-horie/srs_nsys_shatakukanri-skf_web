@@ -10,12 +10,6 @@
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
-<%-- コンテンツエリア --%>
-<style type="text/css">
-
-</style>
-
-<!-- コンテンツエリア:モックのまま -->
 <!-- コンテンツエリア -->
 <nfwui:Form id="form" name="form" modelAttribute="form">
 	<div style="width: 100%;">
@@ -209,5 +203,4 @@
 		</div>
 	</div>
 </nfwui:Form>
-<!-- コンテンツエリア:モックのまま -->
-<!-- コンテンツエリア　ここまで -->
+<!-- コンテンツエリア ここまで -->

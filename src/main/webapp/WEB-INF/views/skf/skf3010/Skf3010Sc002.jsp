@@ -94,7 +94,7 @@
 						<nfwui:LabelBox id="lblShatakuName" code="<%=MessageIdConstant.SKF3010_SC002_LBL_SHATAKU_NAME %>" />
 					</th>
 					<td style="width: 10%;">
-						<imui:textbox id="shatakuName" name="shatakuName" style="width:200px;" maxlength="30"
+						<imui:textbox id="shatakuName" name="shatakuName" style="width:320px;" maxlength="30"
 							class="${form.shatakuNameErr}" value="${form.shatakuName}" placeholder="例　社宅名" tabindex="3" />
 					</td>
 					<th style="width: 5%;">
@@ -693,7 +693,7 @@
 							<td>
 								<!-- 賃貸人（代理人）テキストボックス -->
 								<imui:textbox readonly="true" id="contractOwnerName" name="contractOwnerName" class="${form.contractOwnerNameErr }"
-									style="width:150px;height:98%" value="${form.contractOwnerName}" disabled="${form.contractDelDisableFlg }" tabindex="69" />
+									style="width:257px;height:98%" value="${form.contractOwnerName}" disabled="${form.contractDelDisableFlg }" tabindex="69" />
 								<!-- 支援ボタン -->
 								<nfwui:PopupButton id="contractSupport" name="contractSupport" value="支援" use="popup"
 									cssClass="imui-small-button" popupWidth="640" popupHeight="800"

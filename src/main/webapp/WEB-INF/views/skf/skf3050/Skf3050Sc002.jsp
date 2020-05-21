@@ -12,11 +12,6 @@
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 
 <%-- コンテンツエリア --%>
-<style type="text/css">
-
-</style>
-
-<!-- コンテンツエリア:モックのまま -->
 <script src="scripts/skf/skfCommon.js"></script>
 	<script type="text/javascript">
 		/**

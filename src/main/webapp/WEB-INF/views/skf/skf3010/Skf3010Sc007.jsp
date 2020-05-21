@@ -75,7 +75,7 @@ function back1() {
 <!-- 									<label style="height:24px;">社宅名</label> -->
 									<nfwui:LabelBox id="lblShatakuName" code="<%=MessageIdConstant.SKF3010_SC007_SHATAKU_NAME %>" />
 								</th>
-								<td style="width: 15%;">
+								<td style="width: 20%;">
 									<label>${form.shatakuName}<label>
 								</td>
 								<th style="width: 5%;">
@@ -115,11 +115,11 @@ function back1() {
 						style="max-height: 800px" tabindex="1">
 <%-- 						<pager rowNum="${form.listTableMaxRowCount}" /> --%>
 						<cols sortable="false">
-						<col name="colParkingBlock" caption="区画番号" width="65" sortable="false" align="left" wrap="true"/>
+						<col name="colParkingBlock" caption="区画番号" width="75" sortable="false" align="left" wrap="true"/>
 						<col name="colParkingContractType" caption="契約形態" width="100" sortable="false" align="left" wrap="true"/>
 						<col name="colContractPropertyId" caption="契約番号" width="65" sortable="false" align="center" wrap="true"/>
-						<col name="colOwnerName" caption="賃貸人（代理人）" width="130" sortable="false" align="left" wrap="true"/>
-						<col name="colParkingAddress" caption="所在地"　width="240" sortable="false" align="left" wrap="true"/>
+						<col name="colOwnerName" caption="賃貸人（代理人）" width="250" sortable="false" align="left" wrap="true"/>
+						<col name="colParkingAddress" caption="所在地"　width="200" sortable="false" align="left" wrap="true"/>
 						<col name="colParkingName" caption="駐車場名" width="120" sortable="false" align="left" wrap="true"/>
 						<col name="colAssetRegisterNo" caption="経理連携用管理番号"  width="130" sortable="false" align="center" wrap="true"/>
 						<col name="colContractStartDate" caption="契約開始日" width="85" sortable="false" align="center" wrap="true"/>
@@ -211,7 +211,7 @@ function back1() {
                </th>
                <td colspan="3">
 <%--                		<imui:textbox id="txtOwnerName" name="ownerName" style="width:130px;" value="${form.ownerName}" class="${form.ownerNameError}" disabled="${form.contractInfoDisabled}" maxlength="30" tabindex="5" readonly /> --%>
-               		<imui:textbox id="contractOwnerName" name="ownerName" style="width:130px;" value="${form.ownerName}" 
+               		<imui:textbox id="contractOwnerName" name="ownerName" style="width:300px;" value="${form.ownerName}" 
                		class="${form.ownerNameError}" disabled="${form.contractInfoDisabled}" maxlength="30" tabindex="5" readonly="true" onKeyDown="contractOwnerName_KeyDown(event)"/>
                		<nfwui:PopupButton id="ownerShien" name="ownerShien" value="支援" use="popup" 
                 		cssClass="imui-small-button" popupWidth="640" popupHeight="800"  

@@ -43,41 +43,12 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 }
 
 (function($) {
-	/*
-	jQuery(document).on("focus click", "input,textarea", function() {
-		$(this).select();
-		return false;
-	});
-	*/
 	
 	onGridComplete = function(rowId,iCol,cellcontent,e) {
 		var $list = $('#mainList');
 		$list[0].grid.headers[12].el.innerText = "入退去予定\n作成区分";
 		$list[0].grid.headers[12].el.style.textAlign = "center";
 
-		// テキストボックス、テキストエリアにフォーカス時、入力済み文字列全選択
-		/*
-	   	document.getElementById("txtShainNo").addEventListener('click', function(){
-	   		$(this).select();
-	   		return false;
-	   	}, false);    	
-		document.getElementById("txtShinShozoku").addEventListener('click', function(){
-	   		$(this).select();
-	   		return false;
-	   	}, false);    	
-		document.getElementById("txtShainMei").addEventListener('click', function(){
-	   		$(this).select();
-	   		return false;
-	   	}, false);    	
-		document.getElementById("txtGenShozoku").addEventListener('click', function(){
-	   		$(this).select();
-	   		return false;
-	   	}, false);    	
-		document.getElementById("txtBiko").addEventListener('click', function(){
-	   		$(this).select();
-	   		return false;
-	   	}, false);    	
-		*/
 	}
 	
 	
@@ -388,11 +359,11 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 			<br />
 			<div class="align-R">
 				<!-- 現社宅照会表示ボタン（非表示） -->
-				<nfwui:PopupButton id="genshataku" style="visibility:hidden" value="a" cssClass="imui-medium-button" modalMode="true" popupWidth="580" popupHeight="650" parameter="hdnRowShainNo:hdnRowShainNo" screenUrl="skf/Skf3020Sc001/init" use="popup" />				
+				<nfwui:PopupButton id="genshataku" style="visibility:hidden" value="a" cssClass="imui-medium-button" modalMode="true" popupWidth="580" popupHeight="550" parameter="hdnRowShainNo:hdnRowShainNo" screenUrl="skf/Skf3020Sc001/init" use="popup" />				
 				<!-- 仮社員番号のデータ削除 ボタン -->
 				<imui:button id="delete" name="delete" value="仮社員番号のデータ削除" class="imui-medium-button" onclick="preButtonEvent(0)" tabindex="20" />
 				<!-- 転入者取込 ボタン -->
-				<imui:button id="import" name="import" value="転入者調書取込" class="imui-medium-button" onclick="preButtonEvent(1)" tabindex="21" />
+				<imui:button id="import" name="import" value="転任者調書取込" class="imui-medium-button" onclick="preButtonEvent(1)" tabindex="21" />
 				<!-- 新規 ボタン -->
 				<imui:button id="new" name="new" value="新規" class="imui-medium-button" onclick="preButtonEvent(2)" tabindex="22" />
 				<!-- 登録 ボタン -->

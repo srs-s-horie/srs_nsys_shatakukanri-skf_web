@@ -36,7 +36,7 @@
 						<nfwui:LabelBox id="lblSc001ShatakuName" code="<%= MessageIdConstant.SKF3022_SC001_SHATAKU_NAME %>" />
 					</th>
 					<td  colspan="5">
-						<imui:textbox id="sc001ShatakuName" name="sc001ShatakuName" style="width:260px;"
+						<imui:textbox id="sc001ShatakuName" name="sc001ShatakuName" style="width:310px;"
 											value="${form.shatakuName}" placeholder="例　社宅名" tabindex="301" />
 					</td>
 				</tr>
@@ -46,8 +46,8 @@
 						<nfwui:LabelBox id="lblSc001RoomNo" code="<%= MessageIdConstant.SKF3022_SC001_ROOM_NO %>" />
 					</th>
 					<td  colspan="5">
-						<imui:textbox id="sc001RoomNo" name="sc001RoomNo" style="width:260px;" value="${form.roomNo}"
-																			placeholder="例　101（半角）" tabindex="302" />
+						<imui:textbox id="sc001RoomNo" name="sc001RoomNo" style="width:310px;" value="${form.roomNo}"
+																			placeholder="例　101" tabindex="302" />
 					</td>
 				</tr>
 					<th style="width: 13%;">
@@ -104,11 +104,11 @@
 			<pager rowNum="${form.maxCount}" />
 			<cols>
 				<col name="colSelect" width="20" sortable="false" caption="" wrap="true" />
-				<col name="colShatakuName" width="140" sortable="false" align="left" caption="社宅名" wrap="true" />
-				<col name="colRoomNo" width="100" sortable="false" align="left" caption="部屋番号" wrap="true" />
-				<col name="colAuse" width="50" sortable="false" align="center" caption="用途" wrap="true" />
+				<col name="colShatakuName" width="210" sortable="false" align="left" caption="社宅名" wrap="true" />
+				<col name="colRoomNo" width="60" sortable="false" align="left" caption="部屋番号" wrap="true" />
+				<col name="colAuse" width="40" sortable="false" align="center" caption="用途" wrap="true" />
 				<col name="colKikaku" width="50" sortable="false" align="center" caption="規格" wrap="true" />
-				<col name="colEmptyRoom" width="80" sortable="false" align="center" caption="空き部屋" wrap="true" />
+				<col name="colEmptyRoom" width="60" sortable="false" align="center" caption="空き部屋" wrap="true" />
 				<col name="colEmptyParking" width="80" sortable="false" align="center" caption="空き駐車場" wrap="true" />
 				<col name="colEmptyRoomState" hidden="true" />
 				<col name="colShatakuKanriNo" hidden="true" />

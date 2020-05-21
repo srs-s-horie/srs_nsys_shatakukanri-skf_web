@@ -14,11 +14,6 @@
 <link rel="stylesheet" type="text/css" href="styles/skf/listTableStyle.css" />
 
 <%-- コンテンツエリア --%>
-<style type="text/css">
-
-</style>
-
-<!-- コンテンツエリア:モックのまま -->
 <script type="text/javascript">
 	/**
 	* メニュー画面へ遷移する。
@@ -211,7 +206,7 @@
 			    $.imui.util.loadCSS("ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
 			  })(jQuery);
 			</script>
-			<imui:listTable id="mainList" process="jssp" autoWidth="true" shrinkToFit="false" rowNumbers="true" height="320"
+			<imui:listTable id="mainList" process="jssp" autoWidth="true" shrinkToFit="false" rowNumbers="true" height="320" rowNumWidth="35"
 				autoResize="true" onCellSelect="onCellSelect" multiSelect="false" data="${form.searchDataList }"
 				style="max-height:1000px;" >
 				<pager rowNum="100" />

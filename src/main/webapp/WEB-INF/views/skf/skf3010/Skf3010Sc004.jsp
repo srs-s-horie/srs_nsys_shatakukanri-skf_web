@@ -54,7 +54,7 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 <!-- 									<label style="height:24px;">社宅名</label> -->
 									<nfwui:LabelBox id="lblShatakuName" code="<%=MessageIdConstant.SKF3010_SC004_SHATAKU_NAME %>" />
 								</th>
-								<td style="width: 10%;">
+								<td style="width: 15%;">
  									<label>${form.shatakuName}<label>
 								</td>
 								<th style="width: 5%;">
@@ -175,7 +175,9 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 									var roomKanriNo = row.col9;									
 									
 									$("#sendRoomKanriNo").val(roomKanriNo);									
-									$("#form2").submit();
+									//$("#form2").submit();
+									url = "skf/Skf3010Sc005/init";
+									nfw.common.submitForm("form2", url);
 								}
 								
 									}
@@ -222,9 +224,9 @@ function onCellAttr(rowId,val,rawObject,cm,rdata){
 					<input type="hidden" name="hdnEmptyRoomCount" id="hdnEmptyRoomCount" value="${form.hdnEmptyRoomCount}" />
 					<input type="hidden" name="emptyParkingCount" id="emptyParkingCount" value="${form.emptyParkingCount}" />
 					<input type="hidden" name="hdnEmptyParkingCount" id="hdnEmptyParkingCount" value="${form.hdnEmptyParkingCount}" />
-					<input type="hidden" name="hdnOriginalAuse" id="hdnOriginalAuse" value="" />
+					<input type="hidden" name="hdnOriginalAuse" id="hdnOriginalAuse" value="${form.originalAuse}" />
 					<input type="hidden" name="hdnRoomKanriNo" id="sendRoomKanriNo" value="" />
-					<input type="hidden" name="hdnLendKbn" id="hdnLendKbn" value="" />
+					<input type="hidden" name="hdnLendKbn" id="hdnLendKbn" value="${form.lendKbn}" />
 					<input type="hidden" name="updateFlag" id="updateFlag" value="0"/>
 					<input type="hidden" name="backUrl" id="backUrl" value="skf/Skf3010Sc004/init"/>
 				<nfwui:Button id="regist" code="<%=MessageIdConstant.SKF3010_SC004_BUTTON_NEW %>" cssClass="imui-medium-button" 

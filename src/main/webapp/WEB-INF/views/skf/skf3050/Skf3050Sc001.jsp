@@ -13,12 +13,6 @@
 <%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
 <script src="scripts/skf/skfCommon.js"></script>
 
-<%-- コンテンツエリア --%>
-<style type="text/css">
-
-</style>
-
-
 <!-- コンテンツエリア -->
 <nfwui:Form id="form" name="form" modelAttribute="form">
 	<input type="hidden" name="prePageId" id="prePageId" value="<%=FunctionIdConstant.SKF3050_SC001%>" />

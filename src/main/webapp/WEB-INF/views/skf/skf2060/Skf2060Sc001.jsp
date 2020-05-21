@@ -38,13 +38,16 @@
                                     <tr>
                                         <th >
                                    	    <nobr>
-                                        &thinsp;&thinsp;
+                                        <span style="padding:0px 3px 0px 10px">
                                         <nfwui:LabelBox id="presentedNamelbl" code="<%= MessageIdConstant.SKF2060_SC001_PRESENTED_NAME %>" style="float:left" />
+                                        </span>
+                                        <span style="padding-left:15%">    
                                             <nfwui:PopupButton id="support" name="support" value="支援"
                                             cssClass="imui-small-button" use="popup"
                                             screenUrl="skf/Skf2010Sc001/init"
                                             popupWidth="640" popupHeight="800"
                                             modalMode="true" disabled="${form.supportDisabled}" tabindex="3" />
+                                        </span>
                                         </nobr>   
                                         </th>
                                         <td colspan="2">
