@@ -274,7 +274,7 @@ height="300" onGridComplete="gridComplete">
 	    		dialogMessage = "申請書を取下げします。よろしいですか？";
 	    	} else if ($(cellContent).hasClass('im-ui-icon-common-16-trashbox')) {
 	    		// 削除
-	    		dialogMessage = "削除します。よろしいですか？";
+	    		dialogMessage = "申請書類を削除します。よろしいですか？";
 	    	}
     		
     		var grid = $("#ltResultListTable");		// リストテーブル情報取得

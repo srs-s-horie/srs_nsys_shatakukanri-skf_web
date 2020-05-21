@@ -202,7 +202,7 @@ ${form.operationGuide }
    <div class="imui-form-container-wide" width="1000px" style="width: 90%; max-width: 1000px;">
 		<nfwui:Accordion id="ketteiTsuchiView2" >
 		  <nfwui:AccordionItem id="ketteiTsuchiItem2" code="<%= MessageIdConstant.SKF2010_SC004_KETTEI_TSUCHI2 %>"
-		  defaultOpen="false">
+		  defaultOpen="${form.level3Open }">
 <%@ include file="common/Skf2010KetteiTsuchi2.jsp" %>
 		  </nfwui:AccordionItem>
 		</nfwui:Accordion>
