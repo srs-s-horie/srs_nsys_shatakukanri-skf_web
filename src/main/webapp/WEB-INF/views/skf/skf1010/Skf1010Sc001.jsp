@@ -372,6 +372,19 @@ if(menuSesValTop != null){
                             <nfwui:LabelBox id="zigyoRyoikiMasutaMaintenanceMessage" code="<%= MessageIdConstant.SKF1010_SC001_ZIGYO_RYOIKI_MASUTA_MAINTENANCE_MESSAGE %>" /><br>
                         </td>
                     </tr>
+                    
+                    <imart:condition validity="${form.level3_3}">                    
+                    <tr>
+                        <th>
+                            <a href="/imart/viewcreator/dataview_list" class="imui-accent" style="margin-left: 8px">
+                            	<nfwui:LabelBox id="sousaLogKakunin" code="<%= MessageIdConstant.SKF1010_SC001_SOUSA_LOG_KAKUNIN %>" />
+                            </a>                        
+                        </th>
+                        <td style="width: 60%;">
+                            <nfwui:LabelBox id="sousaLogKakuninMessage" code="<%= MessageIdConstant.SKF1010_SC001_SOUSA_LOG_KAKUNIN_MESSAGE %>" /><br>
+                        </td>
+                    </tr>
+                    </imart:condition>
                     </imart:decision>
          </ul>
         </table>
