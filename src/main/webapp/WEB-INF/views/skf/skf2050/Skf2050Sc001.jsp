@@ -223,12 +223,12 @@
                                     <td colspan="2">
                                         <nfwui:DateBox id="completionDay" name="completionDay"
                                         disabledPatterns="ST30" cssStyle="width:150px;" />
-                                        <a style="color: red;border: none;">
-                                ※備品の搬出が完了した日を入力してください。
-                                </a>
+                                        <span style="color: red;border: none;">
+                              				  ※備品の搬出が完了した日を入力してください。
+                                		</span>
 
                                     </td>
-                                </tr>
+                               		 </tr>
 </imart:condition>
 </imart:condition>
 <tr style="border:none">

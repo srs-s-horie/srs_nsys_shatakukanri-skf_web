@@ -171,10 +171,10 @@
         </table>
 <imart:condition validity="<%= String.valueOf(form.isBihinReadOnly()) %>">
 <div class="align-L float-L">
-      <imui:button class="imui-medium-button check" id="backBtn" name="backBtn" value="前の画面へ" style="width:150px; margin-top:5px;" tabindex="13" onclick="back1()" />
+      <imui:button class="imui-medium-button check" id="backBtn" name="backBtn" value="前の画面へ" style="width:150px;" tabindex="13" onclick="back1()" />
 <imart:condition validity="<%= String.valueOf(form.isCommentViewFlag()) %>" >
     <nfwui:PopupButton id="commentPop" value="コメント表示" 
-    cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
+    cssClass="imui-medium-button" style="width:150px;"
     modalMode="false" popupWidth="1350" popupHeight="488"
     parameter="applNo:applNo" formId="form" tabindex="12"
     screenUrl="skf/Skf2010Sc010/init" use="popup" />
