@@ -28,6 +28,27 @@
   overflow-y: auto;
 }
 </style>
+<script type="text/javascript">
+$(function(){
+	$(document).ready(function() {
+		$.each($(".applStatusColor"), function(index, elem) {
+			switch($(elem).attr("valueId")) {
+			case '承認':
+			    style = "green";
+			    break;
+			case '修正依頼':
+			case '差戻し':
+			    style = "red";
+			    break;	  
+			default:
+			    style = "blue";
+		    	break;
+			}
+			$(elem).css("color", style);
+		});
+	});
+});
+</script>
 <!-- コンテンツエリア -->
 <div class="imui-form-container-wide" >
   <nfwui:Title code="<%= MessageIdConstant.SKF2010_SC010_TITLE_LABEL %>" />
@@ -61,7 +82,7 @@
                   <td style="text-align:center; vertical-align: middle;">
                     ${f:h(obj.commentDate)}
                   </td>
-                  <td style="text-align:center; vertical-align: middle;">
+                  <td class="applStatusColor" valueId="${f:h(obj.applStatus)}" style="text-align:center; vertical-align: middle;">
                   	${f:h(obj.applStatus)}
                   </td>
                   <td style="text-align:left;">
