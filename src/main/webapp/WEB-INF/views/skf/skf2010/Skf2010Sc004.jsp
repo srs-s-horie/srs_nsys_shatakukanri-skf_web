@@ -55,6 +55,8 @@ function back1() {
 }
 
 (function($) {
+	// intra-martヘッダの上端の位置を取得
+	var position = $("#imui-header").offset().top;
 	$(document).ready(function(){
 		// 添付資料のリンクをクリックした時のイベント
 		$("a[id^='attached_']").click(function(){
@@ -63,6 +65,14 @@ function back1() {
 		
 		$("#douiBtn").click(function(){
 			skf.common.confirmPopupForCallback("提示内容に同意します。よろしいですか？", "確認", "form", "OK", "キャンセル", this, function(){
+				// スクロール速度を一瞬にする
+				jQuery.fx.off = true;
+				// 画面上部まで移動
+				$("html,body").animate({
+			        scrollTop : position
+			    }, {
+			        queue : false
+			    });
 				var map = new Object();
 				
 				map['applNo'] = $("#applNo").val();

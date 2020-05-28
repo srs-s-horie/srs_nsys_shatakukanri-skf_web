@@ -119,7 +119,7 @@
         </div>
 </imart:condition>
 <imart:condition validity="<%= String.valueOf(form.isCompletionDayDisabled()) %>">
-               <imui:textbox id="completionDay" name="completionDay" value="${f:h(form.completionDay) }" cssStyle="width: 150px;" disabled="true" tabindex="5"  />
+               <imui:textbox id="completionDayViewOnly" name="completionDay" value="${f:h(form.completionDay) }" cssStyle="width: 150px;" disabled="true" tabindex="5"  />
 </imart:condition>
                                     </td>
                                 </tr>
