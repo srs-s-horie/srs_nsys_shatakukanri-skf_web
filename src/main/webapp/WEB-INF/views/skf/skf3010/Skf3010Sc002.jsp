@@ -1096,6 +1096,8 @@
 
 						// 住所検索押下時のイベント
 						addressSearchClick = function() {
+							// 警告文表示を削除
+							$(".imui-box-caution, .imui-box-warning").hide();
 							var map = new Object();
 							map['zipCd'] = $("#zipCd").val();
 							// 住所検索
@@ -1107,6 +1109,8 @@
 
 						// 駐車場区画追加ボタンクリック時のイベント
 						addParkingBlockClick = function() {
+							// 警告文表示を削除
+							$(".imui-box-caution, .imui-box-warning").hide();
 							// リストデータ取得
 							var arrrows = $("#parkingInfoList").getRowData();
 							// 現在の最大のRID番号取得
@@ -1566,6 +1570,8 @@
 
 						// 駐車場削除アイコンクリック時
 						if ($(cellcontent).hasClass('im-ui-icon-common-16-trashbox')) {
+							// 警告文表示を削除
+							$(".imui-box-caution, .imui-box-warning").hide();
 							var map = new Object();
 							// 行番号から選択した行の情報を取得
 							var rowData = $("#parkingInfoList").getRowData(rowId);

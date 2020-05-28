@@ -167,6 +167,8 @@
 
 	<script type="text/javascript">
 		function refreshGridData() {
+			// 警告文表示を削除
+			$(".imui-box-caution, .imui-box-warning").hide();
 			//入力内容チェック
 			var map = new Object();
 			map['shatakuNo'] = $("#hdnShatakuKanriNo").val();

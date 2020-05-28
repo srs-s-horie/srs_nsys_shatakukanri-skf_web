@@ -1295,6 +1295,8 @@
 						// 住所検索押下時のイベント
 						addressSearchClick = function() {
 //						$("#addressSearch").click(function () {
+							// 警告文表示を削除
+							$(".imui-box-caution, .imui-box-warning").hide();
 							var map = new Object();
 							map['zipCd'] = $("#zipCd").val();
 							// 住所検索
@@ -1667,6 +1669,8 @@
 						}
 						//駐車場契約住所検索
 				    	addressOnClick = function () {
+				    		// 警告文表示を削除
+							$(".imui-box-caution, .imui-box-warning").hide();
 							var map = new Object();
 							map['parkingZipCd'] = $("#parkingZipCd").val();
 							

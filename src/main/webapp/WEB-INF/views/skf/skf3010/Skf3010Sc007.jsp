@@ -459,6 +459,8 @@ function back1() {
 				    	}
 				    	
 				    	addressOnClick = function () {
+				    		// 警告文表示を削除
+							$(".imui-box-caution, .imui-box-warning").hide();
 							var map = new Object();
 							map['parkingZipCd'] = $("#txtParkingZipCd").val();
 							nfw.common.doAjaxAction("skf/Skf3010Sc007/AddressSearchAsync",map,true,function(data) {
