@@ -62,7 +62,7 @@
 	</imart:condition>
 	<!-- 添付資料表示なし -->
 	<imart:condition validity="${form.tenpViewFlg}" negative>
-	<div class="imui-form-container-wide" width="300px" style="width: 90%; max-width: 300px;border:none;margin: 0px;" height="100px">
+	<div class="imui-form-container-wide" width="300px" style="width: 90%; max-width: 300px;border:none; margin-left:20.8%; padding:0px;" height="100px">
 		<!--  <div style="max-width: 300px;margin: 0px;">-->
 			<table class="imui-form-search-condition">
 			   <tr>
