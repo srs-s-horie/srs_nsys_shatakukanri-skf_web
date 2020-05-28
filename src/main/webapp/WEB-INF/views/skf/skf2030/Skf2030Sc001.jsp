@@ -78,6 +78,14 @@
 		$(document).ready(function() {
 			checkBihinChecked();
 			
+			// 搬入完了日（書き込み不可）の時の日付のフォーマット調整
+			var completionDay = $("#completionDayViewOnly").val();
+			if (completionDay != null　&& completionDay !== -1) {
+				var dayList = completionDay.match(/(\d{4})(\d{2})(\d{2})/);
+				completionDay = dayList[1] + "/" + dayList[2] + "/" + dayList[3];
+				$("#completionDayViewOnly").val(completionDay);
+			}
+			
 			// 搬入完了ボタンクリックイベント
 			$("#btnCarryIn").click(function(){
 				skf.common.confirmPopupForCallback("備品搬入を完了します。よろしいですか？", "搬入完了", "form", "OK", "キャンセル", this, function(){
