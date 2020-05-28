@@ -6,7 +6,8 @@ package jp.co.c_nexco.skf.skf3030.app.skf3030sc001;
 import jp.co.c_nexco.businesscommon.entity.skf.exp.Skf3030Sc001.Skf3030Sc001GetShatakuKanriDaichoInfoExpParameter;
 import jp.co.c_nexco.nfw.nfwfile.app.nfwfilescdwd.NfwfileScDwdForm;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 import lombok.EqualsAndHashCode;
 

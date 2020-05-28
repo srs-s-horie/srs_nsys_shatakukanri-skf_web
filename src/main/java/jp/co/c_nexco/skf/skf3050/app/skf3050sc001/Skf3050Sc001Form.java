@@ -2,7 +2,8 @@ package jp.co.c_nexco.skf.skf3050.app.skf3050sc001;
 
 import jp.co.c_nexco.nfw.webcore.app.BaseForm;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 import lombok.EqualsAndHashCode;
 

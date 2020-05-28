@@ -3,7 +3,8 @@
  */
 package jp.co.c_nexco.skf.skf3022.app.skf3022sc006;
 import jp.co.c_nexco.nfw.webcore.app.GridForm;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 import lombok.EqualsAndHashCode;
 
 /**

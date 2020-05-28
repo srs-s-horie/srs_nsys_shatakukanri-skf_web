@@ -2,7 +2,7 @@ package jp.co.c_nexco.skf.skf3090.app.skf3090sc002;
 
 import jp.co.c_nexco.nfw.webcore.app.BaseForm;
 
-import java.util.*;
+import java.util.List;
 
 import lombok.EqualsAndHashCode;
 

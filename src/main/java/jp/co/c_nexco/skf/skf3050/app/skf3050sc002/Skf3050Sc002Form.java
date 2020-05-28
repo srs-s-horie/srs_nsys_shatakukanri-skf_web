@@ -5,7 +5,8 @@ package jp.co.c_nexco.skf.skf3050.app.skf3050sc002;
 
 import jp.co.c_nexco.nfw.nfwfile.app.nfwfilescdwd.NfwfileScDwdForm;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 import lombok.EqualsAndHashCode;
 

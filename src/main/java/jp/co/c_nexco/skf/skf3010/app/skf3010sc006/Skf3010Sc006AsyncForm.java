@@ -99,9 +99,9 @@ public class Skf3010Sc006AsyncForm extends AsyncBaseForm {
 //	// 駐車場情報リスト(初期表示時：DB取得時)
 //	private List<Map<String, Object>> hdnStartingParkingInfoListTableData;
 	// 駐車場区画調整金額リスト
-	private ArrayList <String> parkingRentalAdjusts;
+	private ArrayList<String> parkingRentalAdjusts;
 	// 駐車場区画使用料リスト
-	private List <String> parkingBlockRentManys;
+	private List<String> parkingBlockRentManys;
 	// 駐車場区画情報1行データ(id, 貸与区分, 貸与状況)
 	private ArrayList<String> parkingBlockRowData;
 

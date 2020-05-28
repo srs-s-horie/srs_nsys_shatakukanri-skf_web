@@ -1,8 +1,8 @@
 package jp.co.c_nexco.skf.skf3090.app.skf3090sc001;
 
-import jp.co.c_nexco.nfw.webcore.app.BaseForm;
 import jp.co.c_nexco.nfw.nfwfile.app.nfwfilescdwd.NfwfileScDwdForm;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
