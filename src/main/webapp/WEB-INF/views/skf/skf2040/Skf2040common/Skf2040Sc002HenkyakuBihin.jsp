@@ -20,7 +20,6 @@
 	                    </tr>
 					</c:forEach>
 		</imart:condition>
-		<imart:condition validity="${f:h(form.shatakuJotaiViewFlg)}">	
                 <imart:condition validity="${f:h(form.shatakuJotaiViewFlg)}">	
 	                <tr>
 		                <th><nfwui:LabelBox id="lblShatakuJotai" code="<%= MessageIdConstant.SKF2040_SC002_SHATAKU_STATUS %>" /></th>
@@ -43,6 +42,5 @@
 		                </td>
 	                </tr>
 				</imart:condition>
-		</imart:condition>
 	</tbody>
 </table>
