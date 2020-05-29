@@ -1748,7 +1748,7 @@ function mesDisplayControl(isShow){
     			, "戻る確認"
     			, "form"
     			, url
-    			, "ok"
+    			, "OK"
     			, "キャンセル"
     			, this
     			, false);
