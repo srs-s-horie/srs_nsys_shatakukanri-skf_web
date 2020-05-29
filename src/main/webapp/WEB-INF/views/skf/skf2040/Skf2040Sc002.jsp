@@ -144,7 +144,7 @@
  				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" />
 		 		<!-- 退居届PDFダウンロード -->
 				<imart:condition validity="${form.taikyoPdfViewFlg}">
-					<input name="doDelRow1" id="doDelRow1" type="button" value="退居（自動車の保管場所変換）届PDF出力" class="imui-medium-button" onclick="onClickOutputPdfR0103()" />
+					<input name="doDelRow1" id="doDelRow1" type="button" value="退居（自動車の保管場所返還）届PDF出力" class="imui-medium-button" onclick="onClickOutputPdfR0103()" />
 				</imart:condition>
 				<!-- コメントボタン -->
 				<imart:condition validity="${form.commentViewFlg}">

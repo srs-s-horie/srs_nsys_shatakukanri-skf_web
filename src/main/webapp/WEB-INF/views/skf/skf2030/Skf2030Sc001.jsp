@@ -42,7 +42,7 @@
     			, "戻る確認"
     			, "form"
     			, url
-    			, "ok"
+    			, "OK"
     			, "キャンセル"
     			, this
     			, false);

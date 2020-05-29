@@ -13,7 +13,7 @@
 <script type="text/javascript">
 function back1() {
 	var backMessage = "戻ります。よろしいですか？";
-	nfw.common.confirmPopup(backMessage, "戻る確認", "form", "skf/Skf1010Sc001/init", "ok", "キャンセル", this, true);	
+	nfw.common.confirmPopup(backMessage, "戻る確認", "form", "skf/Skf1010Sc001/init", "OK", "キャンセル", this, true);	
 }
   // リストテーブルの申請状況の文字色変更
   function onCellAttr(rowId,val,rawObject,cm,rdata){

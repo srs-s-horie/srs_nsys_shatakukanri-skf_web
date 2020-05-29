@@ -402,7 +402,7 @@
 				if (honraiMenseki != nobeMenseki && honraiKikaku == kikaku) {
 					// 確認ダイアログ表示
 					skf.common.confirmPopupForCallback("延べ面積が変更されていますが、規格が変更されていません。よろしいですか？",
-															"確認", "rateShienform", "ok", "キャンセル", this, resultReturn);
+															"確認", "rateShienform", "OK", "キャンセル", this, resultReturn);
 				} else {
 					// 親画面に値を設定して閉じる
 					resultReturn();
