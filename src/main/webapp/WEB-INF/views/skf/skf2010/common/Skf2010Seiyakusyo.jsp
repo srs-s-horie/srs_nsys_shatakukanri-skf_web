@@ -5,7 +5,7 @@
 			<tr><font size="5" face="ＭＳ Ｐ明朝">誓約書</font><br></tr>
 		</div>
 		<div class="align-R">
-		  <tr><font size="4"  face="ＭＳ Ｐ明朝">${f:h(form.tsuchiDate )}</font><br></tr>
+		  <tr><font size="4"  face="ＭＳ Ｐ明朝">${f:h(form.seiyakuDate )}</font><br></tr>
 		</div>
 		<div class="align-L">
 		  <tr><font size="3"  face="ＭＳ Ｐ明朝">中日本高速道路株式会社&nbsp;&nbsp;殿</font><br></tr>
