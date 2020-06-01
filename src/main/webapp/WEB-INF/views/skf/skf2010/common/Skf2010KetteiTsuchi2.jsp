@@ -48,7 +48,7 @@
           <tr><font size="3"  face="ＭＳ Ｐ明朝">中日本高速道路株式会社</font><br></tr>
         </div>
         
-        <td width="150px"><font size="3"  face="ＭＳ Ｐ明朝">${f:h(form.seiyakuDate)}付けをもって貴殿から申請のあった社宅貸与願について、下記のとおり決定したので通知します。</font></td>
+        <td width="150px"><font size="3"  face="ＭＳ Ｐ明朝">${f:h(form.applDate)}付けをもって貴殿から申請のあった社宅貸与願について、下記のとおり決定したので通知します。</font></td>
         <br>
 
          <br><hr><br>
