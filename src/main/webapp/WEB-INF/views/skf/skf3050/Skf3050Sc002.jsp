@@ -123,6 +123,8 @@
 		* 「仮計算処理」ボタン押下時
 		*/
 		$("#" + KARIKEISAN_BTN).click(function() {
+			// 警告文表示を削除
+			$(".imui-box-caution, .imui-box-warning").hide();
 			var dialogTitle = "確認";
 			var dialogMessage = $("#hdnKariKeisanBtnMsg").val();
 			var url = "skf/Skf3050Sc002/provCalc";
@@ -133,6 +135,8 @@
 		* 「締め処理」ボタン押下時
 		*/
 		$("#" + SHIME_SHORI_BTN).click(function() {
+			// 警告文表示を削除
+			$(".imui-box-caution, .imui-box-warning").hide();
 			var dialogMessage = $("#hdnShimeShoriBtnMsg").val();
 			
 			skf.common.confirmPopupForCallback(dialogMessage, "確認", "batchForm", "OK", "キャンセル", this, function() {
@@ -171,6 +175,8 @@
 		 * 「給与連携データ作成処理」ボタン押下時
 		 */
 		$("#" + POSITIVE_DATA_CREATE_BTN).click(function(){
+			// 警告文表示を削除
+			$(".imui-box-caution, .imui-box-warning").hide();
 			var dialogTitle = "確認";
 			var dialogMessage = $("#hdnRenkeiDataSakuseiBtnMsg").val();
 			var url = "skf/Skf3050Sc002/createPositiveCooperationData";
@@ -181,6 +187,8 @@
 		* 「締め解除処理」ボタン押下時
 		*/
 		$("#" + SHIME_KAIJO_SHORI_BTN).click(function() {
+			// 警告文表示を削除
+			$(".imui-box-caution, .imui-box-warning").hide();
 			var dialogMessage = $("#hdnShimeKaijoBtnMsg").val();
 			
 			skf.common.confirmPopupForCallback(dialogMessage, "確認", "batchForm", "OK", "キャンセル", this, function() {
@@ -197,6 +205,8 @@
 		* 「給与連携データ確定処理」ボタン押下時
 		*/
 		$("#" + POSITIVE_DATA_CONFIRM_BTN).click(function() {
+			// 警告文表示を削除
+			$(".imui-box-caution, .imui-box-warning").hide();
 			var dialogMessage = $("#hdnRenkeiDataKakuteiBtnMsg").val();
 			
 			skf.common.confirmPopupForCallback(dialogMessage, "確認", "batchForm", "OK", "キャンセル", this, function() {
