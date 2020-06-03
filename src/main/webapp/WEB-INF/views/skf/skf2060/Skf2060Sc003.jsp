@@ -250,7 +250,7 @@
 	//「完了」ボタンクリック時
     onClickComplete = function () {
 		var dialogTitle = "確認";
-		var dialogMessage = "完了された借上候補物件の提示を完了します。よろしいですか？";
+		var dialogMessage = "選択された借上候補物件の提示を完了します。よろしいですか？";
 		var url = "skf/Skf2060Sc003/complete";
 		nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
     }
