@@ -72,7 +72,7 @@
 
     // 「一括完了」ボタン押下時のイベント
     onClickBulkComplete = function () {
-        skf.common.confirmPopup("選択された申請書を一括で承認します。よろしいですか？", 
+        skf.common.confirmPopup("選択された申請書を一括で完了します。よろしいですか？", 
                 "確認", "form", "skf/Skf2060Sc004/BulkComplete", 
                 "OK", "キャンセル", this, false);
     }
