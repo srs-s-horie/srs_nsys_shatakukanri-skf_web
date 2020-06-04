@@ -1968,7 +1968,7 @@ function mesDisplayControl(isShow){
 	 */ 
     function checkConfrirm() {
 		 
-		// メッセージを削除
+		// 画面に表示されていたメッセージを削除
 		$(".imui-box-caution, .imui-box-warning, .imui-box-success").remove();
 		 
 		 if($("#rdoHitsuyo").prop('checked')){ 
