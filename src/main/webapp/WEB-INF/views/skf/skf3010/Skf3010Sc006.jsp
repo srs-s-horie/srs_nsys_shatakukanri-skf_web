@@ -1014,7 +1014,17 @@
 						$('#contractZipCd').text($('#zipCd').val());
 						// 契約情報タブの住所を基本情報タブの県名 + 住所に設定
 						$('#contractAddress').text($('#pref option:selected').text() + $('#shatakuAddress').val());
-						
+
+						/*
+						 * 処理結果メッセージ非表示
+						 */
+						hideResultMessage = function() {
+							// 警告文表示を削除
+							$(".imui-box-caution, .imui-box-warning").hide();
+							$(".imui-box-caution, .imui-box-error").hide();
+							$(".imui-box-caution, .imui-box-success").hide();
+						}
+
 						/** 契約情報変更チェック */
 						// 契約情報の「賃貸人、経理連携用管理番号、契約開始日、契約終了日、家賃、共益費、駐車場料、備考」のいづれかに変更があるかチェックする
 						// 戻り値：変更有り(true)、変更なし(false)
@@ -1296,7 +1306,7 @@
 						addressSearchClick = function() {
 //						$("#addressSearch").click(function () {
 							// 警告文表示を削除
-							$(".imui-box-caution, .imui-box-warning").hide();
+							hideResultMessage();
 							var map = new Object();
 							map['zipCd'] = $("#zipCd").val();
 							// 住所検索
@@ -1670,7 +1680,7 @@
 						//駐車場契約住所検索
 				    	addressOnClick = function () {
 				    		// 警告文表示を削除
-							$(".imui-box-caution, .imui-box-warning").hide();
+							hideResultMessage();
 							var map = new Object();
 							map['parkingZipCd'] = $("#parkingZipCd").val();
 							

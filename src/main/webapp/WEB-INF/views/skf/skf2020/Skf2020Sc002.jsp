@@ -1734,14 +1734,14 @@ function mesDisplayControl(isShow){
     	//前の画面のＵＲＬ判定
     		if(prePageId=="Skf2010Sc007"){
     			//入居希望等調書申請
-    			url = "skf/Skf2010Sc007/init?SKF2010_SC007&tokenCheck=0";
+    			url = "skf/Skf1010Sc001/init?SKF1010_SC001&tokenCheck=0";
     			nfw.common.doBack(url, message);
     			return;
     		}else if(prePageId=="Skf2020Sc002" || prePageId=="Skf2010Sc004"){
-    			//申請条件一覧
+    			//申請状況一覧
     			url="skf/Skf2010Sc003/init?SKF2010_SC003";
 			}else if(prePageId=="Skf2010Sc003"){
-    			//申請条件一覧
+    			//申請状況一覧
     			url="skf/Skf2010Sc003/init?SKF2010_SC003";
 			}　
     	nfw.common.confirmPopup(message
@@ -1967,6 +1967,9 @@ function mesDisplayControl(isShow){
 	 * 
 	 */ 
     function checkConfrirm() {
+		 
+		// 画面に表示されていたメッセージを削除
+		$(".imui-box-caution, .imui-box-warning, .imui-box-success").remove();
 		 
 		 if($("#rdoHitsuyo").prop('checked')){ 
 			//社宅を必要とする場合のみ、退居予定日と返却希望立会日の確認ダイアログ表示判定　yes:あり　no:なし
