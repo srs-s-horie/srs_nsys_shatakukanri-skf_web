@@ -1968,6 +1968,9 @@ function mesDisplayControl(isShow){
 	 */ 
     function checkConfrirm() {
 		 
+		// メッセージを削除
+		$(".imui-box-caution, .imui-box-warning, .imui-box-success").remove();
+		 
 		 if($("#rdoHitsuyo").prop('checked')){ 
 			//社宅を必要とする場合のみ、退居予定日と返却希望立会日の確認ダイアログ表示判定　yes:あり　no:なし
 				var sTaikyoYoteiDate = $("#taikyoYoteiDate").val(); //退居予定日
