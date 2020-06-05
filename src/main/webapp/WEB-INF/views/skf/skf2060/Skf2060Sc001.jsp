@@ -262,6 +262,9 @@
 					<script src="scripts/skf/skfCommon.js"></script>
 					<script type="text/javascript">
 					(function($) {
+						// 添付可能フラグ
+						var attachedFlag = true;
+						
 						//画面表示時
 						$(document).ready(function(){
 							
@@ -276,73 +279,79 @@
 								$('#kariageCandidateList').setGridWidth($('#listTableArea').width(),true);
 							}).trigger('resize');
 						
-						onCellSelect = function(rowId,iCol,cellcontent,e) {
-							//削除アイコンクリック時
-							if ($(cellcontent).hasClass('im-ui-icon-common-16-trashbox')) {
-								// リストテーブル情報取得
-								var grid = $("#kariageCandidateList");
-								// 行番号から選択した行の情報を取得
-								var row = grid.getRowData(rowId);
-
-								// candidateNo:借上候補物件番号
-								var candidateNo = row.candidateNo;
-								
-								$("#sendCandidateNo").val(candidateNo);
-								
-								var dialogMessage = '<%=MessageIdConstant.I_SKF_3005 %>';
-								var dialogTitle = '<%=MessageIdConstant.SKF2060_SC001_CONFIRM_TITLE %>';
-								var formId = "form2";
-								var url = "skf/Skf2060Sc001/delete";
-								
-								nfw.common.confirmPopup("削除します。よろしいですか？", "確認", formId, url, "OK", "キャンセル", this, true);
-								
-							//添付ファイルアイコンクリック時
-							}else if ($(cellcontent).hasClass('im-ui-icon-common-16-attachment')) {
-								// リストテーブル情報取得
-								var grid = $("#kariageCandidateList");
-								// 行番号から選択した行の情報を取得
-								var row = grid.getRowData(rowId);
-								
-								var map = new Object();
-								
-								// companyCd:会社コード
-								var companyCd = row.companyCd;
-								// candidateNo:借上候補物件番号
-								var candidateNo = row.candidateNo;
-								
-								$("#sendCompanyCd").val(companyCd);
-								$("#sendCandidateNo").val(candidateNo);
-								$("#rowId").val(rowId);
-								
-								map['popApplId'] = "R0106";
-								map['popCandidateNo'] = candidateNo;
-								
-								var param = "applId:R0106, candidateNo:" + candidateNo;
-								
-								var popupUrl = "skf/Skf2010Sc009/init";
-								nfw.common.modalPopup("Skf2060Sc001", popupUrl, null, map, 790, 700);
-								
-							}else{
-								// リストテーブル情報取得
-								var grid = $("#kariageCandidateList");
-								// 行番号から選択した行の情報を取得
-								var row = grid.getRowData(rowId);
-								
-								// 借上社宅名
-								var shatakuName = row.shatakuName;
-								// 社宅所在地
-								var address = row.address;
-								
-								// 選択行のデータを各テキストボックスに設定
-								$("#shatakuName").val(shatakuName);
-								$("#address").val(address);
-								
-								
+							onCellSelect = function(rowId,iCol,cellcontent,e) {
+								//削除アイコンクリック時
+								if ($(cellcontent).hasClass('im-ui-icon-common-16-trashbox')) {
+									// リストテーブル情報取得
+									var grid = $("#kariageCandidateList");
+									// 行番号から選択した行の情報を取得
+									var row = grid.getRowData(rowId);
+	
+									// candidateNo:借上候補物件番号
+									var candidateNo = row.candidateNo;
+									
+									$("#sendCandidateNo").val(candidateNo);
+									
+									var dialogMessage = '<%=MessageIdConstant.I_SKF_3005 %>';
+									var dialogTitle = '<%=MessageIdConstant.SKF2060_SC001_CONFIRM_TITLE %>';
+									var formId = "form2";
+									var url = "skf/Skf2060Sc001/delete";
+									
+									nfw.common.confirmPopup("削除します。よろしいですか？", "確認", formId, url, "OK", "キャンセル", this, true);
+									
+								//添付ファイルアイコンクリック時
+								}else if ($(cellcontent).hasClass('im-ui-icon-common-16-attachment')) {
+									// 添付可能フラグがFalseの間は処理しない
+									if (!attachedFlag) {
+										return false;
+									}
+									// リストテーブル情報取得
+									var grid = $("#kariageCandidateList");
+									// 行番号から選択した行の情報を取得
+									var row = grid.getRowData(rowId);
+									
+									var map = new Object();
+									
+									// companyCd:会社コード
+									var companyCd = row.companyCd;
+									// candidateNo:借上候補物件番号
+									var candidateNo = row.candidateNo;
+									
+									$("#sendCompanyCd").val(companyCd);
+									$("#sendCandidateNo").val(candidateNo);
+									$("#rowId").val(rowId);
+									
+									map['popApplId'] = "R0106";
+									map['popCandidateNo'] = candidateNo;
+									
+									var param = "applId:R0106, candidateNo:" + candidateNo;
+									
+									var popupUrl = "skf/Skf2010Sc009/init";
+									nfw.common.modalPopup("Skf2060Sc001", popupUrl, null, map, 790, 700);
+									
+								}else{
+									// リストテーブル情報取得
+									var grid = $("#kariageCandidateList");
+									// 行番号から選択した行の情報を取得
+									var row = grid.getRowData(rowId);
+									
+									// 借上社宅名
+									var shatakuName = row.shatakuName;
+									// 社宅所在地
+									var address = row.address;
+									
+									// 選択行のデータを各テキストボックスに設定
+									$("#shatakuName").val(shatakuName);
+									$("#address").val(address);
+									
+									
+								}
 							}
-						}
 						});
 						//添付資料入力支援ポップアップ画面閉じたとき
 						updateAttachedFileArea = function(res) {
+							// 書き込み処理完了まで添付可能フラグをFalseにする
+							attachedFlag = false;
 							var map = new Object();
 							map['candidateNo'] = $("#sendCandidateNo").val();
 							
@@ -357,10 +366,10 @@
 									//添付ファイルリンククリック時
 									$("a[id^='attached_']").bind("click",function(){
 										downloadKariageBukkenFile(this);
-										
 									});
-									
 								}
+								// 処理終了のため添付可能フラグをTrueにする
+								attachedFlag = true;
 							}, this, false);
 						}
 						//添付ファイルリンククリック時呼び出し先
@@ -410,9 +419,7 @@
 						});
 						
 						//支援ポップアップコールバック時
-						shainInfoCallback = function() {
-							nfw.common.submitForm("form", "skf/Skf2060Sc001/Support", this);
-						}
+						
 						
 					    // リストテーブル完成時に実行する関数
 					    kariageGridComplete = function() {
