@@ -407,7 +407,11 @@
      * 申請内容確認ボタンを押下時の処理
      */ 
     function onClickConfirm() {
-        // 退居予定日と返却希望立会日の確認ダイアログ表示フラグ
+       
+		// 画面に表示されていたメッセージを削除
+		$(".imui-box-caution, .imui-box-warning, .imui-box-success").remove();
+    	
+    	// 退居予定日と返却希望立会日の確認ダイアログ表示フラグ
         var isDispDialog = false;
         
         // 退居予定日と返却希望立会日の確認ダイアログ表示判定

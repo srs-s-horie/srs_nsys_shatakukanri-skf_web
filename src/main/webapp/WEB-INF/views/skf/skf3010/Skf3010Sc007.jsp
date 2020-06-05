@@ -457,10 +457,20 @@ function back1() {
 						    	nfw.common.confirmPopup(dialogMessage, dialogTitle, "form", "skf/Skf3010Sc007/selectList", "OK", "キャンセル", this, true);
 				    		}
 				    	}
-				    	
+
+						/*
+						 * 処理結果メッセージ非表示
+						 */
+						hideResultMessage = function() {
+							// 警告文表示を削除
+							$(".imui-box-caution, .imui-box-warning").hide();
+							$(".imui-box-caution, .imui-box-error").hide();
+							$(".imui-box-caution, .imui-box-success").hide();
+						}
+
 				    	addressOnClick = function () {
 				    		// 警告文表示を削除
-							$(".imui-box-caution, .imui-box-warning").hide();
+							hideResultMessage();
 							var map = new Object();
 							map['parkingZipCd'] = $("#txtParkingZipCd").val();
 							nfw.common.doAjaxAction("skf/Skf3010Sc007/AddressSearchAsync",map,true,function(data) {

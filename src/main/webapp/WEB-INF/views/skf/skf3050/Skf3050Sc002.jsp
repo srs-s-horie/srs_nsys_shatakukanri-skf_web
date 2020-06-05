@@ -32,7 +32,6 @@
 			});
 		}
 	</script>
-	
 	<!-- 明細＆細目未満 -->
 	<div class="imui-form-container-wide">
 	<nfwui:Form id="form" name="form" modelAttribute="form" enctype="multipart/form-data">
@@ -51,7 +50,9 @@
 		<input type="hidden" id="hdnRenkeiDataSakuseiBtnMsg" name="hdnRenkeiDataSakuseiBtnMsg" value="${form.hdnRenkeiDataSakuseiBtnMsg}" />
 		<input type="hidden" id="hdnShimeKaijoBtnMsg" name="hdnShimeKaijoBtnMsg" value="${form.hdnShimeKaijoBtnMsg}" />
 		<input type="hidden" id="hdnRenkeiDataKakuteiBtnMsg" name="hdnRenkeiDataKakuteiBtnMsg" value="${form.hdnRenkeiDataKakuteiBtnMsg}" />
-	
+		<input type="hidden" id="hdnBihinTaiyoWarnContinueFlg" name="hdnBihinTaiyoWarnContinueFlg" value="${form.hdnBihinTaiyoWarnContinueFlg}" />
+		<input type="hidden" id="hdnBihinHenkyakuWarnContinueFlg" name="hdnBihinHenkyakuWarnContinueFlg" value="${form.hdnBihinHenkyakuWarnContinueFlg}" />
+		<input type="hidden" id="hdnWarnMsg" name="hdnWarnMsg" value="${form.hdnWarnMsg}" />
 		<table class="imui-form-search-condition">
 			<tbody>
 				<tr>
@@ -65,7 +66,6 @@
 				</tr>
 			</tbody>
 		</table>
-	
 		<!-- 明細部 -->
 			<div class="imui-chapter-title" ><h2>月次処理状況</h2></div>
 			<script type="text/javascript">
@@ -73,7 +73,6 @@
 			    $.imui.util.loadCSS("ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
 			  })(jQuery);
 			</script>
-			
 			<imui:listTable id="grvGetsujiShoriSts" process="jssp" autoEncode="false" autoWidth="false"
 			autoResize="true" height="100%" style="word-wrap:break-word;" data="${form.getujiGrid }" >
 				<cols sortable="false">
@@ -86,7 +85,6 @@
 			</imui:listTable>
 		<br>
 	</nfwui:Form>
-		
 	<nfwui:Form id="batchForm" name="batchForm" modelAttribute="form" enctype="multipart/form-data">
 		<input type="hidden" id="hdnJikkouShijiYoteiNengetsu" name="hdnJikkouShijiYoteiNengetsu" value="${batchForm.hdnJikkouShijiYoteiNengetsu}" />
 		<input type="hidden" id="hdnBihinTaiyoWarnContinueFlg" name="hdnBihinTaiyoWarnContinueFlg" value="${batchForm.hdnBihinTaiyoWarnContinueFlg}" />
@@ -109,7 +107,7 @@
 <script type="text/javascript">
 (function($) {
 	$(document).ready(function() {
-		
+
 		const KARIKEISAN_BTN = 'kariKeisanBtn';
 		const SHIME_SHORI_BTN = 'closeTaskExecution';
 		const POSITIVE_DATA_CREATE_BTN = 'positiveCoopDataSakuseiBtn';
@@ -118,107 +116,82 @@
 		const DISABLED_COLOR = '#aaaaaa';
 		const NORMAL_COLOR = '#333333';
 		const HILIGHT_COLOR = '#87cefa';
-		
+
 		/*
 		* 「仮計算処理」ボタン押下時
 		*/
 		$("#" + KARIKEISAN_BTN).click(function() {
-			// 警告文表示を削除
-			$(".imui-box-caution, .imui-box-warning").hide();
 			var dialogTitle = "確認";
 			var dialogMessage = $("#hdnKariKeisanBtnMsg").val();
 			var url = "skf/Skf3050Sc002/provCalc";
 			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
 		});
-		
+
 		/*
 		* 「締め処理」ボタン押下時
 		*/
 		$("#" + SHIME_SHORI_BTN).click(function() {
-			// 警告文表示を削除
-			$(".imui-box-caution, .imui-box-warning").hide();
+			var dialogTitle = "確認";
 			var dialogMessage = $("#hdnShimeShoriBtnMsg").val();
-			
-			skf.common.confirmPopupForCallback(dialogMessage, "確認", "batchForm", "OK", "キャンセル", this, function() {
-				var paramMap = new Object();
-				paramMap['hdnJikkouShijiYoteiNengetsu'] = $("#hdnJikkouShijiYoteiNengetsu").val();
-				paramMap['hdnBihinTaiyoWarnContinueFlg'] = '';
-				paramMap['hdnBihinHenkyakuWarnContinueFlg'] = '';
-				
-				nfw.common.doAjaxAction("skf/Skf3050Sc002/closeTaskExecutionAsync", paramMap, true, function(data) {
-					checkBatchProc(data);
-				});
-			});
+			var url = "skf/Skf3050Sc002/closeTaskExecution";
+			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
 		});
-		
-		/*
-		 * バッチ処理後のチェック
-		 * 警告メッセージがあればダイアログ表示。
-		 */
-		checkBatchProc = function(inData) {
-			if (inData.hdnWarnMsg !== null && inData.hdnWarnMsg !== '') {
-				skf.common.confirmPopupForCallback(inData.hdnWarnMsg, "確認", "batchForm", "OK", "キャンセル", this, function() {
-					
-					var reParamMap = new Object();
-					reParamMap['hdnJikkouShijiYoteiNengetsu'] = inData.hdnJikkouShijiYoteiNengetsu;
-					reParamMap['hdnBihinTaiyoWarnContinueFlg'] = inData.hdnBihinTaiyoWarnContinueFlg;
-					reParamMap['hdnBihinHenkyakuWarnContinueFlg'] = inData.hdnBihinHenkyakuWarnContinueFlg;
-					
-					nfw.common.doAjaxAction("skf/Skf3050Sc002/closeTaskExecutionAsync", reParamMap, true, function(data) {
-						checkBatchProc(data);
-					});
-				});
-			}
-		}
-		
+
 		/*
 		 * 「給与連携データ作成処理」ボタン押下時
 		 */
 		$("#" + POSITIVE_DATA_CREATE_BTN).click(function(){
 			// 警告文表示を削除
-			$(".imui-box-caution, .imui-box-warning").hide();
+			hideResultMessage();
 			var dialogTitle = "確認";
 			var dialogMessage = $("#hdnRenkeiDataSakuseiBtnMsg").val();
-			var url = "skf/Skf3050Sc002/createPositiveCooperationData";
-			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
+			skf.common.confirmPopupForCallback(dialogMessage, "確認", "batchForm", "OK", "キャンセル", this, function() {
+				var paramMap = new Object();
+				paramMap['hdnJikkouShijiYoteiNengetsu'] = $("#hdnJikkouShijiYoteiNengetsu").val();
+				paramMap['hdnBihinTaiyoWarnContinueFlg'] = '';
+				paramMap['hdnBihinHenkyakuWarnContinueFlg'] = '';
+
+				nfw.common.doAjaxAction("skf/Skf3050Sc002/createPositiveCooperationDataAsync", paramMap, true, function(data) {
+					// ボタン活性/非活性
+					$("#hdnBtnKariKeisanDisabled").val(true);
+					$("#hdnBtnShimeShoriDisabled").val(true);
+					$("#hdnBtnRenkeiDataSakuseiDisabled").val(false);
+					$("#hdnBtnShimeKaijoDisabled").val(false);
+					$("#hdnBtnRenkeiDataKakuteiDisabled").val(false);
+					// 「給与連携データ作成を「実行済」に設定
+					var getsujiGrid = $("#grvGetsujiShoriSts");
+					var gridDatas = getsujiGrid.getGridParam('data');
+					var tagetCol = $("#hdnJikkouShijiYoteiShoriCol").val();
+					var tagetIdx = Number($("#hdnJikkouShijiYoteiShoriIdx").val());
+					getsujiGrid.setCell(gridDatas[tagetIdx].id, tagetCol, '実行済', { background: HILIGHT_COLOR });
+					// 描画
+					initDisplay();
+
+					// 保有社宅登録画面
+					url = "skf/Skf3050Sc002/createPositiveCooperationData";
+					nfw.common.submitForm("form", url);
+				});
+			});
 		});
-		
+
 		/*
 		* 「締め解除処理」ボタン押下時
 		*/
 		$("#" + SHIME_KAIJO_SHORI_BTN).click(function() {
-			// 警告文表示を削除
-			$(".imui-box-caution, .imui-box-warning").hide();
 			var dialogMessage = $("#hdnShimeKaijoBtnMsg").val();
-			
-			skf.common.confirmPopupForCallback(dialogMessage, "確認", "batchForm", "OK", "キャンセル", this, function() {
-				var paramMap = new Object();
-				paramMap['hdnJikkouShijiYoteiNengetsu'] = $("#hdnJikkouShijiYoteiNengetsu").val();
-				
-				nfw.common.doAjaxAction("skf/Skf3050Sc002/closeCancelTaskExecutionAsync", paramMap, true, function(data) {
-//					alert("締め解除処理タスク登録。メッセージID:" + data.taskMsgId);
-				});
-			});
+			var url = "skf/Skf3050Sc002/closeCancelTaskExecution";
+			nfw.common.confirmPopup(dialogMessage, "確認", "form", url, "OK", "キャンセル", this, true);
 		});
-		
+
 		/*
 		* 「給与連携データ確定処理」ボタン押下時
 		*/
 		$("#" + POSITIVE_DATA_CONFIRM_BTN).click(function() {
-			// 警告文表示を削除
-			$(".imui-box-caution, .imui-box-warning").hide();
 			var dialogMessage = $("#hdnRenkeiDataKakuteiBtnMsg").val();
-			
-			skf.common.confirmPopupForCallback(dialogMessage, "確認", "batchForm", "OK", "キャンセル", this, function() {
-				var paramMap = new Object();
-				paramMap['hdnJikkouShijiYoteiNengetsu'] = $("#hdnJikkouShijiYoteiNengetsu").val();
-				
-				nfw.common.doAjaxAction("skf/Skf3050Sc002/confirmPositiveCooperationTaskExecutionAsync", paramMap, true, function(data) {
-//					alert("給与連携データ確定処理タスク登録。メッセージID:" + data.taskMsgId);
-				});
-			});
+			var url = "skf/Skf3050Sc002/confirmPositiveCooperationTaskExecution";
+			nfw.common.confirmPopup(dialogMessage, "確認", "form", url, "OK", "キャンセル", this, true);
 		});
-		
+
 		/*
 		 * 「対象年度」ドロップダウン変更
 		 */
@@ -229,7 +202,7 @@
 			
 			nfw.common.submitForm("form", "skf/Skf3050Sc002/changeDropDown");
 		});
-		
+
 		/*
 		 * メッセージ用の処理実行年月を取得する。
 		 */
@@ -241,43 +214,42 @@
 			
 			return rtnNengetsu;
 		}
-		
+
 		/*
 		 * 画面のボタンの活性状態を設定
 		 */
 		setBtnStatus = function() {
-
 			var kariKeisanDisabled = cnvBoolean($("#hdnBtnKariKeisanDisabled").val());
 			$("#" + KARIKEISAN_BTN).attr("disabled", kariKeisanDisabled);
 			if (kariKeisanDisabled) {
 				$("#" + KARIKEISAN_BTN).css("color", DISABLED_COLOR);
 			}
-			
+
 			var shimeShoriDisabled = cnvBoolean($("#hdnBtnShimeShoriDisabled").val());
 			$("#" + SHIME_SHORI_BTN).attr("disabled", shimeShoriDisabled);
 			if (shimeShoriDisabled) {
 				$("#" + SHIME_SHORI_BTN).css("color", DISABLED_COLOR);
 			}
-			
+
 			var renkeiDataSakuseiDisabled = cnvBoolean($("#hdnBtnRenkeiDataSakuseiDisabled").val());
 			$("#" + POSITIVE_DATA_CREATE_BTN).attr("disabled", renkeiDataSakuseiDisabled);
 			if (renkeiDataSakuseiDisabled) {
 				$("#" + POSITIVE_DATA_CREATE_BTN).css("color", DISABLED_COLOR);
 			}
-			
+
 			var shimeKaijoDisabled = cnvBoolean($("#hdnBtnShimeKaijoDisabled").val());
 			$("#" + SHIME_KAIJO_SHORI_BTN).attr("disabled", shimeKaijoDisabled);
 			if (shimeKaijoDisabled) {
 				$("#" + SHIME_KAIJO_SHORI_BTN).css("color", DISABLED_COLOR);
 			}
-		
+
 			var renkeiDataKakuteiDisabled = cnvBoolean($("#hdnBtnRenkeiDataKakuteiDisabled").val());
 			$("#" + POSITIVE_DATA_CONFIRM_BTN).attr("disabled", renkeiDataKakuteiDisabled);
 			if (renkeiDataKakuteiDisabled) {
 				$("#" + POSITIVE_DATA_CONFIRM_BTN).css("color", DISABLED_COLOR);
 			}
 		}
-		
+
 		/*
 		 * ボタンの文字色を初期化する。
 		 */
@@ -288,7 +260,7 @@
 			$("#" + SHIME_KAIJO_SHORI_BTN).css("color", NORMAL_COLOR);
 			$("#" + POSITIVE_DATA_CONFIRM_BTN).css("color", NORMAL_COLOR);
 		}
-		
+
 		/*
 		 * 月次グリッドビューの実行指示予定箇所の協調表示設定(背景色変更)
 		 */
@@ -300,7 +272,7 @@
 			
 			getsujiGrid.setCell(gridDatas[tagetIdx].id, tagetCol, '', { background: HILIGHT_COLOR });
 		}
-		
+
 		/*
 		 * boolean変換
 		 */
@@ -321,7 +293,17 @@
 				return false;
 			}
 		}
-	
+
+		/*
+		 * 処理結果メッセージ非表示
+		 */
+		hideResultMessage = function() {
+			// 警告文表示を削除
+			$(".imui-box-caution, .imui-box-warning").hide();
+			$(".imui-box-caution, .imui-box-error").hide();
+			$(".imui-box-caution, .imui-box-success").hide();
+		}
+
 		/*
 		 * 画面初期表示処理
 		 */
@@ -336,7 +318,39 @@
 		}
 		
 		initDisplay();
-		
+
+		// 警告メッセージ判定
+		if ($("#hdnWarnMsg").val().trim().length > 0) {
+			// 警告文表示を削除
+			hideResultMessage();
+			var dialogMessage = $("#hdnWarnMsg").val();
+			var url = "skf/Skf3050Sc002/closeTaskExecution";
+
+			$("<div>" + dialogMessage + "</div>").imuiMessageDialog({
+				iconType : 'question',
+				title : '確認',
+				modal : true,
+				buttons: [
+					{
+						'id': 'closeTaskOK',
+						'text': 'OK',
+						'click': function() {
+							$(this).imuiMessageDialog('close');
+							nfw.common.submitForm("form", url);
+						}
+					},
+					{
+						'text': 'キャンセル',
+						'click': function() {
+							$(this).imuiMessageDialog('close');
+							$("#hdnWarnMsg").val("");
+							$("#hdnBihinTaiyoWarnContinueFlg").val("");
+							$("#hdnBihinHenkyakuWarnContinueFlg").val("");
+						}
+					}
+				]
+			});
+		};
 	});
 })(jQuery);
 </script>
