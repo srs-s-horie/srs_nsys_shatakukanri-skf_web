@@ -102,12 +102,12 @@
 							<col name="companyName" caption="会社名"　width="150" wrap="true" align="left" sortable="false" />
 							<col name="agencyName" caption="機関名"　width="150" wrap="true" align="left" sortable="false" />
 							<col name="affiliation1Name" caption="部等" width="300" wrap="true" align="left" sortable="false" />
-							<col name="affiliation2Name" caption="室、チーム又は課"　width="300" wrap="true" align="left" sortable="false" />
+							<col name="affiliation2Name" caption="室・課等"　width="300" wrap="true" align="left" sortable="false" />
 							<col name="businessAreaName" caption="事業領域" width="150" wrap="true" align="left" sortable="false" />
 							<col name="companyCd" caption="会社コード" hidden="true" />
 							<col name="agencyCd" caption="機関コード" hidden="true" />
 							<col name="affiliation1Cd" caption="部等コード" hidden="true" />
-							<col name="affiliation2Cd" caption="室、チーム又は課コード" hidden="true" />
+							<col name="affiliation2Cd" caption="室・課等コード" hidden="true" />
 							<col name="details" caption="詳細" width="100" align="center" sortable="false" >
 								<showIcon iconClass="im-ui-icon-common-16-update" />
 							</col>
@@ -146,7 +146,7 @@
 								var agencyCd = row.agencyCd;
 								// affiliation1Cd:部等コード
 								var affiliation1Cd = row.affiliation1Cd;
-								// affiliation2Cd:室、チーム又は課コード
+								// affiliation2Cd:室・課等コード
 								var affiliation2Cd = row.affiliation2Cd;
 								
 								

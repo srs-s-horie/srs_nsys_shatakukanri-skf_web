@@ -58,7 +58,7 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					</td>
 					<td width="300px" style="text-align: left; padding-left: 150px;">
-						<font size="3"  face="ＭＳ Ｐ明朝">室、チーム又は課</font>
+						<font size="3"  face="ＭＳ Ｐ明朝">室&nbsp;&nbsp;・&nbsp;&nbsp;課&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;等</font>
 					</td>
 					<td width="500px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝; text-align: left;">
 						<font size="3"  face="ＭＳ Ｐ明朝">${f:h(form.nowAffiliation2 )}</font>

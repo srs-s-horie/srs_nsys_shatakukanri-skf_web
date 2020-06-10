@@ -25,7 +25,7 @@ public class Skf2040Sc001Form extends NfwfileScDwdForm {
 	private String agencyName;
 	// 部等
 	private String affiliation1Name;
-	// 室、チーム又は課
+	// 室・課等
 	private String affiliation2Name;
 
 	/**

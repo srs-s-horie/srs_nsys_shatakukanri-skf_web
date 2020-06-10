@@ -75,7 +75,7 @@
                                         ${f:h(form.affiliation1Name)}
                                     </td>
                                 </tr>
-                                <!-- 室、チーム又は課 -->
+                                <!-- 室・課等 -->
                                 <tr>
                                     <th colspan="3">
                                         <nfwui:LabelBox id="lblHeadAffiliation2" code="<%= MessageIdConstant.SKF2020_SC002_AFFLIATION2 %>" />

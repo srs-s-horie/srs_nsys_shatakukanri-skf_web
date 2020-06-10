@@ -97,7 +97,7 @@ public class Skf2020Sc002Form extends NfwfileScDwdForm {
 	private String agencyCd;
 	// 新部等（ドロップダウンリスト）
 	private String affiliation1Cd;
-	// 室、チーム又は課（ドロップダウンリスト）
+	// 室・課等（ドロップダウンリスト）
 	private String affiliation2Cd;
 
 	/**
@@ -476,7 +476,7 @@ public class Skf2020Sc002Form extends NfwfileScDwdForm {
 	private List<Map<String, Object>> ddlAgencyList;
 	/** ドロップダウン：部等リスト */
 	private List<Map<String, Object>> ddlAffiliation1List;
-	/** ドロップダウン：室、チーム又は課リスト */
+	/** ドロップダウン：室・課等リスト */
 	private List<Map<String, Object>> ddlAffiliation2List;
 	/** ドロップダウン：退居理由リスト */
 	private List<Map<String, Object>> ddlTaikyoRiyuKbnList;

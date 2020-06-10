@@ -42,7 +42,7 @@ public class Skf2040Sc002Form extends Skf2040CommonForm {
 	private String nowAgency;
 	// 現所属：部等
 	private String nowAffiliation1;
-	// 現所属：室、チーム又は課
+	// 現所属：室・課等
 	private String nowAffiliation2;
 
 	// アコーディオン初期表示

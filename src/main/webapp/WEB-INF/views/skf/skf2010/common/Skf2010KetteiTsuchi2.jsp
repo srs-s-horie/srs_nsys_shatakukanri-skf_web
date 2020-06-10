@@ -27,7 +27,7 @@
           <br>
           
           <tr>
-              <td width="100px"><font size="3"  face="ＭＳ Ｐ明朝">室、チーム又は課</font></td>
+              <td width="100px"><font size="3"  face="ＭＳ Ｐ明朝">室・課等</font></td>
               <td width="330px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝"><font size="3"  face="ＭＳ Ｐ明朝">${f:h(form.nowAffiliation2)}</font>
           </td>
           </tr>
@@ -338,7 +338,7 @@
 
           <tr>
               <td width="500px"></td>
-              <td width="200px"><font size="3"  face="ＭＳ Ｐ明朝">室、チーム又は課</font></td>
+              <td width="200px"><font size="3"  face="ＭＳ Ｐ明朝">室・課等</font></td>
               <td width="250px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝"><font size="3"  face="ＭＳ Ｐ明朝">${f:h(form.nowAffiliation2)}</font>
           </td>
           </tr>
