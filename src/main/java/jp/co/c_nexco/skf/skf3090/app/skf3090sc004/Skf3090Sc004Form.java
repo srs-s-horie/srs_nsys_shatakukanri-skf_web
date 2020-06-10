@@ -54,7 +54,7 @@ public class Skf3090Sc004Form extends BaseForm {
 	// 部等リスト
 	private List<Map<String, Object>> affiliation1List; // IM標準版
 
-	// 室、チーム又は課リスト
+	// 室・課等リスト
 	private List<Map<String, Object>> affiliation2List; // IM標準版
 
 	// 検索フラグ
@@ -73,7 +73,7 @@ public class Skf3090Sc004Form extends BaseForm {
 	private String hdnAgencyCd;
 	// 部等コード
 	private String hdnAffiliation1Cd;
-	// 室、チーム又は課コード
+	// 室・課等コード
 	private String hdnAffiliation2Cd;
 	// 更新フラグ
 	private String updateFlag;

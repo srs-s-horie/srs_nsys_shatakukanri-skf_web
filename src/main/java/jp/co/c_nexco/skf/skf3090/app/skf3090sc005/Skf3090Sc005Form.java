@@ -33,7 +33,7 @@ public class Skf3090Sc005Form extends BaseForm {
 	private String hdnAgencyCd;
 	// 部等コード
 	private String hdnAffiliation1Cd;
-	// 室、チーム又は課コード
+	// 室・課等コード
 	private String hdnAffiliation2Cd;
 	// リストテーブルで選択された社員番号
 	private String hdnSelectedShainNo;
@@ -47,7 +47,7 @@ public class Skf3090Sc005Form extends BaseForm {
 	List<Map<String, Object>> agencyList;
 	// 部等ドロップダウンリスト
 	List<Map<String, Object>> affiliation1List;
-	// 室、チーム又は課ドロップダウンリスト
+	// 室・課等ドロップダウンリスト
 	List<Map<String, Object>> affiliation2List;
 	// 事業領域ドロップダウンリスト
 	List<Map<String, Object>> businessAreaList;
@@ -69,7 +69,7 @@ public class Skf3090Sc005Form extends BaseForm {
 	private String agencyCd;
 	// 部等コード（ドロップダウン選択値）
 	private String affiliation1Cd;
-	// 室、チーム又は課コード（ドロップダウン選択値）
+	// 室・課等コード（ドロップダウン選択値）
 	private String affiliation2Cd;
 	// 事業領域コード（ドロップダウン選択値）
 	private String businessAreaCd;

@@ -28,7 +28,7 @@ public class Skf2020Sc002AsyncForm extends AsyncBaseForm {
 	private String agencyCd;
 	// 部等 コード
 	private String affiliation1Cd;
-	// 室、チーム又は課コード
+	// 室・課等コード
 	private String affiliation2Cd;
 
 	/**
@@ -267,7 +267,7 @@ public class Skf2020Sc002AsyncForm extends AsyncBaseForm {
 	private List<Map<String, Object>> ddlAgencyList;
 	/** ドロップダウン：部等リスト */
 	private List<Map<String, Object>> ddlAffiliation1List;
-	/** ドロップダウン：室、チーム又は課リスト */
+	/** ドロップダウン：室・課等リスト */
 	private List<Map<String, Object>> ddlAffiliation2List;
 	/** ドロップダウン：退居理由リスト */
 	private List<Map<String, Object>> ddlTaikyoRiyuKbnList;

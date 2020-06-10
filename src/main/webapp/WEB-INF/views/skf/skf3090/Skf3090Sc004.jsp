@@ -142,7 +142,7 @@
 						<col name="col3" caption="会社" width="120" sortable="false" />
 						<col name="col4" caption="機関" width="120" sortable="false" />
 						<col name="col5" caption="部等"　width="240" sortable="false" />
-						<col name="col6" caption="室、チーム又は課" width="240" sortable="false" />
+						<col name="col6" caption="室・課等" width="240" sortable="false" />
 						<col name="col7" caption="会社コード" hidden="true" />
 						<col name="col0" caption="詳細" width="50" sortable="false" align="center" >
 							<showIcon iconClass="im-ui-icon-common-16-update" />

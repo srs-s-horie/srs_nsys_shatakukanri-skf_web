@@ -59,7 +59,7 @@
 				<td width="220px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝">${f:h(form.nowAffiliation1)}</td>
 			</tr>
 			<tr>
-				<td style="font-size: 120%;font-family: ＭＳ Ｐ明朝">室、チーム又は課</td>
+				<td style="font-size: 120%;font-family: ＭＳ Ｐ明朝">室・課等</td>
 				<td width="220px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝">${f:h(form.nowAffiliation2)}</td>
 			</tr>
 			<tr>
@@ -76,7 +76,7 @@
 				<td width="220px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝">${f:h(form.newAffiliation1)}</td>
 			</tr>
 			<tr>
-				<td style="font-size: 120%;font-family: ＭＳ Ｐ明朝">室、チーム又は課</td>
+				<td style="font-size: 120%;font-family: ＭＳ Ｐ明朝">室・課等</td>
 				<td width="220px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝">${f:h(form.newAffiliation2)}</td>
 			</tr>
 		</table>

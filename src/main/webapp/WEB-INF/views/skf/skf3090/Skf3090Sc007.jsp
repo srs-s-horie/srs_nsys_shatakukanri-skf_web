@@ -93,7 +93,7 @@
 									<nfwui:LabelBox id="lblAffiliation2Name" code="<%= MessageIdConstant.SKF3090_SC007_AFFILIATION2 %>" />
 								</th>
 								<td style="width: 30%;">
-								<imui:textbox id="registAffiliation2Name" name="registAffiliation2Name" value="${f:h(form.registAffiliation2Name)}" disabled="${form.affiliation2NameDisabled}" style="width: 95%; ime-mode:active;" placeholder="例 室、チーム又は課の名称" tabindex="9" />
+								<imui:textbox id="registAffiliation2Name" name="registAffiliation2Name" value="${f:h(form.registAffiliation2Name)}" disabled="${form.affiliation2NameDisabled}" style="width: 95%; ime-mode:active;" placeholder="例 室・課等の名称" tabindex="9" />
 								</td>
 							</tr>
 							<tr>
@@ -196,10 +196,10 @@
 						map['registCompanyCd'] = $('#registCompanyCd').val(); // 会社コード
 						map['registAgencyCd'] = $('#registAgencyCd').val(); // 機関コード
 						map['registAffiliation1Cd'] = $('#registAffiliation1Cd').val(); // 部等コード
-						map['registAffiliation2Cd'] = $('#registAffiliation2Cd').val(); // 室、チーム又は課コード
+						map['registAffiliation2Cd'] = $('#registAffiliation2Cd').val(); // 室・課等コード
 						map['registAgencyName'] = $('#registAgencyName').val(); // 機関名称
 						map['registAffiliation1Name'] = $('#registAffiliation1Name').val(); // 部等名称
-						map['registAffiliation2Name'] = $('#registAffiliation2Name').val(); // 室、チーム又は課名称
+						map['registAffiliation2Name'] = $('#registAffiliation2Name').val(); // 室・課等名称
 						
 						// 入力チェック非同期処理呼び出し
 						nfw.common.doAjaxAction("skf/Skf3090Sc007/AgencySearchAsync", map, true, function(data) {
@@ -207,7 +207,7 @@
 							var form = "form";
 						
 							if (dialogue == "yes") {
-								skf.common.confirmPopupForCallback("部等（コード・名称）と室、チーム又は課（コード・名称）の内容がクリアされ、機関（名称）はマスタに登録されている内容に変更されます。よろしいですか?", "確認", "form", "OK", "キャンセル", this, function(){
+								skf.common.confirmPopupForCallback("部等（コード・名称）と室・課等（コード・名称）の内容がクリアされ、機関（名称）はマスタに登録されている内容に変更されます。よろしいですか?", "確認", "form", "OK", "キャンセル", this, function(){
 									$("#registAffiliation1Cd").val("");
 									$("#registAffiliation2Cd").val("");
 									$("#registAgencyName").val(data.registAgencyName);
@@ -249,10 +249,10 @@
 						map['registCompanyCd'] = $('#registCompanyCd').val(); // 会社コード
 						map['registAgencyCd'] = $('#registAgencyCd').val(); // 機関コード
 						map['registAffiliation1Cd'] = $('#registAffiliation1Cd').val(); // 部等コード
-						map['registAffiliation2Cd'] = $('#registAffiliation2Cd').val(); // 室、チーム又は課コード
+						map['registAffiliation2Cd'] = $('#registAffiliation2Cd').val(); // 室・課等コード
 						map['registAgencyName'] = $('#registAgencyName').val(); // 機関名称
 						map['registAffiliation1Name'] = $('#registAffiliation1Name').val(); // 部等名称
-						map['registAffiliation2Name'] = $('#registAffiliation2Name').val(); // 室、チーム又は課名称
+						map['registAffiliation2Name'] = $('#registAffiliation2Name').val(); // 室・課等名称
 						
 						// 入力チェック非同期処理呼び出し
 						nfw.common.doAjaxAction("skf/Skf3090Sc007/Affiliation1SearchAsync", map, true, function(data) {
@@ -260,7 +260,7 @@
 							var form = "form";
 						
 							if (dialogue == "yes") {
-								skf.common.confirmPopupForCallback("室、チーム又は課（コード・名称）の内容がクリアされ、部等（名称）はマスタに登録されている内容に変更されます。よろしいですか?", "確認", "form", "OK", "キャンセル", this, function(){
+								skf.common.confirmPopupForCallback("室・課等（コード・名称）の内容がクリアされ、部等（名称）はマスタに登録されている内容に変更されます。よろしいですか?", "確認", "form", "OK", "キャンセル", this, function(){
 									$("#registAffiliation2Cd").val("");
 									$("#registAffiliation1Name").val(data.registAffiliation1Name);
 									$("#registAffiliation2Name").val("");

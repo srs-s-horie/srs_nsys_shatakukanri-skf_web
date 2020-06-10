@@ -26,7 +26,7 @@ public class Skf3090Sc006AsyncForm extends AsyncBaseForm {
 	private String agencyCd;
 	// 部等コード
 	private String affiliation1Cd;
-	// 室、チーム又は課
+	// 室・課等
 	private String affiliation2Cd;
 	// 事業領域コード
 	private String businessAreaCd;
@@ -40,7 +40,7 @@ public class Skf3090Sc006AsyncForm extends AsyncBaseForm {
 	// 部等リスト
 	private List<Map<String, Object>> affiliation1List;
 
-	// 室、チーム又は課
+	// 室・課等
 	private List<Map<String, Object>> affiliation2List;
 
 	// 事業領域リスト

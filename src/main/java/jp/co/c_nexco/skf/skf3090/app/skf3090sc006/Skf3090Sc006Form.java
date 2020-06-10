@@ -36,7 +36,7 @@ public class Skf3090Sc006Form extends BaseForm {
 	// 「部等」ドロップダウンリスト
 	private List<Map<String, Object>> affiliation1List;
 
-	// 「室、チーム又は課」ドロップダウンリスト
+	// 「室・課等」ドロップダウンリスト
 	private List<Map<String, Object>> affiliation2List;
 
 	// 「事業領域」ドロップダウンリスト
@@ -61,7 +61,7 @@ public class Skf3090Sc006Form extends BaseForm {
 	private String hdnAgencyCd;
 	// 部等コード
 	private String hdnAffiliation1Cd;
-	// 室、チーム又は課
+	// 室・課等
 	private String hdnAffiliation2Cd;
 	// 事業領域
 	private String hdnBusinessAreaCd;
