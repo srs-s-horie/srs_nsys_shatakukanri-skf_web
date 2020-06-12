@@ -283,10 +283,10 @@ ${form.operationGuide }
         <td style="border: none"></td>
         <th><nfwui:LabelBox id="lblNewCarSpaceStart2" code="<%= MessageIdConstant.SKF2010_SC004_NEW_CAR_SPACE_START2 %>" /></th>
         <td align="left">
-<c:if test="${form.carNoInputFlg2 != null }">
+<c:if test="${form.shiyobi2 != null }">
           <nfwui:DateBox id="shiyobi2" name="shiyobi2" />
 </c:if>
-<c:if test="${form.carNoInputFlg2 == null }">
+<c:if test="${form.shiyobi2 == null }">
           <nfwui:DateBox id="shiyobi2" name="shiyobi2" disabled="true" />
 </c:if>
         </td>

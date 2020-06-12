@@ -52,43 +52,35 @@
         <br>
 
          <br><hr><br>
-
+		<table>
           <tr width="500px">
-              <td width="150px"><font size="3"  face="ＭＳ Ｐ明朝">1</font></td>
-              <td width="150px"><font size="3"  face="ＭＳ Ｐ明朝">社宅を必要とする理由</font></td>
+              <td width="20x" style="padding-bottom: 5px;"><font size="3"  face="ＭＳ Ｐ明朝">1</font></td>
+              <td width="180px"><font size="3"  face="ＭＳ Ｐ明朝">社宅を必要とする理由</font></td>
               <td width="330px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝"><font size="4"  face="ＭＳ Ｐ明朝">${f:h(form.hitsuyoRiyu)}</font>
           </td>
           </tr>
-          <br>
-          <br>
 
           <tr width="500px">
-              <td width="150px"><font size="3"  face="ＭＳ Ｐ明朝">2</font></td>
-              <td width="150px"><font size="3"  face="ＭＳ Ｐ明朝">社宅所在地</font></td>
-              <td width="330px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝"><font size="4"  face="ＭＳ Ｐ明朝">${f:h(form.newShozaichi)}</font>
+              <td style="padding-bottom: 5px;"><font size="3"  face="ＭＳ Ｐ明朝">2</font></td>
+              <td><font size="3"  face="ＭＳ Ｐ明朝">社宅所在地</font></td>
+              <td style="font-size: 120%;font-family: ＭＳ Ｐ明朝"><font size="4"  face="ＭＳ Ｐ明朝">${f:h(form.newShozaichi)}</font>
           </td>
           </tr>
           
-          <br>
-          <br>
-
           <tr width="500px">
-              <td width="150px"><font size="3"  face="ＭＳ Ｐ明朝">3</font></td>
-              <td width="150px"><font size="3"  face="ＭＳ Ｐ明朝">社宅名</font></td>
-              <td width="330px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝"><font size="4"  face="ＭＳ Ｐ明朝">${f:h(form.newShatakuName)}</font>
+              <td style="padding-bottom: 5px;"><font size="3"  face="ＭＳ Ｐ明朝">3</font></td>
+              <td><font size="3"  face="ＭＳ Ｐ明朝">社宅名</font></td>
+              <td style="font-size: 120%;font-family: ＭＳ Ｐ明朝"><font size="4"  face="ＭＳ Ｐ明朝">${f:h(form.newShatakuName)}</font>
           </td>
           </tr>
           
-          <br>
-          <br>
-          
-          <tr width="500px">
-              <td width="150px"><font size="3"  face="ＭＳ Ｐ明朝">4</font></td>
-              <td width="150px"><font size="3"  face="ＭＳ Ｐ明朝">家屋の構造等</font></td>
-              <td width="330px" style="font-size: 120%;font-family: ＭＳ Ｐ明朝"><font size="4"  face="ＭＳ Ｐ明朝"></font>
+           <tr width="500px">
+              <td style="padding-bottom: 5px;"><font size="3"  face="ＭＳ Ｐ明朝">4</font></td>
+              <td><font size="3"  face="ＭＳ Ｐ明朝">家屋の構造等</font></td>
+              <td style="font-size: 120%;font-family: ＭＳ Ｐ明朝"><font size="4"  face="ＭＳ Ｐ明朝"></font>
           </td>
           </tr>
-
+        </table>
         <table class="imui-table" >
 
                                 <tr>
