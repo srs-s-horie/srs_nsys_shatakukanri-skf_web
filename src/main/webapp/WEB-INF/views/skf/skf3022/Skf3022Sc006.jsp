@@ -1236,7 +1236,6 @@
 							$("#hdnEndDayOne").val("");
 							$("#sc006KukakuNoOne").text("");
 							$("#sc006RiyouStartDayOne").val("");
-//							$("#sc006RiyouStartDayOneDiv").val("");
 							$("#sc006RiyouEndDayOne").val("");
 							// 背景色をクリア
 							$("#sc006RiyouStartDayOne").removeClass("nfw-validation-error");
@@ -1306,17 +1305,8 @@
 
 					// 使用料入力支援パラメータ設定
 					setShiyoryoShienParam = function() {
-//						$("#hdnShainNo").val($("#hdnShainNo").text().trim());
 						$("hdnYakuinKbn").val($("#sc006YakuinSanteiSelect").val().trim());	// 未使用
 						$("#hdnShatakuChintairyo").val($("#sc006ChintaiRyo").val().replace(/,/g, "").trim());
-//						$("hdnTeijiFlag").val($("#sc006ShainNo").val().trim());
-//						$("hdnSyoruiKanriNo").val($("#sc006ShainNo").text().trim());
-//						$("#hdnRateShienKikaku").val($("#sc006TaiyoKikaku").text().trim());
-
-//						$("#hdnRateShienYoto").val($("#sc006ShainNo").text().trim());
-//						$("#hdnRateShienNobeMenseki").val($("#sc006ShainNo").text().trim());
-//						$("#hdnRateShienKijunMenseki").val($("#sc006ShainNo").text().trim());
-//						$("#hdnRateShienShatakuMenseki").val($("#sc006ShainNo").text().trim());
 					}
 
 					// 現在状態バックアップ
@@ -1358,10 +1348,6 @@
 						$("#sc006TaiyoYouto").text($("#hdnRateShienYotoName").val());
 						// 貸与規格
 						$("#sc006TaiyoKikaku").text($("#hdnRateShienKikakuName").val());
-						// 寒冷地減免
-						// 'Me.lblKanreiti.Text = shiyoryokeisanPatternShienInfo.Kanreichi
-						// '狭小減免
-						// 'Me.lblKyosyo.Text = shiyoryokeisanPatternShienInfo.Kyosho
 						// 使用料パターンID（hidden変数）
 						// 【使用料計算機能対応】ここでは画面制御として値を設定する。実際の使用料パターンIDは別処理にて付番する。
 						$("#hdnSiyouryoId").val("1");
@@ -1484,10 +1470,8 @@
 					/** テキストチェンジイベント */
 					// 入居予定日チェンジ
 					$("#sc006NyukyoYoteiDay").blur(function() {
-//					$("#sc006NyukyoYoteiDay").bind('change', function() {
 						// エラークリア
 						$("#sc006NyukyoYoteiDay").removeClass("nfw-validation-error");
-//						$("#hdnNyukyoDate").val($("#sc006NyukyoYoteiDay").val());
 						// パラメータ作成 
 						var map = new Object();
 						map['mapParam'] = createSiyoryoKeiSanParamAsync();
@@ -1500,10 +1484,8 @@
 
 					// 退居予定日チェンジ
 					$("#sc006TaikyoYoteiDay").blur(function() {
-//					$("#sc006TaikyoYoteiDay").bind('change', function() {
 						// エラークリア
 						$("#sc006TaikyoYoteiDay").removeClass("nfw-validation-error");
-//						$("#hdnTaikyoDate").val($("#sc006TaikyoYoteiDay").val());
 						// パラメータ作成 
 						var map = new Object();
 						map['mapParam'] = createSiyoryoKeiSanParamAsync();
@@ -1615,15 +1597,6 @@
 							$("#sc006EndDay").prop('disabled', true);
 							$("#sc006EndDay").removeClass("nfw-validation-error");
 							$("#sc006EndDayDiv").addClass("wj-state-disabled");
-							// 社宅賃貸料
-//							$("#sc006ChintaiRyo").prop('disabled', true);
-//							$("#sc006ChintaiRyo").removeClass("nfw-validation-error");
-							// 駐車場賃貸料
-//							$("#sc006TyusyajoRyokin").prop('disabled', true);
-//							$("#sc006TyusyajoRyokin").removeClass("nfw-validation-error");
-							// 共益費(事業者負担)
-//							$("#sc006Kyoekihi").prop('disabled', true);
-//							$("#sc006Kyoekihi").removeClass("nfw-validation-error");
 							// 配属情報
 							$("#sc006HaizokuKaisyaSelect").prop('disabled', true);
 							$("#sc006HaizokuKaisyaSelect").removeClass("nfw-validation-error");
@@ -1714,7 +1687,6 @@
 
 					// 社宅使用料調整金額チェンジ
 					$("#sc006SiyoroTyoseiPay").blur(function() {
-//					$("#sc006SiyoroTyoseiPay").bind('change', function() {
 						// 社宅使用料調整金額 
 						if ($("#sc006SiyoroTyoseiPay").val() != null && $("#sc006SiyoroTyoseiPay").val().length > 0) {
 							// エラークリア
@@ -1742,7 +1714,6 @@
 
 					// 個人負担共益費月額チェンジ
 					$("#sc006KyoekihiMonthPay").blur(function() {
-//					$("#sc006KyoekihiMonthPay").bind('change', function() {
 						// 個人負担共益費月額
 						if ($("#sc006KyoekihiMonthPay").val() != null && $("#sc006KyoekihiMonthPay").val().length > 0) {
 							// エラークリア
@@ -1770,7 +1741,6 @@
 
 					// 個人負担共益費調整金額チェンジ
 					$("#sc006KyoekihiTyoseiPay").blur(function() {
-//					$("#sc006KyoekihiTyoseiPay").bind('change', function() {
 						// 個人負担共益費調整金額
 						if ($("#sc006KyoekihiTyoseiPay").val() != null && $("#sc006KyoekihiTyoseiPay").val().length > 0) {
 							// エラークリア
@@ -1799,7 +1769,6 @@
 
 					// 駐車場利用日チェンジ
 					$("input[id^='sc006Riyou']").blur(function() {
-//					$("input[id^='sc006Riyou']").bind('change', function() {
 						var id = $(this).attr("id");
 						// パラメータ作成 
 						var map = new Object();
@@ -1840,7 +1809,6 @@
 
 					// 駐車場使用料調整金額チェンジ
 					$("#sc006TyusyaTyoseiPay").blur(function() {
-//					$("#sc006TyusyaTyoseiPay").bind('change', function() {
 						calcParkingMonthPayAfter();
 					});
 
@@ -1881,7 +1849,6 @@
 					});
 
 					// 社宅賃貸料チェンジ
-//					$("#sc006ChintaiRyo").blur(function() {
 					$("#sc006ChintaiRyo").bind('change', function() {
 						// 社宅賃貸料 入力チェック
 						if ($("#sc006ChintaiRyo").val() != null && $("#sc006ChintaiRyo").val().trim().length > 0) {
@@ -1905,7 +1872,6 @@
 					});
 
 					// 駐車場料金チェンジ
-//					$("#sc006TyusyajoRyokin").blur(function() {
 					$("#sc006TyusyajoRyokin").bind('change', function() {
 						// 駐車場料金入力チェック
 						if ($("#sc006TyusyajoRyokin").val() != null && $("#sc006TyusyajoRyokin").val().trim().length > 0) {
@@ -1940,11 +1906,11 @@
 /** AS 作成済状態で必須項目が未入力状態にし、一時保存すると不正なデータでも後のワークフローが出来てしまう事象に対処
  * 
  * 現行システムからの事象でimart移植時にも未対処。今後、対処する場合に備えコメントしておく
- * 
+ * 社宅が「作成中」以外は「一時保存」ボタンを押下不可とする対処
  */
 /**
 					// 作成中以外一時保存ボタンを無効化
-					if ($("#sc006ShatakuStts").text().trim() != "作成中" && $("#sc006BihinStts").text().trim() != "作成中") {
+					if ($("#sc006ShatakuStts").text().trim() != "作成中") {
 						$("#btnTmpSave").attr("disabled", true);
 						$("#btnTmpSave").css("color", "#aaaaaa");
 					}
