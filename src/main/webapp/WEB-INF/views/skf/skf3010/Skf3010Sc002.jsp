@@ -1030,7 +1030,14 @@
 						// 登録ボタンクリック
 						enterClick = function() {
 							//MessageIdConstant.I_SKF_3035[{0}を登録します。よろしいですか？]
-							$("<div>保有社宅情報を登録します。よろしいですか？</div>").imuiMessageDialog({
+							var dialogMessage;
+							if ($('#ittoFlg').val() != 'true') {
+								dialogMessage = "保有社宅情報を登録します。よろしいですか？";
+							} else {
+								dialogMessage = "一棟借上社宅情報を登録します。よろしいですか？";
+							}
+//							$("<div>保有社宅情報を登録します。よろしいですか？</div>").imuiMessageDialog({
+							$("<div>" + dialogMessage + "</div>").imuiMessageDialog({
 								iconType : 'question',
 								title : '確認',
 								modal : true,
