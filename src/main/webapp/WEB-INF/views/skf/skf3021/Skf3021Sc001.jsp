@@ -266,6 +266,7 @@ function onCellAttrNtk(rowId,val,rawObject,cm,rdata){
 
 							if ($(cellcontent).hasClass('im-smart-icon-common-16-information')) {
 								//連携パラメータ
+								//onBeforeSelectRowで実行する
 // 								var hdnRowShainNo = row.colShainNo;
 // 								var hdnRowApplNo = row.hdnApplNo;
 // 								var hdnRowNyutaikyoKbn = row.hdnNyutaikyoKbnCd;

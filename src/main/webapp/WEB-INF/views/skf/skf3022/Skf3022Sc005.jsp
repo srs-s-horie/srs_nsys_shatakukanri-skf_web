@@ -487,11 +487,8 @@
 							// JqGridの項目の幅情報の上書き.
 							var befHtml = $list[0].grid.headers[1].el.innerHTML;
 							$list[0].grid.headers[1].el.innerHTML="<span>督促<br /><input type=\"checkbox\" name=\"listCheck\" id=\"allListCheck\" onclick=\"allCheckBoxSelect(event)\"></span>";
-							//$list[0].grid.headers[1].el.innerHTML="<div id=\"jqgh_mainList_cb\">督促<input class=\"cbox\" id=\"cb_mainList\" role=\"checkbox\" type=\"checkbox\"></div>";
 							$list[0].grid.headers[1].el.style.width="25px";
 							$list[0].grid.headers[1].el.style.textAlign = "center";
-							//$list[0].grid.headers[1].el.outerHTML="<th class=\"ui-state-default ui-th-column ui-th-ltr\" id=\"mainList_cb\" role=\"columnheader\" style=\"width: 30px;\"><div id=\"jqgh_mainList_cb\"><span>督促<br /><input name=\"listCheck\" id=\"allListCheck\" type=\"checkbox\"></span></div></th>";
-							//$list[0].grid.headers[3].el.style.textAlign = "center";
 							$list[0].grid.headers[3].el.innerText = "入退居\n区分";
 							$list[0].grid.headers[6].el.innerText = "申請\n区分";
 							$list[0].grid.headers[12].el.innerText = "社宅提示\n状況";
