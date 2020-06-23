@@ -145,12 +145,10 @@ function back1() {
 									$("#sendContractPropertyId").val(row.colContractPropertyId);
 									$("#hdnParkingKanriNo").val(row.colParkingKanriNo);
 									if($("#selectMode").val() == 'init'){
-										$("#selectMode").val('mainlList');
+										$("#selectMode").val('mainList');
 										$("#sendParkingBlock").val(row.colParkingBlock);
 										$("#sendParkingKanriNo").val(row.colParkingKanriNo);
 										url = "skf/Skf3010Sc007/selectList";
-// 										$("#form").attr("action", url);
-// 										$("#form").submit();
 										nfw.common.submitForm("form", url);
 									}else{
 										checkInput('mainList');	
@@ -234,8 +232,6 @@ function back1() {
                	<imui:textbox id="txtParkingZipCd" name="parkingZipCd" style="ime-mode: disabled;width:130px;" value="${form.parkingZipCd}" class="${form.parkingZipCdError}" disabled="${form.contractInfoDisabled}" placeholder="例　4600003" maxlength="7" tabindex="7"/>
               	<imui:button id="addressSearch" name="addressSearch" value="住所検索" class="imui-small-button" disabled="${form.contractInfoDisabled}" onclick="addressOnClick()" tabindex="8" />
                
-<%--               	<nfwui:Button id="addressSearch" name="addressSearch" code="<%=MessageIdConstant.SKF3010_SC007_ADDRESS_SEARCH %>" cssClass="imui-small-button"  --%>
-<%--               	url="skf/Skf3010Sc007/addressSearch" disabled="${form.contractInfoDisabled}" formId="form"  tabindex="8"/> --%>
              </tr>
 
              <tr>
