@@ -384,7 +384,7 @@
     	var url = "";
     	//前の画面のＵＲＬ判定
    		if(prePageId=="Skf2010Sc007"){
-   			url = "skf/Skf2010Sc007/init?SKF2010_SC007&tokenCheck=0";
+   			url = "skf/Skf1010Sc001/init?SKF1010_SC001&tokenCheck=0";
    			nfw.common.doBack(url, message);
    		}else if(prePageId=="Skf2010Sc003" || prePageId=="Skf2010Sc004"){
    			//申請条件一覧
