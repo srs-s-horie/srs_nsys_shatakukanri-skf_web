@@ -619,14 +619,14 @@ function back1() {
 				</script>
 
 			<br />
-
+			
+			<div class="align-L float-L">	
+				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="19" />
+			</div>
+			
 			<div class="align-R">
 				<imui:button id="regist" name="regist" value="登録" class="imui-medium-button" style="width: 150px" onclick="registOnClick()" tabindex="17" disabled="${form.registButtonDisabled}"/>
 				<imui:button id="cancel" name="cancel" value="キャンセル" class="imui-medium-button" style="width: 150px" onclick="cancelOnClick()" tabindex="18" disabled="${form.cancelButtonDisabled}"/>
-			</div>
-			<br>		
-			<div class="align-L">	
-				<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="19" />
 			</div>
 
 	</div>
