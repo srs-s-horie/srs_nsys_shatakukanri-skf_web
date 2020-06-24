@@ -42,7 +42,7 @@
 								</th>
 
 								<td style="width: 30%;">
-								<imui:textbox id="registAgencyCd" name="registAgencyCd" value="${f:h(form.registAgencyCd)}" disabled="${form.agencyCdDisabled}" style="width: 55%; ime-mode:disabled" maxlength="4" placeholder="例 00" onblur="focusOut()" tabindex="2" />
+								<imui:textbox id="registAgencyCd" name="registAgencyCd" value="${f:h(form.registAgencyCd)}" disabled="${form.agencyCdDisabled}" style="width: 55%; ime-mode:disabled" maxlength="3" placeholder="例 310" onblur="focusOut()" tabindex="2" />
 								<imui:button id="agencyCdSearch"  value="名称を検索" disabled="${form.agencyCdSearchDisabled}" class="imui-small-button"
 									  onclick="agencyCheckConfrim()" tabindex="3" />
 								</td>
@@ -52,7 +52,7 @@
 									<nfwui:LabelBox id="lblAffiliation1Cd" code="<%= MessageIdConstant.SKF3090_SC007_AFFILIATION1_CODE %>" />
 								</th>
 								<td style="width: 30%;">
-								<imui:textbox id="registAffiliation1Cd" name="registAffiliation1Cd" value="${f:h(form.registAffiliation1Cd)}" disabled="${form.affiliation1CdDisabled}" style="width: 55%; ime-mode:disabled" maxlength="3" placeholder="例 01" tabindex="4" />
+								<imui:textbox id="registAffiliation1Cd" name="registAffiliation1Cd" value="${f:h(form.registAffiliation1Cd)}" disabled="${form.affiliation1CdDisabled}" style="width: 55%; ime-mode:disabled" maxlength="3" placeholder="例 001" tabindex="4" />
 								<imui:button id="affiliation1CdSearch"  value="名称を検索" disabled="${form.affiliation1CdSearchDisabled}" class="imui-small-button"
 									   onclick="affiliation1CheckConfrim()" tabindex="5" />	
 								</td>
