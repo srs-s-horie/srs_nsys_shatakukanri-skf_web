@@ -106,12 +106,23 @@
 <!-- javascript -->
 <script src="scripts/skf/skfCommon.js"></script>	
 <script type="text/javascript">
+$(document).ready(function(){
+	$(".imui-toolbar-icon").removeAttr("onclick");
+	$(".imui-toolbar-icon").click(function(e) {
+		back1("toolbar");
+	});
+});
+
 /**
  * 一つ前の画面へ戻る
  */
-function back1() {
+function back1(btnType) {
+	var message = "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。";
+	if (btnType == "toolbar") {
+		message = "戻ります。よろしいですか？";
+	}
 	var url = "skf/Skf3070Sc001/init?SKF3070_SC001&tokenCheck=0";
-	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
+	nfw.common.doBack(url, message);
 }
 
 </script>
