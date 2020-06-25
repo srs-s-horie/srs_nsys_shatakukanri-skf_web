@@ -576,7 +576,8 @@ function back1() {
 					</tbody>
 				</nfwui:Table>
 
-			<div class="align-L">	
+			<br />
+			<div class="align-L float-L">	
 				<input style="width:150px;" type="button" value="前の画面へ" class="imui-medium-button" onclick="back1()" tabindex="50"/>
 			</div>
 			<div class="align-R">	
