@@ -116,6 +116,15 @@
 	(function($) {
 		//画面表示時
 		$(document).ready(function(){	
+			$(".imui-toolbar-icon").removeAttr("onclick");
+			$(".imui-toolbar-icon").click(function(e) {
+				var url = "skf/Skf1010Sc001/init?SKF1010_SC001&tokenCheck=0";
+				var message = "戻ります。よろしいですか？";
+				var title = "戻る確認";
+				var formId = "form";
+				nfw.common.confirmPopup(message, title, formId, url, "ok", "キャンセル", this, false);
+			});
+			
 			//高さ変更
 			//$(".ui-jqgrid-view").height(300);
 			$(".ui-jqgrid-bdiv").height(225);
