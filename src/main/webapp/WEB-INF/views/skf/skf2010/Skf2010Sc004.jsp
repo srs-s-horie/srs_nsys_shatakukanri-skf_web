@@ -46,6 +46,9 @@
 </imart:decision>
 </style>
 
+<% //コメントボタンCSSを読み込み %>
+<link href="styles/skf/CommentBtnStyle.css" rel="stylesheet" type="text/css">
+
 <!-- コンテンツエリア:モックのまま -->
 <script src="scripts/skf/skfCommon.js"></script>
 <script type="text/javascript">

@@ -16,6 +16,9 @@
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
 <link rel="stylesheet" type="text/css" href="styles/skf/listTableStyle.css" />
 
+<% //コメントボタンCSSを読み込み %>
+<link href="styles/skf/CommentBtnStyle.css" rel="stylesheet" type="text/css">
+
 <style type="text/css">
 .ui-jqgrid .ui-jqgrid-bdiv {
   overflow-x:hidden; 

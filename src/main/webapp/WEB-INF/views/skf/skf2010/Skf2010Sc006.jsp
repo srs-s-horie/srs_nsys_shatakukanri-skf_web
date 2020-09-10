@@ -15,6 +15,8 @@
 <%@ page import="jp.co.c_nexco.skf.common.constants.SkfCommonConstant" %>
 <%  Skf2010Sc006Form form = (Skf2010Sc006Form)request.getAttribute("form"); %>
 
+<% //コメントボタンCSSを読み込み %>
+<link href="styles/skf/CommentBtnStyle.css" rel="stylesheet" type="text/css">
 
 <%-- コンテンツエリア --%>
 <style type="text/css">

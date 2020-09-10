@@ -15,6 +15,10 @@
 <%  Skf2050Sc001Form form = (Skf2050Sc001Form)request.getAttribute("form"); %>
 
 <script src="scripts/skf/skfCommon.js"></script>
+
+<% //コメントボタンCSSを読み込み %>
+<link href="styles/skf/CommentBtnStyle.css" rel="stylesheet" type="text/css">
+
 <%-- コンテンツエリア --%>
 <style type="text/css">
 

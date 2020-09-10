@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+
+input[class="imui-medium-button"][value="コメント表示"]{
+	background-image: linear-gradient(rgb(255, 255, 0) 0%, rgb(243, 152, 0) 100%) !important;
+	color: black !important;
+}
+
+input[class="imui-medium-button ui-state-hover"][value="コメント表示"]{
+	background-image: linear-gradient(rgb(243, 152, 0) 0%, rgb(255, 255, 0) 100%) !important;
+	color: black !important;
+}
+
+input[class="imui-medium-button ui-state-hover ui-state-active"][value="コメント表示"]{
+	background-image: linear-gradient(rgb(194, 121, 0) 0%, rgb(220, 220, 0) 100%) !important;
+	color: white !important;
+}

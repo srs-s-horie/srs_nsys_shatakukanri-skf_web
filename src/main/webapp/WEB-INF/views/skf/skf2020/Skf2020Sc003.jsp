@@ -18,6 +18,9 @@
 <%@ page import="jp.co.c_nexco.skf.common.constants.SessionCacheKeyConstant" %>
 <%  Skf2020Sc003Form form = (Skf2020Sc003Form)request.getAttribute("form"); %>
 
+<% //コメントボタンCSSを読み込み %>
+<link href="styles/skf/CommentBtnStyle.css" rel="stylesheet" type="text/css">
+
 <%-- コンテンツエリア --%>
 <style type="text/css">
     li.im-ui-icon-common-16-link-point-gray {

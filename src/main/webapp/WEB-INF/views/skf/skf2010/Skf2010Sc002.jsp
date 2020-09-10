@@ -15,6 +15,9 @@
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
 <% // 代行ログイン時CSS読み込み箇所ここまで %>
 
+<% //コメントボタンCSSを読み込み %>
+<link href="styles/skf/CommentBtnStyle.css" rel="stylesheet" type="text/css">
+
 <%-- コンテンツエリア CSS--%>
 <style type="text/css">
 .vertical-top {
