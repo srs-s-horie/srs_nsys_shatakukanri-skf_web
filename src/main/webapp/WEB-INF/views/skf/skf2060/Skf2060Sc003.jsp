@@ -15,6 +15,9 @@
 <%@ page import="jp.co.c_nexco.skf.skf2060.app.skf2060sc003.Skf2060Sc003Form" %>
 <%  Skf2060Sc003Form form = (Skf2060Sc003Form)request.getAttribute("form"); %>
 
+<% //コメントボタンCSSを読み込み %>
+<link href="styles/skf/CommentBtnStyle.css" rel="stylesheet" type="text/css">
+
 <%-- コンテンツエリア --%>
 <style type="text/css">
 

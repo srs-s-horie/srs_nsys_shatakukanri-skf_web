@@ -17,6 +17,9 @@
 
 <% // 代行ログイン時CSS読み込み箇所ここまで %>
 
+<% //コメントボタンCSSを読み込み %>
+<link href="styles/skf/CommentBtnStyle.css" rel="stylesheet" type="text/css">
+
 <!DOCTYPE html>
 <!-- フッターエリア CSS-->
 <style type="text/css">

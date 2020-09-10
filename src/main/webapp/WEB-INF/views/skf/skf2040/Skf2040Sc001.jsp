@@ -18,6 +18,9 @@
 
 <script src="scripts/skf/skfCommon.js"></script>
 
+<% //コメントボタンCSSを読み込み %>
+<link href="styles/skf/CommentBtnStyle.css" rel="stylesheet" type="text/css">
+
 <!-- フッターエリア CSS-->
 <style type="text/css">
     div.btnLeft{
