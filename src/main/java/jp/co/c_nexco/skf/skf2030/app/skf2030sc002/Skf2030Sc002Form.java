@@ -116,5 +116,6 @@ public class Skf2030Sc002Form extends Skf2030CommonForm {
 	private boolean presentBtnDisabled = false;
 	// コメント欄非活性フラグ
 	private String commentDisabled = "false";
-
+	// 提示データ一覧ボタン表示フラグ
+	private boolean teijiBtnViewFlag;
 }

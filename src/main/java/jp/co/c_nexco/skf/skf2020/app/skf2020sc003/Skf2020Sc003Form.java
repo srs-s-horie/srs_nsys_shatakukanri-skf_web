@@ -173,6 +173,10 @@ public class Skf2020Sc003Form extends Skf2020CommonForm {
 	private boolean bihinVisible;
 	// コメントボタン表示フラグ
 	private boolean commentViewFlag;
+	// 提示データ一覧ボタン表示フラグ
+	private boolean teijiBtnViewFlag;
+	// 入退居予定一覧ボタン表示フラグ
+	private boolean nyutaikyoBtnViewFlag;
 
 	// 申請状況（テキスト）
 	private String applStatusText;
@@ -189,7 +193,7 @@ public class Skf2020Sc003Form extends Skf2020CommonForm {
 
 	// 操作ガイド
 	private String operationGuide;
-	
+
 	// 編集前「必要とする社宅」
 	private String defaultHitsuyoShataku;
 

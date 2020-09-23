@@ -22,6 +22,19 @@ function back1() {
 	var url="skf/Skf2010Sc005/Search"
 	nfw.common.doBack(url, "前の画面へ戻ります。よろしいですか？編集中の内容は無効になります。");
 }
+
+$(document).ready(function() {
+	<imart:condition validity="<%= String.valueOf(form.isTeijiBtnViewFlag()) %>" >
+	$("#teijiBtn").click(function() {
+		var title = "確認";
+		var message = "画面を移動します。よろしいですか？";
+		var action = "skf/Skf3022Sc005/init";
+		nfw.common.confirmPopup(message, title, "form", action, "ok", "キャンセル", this, false);
+	});
+	</imart:condition>
+
+});
+
 </script>
 
 <style type="text/css">
@@ -232,6 +245,9 @@ function back1() {
 
 <imart:decision case="${form.dispMode}" value="<%= String.valueOf(CodeConstant.VIEW_LEVEL_2) %>">
 <div class="align-R">
+<imart:condition validity="<%= String.valueOf(form.isTeijiBtnViewFlag()) %>" >
+      <imui:button value="提示データ一覧" style="width:150px;" class="imui-medium-button" id="teijiBtn" />
+</imart:condition>
       <nfwui:ConfirmButton id="revisionBtn" name="revisionBtn"
       value="修正依頼" cssClass="imui-medium-button" cssStyle="width: 150px" 
       title="<%= MessageIdConstant.SKF2030_SC002_REVISION %>" message="<%= MessageIdConstant.I_SKF_2005 %>"
