@@ -149,6 +149,24 @@ $(function() {
     	});
     	// 添付ファイル情報を初期表示する
     	updateAttachedFileArea();
+    	
+<imart:condition validity="<%= String.valueOf(form.isTeijiBtnViewFlag()) %>" >
+    	$("#teijiBtn").click(function() {
+    		var title = "確認";
+    		var message = "画面を移動します。よろしいですか？";
+    		var action = "skf/Skf3022Sc005/init";
+    		nfw.common.confirmPopup(message, title, "form", action, "ok", "キャンセル", this, false);
+    	});
+</imart:condition>
+<imart:condition validity="<%= String.valueOf(form.isNyutaikyoBtnViewFlag()) %>" >
+		$("#nyutaikyoBtn").click(function() {
+			var title = "確認";
+			var message = "画面を移動します。よろしいですか？";
+			var action = "skf/Skf3021Sc001/init";
+			nfw.common.confirmPopup(message, title, "form", action, "ok", "キャンセル", this, false);
+		});
+</imart:condition>
+
 	});
 	
 	// 添付ファイルリンクからのファイルダウンロード処理
@@ -964,6 +982,12 @@ $(function() {
 </imart:condition>
 </td> 
 <td align="right">
+<imart:condition validity="<%= String.valueOf(form.isTeijiBtnViewFlag()) %>" >
+      <imui:button value="提示データ一覧" style="width:150px;" class="imui-medium-button" id="teijiBtn" />
+</imart:condition>
+<imart:condition validity="<%= String.valueOf(form.isNyutaikyoBtnViewFlag()) %>" >
+      <imui:button value="入退居予定一覧" style="width:150px;" class="imui-medium-button" id="nyutaikyoBtn" />
+</imart:condition>
       <nfwui:ConfirmButton id="revisionBtn" name="revisionBtn" value="修正依頼"
        cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
        title="<%= MessageIdConstant.SKF2020_SC003_CONFIRM_TITLE %>"

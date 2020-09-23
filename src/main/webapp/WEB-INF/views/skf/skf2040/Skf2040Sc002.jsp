@@ -131,12 +131,16 @@
 			</div>
 			<!-- 右エリア -->
  			<div class="btnRight">
- 				<!-- 修正依頼 -->
-				      <nfwui:ConfirmButton id="revisionBtn" name="revisionBtn" value="修正依頼"
-				       cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
-				       title="<%= MessageIdConstant.SKF2040_SC002_CONFIRM_TITLE %>"
-				       message="<%= MessageIdConstant.SKF2040_SC002_REVISION_MSG %>"
-				       url="skf/Skf2040Sc002/Revision" removePatterns="PTN_A,PTN_B,PTN_D,PTN_F"/>
+			<imart:condition validity="<%= String.valueOf(form.isTeijiBtnViewFlag()) %>" >
+				<imui:button value="提示データ一覧" style="width:150px;" class="imui-medium-button" id="teijiBtn" />
+			</imart:condition>
+ 			
+				<!-- 修正依頼 -->
+				<nfwui:ConfirmButton id="revisionBtn" name="revisionBtn" value="修正依頼"
+				 cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
+				 title="<%= MessageIdConstant.SKF2040_SC002_CONFIRM_TITLE %>"
+				message="<%= MessageIdConstant.SKF2040_SC002_REVISION_MSG %>"
+				url="skf/Skf2040Sc002/Revision" removePatterns="PTN_A,PTN_B,PTN_D,PTN_F"/>
  			</div>
  		</tr>
  		<tr>
@@ -237,5 +241,15 @@ $(function() {
     onClickOutputPdfR0103 = function () {
     	nfw.common.submitForm("form", "skf/Skf2040Sc002/OutputPdfR0103");
     }
+    
+   	<imart:condition validity="<%= String.valueOf(form.isTeijiBtnViewFlag()) %>" >
+   	$("#teijiBtn").click(function() {
+   		var title = "確認";
+   		var message = "画面を移動します。よろしいですか？";
+   		var action = "skf/Skf3022Sc005/init";
+   		nfw.common.confirmPopup(message, title, "form", action, "ok", "キャンセル", this, false);
+   	});
+   	</imart:condition>
+
 });
 </script>
