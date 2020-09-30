@@ -171,7 +171,7 @@
         	<font size="3"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;２．退居日</font>
         </td>
         <td>
-        <font size="3"  face="ＭＳ Ｐ明朝">社宅等:</font><font size="3" id="taikyoDate"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;${f:h(form.taikyoDate)}</font>
+        <font size="3"  face="ＭＳ Ｐ明朝">社宅等:</font><font size="3" id="taikyoKanoDate"  face="ＭＳ Ｐ明朝">&nbsp;&nbsp;&nbsp;${f:h(form.taikyoDate)}</font>
         </td>
         </tr>
         <tr>
