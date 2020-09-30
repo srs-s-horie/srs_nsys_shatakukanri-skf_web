@@ -29,7 +29,17 @@
 	div.btnRight{
     	text-align: right;
 	}
-}
+<imart:decision case="${form.taikyoDateFlg}" value="<%= SkfCommonConstant.DATE_CHANGE %>">
+	#taikyoKanoDate {
+		color : red;
+	}
+</imart:decision>
+<imart:decision case="${form.parkingEDateFlg}" value="<%= SkfCommonConstant.NOT_CHANGE %>">
+	#parkingHenkanDate {
+		color : red;
+	}
+</imart:decision>
+
 </style>
 
 
