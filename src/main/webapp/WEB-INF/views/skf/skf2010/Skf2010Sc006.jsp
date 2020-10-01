@@ -74,26 +74,11 @@ $(function() {
 		//入居申請の承認ボタンをクリックしたときのイベント
 		$("#nyuShoninBtn").click(function(){
 			
-			// 画面に表示されていたメッセージを削除
-			$(".imui-box-caution, .imui-box-warning, .imui-box-success").remove();
-			
-			var map = new Object();
-			map['checkShatakuKanriNo'] = $("#checkShatakuKanriNo").val();
-			map['checkRoomKanriNo'] = $("#checkRoomKanriNo").val();
-			nfw.common.doAjaxAction("skf/Skf2010Sc006/checkAsync", map, true, function(res){
-				//対象社宅の未承認の退居届が	あれば確認ダイアログ表示			
-				if(res.dialogFlg){
-			    	//確認ダイアログが必要な場合
-					//ダイアログ
-					var applNo = res.applNo
-					var message = "貸与予定の社宅について現居住者の退居届申請が完了していません。入居申請の承認を行いますが、よろしいですか？　　(申請書番号:" + applNo + ")";
-					skf.common.confirmPopup(message, "確認", "form" ,"skf/Skf2010Sc006/Update", "OK", "キャンセル",this);			
-				}else{
-					//確認ダイアログが不要な場合
-					var message =　"申請内容を承認します。よろしいですか？"
-					skf.common.confirmPopup(message, "確認", "form" ,"skf/Skf2010Sc006/Update", "OK", "キャンセル",this);	
-				}
-			}),wait(1);
+	    	//確認ダイアログが必要な場合
+			var shainNo = $("#taikyoShain").val();
+			var message = "貸与予定の社宅について現居住者の退居届申請が完了していません。入居申請の承認を行いますが、よろしいですか？　　(社員番号:" + shainNo + ")";
+			skf.common.confirmPopup(message, "確認", "form" ,"skf/Skf2010Sc006/Update", "OK", "キャンセル",this);			
+
 		});
 		
 	});
@@ -254,8 +239,7 @@ $(function() {
       <nfwui:Hidden id="applId" name="applId" />
       <nfwui:Hidden id="shainNo" name="shainNo" />
       <nfwui:Hidden id="applUpdateDate" name="applUpdateDate" />
-      <nfwui:Hidden id="checkShatakuKanriNo" name="checkShatakuKanriNo" />
-      <nfwui:Hidden id="checkRoomKanriNo" name="checkRoomKanriNo" />
+      <nfwui:Hidden id="taikyoShain" name="taikyoShain" />
       <!-- 添付資料番号 -->
       <input type="hidden" id="attachedNo" name="attachedNo" value="" />
       <table width="100%">
@@ -319,13 +303,12 @@ $(function() {
            use="popup" popupWidth="790" popupHeight="700"
            parameter="applNo:popApplNo,applId:popApplId" modalMode="true" 
            screenUrl="skf/Skf2010Sc009/init" formId="form" removePatterns="NON" />
-           <!-- 承認ボタン -->
+           <!-- 承認ボタン  特殊ダイアログ必要入居承認ボタン表示が必要な場合-->
            <c:if test="${form.nyukyoShoninBtnViewFlag == 'true'}">
-            <!-- 入居申請の場合 -->
               <imui:button id="nyuShoninBtn" value="承認" class="imui-medium-button" style="width: 150px" disabled="${form.confirmBtnDisabled}" />
 	       </c:if>
-	       <c:if test="${form.taikyoShoninBtnViewFlag == 'true'}"> 
-	        <!-- 退居申請の場合 -->  
+	      <!-- 承認ボタン  特殊ダイアログが不要な場合-->  
+	       <c:if test="${form.comShoninBtnViewFlag == 'true'}"> 
               <nfwui:ConfirmButton id="SyouninBtn" name="SyouninBtn" value="承認"
 	           cssClass="imui-medium-button" cssStyle="width: 150px" 
 	            title="<%= MessageIdConstant.SKF2010_SC006_CONFIRM_TITLE %>" message="<%= MessageIdConstant.I_SKF_2006 %>" 

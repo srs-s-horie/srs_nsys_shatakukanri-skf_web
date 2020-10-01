@@ -13,14 +13,4 @@ public class Skf2010Sc006AsyncForm extends AsyncBaseForm {
 
 	private String attachedFileArea;
 
-	// 退居申請チェック用社宅管理番号
-	private String checkShatakuKanriNo;
-	// 退居申請チェック用社宅部屋管理番号
-	private String checkRoomKanriNo;
-
-	// ダイアログ表示フラグ
-	private boolean dialogFlg;
-
-	private String shainNo;
-
 }
