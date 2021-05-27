@@ -111,6 +111,10 @@
 
 		<!-- 社員名入力支援用 -->
 		<input type="hidden" id="insertFormName" value="" />
+<!-- 		共益費日割計算対応 2021/5/14 add start -->
+		<!-- 社員名入力支援用 -->
+		<input type="hidden" name="hdnShatakuKanriId" id="hdnShatakuKanriId" value="${form.hdnShatakuKanriId}" />
+<!-- 		共益費日割計算対応 2021/5/14 add end -->		
 		<nfwui:Table use="search">
 			<tbody>
 				<tr>
@@ -296,7 +300,7 @@
 						</tr>
 						<tr>
 							<!-- 貸与社宅 -->
-							<th rowspan="15">
+							<th rowspan="18">
 								<nfwui:LabelBox id="lblSc006TaiyoShataku" code="<%=MessageIdConstant.SKF3022_SC006_TAIYO_SHATAKU %>" />
 							</th>
 							<!-- 入居予定日 -->
@@ -501,14 +505,70 @@
 							</td>
 						</tr>
 						<tr>
+<!-- 共益費日割計算対応 2021/5/14  項目位置変更 start-->
+							<!-- 共益費支払月 -->
+							<th>
+								<nfwui:LabelBox id="lblSc006KyoekihiPayMonth" code="<%=MessageIdConstant.SKF3022_SC006_KYOEKIHI_PAY_MONTH %>" />
+							</th>
+							<td>
+								<imui:select id="sc006KyoekihiPayMonthSelect" name="sc006KyoekihiPayMonthSelect" width="80"
+								disabled="${form.sc006KyoekihiPayMonthSelectDisableFlg }" list="${form.sc006KyoekihiPayMonthSelectList}" class="${form.sc006KyoekihiPayMonthSelectErr}" tabindex="14" />
+							</td>
+<!-- 							個人負担共益費月額 -->
+<!-- 							<th> -->
+<%-- 								<nfwui:LabelBox id="lblSc006KyoekihiMonthPay" code="<%=MessageIdConstant.SKF3022_SC006_KYOEKIHI_MONTH_PAY %>" /> --%>
+<!-- 							</th> -->
+<!-- 							<td> -->
+<%-- 								<nfwui:NumberBox id="sc006KyoekihiMonthPay" name="sc006KyoekihiMonthPay" max="999999" min="-999999" --%>
+<%-- 									cssClass="${form.sc006KyoekihiMonthPayErr }" cssStyle="width: 100px;" --%>
+<%-- 									maxlength="7" value="${form.sc006KyoekihiMonthPay}" disabled="${form.sc006KyoekihiMonthPayDisableFlg }" tabindex="14" />&nbsp;円 --%>
+<!-- 							</td> -->
+						</tr>
+						<tr>
 							<!-- 個人負担共益費月額 -->
 							<th>
 								<nfwui:LabelBox id="lblSc006KyoekihiMonthPay" code="<%=MessageIdConstant.SKF3022_SC006_KYOEKIHI_MONTH_PAY %>" />
 							</th>
 							<td>
 								<nfwui:NumberBox id="sc006KyoekihiMonthPay" name="sc006KyoekihiMonthPay" max="999999" min="-999999"
-									cssClass="${form.sc006KyoekihiMonthPayErr }" cssStyle="width: 100px;"
-									maxlength="7" value="${form.sc006KyoekihiMonthPay}" disabled="${form.sc006KyoekihiMonthPayDisableFlg }" tabindex="14" />&nbsp;円
+									cssClass="${form.sc006KyoekihiMonthPayErr }" cssStyle="width: 100px;" 
+									maxlength="7" value="${form.sc006KyoekihiMonthPay}" disabled="${form.sc006KyoekihiMonthPayDisableFlg }" tabindex="15" />&nbsp;円 
+							</td>
+<!-- 							個人負担共益費調整金額 -->
+<!-- 							<th> -->
+<%-- 								<nfwui:LabelBox id="lblSc006KyoekihiTyoseiPay" code="<%=MessageIdConstant.SKF3022_SC006_KYOEKIHI_TYOSEI_PAY %>" /> --%>
+<!-- 							</th> -->
+<!-- 							<td> -->
+<%-- 								<nfwui:NumberBox id="sc006KyoekihiTyoseiPay" name="sc006KyoekihiTyoseiPay" max="999999" min="-999999" --%>
+<%-- 									cssClass="${form.sc006KyoekihiTyoseiPayErr }" cssStyle="width: 100px;" --%>
+<%-- 									maxlength="7" value="${form.sc006KyoekihiTyoseiPay}" disabled="${form.sc006KyoekihiTyoseiPayDisableFlg }" tabindex="15" />&nbsp;円 --%>
+<!-- 							</td> -->
+						</tr>
+						<tr>
+							<!-- 共益費支払月に対する支払額 -->
+							<th>
+								<nfwui:LabelBox id="lblSc006KyoekihiPayMonth" code="<%=MessageIdConstant.SKF3022_SC006_KYOEKIHI_MONTH %>" />
+							</th>
+							<td>
+								<label id="sc006KyoekihiMonth" name="sc006KyoekihiMonth">${form.sc006KyoekihiMonth }</label>&nbsp;円
+							</td>
+						</tr>
+						<tr>
+							<!-- 個人負担共益費入居時加算額 -->
+							<th>
+								<nfwui:LabelBox id="lblSc006KyoekihiPayMonth" code="<%=MessageIdConstant.SKF3022_SC006_KYOEKIHI_NYUKYOKASAN %>" />
+							</th>
+							<td>
+								<label id="sc006KyoekihiNyukyoKasan" name="sc006KyoekihiNyukyoKasan">${form.sc006KyoekihiNyukyoKasan }</label>&nbsp;円
+							</td>
+						</tr>
+						<tr>
+							<!-- 個人負担共益費退居時加算額 -->
+							<th>
+								<nfwui:LabelBox id="lblSc006KyoekihiPayMonth" code="<%=MessageIdConstant.SKF3022_SC006_KYOEKIHI_TAIKYOKASAN %>" />
+							</th>
+							<td>
+								<label id="sc006KyoekihiTaikyoKasan" name="sc006KyoekihiTaikyoKasan">${form.sc006KyoekihiTaikyoKasan }</label>&nbsp;円
 							</td>
 						</tr>
 						<tr>
@@ -519,7 +579,7 @@
 							<td>
 								<nfwui:NumberBox id="sc006KyoekihiTyoseiPay" name="sc006KyoekihiTyoseiPay" max="999999" min="-999999"
 									cssClass="${form.sc006KyoekihiTyoseiPayErr }" cssStyle="width: 100px;"
-									maxlength="7" value="${form.sc006KyoekihiTyoseiPay}" disabled="${form.sc006KyoekihiTyoseiPayDisableFlg }" tabindex="15" />&nbsp;円
+									maxlength="7" value="${form.sc006KyoekihiTyoseiPay}" disabled="${form.sc006KyoekihiTyoseiPayDisableFlg }" tabindex="16" />&nbsp;円
 							</td>
 						</tr>
 						<tr>
@@ -531,16 +591,17 @@
 								<label id="sc006KyoekihiPayAfter" name="sc006KyoekihiPayAfter">${form.sc006KyoekihiPayAfter }</label>&nbsp;円
 							</td>
 						</tr>
-						<tr>
-							<!-- 共益費支払月 -->
-							<th>
-								<nfwui:LabelBox id="lblSc006KyoekihiPayMonth" code="<%=MessageIdConstant.SKF3022_SC006_KYOEKIHI_PAY_MONTH %>" />
-							</th>
-							<td>
-								<imui:select id="sc006KyoekihiPayMonthSelect" name="sc006KyoekihiPayMonthSelect" width="80"
-								disabled="${form.sc006KyoekihiPayMonthSelectDisableFlg }" list="${form.sc006KyoekihiPayMonthSelectList}" class="${form.sc006KyoekihiPayMonthSelectErr}" tabindex="16" />
-							</td>
-						</tr>
+<!-- 						<tr> -->
+<!-- 							共益費支払月 -->
+<!-- 							<th> -->
+<%-- 								<nfwui:LabelBox id="lblSc006KyoekihiPayMonth" code="<%=MessageIdConstant.SKF3022_SC006_KYOEKIHI_PAY_MONTH %>" /> --%>
+<!-- 							</th> -->
+<!-- 							<td> -->
+<%-- 								<imui:select id="sc006KyoekihiPayMonthSelect" name="sc006KyoekihiPayMonthSelect" width="80" --%>
+<%-- 								disabled="${form.sc006KyoekihiPayMonthSelectDisableFlg }" list="${form.sc006KyoekihiPayMonthSelectList}" class="${form.sc006KyoekihiPayMonthSelectErr}" tabindex="16" /> --%>
+<!-- 							</td> -->
+<!-- 						</tr> -->
+<!-- 共益費日割計算対応 2021/5/14  項目位置変更 end-->
 					</tbody>
 				</nfwui:Table>
 			</div>
@@ -1050,6 +1111,14 @@
 							// 利用終了日
 //							labelMap['sc006RiyouEndDayOne'] = $("#sc006RiyouEndDayOne").val().trim();
 //							labelMap['sc006RiyouEndDayTwo'] = $("#sc006RiyouEndDayTwo").val().trim();
+							//共益費日割計算対応 2021/5/14 add start
+							// 共益費支払月に対する支払額
+							labelMap['sc006KyoekihiMonth'] = $("#sc006KyoekihiMonth").text().trim();
+							// 個人負担共益費入居時加算額
+							labelMap['sc006KyoekihiNyukyoKasan'] = $("#sc006KyoekihiNyukyoKasan").text().trim();
+							// 個人負担共益費退居時加算額
+							labelMap['sc006KyoekihiTaikyoKasan'] = $("#sc006KyoekihiTaikyoKasan").text().trim();
+							//共益費日割計算対応 2021/5/14 add end
 							labelArray.push(labelMap);
 						}
 						// 可変ラベルリストをJSON文字列に変換
@@ -1130,6 +1199,31 @@
 							$("#sc006TyusyaMonthPayTwo").text(resultMap.sc006TyusyaMonthPayTwo);
 						}
 					}
+				
+					/**
+					 * 共益費計算(提示データ登録内部)戻り値設定(非同期))
+					 * 共益費計算の戻り値をラベルに設定する
+					 *
+					 * @param resultMap	共益費計算(提示データ登録画面)戻り値
+					 */
+					function seｔKyoekihiKeiSanResultAsync(resultMap) {
+						// 共益費支払月に対する支払額
+						if (resultMap['sc006KyoekihiMonth']) {
+							$("#sc006KyoekihiMonth").text(resultMap.sc006KyoekihiMonth);
+						}
+						// 個人負担共益費入居時加算額
+						if (resultMap['sc006KyoekihiNyukyoKasan']) {
+							$("#sc006KyoekihiNyukyoKasan").text(resultMap.sc006KyoekihiNyukyoKasan);
+						}
+						// 個人負担共益費退居時加算額
+						if (resultMap['sc006KyoekihiTaikyoKasan']) {
+							$("#sc006KyoekihiTaikyoKasan").text(resultMap.sc006KyoekihiTaikyoKasan);
+						}
+						// 個人負担共益費月額(調整後)
+						if (resultMap['sc006KyoekihiPayAfter']) {
+							$("#sc006KyoekihiPayAfter").text(resultMap.sc006KyoekihiPayAfter);
+						}
+					}
 
 					/** 使用料計算パラメータ設定(非同期) */
 					function createSiyoryoKeiSanParamAsync() {
@@ -1160,6 +1254,7 @@
 						map['hdnRiyouStartDayTwo'] = $("#hdnRiyouStartDayTwo").val();
 						map['sc006RiyouEndDayTwo'] = $("#sc006RiyouEndDayTwo").val();
 						map['sc006TyusyaTyoseiPay'] = $("#sc006TyusyaTyoseiPay").val();
+						map['hdnShatakuKanriId'] = $("#hdnShatakuKanriId").val();
 						return map;
 					};
 
@@ -1221,7 +1316,27 @@
 								tyoseiKyoekiPay = parseInt($("#sc006KyoekihiTyoseiPay").val().trim().replace(/,/g, ""));
 							}
 							// 個人負担共益費月額(調整後)
-							$("#sc006KyoekihiPayAfter").text((monthKyoekiPay + tyoseiKyoekiPay).toLocaleString());
+							// 共益費日割計算対応 2021/05/14 edit start
+							//$("#sc006KyoekihiPayAfter").text((monthKyoekiPay + tyoseiKyoekiPay).toLocaleString());
+							// 支払月額
+							var hiwariPay = 0;
+							if ($("#sc006KyoekihiMonth").text() != null && $("#sc006KyoekihiMonth").text().trim().length > 0) {
+								hiwariPay = parseInt($("#sc006KyoekihiMonth").text().trim().replace(/,/g, ""));
+							}
+							// 入居時加算額
+							var nyukyoPay = 0;
+							if ($("#sc006KyoekihiNyukyoKasan").text() != null && $("#sc006KyoekihiNyukyoKasan").text().trim().length > 0) {
+								nyukyoPay = parseInt($("#sc006KyoekihiNyukyoKasan").text().trim().replace(/,/g, ""));
+							}
+							// 退居時加算額
+							var taikyoPay = 0;
+							if ($("#sc006KyoekihiTaikyoKasan").text() != null && $("#sc006KyoekihiTaikyoKasan").text().trim().length > 0) {
+								taikyoPay = parseInt($("#sc006KyoekihiTaikyoKasan").text().trim().replace(/,/g, ""));
+							}
+							
+							// 個人負担共益費月額(調整後)
+							$("#sc006KyoekihiPayAfter").text((tyoseiKyoekiPay + hiwariPay + nyukyoPay + taikyoPay).toLocaleString());
+							// 共益費日割計算対応 2021/05/14 edit end
 						}
 						$("#sc006KyoekihiKyogichuCheckState").val(state);
 					}
@@ -1475,10 +1590,19 @@
 						// パラメータ作成 
 						var map = new Object();
 						map['mapParam'] = createSiyoryoKeiSanParamAsync();
+						// 共益費日割計算対応 2021/5/14 add start
+						map['sc006KyoekihiMonthPay'] = $("#sc006KyoekihiMonthPay").val();
+						map['sc006KyoekihiPayMonthSelect'] = $("#sc006KyoekihiPayMonthSelect").val();
+						map['sc006KyoekihiTyoseiPay'] = $("#sc006KyoekihiTyoseiPay").val();
+						// 共益費日割計算対応 2021/5/14 add end
+						
 						// 使用料再計算
 						nfw.common.doAjaxAction("skf/Skf3022Sc006/ChangeNyutaikyoYoteiAsync", map, true, function(data) {
 							// 戻り値設定(使用料再計算分)
 							setSiyoryoKeiSanResultAsync(data);
+							// 共益費日割計算対応 2021/5/14 add start
+							seｔKyoekihiKeiSanResultAsync(data);
+							// 共益費日割計算対応 2021/5/14 add end
 						});
 					});
 
@@ -1489,10 +1613,18 @@
 						// パラメータ作成 
 						var map = new Object();
 						map['mapParam'] = createSiyoryoKeiSanParamAsync();
+						// 共益費日割計算対応 2021/5/14 add start
+						map['sc006KyoekihiMonthPay'] = $("#sc006KyoekihiMonthPay").val();
+						map['sc006KyoekihiPayMonthSelect'] = $("#sc006KyoekihiPayMonthSelect").val();
+						map['sc006KyoekihiTyoseiPay'] = $("#sc006KyoekihiTyoseiPay").val();
+						// 共益費日割計算対応 2021/5/14 add end
 						// 使用料再計算
 						nfw.common.doAjaxAction("skf/Skf3022Sc006/ChangeNyutaikyoYoteiAsync", map, true, function(data) {
 							// 戻り値設定(使用料再計算分)
 							setSiyoryoKeiSanResultAsync(data);
+							// 共益費日割計算対応 2021/5/14 add start
+							seｔKyoekihiKeiSanResultAsync(data);
+							// 共益費日割計算対応 2021/5/14 add end
 						});
 					});
 
@@ -1718,22 +1850,39 @@
 						if ($("#sc006KyoekihiMonthPay").val() != null && $("#sc006KyoekihiMonthPay").val().length > 0) {
 							// エラークリア
 							$("#sc006KyoekihiMonthPay").removeClass("nfw-validation-error");
-							// 共益費月額
-							var monthKyoekiPay = 0;
-							monthKyoekiPay = parseInt($("#sc006KyoekihiMonthPay").val().trim().replace(/,/g, ""));
-							// 共益費調整金額
-							var tyoseiKyoekiPay = 0;
-							if ($("#sc006KyoekihiTyoseiPay").val() != null && $("#sc006KyoekihiTyoseiPay").val().trim().length > 0) {
-								tyoseiKyoekiPay = parseInt($("#sc006KyoekihiTyoseiPay").val().trim().replace(/,/g, ""));
-							}
-							// 個人負担共益費月額(調整後)
-							$("#sc006KyoekihiPayAfter").text((monthKyoekiPay + tyoseiKyoekiPay).toLocaleString());
+							// 共益費日割計算対応 2021/5/14 edit start
+// 							// 共益費月額
+// 							var monthKyoekiPay = 0;
+// 							monthKyoekiPay = parseInt($("#sc006KyoekihiMonthPay").val().trim().replace(/,/g, ""));
+// 							// 共益費調整金額
+// 							var tyoseiKyoekiPay = 0;
+// 							if ($("#sc006KyoekihiTyoseiPay").val() != null && $("#sc006KyoekihiTyoseiPay").val().trim().length > 0) {
+// 								tyoseiKyoekiPay = parseInt($("#sc006KyoekihiTyoseiPay").val().trim().replace(/,/g, ""));
+// 							}
+// 							// 個人負担共益費月額(調整後)
+// 							$("#sc006KyoekihiPayAfter").text((monthKyoekiPay + tyoseiKyoekiPay).toLocaleString());
+							// パラメータ作成 
+							var map = new Object();
+							map['mapParam'] = createSiyoryoKeiSanParamAsync();
+							map['sc006KyoekihiMonthPay'] = $("#sc006KyoekihiMonthPay").val();
+							map['sc006KyoekihiPayMonthSelect'] = $("#sc006KyoekihiPayMonthSelect").val();
+							map['sc006KyoekihiTyoseiPay'] = $("#sc006KyoekihiTyoseiPay").val();
+							// 使用料再計算
+							nfw.common.doAjaxAction("skf/Skf3022Sc006/ChangeKyoekihiAsync", map, true, function(data) {
+								seｔKyoekihiKeiSanResultAsync(data);
+							});
+							// 共益費日割計算対応 2021/5/14 edit end
 						} else {
+							// 共益費日割計算対応 2021/5/14 edit start
+							$("#sc006KyoekihiMonth").text("0");
+							$("#sc006KyoekihiNyukyoKasan").text("0");
+							$("#sc006KyoekihiTaikyoKasan").text("0");
+							// 共益費日割計算対応 2021/5/14 edit end
 							if ($("#sc006KyoekihiTyoseiPay").val() != null && $("#sc006KyoekihiTyoseiPay").val().trim().length > 0) {
-								// 社宅使用料月額(調整後)を日割金額と同額に設定
+								// 個人負担共益費月額(調整後)を調整金額と同額に設定
 								$("#sc006KyoekihiPayAfter").text($("#sc006KyoekihiTyoseiPay").val().trim());
 							} else {
-								// 社宅使用料月額(調整後)を「0」に設定
+								// 個人負担共益費月額(調整後)を「0」に設定
 								$("#sc006KyoekihiPayAfter").text("0");
 							}
 						}
@@ -1754,18 +1903,72 @@
 							// 共益費調整金額
 							var tyoseiKyoekiPay = 0;
 							tyoseiKyoekiPay = parseInt($("#sc006KyoekihiTyoseiPay").val().trim().replace(/,/g, ""));
+							
+							// 共益費日割計算対応 2021/05/14 edit start
+							// 支払月額
+							var hiwariPay = 0;
+							if ($("#sc006KyoekihiMonth").text() != null && $("#sc006KyoekihiMonth").text().trim().length > 0) {
+								hiwariPay = parseInt($("#sc006KyoekihiMonth").text().trim().replace(/,/g, ""));
+							}
+							// 入居時加算額
+							var nyukyoPay = 0;
+							if ($("#sc006KyoekihiNyukyoKasan").text() != null && $("#sc006KyoekihiNyukyoKasan").text().trim().length > 0) {
+								nyukyoPay = parseInt($("#sc006KyoekihiNyukyoKasan").text().trim().replace(/,/g, ""));
+							}
+							// 退居時加算額
+							var taikyoPay = 0;
+							if ($("#sc006KyoekihiTaikyoKasan").text() != null && $("#sc006KyoekihiTaikyoKasan").text().trim().length > 0) {
+								taikyoPay = parseInt($("#sc006KyoekihiTaikyoKasan").text().trim().replace(/,/g, ""));
+							}
+							
 							// 個人負担共益費月額(調整後)
-							$("#sc006KyoekihiPayAfter").text((monthKyoekiPay + tyoseiKyoekiPay).toLocaleString());
+// 							$("#sc006KyoekihiPayAfter").text((monthKyoekiPay + tyoseiKyoekiPay).toLocaleString());
+							$("#sc006KyoekihiPayAfter").text((tyoseiKyoekiPay + hiwariPay + nyukyoPay + taikyoPay).toLocaleString());
+							// 共益費日割計算対応 2021/05/14 edit end
 						} else {
 							if ($("#sc006KyoekihiMonthPay").val() != null && $("#sc006KyoekihiMonthPay").val().trim().length > 0) {
-								// 個人負担共益費月額(調整後)を日割金額と同額に設定
-								$("#sc006KyoekihiPayAfter").text($("#sc006KyoekihiMonthPay").val().trim());
+								// 個人負担共益費月額(調整後)を調整金額と同額に設定
+								// 共益費日割計算対応 2021/05/14 edit start
+								//$("#sc006KyoekihiPayAfter").text($("#sc006KyoekihiMonthPay").val().trim());
+								// 支払月額
+								var hiwariPay = 0;
+								if ($("#sc006KyoekihiMonth").text() != null && $("#sc006KyoekihiMonth").text().trim().length > 0) {
+									hiwariPay = parseInt($("#sc006KyoekihiMonth").text().trim().replace(/,/g, ""));
+								}
+								// 入居時加算額
+								var nyukyoPay = 0;
+								if ($("#sc006KyoekihiNyukyoKasan").text() != null && $("#sc006KyoekihiNyukyoKasan").text().trim().length > 0) {
+									nyukyoPay = parseInt($("#sc006KyoekihiNyukyoKasan").text().trim().replace(/,/g, ""));
+								}
+								// 退居時加算額
+								var taikyoPay = 0;
+								if ($("#sc006KyoekihiTaikyoKasan").text() != null && $("#sc006KyoekihiTaikyoKasan").text().trim().length > 0) {
+									taikyoPay = parseInt($("#sc006KyoekihiTaikyoKasan").text().trim().replace(/,/g, ""));
+								}
+								$("#sc006KyoekihiPayAfter").text((hiwariPay + nyukyoPay + taikyoPay).toLocaleString());
+								// 共益費日割計算対応 2021/05/14 edit end
 							} else {
 								// 個人負担共益費月額(調整後)を「0」に設定
 								$("#sc006KyoekihiPayAfter").text("0");
 							}
 						}
 					});
+					
+					// 共益費日割計算対応 2021/5/14 add start
+					// 共益費支払月ドロップダウンチェンジ
+					$("#sc006KyoekihiPayMonthSelect").bind('change', function() {
+						// パラメータ作成 
+						var map = new Object();
+						map['mapParam'] = createSiyoryoKeiSanParamAsync();
+						map['sc006KyoekihiMonthPay'] = $("#sc006KyoekihiMonthPay").val();
+						map['sc006KyoekihiPayMonthSelect'] = $("#sc006KyoekihiPayMonthSelect").val();
+						map['sc006KyoekihiTyoseiPay'] = $("#sc006KyoekihiTyoseiPay").val();
+						// 使用料再計算
+						nfw.common.doAjaxAction("skf/Skf3022Sc006/ChangeKyoekihiAsync", map, true, function(data) {
+							seｔKyoekihiKeiSanResultAsync(data);
+						});
+					});
+					// 共益費日割計算対応 2021/5/14 add end
 
 					// 駐車場利用日チェンジ
 					$("input[id^='sc006Riyou']").blur(function() {

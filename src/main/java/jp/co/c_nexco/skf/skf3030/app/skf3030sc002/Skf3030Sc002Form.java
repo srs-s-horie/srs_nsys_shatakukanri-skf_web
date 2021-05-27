@@ -386,6 +386,14 @@ public class Skf3030Sc002Form extends GridForm {
 	private String sc006TyusyaTyoseiPay;
 	// 個人負担共益費 協議中
 	private Boolean sc006KyoekihiKyogichuCheck;
+	/** 共益費日割計算対応 2021/5/14 add start **/
+	// 共益費支払月に対する支払額
+	private String sc006KyoekihiMonth;
+	// 個人負担共益費入居時加算額
+	private String sc006KyoekihiNyukyoKasan;
+	// 個人負担共益費退居時加算額
+	private String sc006KyoekihiTaikyoKasan;	
+	/** 共益費日割計算対応 2021/5/14 add end **/
 	// 備考
 	private String sc006Bicou;
 	// 個人負担共益費月額

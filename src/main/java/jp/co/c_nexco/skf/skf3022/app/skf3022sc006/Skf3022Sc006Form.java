@@ -210,6 +210,9 @@ public class Skf3022Sc006Form extends GridForm {
 	private String hdnIsInfo;
 	// 備品一覧再取得フラグ
 	private Boolean bihinItiranFlg;
+	//共益費日割計算対応 2021/5/14 add start
+	private String hdnShatakuKanriId;
+	//共益費日割計算対応 2021/5/14 add end
 
 	/** メッセージボックス */
 	// スタイル
@@ -329,6 +332,14 @@ public class Skf3022Sc006Form extends GridForm {
 	private String sc006KyoekihiMonthPay;
 	// 個人負担共益費調整金額
 	private String sc006KyoekihiTyoseiPay;
+	/** 共益費日割計算対応 2021/5/14 add start **/
+	// 共益費支払月に対する支払額
+	private String sc006KyoekihiMonth;
+	// 個人負担共益費入居時加算額
+	private String sc006KyoekihiNyukyoKasan;
+	// 個人負担共益費退居時加算額
+	private String sc006KyoekihiTaikyoKasan;	
+	/** 共益費日割計算対応 2021/5/14 add end **/
 	// 貸与日
 	private String sc006TaiyoDay;
 	// 返却日
