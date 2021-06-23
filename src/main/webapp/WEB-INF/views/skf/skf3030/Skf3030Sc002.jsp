@@ -1101,6 +1101,14 @@
 							labelMap['sc006KukakuNoTwo'] = $("#sc006KukakuNoTwo").text().trim();
 							// 個人負担共益費月額(調整後)
 							labelMap['sc006KyoekihiPayAfter'] = $("#sc006KyoekihiPayAfter").text().trim();
+							// 共益費日割計算対応 2021/5/14 add start
+							// 共益費支払月に対する支払額
+							labelMap['sc006KyoekihiMonth'] = $("#sc006KyoekihiMonth").text().trim();
+							// 個人負担共益費入居時加算額
+							labelMap['sc006KyoekihiNyukyoKasan'] = $("#sc006KyoekihiNyukyoKasan").text().trim();
+							// 個人負担共益費退居時加算額
+							labelMap['sc006KyoekihiTaikyoKasan'] = $("#sc006KyoekihiTaikyoKasan").text().trim();
+							// 共益費日割計算対応 2021/5/14 add end
 							// 利用開始日
 //							labelMap['sc006RiyouStartDayOne'] = $("#sc006RiyouStartDayOne").val().trim();
 //							labelMap['sc006RiyouStartDayTwo'] = $("#sc006RiyouStartDayTwo").val().trim();
