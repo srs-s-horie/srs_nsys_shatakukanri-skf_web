@@ -144,6 +144,9 @@
 			<imart:condition validity="<%= String.valueOf(form.isTeijiBtnViewFlag()) %>" >
 				<imui:button value="提示データ一覧" style="width:150px;" class="imui-medium-button" id="teijiBtn" />
 			</imart:condition>
+			<imart:condition validity="<%= String.valueOf(form.isNyutaikyoYoteiBtnViewFlag()) %>" >
+				<imui:button value="入退居予定一覧" style="width:150px;" class="imui-medium-button" id="nyutaikyoYoteiBtn" />
+			</imart:condition>
  			
 				<!-- 修正依頼 -->
 				<nfwui:ConfirmButton id="revisionBtn" name="revisionBtn" value="修正依頼"
@@ -257,6 +260,15 @@ $(function() {
    		var title = "確認";
    		var message = "画面を移動します。よろしいですか？";
    		var action = "skf/Skf3022Sc005/init";
+   		nfw.common.confirmPopup(message, title, "form", action, "ok", "キャンセル", this, false);
+   	});
+   	</imart:condition>
+   	
+   	<imart:condition validity="<%= String.valueOf(form.isNyutaikyoYoteiBtnViewFlag()) %>" >
+   	$("#nyutaikyoYoteiBtn").click(function() {
+   		var title = "確認";
+   		var message = "画面を移動します。よろしいですか？";
+   		var action = "skf/Skf3021Sc001/init";
    		nfw.common.confirmPopup(message, title, "form", action, "ok", "キャンセル", this, false);
    	});
    	</imart:condition>

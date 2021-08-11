@@ -101,6 +101,8 @@ public class Skf2040Sc002Form extends Skf2040CommonForm {
 	private String commentViewFlg;
 	// 提示データ一覧ボタン表示フラグ
 	private boolean teijiBtnViewFlag;
+	// 入退居予定データ一覧ボタン表示フラグ
+	private boolean nyutaikyoYoteiBtnViewFlag;
 
 	// 返却情報表示フラグ true:あり false:なし
 	private String henkyakuInfoViewFlg;
