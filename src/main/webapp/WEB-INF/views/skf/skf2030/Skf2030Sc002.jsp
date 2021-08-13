@@ -232,7 +232,15 @@ $(document).ready(function() {
                 </tr>
             </tbody>
         </table>
-<div class="align-L${f:h(form.floatL) }" style="margin-top: -5px;">
+        
+<tr style="border:none">
+   <td style="border:none">
+   </td>
+      <td style="border:none">
+   </td>
+</tr> 
+   <br>           
+<div class="align-L">
       <imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()"  />
 <imart:condition validity="<%= String.valueOf(form.isCommentBtnVisibled()) %>" >
 	<nfwui:PopupButton id="commentPop" value="コメント表示" 
@@ -242,7 +250,7 @@ $(document).ready(function() {
           screenUrl="skf/Skf2010Sc010/init" use="popup" />
 </imart:condition>
 </div>
-
+    
 <imart:decision case="${form.dispMode}" value="<%= String.valueOf(CodeConstant.VIEW_LEVEL_2) %>">
 <div class="align-R">
 <imart:condition validity="<%= String.valueOf(form.isTeijiBtnViewFlag()) %>" >
@@ -277,7 +285,12 @@ $(document).ready(function() {
       title="<%= MessageIdConstant.SKF2030_SC002_APPLY %>" message="<%= MessageIdConstant.I_SKF_2006 %>"
       url="skf/Skf2030Sc002/Approve" formId="form" disabledPatterns="NONADMIN" />
 	</div>  
-</imart:decision>  
+</imart:decision> 
+
+<tr style="border:none">
+   <td style="border:none">
+   </td>
+</tr>
 <script type="text/javascript">
     
 </script>

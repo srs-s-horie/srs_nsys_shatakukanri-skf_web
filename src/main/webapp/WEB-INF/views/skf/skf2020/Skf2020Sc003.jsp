@@ -981,6 +981,7 @@ $(function() {
           screenUrl="skf/Skf2010Sc010/init" use="popup" />
 </imart:condition>
 </td> 
+<imart:condition validity="<%= String.valueOf(form.isApproverBtnViewFlag()) %>" >
 <td align="right">
 <imart:condition validity="<%= String.valueOf(form.isTeijiBtnViewFlag()) %>" >
       <imui:button value="提示データ一覧" style="width:150px;" class="imui-medium-button" id="teijiBtn" />
@@ -994,6 +995,7 @@ $(function() {
        message="<%= MessageIdConstant.SKF2020_SC003_REVISION_MSG %>"
        url="skf/Skf2020Sc003/Revision" />
 </td>
+</imart:condition>
 </tr>
     </tbody>
 
@@ -1002,6 +1004,7 @@ $(function() {
 <tr>
 <td align="left">
 </td> 
+<imart:condition validity="<%= String.valueOf(form.isApproverBtnViewFlag()) %>" >
 <td align="right">
 
            <nfwui:PopupButton id="shiryoBtn" name="shiryoBtn" value="資料を添付"
@@ -1018,6 +1021,7 @@ $(function() {
        cssClass="imui-medium-button check" cssStyle="width:150px;" formId="form"
        url="skf/Skf2020Sc003/Confirm" disabledPatterns="TeijiNG" />
 </td>
+</imart:condition>
 </tr>
     </tbody>
 
