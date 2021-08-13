@@ -232,17 +232,30 @@ $(document).ready(function() {
                 </tr>
             </tbody>
         </table>
-<div class="align-L${f:h(form.floatL) }" style="margin-top: -5px;">
+        
+<tr style="border:none">
+   <td style="border:none">
+   </td>
+      <td style="border:none">
+   </td>
+</tr>
+<imart:condition validity="<%= String.valueOf(form.isAllButtonEscape()) %>" negative>                         
+<div class="align-L float-L">
+</imart:condition>
+<imart:condition validity="<%= String.valueOf(form.isAllButtonEscape()) %>">       
+<div class="align-L">
+</imart:condition>
       <imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()"  />
 <imart:condition validity="<%= String.valueOf(form.isCommentBtnVisibled()) %>" >
 	<nfwui:PopupButton id="commentPop" value="コメント表示" 
           cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
           modalMode="false" popupWidth="1350" popupHeight="488"
-          parameter="applNo:applNo" disabledPatterns="NONADMIN"
+          parameter="applNo:applNo" removePatterns="NONADMIN"
           screenUrl="skf/Skf2010Sc010/init" use="popup" />
 </imart:condition>
 </div>
 
+<imart:condition validity="<%= String.valueOf(form.isAllButtonEscape()) %>" negative>       
 <imart:decision case="${form.dispMode}" value="<%= String.valueOf(CodeConstant.VIEW_LEVEL_2) %>">
 <div class="align-R">
 <imart:condition validity="<%= String.valueOf(form.isTeijiBtnViewFlag()) %>" >
@@ -251,18 +264,18 @@ $(document).ready(function() {
       <nfwui:ConfirmButton id="revisionBtn" name="revisionBtn"
       value="修正依頼" cssClass="imui-medium-button" cssStyle="width: 150px" 
       title="<%= MessageIdConstant.SKF2030_SC002_REVISION %>" message="<%= MessageIdConstant.I_SKF_2005 %>"
-      url="skf/Skf2030Sc002/Revision" formId="form" disabledPatterns="NONADMIN" />
+      url="skf/Skf2030Sc002/Revision" formId="form" removePatterns="NONADMIN" />
 <imart:condition validity="<%= form.getBihinCheckFlag() %>" >      
       <nfwui:ConfirmButton id="presentBtn" name="presentBtn"
       value="提示" cssClass="imui-medium-button" cssStyle="width: 150px" 
       title="<%= MessageIdConstant.SKF2030_SC002_PRESENT %>" message="<%= MessageIdConstant.I_SKF_2011 %>"
-      url="skf/Skf2030Sc002/Present" formId="form" disabledPatterns="NONADMIN" disabled="${form.presentBtnDisabled}" />
+      url="skf/Skf2030Sc002/Present" formId="form" removePatterns="NONADMIN" disabled="${form.presentBtnDisabled}" />
 </imart:condition>
 <imart:condition validity="<%= form.getBihinCheckFlag() %>" negative>      
       <nfwui:ConfirmButton id="approveBtn" name="approveBtn"
       value="承認" cssClass="imui-medium-button" cssStyle="width: 150px" 
       title="<%= MessageIdConstant.SKF2030_SC002_APPLY %>" message="<%= MessageIdConstant.I_SKF_2006 %>"
-      url="skf/Skf2030Sc002/Approve" formId="form" disabledPatterns="NONADMIN" />
+      url="skf/Skf2030Sc002/Approve" formId="form" removePatterns="NONADMIN" />
 </imart:condition>
 </div>
 </imart:decision>
@@ -271,13 +284,14 @@ $(document).ready(function() {
       <nfwui:ConfirmButton id="revisionBtn" name="revisionBtn"
       value="修正依頼" cssClass="imui-medium-button" cssStyle="width: 150px" 
       title="<%= MessageIdConstant.SKF2030_SC002_REVISION %>" message="<%= MessageIdConstant.I_SKF_2005 %>"
-      url="skf/Skf2030Sc002/Revision" formId="form" disabledPatterns="NONADMIN" />
+      url="skf/Skf2030Sc002/Revision" formId="form" removePatterns="NONADMIN" />
       <nfwui:ConfirmButton id="approveBtn" name="approveBtn"
       value="承認" cssClass="imui-medium-button" cssStyle="width: 150px" 
       title="<%= MessageIdConstant.SKF2030_SC002_APPLY %>" message="<%= MessageIdConstant.I_SKF_2006 %>"
-      url="skf/Skf2030Sc002/Approve" formId="form" disabledPatterns="NONADMIN" />
+      url="skf/Skf2030Sc002/Approve" formId="form" removePatterns="NONADMIN" />
 	</div>  
-</imart:decision>  
+</imart:decision> 
+</imart:condition>
 <script type="text/javascript">
     
 </script>
