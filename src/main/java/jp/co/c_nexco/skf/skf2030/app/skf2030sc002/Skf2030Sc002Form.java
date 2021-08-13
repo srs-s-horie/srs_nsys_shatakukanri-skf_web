@@ -118,4 +118,6 @@ public class Skf2030Sc002Form extends Skf2030CommonForm {
 	private String commentDisabled = "false";
 	// 提示データ一覧ボタン表示フラグ
 	private boolean teijiBtnViewFlag;
+	//　承認者用ボタン表示フラグ
+	private boolean allButtonEscape;
 }
