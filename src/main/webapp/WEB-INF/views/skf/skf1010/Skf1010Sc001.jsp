@@ -372,7 +372,7 @@ if(menuSesValTop != null){
                             <nfwui:LabelBox id="zigyoRyoikiMasutaMaintenanceMessage" code="<%= MessageIdConstant.SKF1010_SC001_ZIGYO_RYOIKI_MASUTA_MAINTENANCE_MESSAGE %>" /><br>
                         </td>
                     </tr>
-                    
+					<!--                   
                     <imart:condition validity="${form.level3_3}">                    
                     <tr>
                         <th>
@@ -385,6 +385,7 @@ if(menuSesValTop != null){
                         </td>
                     </tr>
                     </imart:condition>
+					-->   
                     </imart:decision>
          </ul>
         </table>
