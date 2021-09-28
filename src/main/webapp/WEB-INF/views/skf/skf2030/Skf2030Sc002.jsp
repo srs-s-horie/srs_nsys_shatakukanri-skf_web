@@ -250,7 +250,7 @@ $(document).ready(function() {
 	<nfwui:PopupButton id="commentPop" value="コメント表示" 
           cssClass="imui-medium-button" style="width:150px; margin-top:5px;"
           modalMode="false" popupWidth="1350" popupHeight="488"
-          parameter="applNo:applNo" removePatterns="NONADMIN"
+          parameter="applNo:applNo" removePatterns=""
           screenUrl="skf/Skf2010Sc010/init" use="popup" />
 </imart:condition>
 </div>
