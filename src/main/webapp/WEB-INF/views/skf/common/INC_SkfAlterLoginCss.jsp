@@ -11,6 +11,7 @@
 <%@ taglib prefix="imart" uri="http://www.intra-mart.co.jp/taglib/core/standard" %>
 
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
+<%@ page import="jp.co.c_nexco.skf.common.constants.SkfCommonConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.SessionCacheKeyConstant" %>
 <%@ page import="java.util.Enumeration" %>
 <%@ page import="java.util.Map" %>
@@ -44,7 +45,7 @@ if(menuSesVal != null){
   <div id=alterLoginMessage>
   <div style=" font-weight: bold;color:red;">
     代行ログイン中にメニューへ戻る際は右のボタンを利用してください。
-    <nfwui:Button id="alterTop" formId="alterLoginForm" value="社宅TOP" cssClass="imui-small-button" url="skf/Skf1010Sc001/Init" />
+    <nfwui:Button id="alterTop" formId="alterLoginForm" value="<%= SkfCommonConstant.HOME_BUTTON %>" cssClass="imui-small-button" url="skf/Skf1010Sc001/Init" />
   </div>
   <div style=" font-weight: bold;color:green;" >代理申請対象【氏名】&nbsp; <%= alterLoginUserName %></div>
   </div>
