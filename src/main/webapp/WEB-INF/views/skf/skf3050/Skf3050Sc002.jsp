@@ -53,6 +53,12 @@
 		<input type="hidden" id="hdnBihinTaiyoWarnContinueFlg" name="hdnBihinTaiyoWarnContinueFlg" value="${form.hdnBihinTaiyoWarnContinueFlg}" />
 		<input type="hidden" id="hdnBihinHenkyakuWarnContinueFlg" name="hdnBihinHenkyakuWarnContinueFlg" value="${form.hdnBihinHenkyakuWarnContinueFlg}" />
 		<input type="hidden" id="hdnWarnMsg" name="hdnWarnMsg" value="${form.hdnWarnMsg}" />
+		<input type="hidden" id="hdnBtnRouterShimeShoriDisabled" name="hdnBtnRouterShimeShoriDisabled" value="${form.hdnBtnRouterShimeShoriDisabled}" />
+		<input type="hidden" id="hdnBtnRouterShimeKaijoDisabled" name="hdnBtnRouterShimeKaijoDisabled" value="${form.hdnBtnRouterShimeKaijoDisabled}" />
+		<input type="hidden" id="hdnRouterShimeShoriBtnMsg" name="hdnRouterShimeShoriBtnMsg" value="${form.hdnRouterShimeShoriBtnMsg}" />
+		<input type="hidden" id="hdnRouterShimeKaijoBtnMsg" name="hdnRouterShimeKaijoBtnMsg" value="${form.hdnRouterShimeKaijoBtnMsg}" />
+		<input type="hidden" id="hdnJikkouShijiYoteiRouterShoriCol" name="hdnJikkouShijiYoteiRouterShoriCol" value="${form.hdnJikkouShijiYoteiRouterShoriCol}" />
+		
 		<table class="imui-form-search-condition">
 			<tbody>
 				<tr>
@@ -60,7 +66,7 @@
 						<label style="width:80px;">対象年度</label>
 					</th>
 					<td>
-						<imui:select id="taishonendoDropdown" name="taishonendoDropdown" width="120" list="${form.dropDownList}" />
+						<imui:select id="taishonendoDropdown" name="taishonendoDropdown" width="120" list="${form.dropDownList}" tabindex="3" />
 					</td>
 					<td style="width:100%;border:none;"></td>
 				</tr>
@@ -77,7 +83,8 @@
 			autoResize="true" height="100%" style="word-wrap:break-word;" data="${form.getujiGrid }" >
 				<cols sortable="false">
 				<col name="col1" caption="年月" width="160" sortable="false" align="center" />
-				<col name="col2" caption="締め処理" width="160" sortable="false" align="center" />
+				<col name="col2" caption="社宅締め処理" width="160" sortable="false" align="center" />
+				<col name="col2_2" caption="モバイルルーター締め処理" width="160" sortable="false" align="center" />
 				<col name="col3" caption="給与連携データ作成" width="160" sortable="false" align="center" />
 				<col name="col4" hidden="true"/>
 				<showIcon iconClass="im-ui-icon-common-16-update" />
@@ -92,14 +99,16 @@
 		<input type="hidden" id="taskMsgId" name="taskMsgId" value="${batchForm.taskMsgId}" />
 	
 		<div class="align-R">
-			<input id="kariKeisanBtn" name="kariKeisanBtn" style="width:150px;" type="button" value="仮計算処理" class="imui-medium-button" />
-			<imui:button id="closeTaskExecution" name="closeTaskExecution" style="width:150px;" value="締め処理" class="imui-medium-button" />
-			<input id="positiveCoopDataSakuseiBtn" name="positiveCoopDataSakuseiBtn" type="button" style="width:200px;" value="給与連携データ作成処理" class="imui-medium-button" />
+			<input id="kariKeisanBtn" name="kariKeisanBtn" style="width:150px;" type="button" value="仮計算処理" class="imui-medium-button" tabindex="4"/>
+			<imui:button id="closeTaskExecution" name="closeTaskExecution" style="width:150px;" value="社宅締め処理" class="imui-medium-button" tabindex="5" />
+			<imui:button id="routerCloseTaskExecution" name="routerCloseTaskExecution" style="width:220px;" value="モバイルルーター締め処理" class="imui-medium-button" tabindex="7"/>
+			<input id="positiveCoopDataSakuseiBtn" name="positiveCoopDataSakuseiBtn" type="button" style="width:200px;" value="給与連携データ作成処理" class="imui-medium-button" tabindex="9"/>
 		</div>
 
 		<div class="align-R">
-			<imui:button id="closeCanselTaskExecution" name="closeCanselTaskExecution"  style="width:150px;" value="締め解除処理" class="imui-medium-button" />
-			<imui:button id="confirmPositiveCooperationTaskExecution" name="confirmPositiveCooperationTaskExecution" style="width:200px;" value="給与連携データ確定処理" class="imui-medium-button" />
+			<imui:button id="closeCanselTaskExecution" name="closeCanselTaskExecution"  style="width:150px;" value="社宅締め解除処理" class="imui-medium-button" tabindex="6" />
+			<imui:button id="routerCloseCanselTaskExecution" name="routerCloseCanselTaskExecution"  style="width:220px;" value="モバイルルーター締め解除処理" class="imui-medium-button" tabindex="8"/>
+			<imui:button id="confirmPositiveCooperationTaskExecution" name="confirmPositiveCooperationTaskExecution" style="width:200px;" value="給与連携データ確定処理" class="imui-medium-button" tabindex="10"/>
 		</div>
 	</nfwui:Form>
 </div>
@@ -116,6 +125,8 @@
 		const DISABLED_COLOR = '#aaaaaa';
 		const NORMAL_COLOR = '#333333';
 		const HILIGHT_COLOR = '#87cefa';
+		const ROUTER_SHIME_SHORI_BTN = 'routerCloseTaskExecution';
+		const ROUTER_SHIME_KAIJO_SHORI_BTN = 'routerCloseCanselTaskExecution';
 
 		/*
 		* 「仮計算処理」ボタン押下時
@@ -134,6 +145,16 @@
 			var dialogTitle = "確認";
 			var dialogMessage = $("#hdnShimeShoriBtnMsg").val();
 			var url = "skf/Skf3050Sc002/closeTaskExecution";
+			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
+		});
+		
+		/*
+		* 「モバイルルーター締め処理」ボタン押下時
+		*/
+		$("#" + ROUTER_SHIME_SHORI_BTN).click(function() {
+			var dialogTitle = "確認";
+			var dialogMessage = $("#hdnRouterShimeShoriBtnMsg").val();
+			var url = "skf/Skf3050Sc002/routerCloseTaskExecution";
 			nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
 		});
 
@@ -158,6 +179,8 @@
 					$("#hdnBtnRenkeiDataSakuseiDisabled").val(false);
 					$("#hdnBtnShimeKaijoDisabled").val(false);
 					$("#hdnBtnRenkeiDataKakuteiDisabled").val(false);
+					$("#hdnBtnRouterShimeShoriDisabled").val(true);
+					$("#hdnBtnRouterShimeKaijoDisabled").val(false);
 					// 「給与連携データ作成を「実行済」に設定
 					var getsujiGrid = $("#grvGetsujiShoriSts");
 					var gridDatas = getsujiGrid.getGridParam('data');
@@ -167,7 +190,7 @@
 					// 描画
 					initDisplay();
 
-					// 保有社宅登録画面
+					// データ作成処理
 					url = "skf/Skf3050Sc002/createPositiveCooperationData";
 					nfw.common.submitForm("form", url);
 				});
@@ -180,6 +203,15 @@
 		$("#" + SHIME_KAIJO_SHORI_BTN).click(function() {
 			var dialogMessage = $("#hdnShimeKaijoBtnMsg").val();
 			var url = "skf/Skf3050Sc002/closeCancelTaskExecution";
+			nfw.common.confirmPopup(dialogMessage, "確認", "form", url, "OK", "キャンセル", this, true);
+		});
+		
+		/*
+		* 「締め解除処理」ボタン押下時
+		*/
+		$("#" + ROUTER_SHIME_KAIJO_SHORI_BTN).click(function() {
+			var dialogMessage = $("#hdnRouterShimeKaijoBtnMsg").val();
+			var url = "skf/Skf3050Sc002/routerCloseCancelTaskExecution";
 			nfw.common.confirmPopup(dialogMessage, "確認", "form", url, "OK", "キャンセル", this, true);
 		});
 
@@ -248,6 +280,18 @@
 			if (renkeiDataKakuteiDisabled) {
 				$("#" + POSITIVE_DATA_CONFIRM_BTN).css("color", DISABLED_COLOR);
 			}
+			
+			var routerShimeShoriDisabled = cnvBoolean($("#hdnBtnRouterShimeShoriDisabled").val());
+			$("#" + ROUTER_SHIME_SHORI_BTN).attr("disabled", routerShimeShoriDisabled);
+			if (routerShimeShoriDisabled) {
+				$("#" + ROUTER_SHIME_SHORI_BTN).css("color", DISABLED_COLOR);
+			}
+			
+			var routerShimeKaijoDisabled = cnvBoolean($("#hdnBtnRouterShimeKaijoDisabled").val());
+			$("#" + ROUTER_SHIME_KAIJO_SHORI_BTN).attr("disabled", routerShimeKaijoDisabled);
+			if (routerShimeKaijoDisabled) {
+				$("#" + ROUTER_SHIME_KAIJO_SHORI_BTN).css("color", DISABLED_COLOR);
+			}
 		}
 
 		/*
@@ -259,6 +303,8 @@
 			$("#" + POSITIVE_DATA_CREATE_BTN).css("color", NORMAL_COLOR);
 			$("#" + SHIME_KAIJO_SHORI_BTN).css("color", NORMAL_COLOR);
 			$("#" + POSITIVE_DATA_CONFIRM_BTN).css("color", NORMAL_COLOR);
+			$("#" + ROUTER_SHIME_SHORI_BTN).css("color", NORMAL_COLOR);
+			$("#" + ROUTER_SHIME_KAIJO_SHORI_BTN).css("color", NORMAL_COLOR);
 		}
 
 		/*
@@ -269,8 +315,16 @@
 			var gridDatas = getsujiGrid.getGridParam('data');
 			var tagetCol = $("#hdnJikkouShijiYoteiShoriCol").val();
 			var tagetIdx = Number($("#hdnJikkouShijiYoteiShoriIdx").val());
+			if(tagetCol != ''){
+				getsujiGrid.setCell(gridDatas[tagetIdx].id, tagetCol, '', { background: HILIGHT_COLOR });
+			}
+			// モバイルルーター
+			var tagetColR = $("#hdnJikkouShijiYoteiRouterShoriCol").val();
+			if(tagetColR != ''){
+				getsujiGrid.setCell(gridDatas[tagetIdx].id, tagetColR, '', { background: HILIGHT_COLOR });
+			}
 			
-			getsujiGrid.setCell(gridDatas[tagetIdx].id, tagetCol, '', { background: HILIGHT_COLOR });
+			
 		}
 
 		/*
