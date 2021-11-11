@@ -45,15 +45,15 @@ $(function() {
 		var map = new Object();
 		map['applNo'] = $("#applNo").val();
 		nfw.common.doAjaxAction("skf/Skf2100Sc002/AttachedFileAreaAsync", map, true, function(res){
-			if (res.attachedFileArea.length > 0) {
+// 			if (res.attachedFileArea.length > 0) {
 				$("#attachedFileAreaDiv").html(res.attachedFileArea);
 				
 				$("a[id^='attached_']").bind("click", function(){
 					attachedFileDownload(this);
 				});
-			} else {
-				$("#attachedFileAreaDiv").remove();
-			}
+// 			} else {
+// 				$("#attachedFileAreaDiv").remove();
+// 			}
 		});
 	}
 	
