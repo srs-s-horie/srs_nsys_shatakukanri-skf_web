@@ -8,6 +8,7 @@
 <%@ taglib prefix="workflow" uri="http://www.intra-mart.co.jp/taglib/imw/workflow" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
+
 <%@ page import="jp.co.c_nexco.skf.skf2100.app.skf2100sc002.Skf2100Sc002Form" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.CodeConstant" %>
@@ -15,6 +16,8 @@
 <link rel="stylesheet" type="text/css" href="styles/skf/theme.css" />
 <% //コメントボタンCSSを読み込み %>
 <link href="styles/skf/CommentBtnStyle.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="styles/skf/listTableStyle.css" />
+
 
 <%-- コンテンツエリア --%>
 <script type="text/javascript">
@@ -70,7 +73,7 @@ $(function() {
     <div class="imui-form-container-wide">
 
     <!-- コンテンツエリア -->
-    <div style="max-width: 1000px; margin-left:64px; margin-top:-7px;">
+    <div style="max-width: 1000px; margin-left:3%; margin-top:-7px;">
     <table class="imui-form-search-condition">
        <tr>
             <th style="width: 10%;"><nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2100_SC002_APPL_STATUS %>" /></th>

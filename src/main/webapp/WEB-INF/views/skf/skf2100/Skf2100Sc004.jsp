@@ -52,7 +52,7 @@ $(function() {
     <div class="imui-form-container-wide">
 
     <!-- コンテンツエリア -->
-    <div style="max-width: 300px; margin-left:64px; margin-top:-7px;">
+    <div style="max-width: 300px; margin-left:3%; margin-top:-7px;">
     <table class="imui-form-search-condition">
        <tr>
             <th style="width: 10%;"><nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2100_SC004_APPL_STATUS %>" /></th>

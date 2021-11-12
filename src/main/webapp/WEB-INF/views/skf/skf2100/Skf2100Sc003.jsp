@@ -109,7 +109,7 @@
 			
 
 <!-- コンテンツエリア -->
-<div style="max-width: 300px; margin-left:64px; margin-top:-7px;">
+<div style="max-width: 300px; margin-left:3%; margin-top:-7px;">
 	<table class="imui-form-search-condition">
 		<tr>
 		<th style="width: 10%;"><nfwui:LabelBox id="lblApplStatus" code="<%= MessageIdConstant.SKF2100_SC003_APPL_STATUS %>" /></th>
@@ -179,7 +179,7 @@
 						<td colspan="3">
 						<imart:condition validity="<%= String.valueOf(form.isLastUseDayEditFlag()) %>" >
 							<imui:textbox id="tel" name="tel" style="ime-mode: disabled;width:200px;"
-								maxlength="13" value="${form.tel}" tabindex="3" 
+								maxlength="13" value="${form.tel}" tabindex="3" oninput="value = value.replace(/[^0-9-]+/i,'');"
 								class="${form.telErr}" placeholder="例 090-0000-0000"/>
 						</imart:condition>
 						<imart:condition validity="<%= String.valueOf(form.isLastUseDayEditFlag()) %>" negative>
