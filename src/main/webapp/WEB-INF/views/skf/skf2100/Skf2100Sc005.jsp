@@ -147,7 +147,7 @@
 							<nfwui:LabelBox id="lblTel" code="<%=MessageIdConstant.SKF2100_SC005_LABEL_TEL %>" />
 						</th>
 						<td colspan="3" style="width:220px">
-							<imui:textbox id="txtTel" name="txtTel" class="ime-off" style="width:220px;" oninput="value = value.replace(/[^0-9-]+/i,'');"
+							<imui:textbox id="txtTel" name="txtTel" class="ime-off" style="ime-mode: disabled;width:220px;" oninput="value = value.replace(/[^0-9-]+/i,'');"
 								type="text" value="${f:h(form.txtTel)}" maxlength="13" placeholder="例 000-0000-0000" tabindex="6"/>	
 						</td>
 						<th>
@@ -210,7 +210,7 @@
 			</imui:listTable>
 			<br />
 			<div class="align-R">
-				<imui:button id="outputKanriDaicho" name="outputKanriDaicho" style="width:200px;" value="モバイルルーター管理簿出力" class="imui-medium-button" tabindex="15"/>
+				<imui:button id="outputKanriDaicho" name="outputKanriDaicho" style="width:250px;" value="モバイルルーター貸出管理簿出力" class="imui-medium-button" tabindex="15"/>
 			</div>
 		</div>
 	</nfwui:Form>
