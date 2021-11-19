@@ -12,6 +12,7 @@
 <%@ page import="jp.co.c_nexco.skf.common.constants.MessageIdConstant" %>
 <%@ page import="jp.co.c_nexco.skf.common.constants.FunctionIdConstant" %>
 <script src="scripts/skf/skfCommon.js"></script>
+<link href="ui/theme/im_theme_c_nexco_wfm/css/theme.css" rel="stylesheet" type="text/css">
 
 <%-- コンテンツエリア --%>
 <style type="text/css">
@@ -90,12 +91,11 @@
 			$.imui.util.loadCSS("../../ui/libs/jquery.jqGrid-4.3.3/css/ui.jqgrid.css", { media: "screen" });
 			})(jQuery);
 		</script>
-
 		<imui:listTable id="resultList" name="resultList" process="jssp" autoEncode="false" autoWidth="true" autoResize="true"
-			data="${form.listTableList}" onCellSelect="onCellSelectPop" onBeforeSelectRow="onBeforeSelectRow" multiSelect="false"  tabindex="308">
-			<pager rowNum="${form.maxCount}" />
+			data="${form.listTableList}" onCellSelect="onCellSelectPop" onBeforeSelectRow="onBeforeSelectRow" multiSelect="false" >
+			<pager rowNum="100" />
 			<cols>
-				<col name="colSelect" width="20" sortable="false" caption="" wrap="true"  tabindex="307"/>
+				<col name="colSelect" width="20" sortable="false" caption="" wrap="true" />
 				<col name="colRouterNo" width="50" sortable="false" align="left" caption="通しNo" wrap="true" />
 				<col name="colTel" width="120" sortable="false" align="left" caption="電話番号" wrap="true" />
 				<col name="colContractEndDate" width="120" sortable="false" align="left" caption="契約終了日" wrap="true" />
