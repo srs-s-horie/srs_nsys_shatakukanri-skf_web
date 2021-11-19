@@ -260,7 +260,7 @@
 							</th>
 							<td>
 								<nfwui:DateBox id="returnDay" name="returnDay" value="${f:h(form.returnDay)}"
-								disabled="${form.editDisableFlg }" cssStyle="width:180px" cssClass="${form.returnDayErr }" tabindex="24"/>
+								disabled="${form.editDisableFlg }" cssStyle="width:180px" cssClass="${form.returnDayErr }" tabindex="13"/>
 							</td>
 						</tr>
 						<tr>
@@ -277,7 +277,7 @@
 							</th>
 							<td colspan="2" rowspan="2">
 								<imui:textArea id="biko" name="biko" rows="3"  maxlength="1600"
-									style="width:500px;" value="${f:h(form.biko)}" disabled="${form.editDisableFlg }" class="${form.bikoErr}" tabindex="13" />
+									style="width:500px;" value="${f:h(form.biko)}" disabled="${form.editDisableFlg }" class="${form.bikoErr}" tabindex="14" />
 							</td>
 						</tr>
 						<tr>
@@ -295,16 +295,16 @@
 		</div>
 		<br />
 		<div class="align-L float-L">	
-			<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="14" />
+			<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="15" />
 		</div>
 		<div class="align-R">
 			<nfwui:Button id="btnUnyonGuide" url="skf/Skf2100Sc006/OperationGuideDownload" value="運用ガイド" cssClass="imui-medium-button" 
-			cssStyle="width: 150px" tabindex="15" disabled="${form.btnUnyonGuideDisableFlg }" />
+			cssStyle="width: 150px" tabindex="16" disabled="${form.btnUnyonGuideDisableFlg }" />
 			<imui:button id="btnTmpSave" value="登録" class="imui-medium-button" style="width: 150px" onclick="sc006PreButtonEvent(0)" 
-			tabindex="16" disabled="${form.btnRegistDisableFlg }" />		</div>
+			tabindex="17" disabled="${form.btnRegistDisableFlg }" />		</div>
 		<div class="align-R">
 			<imui:button id="btnKeizokuLogin" value="削除" class="imui-medium-button" style="width: 150px" onclick="sc006PreButtonEvent(3)" 
-			tabindex="17" disabled="${form.btnDeleteDisableFlg }" />		</div>
+			tabindex="18" disabled="${form.btnDeleteDisableFlg }" />		</div>
 		<br>
 		<script type="text/javascript">
 			(function($) {
