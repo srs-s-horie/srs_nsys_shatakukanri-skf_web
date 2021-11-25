@@ -99,7 +99,7 @@
 		<input type="hidden" id="taskMsgId" name="taskMsgId" value="${batchForm.taskMsgId}" />
 	
 		<div class="align-R">
-			<input id="kariKeisanBtn" name="kariKeisanBtn" style="width:150px;" type="button" value="仮計算処理" class="imui-medium-button" tabindex="4"/>
+			<input id="kariKeisanBtn" name="kariKeisanBtn" style="width:150px;" type="button" value="社宅仮計算処理" class="imui-medium-button" tabindex="4"/>
 			<imui:button id="closeTaskExecution" name="closeTaskExecution" style="width:150px;" value="社宅締め処理" class="imui-medium-button" tabindex="5" />
 			<imui:button id="routerCloseTaskExecution" name="routerCloseTaskExecution" style="width:220px;" value="モバイルルーター締め処理" class="imui-medium-button" tabindex="7"/>
 			<input id="positiveCoopDataSakuseiBtn" name="positiveCoopDataSakuseiBtn" type="button" style="width:200px;" value="給与連携データ作成処理" class="imui-medium-button" tabindex="9"/>
