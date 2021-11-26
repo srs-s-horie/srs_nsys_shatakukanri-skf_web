@@ -183,7 +183,6 @@
                         </div>
                         <% //ログイン後画面表示領域 %>
                         <div class="align-L" id="logoutButton">   
-                            <!-- <nfwui:Button id="logout" formId="form" value="代行ログアウト" cssClass="imui-small-button" url="skf/Skf2010Sc008/logout" tabindex="5" /> -->
                             <imui:button id="logout" value="代行ログアウト" class="imui-medium-button" style="width: 150px; margin-top:5px;" tabindex="5" onclick="logoutBtn()"/> 
                         </div>
                         </div>
