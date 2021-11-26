@@ -55,6 +55,17 @@
 		});
 
     });
+    
+     // ログアウトボタン押下時の処理
+    logoutBtn=function () {
+    	
+    	 // ログアウトサービスに遷移
+    	nfw.common.submitForm("form", "skf/Skf2010Sc008/logout", this);
+    	
+    	// ログアウトサービス処理後に、初期表示画面に遷移（menuFlgによりセッション、dtoを初期化）
+    	nfw.common.submitForm("formDummy", "skf/Skf2010Sc008/init?menuFlg=1", null, false);
+    	
+    }
   
     // 社員選択支援ポップアップ コールバック関数
     shainInfoCallback = function(param){
@@ -172,7 +183,8 @@
                         </div>
                         <% //ログイン後画面表示領域 %>
                         <div class="align-L" id="logoutButton">   
-                            <nfwui:Button id="logout" formId="form" value="代行ログアウト" cssClass="imui-small-button" url="skf/Skf2010Sc008/Logout" tabindex="5" />
+                            <!-- <nfwui:Button id="logout" formId="form" value="代行ログアウト" cssClass="imui-small-button" url="skf/Skf2010Sc008/logout" tabindex="5" /> -->
+                            <imui:button id="logout" value="代行ログアウト" class="imui-medium-button" style="width: 150px; margin-top:5px;" tabindex="5" onclick="logoutBtn()"/> 
                         </div>
                         </div>
                         </div>
@@ -197,5 +209,8 @@
             </tbody>
         </table>
       </nfwui:Form>
+      <nfwui:Form id="formDummy" name="formDummy" modelAttribute="form" encType="multipart/form-data">
+      </nfwui:Form>
+      
 </div>
 	<!-- コンテンツエリア　ここまで -->
