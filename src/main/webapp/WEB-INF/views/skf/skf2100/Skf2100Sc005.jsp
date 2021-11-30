@@ -25,7 +25,7 @@
 
 	
 	/*
-	 * リストテーブルの「備品提示」の文字色を取得する。
+	 * リストテーブルの文字色を取得する。
 	 */
 	function onCellStatusAttr(rowId, val, rawObject, cm, rdata) {
 		var style;
@@ -43,10 +43,12 @@
 			style = 'style="color:green;"';
 			break;
 		case '承認':
+		case '契約中':
 			style = 'style="color:blue;"';
 			break;
 		case '未作成':
 		case '未申請':
+		case '解約済':
 			style = 'style="color:red;"';
 			break;
 		default:
@@ -196,7 +198,7 @@
 					</col>
 					<col name="col2" caption="通しNo" width="100" sortable="false" wrap="true" align="left"/>
 					<col name="col3" caption="電話番号" width="150" sortable="false" wrap="true" align="left"/>
-					<col name="col4" caption="契約区分" width="100" sortable="false" wrap="true" align="center"/>
+					<col name="col4" caption="契約区分" width="100" sortable="false" wrap="true" align="center" onCellAttr="onCellStatusAttr"/>
 					<col name="col5" caption="契約終了日" width="100" sortable="false" wrap="true" align="left"/>
 					<col name="col6" caption="故障" width="100" sortable="false" wrap="true" align="left"/>
 					<col name="col7" caption="社員番号" width="150" sortable="false" wrap="true" align="left"/>
