@@ -221,7 +221,7 @@
 						</td>
 						<td colspan="3">
 							<imui:checkbox id="faultFlag" name="faultFlag" value="1" 
-								checked="${form.hdnChkFaultSelect }" disabled="${form.faultFlagDisabled }" tabindex="4"/>
+								checked="${form.hdnChkFaultSelect }" disabled="${form.faultFlagDisabled }" tabindex="4"/>故障
 						</td>
 					</tr>
 					<tr>

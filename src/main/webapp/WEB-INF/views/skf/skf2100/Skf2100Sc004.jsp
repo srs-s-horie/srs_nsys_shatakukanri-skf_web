@@ -164,7 +164,7 @@ $(function() {
 										</td>
 										<td colspan="3">
 											<imui:checkbox id="faultFlag" name="faultFlag" value="1" 
-												checked="${form.hdnChkFaultSelect }" disabled="disabled" tabindex="1"/>
+												checked="${form.hdnChkFaultSelect }" disabled="disabled" tabindex="1"/>故障
 										</td>
 									</tr>
 									<tr>
