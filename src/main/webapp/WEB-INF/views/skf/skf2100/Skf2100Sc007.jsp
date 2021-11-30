@@ -22,7 +22,27 @@
 		var backMessage = "前の画面へ戻ります。よろしいですか？";
 		nfw.common.confirmPopup(backMessage, "戻る確認", "form", "skf/Skf2100Sc007/prevPage", "OK", "キャンセル", this, true);	
 	}
-
+	
+	/*
+	 * リストテーブルの文字色を取得する。
+	 */
+	function onCellStatusAttr(rowId, val, rawObject, cm, rdata) {
+		var style;
+			
+		switch (val) {
+		case '契約中':
+			style = 'style="color:blue;"';
+			break;
+		case '解約済':
+			style = 'style="color:red;"';
+			break;
+		default:
+			style = 'style="color:black;"';
+			break;
+		}
+		
+		return style;
+	}
 </script>
 
 <!-- コンテンツエリア -->
@@ -137,8 +157,8 @@
 					<col name="col4" caption="IMEI(製造番号)" width="200" sortable="false" wrap="true" align="left"/>
 					<col name="col5" caption="ルーター入荷日" width="150" sortable="false" wrap="true" align="center"/>
 					<col name="col6" caption="ルーター契約終了日" width="150" sortable="false" wrap="true" align="center"/>
-					<col name="col7" caption="契約区分" width="150" sortable="false" wrap="true" align="left"/>
-					<col name="col8" caption="故障" width="150" sortable="false" wrap="true" align="left" />
+					<col name="col7" caption="契約区分" width="150" sortable="false" wrap="true" align="left" onCellAttr="onCellStatusAttr"/>
+					<col name="col8" caption="故障" width="100" sortable="false" wrap="true" align="left" />
 					<col name="col9" caption="詳細" width="100" sortable="false" align="center" tabindex="14">
 						<showIcon iconClass="im-ui-icon-common-16-update" align="center" />
 					</col>
