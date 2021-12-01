@@ -27,7 +27,8 @@
 <!-- コンテンツエリア -->
 <nfwui:Form id="skf2100Sc009form" name="skf2100Sc009form" modelAttribute="form" >
 	<div class="imui-form-container-wide">
-		<div style="height:30px; bottom:10px">検索条件を指定して、<font color="green">「検索」</font>をクリックしてください。</div>
+		<div style="height:45px; bottom:10px">検索条件を指定して、<font color="green">「検索」</font>をクリックしてください。
+			<br/>一覧には現在未使用のルーターが表示されます。（解約済、故障中のルーターは表示されません）</div>
 		<nfwui:Title code="<%= MessageIdConstant.SKF2100_SC009_SEARCH_TITLE %>" titleLevel="2" />
 		<nfwui:Table use="search">
 			<tbody>
@@ -187,7 +188,6 @@
 							grid.setRowData(ids[i], {colSelect:rbtn});
 						}
 					}
-					window.scrollTo(0, 0);
 				});
 			};
 

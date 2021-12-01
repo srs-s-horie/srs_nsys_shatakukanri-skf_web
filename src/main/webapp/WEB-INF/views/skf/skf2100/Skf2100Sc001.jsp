@@ -485,7 +485,7 @@
 			// 搬入完了ボタンクリックイベント
 			$("#btnCarryIn").bind('click', function() {
 				var dialogTitle = "確認";
-				var dialogMessage = "モバイルルーター搬入を完了します。よろしいですか？";
+				var dialogMessage = "モバイルルーターの搬入確認を完了します。よろしいですか？";
 				var url = "skf/Skf2100Sc001/complete";
 				nfw.common.confirmPopup(dialogMessage,　dialogTitle, "form", url, "OK", "キャンセル", this, true);
 			});

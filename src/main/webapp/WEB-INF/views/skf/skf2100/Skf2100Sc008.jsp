@@ -37,7 +37,7 @@
 		<input type="hidden" name="hosokuType" id="hosokuType"/>
 		<input type="hidden" name="hdnHosoku" id="sendHosokuType"/>
 		<input type="hidden" name="hdnAttachedNo" id="sendAttachedNo"/>
-		<div class="imui-form-container-wide"  >
+		<div class="imui-form-container-wide"  style="width: 95%;" >
 		<nfwui:Title id="titleShinsei" code="<%= MessageIdConstant.SKF2100_SC008_LABEL_TITLE %>" titleLevel="2" />
 				<nfwui:Table use="search">
 					<tbody>
@@ -219,6 +219,7 @@
 				</nfwui:Table>
 		</div>
 		<br />
+		<div class="imui-form-container-wide" style="width: 98%;border:none;padding:0px;">
 		<div class="align-L float-L">	
 			<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="25" />
 		</div>
@@ -228,6 +229,7 @@
 			<imui:button id="btnKeizokuLogin" value="削除" class="imui-medium-button" style="width: 150px" onclick="sc006PreButtonEvent(3)" 
 			tabindex="27" disabled="${form.btnDeleteDisableFlg }" />		</div>
 		<br>
+		</div>
 		<script type="text/javascript">
 			(function($) {
 				// 画面表示時に定義される処理

@@ -31,7 +31,7 @@
 					<nfwui:Button cssStyle="width:150px;" id="download" name="download" value="申請要件を確認" 
 					formID="form" 
 					cssClass="imui-medium-button"
-					url="skf/Skf2010Sc007/download"  />   	
+					url="skf/Skf2010Sc007/download" disabled="${form.btnCheckDisabled}" />   	
 						<input type="hidden" name="downloadFileName" id="downloadFileName" value="${form.downloadFileName}" />
 						<input type="hidden" name="functionId" id="functionId" value="${form.functionId}" />	      						
 		       	</div>

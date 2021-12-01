@@ -14,7 +14,7 @@ import jp.co.intra_mart.foundation.authz.annotation.Authz;
 
 /**
  * 
- * テスト用コントローラー
+ * 認証用コントローラー
  *
  */
 @Controller
@@ -1213,6 +1213,178 @@ public class SkfController extends BaseControllerAbstract {
 	public AsyncResponse doAsyncAction(HttpServletRequest request, @PathVariable String pageId,
 			@PathVariable String actionId) throws Exception {
 		return super.doAsyncAction(request, C_SYSTEMID, pageId, actionId);
+	}
+	
+	
+	/**
+	 * モバイルルーター借用希望申請書（申請者用）
+	 * 
+	 * @param request リクエスト情報
+	 * @param response レスポンス情報
+	 * @param model モデル
+	 * @param actionId アクションID
+	 * @return JSP名
+	 * @throws Exception 例外処理
+	 */
+	@RequestMapping(C_SYSTEMID + "/Skf2100Sc001/{actionId}")
+	@Authz(uri = "service://skf/Skf2100Sc001/init", action = "execute")
+	public String doActionSkf2100Sc001(HttpServletRequest request, HttpServletResponse response, Model model,
+			@PathVariable String actionId) throws Exception {
+		String pageId = "Skf2100Sc001";
+		String result = super.doAction(request, response, model, C_SYSTEMID, pageId, actionId);
+		return result;
+	}
+	
+	/**
+	 * モバイルルーター借用希望申請書（アウトソース用）
+	 * 
+	 * @param request リクエスト情報
+	 * @param response レスポンス情報
+	 * @param model モデル
+	 * @param actionId アクションID
+	 * @return JSP名
+	 * @throws Exception 例外処理
+	 */
+	@RequestMapping(C_SYSTEMID + "/Skf2100Sc002/{actionId}")
+	@Authz(uri = "service://skf/Skf2100Sc002/init", action = "execute")
+	public String doActionSkf2100Sc002(HttpServletRequest request, HttpServletResponse response, Model model,
+			@PathVariable String actionId) throws Exception {
+		String pageId = "Skf2100Sc002";
+		String result = super.doAction(request, response, model, C_SYSTEMID, pageId, actionId);
+		return result;
+	}
+	
+	/**
+	 * モバイルルーター返却申請書（申請者用）
+	 * 
+	 * @param request リクエスト情報
+	 * @param response レスポンス情報
+	 * @param model モデル
+	 * @param actionId アクションID
+	 * @return JSP名
+	 * @throws Exception 例外処理
+	 */
+	@RequestMapping(C_SYSTEMID + "/Skf2100Sc003/{actionId}")
+	@Authz(uri = "service://skf/Skf2100Sc003/init", action = "execute")
+	public String doActionSkf2100Sc003(HttpServletRequest request, HttpServletResponse response, Model model,
+			@PathVariable String actionId) throws Exception {
+		String pageId = "Skf2100Sc003";
+		String result = super.doAction(request, response, model, C_SYSTEMID, pageId, actionId);
+		return result;
+	}
+	
+	/**
+	 * モバイルルーター返却申請書（アウトソース用）
+	 * 
+	 * @param request リクエスト情報
+	 * @param response レスポンス情報
+	 * @param model モデル
+	 * @param actionId アクションID
+	 * @return JSP名
+	 * @throws Exception 例外処理
+	 */
+	@RequestMapping(C_SYSTEMID + "/Skf2100Sc004/{actionId}")
+	@Authz(uri = "service://skf/Skf2100Sc004/init", action = "execute")
+	public String doActionSkf2100Sc004(HttpServletRequest request, HttpServletResponse response, Model model,
+			@PathVariable String actionId) throws Exception {
+		String pageId = "Skf2100Sc004";
+		String result = super.doAction(request, response, model, C_SYSTEMID, pageId, actionId);
+		return result;
+	}
+	
+	/**
+	 * モバイルルーター貸出管理簿
+	 * 
+	 * @param request リクエスト情報
+	 * @param response レスポンス情報
+	 * @param model モデル
+	 * @param actionId アクションID
+	 * @return JSP名
+	 * @throws Exception 例外処理
+	 */
+	@RequestMapping(C_SYSTEMID + "/Skf2100Sc005/{actionId}")
+	@Authz(uri = "service://skf/Skf2100Sc005/init", action = "execute")
+	public String doActionSkf2100Sc005(HttpServletRequest request, HttpServletResponse response, Model model,
+			@PathVariable String actionId) throws Exception {
+		String pageId = "Skf2100Sc005";
+		String result = super.doAction(request, response, model, C_SYSTEMID, pageId, actionId);
+		return result;
+	}
+	
+	/**
+	 * モバイルルーター貸出管理簿登録
+	 * 
+	 * @param request リクエスト情報
+	 * @param response レスポンス情報
+	 * @param model モデル
+	 * @param actionId アクションID
+	 * @return JSP名
+	 * @throws Exception 例外処理
+	 */
+	@RequestMapping(C_SYSTEMID + "/Skf2100Sc006/{actionId}")
+	@Authz(uri = "service://skf/Skf2100Sc006/init", action = "execute")
+	public String doActionSkf2100Sc006(HttpServletRequest request, HttpServletResponse response, Model model,
+			@PathVariable String actionId) throws Exception {
+		String pageId = "Skf2100Sc006";
+		String result = super.doAction(request, response, model, C_SYSTEMID, pageId, actionId);
+		return result;
+	}
+	
+	/**
+	 * モバイルルーターマスタ一覧
+	 * 
+	 * @param request リクエスト情報
+	 * @param response レスポンス情報
+	 * @param model モデル
+	 * @param actionId アクションID
+	 * @return JSP名
+	 * @throws Exception 例外処理
+	 */
+	@RequestMapping(C_SYSTEMID + "/Skf2100Sc007/{actionId}")
+	@Authz(uri = "service://skf/Skf2100Sc007/init", action = "execute")
+	public String doActionSkf2100Sc007(HttpServletRequest request, HttpServletResponse response, Model model,
+			@PathVariable String actionId) throws Exception {
+		String pageId = "Skf2100Sc007";
+		String result = super.doAction(request, response, model, C_SYSTEMID, pageId, actionId);
+		return result;
+	}
+	
+	/**
+	 * モバイルルーターマスタ登録
+	 * 
+	 * @param request リクエスト情報
+	 * @param response レスポンス情報
+	 * @param model モデル
+	 * @param actionId アクションID
+	 * @return JSP名
+	 * @throws Exception 例外処理
+	 */
+	@RequestMapping(C_SYSTEMID + "/Skf2100Sc008/{actionId}")
+	@Authz(uri = "service://skf/Skf2100Sc008/init", action = "execute")
+	public String doActionSkf2100Sc008(HttpServletRequest request, HttpServletResponse response, Model model,
+			@PathVariable String actionId) throws Exception {
+		String pageId = "Skf2100Sc008";
+		String result = super.doAction(request, response, model, C_SYSTEMID, pageId, actionId);
+		return result;
+	}
+	
+	/**
+	 * モバイルルーター機器入力支援
+	 * 
+	 * @param request リクエスト情報
+	 * @param response レスポンス情報
+	 * @param model モデル
+	 * @param actionId アクションID
+	 * @return JSP名
+	 * @throws Exception 例外処理
+	 */
+	@RequestMapping(C_SYSTEMID + "/Skf2100Sc009/{actionId}")
+	@Authz(uri = "service://skf/Skf2100Sc009/init", action = "execute")
+	public String doActionSkf2100Sc009(HttpServletRequest request, HttpServletResponse response, Model model,
+			@PathVariable String actionId) throws Exception {
+		String pageId = "Skf2100Sc009";
+		String result = super.doAction(request, response, model, C_SYSTEMID, pageId, actionId);
+		return result;
 	}
 
 }

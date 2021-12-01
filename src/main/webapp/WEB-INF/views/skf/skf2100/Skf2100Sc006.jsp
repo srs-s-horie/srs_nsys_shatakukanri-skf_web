@@ -44,7 +44,7 @@
 		<nfwui:Table use="search">
 			<tbody>
 				<tr>
-					<td style="width: 3%; border:none; background-color:#ffffff; box-shadow:none;" ></td>
+					<td style="width: 1%; border:none; background-color:#ffffff; box-shadow:none;" ></td>
 					<!-- 社員番号-->
 					<th style="width: 8%;">
 						<nfwui:LabelBox id="lblShainNo" code="<%=MessageIdConstant.SKF2100_SC006_SHAIN_NO %>" />
@@ -61,7 +61,7 @@
 							preOnclick="setShainShienPreparation(0)"  tabindex="3"/> 
 					</td>
 
-					<td style="width: 3%; border:none; background-color:#ffffff; box-shadow:none;" ></td>
+					<td style="width: 2%; border:none; background-color:#ffffff; box-shadow:none;" ></td>
 					
 					<!-- 対象年月 -->
 					<th style="width: 7%;text-align:center;">
@@ -74,7 +74,7 @@
 					<td style="width:20%;border:none;"></td>
 				</tr>
 				<tr>
-				<td style="width: 3%; border:none; background-color:#ffffff; box-shadow:none;" ></td>
+				<td style="width: 1%; border:none; background-color:#ffffff; box-shadow:none;" ></td>
 					<!-- 社員氏名-->
 					<th>
 						<!-- <label style="width:60px;">社員氏名</label> -->
@@ -83,7 +83,7 @@
 					<td colspan="2" >
 						<label id="shainName" name="shainName" style="width:150px;">${f:h(form.shainName) }</label>
 					</td>
-					<td style="width: 3%; border:none; background-color:#ffffff; box-shadow:none;" ></td>
+					<td style="width: 2%; border:none; background-color:#ffffff; box-shadow:none;" ></td>
 					
 					<!-- 対象年月-->
 					<td style="text-align:center;">
@@ -100,7 +100,7 @@
 				</tr>
 			</tbody>
 		</nfwui:Table>
-		<div class="imui-form-container-wide" >
+		<div class="imui-form-container-wide" style="width: 95%;">
 		<nfwui:Title id="titleShinsei" code="<%= MessageIdConstant.SKF2100_SC006_TABLE_TITLE %>" titleLevel="2" />
 				<nfwui:Table use="search">
 					<tbody>
@@ -294,6 +294,7 @@
 				</nfwui:Table>
 		</div>
 		<br />
+		<div class="imui-form-container-wide" style="width: 98%;border:none;padding:0px;">
 		<div class="align-L float-L">	
 			<imui:button id="returnBtn" value="前の画面へ" class="imui-medium-button" style="width: 150px" onclick="back1()" tabindex="15" />
 		</div>
@@ -306,6 +307,7 @@
 			<imui:button id="btnKeizokuLogin" value="削除" class="imui-medium-button" style="width: 150px" onclick="sc006PreButtonEvent(3)" 
 			tabindex="18" disabled="${form.btnDeleteDisableFlg }" />		</div>
 		<br>
+		</div>
 		<script type="text/javascript">
 			(function($) {
 				// 画面表示時に定義される処理
