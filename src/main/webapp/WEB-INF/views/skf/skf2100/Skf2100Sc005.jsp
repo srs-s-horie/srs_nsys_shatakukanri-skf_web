@@ -199,13 +199,13 @@
 					<col name="col2" caption="通しNo" width="100" sortable="false" wrap="true" align="left"/>
 					<col name="col3" caption="電話番号" width="150" sortable="false" wrap="true" align="left"/>
 					<col name="col4" caption="契約区分" width="100" sortable="false" wrap="true" align="center" onCellAttr="onCellStatusAttr"/>
-					<col name="col5" caption="契約終了日" width="100" sortable="false" wrap="true" align="left"/>
+					<col name="col5" caption="契約終了日" width="100" sortable="false" wrap="true" align="center"/>
 					<col name="col6" caption="故障" width="100" sortable="false" wrap="true" align="left"/>
 					<col name="col7" caption="社員番号" width="150" sortable="false" wrap="true" align="left"/>
 					<col name="col8" caption="社員氏名" width="150" sortable="false" wrap="true" align="left"/>
 					<col name="col9" caption="申請状況" width="100" sortable="false" wrap="true" align="center" onCellAttr="onCellStatusAttr"/>
-					<col name="col10" caption="貸与日" width="150" sortable="false" wrap="true" align="center"/>
-					<col name="col11" caption="返却日" width="150" sortable="false" wrap="true" align="center"/>
+					<col name="col10" caption="貸与日" width="100" sortable="false" wrap="true" align="center"/>
+					<col name="col11" caption="返却日" width="100" sortable="false" wrap="true" align="center"/>
 					<col name="col12" hidden="true"/>
 					<col name="col13" hidden="true"/>
 				</cols>
