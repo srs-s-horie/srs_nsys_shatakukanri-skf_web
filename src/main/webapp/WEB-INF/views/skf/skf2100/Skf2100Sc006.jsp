@@ -163,13 +163,14 @@
 								<label id="routerNo" name="routerNo">${f:h(form.routerNo) }</label>
 							</td>
 							<!-- 本人メールアドレス -->
-							<th style="width:15%;">
+							<th style="width:15%;height:25px;">
 								<nfwui:LabelBox id="lblMailAddress" code="<%=MessageIdConstant.SKF2100_SC006_HANNYU_MAILADDRESS %>" />
 							</th>
 							<td style="width:30%;">
-								<imui:textbox id="hannyuMailaddress" name="hannyuMailaddress"  style="ime-mode: disabled;width:180px;"
-									maxlength="255" value="${f:h(form.hannyuMailaddress)}" tabindex="8" disabled="${form.editDisableFlg }"
-									class="${form.hannyuMailaddressErr}" placeholder="例 xxxxx@c-nexco.co.jp"/>
+								<label id="hannyuMailaddress" name="hannyuMailaddress">${f:h(form.hannyuMailaddress) }</label>
+<%-- 								<imui:textbox id="hannyuMailaddress" name="hannyuMailaddress"  style="ime-mode: disabled;width:180px;" --%>
+<%-- 									maxlength="255" value="${f:h(form.hannyuMailaddress)}" tabindex="8" disabled="${form.editDisableFlg }" --%>
+<%-- 									class="${form.hannyuMailaddressErr}" placeholder="例 xxxxx@c-nexco.co.jp"/> --%>
 							</td>
 						</tr>
 						<tr>
