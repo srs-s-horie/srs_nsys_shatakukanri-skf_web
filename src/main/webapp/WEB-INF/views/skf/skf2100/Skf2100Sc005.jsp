@@ -206,6 +206,7 @@
 					<col name="col9" caption="申請状況" width="100" sortable="false" wrap="true" align="center" onCellAttr="onCellStatusAttr"/>
 					<col name="col10" caption="貸与日" width="100" sortable="false" wrap="true" align="center"/>
 					<col name="col11" caption="返却日" width="100" sortable="false" wrap="true" align="center"/>
+					<col name="col14" caption="モバイルルーター 備考" width="300" sortable="false" wrap="true" align="left"/>
 					<col name="col12" hidden="true"/>
 					<col name="col13" hidden="true"/>
 				</cols>
