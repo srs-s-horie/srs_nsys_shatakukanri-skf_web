@@ -212,14 +212,7 @@
 							<nfwui:LabelBox id="lblMailAddress" code="<%= MessageIdConstant.SKF2100_SC001_MAILADDRESS %>" />
 						</th>
 						<td colspan="2">
-						<imart:condition validity="<%= String.valueOf(form.isUseStartHopeDayEditFlag()) %>" >
-							<imui:textbox id="mailAddress" name="mailAddress" style="ime-mode: disabled;width:200px;"
-								maxlength="255" value="${form.mailAddress}" tabindex="4" 
-								class="${form.mailAddressErr}" placeholder="例 xxxxx@c-nexco.co.jp"/>
-						</imart:condition>
-						<imart:condition validity="<%= String.valueOf(form.isUseStartHopeDayEditFlag()) %>" negative>
 							<label id="mailAddress" name="mailAddress">${f:h(form.mailAddress) }</label>
-						</imart:condition>
 						</td>
 					</tr>
 					<tr>
