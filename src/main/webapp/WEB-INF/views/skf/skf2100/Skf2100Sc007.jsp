@@ -100,7 +100,7 @@
 							<nfwui:LabelBox id="lblTel" code="<%=MessageIdConstant.SKF2100_SC007_TEL %>" />
 						</th>
 						<td colspan="3" >
-							<imui:textbox id="txtTel" name="txtTel" class="ime-off" style="ime-mode: disabled;width:95%;"
+							<imui:textbox id="txtTel" name="txtTel" class="ime-off" style="ime-mode: disabled;width:95%;" oninput="value = value.replace(/[^0-9-]+/i,'');" 
 								type="text" value="${f:h(form.txtTel)}" maxlength="13" placeholder="例 000-0000-0000" tabindex="4"/>	
 						</td>
 						<th style="width:8%;white-space: nowrap;">
@@ -155,9 +155,9 @@
 					<col name="col2" caption="電話番号" width="200" sortable="false" wrap="true" align="left"/>
 					<col name="col3" caption="ICCID(識別番号)" width="200" sortable="false" wrap="true" align="left"/>
 					<col name="col4" caption="IMEI(製造番号)" width="200" sortable="false" wrap="true" align="left"/>
-					<col name="col5" caption="ルーター入荷日" width="150" sortable="false" wrap="true" align="center"/>
-					<col name="col6" caption="ルーター契約終了日" width="150" sortable="false" wrap="true" align="center"/>
-					<col name="col7" caption="契約区分" width="150" sortable="false" wrap="true" align="left" onCellAttr="onCellStatusAttr"/>
+					<col name="col5" caption="ルーター入荷日" width="120" sortable="false" wrap="true" align="center"/>
+					<col name="col6" caption="ルーター契約終了日" width="120" sortable="false" wrap="true" align="center"/>
+					<col name="col7" caption="契約区分" width="100" sortable="false" wrap="true" align="left" onCellAttr="onCellStatusAttr"/>
 					<col name="col8" caption="故障" width="100" sortable="false" wrap="true" align="left" />
 					<col name="col9" caption="詳細" width="100" sortable="false" align="center" tabindex="14">
 						<showIcon iconClass="im-ui-icon-common-16-update" align="center" />
