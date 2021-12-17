@@ -168,9 +168,6 @@
 							</th>
 							<td style="width:30%;">
 								<label id="hannyuMailaddress" name="hannyuMailaddress">${f:h(form.hannyuMailaddress) }</label>
-<%-- 								<imui:textbox id="hannyuMailaddress" name="hannyuMailaddress"  style="ime-mode: disabled;width:180px;" --%>
-<%-- 									maxlength="255" value="${f:h(form.hannyuMailaddress)}" tabindex="8" disabled="${form.editDisableFlg }" --%>
-<%-- 									class="${form.hannyuMailaddressErr}" placeholder="例 xxxxx@c-nexco.co.jp"/> --%>
 							</td>
 						</tr>
 						<tr>
