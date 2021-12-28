@@ -359,8 +359,8 @@
 								// 登録
 								// 現在状態バックアップ
 								backUpStatus();
-								//infomation.skf.i_skf_3027=すべてのタブの画面項目を登録します。よろしいですか？
-								nfw.common.confirmPopup("すべての画面項目を登録します。よろしいですか？",
+								//infomation.skf.i_skf_3053
+								nfw.common.confirmPopup("編集した内容で登録します。よろしいですか？",
 										"確認", "form", "skf/Skf2100Sc006/regist", "OK", "キャンセル", this, true);
 								break;
 							case 3:
