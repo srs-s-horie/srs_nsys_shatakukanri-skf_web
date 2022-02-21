@@ -10,6 +10,7 @@
 <%@ taglib prefix="f" uri="http://terasoluna.org/functions" %>
 <script src="scripts/skf/skfCommon.js"></script>
 <link rel="stylesheet" type="text/css" href="styles/skf/listTableStyle.css" />
+<link href="ui/theme/im_theme_c_nexco_wfm/css/theme.css" rel="stylesheet" type="text/css">
 
 <style>
    /* データ行の改行許容 */

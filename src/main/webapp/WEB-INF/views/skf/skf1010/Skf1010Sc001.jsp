@@ -83,6 +83,26 @@ if(menuSesValTop != null){
                         </td>
                      </tr> 
                      <tr>
+                        <th>
+                            <a href="/imart/skf/Skf2010Sc007/init?confirmationKbn=3" class="imui-accent" style="margin-left: 8px">
+                            	<nfwui:LabelBox id="mobileRouterKiboShinsei" code="<%= MessageIdConstant.SKF1010_SC001_MOBILE_ROUTER_KIBO_SHINSEI %>" />
+                            </a>
+                        </th>
+                        <td style="width: 60%;">
+                            <nfwui:LabelBox id="mobileRouterKiboShinseiMessage" code="<%= MessageIdConstant.SKF1010_SC001_MOBILE_ROUTER_KIBO_SHINSEI_MESSAGE %>" />
+                        </td>
+                     </tr>
+                     <tr>
+                        <th>
+                            <a href="/imart/skf/Skf2010Sc007/init?confirmationKbn=4" class="imui-accent" style="margin-left: 8px">
+                            	<nfwui:LabelBox id="mobileRouterHenkyakuShinsei" code="<%= MessageIdConstant.SKF1010_SC001_MOBILE_ROUTER_HENKYAKU_SHINSEI %>" />
+                            </a>
+                        </th>
+                        <td style="width: 60%;">
+                            <nfwui:LabelBox id="mobileRouterHenkyakuShinseiMessage" code="<%= MessageIdConstant.SKF1010_SC001_MOBILE_ROUTER_HENKYAKU_SHINSEI_MESSAGE %>" />
+                        </td>
+                     </tr>
+                     <tr>
                       <th>
                             <a href="/imart/skf/Skf2010Sc003/init" class="imui-accent" style="margin-left: 8px">
                             	<nfwui:LabelBox id="syatakuSinseiZyokyoItiran" code="<%= MessageIdConstant.SKF1010_SC001_SYATAKU_SINSEI_ZYOKYO_ITIRAN %>" />
@@ -276,6 +296,23 @@ if(menuSesValTop != null){
                             <nfwui:LabelBox id="nenreiSiyoryoHenkoTutiMessage" code="<%= MessageIdConstant.SKF1010_SC001_NENREI_SIYORYO_HENKO_TUTI_MESSAGE %>" /><br>
                         </td>
                     </imart:condition>
+                    <!-- スペース-->
+                    <tr style="border:none">
+                       <td style="border:none">
+                       </td>
+                    </tr>
+                    <tr>
+                    <imart:condition validity="${form.level2_5}" negative>
+                        <th>
+                            <a href="/imart/skf/Skf2100Sc005/init" class="imui-accent" style="margin-left: 8px">
+                            	<nfwui:LabelBox id="routerLedgerKanri" code="<%= MessageIdConstant.SKF1010_SC001_MOBILE_ROUTER_LEDGER %>" />
+                            </a>
+                        </th>
+                        <td style="width: 60%;">
+                            <nfwui:LabelBox id="routerLedgerKanriMessage" code="<%= MessageIdConstant.SKF1010_SC001_MOBILE_ROUTER_LEDGER_MESSAGE %>" /><br>
+                        </td>
+                    </imart:condition>
+                    </tr>
                     </tr>
 
                     </ul>
@@ -370,6 +407,16 @@ if(menuSesValTop != null){
                         </th>
                         <td style="width: 60%;">
                             <nfwui:LabelBox id="zigyoRyoikiMasutaMaintenanceMessage" code="<%= MessageIdConstant.SKF1010_SC001_ZIGYO_RYOIKI_MASUTA_MAINTENANCE_MESSAGE %>" /><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <a href="/imart/skf/Skf2100Sc007/init" class="imui-accent" style="margin-left: 8px">
+                            	<nfwui:LabelBox id="routerMaintenance" code="<%= MessageIdConstant.SKF1010_SC001_MOBILE_ROUTER_MASTER %>" />
+                            </a>                        
+                        </th>
+                        <td style="width: 60%;">
+                            <nfwui:LabelBox id="routerMaintenanceMessage" code="<%= MessageIdConstant.SKF1010_SC001_MOBILE_ROUTER_MASTER_MESSAGE %>" /><br>
                         </td>
                     </tr>
 					<!--                   

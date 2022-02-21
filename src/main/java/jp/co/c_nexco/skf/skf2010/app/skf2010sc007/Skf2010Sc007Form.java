@@ -56,4 +56,7 @@ public class Skf2010Sc007Form extends NfwfileScDwdForm {
 	public static interface DataDownload {
 
 	}
+	
+	// 申請要件を確認ボタン
+	private String btnCheckDisabled;
 }
