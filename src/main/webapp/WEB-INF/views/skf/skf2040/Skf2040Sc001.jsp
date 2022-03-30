@@ -290,6 +290,8 @@
                     <input type="hidden" name="hdnNowShatakuRoomNo" id="hdnNowShatakuRoomNo" value="${form.hdnNowShatakuRoomNo}"/>
                     <input type="hidden" name="hdnNowShatakuRoomKanriNo" id="hdnNowShatakuRoomKanriNo" value="${form.hdnNowShatakuRoomKanriNo}"/>
                     <input type="hidden" name="hdnBihinHenkyakuUmu" id="hdnBihinHenkyakuUmu" value="${form.hdnBihinHenkyakuUmu}"/>
+                    <input type="hidden" name="nowShatakuKikaku" id="nowShatakuKikaku" value="${form.nowShatakuKikaku}"/>
+                    <input type="hidden" name="nowShatakuMenseki" id="nowShatakuMenseki" value="${form.nowShatakuMenseki}"/>
                     <!-- 右側の操作ガイドの部分 -->
                     <td style="width: 30%; border: none;background-color: #fdfdff;">
                         <div style="margin-left: 20px; background-color:#eeeeee;">
@@ -537,6 +539,8 @@
             $('#hdnParking1stNumber').val(data.hdnParking1stNumber);
             $('#hdnParking2ndNumber').val(data.hdnParking2ndNumber);
             $('#hdnBihinHenkyakuUmu').val(data.hdnBihinHenkyakuUmu);
+            $('#nowShatakuKikaku').val(data.nowShatakuKikaku);
+            $('#nowShatakuMenseki').val(data.nowShatakuMenseki);
 
             //画面制御
             if(data.parking1stPlace == ""){
